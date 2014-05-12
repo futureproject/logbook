@@ -1,0 +1,6 @@
+%h1 Tools
+%ul.tools
+  - @tools.each do |tool|
+    %li[tool]
+      .tool-icon=link_to image_tag(tool.icon(:thumb)), tool.url
+      .tool-name= tool.name

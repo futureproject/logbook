@@ -38,6 +38,15 @@ gem 'foreman'
 #Amazon Web Services
 gem 'aws-sdk'
 
+# Simple file attatchments
+gem 'paperclip', github: 'thoughtbot/paperclip'
+
+# Google Apps authentication
+gem 'omniauth-google-apps'
+
+# haml for views
+gem 'haml'
+
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0.beta'
 end
