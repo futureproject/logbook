@@ -43,8 +43,7 @@ gem 'aws-sdk'
 gem 'paperclip', github: 'thoughtbot/paperclip'
 
 # Google Apps authentication
-gem 'omniauth-openid'
-gem 'ruby-openid-apps-discovery'
+gem 'omniauth-google-oauth2'
 
 # haml for views
 gem 'haml'
