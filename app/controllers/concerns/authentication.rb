@@ -18,6 +18,10 @@ module Authentication
     cookies.permanent[:auth_token] = user.auth_token
   end
 
+  def sign_out user
+    cookies.permanent[:auth_token] = nil
+  end
+
   def current_user
     if cookies[:auth_token]
       User.find_by(auth_token: cookies[:auth_token])

@@ -4,8 +4,9 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'tools#index'
-  resources :sessions, only: [:new, :create, :destroy]
-  get '/auth/:provider/callback', to: 'sessions#create'
+  resources :sessions, only: [:new, :create]
+  get 'auth/logout', to: 'sessions#destroy', as: :log_out
+  match '/auth/:provider/callback' => 'sessions#create', via: [:post, :get]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

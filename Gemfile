@@ -26,14 +26,15 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring',        group: :development
 
-# Use puma as the app server, just because I like it
-gem 'puma'
 
 # Use thoughtbot SCSS helpers
 gem 'bourbon'
 
 # Start server with foreman and load .env file
 gem 'foreman'
+
+# serve with Puma, because I like it
+gem 'puma'
 
 #Amazon Web Services
 gem 'aws-sdk'
@@ -42,10 +43,15 @@ gem 'aws-sdk'
 gem 'paperclip', github: 'thoughtbot/paperclip'
 
 # Google Apps authentication
-gem 'omniauth-google-apps'
+gem 'omniauth-openid'
+gem 'ruby-openid-apps-discovery'
 
 # haml for views
 gem 'haml'
+
+#caching on heroku
+gem 'dalli'
+gem 'memcachier'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0.beta'
