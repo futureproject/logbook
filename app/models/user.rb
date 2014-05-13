@@ -30,7 +30,13 @@ class User < ActiveRecord::Base
         last_name: auth_hash[:info][:last_name],
         avatar_url: auth_hash[:info][:image],
       )
-      identity = user.add_identity auth_hash[:provider], auth_hash[:uid]
+
+      options = {
+        token: auth_hash[:credentials][:token],
+        token_expires_at: Time.at(auth_hash[:credentials][:expires_at])
+      }
+
+      identity = user.add_identity auth_hash[:provider], auth_hash[:uid], options
     end
     return user
   end

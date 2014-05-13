@@ -49,8 +49,8 @@ gem 'omniauth-google-oauth2'
 gem 'haml'
 
 #caching on heroku
-gem 'dalli'
-gem 'memcachier'
+#gem 'dalli'
+#gem 'memcachier'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0.beta'
