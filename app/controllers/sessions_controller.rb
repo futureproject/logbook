@@ -1,3 +1,4 @@
+require 'oauth_user_creator'
 class SessionsController < ApplicationController
   skip_before_action :authenticate!
   skip_before_action :verify_authenticity_token
@@ -6,7 +7,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = User.find_or_create_from_auth_hash(auth_hash)
+    @user = OauthUserCreator.find_or_create_from_auth(auth_hash)
     sign_in @user
     redirect_to session[:redirect] || root_url
   end
