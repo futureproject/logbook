@@ -19,9 +19,12 @@ body {
 a {
   color: white;
   text-decoration: none;
-  border: 3px solid;
-  border-radius: 3px;
+  border: .15em solid;
+  border-radius: .15em;
   @include transition;
+  font-weight: bold;
+  text-transform: lowercase;
+  font-variant: small-caps;
   &:hover {
     color: $dark-blue;
   }
@@ -29,5 +32,10 @@ a {
 
 hr {
   border: none;
-  @include linear-gradient(90deg, rgba(255,255,255,0.1), rgba(255,255,255,1), rgba(255,255,255,0.1));
+  @include linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,1), rgba(255,255,255,0));
+}
+
+.huge {
+  line-height: 1.4;
+  font-size: 2em;
 }
