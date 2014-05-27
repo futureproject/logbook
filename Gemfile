@@ -49,6 +49,9 @@ gem 'omniauth-google-apps'
 # haml for views
 gem 'haml'
 
+# enable heroku best-practices
+gem 'rails_12factor', group: :production
+
 #caching on heroku
 #gem 'dalli'
 #gem 'memcachier'
