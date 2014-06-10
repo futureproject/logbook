@@ -2,6 +2,7 @@ require 'spec_helper'
 describe Api::V1::UsersController, type: :controller do
 
   before do
+    use_json
     mock_auth
   end
 

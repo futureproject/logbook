@@ -52,5 +52,6 @@ RSpec.configure do |config|
   OmniAuth.config.test_mode = true
 
   config.include AuthHelpers, :type => :controller
+  config.include JsonHelper, :type => :controller
 
 end
