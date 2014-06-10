@@ -1,0 +1,6 @@
+bruce:
+  first_name: Bruce
+  last_name: Wayne
+  email: bruce.wayne@thefutureproject.org
+  auth_token: batman
+

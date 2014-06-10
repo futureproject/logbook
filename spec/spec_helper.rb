@@ -51,4 +51,6 @@ RSpec.configure do |config|
   config.order = "random"
   OmniAuth.config.test_mode = true
 
+  config.include AuthHelpers, :type => :controller
+
 end
