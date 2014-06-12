@@ -5,8 +5,8 @@ class CreateSchools < ActiveRecord::Migration
       t.string :shortname
       t.string :address
       t.integer :dream_director_id
-      t.string :latitude
-      t.string :longitude
+      t.float :latitude
+      t.float :longitude
 
       t.timestamps
     end

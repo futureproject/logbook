@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   before_create :generate_auth_token
   has_many :identities
+  has_one :school, foreign_key: 'dream_director_id', class_name: 'School'
 
   # make a #token to remember this user for later logins
   def generate_auth_token

@@ -52,6 +52,12 @@ gem 'haml'
 # enable heroku best-practices
 gem 'rails_12factor', group: :production
 
+# rails_admin for CRMish stuff
+gem 'rails_admin'
+
+# Geocode locations!
+gem 'geocoder'
+
 #caching on heroku
 #gem 'dalli'
 #gem 'memcachier'
