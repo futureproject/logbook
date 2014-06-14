@@ -4,8 +4,9 @@ class OauthUserCreator
     eval(klass).find_or_create_from_auth(auth) if self.const_defined?(klass, false)
   end
 
-  class GoogleApp
+  class GoogleOauth2
     def self.find_or_create_from_auth(auth_hash)
+      puts auth_hash
       user = User.find_by_identity(auth_hash[:provider], auth_hash[:uid])
       if !user
         user = User.create(

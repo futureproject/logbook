@@ -44,7 +44,7 @@ gem 'paperclip', github: 'thoughtbot/paperclip'
 
 # Google Apps authentication
 gem 'oauth'
-gem 'omniauth-google-apps'
+gem 'omniauth-google-oauth2'
 
 # haml for views
 gem 'haml'

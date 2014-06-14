@@ -1,6 +1,6 @@
 module OmniauthSupport
   OmniAuth.config.mock_auth[:default] = OmniAuth::AuthHash.new({
-    :provider => "google_apps",
+    :provider => "google_oauth2",
     :uid => "123456789",
     :info => {
         :name => "Bruce Waynce",

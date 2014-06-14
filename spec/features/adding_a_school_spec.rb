@@ -17,7 +17,8 @@ feature 'Adding a school' do
   end
 
   def should_see_geocoded_school
-    expect(page).to have_content "43.2233214"
+    expect(page).to have_content "Hamilton Hill High School"
+    expect(page).to have_content "Latitude"
   end
 
 end
