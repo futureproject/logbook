@@ -6,7 +6,7 @@ class OauthUserCreator
 
   class GoogleOauth2
     def self.find_or_create_from_auth(auth_hash)
-      puts auth_hash
+      return unless auth_hash[:info][:email].split("@")[1] == "thefutureproject.org"
       user = User.find_by_identity(auth_hash[:provider], auth_hash[:uid])
       if !user
         user = User.create(

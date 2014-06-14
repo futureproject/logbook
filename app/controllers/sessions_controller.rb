@@ -8,8 +8,12 @@ class SessionsController < ApplicationController
 
   def create
     @user = OauthUserCreator.find_or_create_from_auth(auth_hash)
-    sign_in @user
-    redirect_to session[:redirect] || root_url
+    if @user
+      sign_in @user
+      redirect_to session[:redirect] || root_url
+    else
+      render text: 'Please use a TFP Google Account'
+    end
   end
 
   def destroy
