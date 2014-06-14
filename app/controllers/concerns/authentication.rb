@@ -10,7 +10,7 @@ module Authentication
       true
     else
       store_location
-      redirect_to new_session_path
+      redirect_to main_app.new_session_path
     end
   end
 
