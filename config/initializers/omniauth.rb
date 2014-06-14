@@ -1,5 +1,17 @@
 require 'openid/store/filesystem'
+require 'openid/store/memcache'
+require 'dalli'
 Rails.application.config.middleware.use OmniAuth::Builder do
-  #provider :google_oauth2, ENV["GOOGLE_CLIENT_ID"], ENV["GOOGLE_CLIENT_SECRET"], {:client_options => {:ssl => {:ca_file => '/usr/lib/ssl/certs/ca-certificates.crt'}}} 
-  provider :google_apps, :store => OpenID::Store::Filesystem.new('./tmp'), domain: 'thefutureproject.org'
+
+  if Rails.env.staging? || Rails.env.production? || ENV['OPENID_STORE'] == 'memcache'
+    # Locally, these env vars will be blank, and it will connect to the local memcached
+    # client running on the standard port
+    memcached_client = Dalli::Client.new(ENV['MEMCACHE_SERVERS'],
+                                         :username => ENV['MEMCACHE_USERNAME'],
+                                         :password => ENV['MEMCACHE_PASSWORD'])
+    provider :google_apps, domain: 'thefutureproject.org',
+                           store: OpenID::Store::Memcache.new(memcached_client)
+  else
+    provider :google_apps, store: OpenID::Store::Filesystem.new('./tmp'), domain: 'thefutureproject.org'
+  end
 end

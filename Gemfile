@@ -59,8 +59,8 @@ gem 'rails_admin'
 gem 'geocoder'
 
 #caching on heroku
-#gem 'dalli'
-#gem 'memcachier'
+gem 'dalli'
+gem 'memcachier'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0.beta'
