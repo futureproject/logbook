@@ -1,3 +1,3 @@
-.card.centered
-  = image_tag asset_path('tfplogo.svg'), class: 'svg_logo'
-  = link_to 'Log In', '/auth/google_oauth2', data: { disable_with: 'Logging in...' }, class: 'huge'
+#new_session
+  .logo= image_tag asset_path('tfplogo.svg')
+  .link= link_to 'Log In', '/auth/google_oauth2', data: { disable_with: 'Logging in...' }, class: 'huge'

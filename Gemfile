@@ -29,6 +29,7 @@ gem 'spring',        group: :development
 
 # Use thoughtbot SCSS helpers
 gem 'bourbon'
+gem 'neat'
 
 # Start server with foreman and load .env file
 gem 'foreman'
@@ -61,6 +62,12 @@ gem 'geocoder'
 #caching on heroku
 gem 'dalli'
 gem 'memcachier'
+
+# backbone
+gem "rails-backbone"
+
+# fastclick
+gem 'fastclick-rails'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0.beta'

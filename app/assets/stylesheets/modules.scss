@@ -1,12 +1,45 @@
-.card {
-  margin: 1em auto;
-  max-width: 16em;
+.l_application {
+  padding: 1em;
+  border-top: 3em solid white;
 }
 
 .centered {
   text-align: center;
 }
 
-.svg_logo {
-  margin: 0 auto 2em;
+.huge {
+  line-height: 1.4;
+  font-size: 2em;
+}
+
+.header {
+  margin-top: $gutter;
+  &:first-child { margin-top: 0; }
+  @include outer_container;
+  text-transform: lowercase;
+  font-variant: small-caps;
+  font-weight: bold;
+  padding: 0 $gutter;
+  h1 {
+    font-size: 1em;
+  }
+}
+
+.tools_list {
+  @include clearfix;
+  @include outer_container;
+}
+
+.tool {
+  @include span_columns(4);
+  @include omega(3n);
+  padding: $gutter;
+}
+
+.tasks_list {
+  @extend .tools_list;
+}
+
+.task {
+  @extend .tool;
 }

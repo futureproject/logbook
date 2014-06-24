@@ -1,13 +1,3 @@
-$baseline: 1.4em;
-$gutter: $baseline;
-$border-box-sizing: true;
-$dark_blue: #121e29;
-$tfp_blue: #79d1eb;
-$tfp_blue_trans: rgba(121,209,235, .5);
-$tfp_blue_less_trans: rgba(121,209,235, .95);
-$slate_blue: #a5aeb2;
-$grey: #231f20;
-
 body {
   background: $tfp_blue;
   font-family: 'avenir next', avenir, sans-serif;
@@ -16,7 +6,7 @@ body {
   color: white;
 }
 
-a {
+.btn, button, .button {
   color: white;
   text-decoration: none;
   border: .15em solid;
@@ -35,7 +25,18 @@ hr {
   @include linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,1), rgba(255,255,255,0));
 }
 
-.huge {
-  line-height: 1.4;
-  font-size: 2em;
+a {
+  text-decoration: none;
+  border-bottom: .1em solid;
+  color: inherit;
+  @include transition;
+  &:hover {
+    color: $tfp_blue_dark;
+  }
 }
+
+.header {
+  color: $tfp_blue;
+  background: white;
+}
+

@@ -1,0 +1,44 @@
+.l_application.sessions {
+  border-top-color: transparent;
+}
+#new_session {
+  width: 100%;
+  display: table;
+  max-width: 480px;
+  margin: 0 auto;
+  > * {
+    display: table-cell;
+    width: 50%;
+    box-sizing: border-box;
+    vertical-align: middle;
+    text-align: center;
+  }
+  img {
+    width: 8em;
+    height: 8em;
+  }
+}
+
+#session_toolbar {
+  height: 3em;
+  padding: 1em;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  color: $grey;
+  @include outer_container;
+  > * {
+    display: inline-block;
+    float: left;
+  }
+  .greeting {
+    line-height: 1;
+  }
+  .avatar { width: 1em; height: 1em; margin-right: 6px; background: $slate_blue; }
+  .log_out {
+    float: right;
+  }
+}
+

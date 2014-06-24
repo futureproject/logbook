@@ -1,6 +1,28 @@
-%h1 Tools
-%ul.tools
-  - @tools.each do |tool|
-    %li[tool]
-      .tool-icon=link_to image_tag(tool.icon(:thumb)), tool.url
-      .tool-name= tool.name
+.header
+  %h1 Tools and Apps
+
+%nav.tools_list
+  =link_to "Students", "#", class: 'tool'
+  =link_to "Projects", "#", class: 'tool'
+  =link_to "Events", "#", class: 'tool'
+  =link_to "Gmail", "https://mail.google.com/a/thefutureproject.org", class: 'tool'
+  =link_to "Drive", "https://drive.google.com/a/thefutureproject.org", class: 'tool'
+  =link_to "Calendar", "https://calendar.google.com/a/thefutureproject.org", class: 'tool'
+  =link_to "Reports", "#", class: 'tool'
+  =link_to "Expensify", "http://www.expensify.com/", class: 'tool'
+  =link_to "Groups", "https://groups.google.com/a/thefutureproject.org/forum/#!forum/forum", class: 'tool'
+
+
+.header
+  %h1 Things to do
+
+%section.tasks_list
+  .task
+    %p Insert Captain-assigned and self-assigned tasks here?
+
+.header
+  %h1 Stats
+%section.tasks_list
+  .task
+    %p Insert some of Rebecca's stat reports here
+
