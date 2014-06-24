@@ -16,6 +16,7 @@ RailsAdmin.config do |config|
 
   ### More at https://github.com/sferik/rails_admin/wiki/Base-configuration
 
+  config.main_app_name = ["DreamOS", "Admin"]
   config.excluded_models = %w(Identity Tool)
 
   config.actions do
@@ -38,7 +39,14 @@ RailsAdmin.config do |config|
     edit do
       field :name
       field :address
-      field :dream_director_id
+      field :dream_director
+    end
+  end
+  config.model 'Site' do
+    edit do
+      field :name
+      field :captain
+      field :schools
     end
   end
 end

@@ -5,6 +5,11 @@ class School < ActiveRecord::Base
   after_validation :set_shortname, :if => lambda{ |obj| obj.name_changed? }
 
   belongs_to :dream_director, class_name: 'User'
+  belongs_to :site
+
+  has_many :students
+  has_many :projects
+
 
   def set_shortname
     self.shortname = self.name.parameterize

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140612181516) do
+ActiveRecord::Schema.define(version: 20140624153624) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,14 @@ ActiveRecord::Schema.define(version: 20140612181516) do
     t.datetime "updated_at"
   end
 
+  create_table "projects", force: true do |t|
+    t.string   "name"
+    t.integer  "school_id"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "schools", force: true do |t|
     t.string   "name"
     t.string   "shortname"
@@ -34,6 +42,25 @@ ActiveRecord::Schema.define(version: 20140612181516) do
     t.integer  "dream_director_id"
     t.float    "latitude"
     t.float    "longitude"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "site_id"
+  end
+
+  create_table "sites", force: true do |t|
+    t.string   "name"
+    t.integer  "captain_id"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "students", force: true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.integer  "school_id"
+    t.integer  "grade"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
