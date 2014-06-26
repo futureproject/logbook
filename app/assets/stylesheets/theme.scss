@@ -1,3 +1,15 @@
+#sidebar {
+  background: white;
+  color: $slate_blue;
+  .current a {
+    color: $tfp_blue;
+  }
+  header { color: $dark_blue; }
+  .active {
+    color: $tfp_blue;
+  }
+}
+
 body {
   background: $tfp_blue;
   font-family: 'avenir next', avenir, sans-serif;
@@ -6,7 +18,12 @@ body {
   color: white;
 }
 
-.btn, button, .button {
+.card {
+  padding: 1em;
+}
+
+.btn, button, .button, input[type=submit] {
+  background: none;
   color: white;
   text-decoration: none;
   border: .15em solid;
@@ -27,11 +44,10 @@ hr {
 
 a {
   text-decoration: none;
-  border-bottom: .1em solid;
   color: inherit;
   @include transition;
   &:hover {
-    color: $tfp_blue_dark;
+    text-decoration: underline;
   }
 }
 

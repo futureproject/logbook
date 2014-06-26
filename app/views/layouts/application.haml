@@ -1,15 +1,11 @@
 !!!
 %html
   %head
-    %title Dashboard
+    %title DreamOS
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body.l_application{class: params[:controller]}
-    = yield
-    - if current_user
-      #session_toolbar
-        .avatar= image_tag(current_user.avatar_url, class: 'avatar') if current_user.avatar_url.present?
-        .greeting= "Hi, #{current_user.first_name}."
-        .log_out= link_to "Log Out", log_out_url
+    = render 'sidebar'
+    #main= yield
 

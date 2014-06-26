@@ -1,0 +1,22 @@
+- if current_user
+  #sidebar
+    .avatar= image_tag(current_user.avatar_url, class: 'avatar') if current_user.avatar_url.present?
+    %header DreamOS
+    .log_out= link_to "Log Out", log_out_url
+    %ul.nav
+      =nav_link "Home", root_url
+      =nav_link "People", students_path
+      =nav_link "Projects", projects_path
+      =nav_link "Forms", '/forms'
+      =nav_link "Stats", '/stats'
+      %li.nested
+        %header Google
+        =link_to "Gmail", "https://mail.google.com/a/thefutureproject.org"
+        =link_to "Drive", "https://drive.google.com/a/thefutureproject.org"
+        =link_to "Calendar", "https://calendar.google.com/a/thefutureproject.org"
+        =link_to "Groups", "https://groups.google.com/a/thefutureproject.org/forum/#!forum/forum"
+      %li.nested
+        %header Ops
+        =link_to "Expensify", "http://www.expensify.com/"
+        =link_to "Ask Paul", "mailto:ops@thefutureproject.org?subject=OPS REQUEST"
+

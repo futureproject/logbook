@@ -1,11 +1,67 @@
-.l_application.sessions {
-  border-top-color: transparent;
+#sidebar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 9em;
+  padding: 1em;
+  overflow: hidden;
+  .avatar {
+    width: 1em;
+    height: 1em;
+    float: left;
+    margin-right: 4px;
+    background: $grey;
+  }
+  .log_out {
+    position: absolute;
+    bottom: 1em;
+    left: 1em;
+  }
+  .nav {
+    position: absolute;
+    top: 3em;
+    bottom: 3em;
+    left: 0;
+    right: 0;
+    margin: 0;
+    padding: 0 1em;
+    overflow: auto;
+    list-style: none;
+    li {
+      height: 44px;
+      line-height: 44px;
+    }
+    .nested {
+      height: auto;
+      header {
+        font-variant: small-caps;
+        text-transform: lowercase;
+      }
+      a {
+        line-height: 1.6;
+        display: block;
+        padding-left: 1em;
+      }
+    }
+  }
 }
+
+#main {
+  position: absolute;
+  top: 0;
+  left: 10em;
+  bottom: 0;
+  right: 0;
+}
+
 #new_session {
   width: 100%;
   display: table;
   max-width: 480px;
-  margin: 0 auto;
+  margin: 4em auto;
+  position: relative;
+  left: -4em;
   > * {
     display: table-cell;
     width: 50%;
@@ -19,26 +75,4 @@
   }
 }
 
-#session_toolbar {
-  height: 3em;
-  padding: 1em;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  background: white;
-  color: $grey;
-  @include outer_container;
-  > * {
-    display: inline-block;
-    float: left;
-  }
-  .greeting {
-    line-height: 1;
-  }
-  .avatar { width: 1em; height: 1em; margin-right: 6px; background: $slate_blue; }
-  .log_out {
-    float: right;
-  }
-}
 

@@ -1,5 +1,5 @@
 require 'rails_helper'
 
-RSpec.describe Project, :type => :model do
+RSpec.describe "students/create.html.erb", :type => :view do
   pending "add some examples to (or delete) #{__FILE__}"
 end
