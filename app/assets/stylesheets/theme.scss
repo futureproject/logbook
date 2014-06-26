@@ -56,3 +56,14 @@ a {
   background: white;
 }
 
+#{$all-text-inputs} {
+  background: none;
+  border: none;
+  border-bottom: .1em solid;
+  font-family: inherit;
+  font-size: 1.2em;
+  &:focus {
+    outline: none;
+    border-bottom-color: $dark_blue;
+  }
+}

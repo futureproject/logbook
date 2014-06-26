@@ -1,0 +1,4 @@
+bruce_identity:
+  user: bruce
+  provider: google_oauth2
+  uid: 123456789

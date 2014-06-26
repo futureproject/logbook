@@ -39,3 +39,20 @@
 .task {
   @extend .tool;
 }
+
+.field, .actions {
+  max-width: 480px;
+  height: 44px;
+  line-height: 44px;
+}
+.label {
+  @include span_columns(3);
+  text-transform: lowercase;
+  font-variant: small-caps;
+}
+.input {
+  @include span_columns(9);
+  input {
+    display: block;
+  }
+}

@@ -48,7 +48,7 @@ gem 'oauth'
 gem 'omniauth-google-oauth2'
 
 # haml for views
-gem 'haml'
+gem "haml-rails"
 
 # enable heroku best-practices
 gem 'rails_12factor', group: :production
