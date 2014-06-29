@@ -4,7 +4,8 @@ class Bluebook.Views.People.IndexView extends Backbone.View
   template: JST["bluebook/templates/people/index"]
 
   initialize: (options) ->
-    @listenTo Bluebook.vent, 'people:reset', @render
+    @listenTo Backbone, 'people:reset', @render
+    @listenTo Backbone, 'people:scrollTo', @scrollTo
   #  @options = options
   #  @options.people.bind('reset', @addAll)
 
@@ -22,3 +23,6 @@ class Bluebook.Views.People.IndexView extends Backbone.View
     @el.querySelector('.list').appendChild(@fragment)
 
     return this
+
+  scrollTo: (pos) ->
+    @el.scrollTop = pos - 70

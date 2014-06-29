@@ -1,11 +1,17 @@
 class Bluebook.Routers.PeopleRouter extends Backbone.Router
   initialize: (options) ->
+    @listenTo Backbone, 'route:go', @go
+
     @views =
       new: new Bluebook.Views.People.NewView()
       index: new Bluebook.Views.People.IndexView(el: "#list")
       show: new Bluebook.Views.People.ShowView(el: "#detail")
+
     @people = new Bluebook.Collections.PeopleCollection()
     @people.reset options.people
+
+  go: (route) ->
+    @navigate route
 
   routes:
     "bluebook" : "index"
@@ -25,8 +31,8 @@ class Bluebook.Routers.PeopleRouter extends Backbone.Router
 
   show: (id) ->
     person = @people.get(id)
-    console.log "router showing #{person.get('first_name')}"
-    Bluebook.vent.trigger 'people:show', person
+    Backbone.trigger 'people:show', person
+    Backbone.trigger 'people:getScrollPos', person
 
     #@view = new Bluebook.Views.People.ShowView(model: person)
     #$("#detail").html(@view.render().el)

@@ -13,3 +13,15 @@
 .success {
   @include flash($success-color);
 }
+
+.list {
+  > * {
+    border-bottom: 1px solid $base-border-color;
+    &:active {
+      background: transparentize($base-accent-color, .5);
+    }
+    &.is_active {
+      background: $base-accent-color;
+    }
+  }
+}

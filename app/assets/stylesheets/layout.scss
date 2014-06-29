@@ -26,6 +26,7 @@
   @include outer_container;
   background-repeat: repeat-y;
   background-position: center top;
+  overflow: hidden;
   #sidebar, #app, #list, #detail {
     height: 100%;
     > * {

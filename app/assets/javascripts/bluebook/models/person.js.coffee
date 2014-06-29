@@ -15,4 +15,4 @@ class Bluebook.Collections.PeopleCollection extends Backbone.Collection
     @on 'reset', @onreset
 
   onreset: ->
-    Bluebook.vent.trigger 'people:reset', @
+    Backbone.trigger 'people:reset', @

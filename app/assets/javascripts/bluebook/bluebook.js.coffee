@@ -15,7 +15,6 @@ window.Bluebook =
   Routers: {}
   Views: {}
   initialize: (data) ->
-    @vent = _.extend Backbone.Events
     $.ajaxPrefilter (options, originalOptions, jqXHR) ->
       options.url = "/api/v1#{options.url}"
     $.ajaxSetup
