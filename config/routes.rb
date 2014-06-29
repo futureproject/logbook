@@ -13,12 +13,13 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :users
+      resources :people
     end
   end
 
   namespace :bluebook do
-    root 'people#index'
-    resources :people
+    root 'application#home'
+    get '*anywhere', to: 'application#home'
   end
 
   # Example of regular route:

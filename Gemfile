@@ -65,7 +65,6 @@ gem 'dalli'
 gem 'memcachier'
 
 # backbone stuff
-gem 'rails-backbone'
 gem 'ejs'
 
 # fastclick

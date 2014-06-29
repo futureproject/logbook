@@ -11,18 +11,17 @@ class OauthUserCreator
       return unless email.split("@")[1] == "thefutureproject.org"
       #user = User.find_by_identity(auth_hash[:provider], auth_hash[:uid])
       # find user by email instead of identity
-      user = User.where(email: email).first_or_create(
+      user = User.where(email: email).first_or_create
+      user.update_attributes(
         email: auth_hash[:info][:email],
         first_name: auth_hash[:info][:first_name],
         last_name: auth_hash[:info][:last_name],
         avatar_url: auth_hash[:info][:image]
       )
-
-        #options = {
-        #  token: auth_hash[:credentials][:token],
-        #  token_expires_at: Time.at(auth_hash[:credentials][:expires_at])
-        #}
-
+      #options = {
+      #  token: auth_hash[:credentials][:token],
+      #  token_expires_at: Time.at(auth_hash[:credentials][:expires_at])
+      #}
       identity = user.add_identity auth_hash[:provider], auth_hash[:uid]
       return user
     end

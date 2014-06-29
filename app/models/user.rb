@@ -25,6 +25,10 @@ class User < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
 
+  def school_id
+    school.id rescue nil
+  end
+
   def self.find_by_identity(provider, uid)
     Identity.where(provider: provider, uid: uid).first.try(:user)
   end

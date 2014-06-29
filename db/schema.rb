@@ -77,17 +77,6 @@ ActiveRecord::Schema.define(version: 20140628212634) do
     t.datetime "updated_at"
   end
 
-  create_table "tools", force: true do |t|
-    t.string   "name"
-    t.string   "url"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "icon_file_name"
-    t.string   "icon_content_type"
-    t.integer  "icon_file_size"
-    t.datetime "icon_updated_at"
-  end
-
   create_table "users", force: true do |t|
     t.string   "first_name"
     t.string   "last_name"

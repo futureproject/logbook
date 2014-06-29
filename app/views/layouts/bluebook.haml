@@ -3,9 +3,22 @@
   %head
     %title Blue Book
     = stylesheet_link_tag    'bluebook', media: 'all'
-    = javascript_include_tag 'backbone/bluebook'
+    = javascript_include_tag 'bluebook/bluebook'
     = csrf_meta_tags
-  %body
-    #main= yield
+  %body#bluebook{style: "background-image: url(#{asset_path 'grid.png' });" }
+    #sidebar
+      %header
+        %span.mega-octicon.octicon-book
+      .avatar= image_tag(current_user.avatar_url, class: 'avatar')
+      %nav
+        #dashboard
+          .mega-octicon.octicon-pulse
+        #people
+          .mega-octicon.octicon-organization
+
+    #app
+      #list
+      #detail
+
     :javascript
-      window.JS_DATA = #{JSON.dump( @js_data || {} )}
+      Bluebook.initialize(#{JSON.dump( @js_data || {} )})
