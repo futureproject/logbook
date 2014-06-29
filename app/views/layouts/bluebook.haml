@@ -1,0 +1,11 @@
+!!!
+%html
+  %head
+    %title Blue Book
+    = stylesheet_link_tag    'bluebook', media: 'all'
+    = javascript_include_tag 'backbone/bluebook'
+    = csrf_meta_tags
+  %body
+    #main= yield
+    :javascript
+      window.JS_DATA = #{JSON.dump( @js_data || {} )}

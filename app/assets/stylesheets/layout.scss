@@ -1,58 +1,5 @@
-#sidebar {
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 9em;
-  padding: 1em;
-  overflow: hidden;
-  .avatar {
-    width: 1em;
-    height: 1em;
-    float: left;
-    margin-right: 4px;
-    background: $grey;
-  }
-  .log_out {
-    position: absolute;
-    bottom: 1em;
-    left: 1em;
-  }
-  .nav {
-    position: absolute;
-    top: 3em;
-    bottom: 3em;
-    left: 0;
-    right: 0;
-    margin: 0;
-    padding: 0 1em;
-    overflow: auto;
-    list-style: none;
-    li {
-      height: 44px;
-      line-height: 44px;
-    }
-    .nested {
-      height: auto;
-      header {
-        font-variant: small-caps;
-        text-transform: lowercase;
-      }
-      a {
-        line-height: 1.6;
-        display: block;
-        padding-left: 1em;
-      }
-    }
-  }
-}
-
 #main {
-  position: absolute;
-  top: 0;
-  left: 10em;
-  bottom: 0;
-  right: 0;
+  @include outer_container;
 }
 
 #new_session {

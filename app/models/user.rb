@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   has_one :school, foreign_key: 'dream_director_id', class_name: 'School'
   has_one :site, through: :school
 
-  has_many :students, through: :school
+  has_many :people, through: :school
   has_many :projects, through: :school
 
   # make a #token to remember this user for later logins
@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
       provider: provider,
       uid: uid
     }
-    self.identities.create attrs.merge(options)
+    self.identities.first_or_create attrs.merge(options)
   end
 
   def name

@@ -17,7 +17,7 @@ RailsAdmin.config do |config|
   ### More at https://github.com/sferik/rails_admin/wiki/Base-configuration
 
   config.main_app_name = ["DreamOS", "Admin"]
-  config.excluded_models = %w(Identity Tool)
+  config.excluded_models = %w(Identity)
 
   config.actions do
     dashboard                     # mandatory

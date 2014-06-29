@@ -1,0 +1,4 @@
+#people
+:javascript
+  window.router = new Dreamos.Routers.PeopleRouter({posts: #{@people.to_json.html_safe}});
+  Backbone.history.start();

@@ -1,15 +1,4 @@
 Rails.application.routes.draw do
-  get 'students/index'
-
-  get 'students/show'
-
-  get 'students/edit'
-
-  get 'students/create'
-
-  get 'students/update'
-
-  get 'students/destroy'
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   # The priority is based upon order of creation: first created -> highest priority.
@@ -17,9 +6,6 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'users#dashboard'
-  resources :tools
-  resources :students
-  resources :projects
   resources :sessions, only: [:new, :create]
   get 'auth/logout', to: 'sessions#destroy', as: :log_out
   match 'auth/:provider/callback' => 'sessions#create', via: [:post, :get]
@@ -28,6 +14,11 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :users
     end
+  end
+
+  namespace :bluebook do
+    root 'people#index'
+    resources :people
   end
 
   # Example of regular route:

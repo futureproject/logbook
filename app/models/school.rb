@@ -7,7 +7,7 @@ class School < ActiveRecord::Base
   belongs_to :dream_director, class_name: 'User'
   belongs_to :site
 
-  has_many :students
+  has_many :people
   has_many :projects
 
 

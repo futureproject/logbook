@@ -13,7 +13,7 @@ feature 'Loogging in with Google Apps' do
 
   def should_be_logged_in
     expect(page).to have_content "Log Out"
-    expect(page).to have_selector "img.avatar"
+    expect(page).to have_selector ".avatar"
   end
 
 end

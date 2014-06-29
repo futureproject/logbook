@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+gem 'rename'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.1'
@@ -30,6 +30,7 @@ gem 'spring',        group: :development
 # Use thoughtbot SCSS helpers
 gem 'bourbon'
 gem 'neat'
+gem 'bitters'
 
 # Start server with foreman and load .env file
 gem 'foreman'
@@ -63,8 +64,9 @@ gem 'geocoder'
 gem 'dalli'
 gem 'memcachier'
 
-# backbone
-gem "rails-backbone"
+# backbone stuff
+gem 'rails-backbone'
+gem 'ejs'
 
 # fastclick
 gem 'fastclick-rails'
