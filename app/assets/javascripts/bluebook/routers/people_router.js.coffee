@@ -4,8 +4,8 @@ class Bluebook.Routers.PeopleRouter extends Backbone.Router
 
     @views =
       new: new Bluebook.Views.People.NewView()
-      index: new Bluebook.Views.People.IndexView(el: "#list")
-      show: new Bluebook.Views.People.ShowView(el: "#detail")
+      index: new Bluebook.Views.People.IndexView(el: "#people .list-frame")
+      show: new Bluebook.Views.People.ShowView(el: "#people .detail-frame")
 
     @people = new Bluebook.Collections.PeopleCollection()
     @people.reset options.people

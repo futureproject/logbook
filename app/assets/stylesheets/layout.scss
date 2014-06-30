@@ -26,28 +26,52 @@
   @include outer_container;
   background-repeat: repeat-y;
   background-position: center top;
+  background: none !important;
   overflow: hidden;
-  #sidebar, #app, #list, #detail {
+  #app, #tabs, #tab_targets, .panel, .list-frame, .detail-frame {
     height: 100%;
-    > * {
-      overflow: auto;
-    }
   }
-  #sidebar {
-    @include span_columns(1);
+  .list-frame, .detail-frame {
+    overflow: auto;
   }
-  #app {
-    @include span_columns(11);
-    @include omega;
-  }
-  #list {
-    @include span-columns(4 of 11);
-  }
-  #detail {
-    @include span-columns(7 of 11);
-    height: 200px;
-    background: blue;
+  .detail-frame {
+    padding: 1em;
   }
 }
 
+#tabs {
+  @include span_columns(1);
+}
+#tab_targets {
+  @include span_columns(11);
+  @include omega;
+  .panel {
+  }
+  .list-frame {
+    @include span-columns(4 of 11);
+  }
+  .detail-frame {
+    @include span-columns(7 of 11);
+  }
+}
+#tabs {
+  text-align: center;
+  .nav_link {
+    width: 100%;
+    height: 0;
+    padding-bottom: 100%;
+    overflow: hidden;
+    cursor: pointer;
+    .mega-octicon {
+      display: block;
+      height: 50px;
+      width: 50px;
+      line-height: 44px;
+      margin: 0 auto;
+      position: relative;
+      top: 50%;
+      @include transform(translateY(-50%));
+    }
+  }
+}
 

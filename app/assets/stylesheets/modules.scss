@@ -50,23 +50,22 @@
   }
 }
 
-.list {
-  > * {
-    @include outer_container;
-    cursor: pointer;
-  }
-  .list-item-graphic, .list-item-label {
-    height: 100%;
-    line-height: 60px;
-    height: 60px;
-  }
-  .list-item-graphic {
-    @include span_columns(1 of 4);
-    text-align: center;
-    font-weight: bold;
-    font-size: 1.5em;
-  }
-  .list-item-label {
-    @include span_columns(3 of 4);
-  }
+.list-item {
+  @include outer_container;
+  cursor: pointer;
+}
+.list-item-graphic, .list-item-label {
+  height: 100%;
+  line-height: 60px;
+  height: 60px;
+}
+.list-item-graphic {
+  @include span_columns(1 of 4);
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.5em;
+  position: relative;
+}
+.list-item-label {
+  @include span_columns(3 of 4);
 }
