@@ -4,7 +4,7 @@ class Api::V1::PeopleController < Api::V1::BaseController
   # GET /api/v1/people
   # GET /api/v1/people.json
   def index
-    @people = current_user.people
+    @people = current_user.people.order(:first_name, :id)
   end
 
   # GET /api/v1/people/1

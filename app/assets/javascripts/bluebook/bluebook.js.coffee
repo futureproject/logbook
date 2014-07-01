@@ -16,10 +16,9 @@ window.Bluebook =
   Views: {}
   initialize: (data) ->
     $.ajaxPrefilter (options, originalOptions, jqXHR) ->
-      options.url = "/api/v1#{options.url}"
-    $.ajaxSetup
-      timeout: 5000
+      options.url = "/api/v1#{options.url}.json"
+      jqXHR.withCredentials = true
     @USER = data.current_user
     @Routers.people = new Bluebook.Routers.PeopleRouter
-      people: data.people
+    Backbone.trigger 'app:loaded'
     Backbone.history.start({ pushState: true })

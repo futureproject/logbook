@@ -8,7 +8,6 @@ class Bluebook::ApplicationController < ApplicationController
   def init_js_data
     @js_data = {}
     @js_data[:current_user] = current_user.as_json(include: :school)
-    @js_data[:people] = current_user.people.as_json
   end
 
 end

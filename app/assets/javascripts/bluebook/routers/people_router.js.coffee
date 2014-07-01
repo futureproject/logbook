@@ -8,7 +8,6 @@ class Bluebook.Routers.PeopleRouter extends Backbone.Router
       show: new Bluebook.Views.People.ShowView(el: "#people .detail-frame")
 
     @people = new Bluebook.Collections.PeopleCollection()
-    @people.reset options.people
 
   go: (route) ->
     @navigate route
@@ -30,9 +29,11 @@ class Bluebook.Routers.PeopleRouter extends Backbone.Router
     #@view.render()
 
   show: (id) ->
-    person = @people.get(id)
-    Backbone.trigger 'people:show', person
-    Backbone.trigger 'people:getScrollPos', person
+    @people.fetch
+      success: =>
+        person = @people.get(id)
+        Backbone.trigger 'people:show', person
+        Backbone.trigger 'people:getScrollPos', person
 
     #@view = new Bluebook.Views.People.ShowView(model: person)
     #$("#detail").html(@view.render().el)

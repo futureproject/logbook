@@ -1,5 +1,5 @@
 class Bluebook.Models.Person extends Backbone.Model
-
+  urlRoot: '/people'
   defaults: ->
     first_name: null
     last_name: null
@@ -11,11 +11,19 @@ class Bluebook.Models.Person extends Backbone.Model
 class Bluebook.Collections.PeopleCollection extends Backbone.Collection
   model: Bluebook.Models.Person
   url: '/people'
+  local: !navigator.onLine
   comparator: 'first_name'
   initialize: ->
     @on 'reset', @onreset
     @listenTo Backbone, 'people:filter', @sendFiltered
+    @listenTo Backbone, 'app:loaded', @onLoad
 
+  onLoad: ->
+    @fetch({
+      reset: true
+      success: (e, response, opts) ->
+      error: onreset
+    })
   onreset: ->
     Backbone.trigger 'people:reset', @models
 
