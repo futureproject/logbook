@@ -72,6 +72,7 @@ gem 'fastclick-rails'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0.beta'
+  gem 'dotenv-rails', :groups => [:development, :test]
 end
 
 group :test do

@@ -5,10 +5,12 @@
   color: white;
   display: inline-block;
   font-size: $base-font-size;
+  font-family: $base-font-family;
   font-weight: bold;
   line-height: 1;
   padding: .75em 1em;
   text-decoration: none;
+  outline: none;
 
   &:hover {
     background-color: $hover-button-color;

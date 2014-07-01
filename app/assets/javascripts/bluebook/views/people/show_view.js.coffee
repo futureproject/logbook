@@ -6,10 +6,15 @@ class Bluebook.Views.People.ShowView extends Backbone.View
   initialize: ->
     @listenTo Backbone, 'people:show', @render
 
+  events:
+    'change input' : 'toggleCore'
+
   render: (model) ->
     @model = model
     @$el.html(@template(@model.toJSON() ))
     return this
 
-  addActiveClass: ->
-    @$el.addClass 'is_active'
+  toggleCore: ->
+    @model.set("core", !@model.get('core'))
+    @model.save()
+

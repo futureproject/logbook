@@ -14,7 +14,7 @@
   @include flash($success-color);
 }
 
-.list-toolbar {
+.list-toolbar, .detail-toolbar {
   background: $lightest-gray;
   border-bottom: 1px solid;
   text-align: center;
@@ -48,4 +48,8 @@
 }
 .detail-frame {
   border-left: 1px solid $base-font-color;
+}
+
+.detail-toolbar {
+  font-weight: bold;
 }

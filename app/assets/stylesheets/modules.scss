@@ -55,9 +55,6 @@
 .list-frame, .detail-frame {
   height: 100%;
 }
-.detail-frame {
-  padding: 1em;
-}
 
 .list {
   position: relative;
@@ -119,4 +116,46 @@
 
 .list-item-label {
   @include span_columns(3 of 4);
+}
+
+.detail {
+  position: relative;
+  height: 100%;
+}
+
+.detail-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 1em;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.detail-with-toolbar {
+  .detail-content {
+    top: 60px;
+  }
+}
+
+.detail-toolbar {
+  line-height: 60px;
+  height: 60px;
+}
+
+.detail-toolbar-title {
+  overflow: hidden;
+}
+
+.r-menu {
+  position: absolute;
+  right: 5px;
+  top: 0;
+  bottom: 0;
+}
+
+.inline-label {
+  display: inline-block;
 }

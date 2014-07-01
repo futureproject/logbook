@@ -26,7 +26,7 @@ class Api::V1::PeopleController < Api::V1::BaseController
   def create
     @person = Person.new(person_params.merge(school_id: current_user.school_id))
     if @person.save
-      render :show, status: :created, location: @person
+      render :show, status: :created, location: api_v1_person_url(@person)
     else
       render json: @person.errors, status: :unprocessable_entity
     end
@@ -36,7 +36,8 @@ class Api::V1::PeopleController < Api::V1::BaseController
   # PATCH/PUT /api/v1/people/1.json
   def update
     if @person.update(person_params)
-      render :show, status: :ok, location: @person
+      render :show, status: :ok, location: api_v1_person_url(@person)
+    else
       render json: @person.errors, status: :unprocessable_entity
     end
   end

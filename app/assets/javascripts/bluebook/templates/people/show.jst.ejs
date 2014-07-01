@@ -1,32 +1,33 @@
-<p>
-  <b>First name:</b>
-  <%= first_name %>
-</p>
+<div id="people-detail" class="detail detail-with-toolbar">
+  <div class='detail-toolbar'>
+    <div class='detail-toolbar-title'>Showing Person</div>
+    <div class='r-menu'>
+      <button><span class='octicon octicon-pencil'></span> Edit</button>
+    </div>
+  </div>
+  <div class='detail-content'>
+    <h1><%= first_name %> <%= last_name %></h1>
 
-<p>
-  <b>Last name:</b>
-  <%= last_name %>
-</p>
+    <p>
+      <b>Role:</b>
+      <%= role %>
+    </p>
 
-<p>
-  <b>Role:</b>
-  <%= role %>
-</p>
+    <p>
+      <b>Grade:</b>
+      <%= grade %>
+    </p>
 
-<p>
-  <b>School:</b>
-  <%= school_id %>
-</p>
+    <div class='unit'>
+      <label for="core" class='inline-label'>Core:</label>
+      <label class="label-switch">
+        <input id="core" name="core" type="checkbox" value="<%= core %>" <% if(core) { %>checked<% } %>>
+        <div class="checkbox"></div>
+      </label>
+    </div>
+  </div>
+</div>
 
-<p>
-  <b>Grade:</b>
-  <%= grade %>
-</p>
-
-<p>
-  <b>Core:</b>
-  <%= core %>
-</p>
 
 
 <a href="/bluebook/people/index">Back</a>
