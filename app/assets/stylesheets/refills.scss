@@ -121,24 +121,29 @@
 
 .button-group {
   $button-group-background: $base-font-color;
-  $button-group-color: lighten($base-font-color, 30);
+  $button-group-color: $base-accent-color;
   $button-group-border-highlight: lighten($button-group-background, 15);
   $button-group-active: $base-accent-color;
+  @include clearfix;
+  display: inline-block;
 
   button {
-    @include button(simple, $button-group-background);
-    font-weight: 400;
+    font-weight: 500;
     color: $button-group-color;
     font-size: $base-font-size;
     outline: none;
     width: 100%;
     display: block;
     border-top-width: 0;
+    margin: 0;
+    font-family: $base-font-family;
+    background: white;
+    padding: .5em;
 
     &.active {
-      @include button(simple, $button-group-active);
-      font-weight: 400;
       font-size: $base-font-size;
+      background: $base-accent-color;
+      color: white;
     }
 
     &:first-child {
@@ -151,31 +156,33 @@
     }
 
     &:last-child {
-      @include border-top-radius(0);
     }
 
     @include media($medium-screen) {
       width: auto;
       float: left;
-      border-top-width: 1px;
+      border: 1px solid $base-accent-color;
 
       &:first-child {
         border-top-right-radius: 0;
         border-bottom-left-radius: 3px;
+        border-right: none;
       }
 
       &:not(:first-child):not(:last-child) {
-        border-left: 1px solid $button-group-border-highlight;
+        border-left: 1px solid;
         border-radius: 0;
       }
 
       &:last-child {
-        border-left: 1px solid $button-group-border-highlight;
+        border-left: none;
         border-bottom-left-radius: 0;
+        border-top-left-radius: 0;
       }
     }
   }
 }
+
 @mixin grid-item-columns($columns) {
   width: (100% / 12) * $columns;
 }
@@ -261,4 +268,3 @@
     background: $grid-items-background;
   }
 }
-

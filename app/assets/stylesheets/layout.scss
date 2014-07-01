@@ -12,7 +12,6 @@
   > * {
     display: table-cell;
     width: 50%;
-    box-sizing: border-box;
     vertical-align: middle;
     text-align: center;
   }
@@ -28,14 +27,8 @@
   background-position: center top;
   background: none !important;
   overflow: hidden;
-  #app, #tabs, #tab_targets, .panel, .list-frame, .detail-frame {
+  #app, #tabs, #tab_targets {
     height: 100%;
-  }
-  .list-frame, .detail-frame {
-    overflow: auto;
-  }
-  .detail-frame {
-    padding: 1em;
   }
 }
 
@@ -45,8 +38,6 @@
 #tab_targets {
   @include span_columns(11);
   @include omega;
-  .panel {
-  }
   .list-frame {
     @include span-columns(4 of 11);
   }
@@ -56,6 +47,9 @@
 }
 #tabs {
   text-align: center;
+  .avatar {
+    margin: .5em .5em 0;
+  }
   .nav_link {
     width: 100%;
     height: 0;

@@ -14,11 +14,14 @@
   @include flash($success-color);
 }
 
-.list-item-graphic {
+.list-toolbar {
+  background: $lightest-gray;
+  border-bottom: 1px solid;
+  text-align: center;
 }
 
 .list-item {
-  border-bottom: 1px solid $base-border-color;
+  border-bottom: 1px solid $base-font-color;
   font-weight: 500;
   &:active {
     background: transparentize($base-accent-color, .5);
@@ -29,9 +32,8 @@
   }
 }
 
-
 #tabs {
-  border-right: 1px solid $base-border-color;
+  border-right: 1px solid $base-font-color;
   .mega-octicon {
     border: 3px solid;
     border-radius: 50%;
@@ -43,4 +45,7 @@
       border-color: $dark_blue;
     }
   }
+}
+.detail-frame {
+  border-left: 1px solid $base-font-color;
 }

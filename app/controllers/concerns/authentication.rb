@@ -31,7 +31,7 @@ module Authentication
   end
 
   def store_location
-    session[:redirect] ||= request.url
+    session[:redirect] = request.url
   end
 
 end
