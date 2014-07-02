@@ -5,15 +5,16 @@ class Bluebook.StatsPresenter extends Backbone.View
     @views =
       index: new Bluebook.Views.Stats.IndexView(el: '#stats', stats: @stats)
     @router = new Bluebook.Routers.StatsRouter
-    @listenToOnce @router, 'route', @show
+    @listenTo @router, 'route', @show
 
   events: ->
     click: 'onclick'
 
   onclick: (e) ->
-    @show() unless @$el.hasClass('active')
+    return if @$el.hasClass('active')
+    @show()
+    Backbone.trigger 'statsRouter:go', '/bluebook/', { trigger: true }
 
   show: ->
-    Backbone.trigger 'statsRouter:go', '/bluebook/', { trigger: true }
     @$el.addClass('active').siblings().removeClass('active')
     @targetEl.show().siblings().hide()

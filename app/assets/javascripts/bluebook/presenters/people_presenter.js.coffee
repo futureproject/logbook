@@ -7,15 +7,16 @@ class Bluebook.PeoplePresenter extends Backbone.View
       show: new Bluebook.Views.People.ShowView(el: "#people .detail-frame")
       edit: new Bluebook.Views.People.EditView(el: "#people .detail-frame")
     @router = new Bluebook.Routers.PeopleRouter
-    @listenToOnce @router, 'route', @show
+    @listenTo @router, 'route', @show
 
   events: ->
     click: 'onclick'
 
-  onclick: (e) ->
-    @show() unless @$el.hasClass('active')
+  onclick: () ->
+    return if @$el.hasClass('active')
+    @show()
+    Backbone.trigger 'peopleRouter:go', '/bluebook/people/', { trigger: @router.people.length < 1}
 
   show: ->
-    Backbone.trigger 'peopleRouter:go', '/bluebook/people/', { trigger: @router.people.length < 1}
     @$el.addClass('active').siblings().removeClass('active')
     @targetEl.show().siblings().hide()
