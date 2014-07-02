@@ -149,11 +149,16 @@
   overflow: hidden;
 }
 
-.r-menu {
+.l-menu, .r-menu {
   position: absolute;
-  right: 5px;
   top: 0;
   bottom: 0;
+}
+.l-menu {
+  left: 5px;
+}
+.r-menu {
+  right: 5px;
 }
 
 .inline-label {

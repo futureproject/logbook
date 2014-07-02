@@ -5,6 +5,7 @@ class Bluebook.Views.People.PersonView extends Backbone.View
 
   initialize: ->
     @listenTo Backbone, 'people:show', @toggleClass
+    @listenTo Backbone, 'people:edit', @toggleClass
     @listenTo Backbone, 'people:getScrollPos', @sendScroll
 
   className: 'list-item'

@@ -21,13 +21,9 @@
     <div class='unit'>
       <label for="core" class='inline-label'>Core:</label>
       <label class="label-switch">
-        <input id="core" name="core" type="checkbox" value="<%= core %>" <% if(core) { %>checked<% } %>>
+        <input id="toggle_core" name="core" type="checkbox" <% if(JSON.parse(core)) { %>checked<% } %>>
         <div class="checkbox"></div>
       </label>
     </div>
   </div>
 </div>
-
-
-
-<a href="/bluebook/people/index">Back</a>

@@ -31,7 +31,6 @@ class Bluebook.Routers.PeopleRouter extends Backbone.Router
         Backbone.trigger 'people:filter', { core: true }
 
   filteredIndex: (filter) ->
-    console.log filter
     @people.fetch
       reset: @people.length < 1
       success: =>
@@ -49,7 +48,12 @@ class Bluebook.Routers.PeopleRouter extends Backbone.Router
     #$("#detail").html(@view.render().el)
 
   edit: (id) ->
-    person = @people.get(id)
+    @people.fetch
+      reset: @people.length < 1
+      success: =>
+        person = @people.get(id)
+        Backbone.trigger 'people:edit', person
+        Backbone.trigger 'people:getScrollPos', person
 
     #@view = new Bluebook.Views.People.EditView(model: person)
     #$("#detail").html(@view.render().el)

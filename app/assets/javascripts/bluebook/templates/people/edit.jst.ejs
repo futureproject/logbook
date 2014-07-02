@@ -1,40 +1,45 @@
-<h1>Edit person</h1>
-
-<form id="edit-person" name="person">
-  <div class="field">
-    <label for="first_name"> first_name:</label>
-    <input type="text" name="first_name" id="first_name" value="<%= first_name %>" >
+<div id="people-detail" class="detail detail-with-toolbar">
+  <form id="edit-person" name="person">
+  <div class='detail-toolbar'>
+    <div class='detail-toolbar-title'>Editing <%= first_name %></div>
+    <div class='l-menu'>
+      <button class='cancel'>Cancel</button>
+    </div>
+    <div class='r-menu'>
+      <button class='done'>Done</button>
+    </div>
   </div>
+  <div class='detail-content'>
+      <div class="field">
+        <label for="first_name"> First:</label>
+        <input type="text" name="first_name" id="first_name" value="<%= first_name %>" >
+      </div>
 
-  <div class="field">
-    <label for="last_name"> last_name:</label>
-    <input type="text" name="last_name" id="last_name" value="<%= last_name %>" >
+      <div class="field">
+        <label for="last_name"> Last:</label>
+        <input type="text" name="last_name" id="last_name" value="<%= last_name %>" >
+      </div>
+
+      <div class="field">
+        <label for="role"> Role:</label>
+        <select name="role" id="role">
+          <option value="student" <% if(role == 'student'){ %>selected<% } %>>Student</option>
+          <option value="faculty" <% if(role == 'faculty'){ %>selected<% } %>>Faculty</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="grade"> Grade:</label>
+        <input type="number" name="grade" id="grade" value="<%= grade || 11 %>" min="9"  max="12">
+      </div>
+
+      <div class="field">
+        <label for="role"> Core:</label>
+        <select name="core" id="core">
+          <option value="true" <% if(JSON.parse(core)){ %>selected<% } %>>Yes</option>
+          <option value="false" <% if(!JSON.parse(core)){ %>selected<% } %>>No</option>
+        </select>
+      </div>
   </div>
-
-  <div class="field">
-    <label for="role"> role:</label>
-    <input type="text" name="role" id="role" value="<%= role %>" >
-  </div>
-
-  <div class="field">
-    <label for="school_id"> school_id:</label>
-    <input type="text" name="school_id" id="school_id" value="<%= school_id %>" >
-  </div>
-
-  <div class="field">
-    <label for="grade"> grade:</label>
-    <input type="text" name="grade" id="grade" value="<%= grade %>" >
-  </div>
-
-  <div class="field">
-    <label for="core"> core:</label>
-    <input type="text" name="core" id="core" value="<%= core %>" >
-  </div>
-
-  <div class="actions">
-    <input type="submit" value="Update Person" />
-  </div>
-
 </form>
-
-<a href="#/index">Back</a>
+</div>

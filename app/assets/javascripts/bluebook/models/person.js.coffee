@@ -5,7 +5,7 @@ class Bluebook.Models.Person extends Backbone.Model
     last_name: null
     role: 'student'
     school_id: Bluebook.USER.school.id
-    grade: 9
+    grade: 11
     core: true
 
 class Bluebook.Collections.PeopleCollection extends Backbone.Collection

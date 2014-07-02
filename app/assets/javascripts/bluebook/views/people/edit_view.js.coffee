@@ -15,8 +15,7 @@ class Bluebook.Views.People.EditView extends Backbone.View
 
     @model.save(null,
       success : (person) =>
-        @model = person
-        window.location.hash = "/#{@model.id}"
+        Backbone.trigger 'people:show', person
     )
 
   show: (model) ->
