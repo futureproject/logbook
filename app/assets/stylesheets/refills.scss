@@ -172,6 +172,9 @@
       &:not(:first-child):not(:last-child) {
         border-left: 1px solid;
         border-radius: 0;
+        &.active {
+          border-left-color: $base-accent-color;
+        }
       }
 
       &:last-child {

@@ -6,9 +6,10 @@ class Bluebook.Views.People.IndexView extends Backbone.View
   initialize: (options) ->
     @list = new Bluebook.Views.People.List
     @filters = new Bluebook.Views.People.Filters
-    @listenTo Backbone, 'people:reset', @render
+    @listenTo Backbone, 'people:models', @render
 
   render: (models) ->
+    console.log models.length
     @$el.html(@template())
     @list.setElement(this.$('.list-items')).render(models)
     @filters.setElement($('.button-group')).render()
@@ -17,7 +18,6 @@ class Bluebook.Views.People.IndexView extends Backbone.View
 class Bluebook.Views.People.List extends Backbone.View
   initialize: (options) ->
     @listenTo Backbone, 'people:scrollTo', @scrollTo
-    @listenTo Backbone, 'people:filtered', @render
     @listenTo Backbone, 'people:sort', @render
 
   addAll: (models) =>
@@ -45,17 +45,16 @@ class Bluebook.Views.People.Filters extends Backbone.View
     @$(@active_filter).addClass('active').siblings().removeClass('active')
 
   events: ->
-    'click .core' : ->
-      Backbone.trigger 'people:filter', { core: true }
-      Backbone.trigger 'route:go', '/bluebook/people/'
-    'click .students' : ->
-      Backbone.trigger 'people:filter', { role: 'student' }
-      Backbone.trigger 'route:go', '/bluebook/people/by_role/student'
-    'click .faculty' : ->
-      Backbone.trigger 'people:filter', { role: 'faculty' }
-      Backbone.trigger 'route:go', '/bluebook/people/by_role/faculty'
+    'click .core' : (e) => @onclick(e, { core: true}, '/bluebook/people' )
+    'click .students' : (e) => @onclick(e, { role: 'student'}, '/bluebook/people/by_role/student')
+    'click .faculty' : (e) => @onclick(e, { role: 'faculty'}, '/bluebook/people/by_role/faculty')
 
-  onFilter: (filter) ->
+  onclick: (event, filter, route) ->
+    return if event.target.classList.contains 'active'
+    Backbone.trigger 'people:filter', null, null, filter
+    Backbone.trigger 'route:go', route
+
+  onFilter: (collection, info, filter) ->
     if filter.core?
       @active_filter = '.core'
     else if filter.role == 'student'

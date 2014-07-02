@@ -2,9 +2,6 @@
   <form id="edit-person" name="person">
   <div class='detail-toolbar'>
     <div class='detail-toolbar-title'>Editing <%= first_name %></div>
-    <div class='l-menu'>
-      <button class='cancel'>Cancel</button>
-    </div>
     <div class='r-menu'>
       <button class='done'>Done</button>
     </div>
@@ -34,11 +31,11 @@
       </div>
 
       <div class="field">
-        <label for="role"> Core:</label>
-        <select name="core" id="core">
-          <option value="true" <% if(JSON.parse(core)){ %>selected<% } %>>Yes</option>
-          <option value="false" <% if(!JSON.parse(core)){ %>selected<% } %>>No</option>
-        </select>
+        <label for="core" class='inline-label'>Core:</label>
+        <label class="label-switch">
+          <input id="core" name="core" type="checkbox" <% if(JSON.parse(core)) { %>checked<% } %>>
+          <div class="checkbox"></div>
+        </label>
       </div>
   </div>
 </form>

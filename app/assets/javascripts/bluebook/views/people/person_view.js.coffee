@@ -4,7 +4,6 @@ class Bluebook.Views.People.PersonView extends Backbone.View
   template: JST["bluebook/templates/people/person"]
 
   initialize: ->
-    @listenTo @model, 'change', @render
     @listenTo Backbone, 'people:show', @toggleClass
     @listenTo Backbone, 'people:edit', @toggleClass
     @listenTo Backbone, 'people:getScrollPos', @sendScroll
@@ -12,7 +11,7 @@ class Bluebook.Views.People.PersonView extends Backbone.View
   className: 'list-item'
 
   events:
-    "click" : -> Backbone.trigger 'people:show', @model
+    "click" : 'show'
 
   #tagName: "li"
 

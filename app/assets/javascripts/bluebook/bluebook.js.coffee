@@ -2,7 +2,7 @@
 #= require underscore-min
 #= require backbone-min
 #= require backbone.dualstorage
-#= require backbone-datalink
+#= require backbone.syphon
 #= require_self
 #= require_tree ./templates
 #= require_tree ./models

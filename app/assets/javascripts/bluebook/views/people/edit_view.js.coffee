@@ -13,7 +13,8 @@ class Bluebook.Views.People.EditView extends Backbone.View
     e.preventDefault()
     e.stopPropagation()
 
-    @model.save(null,
+    data = Backbone.Syphon.serialize @
+    @model.save(data,
       success : (person) =>
         Backbone.trigger 'people:edited', person
         Backbone.trigger 'people:show', person
@@ -26,7 +27,5 @@ class Bluebook.Views.People.EditView extends Backbone.View
 
   render : ->
     $(@el).html(@template(@model.toJSON() ))
-
-    this.$("form").backboneLink(@model)
 
     return this

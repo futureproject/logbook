@@ -11,23 +11,21 @@ class Bluebook.Models.Person extends Backbone.Model
 class Bluebook.Collections.PeopleCollection extends Backbone.Collection
   model: Bluebook.Models.Person
   url: '/people'
-  local: !navigator.onLine
+  #local: !navigator.onLine
   comparator: 'first_name'
   initialize: ->
-    @currentFilter = { core: true }
-    @on 'reset', @onReset
-    @on 'sort', @onSort
-    @listenTo Backbone, 'people:edited', @sort
+    @on 'change', @onChange
     @listenTo Backbone, 'people:filter', @sendModels
 
-  onReset: ->
-    Backbone.trigger 'people:reset', @where(@currentFilter)
+  onChange: ->
+    @sort()
+    @sendModels(null, null, @lastFilter)
 
-  sendModels: (rules) ->
-    @currentFilter = rules
-    Backbone.trigger 'people:filtered', @where(@currentFilter)
-
-  onSort: ->
-    Backbone.trigger 'people:filtered', @where(@currentFilter)
+  sendModels: (collection, info, rules) ->
+    if rules?
+      @lastFilter = rules
+      Backbone.trigger 'people:models', @where(rules)
+    else
+      Backbone.trigger 'people:models', @models
 
 

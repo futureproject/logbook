@@ -13,9 +13,15 @@ class Bluebook.Routers.PeopleRouter extends Backbone.Router
   go: (route) ->
     @navigate route
 
+  loadAssociatedList: (person) ->
+    if person.get('core')
+      Backbone.trigger 'people:filter', null, null, { core: true }
+    else
+      Backbone.trigger 'people:filter', null, null, { role: person.get('role') }
+
   routes:
     "bluebook/people/"    : "index"
-    "bluebook/people/by_role/:filter" : 'filteredIndex'
+    "bluebook/people/by_role/:filter" : 'byrole'
     "bluebook/people/new"      : "newPerson"
     "bluebook/people/:id/edit" : "edit"
     "bluebook/people/:id"      : "show"
@@ -26,21 +32,21 @@ class Bluebook.Routers.PeopleRouter extends Backbone.Router
 
   index: ->
     @people.fetch
-      reset: @people.length < 1
       success: =>
-        Backbone.trigger 'people:filter', { core: true }
+        Backbone.trigger 'people:filter', null, null, { core: true }
 
-  filteredIndex: (filter) ->
+  byrole: (role) ->
     @people.fetch
       reset: @people.length < 1
       success: =>
-        Backbone.trigger 'people:filter', { role: filter }
+        Backbone.trigger 'people:filter', null, null, { role: role }
 
   show: (id) ->
     @people.fetch
       reset: @people.length < 1
       success: =>
         person = @people.get(id)
+        @loadAssociatedList(person)
         Backbone.trigger 'people:show', person
         Backbone.trigger 'people:getScrollPos', person
 
@@ -52,6 +58,7 @@ class Bluebook.Routers.PeopleRouter extends Backbone.Router
       reset: @people.length < 1
       success: =>
         person = @people.get(id)
+        @loadAssociatedList(person)
         Backbone.trigger 'people:edit', person
         Backbone.trigger 'people:getScrollPos', person
 
