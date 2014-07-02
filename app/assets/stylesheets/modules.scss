@@ -175,12 +175,16 @@
 .stats {
   @include outer-container;
   table {
-    line-height: 1;
-    td:first-child, .small {
+    td:first-child {
       font-size: .75em;
     }
     td:last-child {
       font-weight: bold;
+    }
+    .long {
+      line-height: 1.2;
+      vertical-align: top;
+      font-weight: normal;
     }
   }
   @include media($large-screen) {
