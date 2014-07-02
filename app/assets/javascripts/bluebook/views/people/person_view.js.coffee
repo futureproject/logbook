@@ -10,12 +10,11 @@ class Bluebook.Views.People.PersonView extends Backbone.View
   className: 'list-item'
 
   events:
-    "click" : "show"
+    "click" : -> Backbone.trigger 'people:show', @model
 
   #tagName: "li"
 
   show: () ->
-    Backbone.trigger 'route:go', "/bluebook/people/#{@model.get('id')}"
     Backbone.trigger 'people:show', @model
 
   destroy: () ->

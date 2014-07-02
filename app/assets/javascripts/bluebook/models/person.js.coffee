@@ -14,19 +14,13 @@ class Bluebook.Collections.PeopleCollection extends Backbone.Collection
   local: !navigator.onLine
   comparator: 'first_name'
   initialize: ->
-    @on 'reset', @onreset
-    @listenTo Backbone, 'people:filter', @sendFiltered
-    @listenTo Backbone, 'app:loaded', @onLoad
+    @defaultFilter = { core: true }
+    @on 'reset', @onReset
+    @listenTo Backbone, 'people:filter', @sendModels
 
-  onLoad: ->
-    @fetch({
-      reset: true
-      success: (e, response, opts) ->
-      error: onreset
-    })
-  onreset: ->
-    Backbone.trigger 'people:reset', @models
+  onReset: ->
+    Backbone.trigger 'people:reset', @where(@defaultFilter)
 
-  sendFiltered: (rules) ->
+  sendModels: (rules) ->
     subset = @where rules
     Backbone.trigger 'people:filtered', subset

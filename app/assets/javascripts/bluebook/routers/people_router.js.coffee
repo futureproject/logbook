@@ -6,6 +6,7 @@ class Bluebook.Routers.PeopleRouter extends Backbone.Router
       new: new Bluebook.Views.People.NewView()
       index: new Bluebook.Views.People.IndexView(el: "#people .list-frame")
       show: new Bluebook.Views.People.ShowView(el: "#people .detail-frame")
+      edit: new Bluebook.Views.People.EditView(el: "#people .detail-frame")
 
     @people = new Bluebook.Collections.PeopleCollection()
 
@@ -13,10 +14,9 @@ class Bluebook.Routers.PeopleRouter extends Backbone.Router
     @navigate route
 
   routes:
-    "bluebook" : "index"
-    "bluebook/" : "index"
+    "bluebook/people/"    : "index"
+    "bluebook/people/by_role/:filter" : 'filteredIndex'
     "bluebook/people/new"      : "newPerson"
-    "bluebook/people/index"    : "index"
     "bluebook/people/:id/edit" : "edit"
     "bluebook/people/:id"      : "show"
 
@@ -25,11 +25,21 @@ class Bluebook.Routers.PeopleRouter extends Backbone.Router
     #$("#people").html(@view.render().el)
 
   index: ->
-    #@view = new Bluebook.Views.People.IndexView(people: @people, el: '#list')
-    #@view.render()
+    @people.fetch
+      reset: @people.length < 1
+      success: =>
+        Backbone.trigger 'people:filter', { core: true }
+
+  filteredIndex: (filter) ->
+    console.log filter
+    @people.fetch
+      reset: @people.length < 1
+      success: =>
+        Backbone.trigger 'people:filter', { role: filter }
 
   show: (id) ->
     @people.fetch
+      reset: @people.length < 1
       success: =>
         person = @people.get(id)
         Backbone.trigger 'people:show', person

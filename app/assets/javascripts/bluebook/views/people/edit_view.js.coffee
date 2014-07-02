@@ -3,6 +3,9 @@ Bluebook.Views.People ||= {}
 class Bluebook.Views.People.EditView extends Backbone.View
   template : JST["bluebook/templates/people/edit"]
 
+  initialize: ->
+    @listenTo Backbone, 'people:edit', @show
+
   events :
     "submit #edit-person" : "update"
 
@@ -15,6 +18,11 @@ class Bluebook.Views.People.EditView extends Backbone.View
         @model = person
         window.location.hash = "/#{@model.id}"
     )
+
+  show: (model) ->
+    @model = model
+    Backbone.trigger 'route:go', "/bluebook/people/#{@model.get('id')}/edit"
+    @render()
 
   render : ->
     $(@el).html(@template(@model.toJSON() ))

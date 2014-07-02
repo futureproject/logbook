@@ -40,16 +40,26 @@ class Bluebook.Views.People.Filters extends Backbone.View
   initialize: ->
     @listenTo Backbone, 'people:filter', @onFilter
 
+  render: ->
+    @$(@active_filter).addClass('active').siblings().removeClass('active')
+
   events: ->
-    'click .core' : -> Backbone.trigger 'people:filter', { core: true }
-    'click .students' : -> Backbone.trigger 'people:filter', { role: 'student' }
-    'click .faculty' : -> Backbone.trigger 'people:filter', { role: 'faculty' }
+    'click .core' : ->
+      Backbone.trigger 'people:filter', { core: true }
+      Backbone.trigger 'route:go', '/bluebook/people/'
+    'click .students' : ->
+      Backbone.trigger 'people:filter', { role: 'student' }
+      Backbone.trigger 'route:go', '/bluebook/people/by_role/student'
+    'click .faculty' : ->
+      Backbone.trigger 'people:filter', { role: 'faculty' }
+      Backbone.trigger 'route:go', '/bluebook/people/by_role/faculty'
 
   onFilter: (filter) ->
     if filter.core?
-      @$('.core').addClass('active').siblings().removeClass('active')
+      @active_filter = '.core'
     else if filter.role == 'student'
-      @$('.students').addClass('active').siblings().removeClass('active')
+      @active_filter = '.students'
     else if filter.role == 'faculty'
-      @$('.faculty').addClass('active').siblings().removeClass('active')
+      @active_filter = '.faculty'
+    @render()
 
