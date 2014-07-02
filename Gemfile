@@ -72,14 +72,13 @@ gem 'fastclick-rails'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0.beta'
-  gem 'dotenv-rails', :groups => [:development, :test]
+  gem 'dotenv-rails'
 end
 
 group :test do
   gem 'pry'
   gem 'capybara'
   gem 'capybara-webkit'
-  gem 'dotenv-rails'
 end
 
 # Use ActiveModel has_secure_password

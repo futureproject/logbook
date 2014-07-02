@@ -11,7 +11,6 @@ class Bluebook.Views.People.ShowView extends Backbone.View
     'click .edit' : -> Backbone.trigger 'people:edit', @model
 
   show: (model) ->
-    console.log model.attributes
     @model = model
     Backbone.trigger 'route:go', "/bluebook/people/#{@model.get('id')}"
     @render()

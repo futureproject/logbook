@@ -18,6 +18,7 @@ class Bluebook.Views.People.List extends Backbone.View
   initialize: (options) ->
     @listenTo Backbone, 'people:scrollTo', @scrollTo
     @listenTo Backbone, 'people:filtered', @render
+    @listenTo Backbone, 'people:sort', @render
 
   addAll: (models) =>
     _.each models, @addOne
