@@ -1,17 +1,14 @@
 class Bluebook.Routers.PeopleRouter extends Backbone.Router
   initialize: (options) ->
-    @listenTo Backbone, 'route:go', @go
-
-    @views =
-      new: new Bluebook.Views.People.NewView()
-      index: new Bluebook.Views.People.IndexView(el: "#people .list-frame")
-      show: new Bluebook.Views.People.ShowView(el: "#people .detail-frame")
-      edit: new Bluebook.Views.People.EditView(el: "#people .detail-frame")
+    @listenTo Backbone, 'peopleRouter:go', @go
 
     @people = new Bluebook.Collections.PeopleCollection()
 
-  go: (route) ->
-    @navigate route
+  go: (route, useTrigger) ->
+    if useTrigger?
+      @navigate route, { trigger: true }
+    else
+      @navigate route
 
   loadAssociatedList: (person) ->
     if person.get('core')
@@ -20,6 +17,7 @@ class Bluebook.Routers.PeopleRouter extends Backbone.Router
       Backbone.trigger 'people:filter', null, null, { role: person.get('role') }
 
   routes:
+    "bluebook/people"    : "index"
     "bluebook/people/"    : "index"
     "bluebook/people/by_role/:filter" : 'byrole'
     "bluebook/people/new"      : "newPerson"
@@ -42,6 +40,7 @@ class Bluebook.Routers.PeopleRouter extends Backbone.Router
         Backbone.trigger 'people:filter', null, null, { role: role }
 
   show: (id) ->
+    console.log id
     @people.fetch
       reset: @people.length < 1
       success: =>

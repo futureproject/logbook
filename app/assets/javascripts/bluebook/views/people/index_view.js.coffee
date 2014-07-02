@@ -9,7 +9,6 @@ class Bluebook.Views.People.IndexView extends Backbone.View
     @listenTo Backbone, 'people:models', @render
 
   render: (models) ->
-    console.log models.length
     @$el.html(@template())
     @list.setElement(this.$('.list-items')).render(models)
     @filters.setElement($('.button-group')).render()
@@ -45,14 +44,14 @@ class Bluebook.Views.People.Filters extends Backbone.View
     @$(@active_filter).addClass('active').siblings().removeClass('active')
 
   events: ->
-    'click .core' : (e) => @onclick(e, { core: true}, '/bluebook/people' )
+    'click .core' : (e) => @onclick(e, { core: true}, '/bluebook/people/' )
     'click .students' : (e) => @onclick(e, { role: 'student'}, '/bluebook/people/by_role/student')
     'click .faculty' : (e) => @onclick(e, { role: 'faculty'}, '/bluebook/people/by_role/faculty')
 
   onclick: (event, filter, route) ->
     return if event.target.classList.contains 'active'
     Backbone.trigger 'people:filter', null, null, filter
-    Backbone.trigger 'route:go', route
+    Backbone.trigger 'peopleRouter:go', route
 
   onFilter: (collection, info, filter) ->
     if filter.core?

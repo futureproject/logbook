@@ -13,12 +13,14 @@
       #tabs
         .avatar= image_tag(current_user.avatar_url.gsub('sz=50','sz=100'))
         %nav
-          .nav_link#to_dashboard
+          .nav_link#to_stats
             .mega-octicon.octicon-pulse
-          .is_active.nav_link#to_people
+          .nav_link#to_people
             .mega-octicon.octicon-organization
 
       #tab_targets
+        #stats.tab_target
+          .panel-frame
         #people.tab_target
           .list-frame
           .detail-frame

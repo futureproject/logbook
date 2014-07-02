@@ -48,7 +48,13 @@
 #tabs {
   text-align: center;
   .avatar {
-    margin: .5em .5em 0;
+    img {
+      width: 50px;
+      height: 50px;
+      margin: .5em auto;
+      display: block;
+      background-color: $dark-gray;
+    }
   }
   .nav_link {
     width: 100%;

@@ -52,7 +52,8 @@
 .tab_target {
   height: 100%;
 }
-.list-frame, .detail-frame {
+
+.list-frame, .detail-frame, .panel-frame {
   height: 100%;
 }
 
@@ -149,6 +150,12 @@
   overflow: hidden;
 }
 
+.panel {
+  padding: 1em;
+  height: 100%;
+  overflow: auto;
+}
+
 .l-menu, .r-menu {
   position: absolute;
   top: 0;
@@ -163,4 +170,27 @@
 
 .inline-label {
   display: inline-block;
+}
+
+.stats {
+  @include outer-container;
+  table {
+    line-height: 1;
+    td:first-child, .small {
+      font-size: .75em;
+    }
+    td:last-child {
+      font-weight: bold;
+    }
+  }
+  @include media($large-screen) {
+    table {
+      width: 49%;
+      margin-right: 2%;
+      float: left;
+      &:nth-child(even) {
+        margin-right: 0;
+      }
+    }
+  }
 }

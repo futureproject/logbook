@@ -22,7 +22,7 @@ class Bluebook.Views.People.EditView extends Backbone.View
 
   show: (model) ->
     @model = model
-    Backbone.trigger 'route:go', "/bluebook/people/#{@model.get('id')}/edit"
+    Backbone.trigger 'peopleRouter:go', "/bluebook/people/#{@model.get('id')}/edit"
     @render()
 
   render : ->

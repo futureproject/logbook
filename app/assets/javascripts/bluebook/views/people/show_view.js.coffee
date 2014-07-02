@@ -12,7 +12,7 @@ class Bluebook.Views.People.ShowView extends Backbone.View
 
   show: (model) ->
     @model = model
-    Backbone.trigger 'route:go', "/bluebook/people/#{@model.get('id')}"
+    Backbone.trigger 'peopleRouter:go', "/bluebook/people/#{@model.get('id')}"
     @render()
 
   render: ->
