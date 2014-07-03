@@ -173,7 +173,6 @@
 }
 
 .stats {
-  @include outer-container;
   table {
     td:first-child {
       font-size: .75em;
@@ -185,16 +184,6 @@
       line-height: 1.2;
       vertical-align: top;
       font-weight: normal;
-    }
-  }
-  @include media($large-screen) {
-    table {
-      width: 49%;
-      margin-right: 2%;
-      float: left;
-      &:nth-child(even) {
-        margin-right: 0;
-      }
     }
   }
 }
