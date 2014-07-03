@@ -6,6 +6,7 @@ class Bluebook.StatsPresenter extends Backbone.View
       index: new Bluebook.Views.Stats.IndexView(el: '#stats', stats: @stats)
     @router = new Bluebook.Routers.StatsRouter
     @listenTo @router, 'route', @show
+    @listenTo Backbone, 'presenter:exit', @exit
 
   events: ->
     click: 'onclick'
@@ -18,3 +19,9 @@ class Bluebook.StatsPresenter extends Backbone.View
   show: ->
     @$el.addClass('active').siblings().removeClass('active')
     @targetEl.show().siblings().hide()
+    Backbone.trigger 'presenter:exit'
+
+  exit: ->
+    return unless @$el.hasClass('active')
+    @targetEl.find('.detail-frame').empty()
+    @targetEl.find('.list-frame').empty()

@@ -24,6 +24,7 @@ class Bluebook.Views.People.EditView extends Backbone.View
     @model = model
     Backbone.trigger 'peopleRouter:go', "/bluebook/people/#{@model.get('id')}/edit"
     @render()
+    Backbone.Syphon.deserialize @, @model.attributes
 
   render : ->
     $(@el).html(@template(@model.toJSON() ))
