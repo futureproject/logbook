@@ -23,9 +23,6 @@
 .list-item {
   border-bottom: 1px solid $base-font-color;
   font-weight: 500;
-  &:active {
-    background: transparentize($base-accent-color, .5);
-  }
   &.is_active {
     background: $base-accent-color;
     color: white;

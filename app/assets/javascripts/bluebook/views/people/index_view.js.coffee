@@ -28,10 +28,8 @@ class Bluebook.Views.People.List extends Backbone.View
     atTop = @el.scrollTop == 0
     atBottom = (@el.scrollHeight - @el.scrollTop == height)
     if atTop
-      #@el.scrollTop = 1
       @el.scrollTop += 1
     else if atBottom
-      #@el.scrollTop = @el.scrollHeight - height - 1
       @el.scrollTop -= 1
 
   ontouchmove: (e) ->

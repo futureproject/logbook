@@ -11,9 +11,22 @@ class Bluebook.Views.People.PersonView extends Backbone.View
   className: 'list-item'
 
   events:
-    "click" : 'show'
+    'touchstart': 'ontouchstart'
+    'touchmove': 'ontouchmove'
+    'touchend': 'ontouchend'
+    'click': 'show'
 
-  #tagName: "li"
+  ontouchstart: (e) ->
+    @deltaY = 0
+    @startY = e.originalEvent.touches[0].screenY
+    @('.detail-frame').append('started')
+
+  ontouchmove: (e) ->
+    @deltaY = Math.abs(e.originalEvent.touches[0].screenY - @startY)
+
+  ontouchend: (e) ->
+    if @deltaY < 5
+      @show()
 
   show: () ->
     Backbone.trigger 'people:show', @model

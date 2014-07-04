@@ -3,6 +3,7 @@
 #= require backbone-min
 #= require backbone.dualstorage
 #= require backbone.syphon
+#= require fastclick
 #= require_self
 #= require_tree ./templates
 #= require_tree ./models
@@ -21,6 +22,7 @@ window.Bluebook =
     $(document).on('touchmove', (e) ->
       e.preventDefault()
     )
+    new FastClick document.body
     $.ajaxPrefilter (options, originalOptions, jqXHR) ->
       options.url = "/api/v1#{options.url}.json"
       jqXHR.withCredentials = true
