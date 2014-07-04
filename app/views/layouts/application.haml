@@ -5,6 +5,11 @@
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
     = csrf_meta_tags
-  %body
-    #main= yield
+    %meta{name: 'viewport', content: 'width=1024'}
+  %body#l_application
+    #main
+      - flash.each do |k, v|
+        .flash{class: k}
+          = v
+      = yield
 

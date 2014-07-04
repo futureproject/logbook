@@ -211,13 +211,13 @@
   }
 }
 
-.radio-row {
-  input[type=radio], label {
-    display: inline-block;
-    width: 3em;
-    margin: 0;
+table.no-borders {
+  td {
+    padding: 0;
+    border: none;
   }
-  label {
-    padding-left: 4px;
-  }
+}
+
+td.last {
+  text-align: right;
 }
