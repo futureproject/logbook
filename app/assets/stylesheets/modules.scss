@@ -162,10 +162,21 @@
   overflow: hidden;
 }
 
-.panel {
+.panel-frame {
   padding: 1em;
   height: 100%;
   overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  position: relative;
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 101%;
+    pointer-events: none;
+  }
 }
 
 .l-menu, .r-menu {

@@ -3,7 +3,7 @@ class Bluebook.StatsPresenter extends Backbone.View
     @targetEl = $(args.targetEl)
     @stats = args.stats
     @views =
-      index: new Bluebook.Views.Stats.IndexView(el: '#stats', stats: @stats)
+      index: new Bluebook.Views.Stats.IndexView(el: '#stats .panel-frame', stats: @stats)
     @router = new Bluebook.Routers.StatsRouter
     @listenTo @router, 'route', @show
     @listenTo Backbone, 'presenter:exit', @exit

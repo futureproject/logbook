@@ -35,18 +35,22 @@ class Bluebook.Views.People.List extends Backbone.View
   ontouchmove: (e) ->
     e.stopPropagation()
 
-  addAll: (models) =>
-    _.each models, @addOne
+  addBatch: (models) ->
+    @fragment = document.createDocumentFragment()
+    @addOne(person) for person in models
+    @el.appendChild(@fragment)
 
-  addOne: (person) =>
+  addOne: (person) ->
     view = new Bluebook.Views.People.PersonView({model : person})
     @fragment.appendChild(view.render().el)
 
   render: (models) ->
-    @fragment = document.createDocumentFragment()
+    @models = models
     @$el.empty()
-    @addAll(models)
-    @el.appendChild(@fragment)
+    @addBatch(models.slice(0,20))
+    setTimeout () =>
+      @addBatch(models.slice(20,models.length))
+    , 300
     return this
 
   scrollTo: (pos) ->
