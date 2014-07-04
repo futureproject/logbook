@@ -17,6 +17,10 @@ window.Bluebook =
   Views: {}
   presenters: {}
   initialize: (data) ->
+# prevent scrolling
+    $(document).on('touchmove', (e) ->
+      e.preventDefault()
+    )
     $.ajaxPrefilter (options, originalOptions, jqXHR) ->
       options.url = "/api/v1#{options.url}.json"
       jqXHR.withCredentials = true

@@ -6,6 +6,10 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'users#dashboard'
+
+  resources :weekly_log_entries, only: [:new, :create]
+  resources :people
+
   resources :sessions, only: [:new, :create]
   get 'auth/logout', to: 'sessions#destroy', as: :log_out
   match 'auth/:provider/callback' => 'sessions#create', via: [:post, :get]

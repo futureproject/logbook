@@ -60,6 +60,7 @@
 .list {
   position: relative;
   height: 100%;
+  @include transform(translate3d(0,0,0));
 }
 
 .list-items {
@@ -84,6 +85,17 @@
   .list-items {
     top: 60px;
   }
+}
+
+.list-items:after {
+  content: '';
+  display: block;
+  height: 101%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  border: none;
+  pointer-events: none;
 }
 
 .list-toolbar {
@@ -185,5 +197,16 @@
       vertical-align: top;
       font-weight: normal;
     }
+  }
+}
+
+.radio-row {
+  input[type=radio], label {
+    display: inline-block;
+    width: 3em;
+    margin: 0;
+  }
+  label {
+    padding-left: 4px;
   }
 }

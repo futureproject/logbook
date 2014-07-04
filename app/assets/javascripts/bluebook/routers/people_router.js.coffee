@@ -4,8 +4,8 @@ class Bluebook.Routers.PeopleRouter extends Backbone.Router
 
     @people = new Bluebook.Collections.PeopleCollection()
 
-  go: (route, useTrigger) ->
-    if useTrigger?
+  go: (route, args) ->
+    if args?.trigger
       @navigate route, { trigger: true }
     else
       @navigate route

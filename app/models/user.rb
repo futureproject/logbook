@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   before_create :generate_auth_token
   has_many :identities
+  has_many :weekly_log_entries
   has_one :school, foreign_key: 'dream_director_id', class_name: 'School'
   has_one :site, through: :school
 

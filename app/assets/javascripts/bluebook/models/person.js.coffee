@@ -11,10 +11,10 @@ class Bluebook.Models.Person extends Backbone.Model
 class Bluebook.Collections.PeopleCollection extends Backbone.Collection
   model: Bluebook.Models.Person
   url: '/people'
-  #local: !navigator.onLine
+  local: !navigator.onLine
   comparator: 'first_name'
   initialize: ->
-    @on 'change', @onChange
+    @on 'change:first_name', @onChange
     @listenTo Backbone, 'people:filter', @sendModels
 
   onChange: ->

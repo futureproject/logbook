@@ -26,4 +26,3 @@ class Bluebook.PeoplePresenter extends Backbone.View
   exit: ->
     return if @$el.hasClass('active')
     @targetEl.find('.detail-frame').empty()
-    @targetEl.find('.list-frame').empty()
