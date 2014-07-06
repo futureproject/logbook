@@ -9,14 +9,11 @@
   %body#l_application
     - if current_user
       #app_title_bar
-        .l-menu
-          %ul
-            %li=nav_link_to "Home", root_url
+        %h1= link_to "DreamOS", root_url
         .r-menu
           %ul
-            %li= image_tag(current_user.avatar_url)
             %li= link_to "Log Out", log_out_url
-        %h1= page_title
+            %li= image_tag(current_user.avatar_url)
 
 
 

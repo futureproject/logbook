@@ -5,6 +5,8 @@
 #app_title_bar {
   @include outer-container;
   position: relative;
+  padding-bottom: 1em;
+  border-bottom: 3px solid $base-border-color;
   img {
     height: 1em;
     width: 1em;
@@ -13,7 +15,6 @@
     border: none;
   }
   h1 {
-    text-align: center;
     font-size: 1em;
   }
   li {
