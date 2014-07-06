@@ -9,3 +9,7 @@ pre, code {
   white-space: pre-wrap;
   word-wrap: break-word;
 }
+
+input[type=checkbox], input[type=radio] {
+  @include transform(scale(2));
+}

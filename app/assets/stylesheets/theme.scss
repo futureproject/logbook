@@ -16,12 +16,12 @@
 
 .list-toolbar, .detail-toolbar {
   background: $lightest-gray;
-  border-bottom: 1px solid;
+  border-bottom: 3px solid $base-border-color;
   text-align: center;
 }
 
 .list-item {
-  border-bottom: 1px solid $base-font-color;
+  border-bottom: 3px solid $base-border-color;
   font-weight: 500;
   &.is_active {
     background: $base-accent-color;
@@ -30,7 +30,7 @@
 }
 
 #tabs {
-  border-right: 1px solid $base-font-color;
+  border-right: 3px solid $base-border-color;
   .mega-octicon {
     border: 3px solid;
     border-radius: 50%;
@@ -44,7 +44,7 @@
   }
 }
 .detail-frame {
-  border-left: 1px solid $base-font-color;
+  border-left: 3px solid $base-border-color;
 }
 
 .detail-toolbar {

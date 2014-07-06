@@ -14,18 +14,18 @@ class Bluebook.Views.People.PersonView extends Backbone.View
     'touchstart': 'ontouchstart'
     'touchmove': 'ontouchmove'
     'touchend': 'ontouchend'
-    'click': 'show'
+    'mouseup': 'show'
 
   ontouchstart: (e) ->
     @deltaY = 0
     @startY = e.originalEvent.touches[0].screenY
-    @('.detail-frame').append('started')
 
   ontouchmove: (e) ->
+    @canShow = false
     @deltaY = Math.abs(e.originalEvent.touches[0].screenY - @startY)
 
   ontouchend: (e) ->
-    if @deltaY < 5
+    if @deltaY < 1
       @show()
 
   show: () ->

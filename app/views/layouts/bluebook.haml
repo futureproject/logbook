@@ -9,7 +9,7 @@
     %meta{name:"viewport", content:"width=device-width, maximum-scale=1.0, minimum-scale=1.0, initial-scale=1.0"}
     %meta{name:"apple-mobile-web-app-capable", content:"yes"}
     %link{rel:"apple-touch-icon", sizes:"152x152", href: asset_path('icon-bluebook.png')}
-  %body#bluebook{style: "background-image: url(#{asset_path 'grid.png' });" }
+  %body#bluebook
     #app
       #tabs
         .avatar= image_tag(current_user.avatar_url.gsub('sz=50','sz=100'))

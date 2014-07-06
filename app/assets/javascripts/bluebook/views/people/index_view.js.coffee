@@ -20,10 +20,10 @@ class Bluebook.Views.People.List extends Backbone.View
     @listenTo Backbone, 'people:sort', @render
 
   events:
-    'touchmove': 'ontouchmove'
-    'touchstart': 'ontouchstart'
+    'touchstart': 'onScrollStart'
+    'touchmove': 'onScrollMove'
 
-  ontouchstart: (e) ->
+  onScrollStart: (e) ->
     height = @el.getBoundingClientRect().height
     atTop = @el.scrollTop == 0
     atBottom = (@el.scrollHeight - @el.scrollTop == height)
@@ -32,7 +32,7 @@ class Bluebook.Views.People.List extends Backbone.View
     else if atBottom
       @el.scrollTop -= 1
 
-  ontouchmove: (e) ->
+  onScrollMove: (e) ->
     e.stopPropagation()
 
   addBatch: (models) ->

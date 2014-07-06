@@ -64,8 +64,7 @@
 }
 
 .list-items {
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
+  @include scrollable;
   position: absolute;
   top: 0;
   left: 0;
@@ -86,18 +85,6 @@
     top: 60px;
   }
 }
-
-.list-items:after {
-  content: '';
-  display: block;
-  height: 101%;
-  width: 100%;
-  position: absolute;
-  top: 0;
-  border: none;
-  pointer-events: none;
-}
-
 .list-toolbar {
   position: absolute;
   top: 0;
@@ -137,14 +124,13 @@
 }
 
 .detail-content {
+  @include scrollable;
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   padding: 1em;
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
 }
 
 .detail-with-toolbar {

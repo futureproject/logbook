@@ -15,6 +15,7 @@ class Bluebook.Collections.PeopleCollection extends Backbone.Collection
   comparator: 'first_name'
   initialize: ->
     @on 'change:first_name', @onChange
+    @on 'change:last_name', @onChange
     @listenTo Backbone, 'people:filter', @sendModels
 
   onChange: ->

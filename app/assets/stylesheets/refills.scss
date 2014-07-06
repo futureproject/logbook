@@ -1,3 +1,18 @@
+@mixin scrollable {
+  position: relative;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  &:after {
+    content: '';
+    display: block;
+    height: 101%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    border: none;
+    pointer-events: none;
+  }
+}
 .label-switch {
   $switch-width: 52px;
   $switch-padding: 2px;
@@ -62,7 +77,7 @@
 
   &:checked {
     + .checkbox {
-      background: $blue;
+      background: $base-accent-color;
         
         &:before {
           @include transform(scale(0));

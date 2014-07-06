@@ -40,7 +40,6 @@ class Bluebook.Routers.PeopleRouter extends Backbone.Router
         Backbone.trigger 'people:filter', null, null, { role: role }
 
   show: (id) ->
-    console.log id
     @people.fetch
       reset: @people.length < 1
       success: =>
