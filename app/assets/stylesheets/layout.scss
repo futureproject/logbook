@@ -1,6 +1,25 @@
 #l_application {
   padding: 1em;
 }
+
+#app_title_bar {
+  @include outer-container;
+  position: relative;
+  img {
+    height: 1em;
+    width: 1em;
+    display: block;
+    background: $dark-blue;
+    border: none;
+  }
+  h1 {
+    text-align: center;
+    font-size: 1em;
+  }
+  li {
+    display: inline-block;
+  }
+}
 #main {
   @include outer_container;
 }

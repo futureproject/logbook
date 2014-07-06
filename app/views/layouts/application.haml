@@ -1,15 +1,29 @@
 !!!
 %html
   %head
-    %title DreamOS
+    %title= page_title
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
     = csrf_meta_tags
     %meta{name: 'viewport', content: 'width=1024'}
   %body#l_application
+    - if current_user
+      #app_title_bar
+        .l-menu
+          %ul
+            %li=nav_link_to "Home", root_url
+        .r-menu
+          %ul
+            %li= image_tag(current_user.avatar_url)
+            %li= link_to "Log Out", log_out_url
+        %h1= page_title
+
+
+
     #main
-      - flash.each do |k, v|
-        .flash{class: k}
-          = v
+      #flash
+        - flash.each do |k, v|
+          .flash{class: k}
+            = v
       = yield
 
