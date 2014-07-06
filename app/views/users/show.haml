@@ -1,0 +1,13 @@
+%h1= @user.name
+%table
+  %tr
+    %th
+    %th Personal
+    %th Site
+    %th National
+  %tr
+    %th Engagement
+    %td= @user.engagement_score
+    %td= @user.site.engagement_score
+    %td= Stat.engagement_score
+

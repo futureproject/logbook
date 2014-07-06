@@ -17,4 +17,8 @@ class Person < ActiveRecord::Base
     weekly_log_entries.order("week DESC").limit(1).first
   end
 
+  def engagement_score
+    weekly_log_entries.average(:quality)
+  end
+
 end
