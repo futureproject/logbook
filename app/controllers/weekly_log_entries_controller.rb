@@ -8,7 +8,7 @@ class WeeklyLogEntriesController < ApplicationController
     @people_filed = @people.with_entries_for_week(@week)
     @people_left = @people - @people_filed
     if @people_left.count == 0
-      flash[:notice] = "High fives! You're done this week!"
+      flash.now[:notice] = "High fives! You're done this week!"
     end
     @weekly_log_entry = WeeklyLogEntry.new
   end

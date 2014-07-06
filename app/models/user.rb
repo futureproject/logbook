@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
   has_many :people, through: :school
   has_many :projects, through: :school
 
+  ROLE_ENUM = %w(dream_director captain)
+
   # make a #token to remember this user for later logins
   def generate_auth_token
     self.auth_token ||= SecureRandom.uuid
@@ -39,6 +41,10 @@ class User < ActiveRecord::Base
 
   def site
     school.try(:site) || Site.where(captain_id: self.id).first
+  end
+
+  def captain?
+    role == "captain"
   end
 
 end

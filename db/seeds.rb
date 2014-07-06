@@ -6,11 +6,11 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 User.create([
-            { first_name: 'Chris', last_name: 'Frank', email: 'chris.frank@thefutureproject.org', auth_token: 'batman'},
-            { first_name: 'Sallomé', last_name: 'Hralima', email: 'sallome.hralima@thefutureproject.org', auth_token: 'sallomazing'},
-            { first_name: 'Christian', last_name: 'Shaboo', email: 'christian.shaboo@thefutureproject.org', auth_token: 'christianshaboo'},
-            { first_name: 'Frank', last_name: 'Brady', email: 'frank.brady@thefutureproject.org', auth_token: 'frankbrady'},
-            { first_name: 'Joyce', last_name: 'Gendler', email: 'joyce.gendler@thefutureproject.org', auth_token: 'joycegendler'}
+            { first_name: 'Chris', last_name: 'Frank', email: 'chris.frank@thefutureproject.org', auth_token: 'batman', role: 'dream_director'},
+            { first_name: 'Sallomé', last_name: 'Hralima', email: 'sallome.hralima@thefutureproject.org', auth_token: 'sallomazing', role: 'captain'},
+            { first_name: 'Christian', last_name: 'Shaboo', email: 'christian.shaboo@thefutureproject.org', auth_token: 'christianshaboo', role: 'captain'},
+            { first_name: 'Frank', last_name: 'Brady', email: 'frank.brady@thefutureproject.org', auth_token: 'frankbrady', role: 'dream_director'},
+            { first_name: 'Joyce', last_name: 'Gendler', email: 'joyce.gendler@thefutureproject.org', auth_token: 'joycegendler', role: 'dream_director'}
 ])
 
 Site.create([
