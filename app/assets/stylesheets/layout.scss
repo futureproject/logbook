@@ -88,3 +88,15 @@
     text-transform: capitalize;
   }
 }
+
+#weekly_log_entries {
+  @include outer-container;
+  #entries_filed {
+    @include span-columns(4);
+    padding-right: 1em;
+  }
+  #entries_to_file {
+    @include span-columns(8);
+    @include omega;
+  }
+}

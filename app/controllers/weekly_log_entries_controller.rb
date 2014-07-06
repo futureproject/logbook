@@ -1,14 +1,16 @@
 class WeeklyLogEntriesController < ApplicationController
 
   def new
+    @week = Date.today.beginning_of_week
     @people = current_user.people
       .where(core: true)
       .order(:first_name, :id)
-      .includes(:entry_this_week)
-    @subject = view_context.next_person(@people)
-    @people_left = @people.count - @people.joins(:entry_this_week).count
-    flash[:notice] = "High fives! You're done this week!" if @people_left == 0
-    @weekly_log_entry = WeeklyLogEntry.new( user: current_user, person: @subject)
+    @people_filed = @people.with_entries_for_week(@week)
+    @people_left = @people - @people_filed
+    if @people_left.count == 0
+      flash[:notice] = "High fives! You're done this week!"
+    end
+    @weekly_log_entry = WeeklyLogEntry.new
   end
 
   def create
