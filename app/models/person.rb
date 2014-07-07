@@ -2,6 +2,7 @@ class Person < ActiveRecord::Base
   validates_presence_of :first_name, :last_name, :school_id
   belongs_to :school
   has_many :weekly_log_entries
+  ROLE_ENUM = %w(student teacher)
 
   scope :with_entries_for_week, -> (week=Date.today.beginning_of_week) {
     week = week.to_date.beginning_of_week

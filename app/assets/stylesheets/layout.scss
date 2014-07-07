@@ -1,28 +1,7 @@
-#l_application {
-  padding: 1em;
-}
-
-#app_title_bar {
-  @include outer-container;
+#app {
+  max-width: 1200px;
+  margin: 0 auto;
   position: relative;
-  padding-bottom: 1em;
-  border-bottom: 3px solid $base-border-color;
-  img {
-    height: 1em;
-    width: 1em;
-    display: block;
-    background: $dark-blue;
-    border: none;
-  }
-  h1 {
-    font-size: 1em;
-  }
-  li {
-    display: inline-block;
-  }
-}
-#main {
-  @include outer_container;
 }
 
 #new_session {
@@ -43,6 +22,21 @@
     height: 8em;
   }
 }
+
+#weekly_log_entries {
+  @include outer-container;
+  #entries_filed {
+    @include span-columns(4);
+    padding-right: 1em;
+  }
+  #entries_to_file {
+    @include span-columns(8);
+    @include omega;
+  }
+}
+
+/* BLUEBOOK */
+
 
 #bluebook {
   @include outer_container;
@@ -105,17 +99,5 @@
     @include span_columns(6);
     font-size: 1.5em;
     text-transform: capitalize;
-  }
-}
-
-#weekly_log_entries {
-  @include outer-container;
-  #entries_filed {
-    @include span-columns(4);
-    padding-right: 1em;
-  }
-  #entries_to_file {
-    @include span-columns(8);
-    @include omega;
   }
 }

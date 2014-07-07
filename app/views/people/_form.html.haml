@@ -14,15 +14,19 @@
     = f.text_field :last_name
   .field
     = f.label :role
-    = f.text_field :role
-  .field
-    = f.label :school_id
-    = f.number_field :school_id
+    = f.select :role, Person::ROLE_ENUM
+  - if !current_user.school
+    =f.hidden_field :school_id, current_user.school_id
+  - else
+    .field
+      = f.label :school_id
+      = f.select :school_id, School.all.map{|s| [s.name, s.id] }
   .field
     = f.label :grade
-    = f.number_field :grade
+    = f.select :grade, (9..12)
   .field
-    = f.label :core
-    = f.check_box :core
+    = f.label :core do
+      = f.check_box :core
+      Core
   .actions
     = f.submit 'Save'

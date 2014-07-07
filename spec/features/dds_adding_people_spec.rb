@@ -5,11 +5,12 @@ feature 'DDs adding students' do
     mock_sign_in
   end
   scenario do
-    visit students_path
-    click_link 'New Student'
-    fill_in 'student[first_name]', with: 'Terry'
-    fill_in 'student[last_name]', with: 'McGuiness'
-    fill_in 'student[grade]', with: '12'
+    visit people_path
+    click_link 'New Person'
+    fill_in 'person[first_name]', with: 'Terry'
+    fill_in 'person[last_name]', with: 'McGuiness'
+    select 'student', from: 'person[role]'
+    select '11', from: 'person[grade]'
     click_button 'Save'
     should_see_new_student
   end
@@ -17,4 +18,5 @@ feature 'DDs adding students' do
   def should_see_new_student
     expect(page).to have_content 'Terry McGuiness'
   end
+
 end

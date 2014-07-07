@@ -47,4 +47,8 @@ class User < ActiveRecord::Base
     role == "captain"
   end
 
+  def avatar
+    avatar_url || "https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_1_dark.png"
+  end
+
 end
