@@ -21,6 +21,10 @@ window.Bluebook =
 # prevent scrolling
     $(document).on('touchmove', (e) ->
       e.preventDefault()
+    ).on('click', 'a', (e) ->
+      if navigator.standalone
+        e.preventDefault()
+        location.href = this.href
     )
     new FastClick document.body
     $.ajaxPrefilter (options, originalOptions, jqXHR) ->

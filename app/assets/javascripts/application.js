@@ -17,4 +17,10 @@
 
 $(function(){
   new FastClick(document.body)
+  $(document).on('click', 'a', function(e){
+    if (navigator.standalone) {
+      e.preventDefault()
+      location.href = this.href
+    }
+  })
 })
