@@ -1,3 +1,15 @@
+body {
+  background: $dark-gray;
+  border-top: 20px solid $dark-gray;
+}
+#app {
+}
+#tabs {
+}
+#tab_targets {
+  border-radius: 5px;
+  background: $base-background-color;
+}
 .alert {
   @include flash($alert-color);
 }
@@ -15,7 +27,6 @@
 }
 
 .list-toolbar, .detail-toolbar {
-  background: $lightest-gray;
   border-bottom: 3px solid $base-border-color;
   text-align: center;
 }
@@ -30,16 +41,16 @@
 }
 
 #tabs {
-  border-right: 3px solid $base-border-color;
   .mega-octicon {
     border: 3px solid;
     border-radius: 50%;
+    color: white;
   }
   .active {
     .mega-octicon {
       background: $blue;
-      color: white;
-      border-color: $dark_blue;
+      color: $dark-blue;
+      border-color: white;
     }
   }
 }

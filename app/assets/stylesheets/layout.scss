@@ -48,17 +48,16 @@
   @include outer_container;
   background-repeat: repeat-y;
   background-position: center top;
-  overflow: hidden;
   #app, #tabs, #tab_targets {
     height: 100%;
   }
 }
 
 #tabs {
-  @include span_columns(1);
+  @include span_columns(.8);
 }
 #tab_targets {
-  @include span_columns(11);
+  @include span_columns(11.2);
   @include omega;
   .list-frame {
     @include span-columns(4 of 11);
