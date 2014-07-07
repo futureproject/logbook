@@ -1,23 +1,26 @@
-%h1= @person.name
-%p
-  %b First name:
-  = @person.first_name
-%p
-  %b Last name:
-  = @person.last_name
-%p
-  %b Role:
-  = @person.role
-%p
-  %b School:
-  = @person.school_id
-%p
-  %b Grade:
-  = @person.grade
-%p
-  %b Core:
-  = @person.core
+.panel
+  .panel-title
+    %h1 Showing Person
+    .l-menu= link_to "Back", people_path
+    .r-menu= link_to "Edit", edit_person_path(@person)
+  .panel-body.scrollable.pad
+    %h1= @person.name
+    %p
+      %b First name:
+      = @person.first_name
+    %p
+      %b Last name:
+      = @person.last_name
+    %p
+      %b Role:
+      = @person.role
+    %p
+      %b School:
+      = @person.school_id
+    %p
+      %b Grade:
+      = @person.grade
+    %p
+      %b Core:
+      = @person.core
 
-= link_to 'Edit', edit_person_path(@person)
-\|
-= link_to 'Back', people_path

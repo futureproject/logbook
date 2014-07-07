@@ -1,7 +1,70 @@
 #app {
-  max-width: 1200px;
+  max-width: 1024px;
   margin: 0 auto;
   position: relative;
+  height: 100%;
+}
+
+#sidebar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  text-align: center;
+  width: 64px;
+  padding-top: 10px;
+  font-size: 12px;
+  a {
+    display: block;
+    height: 44px;
+    width: 44px;
+    margin: 0 auto 12px;
+    img {
+      height: 32px;
+      width: 32px;
+      border-radius: 5px;
+    }
+  }
+  ul {
+    width: 52px;
+    margin: 0 auto;
+  }
+  li {
+    height: 52px;
+    margin-bottom: 12px;
+  }
+  .mega-octicon {
+    display: block;
+    padding-top: 3px;
+  }
+}
+
+#flash {
+  position: absolute;
+  bottom: 0;
+  left: 64px;
+  right: 1em;
+  margin-left: 1em;
+  .flash {
+    position: relative;
+    border-radius: 5px;
+  }
+  .flash_dismiss {
+    position: absolute;
+    right: 1em;
+    top: .5em;
+    cursor: pointer;
+  }
+}
+
+#canvas {
+  position: absolute;
+  left: 64px;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  border-radius: 5px;
 }
 
 #new_session {

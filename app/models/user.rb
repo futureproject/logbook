@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   before_create :generate_auth_token
-  has_many :identities
+  has_many :identities, dependent: :destroy
   has_many :weekly_log_entries
   has_one :school, foreign_key: 'dream_director_id', class_name: 'School'
 
@@ -37,6 +37,12 @@ class User < ActiveRecord::Base
 
   def engagement_score
     weekly_log_entries.average(:quality)
+  end
+
+  def attendance_score
+    attended = weekly_log_entries.where(attended_meeting: true).count
+    total = weekly_log_entries.count
+    (attended.to_f / total.to_f).to_s
   end
 
   def site

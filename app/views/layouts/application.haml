@@ -3,14 +3,20 @@
   %head
     %title= page_title
     = stylesheet_link_tag    'application', media: 'all'
-    = javascript_include_tag 'application'
+    %meta{name:"viewport", content: "width=device-width, maximum-scale=1.0, minimum-scale=1.0, initial-scale=1.0"}
+    %meta{name:"apple-mobile-web-app-status-bar-style", content:"black-translucent"}
+    %meta{name:"apple-mobile-web-app-capable", content:"yes"}
+    %link{rel:"apple-touch-icon", href: asset_path('icon-arrow.png')}
     = csrf_meta_tags
-    %meta{name: 'viewport', content: 'width=1024'}
   %body#l_application
     #app
       =render "sidebar" if current_user
       #canvas=yield
       #flash
         - flash.each do |k, v|
-          .flash{class: k}= v
+          .flash{class: k}
+            .message= v
+            .flash_dismiss
+              %span.mega-octicon.octicon-x
 
+    = javascript_include_tag 'application'

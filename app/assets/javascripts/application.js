@@ -22,5 +22,10 @@ $(function(){
       e.preventDefault()
       location.href = this.href
     }
+    if (el.classList.contains('done')) {
+      $(this).closest('form').submit()
+    }
+  }).on('click', '.flash', function(e) {
+    $(this).fadeOut()
   })
 })

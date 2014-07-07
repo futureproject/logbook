@@ -1,6 +1,7 @@
 @mixin scrollable {
   position: relative;
-  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   &:after {
     content: '';

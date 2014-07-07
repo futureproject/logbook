@@ -1,7 +1,9 @@
-%h1 Editing person
-
-= render 'form'
-
-= link_to 'Show', @person
-\|
-= link_to 'Back', people_path
+.panel
+  = form_for @person do |f|
+    .panel-title
+      %h1 Editing Person
+      .l-menu= link_to "Cancel", person_path(@person)
+      .r-menu
+        = f.submit 'Done'
+    .panel-body.scrollable.pad
+      = render partial: 'form', locals: {f: f}

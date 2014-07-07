@@ -9,7 +9,10 @@ pre, code {
   white-space: pre-wrap;
   word-wrap: break-word;
 }
-
+#{$all-text-inputs} {
+  -webkit-appearance: none;
+}
 input[type=checkbox], input[type=radio] {
   @include transform(scale(2));
+  margin: 0 10px 0 10px;
 }

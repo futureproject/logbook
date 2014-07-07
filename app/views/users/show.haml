@@ -1,29 +1,30 @@
-%h1= @user.name
-- if @user.captain?
-  %table
-    %tr
-      %th
-      - @user.site.dream_directors.each do |u|
-        %th= u.first_name
-      %th Site
-      %th National
-    %tr
-      %th Engagement
-      - @user.site.dream_directors.each do |u|
-        %td= u.engagement_score
-      %td= @user.site.engagement_score
-      %td= Stat.engagement_score
-
-- else
-  %table
-    %tr
-      %th
-      %th Personal
-      %th Site
-      %th National
-    %tr
-      %th Engagement
-      %td= @user.engagement_score
-      %td= @user.site.engagement_score
-      %td= Stat.engagement_score
+.panel
+  .panel-title
+    %h1= "Showing #{@user.role}"
+  .panel-body.scrollable.pad
+    %h1= @user.name
+    %table
+      %tr
+        %th
+        %th Attendance
+        %th Engagement
+      - if @user.captain?
+        - @user.site.dream_directors.each do |u|
+          %tr
+            %td= u.name
+            %td= u.attendance_score
+            %td= u.engagement_score
+      - else
+        %tr
+          %td= @user.first_name
+          %td= @user.attendance_score
+          %td= @user.engagement_score
+      %tr
+        %td= @user.site.name
+        %td= @user.site.attendance_score
+        %td= @user.site.engagement_score
+      %tr
+        %td National
+        %td= Stat.attendance_score
+        %td= Stat.engagement_score
 

@@ -2,13 +2,15 @@ body {
   background: $dark-gray;
   border-top: 20px solid $dark-gray;
 }
-#app {
-}
-#tabs {
-}
-#tab_targets {
-  border-radius: 5px;
-  background: $base-background-color;
+#sidebar {
+  .current {
+    border-radius: 5px;
+    background: rgba(0,0,0,.5);
+    a { color: white; }
+  }
+  .avatar {
+    border-bottom: 1px solid darken($medium-gray, 20%);
+  }
 }
 .alert {
   @include flash($alert-color);
@@ -26,6 +28,22 @@ body {
   @include flash($success-color);
 }
 
+#canvas {
+  background-color: $base-background-color;
+}
+
+.list {
+  border-right: 3px solid $base-border-color;
+}
+
+.list-title, .panel-title {
+  background-color: $lightest-gray;
+  border-top-left-radius: 5px;
+  border-bottom: 3px solid $base-border-color;
+}
+
+
+/* BLUEBOOK */
 .list-toolbar, .detail-toolbar {
   border-bottom: 3px solid $base-border-color;
   text-align: center;
@@ -34,6 +52,8 @@ body {
 .list-item {
   border-bottom: 3px solid $base-border-color;
   font-weight: 500;
+  display: block;
+  color: $base-font-color;
   &.is_active {
     background: $base-accent-color;
     color: white;

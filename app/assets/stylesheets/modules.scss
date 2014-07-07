@@ -20,35 +20,69 @@
   }
 }
 
-.tools_list {
-  @include clearfix;
-  @include outer_container;
+.panel {
+  @include display(flex);
+  @include flex-direction(column);
+  height: 100%;
 }
-
-.tool {
-  @include span_columns(4);
-  @include omega(3n);
-  padding: $gutter;
+.panel-title, .panel-footer {
+  @include flex-shrink(0);
+  position: relative;
+  height: 44px;
+  line-height: 44px;
+  h1 {
+    font-size: 1em;
+    text-align: center;
+    line-height: 44px;
+  }
 }
-
-.tasks_list {
-  @extend .tools_list;
+.panel-body {
+  @include flex-grow(1);
 }
-
-.task {
-  @extend .tool;
-}
-
-.switch-field {
-  @include row;
+.list {
+  @extend .panel;
   max-width: 320px;
-  > label {
-    @include span_columns(9);
-  }
-  .input {
-    @include span_columns(3);
+}
+.list-title, .list-footer {
+  @extend .panel-title;
+}
+.list-body {
+  @extend .panel-body;
+}
+
+.pad {
+  padding: 1em;
+}
+
+.l-menu, .r-menu {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+.l-menu {
+  left: 1em;
+  text-align: left;
+}
+.r-menu {
+  right: 1em;
+  text-align: right;
+  overflow: hidden;
+  a {
+    height: 44px;
+    line-height: 44px;
+    display: inline-block;
   }
 }
+
+.scrollable {
+  @include scrollable;
+}
+
+
+.actions {
+  margin-top: 1em;
+}
+
 .tab_target {
   height: 100%;
 }
@@ -107,7 +141,7 @@
 }
 
 .list-item-graphic {
-  @include span_columns(1 of 4);
+  @include span_columns(3);
   text-align: center;
   font-weight: bold;
   font-size: 1.5em;
@@ -115,7 +149,7 @@
 }
 
 .list-item-label {
-  @include span_columns(3 of 4);
+  @include span_columns(9);
 }
 
 .detail {
@@ -165,19 +199,6 @@
   }
 }
 
-.l-menu, .r-menu {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-}
-.l-menu {
-  left: 5px;
-  text-align: left;
-}
-.r-menu {
-  right: 5px;
-  text-align: right;
-}
 
 .inline-label {
   display: inline-block;
