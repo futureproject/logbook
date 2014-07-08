@@ -12,6 +12,13 @@ body {
     border-bottom: 1px solid darken($medium-gray, 20%);
   }
 }
+
+#canvas {
+  background-color: $base-background-color;
+  border-radius: 5px;
+  border: 3px solid $base-border-color;
+}
+
 .alert {
   @include flash($alert-color);
 }
@@ -26,10 +33,6 @@ body {
 
 .success {
   @include flash($success-color);
-}
-
-#canvas {
-  background-color: $base-background-color;
 }
 
 .list {
