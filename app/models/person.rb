@@ -15,7 +15,7 @@ class Person < ActiveRecord::Base
   end
 
   def initials
-    "#{first_name.first} #{last_name.first}"
+    "#{first_name.first}#{last_name.first}"
   end
 
   def last_log
