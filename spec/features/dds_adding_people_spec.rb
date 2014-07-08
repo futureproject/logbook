@@ -6,12 +6,12 @@ feature 'DDs adding students' do
   end
   scenario do
     visit people_path
-    click_link 'New Person'
+    click_link 'New'
     fill_in 'person[first_name]', with: 'Terry'
     fill_in 'person[last_name]', with: 'McGuiness'
     select 'student', from: 'person[role]'
     select '11', from: 'person[grade]'
-    click_button 'Save'
+    click_button 'Done'
     should_see_new_student
   end
 
