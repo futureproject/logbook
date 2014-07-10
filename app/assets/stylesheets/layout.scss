@@ -104,8 +104,19 @@
   @include outer_container;
   background-repeat: repeat-y;
   background-position: center top;
+  background: white;
+  border-top: none;
   #app, #tabs, #tab_targets {
     height: 100%;
+  }
+  .list {
+    max-width: 100%;
+    border-right: none;
+  }
+  #tabs {
+    color: $base-font-color;
+    .nav_link { color: black; }
+    .mega-octicon { color: black; }
   }
 }
 

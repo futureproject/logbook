@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140706193916) do
+ActiveRecord::Schema.define(version: 20140710170422) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,13 +27,36 @@ ActiveRecord::Schema.define(version: 20140706193916) do
     t.datetime "updated_at"
   end
 
+  create_table "one_on_ones", force: true do |t|
+    t.integer  "school_id"
+    t.integer  "person_id"
+    t.date     "date"
+    t.float    "duration"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "people", force: true do |t|
     t.string   "first_name"
     t.string   "last_name"
     t.string   "role",       default: "student"
     t.integer  "school_id"
     t.integer  "grade"
-    t.boolean  "core",       default: true
+    t.boolean  "dream_team", default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "project_leaders", force: true do |t|
+    t.integer  "project_id"
+    t.integer  "person_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "project_participants", force: true do |t|
+    t.integer  "project_id"
+    t.integer  "person_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -51,11 +74,11 @@ ActiveRecord::Schema.define(version: 20140706193916) do
     t.string   "shortname"
     t.string   "address"
     t.integer  "dream_director_id"
+    t.integer  "site_id"
     t.float    "latitude"
     t.float    "longitude"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "site_id"
   end
 
   create_table "sites", force: true do |t|
@@ -67,46 +90,29 @@ ActiveRecord::Schema.define(version: 20140706193916) do
     t.datetime "updated_at"
   end
 
-  create_table "students", force: true do |t|
-    t.string   "first_name"
-    t.string   "last_name"
-    t.integer  "school_id"
-    t.integer  "grade"
-    t.boolean  "core"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "tools", force: true do |t|
-    t.string   "name"
-    t.string   "url"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "icon_file_name"
-    t.string   "icon_content_type"
-    t.integer  "icon_file_size"
-    t.datetime "icon_updated_at"
-  end
-
   create_table "users", force: true do |t|
     t.string   "first_name"
     t.string   "last_name"
     t.string   "email"
     t.string   "auth_token"
     t.string   "avatar_url"
+    t.string   "role"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "role"
   end
 
-  create_table "weekly_log_entries", force: true do |t|
-    t.integer  "user_id"
+  create_table "workshop_attendees", force: true do |t|
+    t.integer  "workshop_id"
     t.integer  "person_id"
-    t.boolean  "attended_meeting"
-    t.integer  "quality"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.date     "week"
+  end
+
+  create_table "workshops", force: true do |t|
+    t.date     "date"
+    t.integer  "school_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

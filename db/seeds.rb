@@ -48,19 +48,7 @@ School.create([
 
 School.all.each do |school|
   400.times do |i|
-    Person.create( first_name: (i%2 == 0 ? "John" : "Jane"), last_name: "Doe #{i+1}", school: school, grade: 11, core: i%40 == 0 )
-  end
-end
-
-Person.all.each do |person|
-  4.times do |i|
-    entry = person.weekly_log_entries.create!(
-      attended_meeting: ( rand(0..1) == 0 ? true : false),
-      quality: person.school_id,
-      week: Date.today.beginning_of_week - i.weeks,
-      user: person.school.dream_director
-    )
-    puts "Added entry for #{entry.person.first_name} of quality #{entry.quality}"
+    Person.create( first_name: (i%2 == 0 ? "John" : "Jane"), last_name: "Doe #{i+1}", school: school, grade: 11, dream_team: i%40 == 0 )
   end
 end
 

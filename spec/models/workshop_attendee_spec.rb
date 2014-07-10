@@ -1,5 +1,5 @@
 require 'rails_helper'
 
-RSpec.describe WeeklyLogEntry, :type => :model do
+RSpec.describe WorkshopAttendee, :type => :model do
   pending "add some examples to (or delete) #{__FILE__}"
 end

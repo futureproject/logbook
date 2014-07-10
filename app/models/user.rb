@@ -1,11 +1,13 @@
 class User < ActiveRecord::Base
   before_create :generate_auth_token
   has_many :identities, dependent: :destroy
-  has_many :weekly_log_entries
   has_one :school, foreign_key: 'dream_director_id', class_name: 'School'
+  has_one :site, foreign_key: 'captain_id', class_name: 'Site'
 
   has_many :people, through: :school
   has_many :projects, through: :school
+  #has_many :workshops, through: :school
+  #has_many :one_on_ones, through: :school
 
   ROLE_ENUM = %w(dream_director captain)
 
@@ -33,20 +35,6 @@ class User < ActiveRecord::Base
 
   def self.find_by_identity(provider, uid)
     Identity.where(provider: provider, uid: uid).first.try(:user)
-  end
-
-  def engagement_score
-    weekly_log_entries.average(:quality)
-  end
-
-  def attendance_score
-    attended = weekly_log_entries.where(attended_meeting: true).count
-    total = weekly_log_entries.count
-    (attended.to_f / total.to_f).to_s
-  end
-
-  def site
-    school.try(:site) || Site.where(captain_id: self.id).first
   end
 
   def captain?

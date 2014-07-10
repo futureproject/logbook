@@ -4,7 +4,7 @@ class School < ActiveRecord::Base
   after_validation :geocode, :if => lambda{ |obj| obj.address_changed? }
   after_validation :set_shortname, :if => lambda{ |obj| obj.name_changed? }
 
-  belongs_to :dream_director, class_name: 'User'
+  belongs_to :dream_director, class_name: 'User', foreign_key: 'dream_director_id'
   belongs_to :site
 
   has_many :people

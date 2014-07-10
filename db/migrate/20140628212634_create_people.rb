@@ -6,7 +6,7 @@ class CreatePeople < ActiveRecord::Migration
       t.string :role, default: 'student'
       t.integer :school_id
       t.integer :grade
-      t.boolean :core, default: true
+      t.boolean :dream_team, default: false
 
       t.timestamps
     end
