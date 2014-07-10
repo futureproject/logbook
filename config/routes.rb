@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :weekly_log_entries, only: [:new, :create]
   resources :users, only: [:show]
   resources :people
+  resources :projects
 
   resources :sessions, only: [:new, :create]
   get 'auth/logout', to: 'sessions#destroy', as: :log_out

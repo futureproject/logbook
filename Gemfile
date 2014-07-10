@@ -64,11 +64,14 @@ gem 'geocoder'
 gem 'dalli'
 gem 'memcachier'
 
-# backbone stuff
+# ejs javascript templates
 gem 'ejs'
 
 # fastclick
 gem 'fastclick-rails'
+
+# pagination
+gem 'kaminari'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0.beta'

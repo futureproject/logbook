@@ -1,40 +1,54 @@
 .panel
   .panel-title
     %h1= "Hi, #{current_user.first_name}."
-  .panel-body
-    .scrollable
-      .grid-items-lines
-        %a.grid-item{href: "/bluebook", target: "_blank"}
-          %img{alt: "", src: "https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_1_dark.png"}/
-          %h1 Blue Book
-          %p Keep track of your people
-        %a.grid-item{href: new_weekly_log_entry_path}
-          %img{alt: "", src: "https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_3_dark.png"}/
-          %h1 Weekly Log
-          %p File a report on this week's meeting
-        %a.grid-item{href: "#"}
-          %img{alt: "", src: "https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_2_dark.png"}/
-          %h1 Tasks
-          %p Forget what you have to do with confidence
-        %a.grid-item{href: user_path(current_user)}
-          %img{alt: "", src: "https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_3_dark.png"}/
-          %h1 Stats
-          %p Check on how you're doing
-        %a.grid-item.grid-item-big{href: "https://mail.google.com/a/thefutureproject.org", target: "_blank"}
-          %img{alt: "", src: "https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_2_dark.png"}/
-          %h1 Google Apps
-          %p Gmail, Drive, Calendar, Groups
-        %a.grid-item{href: "http://www.expensify.com/"}
-          %img{alt: "", src: "https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_2_dark.png"}/
-          %h1 Expensify
-          %p Manage your budget
-        %a.grid-item{href: "mailto:ops@thefutureproject.org?subject=OPS REQUEST"}
-          %img{alt: "", src: "https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_1_dark.png"}/
-          %h1 Ops
-          %p Open an ops request
-        %a.grid-item{href: "mailto:support@thefutureproject.org?subject=Help!"}
-          %img{alt: "", src: "https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_2_dark.png"}/
-          %h1 Support
-          %p Get help!
-        .right-cover
-        .bottom-cover
+  .panel-body.scrollable.pad
+    %h4 Impact Stats
+    %table
+      %tr
+        %th
+        %th You
+        %th Site Avg
+        %th National Avg
+      %tr
+        %td
+          %h6 Projects
+        %td= current_user.projects.count
+        %td= current_user.site.average(:projects) if current_user.site
+        %td= National.average(:projects)
+      %tr
+        %td
+          %h6 Project Leaders
+        %td= current_user.people.joins(:project_leaders).uniq.count
+        %td= current_user.site.average(:project_leaders) if current_user.site
+        %td= National.average(:project_leaders)
+      %tr
+        %td
+          %h6 Project Participants
+        %td= current_user.people.joins(:project_participants).uniq.count
+        %td= current_user.site.average(:project_participants) if current_user.site
+        %td= National.average(:project_participants)
+      %tr
+        %td
+          %h6 # of One-on-Ones
+        %td= current_user.one_on_ones.count
+        %td= current_user.site.average(:one_on_ones) if current_user.site
+        %td= National.average(:one_on_ones)
+      %tr
+        %td
+          %h6 One-on-Ones hours
+        %td= current_user.one_on_ones.average(:duration).to_s
+        %td= current_user.site.average(:one_on_ones, :duration) if current_user.site
+        %td= National.average(:one_on_ones, :duration)
+      %tr
+        %td
+          %h6 Workshops
+        %td= current_user.workshops.count
+        %td= current_user.site.average(:workshops) if current_user.site
+        %td= National.average(:workshops)
+      %tr
+        %td
+          %h6 Workshop Attendees
+        %td= current_user.workshop_attendees.count
+        %td= current_user.site.average(:workshop_attendees) if current_user.site
+        %td= National.average(:workshops)
+

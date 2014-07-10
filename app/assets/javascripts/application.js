@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require fastclick
+//= require selectize
 //= require_self
 
 $(function(){
@@ -22,10 +23,10 @@ $(function(){
       e.preventDefault()
       location.href = this.href
     }
-    if (el.classList.contains('done')) {
-      $(this).closest('form').submit()
-    }
   }).on('click', '.flash', function(e) {
     $(this).fadeOut()
+  })
+  $('body').each(function(){
+    if(!navigator.standalone) this.classList.add('browser')
   })
 })

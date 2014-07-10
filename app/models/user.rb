@@ -2,12 +2,13 @@ class User < ActiveRecord::Base
   before_create :generate_auth_token
   has_many :identities, dependent: :destroy
   has_one :school, foreign_key: 'dream_director_id', class_name: 'School'
-  has_one :site, foreign_key: 'captain_id', class_name: 'Site'
 
+  has_one :site, through: :school
   has_many :people, through: :school
   has_many :projects, through: :school
-  #has_many :workshops, through: :school
-  #has_many :one_on_ones, through: :school
+  has_many :workshops, through: :school
+  has_many :workshop_attendees, through: :workshops
+  has_many :one_on_ones, through: :school
 
   ROLE_ENUM = %w(dream_director captain)
 
@@ -43,6 +44,10 @@ class User < ActiveRecord::Base
 
   def avatar
     avatar_url || "https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_1_dark.png"
+  end
+
+  def dream_team
+    people.where(dream_team: true)
   end
 
 end

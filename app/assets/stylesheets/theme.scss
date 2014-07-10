@@ -1,6 +1,16 @@
 body {
   background: $dark-gray;
   border-top: 20px solid $dark-gray;
+  &.browser {
+    background: white;
+    border-top: none;
+    border-bottom: none;
+    #canvas {
+      border-radius: 0;
+      border-top: none;
+      border-bottom: none;
+    }
+  }
 }
 #sidebar {
   .current {

@@ -8,3 +8,4 @@
       %a.list-item{href: person_path(person)}
         .list-item-graphic=person.initials
         .list-item-label=person.name
+    = link_to_next_page @people, 'Load More'
