@@ -1,0 +1,9 @@
+#projects_detail.panel.list-detail
+  .panel-title
+    %h1 Showing Project
+    .l-menu= link_to "Back", projects_path
+    .r-menu= link_to "Edit", edit_project_path(@project)
+  .panel-body.scrollable.pad
+    %h1= @project.name
+
+#projects_list.list

@@ -32,7 +32,11 @@ Rails.application.configure do
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
 
+  # disable Etags so Safari doesn't show a blank white screen on reload
+  config.middleware.delete Rack::ETag
+
   config.log_level = :debug
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+  
 end

@@ -1,4 +1,5 @@
 .centered {
+
   text-align: center;
 }
 
@@ -42,12 +43,43 @@
 .list {
   @extend .panel;
   max-width: 320px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 320px;
 }
 .list-title, .list-footer {
   @extend .panel-title;
 }
 .list-body {
   @extend .panel-body;
+}
+
+.list-detail {
+  margin-left: 320px;
+}
+
+.list-item {
+  @include outer_container;
+  cursor: pointer;
+  p {
+    padding: 1em 1em .3em;
+    line-height: 1;
+  }
+}
+
+.list-item-graphic, .list-item-label {
+  height: 100%;
+  line-height: 60px;
+  height: 60px;
+}
+
+.list-item-graphic {
+  @include span_columns(3);
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.5em;
+  position: relative;
 }
 
 .pad {
@@ -66,17 +98,18 @@
   }
 }
 .l-menu {
-  left: 1em;
+  left: 0;
   text-align: left;
+  a:first-child {
+    padding-left: 1em;
+  }
 }
 .r-menu {
-  right: 1em;
+  right: 0;
   text-align: right;
   overflow: hidden;
-  a {
-    height: 44px;
-    line-height: 44px;
-    display: inline-block;
+  a:last-child {
+    padding-right: 1em;
   }
 }
 
@@ -89,6 +122,18 @@
   margin-top: 1em;
 }
 
+a[rel=next] {
+  text-align: center;
+  padding: 1em;
+  display: block;
+}
+
+
+.list-item-label {
+  @include span_columns(9);
+}
+
+
 /* LEGACY */
 
 .tab_target {
@@ -97,12 +142,6 @@
 
 .list-frame, .detail-frame, .panel-frame {
   height: 100%;
-}
-
-.list {
-  position: relative;
-  height: 100%;
-  @include transform(translate3d(0,0,0));
 }
 
 .list-items {
@@ -135,29 +174,6 @@
   padding-top: 12px;
   width: 100%;
   z-index: 10;
-}
-
-.list-item {
-  @include outer_container;
-  cursor: pointer;
-}
-
-.list-item-graphic, .list-item-label {
-  height: 100%;
-  line-height: 60px;
-  height: 60px;
-}
-
-.list-item-graphic {
-  @include span_columns(3);
-  text-align: center;
-  font-weight: bold;
-  font-size: 1.5em;
-  position: relative;
-}
-
-.list-item-label {
-  @include span_columns(9);
 }
 
 .detail {

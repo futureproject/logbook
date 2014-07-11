@@ -1,0 +1,18 @@
+- if @project.errors.any?
+  #error_explanation
+    %h2= "#{pluralize(@project.errors.count, "error")} prohibited this person from being saved:"
+    %ul
+      - @project.errors.full_messages.each do |msg|
+        %li= msg
+.field
+  = f.label :name
+  = f.text_field :name
+
+- if current_user.school
+  =f.hidden_field :school_id, value: current_user.school_id
+- else
+  .field
+    = f.label :school_id
+    = f.select :school_id, School.all.map{|s| [s.name, s.id] }
+
+=f.hidden_field :school_id, value: current_user.school_id

@@ -1,6 +1,5 @@
 require 'spec_helper'
 feature 'DDs adding students' do
-  fixtures :users, :schools, :identities
   before do
     mock_sign_in
   end

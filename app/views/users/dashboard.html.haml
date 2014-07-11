@@ -29,13 +29,13 @@
         %td= National.average(:project_participants)
       %tr
         %td
-          %h6 # of One-on-Ones
+          %h6 One-on-Ones
         %td= current_user.one_on_ones.count
         %td= current_user.site.average(:one_on_ones) if current_user.site
         %td= National.average(:one_on_ones)
       %tr
         %td
-          %h6 One-on-Ones hours
+          %h6 Time Coaching
         %td= current_user.one_on_ones.average(:duration).to_s
         %td= current_user.site.average(:one_on_ones, :duration) if current_user.site
         %td= National.average(:one_on_ones, :duration)

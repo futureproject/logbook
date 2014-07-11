@@ -10,6 +10,11 @@ body {
       border-top: none;
       border-bottom: none;
     }
+    #sidebar {
+      .current {
+        background: $blue;
+      }
+    }
   }
 }
 #sidebar {
@@ -51,7 +56,7 @@ body {
 
 .list-title, .panel-title {
   background-color: $lightest-gray;
-  border-top-left-radius: 5px;
+  //border-top-left-radius: 5px;
   border-bottom: 3px solid $base-border-color;
 }
 

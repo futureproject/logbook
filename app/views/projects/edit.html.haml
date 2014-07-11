@@ -1,9 +1,10 @@
-#people_list.list
+#projects_list.list
+
 .panel.list-detail
-  = form_for @person do |f|
+  = form_for @project do |f|
     .panel-title
-      %h1 Editing Person
-      .l-menu= link_to "Cancel", person_path(@person)
+      %h1 Editing Project
+      .l-menu= link_to "Cancel", project_path(@project)
       .r-menu
         = f.submit 'Done'
     .panel-body.scrollable.pad
