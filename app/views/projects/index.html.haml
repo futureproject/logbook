@@ -6,7 +6,8 @@
   .list-body.scrollable
     - @projects.each do |project|
       %a.list-item{href: project_path(project)}
-        %p=project.name
+        %h6=project.name
+        =project.leaders.pluck(:first_name).join ", "
     = link_to_next_page @projects, 'Load More'
 
 #projects_detail.panel.list-detail
