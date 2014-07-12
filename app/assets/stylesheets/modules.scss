@@ -62,24 +62,21 @@
 .list-item {
   @include outer_container;
   cursor: pointer;
-  p {
-    padding: 1em 1em .3em;
-    line-height: 1;
-  }
+  padding: 1em;
 }
 
 .list-item-graphic, .list-item-label {
-  height: 100%;
-  line-height: 60px;
-  height: 60px;
 }
 
 .list-item-graphic {
   @include span_columns(3);
-  text-align: center;
   font-weight: bold;
   font-size: 1.5em;
   position: relative;
+  line-height: 1;
+}
+.list-item-label {
+  line-height: 1.5;
 }
 
 .pad {
@@ -136,6 +133,7 @@ a[rel=next] {
 
 /* LEGACY */
 
+/*
 .tab_target {
   height: 100%;
 }
@@ -254,3 +252,4 @@ table.no-borders {
 td.last {
   text-align: right;
 }
+*/
