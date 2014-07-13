@@ -1,10 +1,9 @@
 #projects_list.list
-.panel.list-detail
-  = form_for @project do |f|
-    .panel-title
-      %h1 New Project
-      .l-menu= link_to "Cancel", projects_path
-      .r-menu
-        = f.submit 'Done'
-    .panel-body.scrollable.pad
-      = render partial: 'form', locals: {f: f}
+= form_for @project, html: { class: 'list-detail panel' } do |f|
+  .panel-title
+    %h1 New Project
+    .l-menu= link_to "Cancel", projects_path
+    .r-menu
+      = f.submit 'Done'
+  .panel-body.scrollable.pad
+    = render partial: 'form', locals: {f: f}

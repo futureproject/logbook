@@ -1,6 +1,8 @@
 body {
   background: $dark-gray;
   border-top: 20px solid $dark-gray;
+  -webkit-tap-highlight-color: transparentize($blue, .9);
+  /*
   &.browser {
     background: white;
     border-top: none;
@@ -16,6 +18,7 @@ body {
       }
     }
   }
+  */
 }
 #sidebar {
   .current {
@@ -99,3 +102,4 @@ body {
 .detail-toolbar {
   font-weight: bold;
 }
+

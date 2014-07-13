@@ -4,4 +4,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   include Authentication
   before_action :authenticate!
+  before_action :init_js_data
+
+  def init_js_data
+    @js_data = {}
+    @js_data[:current_user] = current_user.as_json(include: :school)
+  end
+
 end
