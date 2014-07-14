@@ -103,3 +103,16 @@ body {
   font-weight: bold;
 }
 
+.task {
+  &.complete {
+    text-decoration: line-through;
+    color: $base-border-color;
+    input { opacity: .2 };
+  }
+}
+
+
+small {
+  text-transform: lowercase;
+  font-variant: small-caps;
+}

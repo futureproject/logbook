@@ -1,0 +1,3 @@
+complete_training:
+  action: Complete training
+  user: bruce

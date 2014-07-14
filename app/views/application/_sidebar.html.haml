@@ -3,7 +3,10 @@
     %img{src: current_user.avatar}/
   %ul.tabs
     = nav_link_to "<span class='mega-octicon octicon-dashboard'></span> Home", root_url
-    = nav_link_to "<span class='mega-octicon octicon-checklist'></span> Tasks", "#"
+    - if current_user.captain?
+      = nav_link_to "<span class='mega-octicon octicon-checklist'></span> Tasks", tasks_path
+    - else
+      = nav_link_to "<span class='mega-octicon octicon-checklist'></span> Tasks", task_assignments_path
     = nav_link_to "<span class='mega-octicon octicon-organization'></span> People", people_path
     = nav_link_to "<span class='mega-octicon octicon-rocket'></span> Projects", projects_path
-    = nav_link_to "<span class='mega-octicon octicon-podium'></span> Wshops", "#"
+    = nav_link_to "<span class='mega-octicon octicon-podium'></span> Workshops", "#"

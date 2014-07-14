@@ -13,7 +13,8 @@
   text-align: center;
   width: 64px;
   padding-top: 10px;
-  font-size: 12px;
+  font-size: 9px;
+  font-family: 'helvetica neue', helvetica, sans-serif;
   a {
     display: block;
     height: 44px;
@@ -95,6 +96,13 @@
     @include span-columns(8);
     @include omega;
   }
+}
+#pending_tasks{
+  @extend %half-list;
+}
+
+#completed_tasks {
+  @extend %half-list;
 }
 
 /* BLUEBOOK */

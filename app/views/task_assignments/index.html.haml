@@ -1,0 +1,18 @@
+#pending_tasks.panel
+  .list-title
+    %h1 Pending
+  .list-body.scrollable
+    - @pending_assignments.each do |task|
+      %a.list-item.task{href: toggle_task_assignment_path(task)}
+        %input{type: 'checkbox'}
+        =task.task.action
+
+#completed_tasks.panel
+  .list-title
+    %h1 Completed
+  .list-body.scrollable
+    - @completed_assignments.each do |task|
+      %a.list-item.task.complete{href: toggle_task_assignment_path(task)}
+        %input{type: 'checkbox', checked: true}
+        =task.task.action
+

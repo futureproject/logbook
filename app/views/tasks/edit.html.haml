@@ -1,0 +1,11 @@
+= form_for @task, html: { class: 'list-detail panel' } do |f|
+  .panel-title
+    %h1 Editing Task
+    .l-menu= link_to "Cancel", tasks_path
+    .r-menu
+      = f.submit 'Done'
+  .panel-body.scrollable.pad
+    = render partial: 'form', locals: {f: f}
+    .field
+      = link_to "Delete Task", task_path(@task), class: 'warning button', data: {method: 'delete', confirm: 'Are you sure?' }
+

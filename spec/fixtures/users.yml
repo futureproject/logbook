@@ -3,3 +3,4 @@ bruce:
   last_name: Wayne
   email: bruce.wayne@thefutureproject.org
   auth_token: batman
+  role: captain

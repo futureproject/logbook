@@ -15,11 +15,19 @@ class Site < ActiveRecord::Base
   has_many :one_on_ones, through: :schools
 
   def average association, column=nil
-    if column.nil?
-      (eval(association.to_s).count / schools.count).to_i
-    else
-      eval(association.to_s).average(column.to_sym)
+    begin
+      if column.nil?
+        (eval(association.to_s).count / schools.count).to_i
+      else
+        eval(association.to_s).average(column.to_sym)
+      end
+    rescue
+      "?"
     end
+  end
+
+  def staff
+    ([captain] + dream_directors).flatten
   end
 
 end

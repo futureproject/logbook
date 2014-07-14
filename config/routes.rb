@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -7,10 +8,13 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'users#dashboard'
 
-  resources :weekly_log_entries, only: [:new, :create]
   resources :users, only: [:show]
   resources :people
   resources :projects
+  resources :tasks
+  resources :task_assignments do
+    get 'toggle', on: :member
+  end
 
   resources :sessions, only: [:new, :create]
   get 'auth/logout', to: 'sessions#destroy', as: :log_out

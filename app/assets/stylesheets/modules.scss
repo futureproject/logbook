@@ -1,5 +1,4 @@
 .centered {
-
   text-align: center;
 }
 
@@ -129,6 +128,18 @@ a[rel=next] {
 .list-item-label {
   @include span_columns(9);
 }
+
+%half-list {
+  width: 50%;
+  float: left;
+  &:first-child {
+    border-right: 1px solid $base-border-color;
+  }
+  &:last-child {
+    border-left: 2px solid $base-border-color;
+  }
+}
+
 
 
 /* LEGACY */

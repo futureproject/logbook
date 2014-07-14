@@ -3,12 +3,13 @@ class User < ActiveRecord::Base
   has_many :identities, dependent: :destroy
   has_one :school, foreign_key: 'dream_director_id', class_name: 'School'
 
-  has_one :site, through: :school
   has_many :people, through: :school
   has_many :projects, through: :school
   has_many :workshops, through: :school
   has_many :workshop_attendees, through: :workshops
   has_many :one_on_ones, through: :school
+  has_many :tasks
+  has_many :task_assignments, foreign_key: 'assignee_id'
 
   ROLE_ENUM = %w(dream_director captain)
 
@@ -48,6 +49,10 @@ class User < ActiveRecord::Base
 
   def dream_team
     people.where(dream_team: true)
+  end
+
+  def site
+    Site.find_by(captain_id: self.id) || school.try(:site)
   end
 
 end
