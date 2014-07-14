@@ -140,6 +140,24 @@ a[rel=next] {
   }
 }
 
+.stats {
+  @include outer-container;
+}
+.stat {
+  width: 48%;
+  float: left;
+  margin-top: 1em;
+  padding: 1em 1.5em;
+  overflow: hidden;
+  white-space: nowrap;
+  &:nth-child(odd) {
+    margin-right: 2%;
+  }
+  &:nth-child(even) {
+    margin-left: 2%;
+  }
+}
+
 
 
 /* LEGACY */

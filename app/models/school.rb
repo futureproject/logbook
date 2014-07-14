@@ -11,7 +11,7 @@ class School < ActiveRecord::Base
   has_many :projects
   has_many :workshops
   has_many :workshop_attendees, through: :workshops
-  has_many :one_on_ones
+  has_many :one_on_ones, through: :people
 
 
   def set_shortname

@@ -64,12 +64,6 @@ body {
 }
 
 
-/* BLUEBOOK */
-.list-toolbar, .detail-toolbar {
-  border-bottom: 3px solid $base-border-color;
-  text-align: center;
-}
-
 .list-item {
   border-bottom: 3px solid $base-border-color;
   font-weight: 500;
@@ -79,24 +73,6 @@ body {
     background: $base-accent-color;
     color: white;
   }
-}
-
-#tabs {
-  .mega-octicon {
-    border: 3px solid;
-    border-radius: 50%;
-    color: white;
-  }
-  .active {
-    .mega-octicon {
-      background: $blue;
-      color: $dark-blue;
-      border-color: white;
-    }
-  }
-}
-.detail-frame {
-  border-left: 3px solid $base-border-color;
 }
 
 .detail-toolbar {
@@ -115,4 +91,17 @@ body {
 small {
   text-transform: lowercase;
   font-variant: small-caps;
+}
+
+.stat {
+  border-radius: $base-border-radius;
+  background: $blue;
+  color: $dark-blue;
+  line-height: 1;
+  span {
+    font-size: .75em;
+  }
+  h1 {
+    color: white;
+  }
 }
