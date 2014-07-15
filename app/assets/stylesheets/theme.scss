@@ -1,40 +1,23 @@
 body {
-  background: $dark-gray;
-  border-top: 20px solid $dark-gray;
+  background: $lightest-gray;
+  background-repeat: no-repeat;
+  background-position: center top;
   -webkit-tap-highlight-color: transparentize($blue, .9);
-  /*
-  &.browser {
-    background: white;
-    border-top: none;
-    border-bottom: none;
-    #canvas {
-      border-radius: 0;
-      border-top: none;
-      border-bottom: none;
-    }
-    #sidebar {
-      .current {
-        background: $blue;
-      }
-    }
-  }
-  */
 }
 #sidebar {
+  a { color: $base-border-color; }
   .current {
-    border-radius: 5px;
-    background: rgba(0,0,0,.5);
-    a { color: white; }
+    a { color: $blue; }
   }
   .avatar {
-    border-bottom: 1px solid darken($medium-gray, 20%);
+    background: $blue;
   }
 }
 
 #canvas {
   background-color: $base-background-color;
-  border-radius: 5px;
-  border: 3px solid $base-border-color;
+  box-shadow: -4px 0 8px rgba(0,0,0,.075);
+  border-left: 1px solid $base-border-color;
 }
 
 .alert {
@@ -54,18 +37,17 @@ body {
 }
 
 .list {
-  border-right: 3px solid $base-border-color;
+  border-right: 1px solid $base-border-color;
 }
 
 .list-title, .panel-title {
   background-color: $lightest-gray;
-  //border-top-left-radius: 5px;
-  border-bottom: 3px solid $base-border-color;
+  border-bottom: 1px solid $base-border-color;
 }
 
 
 .list-item {
-  border-bottom: 3px solid $base-border-color;
+  border-bottom: 1px solid $base-border-color;
   font-weight: 500;
   display: block;
   color: $base-font-color;
@@ -104,4 +86,9 @@ small {
   h1 {
     color: white;
   }
+}
+
+fieldset {
+  background-color: $lightest-gray;
+  border: none;
 }

@@ -12,7 +12,6 @@
   bottom: 0;
   text-align: center;
   width: 64px;
-  padding-top: 10px;
   font-size: 9px;
   font-family: 'helvetica neue', helvetica, sans-serif;
   a {
@@ -20,10 +19,15 @@
     height: 44px;
     width: 44px;
     margin: 0 auto 12px;
+  }
+  .avatar {
+    width: 64px;
+    height: 64px;
     img {
-      height: 32px;
-      width: 32px;
+      height: 48px;
+      width: 48px;
       border-radius: 5px;
+      margin-top: 7px;
     }
   }
   ul {
@@ -147,7 +151,7 @@
     img {
       width: 50px;
       height: 50px;
-      margin: .5em auto;
+      margin: 1em auto;
       display: block;
       background-color: $dark-gray;
     }

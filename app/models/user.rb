@@ -44,7 +44,11 @@ class User < ActiveRecord::Base
   end
 
   def avatar
-    avatar_url || "https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_1_dark.png"
+    if avatar_url.present?
+      avatar_url.gsub('sz=50','sz=100')
+    else
+     "http://www.thefutureproject.org/assets/logo.png"
+    end
   end
 
   def dream_team

@@ -19,24 +19,30 @@
         %h1= @person.one_on_ones.sum(:duration).to_s
         %span hours in one-on-ones
     %hr
-    %h5 One-on-Ones
-    =form_for OneOnOne.new, html: {class: 'quick_add'} do |f|
-      .quick_primary_inputs
-        =f.text_field :note, placeholder: "New..."
-        =f.hidden_field :person_id, value: @person.id
-        =f.hidden_field :date, value: Date.today
-      .quick_secondary_inputs
-        =f.label :duration, "It lasted:"
-        =f.select :duration, OneOnOne::DURATION_ENUM
-        =f.submit "Log It"
-
-      %ul.one_on_ones
-        - @person.one_on_ones.each do |o|
-          %li.one_on_one
-            .one_on_one_date
-              %h6=o.date.strftime "%D"
-              =pluralize o.duration, 'hour'
-            .one_on_one_note=o.note
+    %h3 One-on-Ones
+    =form_for OneOnOne.new do |f|
+      %table
+        %tr
+          %td
+            =f.label :duration
+            =f.select :duration, OneOnOne::DURATION_ENUM
+        .field
+          =f.label :note
+          =f.text_field :note
+          =f.hidden_field :person_id, value: @person.id
+          =f.hidden_field :date, value: Date.today
+        .field
+          =f.submit "Log It"
+    %table
+      %tr
+        %th Date
+        %th Duration
+        %th Note
+      - @person.one_on_ones.each do |o|
+        %tr
+          %td=o.date.strftime "%D"
+          %td=o.duration
+          %td=o.note
 
 
 #people_list.list
