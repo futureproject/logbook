@@ -92,3 +92,13 @@ fieldset {
   background-color: $lightest-gray;
   border: none;
 }
+
+.calendar_date {
+  text-align: center;
+}
+.calendar_date_month {
+  font-weight: normal;
+  font-size: .5em;
+  text-transform: uppercase;
+  line-height: 1;
+}

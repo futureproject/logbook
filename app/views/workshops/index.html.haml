@@ -5,8 +5,11 @@
   .list-body.scrollable
     -@workshops.each do |workshop|
       %a.list-item{href: workshop_path(workshop)}
-        .list-item-graphic= workshop.date.strftime("%m/%d")
-        .list-item-label= workshop.attendees.pluck(:first_name).join(", ")
+        .list-item-graphic
+          .calendar_date
+            .calendar_date_month=workshop.date.strftime("%a")
+            .calendar_date_day=workshop.date.strftime("%d")
+        .list-item-label= workshop.kind
     = link_to_next_page @workshops, 'Load More'
 
 #workshops_detail.panel.list-detail

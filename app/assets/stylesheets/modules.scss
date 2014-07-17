@@ -68,7 +68,7 @@
 }
 
 .list-item-graphic {
-  @include span_columns(3);
+  @include span_columns(2);
   font-weight: bold;
   font-size: 1.5em;
   position: relative;
@@ -76,6 +76,7 @@
 }
 .list-item-label {
   line-height: 1.5;
+  @include shift(1);
 }
 
 .pad {

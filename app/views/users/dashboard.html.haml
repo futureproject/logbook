@@ -46,7 +46,7 @@
         %td= National.average(:workshops)
       %tr
         %td
-          %h6 Workshop Attendees
+          %h6 Chairs Filled
         %td= current_user.workshop_attendees.count
         %td= current_user.site.average(:workshop_attendees) if current_user.site
         %td= National.average(:workshops)
