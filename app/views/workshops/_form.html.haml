@@ -1,0 +1,23 @@
+- if @workshop.errors.any?
+  #error_explanation
+    %h2= "#{pluralize(@workshop.errors.count, "error")} prohibited this workshop from being saved:"
+    %ul
+      - @workshop.errors.full_messages.each do |msg|
+        %li= msg
+
+.field
+  = f.label :date
+  = f.date_select :date
+
+- if current_user.school
+  =f.hidden_field :school_id, value: current_user.school_id
+
+- else
+  .field
+    = f.label :school_id
+    = f.select :school_id, School.all.map{|s| [s.name, s.id] }
+
+.field
+  =f.label :attendee_ids, "Attendees"
+  =f.select :attendee_ids, current_user.people.collect{|p| [p.name, p.id]}, {}, multiple: true
+

@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :projects
   resources :tasks
   resources :one_on_ones
+  resources :workshops
   resources :task_assignments do
     get 'toggle', on: :member
   end

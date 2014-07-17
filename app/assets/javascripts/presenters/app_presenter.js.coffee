@@ -23,3 +23,4 @@ class dream.AppPresenter extends Backbone.View
     @presenters =
       projects: new dream.ProjectsPresenter
       tasks: new dream.TasksPresenter
+      workshops: new dream.WorkshopsPresenter
