@@ -50,4 +50,16 @@
         %td= current_user.workshop_attendees.count
         %td= current_user.site.average(:workshop_attendees) if current_user.site
         %td= National.average(:workshops)
+      %tr
+        %td
+          %h6 Tasks Assigned
+        %td= current_user.task_assignments.count
+        %td= current_user.site.task_assignments.count.fdiv(current_user.site.schools.count) if current_user.site
+        %td= TaskAssignment.count.fdiv School.count
+      %tr
+        %td
+          %h6 Tasks Completed
+        %td= current_user.task_assignments.completed.count
+        %td= current_user.site.task_assignments.completed.count.fdiv(current_user.site.schools.count) if current_user.site
+        %td= TaskAssignment.completed.count.fdiv School.count
 

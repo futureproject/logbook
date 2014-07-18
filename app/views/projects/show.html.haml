@@ -5,6 +5,7 @@
     .r-menu= link_to "Edit", edit_project_path(@project)
   .panel-body.scrollable.pad
     %h1= @project.name
+    %hr
     %h3 Leaders:
     =@project.leaders.pluck(:first_name).join ", "
     %h3 Participants:

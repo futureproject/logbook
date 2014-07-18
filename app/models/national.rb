@@ -2,7 +2,7 @@ class National
 
   def self.average association, column=nil
     if column.nil?
-      (eval(association.to_s.classify).count / School.count).to_i
+      (eval(association.to_s.classify).count.fdiv(School.count)).to_i
     else
       eval(association.to_s.classify).average(column.to_sym)
     end
