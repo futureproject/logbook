@@ -1,9 +1,0 @@
-#people_list.list
-= form_for @person, html: { class: 'list-detail panel' } do |f|
-  .panel-title
-    %h1 New Person
-    .l-menu= link_to "Cancel", people_path
-    .r-menu
-      = f.submit 'Done'
-  .panel-body.scrollable.pad
-    = render partial: 'form', locals: {f: f}

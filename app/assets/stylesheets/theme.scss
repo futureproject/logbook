@@ -1,10 +1,8 @@
 body {
-  background: $lightest-gray;
-  background-repeat: no-repeat;
-  background-position: center top;
   -webkit-tap-highlight-color: transparentize($blue, .9);
 }
 #sidebar {
+  background-color: $lightest-gray;
   a { color: $base-border-color; }
   .current {
     a { color: $blue; }

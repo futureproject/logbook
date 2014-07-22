@@ -4,7 +4,7 @@ feature 'DDs adding projects' do
     mock_sign_in
   end
   scenario do
-    visit projects_path
+    visit logbook_projects_path
     click_link 'New'
     fill_in_form
     should_see_new_project

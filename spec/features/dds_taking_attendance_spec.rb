@@ -5,7 +5,7 @@ feature 'DDs taking attendance' do
   end
 
   scenario 'by adding a new workshop' do
-    visit workshops_path
+    visit logbook_workshops_path
     click_link 'New'
     fill_in_form
     should_see_new_workshop

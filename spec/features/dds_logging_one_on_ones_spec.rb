@@ -5,7 +5,7 @@ feature 'Logging one-on-ones' do
   end
 
   scenario 'from a student profile' do
-    visit people_path
+    visit logbook_people_path
     select_a_student
     fill_in_form
     should_see_one_on_one

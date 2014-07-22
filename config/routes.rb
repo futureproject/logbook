@@ -6,17 +6,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'users#dashboard'
-
-  resources :users, only: [:show]
-  resources :people
-  resources :projects
-  resources :tasks
-  resources :one_on_ones
-  resources :workshops
-  resources :task_assignments do
-    get 'toggle', on: :member
-  end
+  root 'application#home'
 
   resources :sessions, only: [:new, :create]
   get 'auth/logout', to: 'sessions#destroy', as: :log_out
@@ -26,6 +16,19 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :users
       resources :people
+    end
+  end
+
+  namespace :logbook do
+    root 'users#dashboard'
+    resources :users, only: [:show]
+    resources :people
+    resources :projects
+    resources :tasks
+    resources :one_on_ones
+    resources :workshops
+    resources :task_assignments do
+      get 'toggle', on: :member
     end
   end
 

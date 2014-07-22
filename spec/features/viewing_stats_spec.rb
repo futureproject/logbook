@@ -5,7 +5,7 @@ feature 'DDs checking stats' do
     mock_sign_in
   end
   scenario do
-    visit root_url
+    visit logbook_root_url
     should_see_stats
   end
 

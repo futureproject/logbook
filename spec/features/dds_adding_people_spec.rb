@@ -1,10 +1,10 @@
 require 'spec_helper'
-feature 'DDs adding students' do
+feature 'DDs adding people' do
   before do
     mock_sign_in
   end
   scenario do
-    visit people_path
+    visit logbook_people_path
     click_link 'New'
     fill_in 'person[first_name]', with: 'Terry'
     fill_in 'person[last_name]', with: 'McGuiness'
