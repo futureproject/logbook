@@ -1,3 +1,3 @@
 Rails.application.configure do
-  config.assets.precompile += %w( bluebook/bluebook.js bluebook.css )
+  config.assets.precompile += %w( logbook/logbook.js )
 end

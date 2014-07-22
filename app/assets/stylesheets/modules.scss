@@ -211,3 +211,9 @@ a[rel=next] {
 .selectize-control {
   margin-bottom: .75em;
 }
+
+.date_field {
+  select {
+    display: inline-block;
+  }
+}

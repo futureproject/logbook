@@ -1,5 +1,5 @@
 dream.Views.Workshops ||= {}
 class dream.Views.Workshops.FormView extends Backbone.View
   initialize: ->
-    $('select').selectize()
+    $('#workshop_attendee_ids').selectize()
 

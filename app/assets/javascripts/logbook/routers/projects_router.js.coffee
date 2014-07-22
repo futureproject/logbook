@@ -1,10 +1,10 @@
 class dream.Routers.ProjectsRouter extends Backbone.Router
 
   routes:
-    'projects': 'index'
-    'projects/new' : 'new'
-    'projects/:id/edit' : 'edit'
-    'projects/:id' : 'show'
+    'logbook/projects': 'index'
+    'logbook/projects/new' : 'new'
+    'logbook/projects/:id/edit' : 'edit'
+    'logbook/projects/:id' : 'show'
 
   index: ->
     Backbone.trigger 'projects:present', 'index'

@@ -10,7 +10,7 @@
   = f.text_field :kind
 .field
   = f.label :date
-  = f.date_select :date
+  .date_field= f.date_select :date
 
 - if current_user.school
   =f.hidden_field :school_id, value: current_user.school_id

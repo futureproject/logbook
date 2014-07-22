@@ -1,10 +1,10 @@
 class dream.Routers.WorkshopsRouter extends Backbone.Router
 
   routes:
-    'workshops': 'index'
-    'workshops/new' : 'new'
-    'workshops/:id/edit' : 'edit'
-    'workshops/:id' : 'show'
+    'logbook/workshops': 'index'
+    'logbook/workshops/new' : 'new'
+    'logbook/workshops/:id/edit' : 'edit'
+    'logbook/workshops/:id' : 'show'
 
   index: ->
     Backbone.trigger 'workshops:present', 'index'
