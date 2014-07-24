@@ -32,6 +32,13 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :cic do
+    root 'actions#index'
+    resources :stats
+    resources :tasks
+    resources :schools
+  end
+
   namespace :bluebook do
     root 'application#home'
     get '*anywhere', to: 'application#home'

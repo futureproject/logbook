@@ -1,0 +1,6 @@
+%ul.actions
+  - @actions.each do |action|
+    %li
+      %h1="#{action.who} #{action.what}"
+      =action.detail
+

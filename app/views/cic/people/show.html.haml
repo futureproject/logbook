@@ -1,0 +1,42 @@
+#people_detail.panel.list-detail
+  .panel-title
+    %h1 Showing Person
+    .l-menu= link_to "Back", logbook_people_path
+    .r-menu= link_to "Edit", edit_logbook_person_path(@person)
+  .panel-body.scrollable.pad
+    %h1= @person.name
+    %ul.stats
+      %li.stat
+        %h1= @person.primary_projects.count
+        %span= "primary #{'project'.pluralize(@person.primary_projects.count)}"
+      %li.stat
+        %h1= @person.secondary_projects.count
+        %span= "secondary #{'project'.pluralize(@person.secondary_projects.count)}"
+      %li.stat
+        %h1= @person.workshops.count
+        %span= "#{'workshop'.pluralize(@person.workshops.count)} attended"
+      %li.stat
+        %h1= @person.one_on_ones.sum(:duration).to_s
+        %span hours in one-on-ones
+    %hr
+    %h5 One-on-Ones
+    =form_for [:logbook, OneOnOne.new], html: {class: 'quick_add'} do |f|
+      .quick_primary_inputs
+        =f.text_field :note, placeholder: "New..."
+        =f.hidden_field :person_id, value: @person.id
+        =f.hidden_field :date, value: Date.today
+      .quick_secondary_inputs
+        =f.label :duration, "It lasted:"
+        =f.select :duration, OneOnOne::DURATION_ENUM
+        =f.submit "Log It"
+
+      %ul.one_on_ones
+        - @person.one_on_ones.each do |o|
+          %li.one_on_one
+            .one_on_one_date
+              %h6=o.date.strftime "%D"
+              =pluralize o.duration, 'hour'
+            .one_on_one_note=o.note
+
+
+#people_list.list

@@ -1,12 +1,8 @@
 #sidebar
-  %a.avatar{href: log_out_path}
-    %img{src: current_user.avatar}/
+  %img.avatar{src: current_user.avatar}/
   %ul.tabs
     = nav_link_to "<span class='mega-octicon octicon-dashboard'></span> Home", logbook_root_url
-    - if current_user.captain?
-      = nav_link_to "<span class='mega-octicon octicon-checklist'></span> Tasks", logbook_tasks_path
-    - else
-      = nav_link_to "<span class='mega-octicon octicon-checklist'></span> Tasks", logbook_task_assignments_path
+    = nav_link_to "<span class='mega-octicon octicon-checklist'></span> Tasks", logbook_task_assignments_path
     = nav_link_to "<span class='mega-octicon octicon-organization'></span> People", logbook_people_path
     = nav_link_to "<span class='mega-octicon octicon-rocket'></span> Projects", logbook_projects_path
     = nav_link_to "<span class='mega-octicon octicon-podium'></span> Workshops", logbook_workshops_path

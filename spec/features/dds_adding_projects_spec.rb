@@ -21,7 +21,20 @@ feature 'DDs adding projects' do
     expect(page).to have_content 'Build New Batplane'
     expect(page).to have_content 'Dick'
     expect(page).to have_content 'Tim'
+    should_see_activity_for_dick
+    should_see_activity_for_tim
   end
+
+  def should_see_activity_for_tim
+    visit logbook_person_path(Person.find_by(first_name: 'Tim'))
+    expect(page).to have_content ('participating in a project')
+  end
+
+  def should_see_activity_for_dick
+    visit logbook_person_path(Person.find_by(first_name: 'Dick'))
+    expect(page).to have_content ('leading a project')
+  end
+
 
 end
 

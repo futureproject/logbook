@@ -1,0 +1,15 @@
+#projects_detail.panel.list-detail
+  .panel-title
+    %h1 Showing Project
+    .l-menu= link_to "Back", logbook_projects_path
+    .r-menu= link_to "Edit", edit_logbook_project_path(@project)
+  .panel-body.scrollable.pad
+    %h1= @project.name
+    %hr
+    %h3 Leaders:
+    =@project.leaders.pluck(:first_name).join ", "
+    %h3 Participants:
+    =@project.participants.pluck(:first_name).join ", "
+
+
+#projects_list.list

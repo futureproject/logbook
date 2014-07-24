@@ -13,6 +13,7 @@ class Site < ActiveRecord::Base
   has_many :workshops, through: :schools
   has_many :workshop_attendees, through: :workshops
   has_many :one_on_ones, through: :schools
+  has_many :actions, through: :schools
   has_many :task_assignments, through: :dream_directors
 
   def average association, column=nil

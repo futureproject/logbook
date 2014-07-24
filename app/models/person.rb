@@ -8,6 +8,7 @@ class Person < ActiveRecord::Base
   has_many :one_on_ones
   has_many :workshop_attendees
   has_many :workshops, through: :workshop_attendees
+  has_many :actions, as: :actor
   ROLE_ENUM = %w(student teacher)
 
   #scope :with_entries_for_week, -> (week=Date.today.beginning_of_week) {
@@ -22,6 +23,10 @@ class Person < ActiveRecord::Base
 
   def initials
     "#{first_name.first}#{last_name.first}"
+  end
+
+  def dream_director
+    school.dream_director
   end
 
 end

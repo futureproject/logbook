@@ -5,3 +5,9 @@ train_dick:
 train_self:
   task: complete_training
   assignee: bruce
+
+completed_task:
+  id: 200
+  task: make_costume
+  complete: true
+  assignee: tim

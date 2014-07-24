@@ -18,6 +18,8 @@ feature 'DDs taking attendance' do
 
   def should_see_new_workshop
     expect(page).to have_content 'Tim'
+    visit logbook_person_url(Person.find_by(first_name: 'Tim'))
+    expect(page).to have_content 'attended a workshop'
   end
 
 end

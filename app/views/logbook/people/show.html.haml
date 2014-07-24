@@ -24,6 +24,7 @@
       .quick_primary_inputs
         =f.text_field :note, placeholder: "New..."
         =f.hidden_field :person_id, value: @person.id
+        =f.hidden_field :school_id, value: @person.school_id
         =f.hidden_field :date, value: Date.today
       .quick_secondary_inputs
         =f.label :duration, "It lasted:"
@@ -37,6 +38,10 @@
               %h6=o.date.strftime "%D"
               =pluralize o.duration, 'hour'
             .one_on_one_note=o.note
+    %hr
+    %h5 Activity
+    - @person.actions.each do |a|
+      =a.what
 
 
 #people_list.list
