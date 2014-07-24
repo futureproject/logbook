@@ -1,4 +1,4 @@
-class CIC::TaskAssignmentsController < CIC::ApplicationController
+class Cic::TaskAssignmentsController < Cic::ApplicationController
   before_action :set_task_assignment, only: [:show, :edit, :update, :destroy, :toggle]
 
   # GET /task_assignments

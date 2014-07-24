@@ -1,10 +1,10 @@
 class dream.Routers.TasksRouter extends Backbone.Router
 
   routes:
-    'logbook/tasks': 'index'
-    'logbook/tasks/new' : 'new'
-    'logbook/tasks/:id/edit' : 'edit'
-    'logbook/tasks/:id' : 'show'
+    'cic/tasks': 'index'
+    'cic/tasks/new' : 'new'
+    'cic/tasks/:id/edit' : 'edit'
+    'cic/tasks/:id' : 'show'
 
   index: ->
     Backbone.trigger 'tasks:present', 'index'

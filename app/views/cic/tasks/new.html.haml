@@ -1,7 +1,7 @@
-= form_for @task, html: { class: 'list-detail panel' } do |f|
+= form_for [:cic, @task], html: { class: 'list-detail panel' } do |f|
   .panel-title
     %h1 New Task
-    .l-menu= link_to "Cancel", tasks_path
+    .l-menu= link_to "Cancel", cic_tasks_path
     .r-menu
       = f.submit 'Done'
   .panel-body.scrollable.pad
