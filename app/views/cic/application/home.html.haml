@@ -20,9 +20,12 @@
     %h1= "Schools in #{@site.name}"
   .panel-body.scrollable.pad
     %ul.school_stats
-      - (@schools).each do |school|
+      - (@schools*9).each do |school|
         %li[school]
           %table
+            %colgroup
+              %col
+              %col
             %tr
               %th{colspan: 2}= school.name
             %tr

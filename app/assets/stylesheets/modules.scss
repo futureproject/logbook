@@ -150,18 +150,10 @@ a[rel=next] {
   @include outer-container;
 }
 .stat {
-  width: 48%;
-  float: left;
-  margin-top: 1em;
+  @include span_columns(6);
+  @include omega(even);
+  margin-top: 1.9%;
   padding: 1em 1.5em;
-  overflow: hidden;
-  white-space: nowrap;
-  &:nth-child(odd) {
-    margin-right: 2%;
-  }
-  &:nth-child(even) {
-    margin-left: 2%;
-  }
 }
 
 .quick_add {
@@ -227,16 +219,27 @@ a[rel=next] {
 
 .school_stats {
   @include outer_container;
+  table {
+    margin-top: 0;
+  }
   .school {
-    @include span-columns(3);
-    @include omega(4n);
+    border-top: 1px solid $base-border-color;
+    @include media(900px) {
+      @include span-columns(4);
+      @include omega(3n);
+    }
   }
   th {
     white-space: nowrap;
     overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  td:first-child {
+    white-space: nowrap;
   }
   td:last-child {
     text-align: right;
     font-weight: bold;
+    overflow: hidden;
   }
 }

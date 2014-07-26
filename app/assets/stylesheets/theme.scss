@@ -106,3 +106,13 @@ fieldset {
   color: white;
   font-weight: bold;
 }
+
+.school_stats {
+  th {
+    background: $dark-blue;
+    color: white;
+    padding-left: .5em;
+    padding-right: .5em;
+    border: none;
+  }
+}
