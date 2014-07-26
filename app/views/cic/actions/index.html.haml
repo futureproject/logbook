@@ -1,6 +1,17 @@
-%ul.actions
-  - @actions.each do |action|
-    %li
-      %h1="#{action.who} #{action.what}"
-      =action.detail
+#activity_feed.list
+  .list-title
+    %h1 Activity
+  .list-body.scrollable
+    %ul.activity_feed
+      - @actions.group_by(&:day).each do |day, actions|
+        %li
+          .activity_day= day.strftime("%A, %B %d")
+          %ul
+            - actions.each do |action|
+              %li.list-item[action]
+                .action_sentence
+                  .action_who=action.who
+                  .action_what=action.what
+                .action_detail
+                  =action.detail
 

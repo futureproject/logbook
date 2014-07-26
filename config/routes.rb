@@ -33,7 +33,7 @@ Rails.application.routes.draw do
   end
 
   namespace :cic do
-    root 'actions#index'
+    root 'application#home'
     resources :stats
     resources :tasks
     resources :schools

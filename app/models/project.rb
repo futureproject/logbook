@@ -9,7 +9,7 @@ class Project < ActiveRecord::Base
 
   def log_action
     Action.create(
-      who: leaders.limit(3).pluck(:first_name).join(", "),
+      who: school.try(:name),
       what: "started a project",
       subject_id: id,
       subject_type: "Project",

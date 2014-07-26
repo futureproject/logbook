@@ -100,3 +100,9 @@ fieldset {
   text-transform: uppercase;
   line-height: 1;
 }
+.activity_day {
+  border-bottom: 1px solid $base-border-color;
+  background: $base-accent-color;
+  color: white;
+  font-weight: bold;
+}
