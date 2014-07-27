@@ -41,6 +41,7 @@ Rails.application.routes.draw do
     resources :people
     resources :projects
     resources :one_on_ones
+    resources :task_assignments
   end
 
   namespace :bluebook do
