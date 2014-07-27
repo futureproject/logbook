@@ -41,7 +41,9 @@
     %hr
     %h5 Activity
     - @person.actions.each do |a|
-      =a.what
+      %p
+        =link_to a.what, [:logbook, a.subject]
+        = a.day.strftime("%D")
 
 
 #people_list.list
