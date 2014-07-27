@@ -34,6 +34,9 @@
     font-size: 1em;
     text-align: center;
     line-height: 44px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 .panel-body {
@@ -154,6 +157,11 @@ a[rel=next] {
   @include omega(even);
   margin-top: 1.9%;
   padding: 1em 1.5em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  span {
+    white-space: nowrap;
+  }
 }
 
 .quick_add {
@@ -241,5 +249,44 @@ a[rel=next] {
     text-align: right;
     font-weight: bold;
     overflow: hidden;
+  }
+}
+
+.school_overview {
+  @include row;
+  img {
+    width: 100%;
+    height: 100%;
+  }
+  .school_dd_avatar {
+    @include span_columns(2);
+  }
+  .school_map {
+    @include span_columns(2);
+  }
+  .school_info {
+    @include span_columns(8);
+  }
+  h1 { line-height: 1; }
+  h3 { font-weight: normal; }
+}
+.school_activity_feed {
+  .action {
+    @include outer_container;
+    border-bottom: 1px solid $base-border-color;
+    padding: 1em 0;
+    .calendar_date {
+      padding-top: .5em;
+      @include span_columns(2);
+    }
+    .action_info {
+      @include span_columns(10);
+    }
+    @include media(900px) {
+      @include span-columns(4);
+      @include omega(3n);
+      height: 5em;
+      overflow: hidden;
+    }
   }
 }

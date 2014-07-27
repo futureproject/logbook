@@ -11,7 +11,9 @@ class Workshop < ActiveRecord::Base
       subject_id: id,
       subject_type: "Workshop",
       interesting: true,
-      school_id: school.try(:id)
+      school_id: school.try(:id),
+      actor_id: school.try(:dream_director).id,
+      actor_type: "User"
     )
   end
 

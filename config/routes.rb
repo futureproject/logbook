@@ -37,6 +37,10 @@ Rails.application.routes.draw do
     resources :stats
     resources :tasks
     resources :schools
+    resources :workshops
+    resources :people
+    resources :projects
+    resources :one_on_ones
   end
 
   namespace :bluebook do

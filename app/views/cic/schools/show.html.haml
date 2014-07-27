@@ -1,0 +1,39 @@
+#cic_school_detail.panel.list-detail
+  .panel-title
+    %h1 Showing School
+    .l-menu= link_to "Back", cic_schools_path
+  .panel-body.scrollable.pad
+    .school_overview
+      .school_info
+        %h1= @school.name
+        %h3= @school.try(:dream_director).try(:name)
+      .school_dd_avatar=image_tag @school.try(:dream_director).avatar
+      .school_map=image_tag "http://maps.googleapis.com/maps/api/staticmap?zoom=13&size=120x120&maptype=roadmap&markers=color:blue%7Clabel:%7C#{@school.latitude},#{@school.longitude}&scale=2"
+    %ul.stats
+      %li.stat
+        %h1= @school.people.where(role: 'student').count
+        %span Students
+      %li.stat
+        %h1= @school.people.where(dream_team: true).count
+        %span Dream Team members
+      %li.stat
+        %h1= @school.projects.count
+        %span Projects
+      %li.stat
+        %h1= @school.workshops.count
+        %span Workshops
+    %hr
+    %h3 Activity
+    %ul.school_activity_feed
+      - @school.actions.each do |action|
+        %li[action]
+          .calendar_date
+            .calendar_date_month=action.day.strftime("%b")
+            .calendar_date_day=action.day.strftime("%d")
+          .action_info
+            .action_who= link_to action.who, [:cic, action.actor] if action.actor
+            .action_what= link_to action.what, [:cic, action.subject]
+
+
+
+

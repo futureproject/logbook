@@ -7,7 +7,7 @@
       %a.list-item{href: logbook_workshop_path(workshop)}
         .list-item-graphic
           .calendar_date
-            .calendar_date_month=workshop.date.strftime("%a")
+            .calendar_date_month=workshop.date.strftime("%b")
             .calendar_date_day=workshop.date.strftime("%d")
         .list-item-label= workshop.kind
     = link_to_next_page @workshops, 'Load More'
