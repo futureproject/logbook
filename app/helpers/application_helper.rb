@@ -8,6 +8,6 @@ module ApplicationHelper
   end
 
   def page_title
-    "DreamOS"
+    "Dream Suite"
   end
 end
