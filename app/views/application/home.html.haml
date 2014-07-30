@@ -1,8 +1,14 @@
-%article
+#dream_suite_home
   .logo= image_tag asset_path('tfplogo.svg')
-  %h1 DreamOS
-  %h6 Do something!
+  %h1 Dream Suite
+  %hr 
+  %p Most people will never see this page.
+  %p They'll click directly to one of the links below:
+  %hr
   %ul
-    %li=link_to "Log Book", logbook_root_url
-    %li=link_to "CIC", cic_root_url
-    %li=link_to "Log Out", log_out_url
+    %li
+      =link_to "Log Book", logbook_root_url
+      %p (an app for Dream Directors)
+    %li
+      =link_to "CIC", cic_root_url
+      %p (an app for City Leaders)
