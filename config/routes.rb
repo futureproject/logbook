@@ -41,7 +41,9 @@ Rails.application.routes.draw do
     resources :people
     resources :projects
     resources :one_on_ones
-    resources :task_assignments
+    resources :task_assignments do
+      get 'toggle', on: :member
+    end
   end
 
   namespace :bluebook do

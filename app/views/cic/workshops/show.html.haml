@@ -1,8 +1,7 @@
 #workshops_detail.panel.list-detail
   .panel-title
     %h1 Showing Workshop
-    .l-menu= link_to "Back", logbook_workshops_path
-    .r-menu= link_to "Edit", edit_logbook_workshop_path(@workshop)
+    .l-menu= link_to "Back", cic_school_path(@workshop.school)
   .panel-body.scrollable.pad
     %h1= @workshop.date.strftime("%D")
     %h3 Attendees:

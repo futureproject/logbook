@@ -1,8 +1,7 @@
 #projects_detail.panel.list-detail
   .panel-title
     %h1 Showing Project
-    .l-menu= link_to "Back", logbook_projects_path
-    .r-menu= link_to "Edit", edit_logbook_project_path(@project)
+    .l-menu= link_to "Back", cic_school_path(@project.school)
   .panel-body.scrollable.pad
     %h1= @project.name
     %hr

@@ -16,8 +16,10 @@ class OneOnOne < ActiveRecord::Base
     Action.create(
       who: person.try(:dream_director).try(:first_name),
       what: "met with #{person.try(:name)}",
-      subject_id: id,
-      subject_type: "OneOnOne",
+      actor_id: person.try(:dream_director).try(:id),
+      actor_type: "User",
+      subject_id: person.try(:id),
+      subject_type: "Person",
       interesting: true,
       school_id: person.school_id
     )
