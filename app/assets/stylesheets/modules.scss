@@ -20,6 +20,10 @@
   }
 }
 
+.tab_target {
+  height: 100%;
+}
+
 .panel {
   @include display(flex);
   @include flex-direction(column);
