@@ -1,9 +1,9 @@
-class dream.PeoplePresenter extends Backbone.View
+class dream.StatsPresenter extends Backbone.View
   initialize: (args) ->
     @render()
     @initViews()
     @initCollection()
-    @listenTo Backbone, 'people:present', @present
+    @listenTo Backbone, 'stats:present', @present
 
   el: '#logbook_people'
 
@@ -17,7 +17,7 @@ class dream.PeoplePresenter extends Backbone.View
   initCollection: ->
 
   present: (view, args) ->
-    Backbone.trigger 'presenter:presenting', 'people'
+    Backbone.trigger 'presenter:presenting', 'stats'
     @$el.show().siblings().hide()
     if @views[view]?
       v = new @views[view]

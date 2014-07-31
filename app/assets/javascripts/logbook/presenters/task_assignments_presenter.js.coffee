@@ -1,11 +1,9 @@
-class dream.TasksPresenter extends Backbone.View
+class dream.TaskAssignmentsPresenter extends Backbone.View
   initialize: ->
-    @initRouter()
     @initViews()
     @initCollection()
     @listenTo Backbone, 'tasks:present', @present
 
-  initRouter: -> @router = new dream.Routers.TasksRouter
   initViews: ->
     @views =
       index: dream.Views.Tasks.IndexView

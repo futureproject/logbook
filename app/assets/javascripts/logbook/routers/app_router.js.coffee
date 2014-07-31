@@ -1,11 +1,14 @@
 class dream.Routers.AppRouter extends Backbone.Router
   initialize: ->
-    @listenTo Backbone, 'router:go', @go
+    @listenTo Backbone, 'router:update', @update
 
-  go: (route, args) ->
+  update: (route) ->
     @navigate route
 
   routes:
+    'logbook': 'stats_index'
+    'logbook/stats': 'stats_index'
+
     # people
     'logbook/people': 'people_index'
     'logbook/people/new' : 'people_new'
@@ -29,6 +32,10 @@ class dream.Routers.AppRouter extends Backbone.Router
     'logbook/workshops/new' : 'workshops_new'
     'logbook/workshops/:id/edit' : 'workshops_edit'
     'logbook/workshops/:id' : 'workshops_show'
+
+###### STATS
+  stats_index: ->
+    Backbone.trigger 'stats:present', 'index'
 
 ###### PEOPLE
   people_index: ->
@@ -59,18 +66,17 @@ class dream.Routers.AppRouter extends Backbone.Router
 
 
 ###### TASKS
-  projects_index: ->
   task_assignments_index: ->
-    Backbone.trigger 'tasks:present', 'index'
+    Backbone.trigger 'task_assignments:present', 'index'
 
   task_assignments_new: ->
-    Backbone.trigger 'tasks:present', 'new'
+    Backbone.trigger 'task_assignments:present', 'new'
 
   task_assignments_edit: (id) ->
-    Backbone.trigger 'tasks:present', 'edit'
+    Backbone.trigger 'task_assignments:present', 'edit'
 
   task_assignments_show: (id) ->
-    Backbone.trigger 'tasks:present', 'edit'
+    Backbone.trigger 'task_assignments:present', 'edit'
 
 
 ######### WORKSHOPS

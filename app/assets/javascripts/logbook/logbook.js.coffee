@@ -3,6 +3,7 @@
 #= require underscore-min
 #= require backbone-min
 #= require backbone.syphon
+#= require backbone.dualstorage
 #= require selectize
 #= require_self
 #= require_tree ./templates
@@ -18,7 +19,6 @@ window.dream =
   Routers: {}
   initialize: (data) ->
     @USER = data.current_user
-    #@presenter = new dream.AppPresenter(@).render()
-    @presenter = new dream.AppPresenter(@)
+    @presenter = new dream.AppPresenter(@).render()
     Backbone.trigger 'app:loaded'
     Backbone.history.start({ pushState: true })

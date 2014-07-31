@@ -13,8 +13,8 @@
     = csrf_meta_tags
   %body#l_logbook
     #app
-      =render "sidebar" if current_user
-      #canvas=yield
+      #sidebar
+      #canvas
       #flash
         - flash.each do |k, v|
           .flash{class: k}

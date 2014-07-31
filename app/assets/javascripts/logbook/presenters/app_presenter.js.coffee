@@ -3,7 +3,10 @@ class dream.AppPresenter extends Backbone.View
     @app = app
     @tweakUI()
     @prepAjax()
+    @initViews()
     @initPresenters()
+    @initRouter()
+    @listenTo Backbone, 'sidebar:tapped', @delegateToPresenter
 
   el: '#canvas'
 
@@ -30,9 +33,23 @@ class dream.AppPresenter extends Backbone.View
       $(this).fadeOut()
     )
 
+  initViews: ->
+    @views =
+      sidebar: new dream.Views.App.SidebarView
+        el: '#sidebar'
+
   initPresenters: ->
     @presenters =
+      stats: new dream.StatsPresenter
+      people: new dream.PeoplePresenter
       projects: new dream.ProjectsPresenter
-      tasks: new dream.TasksPresenter
+      task_assignments: new dream.TaskAssignmentsPresenter
       workshops: new dream.WorkshopsPresenter
 
+  initRouter: ->
+    @router = new dream.Routers.AppRouter
+
+  delegateToPresenter: (url) ->
+    presenter = url
+    @presenters[presenter]?.present 'index'
+    Backbone.trigger 'router:update', "logbook/#{url}"

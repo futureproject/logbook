@@ -5,7 +5,8 @@ body {
   background-color: $lightest-gray;
   a { color: $base-border-color; }
   .current {
-    a { color: $blue; }
+    color: $blue;
+    * { color: $blue; }
   }
   .avatar {
     background: $blue;
