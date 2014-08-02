@@ -1,26 +1,50 @@
 class dream.PeoplePresenter extends Backbone.View
-  initialize: (args) ->
-    @render()
-    @initViews()
-    @initCollection()
-    @listenTo Backbone, 'people:present', @present
-
   el: '#logbook_people'
 
-  initViews: ->
-    @views =
-      index: dream.Views.People.IndexView
-      show: dream.Views.People.ShowView
-      edit: dream.Views.People.FormView
-      new: dream.Views.People.FormView
+  initialize: (args) ->
+    @render()
+    @tab = new dream.Views.App.TabView
+      presenter: @
+      parentEl: '#sidebar .tabs'
+      icon: 'organization'
+      label: 'People'
+      url: 'logbook/people'
+    @initCollection()
+    @initViews()
+    @listen()
+
+  listen: ->
+    @listenTo Backbone, 'people:present', @present
+    @listenTo Backbone, 'people:routeTo', @routeTo
 
   initCollection: ->
+    @collection = new dream.Collections.People
+
+  render: ->
+    @$el.html("
+      <div id='logbook_people_index'></div>
+      <div id='logbook_people_detail'></div>
+    ")
 
   present: (view, args) ->
-    Backbone.trigger 'presenter:presenting', 'people'
+    @collection.fetch()
     @$el.show().siblings().hide()
-    if @views[view]?
-      v = new @views[view]
-      v.render()
+    Backbone.trigger 'presenter:presenting', @
+    Backbone.trigger('router:update', args.url) if args?.url?
 
+  initViews: ->
+    @index = new dream.Views.People.IndexView
+      el: '#logbook_people_index'
+      collection: @collection
+
+    @show = new dream.Views.People.ShowView
+      el: '#logbook_people_detail'
+
+  routeTo: (action, id) ->
+    @present()
+    @routerActions[action]?.call(@)
+
+  routerActions:
+    index: ->
+    show: ->
 

@@ -42,6 +42,7 @@ Rails.application.routes.draw do
     resources :task_assignments do
       get 'toggle', on: :member
     end
+    get 'manifest.appcache', to: 'application#manifest'
   end
 
   namespace :cic do

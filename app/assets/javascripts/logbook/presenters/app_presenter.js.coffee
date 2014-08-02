@@ -1,12 +1,12 @@
 class dream.AppPresenter extends Backbone.View
   initialize: (app) ->
     @app = app
+    @render()
     @tweakUI()
     @prepAjax()
     @initViews()
     @initPresenters()
     @initRouter()
-    @listenTo Backbone, 'sidebar:tapped', @delegateToPresenter
 
   el: '#canvas'
 
@@ -34,9 +34,6 @@ class dream.AppPresenter extends Backbone.View
     )
 
   initViews: ->
-    @views =
-      sidebar: new dream.Views.App.SidebarView
-        el: '#sidebar'
 
   initPresenters: ->
     @presenters =
@@ -47,9 +44,5 @@ class dream.AppPresenter extends Backbone.View
       workshops: new dream.WorkshopsPresenter
 
   initRouter: ->
-    @router = new dream.Routers.AppRouter
-
-  delegateToPresenter: (url) ->
-    presenter = url
-    @presenters[presenter]?.present 'index'
-    Backbone.trigger 'router:update', "logbook/#{url}"
+    @routers =
+      people: new dream.Routers.PeopleRouter({ presenter: @presenters.people })

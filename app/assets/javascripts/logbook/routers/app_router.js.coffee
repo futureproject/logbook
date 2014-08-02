@@ -39,7 +39,7 @@ class dream.Routers.AppRouter extends Backbone.Router
 
 ###### PEOPLE
   people_index: ->
-    Backbone.trigger 'people:present', 'index'
+    Backbone.trigger 'people:routeTo', 'index'
 
   people_new: ->
     Backbone.trigger 'people:present', 'new'
@@ -48,8 +48,7 @@ class dream.Routers.AppRouter extends Backbone.Router
     Backbone.trigger 'people:present', 'edit'
 
   people_show: (id) ->
-    Backbone.trigger 'people:present', 'index'
-    Backbone.trigger 'people:present', 'show'
+    Backbone.trigger 'people:routeTo', 'show', id
 
 ###### PROJECTS
   projects_index: ->

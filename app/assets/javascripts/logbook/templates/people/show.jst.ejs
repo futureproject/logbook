@@ -1,0 +1,52 @@
+<div class='panel list-detail'>
+  <div class='panel-title'>
+    <h1>Showing Person</h1>
+  </div>
+
+  <div class="panel-body scrollable pad">
+  <h1><%= first_name %> <%= last_name %></h1>
+  <ul class="stats">
+  <li class="stat">
+  <h1>0</h1>
+  <span>primary projects</span>
+  </li>
+  <li class="stat">
+  <h1>0</h1>
+  <span>secondary projects</span>
+  </li>
+  <li class="stat">
+  <h1>0</h1>
+  <span>workshops attended</span>
+  </li>
+  <li class="stat">
+  <h1>0.0</h1>
+  <span>hours in one-on-ones</span>
+  </li>
+  </ul>
+  <hr>
+  <h5>One-on-Ones</h5>
+  <form accept-charset="UTF-8" action="/logbook/one_on_ones" class="quick_add" id="new_one_on_one" method="post"><div style="display:none"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="7CQHmC2WNx/rqrkU9XiweAtlppKfdyQgpldSHpaVcs4="></div><div class="quick_primary_inputs">
+  <input id="one_on_one_note" name="one_on_one[note]" placeholder="New..." type="text">
+  <input id="one_on_one_person_id" name="one_on_one[person_id]" type="hidden" value="23">
+  <input id="one_on_one_school_id" name="one_on_one[school_id]" type="hidden" value="1">
+  <input id="one_on_one_date" name="one_on_one[date]" type="hidden" value="2014-08-02">
+  </div>
+  <div class="quick_secondary_inputs">
+  <label for="one_on_one_duration">It lasted:</label>
+  <select id="one_on_one_duration" name="one_on_one[duration]"><option value="0.25">15 minutes</option>
+  <option value="0.5">30 minutes</option>
+  <option value="1">1 hour</option>
+  <option value="1.5">1.5 hours</option>
+  <option value="2.0">2 hours</option>
+  <option value="3.0">3 hours</option></select>
+  <input name="commit" type="submit" value="Log It">
+  </div>
+  <ul class="one_on_ones">
+  </ul>
+  </form>
+
+  <hr>
+  <h5>Activity</h5>
+  </div>
+
+</div>

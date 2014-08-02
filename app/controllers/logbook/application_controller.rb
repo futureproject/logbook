@@ -7,4 +7,9 @@ class Logbook::ApplicationController < ApplicationController
     @js_data[:current_user] = current_user.as_json(include: :school)
   end
 
+  def manifest
+    headers['Content-Type'] = 'text/cache-manifest'
+    render layout: false, file: "logbook/application/manifest"
+  end
+
 end

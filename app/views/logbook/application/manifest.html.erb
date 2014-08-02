@@ -1,0 +1,10 @@
+CACHE MANIFEST
+#v1
+<%- if Rails.env.production? %>
+<%= asset_path("application.css") %>
+<%= asset_path("logbook/logbook.js") %>
+<%- else %>
+#v<%= Time.now.to_s %>
+<%- end %>
+NETWORK:
+*

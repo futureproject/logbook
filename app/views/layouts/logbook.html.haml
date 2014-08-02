@@ -1,5 +1,5 @@
 !!!
-%html
+%html{manifest: '/logbook/manifest.appcache'}
   %head
     %title Log Book
     = stylesheet_link_tag    'application', media: 'all'
@@ -14,6 +14,8 @@
   %body#l_logbook
     #app
       #sidebar
+        %img.avatar{src: current_user.avatar}/
+        %ul.tabs
       #canvas
       #flash
         - flash.each do |k, v|
