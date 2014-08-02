@@ -1,29 +1,31 @@
 class dream.Models.Person extends Backbone.Model
   defaults: ->
-    name: null
+    first_name: ''
+    last_name: ''
+    role: 'student'
+    grade: '9'
+    dream_team: true
     school_id: dream.USER.school.id
-
-  initialize: ->
-    @on('change:selected', @broadcastIfShowing)
 
   toJSON: ->
     _.omit @attributes, 'selected'
 
-  broadcastIfShowing: ->
-    Backbone.trigger('person:selected', @) if @has('selected')
+  select: ->
+    @set('selected', true)
+    Backbone.trigger('person:selected', @)
 
 class dream.Collections.People extends Backbone.Collection
   initialize: ->
     @on 'reset add remove', @broadcast
+    @on 'add', @clearSelection
 
   model: dream.Models.Person
   url: '/people'
+
   select: (person) ->
-    @each (p) ->
-      if p == person
-        p.set('selected', true)
-      else
-        p.unset('selected')
+    @each (p) -> if p == person then p.select() else p.unset('selected')
+
+  clearSelection: -> @each (person) -> person.unset('selected')
 
   broadcast: ->
     Backbone.trigger 'peopleCollection:changed', @

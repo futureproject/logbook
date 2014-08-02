@@ -12,17 +12,27 @@ class dream.Routers.PeopleRouter extends Backbone.Router
     'logbook/people/:id' : 'show'
 
   index: ->
+    @presenter.collection.clearSelection()
     Backbone.trigger 'people:present'
 
   new: ->
     Backbone.trigger 'people:present'
+    @presenter.collection.fetch
+      complete: () =>
+        Backbone.trigger 'person:new', @presenter.collection
 
   edit: (id) ->
     Backbone.trigger 'people:present'
+    @presenter.collection.fetch
+      complete: () =>
+        model = @presenter.collection.get(id)
+        @presenter.collection.select(model)
+        Backbone.trigger 'person:edit', model
 
   show: (id) ->
     Backbone.trigger 'people:present'
     @presenter.collection.fetch
       complete: () =>
-        @presenter.collection.select(@presenter.collection.get(id))
+        model = @presenter.collection.get(id)
+        @presenter.collection.select(model)
 

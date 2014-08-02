@@ -22,8 +22,12 @@ class dream.PeoplePresenter extends Backbone.View
 
   render: ->
     @$el.html("
-      <div id='logbook_people_index'></div>
-      <div id='logbook_people_detail'></div>
+      <div id='logbook_people_index' class='list-container'></div>
+      <div id='logbook_people_detail' class='detail-container'>
+        <div id='logbook_people_show'></div>
+        <div id='logbook_people_edit'></div>
+        <div id='logbook_people_new'></div>
+      </div>
     ")
 
   present: (view, args) ->
@@ -38,13 +42,10 @@ class dream.PeoplePresenter extends Backbone.View
       collection: @collection
 
     @show = new dream.Views.People.ShowView
-      el: '#logbook_people_detail'
+      el: '#logbook_people_show'
 
-  routeTo: (action, id) ->
-    @present()
-    @routerActions[action]?.call(@)
+    @edit = new dream.Views.People.EditView
+      el: '#logbook_people_edit'
 
-  routerActions:
-    index: ->
-    show: ->
-
+    @new = new dream.Views.People.NewView
+      el: '#logbook_people_new'
