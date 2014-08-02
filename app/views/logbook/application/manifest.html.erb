@@ -3,6 +3,7 @@ CACHE MANIFEST
 <%- if Rails.env.production? %>
 <%= asset_path("application.css") %>
 <%= asset_path("logbook/logbook.js") %>
+<%= asset_path("octicons.woff") %>
 <%- else %>
 #v<%= Time.now.to_s %>
 <%- end %>
