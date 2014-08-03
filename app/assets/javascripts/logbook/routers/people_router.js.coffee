@@ -12,8 +12,8 @@ class dream.Routers.PeopleRouter extends Backbone.Router
     'logbook/people/:id' : 'show'
 
   index: ->
-    @presenter.collection.clearSelection()
     Backbone.trigger 'people:present'
+    Backbone.trigger 'people:clearSelection'
 
   new: ->
     @listenToOnce Backbone, 'peopleCollection:changed', (collection) =>

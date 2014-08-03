@@ -22,10 +22,12 @@ class dream.Collections.People extends Backbone.Collection
   initialize: ->
     @on 'reset add', @broadcast
     @on 'add', @clearSelection
+    @listenTo Backbone, 'people:clearSelection', @clearSelection
 
   model: dream.Models.Person
   url: '/people'
   local: () -> !navigator.onLine || @length == 0
+  comparator: (person) -> person.get('first_name')
 
   select: (person) ->
     @each (p) -> if p == person then p.select() else p.unset('selected')

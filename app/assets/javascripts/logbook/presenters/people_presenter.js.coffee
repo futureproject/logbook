@@ -34,7 +34,8 @@ class dream.PeoplePresenter extends Backbone.View
     @index.render()
     @collection.fetch
       reset: true
-      success: () => @collection.syncDirtyAndDestroyed() if navigator.onLine
+      success: () =>
+        @collection.syncDirtyAndDestroyed() if navigator.onLine
     @$el.show().siblings().hide()
     Backbone.trigger 'presenter:presenting', @
     Backbone.trigger('router:update', url) if url?

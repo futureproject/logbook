@@ -19,6 +19,7 @@ window.dream =
   Routers: {}
   initialize: (data) ->
     @USER = data.current_user
+    @environment = data.environment
     @presenter = new dream.AppPresenter(@)
     Backbone.trigger 'app:loaded'
     Backbone.history.start({ pushState: true })
