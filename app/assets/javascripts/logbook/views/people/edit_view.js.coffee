@@ -10,6 +10,7 @@ class dream.Views.People.EditView extends Backbone.View
 
   events:
     'click .cancel': 'cancel'
+    'click .warning': 'delete'
     'submit': 'done'
 
   display: (model) ->
@@ -28,6 +29,11 @@ class dream.Views.People.EditView extends Backbone.View
     e.preventDefault()
     @hide()
     Backbone.trigger 'person:selected', @model
+
+  delete: (e) ->
+    return unless confirm("Do you really want to delete #{@model.get('first_name')}?")
+    Backbone.trigger 'person:destroy', @model
+    @hide()
 
   done: (e) ->
     e.preventDefault()

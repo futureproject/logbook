@@ -46,7 +46,7 @@ class Api::V1::PeopleController < Api::V1::BaseController
   # DELETE /api/v1/people/1.json
   def destroy
     @person.destroy
-    format.json { head :no_content }
+    head :no_content
   end
 
   private

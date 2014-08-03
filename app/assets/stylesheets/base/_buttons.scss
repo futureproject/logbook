@@ -8,7 +8,7 @@ input[type="submit"], .button {
   vertical-align: middle;
   white-space: nowrap;
   &.warning {
-    background: $alert-color;
-    color: $base-font-color;
+    background: $error-color;
+    color: white;
   }
 }

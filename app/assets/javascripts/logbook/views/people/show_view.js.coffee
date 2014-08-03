@@ -3,6 +3,7 @@ dream.Views.People ||= {}
 class dream.Views.People.ShowView extends Backbone.View
   initialize: (args) ->
     @listenTo Backbone, 'person:selected', @display
+    @listenTo Backbone, 'person:destroy', @hide
 
   className: 'panel list-detail'
   template: JST['logbook/templates/people/show']
@@ -20,3 +21,6 @@ class dream.Views.People.ShowView extends Backbone.View
   render: ->
     @$el.html( @template @model.toJSON() ).show()
     return @
+
+  hide: ->
+    @$el.hide()

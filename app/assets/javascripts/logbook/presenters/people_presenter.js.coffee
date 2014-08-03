@@ -15,7 +15,7 @@ class dream.PeoplePresenter extends Backbone.View
 
   listen: ->
     @listenTo Backbone, 'people:present', @present
-    @listenTo Backbone, 'people:routeTo', @routeTo
+    @listenTo Backbone, 'person:destroy', @destroy
 
   initCollection: ->
     @collection = new dream.Collections.People
@@ -49,3 +49,8 @@ class dream.PeoplePresenter extends Backbone.View
 
     @new = new dream.Views.People.NewView
       el: '#logbook_people_new'
+
+  destroy: (model) ->
+    model.destroy()
+    @present 'index',
+      url: 'logbook/people'
