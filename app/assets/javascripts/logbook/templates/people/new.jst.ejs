@@ -1,0 +1,41 @@
+<form class="list-detail panel">
+  <div class="panel-title">
+    <h1>New Person</h1>
+    <div class="l-menu"><a class='cancel' href="#cancel"">Cancel</a></div>
+    <div class="r-menu">
+    <input name="commit" type="submit" value="Done">
+    </div>
+  </div>
+  <div class="panel-body scrollable pad">
+    <div class="field">
+      <label for="person_first_name">First name</label>
+      <input id="first_name" name="first_name" type="text">
+    </div>
+    <div class="field">
+      <label for="person_last_name">Last name</label>
+      <input id="last_name" name="last_name" type="text">
+    </div>
+    <div class="field">
+      <label for="person_role">Role</label>
+      <select id="person_role" name="role">
+        <option value="student">student</option>
+        <option value="teacher">teacher</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="person_grade">Grade</label>
+      <select id="grade" name="grade">
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="person_dream_team">
+        <input name="dream_team" type="checkbox" value="1">
+      Dream Team
+      </label>
+    </div>
+  </div><!-- panel-body -->
+</form>

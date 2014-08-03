@@ -6,7 +6,7 @@ class dream.Views.People.NewView extends Backbone.View
     @listenTo Backbone, 'person:selected', @hide
 
   className: 'panel list-detail'
-  template: JST['logbook/templates/people/edit']
+  template: JST['logbook/templates/people/new']
 
   events:
     'click .cancel': 'cancel'
