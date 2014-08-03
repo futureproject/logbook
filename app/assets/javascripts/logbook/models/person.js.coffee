@@ -20,7 +20,7 @@ class dream.Models.Person extends Backbone.Model
 
 class dream.Collections.People extends Backbone.Collection
   initialize: ->
-    @on 'reset add remove', @broadcast
+    @on 'reset add', @broadcast
     @on 'add', @clearSelection
 
   model: dream.Models.Person

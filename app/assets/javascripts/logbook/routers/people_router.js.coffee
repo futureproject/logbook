@@ -16,23 +16,20 @@ class dream.Routers.PeopleRouter extends Backbone.Router
     Backbone.trigger 'people:present'
 
   new: ->
+    @listenToOnce Backbone, 'peopleCollection:changed', (collection) =>
+      Backbone.trigger 'person:new', @presenter.collection
     Backbone.trigger 'people:present'
-    @presenter.collection.fetch
-      complete: () =>
-        Backbone.trigger 'person:new', @presenter.collection
 
   edit: (id) ->
+    @listenToOnce Backbone, 'peopleCollection:changed', (collection) =>
+      model = collection.get(id)
+      collection.select(model)
+      Backbone.trigger 'person:edit', model
     Backbone.trigger 'people:present'
-    @presenter.collection.fetch
-      complete: () =>
-        model = @presenter.collection.get(id)
-        @presenter.collection.select(model)
-        Backbone.trigger 'person:edit', model
 
   show: (id) ->
+    @listenToOnce Backbone, 'peopleCollection:changed', (collection) =>
+      model = collection.get(id)
+      collection.select(model)
     Backbone.trigger 'people:present'
-    @presenter.collection.fetch
-      complete: () =>
-        model = @presenter.collection.get(id)
-        @presenter.collection.select(model)
 

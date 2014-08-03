@@ -2,6 +2,7 @@ class dream.Views.People.PersonView extends Backbone.View
   initialize: (args) ->
     @model = args.model
     @listenTo @model, 'change:selected change:first_name change:last_name', @render
+    @listenTo @model, 'destroy', @remove
 
   template: JST['logbook/templates/people/person']
 
@@ -19,3 +20,5 @@ class dream.Views.People.PersonView extends Backbone.View
     else
       @el.classList.remove('is_active')
     return @
+
+  remove: -> @$el.remove()

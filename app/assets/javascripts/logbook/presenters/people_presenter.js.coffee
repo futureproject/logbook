@@ -33,6 +33,7 @@ class dream.PeoplePresenter extends Backbone.View
   present: (url) ->
     @index.render()
     @collection.fetch
+      reset: true
       success: () => @collection.syncDirtyAndDestroyed() if navigator.onLine
     @$el.show().siblings().hide()
     Backbone.trigger 'presenter:presenting', @
@@ -54,4 +55,4 @@ class dream.PeoplePresenter extends Backbone.View
 
   destroy: (model) ->
     model.destroy()
-    @present 'logbook/people'
+    Backbone.trigger 'router:update', 'logbook/people'

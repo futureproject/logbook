@@ -22,6 +22,7 @@ class dream.Views.People.IndexView extends Backbone.View
         model: person
       frag.appendChild view.render().el
     @$list.html(frag)
+    return this
 
   new: (e) ->
     e.preventDefault()

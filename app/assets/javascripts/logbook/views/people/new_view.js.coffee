@@ -28,7 +28,7 @@ class dream.Views.People.NewView extends Backbone.View
   cancel: (e) ->
     e.preventDefault()
     @hide()
-    history.back() if history.length > 1
+    Backbone.trigger 'router:update', 'logbook/people'
 
   done: (e) ->
     e.preventDefault()
