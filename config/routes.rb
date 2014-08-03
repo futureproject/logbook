@@ -33,16 +33,8 @@ Rails.application.routes.draw do
 
   namespace :logbook do
     root 'users#dashboard'
-    resources :users, only: [:show]
-    resources :people
-    resources :projects
-    resources :tasks
-    resources :one_on_ones
-    resources :workshops
-    resources :task_assignments do
-      get 'toggle', on: :member
-    end
     get 'manifest.appcache', to: 'application#manifest'
+    get '*anywhere', to: 'users#dashboard'
   end
 
   namespace :cic do

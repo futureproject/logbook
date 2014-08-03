@@ -7,7 +7,7 @@ class dream.Views.App.TabView extends Backbone.View
     @listenTo Backbone, 'presenter:presenting', @setClass
     @render()
 
-  className: 'tab'
+  className: -> 'tab'
 
   tagName: 'li'
 
@@ -21,8 +21,7 @@ class dream.Views.App.TabView extends Backbone.View
     $(@attrs.parentEl).append(@el)
 
   present: ->
-    @presenter.present 'index',
-      url: @attrs.url
+    @presenter.present @attrs.url
 
   setClass: (presenter) ->
     if presenter == @presenter

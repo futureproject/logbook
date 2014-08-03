@@ -33,9 +33,9 @@ class dream.Views.People.NewView extends Backbone.View
   done: (e) ->
     e.preventDefault()
     data = Backbone.Syphon.serialize @
-    @collection.add @model
     @model.save data,
       success : (person) =>
+        @collection.add @model
         @model.select()
         @hide()
       errer: (e) =>

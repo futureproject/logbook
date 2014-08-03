@@ -30,11 +30,13 @@ class dream.PeoplePresenter extends Backbone.View
       </div>
     ")
 
-  present: (view, args) ->
-    @collection.fetch()
+  present: (url) ->
+    @index.render()
+    @collection.fetch
+      success: () => @collection.syncDirtyAndDestroyed() if navigator.onLine
     @$el.show().siblings().hide()
     Backbone.trigger 'presenter:presenting', @
-    Backbone.trigger('router:update', args.url) if args?.url?
+    Backbone.trigger('router:update', url) if url?
 
   initViews: ->
     @index = new dream.Views.People.IndexView
@@ -52,5 +54,4 @@ class dream.PeoplePresenter extends Backbone.View
 
   destroy: (model) ->
     model.destroy()
-    @present 'index',
-      url: 'logbook/people'
+    @present 'logbook/people'
