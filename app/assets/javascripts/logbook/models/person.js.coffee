@@ -25,6 +25,7 @@ class dream.Collections.People extends Backbone.Collection
 
   model: dream.Models.Person
   url: '/people'
+  local: () -> !navigator.onLine || @length == 0
 
   select: (person) ->
     @each (p) -> if p == person then p.select() else p.unset('selected')

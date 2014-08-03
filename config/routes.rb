@@ -32,9 +32,9 @@ Rails.application.routes.draw do
   end
 
   namespace :logbook do
-    root 'users#dashboard'
+    root 'application#home'
     get 'manifest.appcache', to: 'application#manifest'
-    get '*anywhere', to: 'users#dashboard'
+    get '*anywhere', to: 'application#home'
   end
 
   namespace :cic do
