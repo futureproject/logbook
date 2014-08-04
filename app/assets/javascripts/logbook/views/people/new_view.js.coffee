@@ -3,7 +3,7 @@ dream.Views.People ||= {}
 class dream.Views.People.NewView extends Backbone.View
   initialize: (args) ->
     @listenTo Backbone, 'person:new', @display
-    @listenTo Backbone, 'person:selected', @hide
+    @listenTo Backbone, 'person:show', @hide
 
   className: 'panel list-detail'
   template: JST['logbook/templates/people/new']
@@ -13,6 +13,7 @@ class dream.Views.People.NewView extends Backbone.View
     'submit': 'done'
 
   display: (collection) ->
+    return if @$el.is(':visible')
     @collection = collection
     @model = new dream.Models.Person
     @render()
@@ -36,7 +37,6 @@ class dream.Views.People.NewView extends Backbone.View
     @model.save data,
       success : (person) =>
         @collection.add @model
-        @model.select()
-        @hide()
-      errer: (e) =>
+        Backbone.trigger 'person:show', @model
+      error: (e) =>
         console.log e

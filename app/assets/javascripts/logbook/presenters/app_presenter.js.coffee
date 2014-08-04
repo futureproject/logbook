@@ -23,6 +23,7 @@ class dream.AppPresenter extends Backbone.View
     $.ajaxPrefilter (options, originalOptions, jqXHR) ->
       options.url = "/api/v1#{options.url}.json"
       jqXHR.withCredentials = true
+      console.log options.url
 
   tweakUI: ->
     $(document).on('click', 'a', (e) ->

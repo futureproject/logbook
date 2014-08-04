@@ -3,7 +3,7 @@ dream.Views.People ||= {}
 class dream.Views.People.EditView extends Backbone.View
   initialize: (args) ->
     @listenTo Backbone, 'person:edit', @display
-    @listenTo Backbone, 'person:selected', @hide
+    @listenTo Backbone, 'person:show', @hide
 
   className: 'panel list-detail'
   template: JST['logbook/templates/people/edit']

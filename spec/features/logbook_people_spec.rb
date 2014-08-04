@@ -12,6 +12,7 @@ feature 'Logbook people' do
     select 'student', from: 'role'
     select '11', from: 'grade'
     click_button 'Done'
+    binding.pry
     expect(page).to have_content 'Terry McGuiness'
   end
 
