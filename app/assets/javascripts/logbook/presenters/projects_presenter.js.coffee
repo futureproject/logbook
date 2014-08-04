@@ -1,20 +1,59 @@
 class dream.ProjectsPresenter extends Backbone.View
-  initialize: ->
-    @initRouter()
-    @initViews()
-    @initCollection()
-    @listenTo Backbone, 'projects:present', @present
+  el: '#logbook_projects'
 
-  initRouter: -> @router = new dream.Routers.ProjectsRouter
-  initViews: ->
-    @views =
-      index: dream.Views.Projects.IndexView
-      edit: dream.Views.Projects.FormView
-      new: dream.Views.Projects.FormView
+  initialize: (args) ->
+    @render()
+    @initTab()
+    @initCollection()
+    @initViews()
+    @listenTo Backbone, 'projects:present', @present
+    @listenTo Backbone, 'project:destroy', @destroy
+
+  render: ->
+    @$el.html("
+      <div id='logbook_projects_index' class='list-container'></div>
+      <div id='logbook_projects_detail' class='detail-container'>
+        <div id='logbook_projects_show'></div>
+        <div id='logbook_projects_edit'></div>
+        <div id='logbook_projects_new'></div>
+      </div>
+    ")
+
+  initTab: ->
+    @tab = new dream.Views.App.TabView
+      presenter: @
+      parentEl: '#sidebar .tabs'
+      icon: 'paintcan'
+      label: 'Projects'
+      url: 'logbook/projects'
 
   initCollection: ->
+    @collection = new dream.Collections.Projects
 
-  present: (view) ->
-    new @views[view] if @views[view]?
+  initViews: ->
+    @index = new dream.Views.Projects.IndexView
+      el: '#logbook_projects_index'
+      collection: @collection
 
+    @show = new dream.Views.Projects.ShowView
+      el: '#logbook_projects_show'
 
+    @edit = new dream.Views.Projects.EditView
+      el: '#logbook_projects_edit'
+
+    @new = new dream.Views.Projects.NewView
+      el: '#logbook_projects_new'
+
+  present: (url) ->
+    return if @$el.is(':visible')
+    @index.render()
+    @collection.fetch
+      reset: true
+      remote: false
+    @$el.show().siblings().hide()
+    Backbone.trigger 'presenter:presenting', @
+    Backbone.trigger('router:update', url) if url?
+
+  destroy: (model) ->
+    model.destroy()
+    Backbone.trigger 'router:update', 'logbook/projects'

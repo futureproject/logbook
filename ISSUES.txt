@@ -1,0 +1,1 @@
+- Collection refresh deselects active item if there is new content

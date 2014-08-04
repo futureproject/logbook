@@ -1,12 +1,12 @@
-dream.Views.People ||= {}
+dream.Views.Projects ||= {}
 
-class dream.Views.People.EditView extends Backbone.View
+class dream.Views.Projects.EditView extends Backbone.View
   initialize: (args) ->
-    @listenTo Backbone, 'person:edit', @display
-    @listenTo Backbone, 'person:show', @hide
+    @listenTo Backbone, 'project:edit', @display
+    @listenTo Backbone, 'project:show', @hide
 
   className: 'panel list-detail'
-  template: JST['logbook/templates/people/edit']
+  template: JST['logbook/templates/projects/edit']
 
   events:
     'click .cancel': 'cancel'
@@ -17,7 +17,7 @@ class dream.Views.People.EditView extends Backbone.View
     @model = model
     @render()
     Backbone.Syphon.deserialize @, @model.attributes
-    Backbone.trigger 'router:update', "logbook/people/#{@model.get('id')}/edit"
+    Backbone.trigger 'router:update', "logbook/projects/#{@model.get('id')}/edit"
 
   hide: -> @$el.hide()
 
@@ -28,11 +28,11 @@ class dream.Views.People.EditView extends Backbone.View
   cancel: (e) ->
     e.preventDefault()
     @hide()
-    Backbone.trigger 'person:show', @model
+    Backbone.trigger 'project:show', @model
 
   delete: (e) ->
-    return unless confirm("Do you really want to delete #{@model.get('first_name')}?")
-    Backbone.trigger 'person:destroy', @model
+    return unless confirm("Do you really want to delete this project?")
+    Backbone.trigger 'project:destroy', @model
     @hide()
 
   done: (e) ->
@@ -40,5 +40,5 @@ class dream.Views.People.EditView extends Backbone.View
     @hide()
     data = Backbone.Syphon.serialize @
     @model.save data,
-      success : (person) =>
-        Backbone.trigger 'person:show', @model
+      success : (project) =>
+        Backbone.trigger 'project:show', @model

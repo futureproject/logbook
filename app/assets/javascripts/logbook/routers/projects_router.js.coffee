@@ -7,13 +7,23 @@ class dream.Routers.ProjectsRouter extends Backbone.Router
     'logbook/projects/:id' : 'show'
 
   index: ->
-    Backbone.trigger 'projects:present', 'index'
+    Backbone.trigger 'projects:present'
 
   new: ->
-    Backbone.trigger 'projects:present', 'new'
+    @listenToOnce Backbone, 'projectsCollection:changed', (collection) =>
+      Backbone.trigger 'project:new', @presenter.collection
+    Backbone.trigger 'projects:present'
 
   edit: (id) ->
-    Backbone.trigger 'projects:present', 'edit'
+    @listenToOnce Backbone, 'projectsCollection:changed', (collection) =>
+      model = collection.get(id)
+      Backbone.trigger 'project:show', model
+      Backbone.trigger 'project:edit', model
+    Backbone.trigger 'projects:present'
 
   show: (id) ->
-    Backbone.trigger 'projects:present', 'edit'
+    @listenToOnce Backbone, 'projectsCollection:changed', (collection) =>
+      model = collection.get(id)
+      Backbone.trigger 'project:show', model
+    Backbone.trigger 'projects:present'
+

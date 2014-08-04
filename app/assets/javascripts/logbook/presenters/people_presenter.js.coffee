@@ -3,22 +3,11 @@ class dream.PeoplePresenter extends Backbone.View
 
   initialize: (args) ->
     @render()
-    @tab = new dream.Views.App.TabView
-      presenter: @
-      parentEl: '#sidebar .tabs'
-      icon: 'organization'
-      label: 'People'
-      url: 'logbook/people'
+    @initTab()
     @initCollection()
     @initViews()
-    @listen()
-
-  listen: ->
     @listenTo Backbone, 'people:present', @present
     @listenTo Backbone, 'person:destroy', @destroy
-
-  initCollection: ->
-    @collection = new dream.Collections.People
 
   render: ->
     @$el.html("
@@ -30,14 +19,16 @@ class dream.PeoplePresenter extends Backbone.View
       </div>
     ")
 
-  present: (url) ->
-    @index.render()
-    @collection.fetch
-      reset: true
-      remote: false
-    @$el.show().siblings().hide()
-    Backbone.trigger 'presenter:presenting', @
-    Backbone.trigger('router:update', url) if url?
+  initTab: ->
+    @tab = new dream.Views.App.TabView
+      presenter: @
+      parentEl: '#sidebar .tabs'
+      icon: 'organization'
+      label: 'People'
+      url: 'logbook/people'
+
+  initCollection: ->
+    @collection = new dream.Collections.People
 
   initViews: ->
     @index = new dream.Views.People.IndexView
@@ -52,6 +43,16 @@ class dream.PeoplePresenter extends Backbone.View
 
     @new = new dream.Views.People.NewView
       el: '#logbook_people_new'
+
+  present: (url) ->
+    return if @$el.is(':visible')
+    Backbone.trigger 'presenter:presenting', @
+    @index.render()
+    @collection.fetch
+      reset: true
+      remote: false
+    @$el.show().siblings().hide()
+    Backbone.trigger('router:update', url) if url?
 
   destroy: (model) ->
     model.destroy()

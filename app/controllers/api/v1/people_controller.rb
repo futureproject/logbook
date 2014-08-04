@@ -57,6 +57,6 @@ class Api::V1::PeopleController < Api::V1::BaseController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def person_params
-      params[:person].permit!
+      params.require(:person).permit(:first_name, :last_name, :role, :school_id, :grade, :core)
     end
 end

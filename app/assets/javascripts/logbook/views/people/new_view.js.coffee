@@ -12,9 +12,8 @@ class dream.Views.People.NewView extends Backbone.View
     'click .cancel': 'cancel'
     'submit': 'done'
 
-  display: (collection) ->
+  display: ->
     return if @$el.is(':visible')
-    @collection = collection
     @model = new dream.Models.Person
     @render()
     Backbone.Syphon.deserialize @, @model.attributes
@@ -36,7 +35,7 @@ class dream.Views.People.NewView extends Backbone.View
     data = Backbone.Syphon.serialize @
     @model.save data,
       success : (person) =>
-        @collection.add @model
+        Backbone.trigger 'person:created', @model
         Backbone.trigger 'person:show', @model
       error: (e) =>
         console.log e

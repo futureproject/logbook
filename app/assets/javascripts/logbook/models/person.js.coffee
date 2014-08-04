@@ -13,15 +13,24 @@ class dream.Models.Person extends Backbone.Model
 
 class dream.Collections.People extends Backbone.Collection
   initialize: ->
-    @on 'reset add', @broadcast
-    @listenTo Backbone, 'network:online', @syncDirtyAndDestroyed
+    @on 'reset', @broadcast
+    @listenTo Backbone, 'network:online', @refresh
+    @listenTo Backbone, 'person:created', @addModel
 
   model: dream.Models.Person
   url: '/people'
   comparator: (person) -> person.get('first_name')
 
-  broadcast: ->
-    Backbone.trigger 'peopleCollection:changed', @
+  broadcast: -> Backbone.trigger 'peopleCollection:changed', @
 
-  setRemote: ->
-    #@local = false
+  refresh: (e) ->
+    length = @length
+    @fetch
+      remote: true
+      success: (collection, response, options) ->
+        collection.syncDirtyAndDestroyed() if navigator.onLine
+        collection.broadcast() if length != collection.length
+
+  addModel: (model) ->
+    @add(model)
+    @broadcast()

@@ -1,11 +1,13 @@
-class dream.Views.People.PersonView extends Backbone.View
+dream.Views.Projects ||= {}
+
+class dream.Views.Projects.ProjectView extends Backbone.View
   initialize: (args) ->
     @model = args.model
-    @listenTo @model, 'change:first_name change:last_name', @render
+    @listenTo @model, 'change:name', @render
     @listenTo @model, 'destroy', @remove
-    @listenTo Backbone, 'person:show', @addActiveClass
+    @listenTo Backbone, 'project:show', @addActiveClass
 
-  template: JST['logbook/templates/people/person']
+  template: JST['logbook/templates/projects/project']
 
   className: 'list-item'
 
@@ -14,7 +16,7 @@ class dream.Views.People.PersonView extends Backbone.View
 
   select: (e) ->
     return if @el.classList.contains 'is_active'
-    Backbone.trigger 'person:show', @model
+    Backbone.trigger 'project:show', @model
 
   render: ->
     @$el.html(@template(@model.toJSON()))

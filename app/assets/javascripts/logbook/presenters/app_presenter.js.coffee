@@ -6,7 +6,7 @@ class dream.AppPresenter extends Backbone.View
     @prepAjax()
     @initViews()
     @initPresenters()
-    @initRouter()
+    @initRouters()
 
   el: '#canvas'
 
@@ -44,6 +44,7 @@ class dream.AppPresenter extends Backbone.View
       task_assignments: new dream.TaskAssignmentsPresenter
       workshops: new dream.WorkshopsPresenter
 
-  initRouter: ->
+  initRouters: ->
     @routers =
       people: new dream.Routers.PeopleRouter({ presenter: @presenters.people })
+      projects: new dream.Routers.ProjectsRouter({ presenter: @presenters.projects })

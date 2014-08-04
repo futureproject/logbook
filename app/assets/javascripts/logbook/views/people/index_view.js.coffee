@@ -31,6 +31,4 @@ class dream.Views.People.IndexView extends Backbone.View
 
   refresh: (e) ->
     e.preventDefault()
-    @collection?.fetch
-      reset: true
-      success: () => @collection.syncDirtyAndDestroyed() if navigator.onLine
+    @collection?.refresh()

@@ -13,7 +13,6 @@ class dream.Routers.PeopleRouter extends Backbone.Router
 
   index: ->
     Backbone.trigger 'people:present'
-    Backbone.trigger 'people:clearSelection'
 
   new: ->
     @listenToOnce Backbone, 'peopleCollection:changed', (collection) =>
