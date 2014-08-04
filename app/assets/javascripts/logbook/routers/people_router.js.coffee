@@ -23,13 +23,13 @@ class dream.Routers.PeopleRouter extends Backbone.Router
   edit: (id) ->
     @listenToOnce Backbone, 'peopleCollection:changed', (collection) =>
       model = collection.get(id)
-      collection.select(model)
+      Backbone.trigger 'person:show', model
       Backbone.trigger 'person:edit', model
     Backbone.trigger 'people:present'
 
   show: (id) ->
     @listenToOnce Backbone, 'peopleCollection:changed', (collection) =>
       model = collection.get(id)
-      collection.select(model)
+      Backbone.trigger 'person:show', model
     Backbone.trigger 'people:present'
 

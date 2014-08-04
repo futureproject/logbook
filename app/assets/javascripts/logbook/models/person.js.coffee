@@ -8,34 +8,20 @@ class dream.Models.Person extends Backbone.Model
     dream_team: true
     school_id: dream.USER.school.id
 
-  toJSON: ->
-    _.omit @attributes, 'selected'
-
-  select: ->
-    @set('selected', true)
-    Backbone.trigger('person:selected', @)
-
   validate: (attrs) ->
     return 'Name me!' if !attrs.first_name? || !attrs.last_name?
 
 class dream.Collections.People extends Backbone.Collection
   initialize: ->
     @on 'reset add', @broadcast
-    @on 'add', @clearSelection
-    @listenTo Backbone, 'people:clearSelection', @clearSelection
+    @listenTo Backbone, 'network:online', @syncDirtyAndDestroyed
 
   model: dream.Models.Person
   url: '/people'
-  local: () -> !navigator.onLine || @length == 0
   comparator: (person) -> person.get('first_name')
-
-  select: (person) ->
-    @each (p) -> if p == person then p.select() else p.unset('selected')
-    return person
-
-  clearSelection: ->
-    @each (person) -> person.unset('selected')
-    return @
 
   broadcast: ->
     Backbone.trigger 'peopleCollection:changed', @
+
+  setRemote: ->
+    #@local = false

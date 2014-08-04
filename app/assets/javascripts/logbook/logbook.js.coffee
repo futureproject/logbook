@@ -23,3 +23,4 @@ window.dream =
     @presenter = new dream.AppPresenter(@)
     Backbone.trigger 'app:loaded'
     Backbone.history.start({ pushState: true })
+    Backbone.trigger('network:online') if navigator.onLine

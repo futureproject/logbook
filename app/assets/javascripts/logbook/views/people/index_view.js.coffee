@@ -6,6 +6,7 @@ class dream.Views.People.IndexView extends Backbone.View
 
   events:
     'click .new': 'new'
+    'click .refresh': 'refresh'
 
   display: (collection) ->
     @collection = collection
@@ -27,3 +28,9 @@ class dream.Views.People.IndexView extends Backbone.View
   new: (e) ->
     e.preventDefault()
     Backbone.trigger 'person:new', @collection
+
+  refresh: (e) ->
+    e.preventDefault()
+    @collection?.fetch
+      reset: true
+      success: () => @collection.syncDirtyAndDestroyed() if navigator.onLine

@@ -4,8 +4,7 @@ feature 'Logbook people' do
     mock_sign_in
   end
 
-  scenario 'adding, viewing, editing', js: true do
-    # adding
+  scenario 'adding', js: true do
     visit '/logbook/people'
     first('a.new').click()
     fill_in 'first_name', with: 'Terry'
@@ -14,14 +13,16 @@ feature 'Logbook people' do
     select '11', from: 'grade'
     click_button 'Done'
     expect(page).to have_content 'Terry McGuiness'
+  end
 
-    # viewing
+  scenario 'viewing and editing', js: true do
+    visit '/logbook'
     first('#sidebar .tab_people').click()
-    expect(page).to have_content 'Tim'
+    first('.refresh').click
+    expect(page).to have_content 'Dick'
 
-    # editing
     first('.list-item').click
-    first('.edit').click
+    find('.edit').click
     fill_in 'first_name', with: 'Richard'
     click_button 'Done'
     expect(page).to have_content 'Richard'

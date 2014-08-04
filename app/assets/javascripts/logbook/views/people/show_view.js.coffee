@@ -2,7 +2,7 @@ dream.Views.People ||= {}
 
 class dream.Views.People.ShowView extends Backbone.View
   initialize: (args) ->
-    @listenTo Backbone, 'person:selected', @display
+    @listenTo Backbone, 'person:show', @display
     @listenTo Backbone, 'person:destroy', @hide
 
   className: 'panel list-detail'
