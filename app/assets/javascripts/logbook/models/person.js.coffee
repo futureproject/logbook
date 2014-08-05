@@ -13,8 +13,9 @@ class dream.Models.Person extends Backbone.Model
 
 class dream.Collections.People extends Backbone.Collection
   initialize: ->
+    @autoRefreshed = false
     @on 'reset', @broadcast
-    @listenTo Backbone, 'network:online', @refresh
+    @listenTo Backbone, 'network:online', @syncDirtyAndDestroyed
     @listenTo Backbone, 'person:created', @addModel
 
   model: dream.Models.Person

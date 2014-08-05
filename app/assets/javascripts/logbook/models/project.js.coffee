@@ -9,8 +9,9 @@ class dream.Models.Project extends Backbone.Model
 
 class dream.Collections.Projects extends Backbone.Collection
   initialize: ->
+    @autoRefreshed = false
     @on 'reset', @broadcast
-    @listenTo Backbone, 'network:online', @refresh
+    @listenTo Backbone, 'network:online', @syncDirtyAndDestroyed
     @listenTo Backbone, 'project:created', @addModel
 
   model: dream.Models.Project

@@ -46,12 +46,17 @@ class dream.ProjectsPresenter extends Backbone.View
 
   present: (url) ->
     return if @$el.is(':visible')
+    Backbone.trigger 'presenter:presenting', @
     @index.render()
     @collection.fetch
       reset: true
       remote: false
+      success: =>
+        return if @collection.autoRefreshed
+        @collection.refresh()
+        @collection.autoRefreshed = true
+
     @$el.show().siblings().hide()
-    Backbone.trigger 'presenter:presenting', @
     Backbone.trigger('router:update', url) if url?
 
   destroy: (model) ->

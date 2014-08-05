@@ -51,6 +51,11 @@ class dream.PeoplePresenter extends Backbone.View
     @collection.fetch
       reset: true
       remote: false
+      success: =>
+        return if @collection.autoRefreshed
+        @collection.refresh()
+        @collection.autoRefreshed = true
+
     @$el.show().siblings().hide()
     Backbone.trigger('router:update', url) if url?
 
