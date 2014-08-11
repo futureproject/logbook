@@ -1,11 +1,23 @@
 Rails.application.routes.draw do
 
 
+  namespace :go do
+    resources :redirects
+  end
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
+  constraints(:subdomain => /go/) do
+    namespace :go, path: '/' do
+      root to: 'redirects#index'
+      resources :redirects
+      get '/*redirect', to: 'redirects#show'
+    end
+  end
+
   root 'application#home'
 
   resources :sessions, only: [:new, :create]

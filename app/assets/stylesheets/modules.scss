@@ -294,3 +294,18 @@ a[rel=next] {
     }
   }
 }
+
+.inline_field {
+  input {
+    display: inline;
+    width: auto;
+  }
+}
+
+.single_line_table {
+  td {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}

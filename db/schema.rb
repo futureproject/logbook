@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140725164258) do
+ActiveRecord::Schema.define(version: 20140811164405) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,16 @@ ActiveRecord::Schema.define(version: 20140725164258) do
     t.string   "actor_type"
     t.date     "day"
   end
+
+  create_table "go_redirects", force: true do |t|
+    t.string   "shortcut"
+    t.string   "url"
+    t.integer  "hit_count"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "go_redirects", ["shortcut"], name: "index_go_redirects_on_shortcut", using: :btree
 
   create_table "identities", force: true do |t|
     t.integer  "user_id"

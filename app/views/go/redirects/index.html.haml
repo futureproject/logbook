@@ -1,0 +1,26 @@
+#dream_suite_home
+  .logo= image_tag asset_path('tfplogo.svg')
+  %h1
+    Nice-looking links
+    %small= link_to 'Add new', new_go_redirect_path
+
+%table.single_line_table
+  %colgroup
+    %col
+    %col{style: 'width: 66%;'}
+    %col{style: 'text-align: right;'}
+  %tr
+    %th Shortcut
+    %th Url
+    %th
+
+  - @go_redirects.each do |go_redirect|
+    %tr
+      %td= go_redirect.shortcut
+      %td= link_to go_redirect.url, go_redirect.url
+      %td
+        = link_to 'Edit', edit_go_redirect_path(go_redirect)
+        = link_to 'Destroy', go_redirect, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
