@@ -1,6 +1,6 @@
 class Go::RedirectsController < ApplicationController
   before_action :set_go_redirect, only: [:show, :edit, :update, :destroy]
-  skip_before_action :authenticate!, only: [:show]
+  skip_before_action :authenticate!
 
   # GET /go/redirects
   # GET /go/redirects.json
