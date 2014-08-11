@@ -4,7 +4,7 @@ class Go::RedirectsController < ApplicationController
   # GET /go/redirects
   # GET /go/redirects.json
   def index
-    @go_redirects = Go::Redirect.all
+    @go_redirects = Go::Redirect.order('id DESC')
   end
 
   # GET /go/redirects/1

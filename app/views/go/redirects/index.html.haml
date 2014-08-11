@@ -7,8 +7,8 @@
 %table.single_line_table
   %colgroup
     %col
-    %col{style: 'width: 66%;'}
-    %col{style: 'text-align: right;'}
+    %col{style: 'width: 50%;'}
+    %col
   %tr
     %th Shortcut
     %th Url
@@ -16,7 +16,7 @@
 
   - @go_redirects.each do |go_redirect|
     %tr
-      %td= go_redirect.shortcut
+      %td= "http://go.dream.org/#{go_redirect.shortcut}"
       %td= link_to go_redirect.url, go_redirect.url
       %td
         = link_to 'Edit', edit_go_redirect_path(go_redirect)
