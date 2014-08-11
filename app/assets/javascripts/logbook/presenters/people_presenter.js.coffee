@@ -62,3 +62,4 @@ class dream.PeoplePresenter extends Backbone.View
   destroy: (model) ->
     model.destroy()
     Backbone.trigger 'router:update', 'logbook/people'
+

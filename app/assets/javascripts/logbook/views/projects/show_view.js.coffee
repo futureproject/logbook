@@ -19,7 +19,7 @@ class dream.Views.Projects.ShowView extends Backbone.View
     Backbone.trigger 'router:update', "logbook/projects/#{@model.get('id')}"
 
   render: ->
-    @$el.html( @template @model.toJSON() ).show()
+    @$el.html( @template @model.attributes ).show()
     return @
 
   hide: ->

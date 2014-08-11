@@ -4,7 +4,13 @@ class Api::V1::PeopleController < Api::V1::BaseController
   # GET /api/v1/people
   # GET /api/v1/people.json
   def index
-    @people = current_user.people.order(:first_name, :id)
+    @people = current_user.people
+    if params[:q]
+      @people = @people.search(params[:q])
+    else
+      @people = @people.where(dream_team: true).order(:first_name, :id)
+    end
+    @people
   end
 
   # GET /api/v1/people/1

@@ -3,6 +3,8 @@ class dream.Models.Project extends Backbone.Model
   defaults: ->
     name: null
     school_id: dream.USER.school.id
+    leader_ids: []
+    participant_ids: []
 
   validate: (attrs) ->
     return 'Name me!' if !attrs.name?

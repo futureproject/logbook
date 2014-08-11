@@ -1,4 +1,5 @@
 class Api::V1::ProjectsController < Api::V1::BaseController
+  wrap_parameters format: [:json], include: [:leader_ids, :participant_ids, :name]
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
   # GET /api/v1/projects

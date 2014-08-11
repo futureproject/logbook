@@ -17,6 +17,7 @@ class dream.Collections.People extends Backbone.Collection
     @on 'reset', @broadcast
     @listenTo Backbone, 'network:online', @syncDirtyAndDestroyed
     @listenTo Backbone, 'person:created', @addModel
+    @listenTo Backbone, 'people:fetchLocal', @fetchLocal
 
   model: dream.Models.Person
   url: '/people'
@@ -35,3 +36,8 @@ class dream.Collections.People extends Backbone.Collection
   addModel: (model) ->
     @add(model)
     @broadcast()
+
+  fetchLocal: ->
+    @fetch
+      remote: false
+      reset: true

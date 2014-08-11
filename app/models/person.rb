@@ -11,11 +11,13 @@ class Person < ActiveRecord::Base
   has_many :actions, as: :actor
   ROLE_ENUM = %w(student teacher)
 
-  #scope :with_entries_for_week, -> (week=Date.today.beginning_of_week) {
-  #  week = week.to_date.beginning_of_week
-  #  joins(:weekly_log_entries)
-  #  .where('weekly_log_entries.week = ?', week)
-  #}
+  scope :search, lambda {|n|
+    return if n.blank?
+    first= "%#{n.split(' ').first.downcase}%"
+    last= "%#{n.split(' ').last.downcase}%"
+    where("lower(first_name) like ? or lower(last_name) like ?", first, last).
+      order('lower(first_name)')
+  }
 
   def name
     "#{first_name} #{last_name}"

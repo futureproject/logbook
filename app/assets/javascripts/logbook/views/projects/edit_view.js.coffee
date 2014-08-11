@@ -16,8 +16,16 @@ class dream.Views.Projects.EditView extends Backbone.View
   display: (model) ->
     @model = model
     @render()
-    Backbone.Syphon.deserialize @, @model.attributes
     Backbone.trigger 'router:update', "logbook/projects/#{@model.get('id')}/edit"
+    @listenToOnce Backbone, 'peopleCollection:changed', (collection) =>
+      $('select').selectize
+        options: collection.models.map (model) -> model.attributes
+        valueField: 'id'
+        labelField: 'name'
+        searchField: 'name'
+      Backbone.Syphon.deserialize @, @model.attributes
+      $('option[selected').attr('selected', 'selected')
+    Backbone.trigger 'people:fetchLocal'
 
   hide: -> @$el.hide()
 
@@ -39,6 +47,9 @@ class dream.Views.Projects.EditView extends Backbone.View
     e.preventDefault()
     @hide()
     data = Backbone.Syphon.serialize @
+    data.leader_ids = [''] if data.leader_ids == null
+    data.participant_ids = [''] if data.participant_ids == null
     @model.save data,
       success : (project) =>
         Backbone.trigger 'project:show', @model
+

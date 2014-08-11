@@ -16,13 +16,19 @@ class dream.Views.Projects.NewView extends Backbone.View
     return if @$el.is(':visible')
     @model = new dream.Models.Project
     @render()
-    Backbone.Syphon.deserialize @, @model.attributes
     Backbone.trigger 'router:update', "logbook/projects/new"
+    @listenToOnce Backbone, 'peopleCollection:changed', (collection) =>
+      $('select').selectize
+        options: collection.models.map (model) -> model.attributes
+        valueField: 'id'
+        labelField: 'name'
+        searchField: 'name'
+    Backbone.trigger 'people:fetchLocal'
 
   hide: -> @$el.hide()
 
   render: ->
-    @$el.html( @template @model.toJSON() ).show()
+    @$el.html( @template @model.attributes ).show()
     return @
 
   cancel: (e) ->

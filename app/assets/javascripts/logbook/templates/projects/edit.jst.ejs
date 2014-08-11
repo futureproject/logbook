@@ -1,6 +1,6 @@
 <form class="list-detail panel">
   <div class="panel-title">
-    <h1>New Project</h1>
+    <h1>Editing Project</h1>
     <div class="l-menu"><a class='cancel' href="#cancel"">Cancel</a></div>
     <div class="r-menu">
     <input name="commit" type="submit" value="Done">
@@ -13,11 +13,19 @@
     </div>
     <div class="field">
       <label for="leader_ids">Leaders</label>
-      <input id="leader_ids" name="leader_ids" type="text">
+      <select multiple id="leader_ids" name="leader_ids">
+        <% for(i=0; i < leader_ids.length; i++) { %>
+          <option value='<%= leader_ids[i] %>' selected >name</option>
+        <% } %>
+      </select>
     </div>
     <div class="field">
-      <label for="participant_ids">Leaders</label>
-      <input id="participant_ids" name="participant_ids" type="text">
+      <label for="participant_ids">Participants</label>
+      <select multiple id="participant_ids" name="participant_ids">
+        <% for(i=0; i < participant_ids.length; i++) { %>
+          <option value='<%= participant_ids[i] %>' selected>name</option>
+        <% } %>
+      </select>
     </div>
     <hr />
     <div class='button warning'>Delete</div>
