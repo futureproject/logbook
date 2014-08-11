@@ -16,7 +16,7 @@
 
   - @go_redirects.each do |go_redirect|
     %tr
-      %td= "http://go.dream.org/#{go_redirect.shortcut}"
+      %td= link_to "http://go.dream.org/#{go_redirect.shortcut}", "http://go.dream.org/#{go_redirect.shortcut}"
       %td= link_to go_redirect.url, go_redirect.url
       %td
         = link_to 'Edit', edit_go_redirect_path(go_redirect)
