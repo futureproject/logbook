@@ -11,6 +11,10 @@ class Go::RedirectsController < ApplicationController
   # GET /go/redirects/1
   # GET /go/redirects/1.json
   def show
+  end
+
+  def redirect
+    @go_redirect = Go::Redirect.find_by(shortcut: params[:shortcut])
     hit_count = @go_redirect.hit_count || 0
     hit_count += 1
     @go_redirect.update_attributes hit_count: hit_count
@@ -69,7 +73,7 @@ class Go::RedirectsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_go_redirect
-      @go_redirect = Go::Redirect.find_by(shortcut: params[:shortcut])
+      @go_redirect = Go::Redirect.find params[:id]
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

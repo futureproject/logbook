@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     namespace :go, path: '/' do
       root to: 'redirects#index'
       resources :redirects
-      get '/*shortcut', to: 'redirects#show'
+      get '/*shortcut', to: 'redirects#redirect'
     end
   end
 
