@@ -19,10 +19,10 @@ class dream.Views.Projects.EditView extends Backbone.View
     Backbone.trigger 'router:update', "logbook/projects/#{@model.get('id')}/edit"
     @listenToOnce Backbone, 'peopleCollection:changed', (collection) =>
       $('select').selectize
-        options: collection.models.map (model) -> model.attributes
+        options: collection.models.map (model) -> model.selectizeAttrs()
         valueField: 'id'
         labelField: 'name'
-        searchField: 'name'
+        searchField: ['first_name', 'last_name']
       Backbone.Syphon.deserialize @, @model.attributes
       $('option[selected]').attr('selected', 'selected')
     Backbone.trigger 'people:bootstrap'

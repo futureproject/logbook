@@ -34,7 +34,7 @@ class dream.Views.Projects.ShowView extends Backbone.View
     @$el.hide()
 
   addLeaders: (people) ->
-    $('#project_leaders').append("<li>#{person.get('name')}</li>") for person in people
+    $('#project_leaders').append("<li>#{person.get('first_name')}</li>") for person in people
 
   addParticipants: (people) ->
-    $('#project_participants').append("<li>#{person.get('name')}</li>") for person in people
+    $('#project_participants').append("<li>#{person.get('first_name')}</li>") for person in people

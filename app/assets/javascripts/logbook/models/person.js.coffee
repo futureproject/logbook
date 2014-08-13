@@ -11,6 +11,15 @@ class dream.Models.Person extends Backbone.Model
   validate: (attrs) ->
     return 'Name me!' if !attrs.first_name? || !attrs.last_name?
 
+  selectizeAttrs: ->
+    {
+      first_name: @get('first_name')
+      last_name: @get('last_name')
+      id: @get('id')
+      dream_team: @get('dream_team')
+      name: @get('first_name') + ' ' + @get('last_name')
+    }
+
 class dream.Collections.People extends Backbone.Collection
   initialize: ->
     @bootstrap()

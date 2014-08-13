@@ -19,10 +19,10 @@ class dream.Views.Projects.NewView extends Backbone.View
     Backbone.trigger 'router:update', "logbook/projects/new"
     @listenToOnce Backbone, 'peopleCollection:changed', (collection) =>
       $('select').selectize
-        options: collection.models.map (model) -> model.attributes
+        options: collection.models.map (model) -> model.selectizeAttrs()
         valueField: 'id'
         labelField: 'name'
-        searchField: 'name'
+        searchField: ['first_name', 'last_name']
     Backbone.trigger 'people:bootstrap'
 
   hide: -> @$el.hide()
