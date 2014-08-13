@@ -1,4 +1,8 @@
 class dream.Models.Project extends Backbone.Model
+  initialize: ->
+    @set('leader_ids', []) if !@get('leader_ids')?
+    @set('participant_ids', []) if !@get('participant_ids')?
+
   urlRoot: '/projects'
   defaults: ->
     name: null
@@ -11,10 +15,10 @@ class dream.Models.Project extends Backbone.Model
 
 class dream.Collections.Projects extends Backbone.Collection
   initialize: ->
-    @autoRefreshed = false
     @on 'reset', @broadcast
     @listenTo Backbone, 'network:online', @syncDirtyAndDestroyed
     @listenTo Backbone, 'project:created', @addModel
+    @listenTo Backbone, 'projects:bootstrap', @bootstrap
 
   model: dream.Models.Project
 
@@ -24,6 +28,8 @@ class dream.Collections.Projects extends Backbone.Collection
 
   broadcast: -> Backbone.trigger 'projectsCollection:changed', @
 
+  # fetch new data from the server
+  # broadcast models if there is new data
   refresh: (e) ->
     length = @length
     @fetch
@@ -32,6 +38,25 @@ class dream.Collections.Projects extends Backbone.Collection
         collection.syncDirtyAndDestroyed() if navigator.onLine
         collection.broadcast() if length != collection.length
 
+  # add one model and broadcast
   addModel: (model) ->
     @add(model)
     @broadcast()
+
+  # get models into this collection
+  # pull from localStorage first
+  # if that comes up empty, pulls from network
+  bootstrap: ->
+    if @length > 0
+      @broadcast()
+    else
+      @fetch
+        remote: false
+        success: =>
+          if @length > 0
+            @broadcast()
+          else
+            @fetch
+              remote: true
+              success: =>
+                @broadcast()

@@ -23,12 +23,12 @@ class dream.Views.Projects.NewView extends Backbone.View
         valueField: 'id'
         labelField: 'name'
         searchField: 'name'
-    Backbone.trigger 'people:fetchLocal'
+    Backbone.trigger 'people:bootstrap'
 
   hide: -> @$el.hide()
 
   render: ->
-    @$el.html( @template @model.attributes ).show()
+    @$el.html( @template @model.toJSON() ).show()
     return @
 
   cancel: (e) ->

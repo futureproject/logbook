@@ -24,8 +24,8 @@ class dream.Views.Projects.EditView extends Backbone.View
         labelField: 'name'
         searchField: 'name'
       Backbone.Syphon.deserialize @, @model.attributes
-      $('option[selected').attr('selected', 'selected')
-    Backbone.trigger 'people:fetchLocal'
+      $('option[selected]').attr('selected', 'selected')
+    Backbone.trigger 'people:bootstrap'
 
   hide: -> @$el.hide()
 

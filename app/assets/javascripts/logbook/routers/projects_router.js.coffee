@@ -11,7 +11,7 @@ class dream.Routers.ProjectsRouter extends Backbone.Router
 
   new: ->
     @listenToOnce Backbone, 'projectsCollection:changed', (collection) =>
-      Backbone.trigger 'project:new', @presenter.collection
+      Backbone.trigger 'project:new', collection
     Backbone.trigger 'projects:present'
 
   edit: (id) ->

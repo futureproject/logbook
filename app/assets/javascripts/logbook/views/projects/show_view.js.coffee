@@ -16,11 +16,25 @@ class dream.Views.Projects.ShowView extends Backbone.View
   display: (model) ->
     @model = model
     @render()
+    Backbone.trigger 'people:getSome',
+      ids: @model.get('leader_ids')
+      callback: @addLeaders
+
+    Backbone.trigger 'people:getSome',
+      ids: @model.get('participant_ids')
+      callback: @addParticipants
+
     Backbone.trigger 'router:update', "logbook/projects/#{@model.get('id')}"
 
   render: ->
-    @$el.html( @template @model.attributes ).show()
+    @$el.html( @template @model.toJSON() ).show()
     return @
 
   hide: ->
     @$el.hide()
+
+  addLeaders: (people) ->
+    $('#project_leaders').append("<li>#{person.get('name')}</li>") for person in people
+
+  addParticipants: (people) ->
+    $('#project_participants').append("<li>#{person.get('name')}</li>") for person in people
