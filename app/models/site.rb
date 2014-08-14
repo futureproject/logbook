@@ -19,10 +19,11 @@ class Site < ActiveRecord::Base
   def average association, column=nil
     begin
       if column.nil?
-        (eval(association.to_s).count.to_f / schools.count.to_f).to_s
+        stat = (eval(association.to_s).count.to_f / schools.count.to_f).to_s
       else
-        eval(association.to_s).average(column.to_sym)
+        stat = eval(association.to_s).average(column.to_sym)
       end
+      stat || 0
     rescue
       0
     end
