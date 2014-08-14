@@ -2,10 +2,11 @@ class National
 
   def self.average association, column=nil
     if column.nil?
-      (eval(association.to_s.classify).count.fdiv(School.count)).to_i
+      res = (eval(association.to_s.classify).count.fdiv(School.count)).to_i
     else
-      eval(association.to_s.classify).average(column.to_sym)
+      res = eval(association.to_s.classify).average(column.to_sym)
     end
+    res || 0
   end
 
   #def self.engagement_score

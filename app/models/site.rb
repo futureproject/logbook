@@ -24,7 +24,7 @@ class Site < ActiveRecord::Base
         eval(association.to_s).average(column.to_sym)
       end
     rescue
-      "?"
+      0
     end
   end
 
