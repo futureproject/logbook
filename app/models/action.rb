@@ -7,9 +7,10 @@ class Action < ActiveRecord::Base
   before_create :set_day
 
   def detail
+    return "" if subject.nil?
     case subject_type
     when "TaskAssignment" then
-      subject.task.action
+      subject.try(:task).action
     when "OneOnOne" then
       "it lasted #{subject.duration} #{'hour'.pluralize(subject.duration)}."
     when "Workshop" then

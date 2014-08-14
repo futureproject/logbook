@@ -14,7 +14,8 @@
   %body#l_application
     #app
       =render "sidebar" if current_user
-      #canvas=yield
+      #canvas
+        .tab_target{style: 'display:block;' }=yield
       #flash
         - flash.each do |k, v|
           .flash{class: k}

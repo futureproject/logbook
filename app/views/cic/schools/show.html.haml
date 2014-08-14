@@ -28,11 +28,12 @@
       - @school.actions.each do |action|
         %li[action]
           .calendar_date
-            .calendar_date_month=action.day.strftime("%b")
-            .calendar_date_day=action.day.strftime("%d")
+            - if action.day
+              .calendar_date_month=action.day.strftime("%b")
+              .calendar_date_day=action.day.strftime("%d")
           .action_info
             .action_who= link_to action.who, [:cic, action.actor] if action.actor
-            .action_what= link_to action.what, [:cic, action.subject]
+            .action_what= link_to action.what, [:cic, action.subject] if action.subject
 
 
 
