@@ -12,7 +12,7 @@ class dream.AppPresenter extends Backbone.View
 
   render: ->
     @$el.html('
-      <div id="logbook_home" class="tab_target"></div>
+      <div id="logbook_stats" class="tab_target"></div>
       <div id="logbook_tasks" class="tab_target"></div>
       <div id="logbook_people" class="tab_target"></div>
       <div id="logbook_projects" class="tab_target"></div>
@@ -41,10 +41,11 @@ class dream.AppPresenter extends Backbone.View
       stats: new dream.StatsPresenter
       people: new dream.PeoplePresenter
       projects: new dream.ProjectsPresenter
-      task_assignments: new dream.TaskAssignmentsPresenter
-      workshops: new dream.WorkshopsPresenter
+      #task_assignments: new dream.TaskAssignmentsPresenter
+      #workshops: new dream.WorkshopsPresenter
 
   initRouters: ->
     @routers =
+      people: new dream.Routers.StatsRouter({ presenter: @presenters.stats })
       people: new dream.Routers.PeopleRouter({ presenter: @presenters.people })
       projects: new dream.Routers.ProjectsRouter({ presenter: @presenters.projects })

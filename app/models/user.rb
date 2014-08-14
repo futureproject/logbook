@@ -60,4 +60,63 @@ class User < ActiveRecord::Base
     Site.find_by(captain_id: self.id) || school.try(:site)
   end
 
+  def stats
+    [
+      {
+        id: 'Projects',
+        personal: projects.count,
+        site: try(:site).average(:projects),
+        national: National.average(:projects)
+      },
+      {
+        id: 'Project Leaders',
+        personal: people.joins(:project_leaders).uniq.count,
+        site: try(:site).average(:project_leaders),
+        national: National.average(:project_leaders)
+      },
+      {
+        id: 'Project Participants',
+        personal: people.joins(:project_participants).uniq.count,
+        site: try(:site).average(:project_participants),
+        national: National.average(:project_participants)
+      },
+      {
+        id: 'One-on-Ones',
+        personal: one_on_ones.count,
+        site: try(:site).average(:one_on_ones),
+        national: National.average(:one_on_ones)
+      },
+      {
+        id: 'Time Coaching',
+        personal: one_on_ones.sum(:duration).to_s,
+        site: try(:site).average(:one_on_ones, :duration).round(2),
+        national: National.average(:one_on_ones, :duration).round(2)
+      },
+      {
+        id: 'Workshops',
+        personal: workshops.count,
+        site: try(:site).average(:workshops),
+        national: National.average(:workshops)
+      },
+      {
+        id: 'Chairs Filled',
+        personal: workshop_attendees.count,
+        site: try(:site).average(:workshop_attendees),
+        national: National.average(:workshops)
+      },
+      {
+        id: 'Tasks Assigned',
+        personal: task_assignments.count,
+        site: try(:site).task_assignments.count.fdiv(site.schools.count),
+        national: TaskAssignment.count.fdiv(School.count)
+      },
+      {
+        id: 'Tasks Completed',
+        personal: task_assignments.completed.count,
+        site: try(:site).task_assignments.completed.count.fdiv(site.schools.count),
+        national: TaskAssignment.completed.count.fdiv(School.count)
+      }
+    ]
+  end
+
 end

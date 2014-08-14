@@ -1,26 +1,32 @@
 class dream.StatsPresenter extends Backbone.View
+  el: '#logbook_stats'
+
   initialize: (args) ->
-    @render()
-    @initViews()
+    @initTab()
     @initCollection()
+    @initViews()
     @listenTo Backbone, 'stats:present', @present
 
-  el: '#logbook_people'
-
-  initViews: ->
-    @views =
-      index: dream.Views.People.IndexView
-      show: dream.Views.People.ShowView
-      edit: dream.Views.People.FormView
-      new: dream.Views.People.FormView
+  initTab: ->
+    @tab = new dream.Views.App.TabView
+      presenter: @
+      parentEl: '#sidebar .tabs'
+      icon: 'pulse'
+      label: 'Stats'
+      url: 'logbook/stats'
 
   initCollection: ->
+    @collection = new dream.Collections.Stats
 
-  present: (view, args) ->
-    Backbone.trigger 'presenter:presenting', 'stats'
+  initViews: ->
+    @index = new dream.Views.Stats.IndexView
+      el: '#logbook_stats'
+      collection: @collection
+
+  present: (url) ->
+    return if @$el.is(':visible')
+    Backbone.trigger 'presenter:presenting', @
+    @index.render()
     @$el.show().siblings().hide()
-    if @views[view]?
-      v = new @views[view]
-      v.render()
-
+    Backbone.trigger('router:update', url) if url?
 
