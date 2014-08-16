@@ -5,6 +5,7 @@
 #= require backbone.syphon
 #= require backbone.dualstorage
 #= require selectize
+#= require date
 #= require_self
 #= require_tree ./templates
 #= require_tree ./models

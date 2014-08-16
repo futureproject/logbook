@@ -1,0 +1,25 @@
+<form class="list-detail panel">
+  <div class="panel-title">
+    <h1>Editing Workshop</h1>
+    <div class="l-menu"><a class='cancel' href="#cancel"">Cancel</a></div>
+    <div class="r-menu">
+    <input name="commit" type="submit" value="Done">
+    </div>
+  </div>
+  <div class="panel-body scrollable pad">
+    <div class="field">
+      <label for="kind">Kind</label>
+      <input id="kind" name="kind" type="text">
+    </div>
+    <div class="field">
+      <label for="date">Date</label>
+      <input id="date" name="date" type="date">
+    </div>
+    <div class="field">
+      <label for="attendee_ids">Attendees</label>
+      <select multiple id="attendee_ids" name="attendee_ids"></select>
+    </div>
+    <hr />
+    <div class='button warning'>Delete</div>
+  </div><!-- panel-body -->
+</form>

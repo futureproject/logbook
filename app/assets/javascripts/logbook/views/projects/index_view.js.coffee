@@ -6,6 +6,7 @@ class dream.Views.Projects.IndexView extends Backbone.View
 
   events:
     'click .new': 'new'
+    'click .refresh': 'refresh'
 
   display: (collection) ->
     @collection = collection
@@ -27,4 +28,8 @@ class dream.Views.Projects.IndexView extends Backbone.View
   new: (e) ->
     e.preventDefault()
     Backbone.trigger 'project:new', @collection
+
+  refresh: (e) ->
+    e.preventDefault()
+    @collection?.refresh()
 

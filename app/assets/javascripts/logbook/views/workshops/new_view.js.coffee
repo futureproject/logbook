@@ -1,12 +1,12 @@
-dream.Views.Projects ||= {}
+dream.Views.Workshops ||= {}
 
-class dream.Views.Projects.NewView extends Backbone.View
+class dream.Views.Workshops.NewView extends Backbone.View
   initialize: (args) ->
-    @listenTo Backbone, 'project:new', @display
-    @listenTo Backbone, 'project:show', @hide
+    @listenTo Backbone, 'workshop:new', @display
+    @listenTo Backbone, 'workshop:show', @hide
 
   className: 'panel list-detail'
-  template: JST['logbook/templates/projects/new']
+  template: JST['logbook/templates/workshops/new']
 
   events:
     'click .cancel': 'cancel'
@@ -14,9 +14,9 @@ class dream.Views.Projects.NewView extends Backbone.View
 
   display: () ->
     return if @$el.is(':visible')
-    @model = new dream.Models.Project
+    @model = new dream.Models.Workshop
     @render()
-    Backbone.trigger 'router:update', "logbook/projects/new"
+    Backbone.trigger 'router:update', "logbook/workshops/new"
     @listenToOnce Backbone, 'peopleCollection:changed', (collection) =>
       $('select').selectize
         options: collection.models.map (model) -> model.selectizeAttrs()
@@ -34,16 +34,16 @@ class dream.Views.Projects.NewView extends Backbone.View
   cancel: (e) ->
     e.preventDefault()
     @hide()
-    Backbone.trigger 'router:update', 'logbook/projects'
+    Backbone.trigger 'router:update', 'logbook/workshops'
 
   done: (e) ->
     e.preventDefault()
     data = Backbone.Syphon.serialize @
-    data.leader_ids = [''] if data.leader_ids == null
-    data.participant_ids = [''] if data.participant_ids == null
+    data.attendee_ids = [''] if data.attendee_ids == null
+    data.date = Date.parse(data.date).toString('yyyy-MM-dd')
     @model.save data,
-      success : (project) =>
-        Backbone.trigger 'project:created', @model
-        Backbone.trigger 'project:show', @model
+      success : (workshop) =>
+        Backbone.trigger 'workshop:created', @model
+        Backbone.trigger 'workshop:show', @model
       error: (e) =>
         console.log e

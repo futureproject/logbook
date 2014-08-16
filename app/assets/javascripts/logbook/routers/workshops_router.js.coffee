@@ -7,13 +7,23 @@ class dream.Routers.WorkshopsRouter extends Backbone.Router
     'logbook/workshops/:id' : 'show'
 
   index: ->
-    Backbone.trigger 'workshops:present', 'index'
+    Backbone.trigger 'workshops:present'
 
   new: ->
-    Backbone.trigger 'workshops:present', 'new'
+    @listenToOnce Backbone, 'workshops:changed', (collection) =>
+      Backbone.trigger 'workshop:new', collection
+    Backbone.trigger 'workshops:present'
 
   edit: (id) ->
-    Backbone.trigger 'workshops:present', 'edit'
+    @listenToOnce Backbone, 'workshops:changed', (collection) =>
+      model = collection.get(id)
+      Backbone.trigger 'workshop:show', model
+      Backbone.trigger 'workshop:edit', model
+    Backbone.trigger 'workshops:present'
 
   show: (id) ->
-    Backbone.trigger 'workshops:present', 'edit'
+    @listenToOnce Backbone, 'workshops:changed', (collection) =>
+      model = collection.get(id)
+      Backbone.trigger 'workshop:show', model
+    Backbone.trigger 'workshops:present'
+

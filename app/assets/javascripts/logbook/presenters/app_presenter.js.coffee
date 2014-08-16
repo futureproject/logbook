@@ -41,6 +41,7 @@ class dream.AppPresenter extends Backbone.View
       stats: new dream.StatsPresenter
       people: new dream.PeoplePresenter
       projects: new dream.ProjectsPresenter
+      workshops: new dream.WorkshopsPresenter
       #task_assignments: new dream.TaskAssignmentsPresenter
       #workshops: new dream.WorkshopsPresenter
 
@@ -49,3 +50,4 @@ class dream.AppPresenter extends Backbone.View
       people: new dream.Routers.StatsRouter({ presenter: @presenters.stats })
       people: new dream.Routers.PeopleRouter({ presenter: @presenters.people })
       projects: new dream.Routers.ProjectsRouter({ presenter: @presenters.projects })
+      workshops: new dream.Routers.WorkshopsRouter({ presenter: @presenters.workshops })

@@ -3,6 +3,7 @@ class Workshop < ActiveRecord::Base
   has_many :workshop_attendees
   has_many :attendees, through: :workshop_attendees, source: :person
   after_create :log_action
+  validates_presence_of :date
 
   def log_action
     Action.create(
