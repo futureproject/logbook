@@ -77,17 +77,9 @@
 
 #new_session {
   width: 100%;
-  display: table;
-  max-width: 480px;
   margin: 4em auto;
   position: relative;
-  left: -4em;
-  > * {
-    display: table-cell;
-    width: 50%;
-    vertical-align: middle;
-    text-align: center;
-  }
+  text-align: center;
   img {
     width: 8em;
     height: 8em;

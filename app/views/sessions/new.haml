@@ -1,5 +1,4 @@
 #new_session
+  .link= button_to 'Log In', '/auth/google_oauth2'
+  %br
   .logo= image_tag asset_path('tfplogo.svg')
-  .link
-    %span.mega-octicon.octicon-terminal
-    = link_to 'Log In', '/auth/google_oauth2', class: 'huge', data: {disable_with: 'Logging in..'}
