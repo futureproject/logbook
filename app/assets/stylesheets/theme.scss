@@ -3,7 +3,7 @@ body {
 }
 #sidebar {
   background-color: $lightest-gray;
-  a { color: $base-border-color; }
+  color: $base-border-color;
   .current {
     color: $blue;
     * { color: $blue; }
