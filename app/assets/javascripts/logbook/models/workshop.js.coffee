@@ -16,7 +16,6 @@ class dream.Collections.Workshops extends Backbone.Collection
   url: '/workshops'
 
   comparator: (workshop) ->
-    console.log workshop.get('date')
     - Date.parse(workshop.get('date'))
 
   broadcast: -> Backbone.trigger 'workshops:changed', @

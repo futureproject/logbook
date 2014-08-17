@@ -23,6 +23,10 @@ class dream.Views.Projects.EditView extends Backbone.View
         valueField: 'id'
         labelField: 'name'
         searchField: ['first_name', 'last_name']
+        sortField: [
+          {"field": "dream_team", "direction": "desc"},
+          {"field": "first_name", "direction": "asc"},
+        ]
       Backbone.Syphon.deserialize @, @model.attributes
       $('option[selected]').attr('selected', 'selected')
     Backbone.trigger 'people:bootstrap'

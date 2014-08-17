@@ -8,7 +8,7 @@ class Api::V1::PeopleController < Api::V1::BaseController
     if params[:q]
       @people = @people.search(params[:q])
     else
-      @people = @people.where(dream_team: true).order(:first_name, :id)
+      @people = @people.order(:dream_team, :first_name, :id).limit(50)
     end
     @people
   end
@@ -63,6 +63,13 @@ class Api::V1::PeopleController < Api::V1::BaseController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def person_params
-      params.require(:person).permit(:first_name, :last_name, :role, :school_id, :grade, :core)
+      params.require(:person).permit(
+        :first_name,
+        :last_name,
+        :role,
+        :school_id,
+        :grade,
+        :dream_team
+      )
     end
 end

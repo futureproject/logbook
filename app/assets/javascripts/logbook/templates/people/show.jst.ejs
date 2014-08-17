@@ -8,24 +8,28 @@
 
   <div class="panel-body scrollable pad">
   <h1><%= first_name %> <%= last_name %></h1>
+  <h6><%= grade%>th grade <%= role %></h6>
+  <hr />
   <ul class="stats">
-  <li class="stat">
-  <h1>0</h1>
-  <span>primary projects</span>
-  </li>
-  <li class="stat">
-  <h1>0</h1>
-  <span>secondary projects</span>
-  </li>
-  <li class="stat">
-  <h1>0</h1>
-  <span>workshops attended</span>
-  </li>
-  <li class="stat">
-  <h1>0.0</h1>
-  <span>hours in one-on-ones</span>
-  </li>
+    <li class="stat">
+    <h1>0</h1>
+    <span>primary projects</span>
+    </li>
+    <li class="stat">
+    <h1>0</h1>
+    <span>secondary projects</span>
+    </li>
+    <li class="stat">
+    <h1>0</h1>
+    <span>workshops attended</span>
+    </li>
+    <li class="stat">
+    <h1>0.0</h1>
+    <span>hours in one-on-ones</span>
+    </li>
   </ul>
+  <hr />
+  <p>Dream Team: <strong><%= dream_team ? "Yes" : "No" %></strong></p>
   <!--
     <hr>
     <h5>One-on-Ones</h5>

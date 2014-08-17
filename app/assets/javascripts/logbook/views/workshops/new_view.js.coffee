@@ -23,6 +23,10 @@ class dream.Views.Workshops.NewView extends Backbone.View
         valueField: 'id'
         labelField: 'name'
         searchField: ['first_name', 'last_name']
+        sortField: [
+          {"field": "dream_team", "direction": "desc"},
+          {"field": "first_name", "direction": "asc"},
+        ]
     Backbone.trigger 'people:bootstrap'
 
   hide: -> @$el.hide()

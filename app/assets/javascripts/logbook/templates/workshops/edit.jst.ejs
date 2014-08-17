@@ -17,7 +17,11 @@
     </div>
     <div class="field">
       <label for="attendee_ids">Attendees</label>
-      <select multiple id="attendee_ids" name="attendee_ids"></select>
+      <select multiple id="attendee_ids" name="attendee_ids">
+      <% for(i=0; i < attendee_ids.length; i++) { %>
+        <option value='<%= attendee_ids[i] %>' selected>name</option>
+      <% } %>
+      </select>
     </div>
     <hr />
     <div class='button warning'>Delete</div>
