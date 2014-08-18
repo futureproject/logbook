@@ -1,11 +1,12 @@
 CACHE MANIFEST
 <%- if Rails.env.production? %>
-#v1
+#v2
 
 CACHE:
 <%= asset_path("application.css") %>
 <%= asset_path("logbook/logbook.js") %>
 <%= asset_path("octicons.woff") %>
+<%= asset_path("tfplogo.svg") %>
 
 <%- else %>
 #v<%= Time.now.to_i/2 %>

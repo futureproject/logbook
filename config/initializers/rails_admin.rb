@@ -49,4 +49,13 @@ RailsAdmin.config do |config|
       field :schools
     end
   end
+  config.model 'User' do
+    edit do
+      field :first_name
+      field :last_name
+      field :auth_token
+      field :avatar_url
+      field :role
+    end
+  end
 end

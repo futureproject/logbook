@@ -14,7 +14,7 @@
   %body#l_logbook
     #app
       #sidebar
-        %img.avatar{src: current_user.avatar}/
+        =image_tag asset_path('tfplogo.svg'), class: 'avatar'
         %ul.tabs
       #canvas
       #flash
