@@ -53,6 +53,7 @@ RailsAdmin.config do |config|
     edit do
       field :first_name
       field :last_name
+      field :email
       field :auth_token
       field :avatar_url
       field :role
