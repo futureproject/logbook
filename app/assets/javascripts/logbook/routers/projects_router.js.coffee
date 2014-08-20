@@ -10,19 +10,19 @@ class dream.Routers.ProjectsRouter extends Backbone.Router
     Backbone.trigger 'projects:present'
 
   new: ->
-    @listenToOnce Backbone, 'projectsCollection:changed', (collection) =>
+    @listenToOnce Backbone, 'projects:changed', (collection) =>
       Backbone.trigger 'project:new', collection
     Backbone.trigger 'projects:present'
 
   edit: (id) ->
-    @listenToOnce Backbone, 'projectsCollection:changed', (collection) =>
+    @listenToOnce Backbone, 'projects:changed', (collection) =>
       model = collection.get(id)
       Backbone.trigger 'project:show', model
       Backbone.trigger 'project:edit', model
     Backbone.trigger 'projects:present'
 
   show: (id) ->
-    @listenToOnce Backbone, 'projectsCollection:changed', (collection) =>
+    @listenToOnce Backbone, 'projects:changed', (collection) =>
       model = collection.get(id)
       Backbone.trigger 'project:show', model
     Backbone.trigger 'projects:present'

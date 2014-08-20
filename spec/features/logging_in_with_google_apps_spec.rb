@@ -8,7 +8,7 @@ feature 'Loogging in with Google Apps' do
   end
 
   def click_login_button
-    click_link "Log In"
+    click_button "Log In"
   end
 
   def should_be_logged_in

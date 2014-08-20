@@ -2,7 +2,7 @@ dream.Views.Projects ||= {}
 
 class dream.Views.Projects.IndexView extends Backbone.View
   initialize: (args) ->
-    @listenTo Backbone, 'projectsCollection:changed', @display
+    @listenTo Backbone, 'projects:changed', @display
 
   events:
     'click .new': 'new'

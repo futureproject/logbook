@@ -15,10 +15,13 @@ class dream.Models.Project extends Backbone.Model
 
 class dream.Collections.Projects extends Backbone.Collection
   initialize: ->
+    @bootstrap()
     @on 'reset', @broadcast
     @listenTo Backbone, 'network:online', @syncDirtyAndDestroyed
     @listenTo Backbone, 'project:created', @addModel
     @listenTo Backbone, 'projects:bootstrap', @bootstrap
+    @listenTo Backbone, 'projects:findByLeaderId', @findByLeaderId
+    @listenTo Backbone, 'projects:findByParticipantId', @findByParticipantId
 
   model: dream.Models.Project
 
@@ -26,7 +29,7 @@ class dream.Collections.Projects extends Backbone.Collection
 
   comparator: (project) -> - project.get('id')
 
-  broadcast: -> Backbone.trigger 'projectsCollection:changed', @
+  broadcast: -> Backbone.trigger 'projects:changed', @
 
   # fetch new data from the server
   # broadcast models if there is new data
@@ -60,3 +63,11 @@ class dream.Collections.Projects extends Backbone.Collection
               remote: true
               success: =>
                 @broadcast()
+
+  findByLeaderId: (id, callback) ->
+    subset = @filter (project) -> _.contains project.get('leader_ids'), id.toString()
+    callback.call(@, subset) if callback?
+
+  findByParticipantId: (id, callback) ->
+    subset = @filter (project) -> _.contains project.get('participant_ids'), id.toString()
+    callback.call(@, subset) if callback?

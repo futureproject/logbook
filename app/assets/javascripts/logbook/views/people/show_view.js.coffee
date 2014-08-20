@@ -20,7 +20,16 @@ class dream.Views.People.ShowView extends Backbone.View
 
   render: ->
     @$el.html( @template @model.toJSON() ).show()
+    @updateCounts()
     return @
+
+  updateCounts: ->
+    Backbone.trigger 'projects:findByLeaderId', @model.get('id'), (projects) =>
+      $('#primary_projects_count').text(projects.length)
+    Backbone.trigger 'projects:findByParticipantId', @model.get('id'), (projects) =>
+      $('#secondary_projects_count').text(projects.length)
+    Backbone.trigger 'workshops:findByAttendeeId', @model.get('id'), (workshops) =>
+      $('#workshops_attended_count').text(workshops.length)
 
   hide: ->
     @$el.hide()

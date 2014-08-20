@@ -6,10 +6,12 @@ class dream.Models.Workshop extends Backbone.Model
 
 class dream.Collections.Workshops extends Backbone.Collection
   initialize: ->
+    @bootstrap()
     @on 'reset', @broadcast
     @listenTo Backbone, 'network:online', @syncDirtyAndDestroyed
     @listenTo Backbone, 'workshop:created', @addModel
     @listenTo Backbone, 'workshops:bootstrap', @bootstrap
+    @listenTo Backbone, 'workshops:findByAttendeeId', @findByAttendeeId
 
   model: dream.Models.Workshop
 
@@ -50,3 +52,7 @@ class dream.Collections.Workshops extends Backbone.Collection
               remote: true
               success: =>
                 @broadcast()
+
+  findByAttendeeId: (id, callback) ->
+    subset = @filter (project) -> _.contains project.get('attendee_ids'), id.toString()
+    callback.call(@, subset) if callback?
