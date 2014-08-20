@@ -6,6 +6,7 @@ class dream.Models.Person extends Backbone.Model
     role: 'student'
     grade: '9'
     dream_team: true
+    notes: ''
     school_id: dream.USER.school.id
 
   validate: (attrs) ->

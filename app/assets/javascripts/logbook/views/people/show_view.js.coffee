@@ -12,6 +12,7 @@ class dream.Views.People.ShowView extends Backbone.View
     'click .edit': (e) ->
       e.preventDefault()
       Backbone.trigger 'person:edit', @model
+    'blur textarea': 'saveNotes'
 
   display: (model) ->
     @model = model
@@ -33,3 +34,7 @@ class dream.Views.People.ShowView extends Backbone.View
 
   hide: ->
     @$el.hide()
+
+  saveNotes: (e) ->
+    @model.save
+      notes: $(e.currentTarget).val()

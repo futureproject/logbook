@@ -69,7 +69,8 @@ class Api::V1::PeopleController < Api::V1::BaseController
         :role,
         :school_id,
         :grade,
-        :dream_team
+        :dream_team,
+        :notes
       )
     end
 end
