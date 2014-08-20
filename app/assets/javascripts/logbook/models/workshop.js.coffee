@@ -54,5 +54,7 @@ class dream.Collections.Workshops extends Backbone.Collection
                 @broadcast()
 
   findByAttendeeId: (id, callback) ->
-    subset = @filter (project) -> _.contains project.get('attendee_ids'), id.toString()
+    subset = @filter (project) ->
+      workshops = _.map project.get('attendee_ids'), (key) -> parseInt(key)
+      _.contains workshops, parseInt(id)
     callback.call(@, subset) if callback?

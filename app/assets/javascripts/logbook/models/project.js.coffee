@@ -65,9 +65,13 @@ class dream.Collections.Projects extends Backbone.Collection
                 @broadcast()
 
   findByLeaderId: (id, callback) ->
-    subset = @filter (project) -> _.contains project.get('leader_ids'), id.toString()
+    subset = @filter (project) ->
+      leaders = _.map project.get('leader_ids'), (key) -> parseInt(key)
+      _.contains leaders, parseInt(id)
     callback.call(@, subset) if callback?
 
   findByParticipantId: (id, callback) ->
-    subset = @filter (project) -> _.contains project.get('participant_ids'), id.toString()
+    subset = @filter (project) ->
+      participants = _.map project.get('participant_ids'), (key) -> parseInt(key)
+      _.contains participants, parseInt(id)
     callback.call(@, subset) if callback?
