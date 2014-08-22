@@ -6,6 +6,7 @@ class dream.Views.Stats.IndexView extends Backbone.View
 
   events:
     'click .refresh' : 'refresh'
+    'click .update' : 'update'
 
   display: (collection) ->
     @collection = collection
@@ -27,4 +28,23 @@ class dream.Views.Stats.IndexView extends Backbone.View
   refresh: (e) ->
     e.preventDefault()
     @collection.refresh()
+
+  update: ->
+    return unless navigator.onLine
+    fetches = 0
+    _.each dream.presenter.presenters, (pres) ->
+      console.log pres.collection
+      pres.collection.fetch
+        reset: true,
+        remote: true
+        success: =>
+          fetches += 1
+          if fetches == _.size dream.presenter.presenters
+            try
+              applicationCache.swapCache()
+              location.reload()
+            catch
+              # nothing
+        error: =>
+          location.href = '/'
 

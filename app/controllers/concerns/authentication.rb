@@ -9,8 +9,15 @@ module Authentication
     if current_user.present?
       true
     else
-      store_location
-      redirect_to main_app.new_session_path
+      respond_to do |format|
+        format.html do
+          store_location
+          redirect_to main_app.new_session_path
+        end
+        format.json do
+          render status: 403
+        end
+      end
     end
   end
 
