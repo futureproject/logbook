@@ -25,6 +25,9 @@ class dream.AppPresenter extends Backbone.View
       jqXHR.withCredentials = true
       console.log options.url
 
+    $(document).ajaxError (event, request, c) ->
+      location.href = '/' if request.status == 403
+
   tweakUI: ->
     $(document).on('click', 'a', (e) ->
       if (navigator.standalone)

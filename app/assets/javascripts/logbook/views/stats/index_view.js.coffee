@@ -31,20 +31,23 @@ class dream.Views.Stats.IndexView extends Backbone.View
 
   update: ->
     return unless navigator.onLine
-    fetches = 0
-    _.each dream.presenter.presenters, (pres) ->
-      console.log pres.collection
-      pres.collection.fetch
-        reset: true,
-        remote: true
-        success: =>
-          fetches += 1
-          if fetches == _.size dream.presenter.presenters
-            try
-              applicationCache.swapCache()
-              location.reload()
-            catch
-              # nothing
-        error: =>
-          location.href = '/'
+    if applicationCache.status == 4
+      if confirm("There's a new version available. Would you like to update now?")
+        applicationCache.swapCache()
+        location.reload()
+    else
+      alert "You're up to date!"
+
+    #_.each dream.presenter.presenters, (pres) ->
+    #  pres.collection.fetch
+    #    reset: true,
+    #    remote: true
+    #    success: =>
+    #      fetches += 1
+    #      if fetches == _.size dream.presenter.presenters
+    #        try
+    #          applicationcache.swapcache()
+    #          location.reload()
+    #        catch
+    #          # nothing
 
