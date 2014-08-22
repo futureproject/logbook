@@ -32,6 +32,7 @@ Rails.application.routes.draw do
       resources :people
       resources :projects
       resources :workshops
+      resources :one_on_ones
       resources :stats, only: [:index]
     end
   end

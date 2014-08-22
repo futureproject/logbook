@@ -7,56 +7,60 @@
   </div>
 
   <div class="panel-body scrollable pad">
-  <h1><%= first_name %> <%= last_name %></h1>
-  <h6><%= grade%>th grade <%= role %></h6>
-  <hr />
-  <h6>Notes:</h6>
-  <textarea id='person_notes'><%= notes %></textarea>
-  <hr />
-  <ul class="stats">
-    <li class="stat">
-    <h1 id='primary_projects_count'>0</h1>
-    <span>primary projects</span>
-    </li>
-    <li class="stat">
-    <h1 id='secondary_projects_count'>0</h1>
-    <span>secondary projects</span>
-    </li>
-    <li class="stat">
-    <h1 id='workshops_attended_count'>0</h1>
-    <span>workshops attended</span>
-    </li>
-    <li class="stat">
-    <h1>0.0</h1>
-    <span>hours in one-on-ones</span>
-    </li>
-  </ul>
-  <hr />
-  <p>Dream Team: <strong><%= dream_team ? "Yes" : "No" %></strong></p>
-  <!--
-    <hr>
-    <h5>One-on-Ones</h5>
-    <form accept-charset="UTF-8" action="/logbook/one_on_ones" class="quick_add" id="new_one_on_one" method="post"><div style="display:none"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="7CQHmC2WNx/rqrkU9XiweAtlppKfdyQgpldSHpaVcs4="></div><div class="quick_primary_inputs">
-    <input id="one_on_one_note" name="one_on_one[note]" placeholder="New..." type="text">
-    <input id="one_on_one_person_id" name="one_on_one[person_id]" type="hidden" value="23">
-    <input id="one_on_one_school_id" name="one_on_one[school_id]" type="hidden" value="1">
-    <input id="one_on_one_date" name="one_on_one[date]" type="hidden" value="2014-08-02">
-    </div>
-    <div class="quick_secondary_inputs">
-    <label for="one_on_one_duration">It lasted:</label>
-    <select id="one_on_one_duration" name="one_on_one[duration]"><option value="0.25">15 minutes</option>
-    <option value="0.5">30 minutes</option>
-    <option value="1">1 hour</option>
-    <option value="1.5">1.5 hours</option>
-    <option value="2.0">2 hours</option>
-    <option value="3.0">3 hours</option></select>
-    <input name="commit" type="submit" value="Log It">
-    </div>
-    <ul class="one_on_ones">
+    <h1><%= first_name %> <%= last_name %></h1>
+    <h6><%= grade%>th grade<%= dream_team ? " Dream Team " : " " %><%= role %></h6>
+    <hr />
+    <h6>Notes:</h6>
+    <textarea id='person_notes'><%= notes %></textarea>
+    <ul class="stats">
+      <li class="stat">
+      <h1 id='primary_projects_count'>0</h1>
+      <span>primary projects</span>
+      </li>
+      <li class="stat">
+      <h1 id='secondary_projects_count'>0</h1>
+      <span>secondary projects</span>
+      </li>
+      <li class="stat">
+      <h1 id='workshops_attended_count'>0</h1>
+      <span>workshops attended</span>
+      </li>
+      <li class="stat">
+      <h1 id='hours_coached'>0.0</h1>
+      <span>hours in one-on-ones</span>
+      </li>
     </ul>
+    <hr />
+    <h5>New One-on-One</h5>
+    <form class="quick_add" id="new_one_on_one" method="post">
+      <div class="quick_primary_inputs">
+        <input id="one_on_one_note" name="note" placeholder="Description (kept private - only you see this)" type="text" />
+      </div>
+      <div class="quick_secondary_inputs">
+        <input name='date' type='date' value='<%= new Date().toString('yyyy-MM-dd') %>' />
+        <label for="one_on_one_duration">for</label>
+        <select id="one_on_one_duration" name="duration">
+          <option value="0.25">15 mins</option>
+          <option value="0.5">30 mins</option>
+          <option value="1">1 hr</option>
+          <option value="1.5">1.5 hrs</option>
+          <option value="2.0">2 hrs</option>
+          <option value="3.0">3 hrs</option>
+        </select>
+        <input name="commit" type="submit" value="Log It">
+      </div>
     </form>
-  -->
-
-  </div>
-
+    <table class='one_on_ones'>
+      <colgroup>
+        <col>
+        <col>
+        <col>
+      </colgroup>
+      <tr>
+        <th>Date</th>
+        <th>Hours</th>
+        <th>Note</th>
+      </tr>
+    </table>
+  </div><!-- panel-body -->
 </div>

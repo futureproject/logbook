@@ -33,4 +33,18 @@ feature 'Logbook people' do
     expect(page).to have_content 'Richard'
   end
 
+  scenario 'making a note', js: true do
+    visit "/logbook/people/#{Person.first.id}"
+    fill_in 'person_notes', with: 'Fights crime at night'
+    first('.list-item').click()
+    expect(first('textarea').text).to eq 'Fights crime at night'
+  end
+
+  scenario 'adding a one-on-one', js: true do
+    visit "/logbook/people/#{Person.first.id}"
+    fill_in 'one_on_one_note', with: 'We talked about crime-fighting'
+    click_button 'Log It'
+    expect(page).to have_content 'We talked about crime-fighting'
+  end
+
 end

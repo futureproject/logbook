@@ -2,7 +2,7 @@ class dream.Models.Workshop extends Backbone.Model
   urlRoot: '/workshops'
   defaults: ->
     school_id: dream.USER.school.id
-    kind: ''
+    kind: 'Dream Team Meeting'
 
 class dream.Collections.Workshops extends Backbone.Collection
   initialize: ->

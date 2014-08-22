@@ -1,7 +1,7 @@
 class OneOnOne < ActiveRecord::Base
   belongs_to :person
   belongs_to :school
-  default_scope -> { order('date DESC, id DESC') }
+  before_create :set_date
   after_create :log_action
   DURATION_ENUM = [
     ["15 minutes", 0.25],
@@ -23,5 +23,9 @@ class OneOnOne < ActiveRecord::Base
       interesting: true,
       school_id: person.school_id
     )
+  end
+
+  def set_date
+    self.date = Date.today if self.date.blank?
   end
 end

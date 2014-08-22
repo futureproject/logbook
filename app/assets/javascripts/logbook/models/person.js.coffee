@@ -8,6 +8,7 @@ class dream.Models.Person extends Backbone.Model
     dream_team: true
     notes: ''
     school_id: dream.USER.school.id
+    one_on_ones: []
 
   validate: (attrs) ->
     return 'Name me!' if !attrs.first_name? || !attrs.last_name?

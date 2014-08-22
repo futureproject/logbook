@@ -175,6 +175,7 @@ a[rel=next] {
 
 .stats {
   @include outer-container;
+  margin-top: -1.9%;
 }
 .stat {
   @include span_columns(6);
@@ -205,10 +206,17 @@ a[rel=next] {
   border-bottom-left-radius: $base-border-radius;
   @include clearfix;
   padding-left: 12px;
+  white-space: nowrap;
   label, select, input {
     display: inline-block;
     margin: .5em 0 0;
     line-height: 1.5;
+    font-size: .8em;
+  }
+  input[type=date] {
+    width: 140px;
+    padding: 0;
+    line-height: 1;
   }
   input[type=submit] {
     float: right;
@@ -219,16 +227,12 @@ a[rel=next] {
   }
 }
 
-.one_on_one {
-  @include outer_container;
-  margin: 1em 0;
-  .one_on_one_date {
-    @include span_columns(3);
-    line-height: 1;
+.one_on_ones {
+  col {
+    width: 15%;
   }
-  .one_on_one_note {
-    @include span_columns(9);
-  line-height: 1.2;
+  col:last-child {
+    width: 70%;
   }
 }
 

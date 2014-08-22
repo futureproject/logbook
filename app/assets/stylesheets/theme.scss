@@ -128,10 +128,8 @@ fieldset {
 }
 
 #person_notes {
-  border: none;
-  padding: 0 1em 0 0;
+  border: 1px solid $light-green;
   font-size: .9em;
   line-height: 1.2;
-  height: 4.2em;
-  margin-bottom: 0;
+  height: 5em;
 }

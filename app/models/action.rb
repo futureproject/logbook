@@ -1,6 +1,6 @@
 class Action < ActiveRecord::Base
-  belongs_to :subject, polymorphic: true, dependent: :destroy
-  belongs_to :actor, polymorphic: true, dependent: :destroy
+  belongs_to :subject, polymorphic: true
+  belongs_to :actor, polymorphic: true
   belongs_to :school
   default_scope -> { order('day DESC') }
   scope :interesting, -> { where(interesting: true) }
