@@ -9,9 +9,7 @@
   <div class="panel-body scrollable pad">
     <h1><%= first_name %> <%= last_name %></h1>
     <h6><%= grade%>th grade<%= dream_team ? " Dream Team " : " " %><%= role %></h6>
-    <hr />
-    <h6>Notes:</h6>
-    <textarea id='person_notes'><%= notes %></textarea>
+    <textarea id='person_notes' placeholder='Notes'><%= notes %></textarea>
     <ul class="stats">
       <li class="stat">
       <h1 id='primary_projects_count'>0</h1>
