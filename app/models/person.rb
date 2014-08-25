@@ -31,4 +31,15 @@ class Person < ActiveRecord::Base
     school.dream_director
   end
 
+
+  # takes a CSV from the public directory and a User object
+  # imports students into the system
+  def self.import_from_csv(filename, dream_director)
+    CSV.foreach("#{Rails.root.to_s}/public/#{filename}", headers: true) do |row|
+      p = Person.create!(row.to_hash.merge(school_id: dream_director.school_id))
+    end
+  end
+
+
+
 end

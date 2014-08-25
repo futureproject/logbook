@@ -8,7 +8,7 @@ class Api::V1::PeopleController < Api::V1::BaseController
     if params[:q]
       @people = @people.search(params[:q])
     else
-      @people = @people.order(:dream_team, :first_name, :id).limit(50)
+      @people = @people.order(:dream_team, :first_name, :id)
     end
     @people
   end
