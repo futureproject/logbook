@@ -38,9 +38,11 @@ class dream.Collections.People extends Backbone.Collection
 
   url: '/people'
 
-  comparator: (person) -> person.get('first_name')
+  comparator: (person) -> [-person.get('dream_team'), person.get('first_name')]
 
-  broadcast: -> Backbone.trigger 'peopleCollection:changed', @
+  broadcast: ->
+    @sifter = new Sifter @models.map (model) -> model.selectizeAttrs()
+    Backbone.trigger 'peopleCollection:changed', @
 
   # fetch new data from the server
   # broadcast models if there is new data

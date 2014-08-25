@@ -334,3 +334,44 @@ a[rel=next] {
     font-size: 12px;
   }
 }
+
+.list-searchable {
+  position: relative;
+  select { display: none; }
+  .selectize-input {
+    border: 1px solid $base-border-color;
+  }
+  .selectize-control {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    margin-bottom: 0;
+  }
+  .selectize-control.single {
+    .selectize-input { border: none; }
+    .selectize-input:after { display: none !important; }
+    .selectize-dropdown {
+      height: 100%;
+      width: 100% !important;
+      border: none;
+      box-shadow: none;
+    }
+    .selectize-dropdown-content {
+      max-height: 100%;
+    }
+  }
+}
+
+.list-search {
+  position: relative;
+  .clear {
+    position: absolute;
+    top: 4px;
+    right: 0;
+    padding: 1em;
+    background: $light-gray;
+    display: none;
+  }
+}

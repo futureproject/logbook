@@ -56,6 +56,15 @@ body {
   }
 }
 
+.list-search {
+  background: $base-border-color;
+  padding: 8px;
+  input {
+    border: none;
+    margin: 0;
+  }
+}
+
 .detail-toolbar {
   font-weight: bold;
 }
