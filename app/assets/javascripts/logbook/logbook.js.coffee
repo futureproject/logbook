@@ -4,7 +4,9 @@
 #= require backbone-min
 #= require backbone.syphon
 #= require backbone.dualstorage
+#= require fastclick
 #= require selectize
+#= require selectize-fast-click
 #= require date
 #= require_self
 #= require_tree ./templates
@@ -19,6 +21,10 @@ window.dream =
   Collections: {}
   Routers: {}
   initialize: (data) ->
+    $(document).on('touchmove', (e) ->
+      e.preventDefault()
+    )
+    FastClick.attach(document.body)
     @USER = data.current_user
     @environment = data.environment
     @presenter = new dream.AppPresenter(@)

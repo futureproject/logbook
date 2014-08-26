@@ -22,6 +22,7 @@ class dream.Views.Workshops.NewView extends Backbone.View
         options: collection.models.map (model) -> model.selectizeAttrs()
         valueField: 'id'
         labelField: 'name'
+        plugins: ['fast-click']
         searchField: ['first_name', 'last_name']
         sortField: [
           {"field": "dream_team", "direction": "desc"},
