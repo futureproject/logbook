@@ -64,6 +64,9 @@ gem 'geocoder'
 gem 'dalli'
 gem 'memcachier'
 
+# performance monitoring
+gem 'newrelic_rpm'
+
 # ejs javascript templates
 gem 'ejs'
 
