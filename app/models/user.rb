@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   has_many :tasks
   has_many :task_assignments, foreign_key: 'assignee_id'
   has_many :actions, as: :subject
+  has_many :reports, through: :people
 
   ROLE_ENUM = %w(dream_director captain)
 

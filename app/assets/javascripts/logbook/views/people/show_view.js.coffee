@@ -13,7 +13,22 @@ class dream.Views.People.ShowView extends Backbone.View
       e.preventDefault()
       Backbone.trigger 'person:edit', @model
     'blur #person_notes': 'saveNotes'
+    'click .show-new-report': ->
+      @$el.find('#new_report').show()
+      @$el.find('nav').hide()
+    'click .show-new-testimonial': ->
+      @$el.find('#new_testimonial').show()
+      @$el.find('nav').hide()
+    'click .show-new-one-on-one': ->
+      @$el.find('#new_one_on_one').show()
+      @$el.find('nav').hide()
+    'click input[type=reset]': (e) ->
+      $t = $(e.currentTarget)
+      $t.closest('form').hide()
+      @$el.find('nav').show()
+
     'submit #new_one_on_one': 'logOneOnOne'
+    'submit #new_report' : 'logReport'
 
   display: (model) ->
     @model = model
@@ -23,7 +38,7 @@ class dream.Views.People.ShowView extends Backbone.View
   render: ->
     @$el.html( @template @model.toJSON() ).show()
     @updateCounts()
-    @showLogs()
+    #@showLogs()
     return @
 
   updateCounts: ->
@@ -61,4 +76,10 @@ class dream.Views.People.ShowView extends Backbone.View
     o = new dream.Models.OneOnOne(data)
     Backbone.trigger 'one_on_ones:add', o
     @render()
+
+  logReport: (e) ->
+    e.preventDefault()
+    data = Backbone.Syphon.serialize e.currentTarget
+    data.person_id = @model.get('id')
+    Backbone.trigger 'reports:add', data
 

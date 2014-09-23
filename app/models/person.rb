@@ -9,6 +9,8 @@ class Person < ActiveRecord::Base
   has_many :workshop_attendees
   has_many :workshops, through: :workshop_attendees
   has_many :actions, as: :actor
+  has_many :reports
+  has_many :testimonials
   ROLE_ENUM = %w(student teacher)
 
   scope :search, lambda {|n|
