@@ -3,19 +3,19 @@
 */
 @import 'bourbon';
 @import 'base/base';
-@import 'neat';
 
-$max-width: em(1280px);
-$gutter: em(40px);
+* {
+  @include box-sizing(border-box);
+}
 
 #l-public {
-  margin: 0;
+  margin: 85px 0 0;
   padding: 0;
-  @include outer-container;
 }
 
 p {
   font-family: 'Minion Pro', Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;
+  margin-bottom: $gutter*2;
 }
 
 figure {
@@ -25,37 +25,56 @@ figcaption {
   @extend p;
   font-style: italic;
   color: $medium-gray;
+  font-size: em(12px);
+  padding-top: 8px;
 }
 
 .project-header {
   color: $base-background-color;
-  background-color: $dark-blue;
+  background-color: $dark-gray;
+  background-size: cover;
+  background-position: center center;
   padding: $gutter;
   margin: 0 auto;
-  @include row();
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  box-shadow: inset 0 -40px 40px rgba(0,0,0,.333);
   h1 {
-    font-weight: 400;
+    font-weight: 100;
     text-transform: uppercase;
     margin: 0;
-    @include span-columns(10);
+    text-shadow: 0 0 1em black;
   }
 }
 
 .project-tags {
-  padding-left: $gutter;
-  @include span-columns(2);
+  position: absolute;
+  top: $gutter;
+  right: $gutter;
+  img {
+    height: $gutter*2;
+    margin-left: $gutter;
+  }
 }
 
 .project-overview {
-  @include span-columns(4);
-  padding: $gutter;
+  position: fixed;
+  top: 85px;
+  bottom: 0;
+  left: 0;
+  width: 33%;
+  padding: $gutter*2 $gutter $gutter;
 }
 
 .project-description {
-  margin-bottom: $gutter;
 }
 
 .project-personnel {
+  position: absolute;
+  bottom: $gutter;
+  left: $gutter;
   font-size: em(12px);
   * { font-size: 1em; }
   h3, ul {
@@ -66,30 +85,39 @@ figcaption {
   }
 }
 
-.project-story {
-  @include span-columns(8);
-  @include row();
-  @include omega;
+.project-name {
+  font-size: 1em;
+  text-transform: uppercase;
+  margin: $gutter*2 0;
 }
 
-.project-story-content {
-  padding: $gutter;
-  @include span-columns(6 of 8);
+.project-story {
+  margin-left: 33%;
+  width: 50%;
+  padding: $gutter*2 0;
+  img {
+    width: 100%;
+    display: block;
+  }
 }
 
 .project-story-nav {
-  margin-top: $gutter;
+  position: fixed;
+  top: 85px;
+  right: 0;
+  padding: $gutter*2 $gutter $gutter;
+  width: 17%;
   a {
     display: block;
-    line-height: 3;
     color: $light-gray;
     text-transform: uppercase;
     font-weight: 600;
     font-size: em(12px);
-    &.is-active {
+    line-height: 1;
+    padding: 0 0 $gutter;
+    &.is-active, &:hover {
       color: $medium-gray;
     }
   }
-  @include span-columns(2 of 8);
 }
 
