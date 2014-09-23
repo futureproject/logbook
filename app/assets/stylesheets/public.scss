@@ -85,11 +85,6 @@ figcaption {
   }
 }
 
-.project-name {
-  font-size: 1em;
-  text-transform: uppercase;
-  margin: $gutter*2 0;
-}
 
 .project-story {
   margin-left: 33%;
@@ -98,6 +93,11 @@ figcaption {
   img {
     width: 100%;
     display: block;
+  }
+  h3 {
+    font-size: 1em;
+    text-transform: uppercase;
+    padding: $gutter*2 0;
   }
 }
 
