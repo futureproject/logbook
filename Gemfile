@@ -76,6 +76,9 @@ gem 'fastclick-rails'
 # pagination
 gem 'kaminari'
 
+# markdown!
+gem 'redcarpet'
+
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
   gem 'dotenv-rails'

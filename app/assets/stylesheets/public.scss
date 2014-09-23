@@ -1,0 +1,95 @@
+/*
+= require octicons
+*/
+@import 'bourbon';
+@import 'base/base';
+@import 'neat';
+
+$max-width: em(1280px);
+$gutter: em(40px);
+
+#l-public {
+  margin: 0;
+  padding: 0;
+  @include outer-container;
+}
+
+p {
+  font-family: 'Minion Pro', Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;
+}
+
+figure {
+  margin: 0 0 $gutter;
+}
+figcaption {
+  @extend p;
+  font-style: italic;
+  color: $medium-gray;
+}
+
+.project-header {
+  color: $base-background-color;
+  background-color: $dark-blue;
+  padding: $gutter;
+  margin: 0 auto;
+  @include row();
+  h1 {
+    font-weight: 400;
+    text-transform: uppercase;
+    margin: 0;
+    @include span-columns(10);
+  }
+}
+
+.project-tags {
+  padding-left: $gutter;
+  @include span-columns(2);
+}
+
+.project-overview {
+  @include span-columns(4);
+  padding: $gutter;
+}
+
+.project-description {
+  margin-bottom: $gutter;
+}
+
+.project-personnel {
+  font-size: em(12px);
+  * { font-size: 1em; }
+  h3, ul {
+    text-transform: uppercase;
+  }
+  ul {
+    margin-bottom: $gutter;
+  }
+}
+
+.project-story {
+  @include span-columns(8);
+  @include row();
+  @include omega;
+}
+
+.project-story-content {
+  padding: $gutter;
+  @include span-columns(6 of 8);
+}
+
+.project-story-nav {
+  margin-top: $gutter;
+  a {
+    display: block;
+    line-height: 3;
+    color: $light-gray;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: em(12px);
+    &.is-active {
+      color: $medium-gray;
+    }
+  }
+  @include span-columns(2 of 8);
+}
+

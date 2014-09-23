@@ -24,6 +24,8 @@ Rails.application.routes.draw do
   get 'auth/logout', to: 'sessions#destroy', as: :log_out
   match 'auth/:provider/callback' => 'sessions#create', via: [:post, :get]
 
+  get 'portfolio', to: 'portfolios#demo'
+
   namespace :api do
     namespace :v1 do
       resources :users do
