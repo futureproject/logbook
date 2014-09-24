@@ -2,6 +2,7 @@ class dream.Routers.PeopleRouter extends Backbone.Router
   initialize: (args) ->
     @presenter = args.presenter
     @listenTo Backbone, 'router:update', @updateRoute
+    @listenTo Backbone, 'people:link', @link
 
   updateRoute: (route) -> @navigate(route)
 
@@ -32,3 +33,5 @@ class dream.Routers.PeopleRouter extends Backbone.Router
       Backbone.trigger 'person:show', model
     Backbone.trigger 'people:present'
 
+  link: (url) ->
+    @navigate url, { trigger: true }

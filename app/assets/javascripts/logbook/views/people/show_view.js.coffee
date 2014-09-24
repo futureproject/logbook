@@ -41,6 +41,10 @@ class dream.Views.People.ShowView extends Backbone.View
         $nav.show()
       )
 
+    'click .project': (e) ->
+      id = e.currentTarget.getAttribute('data-id')
+      Backbone.trigger 'projects:link', "/logbook/projects/#{id}"
+
   display: (model) ->
     @model = model
     @render()

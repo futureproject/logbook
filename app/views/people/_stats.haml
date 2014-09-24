@@ -1,2 +1,22 @@
-%ul.stats
-  %li.stat 0
+.person-primary-projects
+  %h6= "Leading #{pluralize @person.primary_projects.count, 'Project'}"
+  -@person.primary_projects.each do |p|
+    .project{data: {id: p.id}}=p.name
+.person-secondary-projects
+  %h6= "Participating in #{pluralize @person.secondary_projects.count, 'Project'}"
+.person-reports
+  %h6 Your Reports
+  -@person.reports.each do |r|
+    .person-reference
+      %p=r.content
+      %p=r.created_at.strftime "%D"
+
+.person-testimonials
+  %h6 Teacher Testimonials
+  -@person.testimonials.each do |t|
+    .person-reference
+      %p=t.content
+      %p=t.source
+      %p=t.created_at.strftime "%D"
+
+/insert student generated content here

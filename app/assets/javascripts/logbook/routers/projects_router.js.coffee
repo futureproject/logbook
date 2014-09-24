@@ -1,4 +1,6 @@
 class dream.Routers.ProjectsRouter extends Backbone.Router
+  initialize: ->
+    @listenTo Backbone, 'projects:link', @link
 
   routes:
     'logbook/projects': 'index'
@@ -27,3 +29,6 @@ class dream.Routers.ProjectsRouter extends Backbone.Router
       Backbone.trigger 'project:show', model
     Backbone.trigger 'projects:present'
 
+
+  link: (url) ->
+    @navigate url, { trigger: true }

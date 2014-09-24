@@ -8,7 +8,8 @@ class dream.Models.OneOnOne extends Backbone.Model
 
 class dream.Collections.OneOnOnes extends Backbone.Collection
   initialize: ->
-    @bootstrap()
+    #@bootstrap()
+    @fetch { remote: false }
     @listenTo Backbone, 'network:online', @syncDirtyAndDestroyed
     @listenTo Backbone, 'one_on_ones:add', @addOne
     @listenTo Backbone, 'one_on_ones:findByPersonId', @findByPersonId
