@@ -359,3 +359,7 @@ a[rel=next] {
     line-height: 34px;
   }
 }
+
+.person-actions {
+  .notice, form { display: none; }
+}

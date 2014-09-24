@@ -31,11 +31,14 @@ Rails.application.routes.draw do
       resources :users do
         get 'stats', on: :member
       end
-      resources :people
+      resources :people do
+        get 'stats', on: :member
+      end
       resources :projects
       resources :workshops
       resources :one_on_ones
       resources :reports
+      resources :testimonials
       resources :stats, only: [:index]
     end
   end

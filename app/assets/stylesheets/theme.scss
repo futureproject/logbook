@@ -109,6 +109,8 @@ fieldset {
   font-size: .5em;
   text-transform: uppercase;
   line-height: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .activity_day {
   border-bottom: 1px solid $base-border-color;

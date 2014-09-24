@@ -3,7 +3,7 @@ class dream.Models.Report extends Backbone.Model
 
 class dream.Collections.Reports extends Backbone.Collection
   initialize: ->
-    @fetch { remote: true }
+    @fetch { remote: false }
     @listenTo Backbone, 'network:online', @syncDirtyAndDestroyed
     @listenTo Backbone, 'reports:add', @addOne
 

@@ -104,18 +104,6 @@ class User < ActiveRecord::Base
         personal: workshop_attendees.count,
         site: try(:site).average(:workshop_attendees),
         national: National.average(:workshops)
-      },
-      {
-        id: 'Tasks Assigned',
-        personal: task_assignments.count,
-        site: try(:site).task_assignments.count.fdiv(site.schools.count),
-        national: TaskAssignment.count.fdiv(School.count)
-      },
-      {
-        id: 'Tasks Completed',
-        personal: task_assignments.completed.count,
-        site: try(:site).task_assignments.completed.count.fdiv(site.schools.count),
-        national: TaskAssignment.completed.count.fdiv(School.count)
       }
     ]
   end

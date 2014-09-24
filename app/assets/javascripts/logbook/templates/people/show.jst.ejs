@@ -14,14 +14,22 @@
       <nav>
         <h6>Add a new:</h6>
         <button class='show-new-report'>Report</button>
-        <!--<button class='show-new-testimonial'>Testimonial</button>-->
-        <button class='show-new-one-on-one'>One-on-one</button>
+        <button class='show-new-testimonial'>Testimonial</button>
+        <button class='show-new-one-on-one'>1:1</button>
       </nav>
       <form id="new_report" method="post">
         <h6>New Report</h6>
-        <textarea id="report_content" name="content" placeholder="50-200 words"></textarea>
+        <textarea required id="report_content" name="content" placeholder="50-200 words"></textarea>
         <input type="reset" value="Cancel">
         <input name="commit" type="submit" value="Submit Report">
+      </form>
+      <form id="new_testimonial" method="post">
+        <h6>New Teacher Testimonial</h6>
+        <textarea required id="report_content" name="content" placeholder="50-200 words"></textarea>
+        <label>Source</label>
+        <input required type="text" name="source" placeholder="(Teacher's name)">
+        <input type="reset" value="Cancel">
+        <input name="commit" type="submit" value="Save Testimonial">
       </form>
       <form id="new_one_on_one" method="post">
         <h6>One-on-One Description</h6>
@@ -40,37 +48,11 @@
         <input type="reset" value="Cancel">
         <input name="commit" type="submit" value="Log It">
       </form>
+      <div class='notice success'>Saved!</div>
     </div>
     <hr>
-    <table class='one_on_ones'>
-      <colgroup>
-        <col>
-        <col>
-        <col>
-      </colgroup>
-      <tr>
-        <th>Date</th>
-        <th>Hours</th>
-        <th>Note</th>
-      </tr>
-    </table>
-    <ul class="stats">
-      <li class="stat">
-      <h1 id='primary_projects_count'>0</h1>
-      <span>primary projects</span>
-      </li>
-      <li class="stat">
-      <h1 id='secondary_projects_count'>0</h1>
-      <span>secondary projects</span>
-      </li>
-      <li class="stat">
-      <h1 id='workshops_attended_count'>0</h1>
-      <span>workshops attended</span>
-      </li>
-      <li class="stat">
-      <h1 id='hours_coached'>0.0</h1>
-      <span>hours in one-on-ones</span>
-      </li>
-    </ul>
+    <div id='person-stats'>
+      <p>Connect to the internet to see more information about <%= first_name %></p>.
+    </div>
   </div><!-- panel-body -->
 </div>

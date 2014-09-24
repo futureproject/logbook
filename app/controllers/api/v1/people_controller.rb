@@ -1,5 +1,5 @@
 class Api::V1::PeopleController < Api::V1::BaseController
-  before_action :set_person, only: [:show, :edit, :update, :destroy]
+  before_action :set_person, only: [:show, :edit, :update, :destroy, :stats]
 
   # GET /api/v1/people
   # GET /api/v1/people.json
@@ -16,6 +16,10 @@ class Api::V1::PeopleController < Api::V1::BaseController
   # GET /api/v1/people/1
   # GET /api/v1/people/1.json
   def show
+  end
+
+  def stats
+    render partial: 'people/stats'
   end
 
   # GET /api/v1/people/new

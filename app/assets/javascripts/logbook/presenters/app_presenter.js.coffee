@@ -46,9 +46,9 @@ class dream.AppPresenter extends Backbone.View
       projects: new dream.ProjectsPresenter
       workshops: new dream.WorkshopsPresenter
       #task_assignments: new dream.TaskAssignmentsPresenter
-      #workshops: new dream.WorkshopsPresenter
       one_on_ones: new dream.OneOnOnesPresenter
       reports: new dream.ReportsPresenter
+      testimonials: new dream.TestimonialsPresenter
 
   initRouters: ->
     @routers =
