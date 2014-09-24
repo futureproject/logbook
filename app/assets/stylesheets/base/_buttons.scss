@@ -10,7 +10,13 @@ button, input[type="submit"], input[type=reset], .button {
     background: $error-color;
     color: white;
   }
-  &[type=reset] {
+  &[type=reset], &.info {
     background: $light-yellow;
+  }
+  &.highlight {
+    background: $dark-blue;
+  }
+  &[type=reset], &.success {
+    background: $light-green;
   }
 }

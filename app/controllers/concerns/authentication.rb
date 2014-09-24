@@ -5,7 +5,7 @@ module Authentication
     self.send :helper_method, :current_user
   end
 
-  def authenticate!
+  def authorize!
     if current_user.present?
       true
     else
@@ -32,7 +32,7 @@ module Authentication
   def current_user
     token = ENV['DANGEROUS_AUTH_HACK'] || cookies[:auth_token]
     if token
-      User.find_by(auth_token: token)
+      User.find_by(auth_token: token) || Person.find_by(auth_token: token)
     else
       nil
     end

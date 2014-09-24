@@ -26,4 +26,10 @@ class OauthUserCreator
       return user
     end
   end
+
+  class Facebook
+    def self.find_or_create_from_auth(auth_hash)
+      puts "MAAAAAAARK!!!!"
+    end
+  end
 end

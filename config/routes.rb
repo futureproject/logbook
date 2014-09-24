@@ -34,6 +34,7 @@ Rails.application.routes.draw do
       resources :people do
         get 'stats', on: :member
       end
+      resources :schools
       resources :projects
       resources :workshops
       resources :one_on_ones

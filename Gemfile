@@ -44,9 +44,10 @@ gem 'aws-sdk'
 # Simple file attatchments
 gem 'paperclip', github: 'thoughtbot/paperclip'
 
-# Google Apps authentication
+# Oauth stuff, e.g. Google Apps and Facebook
 gem 'oauth'
 gem 'omniauth-google-oauth2'
+gem 'omniauth-facebook'
 
 # haml for views
 gem "haml-rails"
