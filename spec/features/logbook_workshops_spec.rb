@@ -1,5 +1,5 @@
 require 'spec_helper'
-feature 'Logbook people' do
+feature 'Logbook workshops' do
   before do
     mock_sign_in
   end
@@ -7,7 +7,7 @@ feature 'Logbook people' do
   scenario 'adding', js: true do
     visit '/logbook/workshops'
     first('a.new').click()
-    fill_in 'kind', with: 'Crime-Fighting Lesson'
+    all('input[type=text]')[0].set("Crime-Fighting Lesson\n")
     fill_in 'date', with: 'tomorrow'
     all('input[type=text]')[1].set("Dick Grayson\n")
     all('input[type=text]')[1].set("Tim Drake\n")

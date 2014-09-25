@@ -19,5 +19,20 @@
       <label for="attendee_ids">Attendees</label>
       <select multiple id="attendee_ids" name="attendee_ids"></select>
     </div>
+    <div class="field">
+      <label for="duration">Duration</label>
+        <select id="workshop_duration" name="duration">
+          <option value="0.25">15 Minutes</option>
+          <option value="0.5">30 Minutes</option>
+          <option selected value="1">1 Hour</option>
+          <option value="1.5">1.5 Hours</option>
+          <option value="2.0">2 Hours</option>
+          <option value="3.0">3+ Hours</option>
+        </select>
+    </div>
+    <div class="field">
+      <label>Notes</label>
+      <textarea name="notes" id="workshop_notes"></textarea>
+    </div>
   </div><!-- panel-body -->
 </form>

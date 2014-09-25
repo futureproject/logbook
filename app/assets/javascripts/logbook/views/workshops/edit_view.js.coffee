@@ -18,7 +18,7 @@ class dream.Views.Workshops.EditView extends Backbone.View
     @render()
     Backbone.trigger 'router:update', "logbook/workshops/#{@model.get('id')}/edit"
     @listenToOnce Backbone, 'peopleCollection:changed', (collection) =>
-      $('select').selectize
+      $('#attendee_ids').selectize
         options: collection.models.map (model) -> model.selectizeAttrs()
         valueField: 'id'
         labelField: 'name'

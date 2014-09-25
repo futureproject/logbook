@@ -1,5 +1,5 @@
 class Api::V1::WorkshopsController < Api::V1::BaseController
-  wrap_parameters format: [:json], include: [:attendee_ids, :date, :kind, :school_id]
+  wrap_parameters format: [:json], include: [:attendee_ids, :date, :kind, :school_id, :notes, :duration]
   before_action :set_workshop, only: [:show, :edit, :update, :destroy]
 
   # GET /api/v1/workshops
@@ -62,6 +62,8 @@ class Api::V1::WorkshopsController < Api::V1::BaseController
         :kind,
         :date,
         :school_id,
+        :duration,
+        :notes,
         attendee_ids: []
       )
     end

@@ -25,7 +25,7 @@ class dream.Views.Workshops.NewView extends Backbone.View
       create: (input) -> { name: input }
     Backbone.trigger 'router:update', "logbook/workshops/new"
     @listenToOnce Backbone, 'peopleCollection:changed', (collection) =>
-      $('select').selectize
+      $('#attendee_ids').selectize
         options: collection.models.map (model) -> model.selectizeAttrs()
         valueField: 'id'
         labelField: 'name'
