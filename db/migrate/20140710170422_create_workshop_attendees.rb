@@ -1,7 +1,7 @@
-class CreateWorkshopAttendees < ActiveRecord::Migration
+class CreateEngagementAttendees < ActiveRecord::Migration
   def change
-    create_table :workshop_attendees do |t|
-      t.integer :workshop_id
+    create_table :engagement_attendees do |t|
+      t.integer :engagement_id
       t.integer :person_id
 
       t.timestamps

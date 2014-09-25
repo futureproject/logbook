@@ -40,16 +40,16 @@
         %td= National.average(:one_on_ones, :duration)
       %tr
         %td
-          %h6 Workshops
-        %td= current_user.workshops.count
-        %td= current_user.site.average(:workshops) if current_user.site
-        %td= National.average(:workshops)
+          %h6 Engagements
+        %td= current_user.engagements.count
+        %td= current_user.site.average(:engagements) if current_user.site
+        %td= National.average(:engagements)
       %tr
         %td
           %h6 Chairs Filled
-        %td= current_user.workshop_attendees.count
-        %td= current_user.site.average(:workshop_attendees) if current_user.site
-        %td= National.average(:workshops)
+        %td= current_user.engagement_attendees.count
+        %td= current_user.site.average(:engagement_attendees) if current_user.site
+        %td= National.average(:engagements)
       %tr
         %td
           %h6 Tasks Assigned

@@ -6,8 +6,8 @@ class Person < ActiveRecord::Base
   has_many :primary_projects, through: :project_leaders, source: :project
   has_many :secondary_projects, through: :project_participants, source: :project
   has_many :one_on_ones
-  has_many :workshop_attendees
-  has_many :workshops, through: :workshop_attendees
+  has_many :engagement_attendees
+  has_many :engagements, through: :engagement_attendees
   has_many :actions, as: :actor
   has_many :reports
   has_many :testimonials

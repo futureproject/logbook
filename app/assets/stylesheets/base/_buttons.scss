@@ -10,7 +10,7 @@ button, input[type="submit"], input[type=reset], .button {
     background: $error-color;
     color: white;
   }
-  &[type=reset], &.info {
+  &.student-visible, &.info {
     background: $light-yellow;
   }
   &.highlight {

@@ -1,0 +1,15 @@
+#engagements_list.list
+  .list-title
+    %h1 Engagements
+    .r-menu=link_to "New", new_logbook_engagement_path
+  .list-body.scrollable
+    -@engagements.each do |engagement|
+      %a.list-item{href: logbook_engagement_path(engagement)}
+        .list-item-graphic
+          .calendar_date
+            .calendar_date_month=engagement.date.strftime("%b")
+            .calendar_date_day=engagement.date.strftime("%d")
+        .list-item-label= engagement.kind
+    = link_to_next_page @engagements, 'Load More'
+
+#engagements_detail.panel.list-detail

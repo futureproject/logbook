@@ -19,13 +19,13 @@ feature 'Captains viewing activity' do
     should_see_one_on_one
   end
 
-  scenario 'after creating a workshop' do
-    visit logbook_workshops_path
+  scenario 'after creating a engagement' do
+    visit logbook_engagements_path
     click_link 'New'
-    select 'Tim Drake', from: 'workshop_attendee_ids'
+    select 'Tim Drake', from: 'engagement_attendee_ids'
     click_button 'Done'
     visit cic_root_url
-    expect(page).to have_content 'workshop'
+    expect(page).to have_content 'engagement'
   end
 
   scenario 'after creating a project' do

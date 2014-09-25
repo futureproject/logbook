@@ -5,8 +5,8 @@ class User < ActiveRecord::Base
 
   has_many :people, through: :school
   has_many :projects, through: :school
-  has_many :workshops, through: :school
-  has_many :workshop_attendees, through: :workshops
+  has_many :engagements, through: :school
+  has_many :engagement_attendees, through: :engagements
   has_many :one_on_ones, through: :school
   has_many :tasks
   has_many :task_assignments, foreign_key: 'assignee_id'
@@ -94,16 +94,16 @@ class User < ActiveRecord::Base
         national: National.average(:one_on_ones, :duration).round(2)
       },
       {
-        id: 'Workshops',
-        personal: workshops.count,
-        site: try(:site).average(:workshops),
-        national: National.average(:workshops)
+        id: 'Engagements',
+        personal: engagements.count,
+        site: try(:site).average(:engagements),
+        national: National.average(:engagements)
       },
       {
         id: 'Chairs Filled',
-        personal: workshop_attendees.count,
-        site: try(:site).average(:workshop_attendees),
-        national: National.average(:workshops)
+        personal: engagement_attendees.count,
+        site: try(:site).average(:engagement_attendees),
+        national: National.average(:engagements)
       }
     ]
   end

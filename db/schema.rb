@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140925000642) do
+ActiveRecord::Schema.define(version: 20140925171634) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,23 @@ ActiveRecord::Schema.define(version: 20140925000642) do
     t.integer  "actor_id"
     t.string   "actor_type"
     t.date     "day"
+  end
+
+  create_table "engagement_attendees", force: true do |t|
+    t.integer  "engagement_id"
+    t.integer  "person_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "engagements", force: true do |t|
+    t.date     "date"
+    t.integer  "school_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "kind"
+    t.float    "duration"
+    t.text     "notes"
   end
 
   create_table "go_redirects", force: true do |t|
@@ -97,6 +114,13 @@ ActiveRecord::Schema.define(version: 20140925000642) do
     t.datetime "updated_at"
   end
 
+  create_table "reflections", force: true do |t|
+    t.text     "content"
+    t.integer  "person_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "reports", force: true do |t|
     t.text     "content"
     t.integer  "person_id"
@@ -160,23 +184,6 @@ ActiveRecord::Schema.define(version: 20140925000642) do
     t.string   "role"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "workshop_attendees", force: true do |t|
-    t.integer  "workshop_id"
-    t.integer  "person_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "workshops", force: true do |t|
-    t.date     "date"
-    t.integer  "school_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "kind"
-    t.float    "duration"
-    t.text     "notes"
   end
 
 end

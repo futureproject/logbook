@@ -36,9 +36,10 @@ Rails.application.routes.draw do
       end
       resources :schools
       resources :projects
-      resources :workshops
+      resources :engagements
       resources :one_on_ones
       resources :reports
+      resources :reflections
       resources :testimonials
       resources :stats, only: [:index]
     end
@@ -55,7 +56,7 @@ Rails.application.routes.draw do
     resources :stats
     resources :tasks
     resources :schools
-    resources :workshops
+    resources :engagements
     resources :people
     resources :projects
     resources :one_on_ones

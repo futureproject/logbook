@@ -21,8 +21,8 @@ class dream.Views.People.ShowView extends Backbone.View
     'click .show-new-testimonial': ->
       @$el.find('#new_testimonial').show()
       @$el.find('nav').hide()
-    'click .show-new-one-on-one': ->
-      @$el.find('#new_one_on_one').show()
+    'click .show-new-reflection': ->
+      @$el.find('#new_reflection').show()
       @$el.find('nav').hide()
     'click input[type=reset]': (e) ->
       e.preventDefault()
@@ -30,12 +30,12 @@ class dream.Views.People.ShowView extends Backbone.View
       $t.closest('form').hide()
       @$el.find('nav').show()
 
-    'submit #new_one_on_one': 'logOneOnOne'
+    'submit #new_reflection': 'logReflection'
     'submit #new_report' : 'logReport'
     'submit #new_testimonial' : 'logTestimonial'
     'submit form': (e) ->
+      e.currentTarget?.reset()
       $nav = @$el.find('nav')
-      console.log $nav
       @$el.find('.person-actions form').hide()
       $('.person-actions').find('.success').show().delay(2000).fadeOut( ->
         $nav.show()
@@ -68,14 +68,11 @@ class dream.Views.People.ShowView extends Backbone.View
     @model.save
       notes: $(e.currentTarget).val()
 
-  logOneOnOne: (e) ->
+  logReflection: (e) ->
     e.preventDefault()
     data = Backbone.Syphon.serialize e.currentTarget
     data.person_id = @model.get('id')
-    data.school_id = dream.USER.school.id
-    data.date = Date.parse(data.date).toString('yyyy-MM-dd')
-    o = new dream.Models.OneOnOne(data)
-    Backbone.trigger 'one_on_ones:add', o
+    Backbone.trigger 'reflections:add', data
 
   logReport: (e) ->
     e.preventDefault()

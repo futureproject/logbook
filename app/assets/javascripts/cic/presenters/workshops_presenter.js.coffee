@@ -1,16 +1,16 @@
-class dream.WorkshopsPresenter extends Backbone.View
+class dream.EngagementsPresenter extends Backbone.View
   initialize: ->
     @initRouter()
     @initViews()
     @initCollection()
-    @listenTo Backbone, 'workshops:present', @present
+    @listenTo Backbone, 'engagements:present', @present
 
-  initRouter: -> @router = new dream.Routers.WorkshopsRouter
+  initRouter: -> @router = new dream.Routers.EngagementsRouter
   initViews: ->
     @views =
-      index: dream.Views.Workshops.IndexView
-      edit: dream.Views.Workshops.FormView
-      new: dream.Views.Workshops.FormView
+      index: dream.Views.Engagements.IndexView
+      edit: dream.Views.Engagements.FormView
+      new: dream.Views.Engagements.FormView
 
   initCollection: ->
 

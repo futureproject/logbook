@@ -1,0 +1,15 @@
+dick_in_combat:
+  person: dick
+  engagement: combat_training
+
+tim_in_combat:
+  person: tim
+  engagement: combat_training
+
+dick_in_ethics:
+  person: dick
+  engagement: ethics
+
+tim_in_ethics:
+  person: tim
+  engagement: ethics

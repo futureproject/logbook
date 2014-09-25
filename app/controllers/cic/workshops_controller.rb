@@ -1,75 +1,75 @@
-class Cic::WorkshopsController < Cic::ApplicationController
-  before_action :set_workshop, only: [:show, :edit, :update, :destroy]
+class Cic::EngagementsController < Cic::ApplicationController
+  before_action :set_engagement, only: [:show, :edit, :update, :destroy]
 
-  # GET /workshops
-  # GET /workshops.json
+  # GET /engagements
+  # GET /engagements.json
   def index
-    @workshops = current_user.workshops.page(params[:page])
+    @engagements = current_user.engagements.page(params[:page])
   end
 
-  # GET /workshops/1
-  # GET /workshops/1.json
+  # GET /engagements/1
+  # GET /engagements/1.json
   def show
   end
 
-  # GET /workshops/new
+  # GET /engagements/new
   def new
-    @workshop = Workshop.new
+    @engagement = Engagement.new
   end
 
-  # GET /workshops/1/edit
+  # GET /engagements/1/edit
   def edit
   end
 
-  # POST /workshops
-  # POST /workshops.json
+  # POST /engagements
+  # POST /engagements.json
   def create
-    @workshop = Workshop.new(workshop_params)
+    @engagement = Engagement.new(engagement_params)
 
     respond_to do |format|
-      if @workshop.save
-        format.html { redirect_to [:logbook, @workshop], notice: 'Workshop was successfully created.' }
-        format.json { render :show, status: :created, location: @workshop }
+      if @engagement.save
+        format.html { redirect_to [:logbook, @engagement], notice: 'Engagement was successfully created.' }
+        format.json { render :show, status: :created, location: @engagement }
       else
         format.html { render :new }
-        format.json { render json: @workshop.errors, status: :unprocessable_entity }
+        format.json { render json: @engagement.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PATCH/PUT /workshops/1
-  # PATCH/PUT /workshops/1.json
+  # PATCH/PUT /engagements/1
+  # PATCH/PUT /engagements/1.json
   def update
     respond_to do |format|
-      if @workshop.update(workshop_params)
-        format.html { redirect_to [:logbook, @workshop], notice: 'Workshop was successfully updated.' }
-        format.json { render :show, status: :ok, location: @workshop }
+      if @engagement.update(engagement_params)
+        format.html { redirect_to [:logbook, @engagement], notice: 'Engagement was successfully updated.' }
+        format.json { render :show, status: :ok, location: @engagement }
       else
         format.html { render :edit }
-        format.json { render json: @workshop.errors, status: :unprocessable_entity }
+        format.json { render json: @engagement.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /workshops/1
-  # DELETE /workshops/1.json
+  # DELETE /engagements/1
+  # DELETE /engagements/1.json
   def destroy
-    @workshop.destroy
+    @engagement.destroy
     respond_to do |format|
-      format.html { redirect_to logbook_workshops_url, notice: 'Workshop was successfully destroyed.' }
+      format.html { redirect_to logbook_engagements_url, notice: 'Engagement was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_workshop
-      @workshop = Workshop.find(params[:id])
+    def set_engagement
+      @engagement = Engagement.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def workshop_params
-      params.require(:workshop).permit(
+    def engagement_params
+      params.require(:engagement).permit(
         :kind,
         :date,
         :school_id,

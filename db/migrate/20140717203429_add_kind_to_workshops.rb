@@ -1,5 +1,5 @@
-class AddKindToWorkshops < ActiveRecord::Migration
+class AddKindToEngagements < ActiveRecord::Migration
   def change
-    add_column :workshops, :kind, :string
+    add_column :engagements, :kind, :string
   end
 end

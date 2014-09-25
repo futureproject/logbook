@@ -12,41 +12,30 @@
     <textarea id='person_notes' placeholder='Notes'><%= notes %></textarea>
     <div class='person-actions'>
       <nav>
-        <h6>Add a new:</h6>
-        <button class='show-new-report'>Report</button>
-        <button class='show-new-testimonial'>Testimonial</button>
-        <button class='show-new-one-on-one'>1:1</button>
+        <h6>Add a new (student-visible!):</h6>
+        <button class='show-new-report'><span class='octicon octicon-pencil'></span> DD Report</button>
+        <button class='show-new-testimonial'><span class='octicon octicon-quote'></span> Testimonial</button>
+        <button class='show-new-reflection'><span class='octicon octicon-person'></span> Reflection</button>
       </nav>
       <form id="new_report" method="post">
-        <h6>New Report</h6>
+        <h6>New DD Report <span class='alert'>Student-visible!</span></h6>
         <textarea required id="report_content" name="content" placeholder="50-200 words"></textarea>
         <input type="reset" value="Cancel">
-        <input name="commit" type="submit" value="Submit Report">
+        <input class='student-visible' name="commit" type="submit" value="Submit Report">
       </form>
       <form id="new_testimonial" method="post">
-        <h6>New Teacher Testimonial</h6>
+        <h6>New Teacher Testimonial<span class='alert'>Student-visible!</span></h6>
         <textarea required id="report_content" name="content" placeholder="50-200 words"></textarea>
         <label>Source</label>
         <input required type="text" name="source" placeholder="(Teacher's name)">
         <input type="reset" value="Cancel">
-        <input name="commit" type="submit" value="Save Testimonial">
+        <input class='student-visible' name="commit" type="submit" value="Save Testimonial">
       </form>
-      <form id="new_one_on_one" method="post">
-        <h6>One-on-One Description</h6>
-        <textarea id="one_on_one_note" name="note" placeholder="(kept private - only you see this)"></textarea>
-        <label>Date</label>
-        <input name='date' type='date' value='<%= new Date().toString('yyyy-MM-dd') %>' />
-        <label for="one_on_one_duration">Duration</label>
-        <select id="one_on_one_duration" name="duration">
-          <option value="0.25">15 mins</option>
-          <option value="0.5">30 mins</option>
-          <option value="1">1 hr</option>
-          <option value="1.5">1.5 hrs</option>
-          <option value="2.0">2 hrs</option>
-          <option value="3.0">3 hrs</option>
-        </select>
+      <form id="new_reflection" method="post">
+        <h6>New Student Reflection<span class='alert'>Student-visible!</span></h6>
+        <textarea required id="reflection_content" name="content" placeholder="50-200 words"></textarea>
         <input type="reset" value="Cancel">
-        <input name="commit" type="submit" value="Log It">
+        <input class='student-visible' name="commit" type="submit" value="Submit Reflection">
       </form>
       <div class='notice success'>Saved!</div>
     </div>

@@ -37,11 +37,11 @@
                 %td Project Leaders
                 %td= school.project_leaders.count
               %tr
-                %td Workshops
-                %td= school.workshops.count
+                %td Engagements
+                %td= school.engagements.count
               %tr
                 %td Chairs Filled
-                %td= school.workshop_attendees.count
+                %td= school.engagement_attendees.count
               %tr
                 %td Time Coaching
                 %td= school.one_on_ones.sum(:duration).to_s

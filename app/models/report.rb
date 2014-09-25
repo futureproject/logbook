@@ -1,4 +1,4 @@
 class Report < ActiveRecord::Base
   belongs_to :person
-  validates_presence_of :content
+  validates_presence_of :content, :person_id
 end

@@ -1,6 +1,6 @@
-class AddNotesAndDurationToWorkshops < ActiveRecord::Migration
+class AddNotesAndDurationToEngagements < ActiveRecord::Migration
   def change
-    add_column :workshops, :duration, :float
-    add_column :workshops, :notes, :text
+    add_column :engagements, :duration, :float
+    add_column :engagements, :notes, :text
   end
 end

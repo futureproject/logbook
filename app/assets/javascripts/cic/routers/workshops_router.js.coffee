@@ -1,19 +1,19 @@
-class dream.Routers.WorkshopsRouter extends Backbone.Router
+class dream.Routers.EngagementsRouter extends Backbone.Router
 
   routes:
-    'logbook/workshops': 'index'
-    'logbook/workshops/new' : 'new'
-    'logbook/workshops/:id/edit' : 'edit'
-    'logbook/workshops/:id' : 'show'
+    'logbook/engagements': 'index'
+    'logbook/engagements/new' : 'new'
+    'logbook/engagements/:id/edit' : 'edit'
+    'logbook/engagements/:id' : 'show'
 
   index: ->
-    Backbone.trigger 'workshops:present', 'index'
+    Backbone.trigger 'engagements:present', 'index'
 
   new: ->
-    Backbone.trigger 'workshops:present', 'new'
+    Backbone.trigger 'engagements:present', 'new'
 
   edit: (id) ->
-    Backbone.trigger 'workshops:present', 'edit'
+    Backbone.trigger 'engagements:present', 'edit'
 
   show: (id) ->
-    Backbone.trigger 'workshops:present', 'edit'
+    Backbone.trigger 'engagements:present', 'edit'

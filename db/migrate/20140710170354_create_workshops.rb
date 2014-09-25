@@ -1,6 +1,6 @@
-class CreateWorkshops < ActiveRecord::Migration
+class CreateEngagements < ActiveRecord::Migration
   def change
-    create_table :workshops do |t|
+    create_table :engagements do |t|
       t.date :date
       t.integer :school_id
 

@@ -13,8 +13,8 @@
         %h1= @person.secondary_projects.count
         %span= "secondary #{'project'.pluralize(@person.secondary_projects.count)}"
       %li.stat
-        %h1= @person.workshops.count
-        %span= "#{'workshop'.pluralize(@person.workshops.count)} attended"
+        %h1= @person.engagements.count
+        %span= "#{'engagement'.pluralize(@person.engagements.count)} attended"
       %li.stat
         %h1= @person.one_on_ones.sum(:duration).to_s
         %span hours in one-on-ones

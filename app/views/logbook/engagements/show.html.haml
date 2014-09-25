@@ -1,0 +1,11 @@
+#engagements_detail.panel.list-detail
+  .panel-title
+    %h1 Showing Engagement
+    .l-menu= link_to "Back", logbook_engagements_path
+    .r-menu= link_to "Edit", edit_logbook_engagement_path(@engagement)
+  .panel-body.scrollable.pad
+    %h1= @engagement.date.strftime("%D")
+    %h3 Attendees:
+    =@engagement.attendees.pluck(:first_name).join ", "
+
+#engagements_list.list

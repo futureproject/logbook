@@ -16,7 +16,7 @@ class dream.AppPresenter extends Backbone.View
       <div id="logbook_tasks" class="tab_target"></div>
       <div id="logbook_people" class="tab_target"></div>
       <div id="logbook_projects" class="tab_target"></div>
-      <div id="logbook_workshops" class="tab_target"></div>
+      <div id="logbook_engagements" class="tab_target"></div>
     ')
 
   prepAjax: ->
@@ -44,18 +44,19 @@ class dream.AppPresenter extends Backbone.View
       stats: new dream.StatsPresenter
       people: new dream.PeoplePresenter
       projects: new dream.ProjectsPresenter
-      workshops: new dream.WorkshopsPresenter
+      engagements: new dream.EngagementsPresenter
       #task_assignments: new dream.TaskAssignmentsPresenter
       one_on_ones: new dream.OneOnOnesPresenter
       reports: new dream.ReportsPresenter
       testimonials: new dream.TestimonialsPresenter
+      reflections: new dream.ReflectionsPresenter
 
   initRouters: ->
     @routers =
       people: new dream.Routers.StatsRouter({ presenter: @presenters.stats })
       people: new dream.Routers.PeopleRouter({ presenter: @presenters.people })
       projects: new dream.Routers.ProjectsRouter({ presenter: @presenters.projects })
-      workshops: new dream.Routers.WorkshopsRouter({ presenter: @presenters.workshops })
+      engagements: new dream.Routers.EngagementsRouter({ presenter: @presenters.engagements })
 
   events:
     'touchstart .scrollable' : 'fixScrollBounce'

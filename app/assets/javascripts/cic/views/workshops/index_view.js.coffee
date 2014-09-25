@@ -1,4 +1,4 @@
-dream.Views.Workshops ||= {}
+dream.Views.Engagements ||= {}
 
-class dream.Views.Workshops.IndexView extends Backbone.View
+class dream.Views.Engagements.IndexView extends Backbone.View
   initialize: () ->

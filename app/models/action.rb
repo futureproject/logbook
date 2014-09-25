@@ -13,11 +13,11 @@ class Action < ActiveRecord::Base
       subject.try(:task).action
     when "OneOnOne" then
       "it lasted #{subject.duration} #{'hour'.pluralize(subject.duration)}."
-    when "Workshop" then
+    when "Engagement" then
       subject.attendees.map{|a| a.first_name}.join(", ")
     when "Project" then
       subject.name
-    when "WorkshopAttendee" then
+    when "EngagementAttendee" then
       subject.name
     else
       nil
