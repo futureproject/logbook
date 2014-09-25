@@ -11,6 +11,7 @@ class Person < ActiveRecord::Base
   has_many :actions, as: :actor
   has_many :reports
   has_many :testimonials
+  has_many :student_reflections, class_name: "Reflection"
   ROLE_ENUM = %w(student teacher)
 
   scope :search, lambda {|n|
@@ -33,6 +34,9 @@ class Person < ActiveRecord::Base
     school.dream_director
   end
 
+  def logged_hours
+    engagements.sum(:duration).to_i
+  end
 
   # takes a CSV from the public directory and a User object
   # imports students into the system
@@ -41,7 +45,5 @@ class Person < ActiveRecord::Base
       p = Person.create!(row.to_hash.merge(school_id: dream_director.school_id))
     end
   end
-
-
 
 end

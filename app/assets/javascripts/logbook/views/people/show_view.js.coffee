@@ -24,7 +24,7 @@ class dream.Views.People.ShowView extends Backbone.View
     'click .show-new-reflection': ->
       @$el.find('#new_reflection').show()
       @$el.find('nav').hide()
-    'click input[type=reset]': (e) ->
+    'click .cancel': (e) ->
       e.preventDefault()
       $t = $(e.currentTarget)
       $t.closest('form').hide()
@@ -44,6 +44,9 @@ class dream.Views.People.ShowView extends Backbone.View
     'click .project': (e) ->
       id = e.currentTarget.getAttribute('data-id')
       Backbone.trigger 'projects:link', "/logbook/projects/#{id}"
+
+    'click .accordion-heading': (e) ->
+      $(e.currentTarget).closest('.accordion-bar').toggleClass('is-active').siblings().removeClass('is-active')
 
   display: (model) ->
     @model = model

@@ -11,6 +11,7 @@ class dream.AppPresenter extends Backbone.View
   el: '#canvas'
 
   render: ->
+    $('body').addClass('standalone') if navigator.standalone
     @$el.html('
       <div id="logbook_stats" class="tab_target"></div>
       <div id="logbook_tasks" class="tab_target"></div>

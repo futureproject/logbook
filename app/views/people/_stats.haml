@@ -1,22 +1,42 @@
 .person-primary-projects
   %h6= "Leading #{pluralize @person.primary_projects.count, 'Project'}"
   -@person.primary_projects.each do |p|
-    .project{data: {id: p.id}}=p.name
+    %span.project.needsclick{data: {id: p.id}}=p.name
 .person-secondary-projects
-  %h6= "Participating in #{pluralize @person.secondary_projects.count, 'Project'}"
-.person-reports
-  %h6 Your Reports
-  -@person.reports.each do |r|
-    .person-reference
-      %p=r.content
-      %p=r.created_at.strftime "%D"
+  %h6= "Supporting #{pluralize @person.secondary_projects.count, 'Project'}"
+  -@person.secondary_projects.each do |p|
+    %span.project.needsclick{data: {id: p.id}}=p.name
 
-.person-testimonials
-  %h6 Teacher Testimonials
-  -@person.testimonials.each do |t|
-    .person-reference
-      %p=t.content
-      %p=t.source
-      %p=t.created_at.strftime "%D"
+.accordion
+  .accordion-bar.person-reports
+    %h6.accordion-heading= pluralize @person.reports.count, 'DD Report'
+    %table
+      -@person.reports.each do |r|
+        %tr.person-reference
+          %td=r.created_at.strftime "%b %d"
+          %td=r.content
 
-/insert student generated content here
+  .accordion-bar.person-testimonials
+    %h6.accordion-heading= pluralize @person.testimonials.count, 'Teacher Testimonial'
+    %table
+      -@person.testimonials.each do |t|
+        %tr.person-reference
+          %td=t.content
+          %td=t.source
+
+  .accordion-bar.person-reflections
+    %h6.accordion-heading= pluralize @person.student_reflections.count, 'Student Reflection'
+    %table
+      -@person.student_reflections.each do |r|
+        %tr.person-reflection
+          %td=r.created_at.strftime "%b %d"
+          %td=r.content
+
+  .accordion-bar.person-engagements
+    %h6.accordion-heading= "#{pluralize(@person.logged_hours, 'Hour')} in Engagements"
+    %table
+      -@person.engagements.each do |e|
+        %tr.person-enagement
+          %td= e.date.strftime "%b %d"
+          %td= e.kind
+          %td= e.notes

@@ -15,4 +15,7 @@ input[type=checkbox], input[type=radio] {
   @include transform(scale(2));
   margin: 0 10px 0 10px;
 }
+textarea {
+  -webkit-appearance: none;
+}
 

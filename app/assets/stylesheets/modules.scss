@@ -368,3 +368,41 @@ a[rel=next] {
   }
   .notice, form { display: none; }
 }
+
+.accordion {
+  margin: $gutter auto;
+}
+.accordion-bar {
+  cursor: pointer;
+  background: $light-gray;
+  margin-bottom: 1px;
+  padding: 0 $gutter;
+  @include transition;
+  table {
+    display: none;
+    line-height: 1;
+    padding: 0 $gutter;
+    margin: 0 0 $gutter;
+  }
+  &.is-active {
+    background: white;
+    table {
+      display: table;
+    }
+  }
+  td {
+    vertical-align: top;
+  }
+  td:first-child {
+    width: 5em;
+    overflow: hidden;
+    white-spacing: nowrap;
+  }
+  tr:last-child {
+    td { border: none; }
+  }
+}
+.accordion-heading {
+  padding: $gutter 0;
+  cursor: pointer;
+}

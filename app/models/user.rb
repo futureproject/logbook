@@ -82,22 +82,16 @@ class User < ActiveRecord::Base
         national: National.average(:project_participants)
       },
       {
-        id: 'One-on-Ones',
-        personal: one_on_ones.count,
-        site: try(:site).average(:one_on_ones),
-        national: National.average(:one_on_ones)
-      },
-      {
-        id: 'Time Coaching',
-        personal: one_on_ones.sum(:duration).to_s,
-        site: try(:site).average(:one_on_ones, :duration).round(2),
-        national: National.average(:one_on_ones, :duration).round(2)
-      },
-      {
         id: 'Engagements',
         personal: engagements.count,
         site: try(:site).average(:engagements),
         national: National.average(:engagements)
+      },
+      {
+        id: 'Engagement Hours',
+        personal: engagements.sum(:duration).to_s,
+        site: try(:site).average(:engagements, :duration).round(2),
+        national: National.average(:engagements, :duration).round(2)
       },
       {
         id: 'Chairs Filled',

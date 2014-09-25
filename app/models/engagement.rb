@@ -2,7 +2,7 @@ class Engagement < ActiveRecord::Base
   belongs_to :school
   has_many :engagement_attendees
   has_many :attendees, through: :engagement_attendees, source: :person
-  after_create :log_action
+  #after_create :log_action
   validates_presence_of :date
 
   def log_action
