@@ -9,12 +9,23 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
-  # You can have the root of your site routed with "root"
   constraints(:subdomain => /go/) do
     namespace :go, path: '/' do
       root to: 'redirects#index'
       resources :redirects
       get '/*shortcut', to: 'redirects#redirect'
+    end
+  end
+
+  constraints(:subdomain => /my/) do
+    namespace :my, path: '/' do
+      root 'application#home'
+      resources :sessions, only: [:new, :create]
+      resources :people
+      resources :identities
+      get 'register', to: 'identities#register', as: :register
+      match 'auth/:provider/callback' => 'sessions#create', via: [:post, :get]
+      get 'auth/logout', to: 'sessions#destroy', as: :log_out
     end
   end
 

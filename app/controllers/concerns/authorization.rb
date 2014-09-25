@@ -1,10 +1,11 @@
-module Authentication
+module Authorization
   extend ActiveSupport::Concern
 
   included do
     self.send :helper_method, :current_user
   end
 
+  #allow TFP staff through
   def authorize!
     if current_user.present?
       true
@@ -32,7 +33,7 @@ module Authentication
   def current_user
     token = ENV['DANGEROUS_AUTH_HACK'] || cookies[:auth_token]
     if token
-      User.find_by(auth_token: token) || Person.find_by(auth_token: token)
+      User.find_by(auth_token: token)
     else
       nil
     end
