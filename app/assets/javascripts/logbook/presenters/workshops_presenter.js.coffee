@@ -23,8 +23,8 @@ class dream.WorkshopsPresenter extends Backbone.View
     @tab = new dream.Views.App.TabView
       presenter: @
       parentEl: '#sidebar .tabs'
-      icon: 'podium'
-      label: 'Workshops'
+      icon: 'pulse'
+      label: 'Engagements'
       url: 'logbook/workshops'
 
   initCollection: ->

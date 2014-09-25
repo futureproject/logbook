@@ -11,7 +11,7 @@ class dream.StatsPresenter extends Backbone.View
     @tab = new dream.Views.App.TabView
       presenter: @
       parentEl: '#sidebar .tabs'
-      icon: 'pulse'
+      icon: 'graph'
       label: 'Stats'
       url: 'logbook/stats'
 

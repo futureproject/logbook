@@ -16,6 +16,13 @@ class dream.Views.Workshops.NewView extends Backbone.View
     return if @$el.is(':visible')
     @model = new dream.Models.Workshop
     @render()
+    $('#kind').selectize
+      delimeter: ','
+      options: [{name: 'Coaching Session'}, {name: 'Workshop'}, {name:'Event'}]
+      valueField: 'name'
+      labelField: 'name'
+      maxItems: 1
+      create: (input) -> { name: input }
     Backbone.trigger 'router:update', "logbook/workshops/new"
     @listenToOnce Backbone, 'peopleCollection:changed', (collection) =>
       $('select').selectize
