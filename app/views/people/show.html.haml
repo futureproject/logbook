@@ -1,11 +1,11 @@
 #notice= flash[:notice]
 .person
   %h1= @person.name
-  .person-projects
+  .person-projects.section
     %header
       Projects
-      =link_to "New", new_project_path
-    .person-primary-projects
+      =link_to "New", new_project_path if @person == current_user
+    .person-primary-projects.section
       - if @person.primary_projects.any?
         %h6 Project Lead
         = render @person.primary_projects
@@ -14,10 +14,10 @@
       - if @person.secondary_projects.any?
         %h6 Project Team
         = render @person.secondary_projects
-  .person-about
+  .person-about.section
     %header
       About
-      =link_to "Edit", edit_person_path(@person)
+      =link_to "Edit", edit_person_path(@person) if @person == current_user
     .person-details
       %p.person-school
         %strong School:
@@ -33,12 +33,12 @@
       :markdown
         #{@person.about}
 
-  .person-reflections
+  .person-reflections.section
     %header Reflections
     = render @person.student_reflections
-  .person-reports
+  .person-reports.section
     %header Dream Director Reports
     = render @person.reports
-  .person-testimonials
+  .person-testimonials.section
     %header Testimonials
     = render @person.testimonials

@@ -25,7 +25,7 @@ class ProjectsController < ApplicationController
   # POST /my/projects
   # POST /my/projects.json
   def create
-    @project = Project.new(project_params)
+    @project = Project.new(project_params.merge(school_id: current_user.school_id, leader_ids: [current_user.id]))
 
     respond_to do |format|
       if @project.save

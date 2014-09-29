@@ -44,6 +44,8 @@ input {
 
 .person {
   overflow: auto;
+}
+.section {
   header {
     padding: .4em;
     margin-bottom: .4em;
@@ -57,12 +59,13 @@ input {
       right: .4em;
       color: $dark-blue;
       &:hover {
-        color: white;
+        color: black;
       }
     }
     position: relative;
   }
 }
+
 .person-projects {
   width: grid-width(4);
   float: left;
@@ -91,4 +94,17 @@ input {
 .person-reports {
 }
 .person-testimonials {
+}
+
+.project {
+  @include clearfix;
+}
+.project-leaders {
+  width: grid-width(4);
+  float: left;
+}
+.project-description {
+  width: grid-width(8);
+  float: left;
+  margin-left: $gw-gutter;
 }

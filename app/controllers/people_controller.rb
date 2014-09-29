@@ -17,6 +17,7 @@ class PeopleController < ApplicationController
   # GET /my/people/1.json
   def show
     @person = params[:id] ? Person.find(params[:id]) : current_user
+    redirect_to me_path if @person == current_user
   end
 
   # GET /my/people/new

@@ -8,9 +8,9 @@
   %body#l_my
     = yield
     .navbar.navbar-horizontal
-      .logo= image_tag asset_path('tfplogo.svg')
+      .logo= link_to image_tag(asset_path('tfplogo.svg')), root_url
       -if current_user
         .current-user
-          = "Hi, #{current_user.first_name}."
+          = "Logged in as #{current_user.name} | "
           = link_to "Log out", log_out_path
     = javascript_include_tag 'application'

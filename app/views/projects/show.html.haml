@@ -1,6 +1,17 @@
 %p#notice= notice
-
-
-= link_to 'Edit', edit_my_project_path(@my_project)
-\|
-= link_to 'Back', my_projects_path
+.project
+  %h1= @project.name
+  .project-leaders.section
+    %header Project Leads
+    - @project.leaders.each do |p|
+      =link_to p.name, person_path(p)
+    - if @project.participants.any?
+      %header Project Team
+      - @project.participants.each do |p|
+        =link_to p.name, person_path(p)
+  .project-description.section
+    %header
+      Description
+      =link_to "Edit", edit_project_path(@project) if @project.leaders.include? current_user
+    :markdown
+      #{@project.description}
