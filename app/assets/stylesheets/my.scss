@@ -70,16 +70,18 @@ input {
   width: grid-width(4);
   float: left;
   margin-bottom: $gw-gutter;
+  .project {
+    display: list-item;
+    list-style: square;
+    margin-left: $gutter;
+    font-size: .75em;
+  }
 }
+
 .person-about {
   width: grid-width(8);
   margin-left: $gw-gutter;
   margin-bottom: $gw-gutter;
-  float: left;
-}
-.person-projects {
-  clear: both;
-  width: grid-width(4);
   float: left;
 }
 .person-reflections, .person-reports, .person-testimonials {

@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :set_project, only: [:edit, :update, :destroy]
   layout 'my'
 
   # GET /my/projects
@@ -11,6 +11,7 @@ class ProjectsController < ApplicationController
   # GET /my/projects/1
   # GET /my/projects/1.json
   def show
+    @project = Project.find params[:id]
   end
 
   # GET /my/projects/new
@@ -57,7 +58,7 @@ class ProjectsController < ApplicationController
   def destroy
     @project.destroy
     respond_to do |format|
-      format.html { redirect_to projects_url, notice: 'Project was successfully destroyed.' }
+      format.html { redirect_to root_url, notice: 'Project was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -65,7 +66,7 @@ class ProjectsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_project
-      @project = Project.find(params[:id])
+      @project = current_user.primary_projects.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

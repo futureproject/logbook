@@ -5,14 +5,14 @@
     %header
       Projects
       =link_to "New", new_project_path if @person == current_user
-    .person-primary-projects.section
+    .person-primary-projects
       - if @person.primary_projects.any?
-        %h6 Project Lead
+        %h6 Leading
         = render @person.primary_projects
       -else
         %p None yet
       - if @person.secondary_projects.any?
-        %h6 Project Team
+        %h6 Supporting
         = render @person.secondary_projects
   .person-about.section
     %header
