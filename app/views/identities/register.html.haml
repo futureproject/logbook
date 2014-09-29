@@ -1,6 +1,6 @@
 %h1= "Hello, #{session[:auth_hash][:info][:first_name]}."
 
-=form_for [:my, @identity] do |f|
+=form_for @identity do |f|
   %h2 Looks like this is your first time here.
   %h3 Please select your school:
   %ul.candidates

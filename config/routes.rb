@@ -19,20 +19,18 @@ Rails.application.routes.draw do
 
   root 'application#home'
 
-  namespace :my do
-    root 'people#show'
-    resources :sessions, only: [:new, :create]
-    resources :people
-    resources :projects
-    resources :identities do
-      get 'register', on: :member
-    end
+  resources :sessions, only: [:new, :create]
+  resources :people
+  resources :reflections
+  resources :projects
+  resources :identities do
+    get 'register', on: :member
   end
 
-
   resources :sessions, only: [:new, :create]
-
   get 'auth/logout', to: 'sessions#destroy', as: :log_out
+  get '/me', to: 'people#me', as: :me
+  get '/os', to: 'application#os', as: :os
   match 'auth/:provider/callback' => 'sessions#create', via: [:post, :get]
 
   namespace :api do

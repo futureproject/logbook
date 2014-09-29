@@ -1,6 +1,6 @@
 require 'oauth_user_creator'
 class SessionsController < ApplicationController
-  skip_before_action :authorize!
+  skip_before_action :authenticate!
   skip_before_action :verify_authenticity_token
   skip_before_action :init_js_data
 
@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
         redirect_to session[:redirect] || root_url
       else
         session[:auth_hash] = auth_hash
-        redirect_to register_my_identity_path(u)
+        redirect_to register_identity_path(u)
       end
     else
       render status: :unauthorized, text: "Access Denied"

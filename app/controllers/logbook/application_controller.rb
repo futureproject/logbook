@@ -1,6 +1,8 @@
 class Logbook::ApplicationController < ApplicationController
   before_action :init_js_data
   before_action :check_for_school
+  before_action :authorize!
+  skip_before_action :authenticate!
   skip_before_action :check_for_school, only: [:manifest]
   layout 'logbook'
 

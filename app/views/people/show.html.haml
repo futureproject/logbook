@@ -4,7 +4,7 @@
   .person-projects
     %header
       Projects
-      =link_to "New", new_my_project_path
+      =link_to "New", new_project_path
     .person-primary-projects
       - if @person.primary_projects.any?
         %h6 Project Lead
@@ -17,7 +17,7 @@
   .person-about
     %header
       About
-      =link_to "Edit", edit_my_person_path(@person)
+      =link_to "Edit", edit_person_path(@person)
     .person-details
       %p.person-school
         %strong School:

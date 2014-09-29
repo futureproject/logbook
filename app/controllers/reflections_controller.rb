@@ -1,10 +1,10 @@
-class My::ReflectionsController < ApplicationController
+class ReflectionsController < ApplicationController
   before_action :set_my_reflection, only: [:show, :edit, :update, :destroy]
 
   # GET /my/reflections
   # GET /my/reflections.json
   def index
-    @my_reflections = My::Reflection.all
+    @my_reflections = Reflection.all
   end
 
   # GET /my/reflections/1
@@ -14,7 +14,7 @@ class My::ReflectionsController < ApplicationController
 
   # GET /my/reflections/new
   def new
-    @my_reflection = My::Reflection.new
+    @my_reflection = Reflection.new
   end
 
   # GET /my/reflections/1/edit
@@ -24,7 +24,7 @@ class My::ReflectionsController < ApplicationController
   # POST /my/reflections
   # POST /my/reflections.json
   def create
-    @my_reflection = My::Reflection.new(my_reflection_params)
+    @my_reflection = Reflection.new(my_reflection_params)
 
     respond_to do |format|
       if @my_reflection.save
@@ -64,7 +64,7 @@ class My::ReflectionsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_my_reflection
-      @my_reflection = My::Reflection.find(params[:id])
+      @my_reflection = Reflection.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

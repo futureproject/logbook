@@ -1,5 +1,6 @@
-class My::IdentitiesController < My::ApplicationController
+class IdentitiesController < ApplicationController
   skip_before_action :authenticate!, only: [:register, :update]
+  layout 'my'
 
   def register
     @identity = Identity.find(params[:id])

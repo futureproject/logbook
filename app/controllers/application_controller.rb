@@ -3,9 +3,8 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   include Authorization
-  before_action :authorize!
-  before_action :authenticate!, only: [:home]
-  skip_before_action :authorize!, only: [:home]
+  before_action :authenticate!
+  before_action :authorize!, only: [:os]
   before_action :init_js_data
 
   def init_js_data
@@ -15,10 +14,14 @@ class ApplicationController < ActionController::Base
 
   def home
     if current_user.is_a? Person
-      redirect_to my_root_url
+      redirect_to me_path
     else
-      render template: 'application/home'
+      redirect_to os_path
     end
+  end
+
+  def os
+    render template: 'application/os'
   end
 
 end

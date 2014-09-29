@@ -4,6 +4,10 @@ module IntegrationSupport
     visit '/'
     click_button "Staff Login"
   end
+
+  def mock_student_signin
+  end
+
 end
 
 RSpec.configure do |config|

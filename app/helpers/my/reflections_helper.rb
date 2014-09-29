@@ -1,2 +1,0 @@
-module My::ReflectionsHelper
-end

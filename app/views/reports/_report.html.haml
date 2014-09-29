@@ -3,4 +3,5 @@
   .report-content
     :markdown
       #{report.content}
+  .report-source= report.try(:user).try(:name)
 
