@@ -1,10 +1,11 @@
 class ReflectionsController < ApplicationController
-  before_action :set_my_reflection, only: [:show, :edit, :update, :destroy]
+  before_action :set_reflection, only: [:show, :edit, :update, :destroy]
+  layout 'my'
 
   # GET /my/reflections
   # GET /my/reflections.json
   def index
-    @my_reflections = Reflection.all
+    @reflections = Reflection.all
   end
 
   # GET /my/reflections/1
@@ -14,7 +15,7 @@ class ReflectionsController < ApplicationController
 
   # GET /my/reflections/new
   def new
-    @my_reflection = Reflection.new
+    @reflection = current_user.student_reflections.new
   end
 
   # GET /my/reflections/1/edit
@@ -24,15 +25,15 @@ class ReflectionsController < ApplicationController
   # POST /my/reflections
   # POST /my/reflections.json
   def create
-    @my_reflection = Reflection.new(my_reflection_params)
+    @reflection = current_user.student_reflections.new(reflection_params)
 
     respond_to do |format|
-      if @my_reflection.save
-        format.html { redirect_to @my_reflection, notice: 'Reflection was successfully created.' }
-        format.json { render :show, status: :created, location: @my_reflection }
+      if @reflection.save
+        format.html { redirect_to root_url, notice: 'Reflection was successfully created.' }
+        format.json { render :show, status: :created, location: @reflection }
       else
         format.html { render :new }
-        format.json { render json: @my_reflection.errors, status: :unprocessable_entity }
+        format.json { render json: @reflection.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -41,12 +42,12 @@ class ReflectionsController < ApplicationController
   # PATCH/PUT /my/reflections/1.json
   def update
     respond_to do |format|
-      if @my_reflection.update(my_reflection_params)
-        format.html { redirect_to @my_reflection, notice: 'Reflection was successfully updated.' }
-        format.json { render :show, status: :ok, location: @my_reflection }
+      if @reflection.update(reflection_params)
+        format.html { redirect_to root_url, notice: 'Reflection was successfully updated.' }
+        format.json { render :show, status: :ok, location: @reflection }
       else
         format.html { render :edit }
-        format.json { render json: @my_reflection.errors, status: :unprocessable_entity }
+        format.json { render json: @reflection.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -54,21 +55,23 @@ class ReflectionsController < ApplicationController
   # DELETE /my/reflections/1
   # DELETE /my/reflections/1.json
   def destroy
-    @my_reflection.destroy
+    @reflection.destroy
     respond_to do |format|
-      format.html { redirect_to my_reflections_url, notice: 'Reflection was successfully destroyed.' }
+      format.html { redirect_to root_url, notice: 'Reflection was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_my_reflection
-      @my_reflection = Reflection.find(params[:id])
+    def set_reflection
+      @reflection = Reflection.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def my_reflection_params
-      params[:my_reflection]
+    def reflection_params
+      params.require(:reflection).permit(
+        :content
+      )
     end
 end

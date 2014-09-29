@@ -1,5 +1,5 @@
 .reflection
-  .reflection-date= reflection.created_at.strftime "%D"
+  .reflection-date= link_to reflection.created_at.strftime("%D"), reflection_path(reflection)
   .reflection-content
     :markdown
       #{reflection.content}

@@ -1,10 +1,13 @@
-= form_for @my_reflection do |f|
-  - if @my_reflection.errors.any?
+= form_for @reflection do |f|
+  - if @reflection.errors.any?
     #error_explanation
-      %h2= "#{pluralize(@my_reflection.errors.count, "error")} prohibited this my_reflection from being saved:"
+      %h2= "#{pluralize(@reflection.errors.count, "error")} prohibited this reflection from being saved:"
       %ul
-        - @my_reflection.errors.full_messages.each do |msg|
+        - @reflection.errors.full_messages.each do |msg|
           %li= msg
 
+  .field
+    = f.label :content, "How's it going?"
+    = f.text_area :content
   .actions
     = f.submit 'Save'

@@ -1,7 +1,6 @@
-%h1 Editing my_reflection
+%h1 Editing Reflection
 
 = render 'form'
 
-= link_to 'Show', @my_reflection
-\|
-= link_to 'Back', my_reflections_path
+%hr
+= link_to 'Cancel', person_path(@reflection.person)

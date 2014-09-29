@@ -92,11 +92,45 @@ input {
 .person-reflections {
   clear: both;
   margin-left: 0;
+  margin-bottom: $gw-gutter;
+  .reflection-content {
+    font-size: .75em;
+  }
+  .reflection {
+    margin-bottom: $gw-gutter;
+  }
 }
-.person-reports {
+.person {
+  .reflection, .testimonial, .report {
+    margin-bottom: $gw-gutter;
+  }
+  .reflection-content, .report-content, .testimonial-content {
+    font-size: .75em;
+  }
+  .report-date, .testimonial-date {
+    color: $light-green;
+  }
 }
-.person-testimonials {
+
+.testimonial-content {
+  &:before {
+    content: '“';
+  }
+  &:after {
+    content: '”';
+  }
 }
+
+.testimonial-source {
+  font-size: .75em;
+  font-weight: bold;
+  &:before {
+    content: '- ';
+  }
+}
+
+.report-content { @extend .testimonial-content; }
+.report-source { @extend .testimonial-source; }
 
 .project {
   @include clearfix;
@@ -109,4 +143,17 @@ input {
   width: grid-width(8);
   float: left;
   margin-left: $gw-gutter;
+}
+
+.big-reflection {
+  @include clearfix;
+  .reflection-date {
+    width: grid-width(4);
+    float: left;
+  }
+  .reflection-content {
+    width: grid-width(8);
+    float: left;
+    margin-left: $gw-gutter;
+  }
 }

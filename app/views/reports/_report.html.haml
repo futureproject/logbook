@@ -1,7 +1,5 @@
 .report
   .report-date= report.created_at.strftime "%D"
-  .report-content
-    :markdown
-      #{report.content}
-  .report-source= report.try(:user).try(:name)
+  .report-content=report.content
+  .report-source= report.person.try(:dream_director).try(:name)
 

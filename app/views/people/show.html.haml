@@ -4,7 +4,7 @@
   .person-projects.section
     %header
       Projects
-      =link_to "New", new_project_path if @person == current_user
+      =link_to "Add", new_project_path if @person == current_user
     .person-primary-projects
       - if @person.primary_projects.any?
         %h6 Leading
@@ -34,11 +34,13 @@
         #{@person.about}
 
   .person-reflections.section
-    %header Reflections
+    %header
+      Reflections
+      =link_to "Add", new_reflection_path if @person == current_user
     = render @person.student_reflections
   .person-reports.section
     %header Dream Director Reports
-    = render @person.reports
+    = render @person.reports*6
   .person-testimonials.section
     %header Testimonials
-    = render @person.testimonials
+    = render @person.testimonials*6

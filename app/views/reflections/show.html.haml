@@ -1,6 +1,13 @@
-%p#notice= notice
-
-
-= link_to 'Edit', edit_my_reflection_path(@my_reflection)
-\|
-= link_to 'Back', my_reflections_path
+%h1= @reflection.person.try(:name)
+.reflection.big-reflection
+  .reflection-date.section
+    %header Date
+    = @reflection.created_at.strftime "%D"
+  .reflection-content.section
+    %header
+      Reflection
+      =link_to "Edit", edit_reflection_path(@reflection) if @reflection.person == current_user
+    :markdown
+      #{@reflection.content}
+%hr
+= link_to 'Back', root_url
