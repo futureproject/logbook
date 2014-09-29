@@ -1,0 +1,94 @@
+@import 'bourbon';
+@import 'base/base';
+@import 'theme';
+$gw-column: 56px;
+$gw-gutter: 28px;
+
+// base
+body {
+  margin: $gutter auto;
+  width: 980px;
+  font-size: 21px;
+  line-height: 1.4;
+}
+
+input {
+  font-size: 1em;
+}
+
+// layout
+.navbar-horizontal {
+  height: $gw-column;
+  margin: $gw-gutter auto;
+  overflow: hidden;
+  position: relative;
+  white-space: nowrap;
+  line-height: $gw-column;
+  border-top: 1px solid $base-border-color;
+  padding-top: $gw-gutter;
+  .logo {
+    position: absolute;
+    left: 0;
+    top: $gw-gutter;
+    img {
+      width: $gw-column;
+      height: $gw-column;
+    }
+  }
+  .current-user {
+    position: absolute;
+    top: $gw-gutter;
+    right: 0;
+  }
+}
+
+.person {
+  overflow: auto;
+  header {
+    padding: .4em;
+    margin-bottom: .4em;
+    background: $blue;
+    color: white;
+    font-weight: bold;
+    a {
+      display: inline-block;
+      position: absolute;
+      top: .4em;
+      right: .4em;
+      color: $dark-blue;
+      &:hover {
+        color: white;
+      }
+    }
+    position: relative;
+  }
+}
+.person-projects {
+  width: grid-width(4);
+  float: left;
+  margin-bottom: $gw-gutter;
+}
+.person-about {
+  width: grid-width(8);
+  margin-left: $gw-gutter;
+  margin-bottom: $gw-gutter;
+  float: left;
+}
+.person-projects {
+  clear: both;
+  width: grid-width(4);
+  float: left;
+}
+.person-reflections, .person-reports, .person-testimonials {
+  width: grid-width(4);
+  margin-left: $gw-gutter;
+  float: left;
+}
+.person-reflections {
+  clear: both;
+  margin-left: 0;
+}
+.person-reports {
+}
+.person-testimonials {
+}

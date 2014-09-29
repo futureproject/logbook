@@ -17,25 +17,23 @@ Rails.application.routes.draw do
     end
   end
 
-  constraints(:subdomain => /my/) do
-    namespace :my, path: '/' do
-      root 'application#home'
-      resources :sessions, only: [:new, :create]
-      resources :people
-      resources :identities
-      get 'register', to: 'identities#register', as: :register
-      match 'auth/:provider/callback' => 'sessions#create', via: [:post, :get]
-      get 'auth/logout', to: 'sessions#destroy', as: :log_out
+  root 'application#home'
+
+  namespace :my do
+    root 'people#show'
+    resources :sessions, only: [:new, :create]
+    resources :people
+    resources :projects
+    resources :identities do
+      get 'register', on: :member
     end
   end
 
-  root 'application#home'
 
   resources :sessions, only: [:new, :create]
+
   get 'auth/logout', to: 'sessions#destroy', as: :log_out
   match 'auth/:provider/callback' => 'sessions#create', via: [:post, :get]
-
-  get 'portfolio', to: 'portfolios#demo'
 
   namespace :api do
     namespace :v1 do

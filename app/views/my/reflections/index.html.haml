@@ -1,0 +1,17 @@
+%h1 Listing my_reflections
+
+%table
+  %tr
+    %th
+    %th
+    %th
+
+  - @my_reflections.each do |my_reflection|
+    %tr
+      %td= link_to 'Show', my_reflection
+      %td= link_to 'Edit', edit_my_reflection_path(my_reflection)
+      %td= link_to 'Destroy', my_reflection, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Reflection', new_my_reflection_path

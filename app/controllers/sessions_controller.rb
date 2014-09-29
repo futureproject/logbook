@@ -8,12 +8,20 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = OauthUserCreator.find_or_create_from_auth(auth_hash)
-    if @user
-      sign_in @user
+    u = OauthUserCreator.find_or_create_from_auth(auth_hash)
+    if u.is_a? User
+      sign_in u
       redirect_to session[:redirect] || root_url
+    elsif u.is_a? Identity
+      if u.person
+        sign_in u.person
+        redirect_to session[:redirect] || root_url
+      else
+        session[:auth_hash] = auth_hash
+        redirect_to register_my_identity_path(u)
+      end
     else
-      render text: 'Please use a TFP Google Account'
+      render status: :unauthorized, text: "Access Denied"
     end
   end
 

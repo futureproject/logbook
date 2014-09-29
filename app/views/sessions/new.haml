@@ -1,6 +1,7 @@
 #new_session
   .link
-    = button_to 'Sign In', '/auth/google_oauth2'
+    = button_to 'Staff Login', '/auth/google_oauth2'
   %br
   .logo= image_tag asset_path('tfplogo.svg')
   %br
+    = link_to 'Student Login', '/auth/facebook', class: 'highlight button'

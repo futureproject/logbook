@@ -1,4 +1,5 @@
 class OauthUserCreator
+
   def self.find_or_create_from_auth(auth)
     klass = auth[:provider].classify
     eval(klass).find_or_create_from_auth(auth) if self.const_defined?(klass, false)
@@ -24,6 +25,12 @@ class OauthUserCreator
       #}
       identity = user.add_identity auth_hash[:provider], auth_hash[:uid]
       return user
+    end
+  end
+
+  class Facebook
+    def self.find_or_create_from_auth(auth_hash)
+      i = Identity.where(provider: auth_hash[:provider], uid: auth_hash[:uid]).first_or_create
     end
   end
 

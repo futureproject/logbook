@@ -374,7 +374,7 @@ a[rel=next] {
 }
 .accordion-bar {
   cursor: pointer;
-  background: $light-gray;
+  background: $lightest-gray;
   margin-bottom: 1px;
   padding: 0 $gutter;
   @include transition;

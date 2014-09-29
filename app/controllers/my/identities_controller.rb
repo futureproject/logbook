@@ -2,7 +2,7 @@ class My::IdentitiesController < My::ApplicationController
   skip_before_action :authenticate!, only: [:register, :update]
 
   def register
-    @identity = Identity.find_or_create_from_facebook(session[:auth_hash])
+    @identity = Identity.find(params[:id])
     @person = Person.new(
       first_name: session[:auth_hash][:info][:first_name],
       last_name: session[:auth_hash][:info][:last_name]
@@ -16,9 +16,10 @@ class My::IdentitiesController < My::ApplicationController
 
   def update
     @identity = Identity.find params[:id]
-    if @identity.update_attributes!(identity_params)
+    if @identity.update_attributes!(sanitized_identity_params)
       sign_in @identity.person
-      redirect_to session[:redirect] || root_url
+      flash[:notice] = "Welcome! Get started by adding a project or editing your profile."
+      redirect_to(session[:redirect] || root_url)
     else
       redirect_to 'register'
     end
@@ -30,6 +31,14 @@ class My::IdentitiesController < My::ApplicationController
         :person_id,
         person_attributes: [:first_name, :last_name, :school_id, :auth_token]
       )
+    end
+
+    def sanitized_identity_params
+      if identity_params[:person_id].to_i != 0
+        identity_params.except(:person_attributes)
+      else
+        identity_params
+      end
     end
 
 end

@@ -1,0 +1,6 @@
+.report
+  .report-date= report.created_at.strftime "%D"
+  .report-content
+    :markdown
+      #{report.content}
+
