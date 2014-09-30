@@ -10,6 +10,12 @@ class Api::V1::AssetsController < Api::V1::BaseController
     end
   end
 
+  def destroy
+    @asset = Asset.find params[:id]
+    @asset.destroy
+    head :no_content
+  end
+
 
   private
     def asset_params

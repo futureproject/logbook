@@ -1,5 +1,3 @@
-Paperclip::Attachment.default_options[:default_url] = "/images/document.png"
-Paperclip::Attachment.default_options[:avatar_url] = "/images/avatar.png"
 Paperclip::Attachment.default_options[:styles] = {
   :thumb => ['280x280#', :jpg],
   :small => ['640x640>', :jpg],
