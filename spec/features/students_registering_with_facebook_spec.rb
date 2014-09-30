@@ -1,6 +1,6 @@
 require 'spec_helper'
 feature 'Students registering with facebook' do
-  scenario 'when they are not in the system' do
+  scenario 'when they are already in the system' do
     visit '/'
     click_button 'Student Login'
     complete_registration
@@ -8,11 +8,12 @@ feature 'Students registering with facebook' do
   end
 
   def complete_registration
-    select 'Gotham City High', from: 'identity[person_attributes][school_id]'
+    choose 'Gotham City High'
     click_button 'Register'
   end
 
   def should_see_profile
     expect(page).to have_content('About')
   end
+
 end

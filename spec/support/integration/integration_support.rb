@@ -5,7 +5,11 @@ module IntegrationSupport
     click_button "Staff Login"
   end
 
-  def mock_student_signin
+  def mock_student_login
+    visit '/'
+    click_button "Student Login"
+    choose 'Gotham City High'
+    click_button 'Register'
   end
 
 end

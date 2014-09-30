@@ -39,6 +39,10 @@ class Person < ActiveRecord::Base
     engagements.sum(:duration).to_i
   end
 
+  def leads_project?(project)
+    project.leaders.include? self
+  end
+
   # takes a CSV from the public directory and a User object
   # imports students into the system
   def self.import_from_csv(filename, dream_director)

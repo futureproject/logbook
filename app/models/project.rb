@@ -5,6 +5,7 @@ class Project < ActiveRecord::Base
   has_many :project_leaders, dependent: :destroy
   has_many :leaders, through: :project_leaders, source: :person
   has_many :participants, through: :project_participants, source: :person
+  has_many :assets, as: :attachable, dependent: :destroy
   after_create :log_action
 
   def log_action

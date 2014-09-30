@@ -79,6 +79,12 @@ gem 'kaminari'
 # markdown!
 gem 'redcarpet'
 
+# upload directly to S3
+gem 's3_direct_upload'
+
+# process things in the background
+gem 'delayed_job_active_record'
+
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
   gem 'dotenv-rails'

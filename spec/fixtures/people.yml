@@ -3,6 +3,7 @@ dick:
   last_name: Grayson
   school: gotham_city_high
   dream_team: true
+  auth_token: robin
 
 tim:
   first_name: Tim

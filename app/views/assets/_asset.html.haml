@@ -1,0 +1,5 @@
+.asset
+  - if asset.data_content_type && asset.data_content_type.match(/image/i)
+    =link_to (image_tag(asset.data(:thumb))), asset.external_url, target: '_blank'
+  - else
+    =link_to (asset.caption || "View Asset"), asset.external_url, target: '_blank'

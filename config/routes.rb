@@ -48,6 +48,7 @@ Rails.application.routes.draw do
       resources :reports
       resources :reflections
       resources :testimonials
+      resources :assets, only: [:create, :destroy]
       resources :stats, only: [:index]
     end
   end

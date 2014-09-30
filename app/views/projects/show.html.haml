@@ -12,6 +12,14 @@
   .project-description.section
     %header
       Description
-      =link_to "Edit", edit_project_path(@project) if @project.leaders.include? current_user
+      =link_to "Edit", edit_project_path(@project) if current_user.leads_project?(@project)
     :markdown
       #{@project.description}
+  .project-assets-form.section
+    %header Assets
+    - if current_user.leads_project?(@project)
+      = s3_uploader_form callback_url: api_v1_assets_path, callback_param: "asset[external_url]", key:"uploads/#{SecureRandom.hex}-${filename}", class: 's3-uploader', data: { attachable_id: @project.id, attachable_type: "Project"} do
+        = file_field_tag :file, multiple: true
+        = render partial: 'application/s3_direct_upload_progress_bars'
+  .project-assets.assets.section
+    = render @project.assets

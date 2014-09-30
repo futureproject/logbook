@@ -20,10 +20,10 @@ module OmniauthSupport
     :provider => "facebook",
     :uid => "123456789",
     :info => {
-        :name => "Kevin Conroy",
+        :name => "Dick Grayson",
         :email => "kevin.conroy@thefutureproject.org",
-        :first_name => "Kevin",
-        :last_name => "Conroy",
+        :first_name => "Dick",
+        :last_name => "Grayson",
         :image => "https://lh3.googleusercontent.com/url/photo.jpg"
     },
     :credentials => {
