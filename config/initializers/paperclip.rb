@@ -1,3 +1,4 @@
+Paperclip::Attachment.default_options[:default_url] = '//dream-os-production.s3.amazonaws.com/static-assets/document.png'
 Paperclip::Attachment.default_options[:styles] = {
   :thumb => ['280x280#', :jpg],
   :small => ['640x640>', :jpg],

@@ -3,7 +3,7 @@ class Asset < ActiveRecord::Base
   belongs_to :attachable, polymorphic: true
   validates_presence_of :external_url
   default_scope -> { order(id: :desc) }
-  has_attached_file :data, default_url: ActionController::Base.helpers.asset_path('document.png')
+  has_attached_file :data
   #do_not_validate_attachment_file_type :data
   after_create :download_data_later
   validates_attachment_content_type :data, :content_type => /\Aimage/
