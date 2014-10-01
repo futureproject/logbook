@@ -12,6 +12,7 @@ class Person < ActiveRecord::Base
   has_many :reports
   has_many :testimonials
   has_many :student_reflections, class_name: "Reflection"
+  has_many :assets, as: :attachable
   has_one :identity
   ROLE_ENUM = %w(student teacher)
 

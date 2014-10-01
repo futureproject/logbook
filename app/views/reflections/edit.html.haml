@@ -3,4 +3,6 @@
 = render 'form'
 
 %hr
+%p=link_to 'Delete Reflection', reflection_path(@reflection), data: {method: 'delete', confirm: 'Are you sure?'}, class: 'warning button'
+%hr
 = link_to 'Cancel', person_path(@reflection.person)

@@ -1,8 +1,11 @@
 Paperclip::Attachment.default_options[:default_url] = '//dream-os-production.s3.amazonaws.com/static-assets/document.png'
+
+Paperclip::Attachment.default_options[:url] = ':s3_domain_url'
+Paperclip::Attachment.default_options[:path] = '/:class/:attachment/:id_partition/:style.:extension'
 Paperclip::Attachment.default_options[:styles] = {
-  :thumb => ['280x280#', :jpg],
-  :small => ['640x640>', :jpg],
-  :medium => ['1024x1024>', :jpg]
+  :thumb => ['280x280#'],
+  :small => ['640x640>'],
+  :medium => ['1024x1024>']
 }
 Paperclip::Attachment.default_options[:source_file_options] = {
   :all => '-auto-orient'

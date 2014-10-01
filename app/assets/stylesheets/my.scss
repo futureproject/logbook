@@ -73,6 +73,23 @@ h1 {
   }
 }
 
+%left-third {
+  float: left;
+  width: grid-width(4);
+  margin-right: $gw-gutter;
+}
+
+%two-thirds {
+  float: left;
+  width: grid-width(8);
+}
+
+%right-third {
+  float: left;
+  width: grid-width(4);
+  margin-left: $gw-gutter;
+}
+
 .person-projects {
   width: grid-width(4);
   float: left;
@@ -155,8 +172,9 @@ h1 {
   clear: both;
   float: left;
   width: grid-width(4);
-  input { padding-top: .4em; line-height: .5; }
 }
+
+input[type=file] { padding-top: .4em; line-height: .5; }
 
 .project-assets {
   float: left;
@@ -195,6 +213,15 @@ h1 {
   }
 }
 
+.mini-asset {
+  display: block;
+  width: grid-width(1);
+  height: grid-width(1);
+  margin: 0 $gw-gutter $gw-gutter 0;
+  float: left;
+  &:nth-child(4n) { margin-right: 0; }
+}
+
 .big-reflection {
   @include clearfix;
   .reflection-date {
@@ -206,4 +233,20 @@ h1 {
     float: left;
     margin-left: $gw-gutter;
   }
+  .reflection-assets-header {
+    clear: left;
+    @extend %left-third;
+    margin-right: 0;
+  }
 }
+.reflection-assets {
+  @extend .project-assets;
+}
+
+.reflection-assets-form {
+  @extend %left-third;
+}
+
+.reflection-form { @extend %two-thirds; }
+
+.new-reflection { @include clearfix; }

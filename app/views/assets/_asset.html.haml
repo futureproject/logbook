@@ -1,5 +1,5 @@
 .asset.deletable
-  =link_to (image_tag(asset.data(:thumb))), asset.external_url, target: '_blank'
+  =link_to (image_tag(asset.thumbnail)), asset.data.url(:original), target: '_blank'
   .asset-actions
     .asset-caption= asset.caption
     =link_to "Delete", api_v1_asset_path(asset), data: {remote: true, method: 'delete', confirm: 'Are you sure you want to delete this asset?'}
