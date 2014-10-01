@@ -7,6 +7,25 @@
   -@person.secondary_projects.each do |p|
     %span.project.needsclick{data: {id: p.id}}=p.name
 
+%hr
+
+%h6.collapsable-toggle
+  %span.highlight= "#{pluralize(@person.logged_hours, 'Hour')}"
+  in Engagements
+.collapsable
+  %table
+    -@person.engagements.each do |e|
+      %tr
+        %th Date
+        %th Kind
+        %th Notes
+      %tr.person-enagement
+        %td.engagement-date= e.date.strftime "%b %d"
+        %td.engagement-kind= e.kind
+        %td= e.notes
+
+%hr
+
 .accordion
   .accordion-bar.person-reports
     %h6.accordion-heading= pluralize @person.reports.count, 'DD Report'
@@ -31,12 +50,3 @@
         %tr.person-reflection
           %td=r.created_at.strftime "%b %d"
           %td=r.content
-
-  .accordion-bar.person-engagements
-    %h6.accordion-heading= "#{pluralize(@person.logged_hours, 'Hour')} in Engagements"
-    %table
-      -@person.engagements.each do |e|
-        %tr.person-enagement
-          %td= e.date.strftime "%b %d"
-          %td= e.kind
-          %td= e.notes

@@ -1,6 +1,6 @@
 class Api::V1::ProjectsController < Api::V1::BaseController
   wrap_parameters format: [:json], include: [:leader_ids, :participant_ids, :name]
-  before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :set_project, only: [:show, :edit, :update, :destroy, :stats]
 
   # GET /api/v1/projects
   # GET /api/v1/projects.json
@@ -11,6 +11,10 @@ class Api::V1::ProjectsController < Api::V1::BaseController
   # GET /api/v1/projects/1
   # GET /api/v1/projects/1.json
   def show
+  end
+
+  def stats
+    render partial: 'projects/stats'
   end
 
   # GET /api/v1/projects/new

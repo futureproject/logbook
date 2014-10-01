@@ -9,6 +9,7 @@
 #= require selectize-fast-click
 #= require date
 #= require_self
+#= require s3_direct_upload
 #= require_tree ./templates
 #= require_tree ./models
 #= require_tree ./views

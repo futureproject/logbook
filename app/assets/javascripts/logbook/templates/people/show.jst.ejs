@@ -9,10 +9,10 @@
   <div class="panel-body scrollable pad">
     <h2><%= first_name %> <%= last_name %></h2>
     <h6><%= grade%>th grade<%= dream_team ? " Dream Team " : " " %><%= role %></h6>
-    <textarea id='person_notes' placeholder='Notes (private)'><%= notes %></textarea>
+    <textarea id='person_notes' placeholder='General Notes (private)'><%= notes %></textarea>
     <div class='person-actions'>
       <nav>
-        <h6>Add a new (student-visible!):</h6>
+        <h6>Add a new public record:</h6>
         <button class='show-new-report'><span class='octicon octicon-pencil'></span> DD Report</button>
         <button class='show-new-testimonial'><span class='octicon octicon-quote'></span> Testimonial</button>
         <button class='show-new-reflection'><span class='octicon octicon-person'></span> Reflection</button>
@@ -43,7 +43,7 @@
     </div>
     <hr>
     <div id='person-stats'>
-      <p>Connect to the internet to see more information about <%= first_name %></p>.
+      <p><img class='spinner' src='/images/gif.gif' alt="Loading"></p>
     </div>
   </div><!-- panel-body -->
 </div>

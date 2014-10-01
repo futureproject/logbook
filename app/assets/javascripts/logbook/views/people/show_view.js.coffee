@@ -40,6 +40,7 @@ class dream.Views.People.ShowView extends Backbone.View
       $('.person-actions').find('.success').show().delay(2000).fadeOut( ->
         $nav.show()
       )
+      @loadNetworkData()
 
     'click .project': (e) ->
       id = e.currentTarget.getAttribute('data-id')
@@ -47,6 +48,9 @@ class dream.Views.People.ShowView extends Backbone.View
 
     'click .accordion-heading': (e) ->
       $(e.currentTarget).closest('.accordion-bar').toggleClass('is-active').siblings().removeClass('is-active')
+
+    'click .collapsable-toggle': (e) ->
+      $(e.currentTarget).next('.collapsable').toggleClass('expanded')
 
   display: (model) ->
     @model = model

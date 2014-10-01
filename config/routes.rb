@@ -42,7 +42,9 @@ Rails.application.routes.draw do
         get 'stats', on: :member
       end
       resources :schools
-      resources :projects
+      resources :projects do
+        get 'stats', on: :member
+      end
       resources :engagements
       resources :one_on_ones
       resources :reports

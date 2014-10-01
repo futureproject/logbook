@@ -149,3 +149,23 @@ fieldset {
   height: 5em;
   margin-top: .6em;
 }
+.person-primary-projects {
+  margin-bottom: $gutter;
+}
+.highlight {
+  color: $blue;
+}
+
+table {
+  td { vertical-align: top; }
+  tr:last-child {
+    td { border: none; }
+  }
+}
+.upload {
+  width: auto;
+  .progress {
+    border: 3px solid $dark-blue;
+    .bar { background: $dark-blue; }
+  }
+}

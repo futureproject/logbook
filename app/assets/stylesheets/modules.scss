@@ -406,3 +406,28 @@ a[rel=next] {
   padding: $gutter 0;
   cursor: pointer;
 }
+
+.collapsable { display: none; }
+.collapsable.expanded { display: inherit; }
+.collapsable-toggle { cursor: pointer; }
+
+.project, .person {
+  cursor: pointer;
+  &:hover { color: $blue; }
+}
+
+.spinner {
+  height: 22px;
+  width: 22px;
+  margin: $gutter auto;
+  display: block;
+}
+
+.asset {
+  display: inline-block;
+  width: $column;
+  height: $column;
+  margin: $gutter $gutter 0 0;
+  font-size: .5em;
+  line-height: 1;
+}

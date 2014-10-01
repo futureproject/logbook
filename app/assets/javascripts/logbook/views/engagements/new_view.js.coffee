@@ -16,7 +16,7 @@ class dream.Views.Engagements.NewView extends Backbone.View
     return if @$el.is(':visible')
     @model = new dream.Models.Engagement
     @render()
-    $('#kind').selectize
+    @$el.find('#kind').selectize
       delimeter: ','
       options: [{name: 'Coaching Session'}, {name: 'Engagement'}, {name:'Event'}]
       valueField: 'name'
@@ -25,7 +25,7 @@ class dream.Views.Engagements.NewView extends Backbone.View
       create: (input) -> { name: input }
     Backbone.trigger 'router:update', "logbook/engagements/new"
     @listenToOnce Backbone, 'peopleCollection:changed', (collection) =>
-      $('#attendee_ids').selectize
+      @$el.find('#attendee_ids').selectize
         options: collection.models.map (model) -> model.selectizeAttrs()
         valueField: 'id'
         labelField: 'name'
