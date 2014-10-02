@@ -11,12 +11,8 @@ feature 'Loogging in with Oauth' do
     click_button "Staff Login"
   end
 
-  def click_student_login_button
-    click_button "Student Login"
-  end
-
   def should_be_logged_in
-    expect(page).to have_content "Log Out"
+    expect(page).to have_content "Dream Suite"
   end
 
 end
