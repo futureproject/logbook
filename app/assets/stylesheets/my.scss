@@ -267,6 +267,7 @@ input[type=file] { padding-top: .4em; line-height: .5; }
     background: $blue;
     color: white;
     box-sizing: border-box;
+    font-weight: bold;
     &:hover {
       background: $dark-blue;
     }
