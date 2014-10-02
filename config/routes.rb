@@ -61,6 +61,10 @@ Rails.application.routes.draw do
     get '*anywhere', to: 'application#home'
   end
 
+  namespace :citybook do
+    root 'application#home'
+  end
+
   namespace :cic do
     root 'application#home'
     resources :stats
