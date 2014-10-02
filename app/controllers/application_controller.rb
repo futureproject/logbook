@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
   end
 
   def os
-    render template: 'application/os'
+    render layout: 'my', template: 'application/os'
   end
 
 end

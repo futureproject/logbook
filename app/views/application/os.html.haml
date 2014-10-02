@@ -1,18 +1,35 @@
-#dream_suite_home
-  .logo= image_tag asset_path('tfplogo.svg')
-  %h1 Dream Suite
-  %hr 
-  %p Most people will never see this page.
-  %p They'll click directly to one of the links below:
-  %hr
-  %ul
-    %li
-      =link_to "Logbook", logbook_root_url
-      %p (an app for Dream Directors)
-    %li
-      =link_to "CIC", cic_root_url
-      %p (an app for City Leaders)
-  %hr
-    %p
-      = "You're logged in as #{current_user.email}."
-      =link_to "Log Out", log_out_url
+%h1 Dream Suite
+%ul.apps-list
+  %li.app
+    %a{href: 'http://go.dream.org/'}
+      %span.mega-octicon.octicon-diff-renamed
+      Go!
+    .app-description
+      :markdown
+        Go! lets you create nice-looking links.
+
+  %li.app
+    %a{href: logbook_root_url}
+      %span.mega-octicon.octicon-book
+      Logbook
+    .app-description
+      :markdown
+        Logbook helps you record what’s happening in your school. It’s also TFP’s only official record of the students, projects, and events in our universe.
+
+        You must be online to load Logbook the first time. After that, it will work even when you have no internet connection. You also must have a school to use Logbook. If you’re a Chief Dream Director with no school, you can use a demo version of Logbook [here](http://os-staging.dream.org/).
+
+  %li.app
+    %a{href: '#'}
+      %span.mega-octicon.octicon-globe
+      Citybook
+    .app-description
+      :markdown
+        Citybook is like Logbook but for your whole city. You'll need it when you're working in multiple schools. You must be online to use this app.
+
+  %li.app
+    %a{href: '#'}
+      %span.mega-octicon.octicon-broadcast
+      Portfolio
+    .app-description
+      :markdown
+        Students can use this app to document their project progress. It's sort of a mix between Dropbox and Tumblr.

@@ -1,5 +1,6 @@
 /*
 = require s3_direct_upload_progress_bars
+= require octicons
 */
 @import 'bourbon';
 @import 'base/base';
@@ -251,3 +252,26 @@ input[type=file] { padding-top: .4em; line-height: .5; }
 .reflection-form { @extend %two-thirds; }
 
 .new-reflection { @include clearfix; }
+
+.app-list {
+  @include clearfix;
+}
+.app {
+  @include clearfix;
+  padding-top: $gw-gutter;
+  margin-top: $gw-gutter;
+  border-top: 1px solid $base-border-color;
+  > a {
+    @extend %left-third;
+    padding: $gutter;
+    background: $blue;
+    color: white;
+    box-sizing: border-box;
+    &:hover {
+      background: $dark-blue;
+    }
+  }
+  .app-description {
+    @extend %two-thirds;
+  }
+}
