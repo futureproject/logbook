@@ -18,7 +18,7 @@ class dream.Views.Engagements.NewView extends Backbone.View
     @render()
     @$el.find('#kind').selectize
       delimeter: ','
-      options: [{name: 'Coaching Session'}, {name: 'Engagement'}, {name:'Event'}]
+      options: [{name: 'Coaching Session'}, {name: 'Workshop'}, {name:'Event'}]
       valueField: 'name'
       labelField: 'name'
       maxItems: 1
