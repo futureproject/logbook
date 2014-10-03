@@ -14,6 +14,7 @@ class Person < ActiveRecord::Base
   has_many :student_reflections, class_name: "Reflection"
   has_many :assets, as: :attachable
   has_one :identity
+  has_secure_password validations: false
   ROLE_ENUM = %w(student teacher)
 
   scope :search, lambda {|n|

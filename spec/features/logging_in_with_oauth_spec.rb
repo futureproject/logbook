@@ -8,7 +8,7 @@ feature 'Loogging in with Oauth' do
   end
 
   def click_staff_login_button
-    click_button "Staff Login"
+    click_button "Log in"
   end
 
   def should_be_logged_in

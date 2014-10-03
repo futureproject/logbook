@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
 
   # make a #token to remember this user for later logins
   def generate_auth_token
-    self.auth_token ||= SecureRandom.uuid
+    self.auth_token = SecureRandom.uuid if self.auth_token.blank?
   end
 
   # store an oauth identity for this user

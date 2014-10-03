@@ -8,20 +8,10 @@ class SessionsController < ApplicationController
   end
 
   def create
-    u = OauthUserCreator.find_or_create_from_auth(auth_hash)
-    if u.is_a? User
-      sign_in u
-      redirect_to session[:redirect] || root_url
-    elsif u.is_a? Identity
-      if u.person
-        sign_in u.person
-        redirect_to session[:redirect] || root_url
-      else
-        session[:auth_hash] = auth_hash
-        redirect_to register_identity_path(u)
-      end
+    if auth_hash.present?
+      create_via_oauth
     else
-      render status: :unauthorized, text: "Access Denied"
+      create_via_email_and_password
     end
   end
 
@@ -34,5 +24,34 @@ class SessionsController < ApplicationController
   protected
     def auth_hash
       request.env['omniauth.auth']
+    end
+
+    def create_via_oauth
+      u = OauthUserCreator.find_or_create_from_auth(auth_hash)
+      if u.is_a? User
+        sign_in u
+        redirect_to session[:redirect] || root_url
+      elsif u.is_a? Identity
+        if u.person
+          sign_in u.person
+          redirect_to session[:redirect] || root_url
+        else
+          session[:auth_hash] = auth_hash
+          redirect_to register_identity_path(u)
+        end
+      else
+        render status: :unauthorized, text: "Access Denied"
+      end
+    end
+
+    def create_via_email_and_password
+      p = Person.find_by(email: params[:email]).try(:authenticate, params[:password])
+      if p
+        p.update_attributes(auth_token: SecureRandom.hex) if p.auth_token.blank?
+        sign_in p
+        redirect_to session[:redirect] || root_url
+      else
+        redirect_to new_session_path, notice: 'Incorrect credentials'
+      end
     end
 end

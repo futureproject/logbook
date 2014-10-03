@@ -1,13 +1,16 @@
 require 'spec_helper'
-feature 'Students registering with facebook' do
+feature 'Students registering sans facebook' do
+
   scenario 'when they are already in the system' do
     visit '/'
-    click_button 'Log in with Facebook'
-    complete_registration
+    fill_in 'email', with: 'dick.grayson@waynetech.com'
+    fill_in 'password', with: 'robin'
+    click_button 'Go!'
     should_see_profile
   end
 
   def complete_registration
+    binding.pry
     choose 'Gotham City High'
     click_button 'Register'
   end

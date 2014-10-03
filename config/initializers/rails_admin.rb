@@ -20,7 +20,7 @@ RailsAdmin.config do |config|
   ### More at https://github.com/sferik/rails_admin/wiki/Base-configuration
 
   config.main_app_name = ["DreamOS", "Admin"]
-  config.excluded_models = %w(Identity)
+  config.excluded_models = %w(Identity Task TaskAssignment OneOnOne EngagementAttendee ProjectLeader ProjectParticipant)
 
   config.actions do
     dashboard                     # mandatory
@@ -43,6 +43,7 @@ RailsAdmin.config do |config|
       field :name
       field :address
       field :dream_director
+      field :site
     end
   end
   config.model 'Site' do
@@ -62,4 +63,16 @@ RailsAdmin.config do |config|
       field :role
     end
   end
+  config.model 'Person' do
+    edit do
+      field :first_name
+      field :last_name
+      field :email
+      field :role
+      field :school
+      field :grade
+      field :dream_team
+    end
+  end
+
 end
