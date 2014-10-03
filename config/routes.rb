@@ -63,6 +63,9 @@ Rails.application.routes.draw do
 
   namespace :citybook do
     root 'application#home'
+    resources :sites do
+      resources :people
+    end
   end
 
   namespace :cic do

@@ -1,0 +1,2 @@
+module Citybook::SitesHelper
+end
