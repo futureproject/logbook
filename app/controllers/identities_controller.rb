@@ -3,15 +3,15 @@ class IdentitiesController < ApplicationController
   layout 'my'
 
   def register
+    t = Person.arel_table
     @identity = Identity.find(params[:id])
     @person = Person.new(
       first_name: session[:auth_hash][:info][:first_name],
       last_name: session[:auth_hash][:info][:last_name]
     )
-    @candidates = Person.where(
-      first_name: @person.first_name,
-      last_name: @person.last_name
-    ).select{|p| p.identity.nil? }
+    @candidates = Person.where(t[:first_name].matches(@person.first_name.downcase))
+      .where(t[:last_name].matches(@person.last_name.downcase))
+      .select{|p| p.identity.nil? }
     @schools = @candidates.map{|c| c.school}
   end
 

@@ -9,9 +9,17 @@ feature 'Students registering sans facebook' do
     should_see_profile
   end
 
+  scenario 'for the first time' do
+    visit '/'
+    click_link 'Register' #people#register
+    complete_registration
+    should_see_profile
+  end
+
   def complete_registration
-    binding.pry
-    choose 'Gotham City High'
+    fill_in 'person[first_name]', with: 'Jason'
+    fill_in 'person[last_name]', with: 'Todd'
+    select 'Gotham City High', from: 'person[school_id]'
     click_button 'Register'
   end
 
