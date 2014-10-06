@@ -1,19 +1,22 @@
 #new_session
-  %h5 Staff
-  .link
-    = button_to 'Log in', '/auth/google_oauth2'
-  %br
   .logo= image_tag asset_path('tfplogo.svg')
-  %br
-  %h5 Students
-  = button_to 'Log in with Facebook', '/auth/facebook', class: 'highlight button'
-  %h6 or
-  - if flash[:notice]
-    %p.alert=flash[:notice]
-  = form_tag sessions_path do
-    =label_tag :email
-    =text_field_tag :email, params[:email], placeholder: 'email'
-    =label_tag :password
-    =password_field_tag :password, params[:password], placeholder: 'password'
-    =submit_tag "Go!"
-  %p=link_to 'Register', new_identity_path
+  .students
+    %h5 Students
+    = button_to 'Log in with Facebook', '/auth/facebook', class: 'highlight button'
+    %h6 or
+    - if flash[:notice]
+      %p.alert=flash[:notice]
+    = form_tag sessions_path do
+      =label_tag :email
+      =text_field_tag :email, params[:email], placeholder: 'email'
+      =label_tag :password
+      =password_field_tag :password, params[:password], placeholder: 'password'
+      =submit_tag "Go!"
+    %hr
+    %p
+      First time here?
+      =link_to 'Register', new_identity_path
+  .staff
+    %h5 Staff
+    .link
+      = button_to 'Log in', '/auth/google_oauth2'
