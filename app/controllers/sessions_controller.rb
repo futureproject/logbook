@@ -45,10 +45,10 @@ class SessionsController < ApplicationController
     end
 
     def create_via_email_and_password
-      p = Person.find_by(email: params[:email]).try(:authenticate, params[:password])
-      if p
-        p.update_attributes(auth_token: SecureRandom.hex) if p.auth_token.blank?
-        sign_in p
+      i = Identity.find_by(email: params[:email]).try(:authenticate, params[:password])
+      if i
+        i.update_attributes(token: SecureRandom.uuid) if i.token.blank?
+        sign_in i.person
         redirect_to session[:redirect] || root_url
       else
         redirect_to new_session_path, notice: 'Incorrect credentials'

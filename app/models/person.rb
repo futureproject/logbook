@@ -14,7 +14,6 @@ class Person < ActiveRecord::Base
   has_many :student_reflections, class_name: "Reflection"
   has_many :assets, as: :attachable
   has_one :identity
-  has_secure_password validations: false
   ROLE_ENUM = %w(student teacher)
 
   scope :search, lambda {|n|
@@ -45,12 +44,26 @@ class Person < ActiveRecord::Base
     project.leaders.include? self
   end
 
+  def auth_token
+    identity.token
+  end
+
   # takes a CSV from the public directory and a User object
   # imports students into the system
   def self.import_from_csv(filename, dream_director)
     CSV.foreach("#{Rails.root.to_s}/public/#{filename}", headers: true) do |row|
       p = Person.create!(row.to_hash.merge(school_id: dream_director.school_id))
     end
+  end
+
+  def self.matches_by_name first, last
+    t = self.arel_table
+    self.where(t[:first_name].matches("%#{first}"))
+      .where(t[:last_name].matches("%#{last}"))
+  end
+
+  def self.find_by_auth_token(token)
+    Identity.find_by(token: token).try(:person)
   end
 
 end

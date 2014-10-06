@@ -16,11 +16,11 @@
         - if @candidates.any?
           %h4 Other
         =f.radio_button :person_id, nil
+        =f.hidden_field :token, value: SecureRandom.uuid
         =@person.name
         .fields
           =f.fields_for :person_attributes do |g|
             = g.select :school_id, (School.all - @schools).map{|s| [s.name, s.id] }
-            =g.hidden_field :first_name, value: @person.first_name
-            =g.hidden_field :last_name, value: @person.last_name
-            =g.hidden_field :auth_token, value: session[:auth_hash][:credentials][:token]
+            = g.hidden_field :first_name, value: @person.first_name
+            = g.hidden_field :last_name, value: @person.last_name
   =f.submit "Register"

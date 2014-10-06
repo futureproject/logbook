@@ -1,0 +1,20 @@
+%h1 Hi!
+= form_for @identity do |f|
+  %p What's your name?
+  .field
+    = f.label :first_name, 'First'
+    = f.text_field :first_name, required: true
+  .field
+    = f.label :last_name, 'Last'
+    = f.text_field :last_name, required: true
+  %hr
+  %p You'll log in with your email address and a password you create:
+  %hr
+  .field
+    = f.label :email
+    = f.text_field :email, required: true, placeholder: 'email'
+  .field
+    = f.label :password
+    = f.password_field :password, required: true, placeholder: 'password'
+  %hr
+  =f.submit 'Next'

@@ -3,12 +3,15 @@ dick:
   last_name: Grayson
   school: gotham_city_high
   dream_team: true
-  auth_token: robin
-  email: dick.grayson@waynetech.com
-  password_digest: <%= BCrypt::Password.create("robin", cost: 4) %>
 
 tim:
   first_name: Tim
   last_name: Drake
+  school: gotham_city_high
+  dream_team: true
+
+alfred:
+  first_name: Alfred
+  last_name: Pennyworth
   school: gotham_city_high
   dream_team: true

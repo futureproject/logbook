@@ -1,5 +1,11 @@
-%h1 New Profile
+%h1 Welcome!
+%p What's your name?
 
-= render 'form'
-
-= link_to 'Back', my_people_path
+=form_for @person, url: register_path do |f|
+  .field
+    = f.label :first_name, 'First'
+    = f.text_field :first_name, required: true
+  .field
+    = f.label :last_name, 'Last'
+    = f.text_field :last_name, required: true
+    = f.submit "Next"

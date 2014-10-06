@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   get 'auth/logout', to: 'sessions#destroy', as: :log_out
   get '/me', to: 'people#me', as: :me
   get '/os', to: 'application#os', as: :os
+  post '/register', to: 'people#register', as: :register
   match 'auth/:provider/callback' => 'sessions#create', via: [:post, :get]
 
   namespace :api do

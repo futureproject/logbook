@@ -1,5 +1,6 @@
 class PeopleController < ApplicationController
   before_action :set_person, only: [:edit, :update, :destroy]
+  skip_before_action :authenticate!, only: [:new, :register, :create]
   layout 'my'
 
   # GET /my/people
@@ -8,6 +9,7 @@ class PeopleController < ApplicationController
     @people = Person.all
   end
 
+  # GET /me
   def me
     @person = current_user
     render template: 'people/show'
@@ -29,13 +31,24 @@ class PeopleController < ApplicationController
   def edit
   end
 
-  # POST /my/people
-  # POST /my/people.json
-  def create
+  # POST /register
+  def register
     @person = Person.new(person_params)
+    @candidates = Person.matches_by_name(@person.first_name, @person.last_name).select{|p|
+      p.password_digest.blank?
+    }
+    @schools = @candidates.map{|c| c.school}
+  end
+
+  # POST /people
+  # POST /people.json
+  def create
+    @person = Person.where(auth_token: nil).find(specialized_person_params[:id]) || Person.create(specialized_person_params)
+    # if there's an ID param AND THE PERSON HAS NO AUTH_TOKEN, update and sign in said person
+    # otherwise, create a new person and sign him in
 
     respond_to do |format|
-      if @person.save
+      if @person.update_attributes(specialized_person_params)
         format.html { redirect_to @person, notice: 'Person was successfully created.' }
         format.json { render :show, status: :created, location: @person }
       else
@@ -82,6 +95,18 @@ class PeopleController < ApplicationController
         :last_name,
         :grade,
         :about
+      )
+    end
+
+    def specialized_person_params
+      params.require(:person).permit(
+        :first_name,
+        :last_name,
+        :grade,
+        :id,
+        :school_id,
+        :email,
+        :password
       )
     end
 end

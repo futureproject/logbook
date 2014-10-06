@@ -5,7 +5,12 @@ bruce_identity:
   token: 'batman'
 
 dick_identity:
-  user: dick
   provider: facebook
   uid: 123456789
   token: 'robin'
+
+tim_identity:
+  token: 'youngrobin'
+  email: tim.drake@waynetech.com
+  password_digest: <%= BCrypt::Password.create("robin", cost: 4) %>
+  person: tim

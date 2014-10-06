@@ -1,16 +1,20 @@
 class IdentitiesController < ApplicationController
-  skip_before_action :authenticate!, only: [:register, :update]
+  skip_before_action :authenticate!, only: [:register, :update, :new, :create]
   layout 'my'
 
+  def new
+    @identity = Identity.new
+  end
+
   def register
-    t = Person.arel_table
-    @identity = Identity.find(params[:id])
+    @identity ||= Identity.find(params[:id])
+    first = session[:auth_hash][:info][:first_name]
+    last = session[:auth_hash][:info][:last_name]
     @person = Person.new(
-      first_name: session[:auth_hash][:info][:first_name],
-      last_name: session[:auth_hash][:info][:last_name]
+      first_name: first,
+      last_name: last
     )
-    @candidates = Person.where(t[:first_name].matches(@person.first_name.downcase))
-      .where(t[:last_name].matches(@person.last_name.downcase))
+    @candidates = Person.matches_by_name(@person.first_name, @person.last_name)
       .select{|p| p.identity.nil? }
     @schools = @candidates.map{|c| c.school}
   end
@@ -26,11 +30,31 @@ class IdentitiesController < ApplicationController
     end
   end
 
+  def create
+    @identity = Identity.new(identity_params)
+    if @identity.save
+      session[:auth_hash] = {
+        info: {
+          first_name: @identity.first_name,
+          last_name: @identity.last_name,
+        }
+      }
+      redirect_to register_identity_path(@identity)
+    else
+      render 'new'
+    end
+  end
+
   private
     def identity_params
       params.require(:identity).permit(
         :person_id,
-        person_attributes: [:first_name, :last_name, :school_id, :auth_token]
+        :email,
+        :password,
+        :token,
+        :first_name,
+        :last_name,
+        person_attributes: [:first_name, :last_name, :school_id]
       )
     end
 
