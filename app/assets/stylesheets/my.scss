@@ -170,18 +170,11 @@ h1 {
   margin-left: $gw-gutter;
 }
 .project-assets-form {
-  clear: both;
-  float: left;
-  width: grid-width(4);
+  @extend %left-third;
 }
 
 input[type=file] { padding-top: .4em; line-height: .5; }
 
-.project-assets {
-  float: left;
-  width: grid-width(8) + $gw-gutter;
-  @include clearfix;
-}
 .asset {
   width: grid-width(2);
   height: grid-width(2);
@@ -222,6 +215,10 @@ input[type=file] { padding-top: .4em; line-height: .5; }
   margin: 0 $gw-gutter $gw-gutter 0;
   float: left;
   &:nth-child(4n) { margin-right: 0; }
+}
+
+.project-reflections {
+  @extend %two-thirds;
 }
 
 .big-reflection {

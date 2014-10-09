@@ -1,4 +1,5 @@
-%p#notice= notice
+-if flash[:notice]
+  .notice.success= flash[:notice]
 .project
   %h1= @project.name
   .project-leaders.section
@@ -21,5 +22,10 @@
       = s3_uploader_form callback_url: api_v1_assets_path, callback_param: "asset[external_url]", key:"uploads/#{SecureRandom.hex}-${filename}", class: 's3-uploader', data: { attachable_id: @project.id, attachable_type: "Project"} do
         = file_field_tag :file, multiple: true
         = render partial: 'application/s3_direct_upload_progress_bars'
-  .project-assets.assets.section
-    = render @project.assets
+    .project-assets.assets
+      = render @project.assets
+  .project-reflections.section
+    %header
+      Reflections
+      =link_to("Add", new_reflection_path(project_id: @project.id))
+    = render @project.student_reflections

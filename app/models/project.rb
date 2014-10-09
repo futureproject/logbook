@@ -6,6 +6,7 @@ class Project < ActiveRecord::Base
   has_many :leaders, through: :project_leaders, source: :person
   has_many :participants, through: :project_participants, source: :person
   has_many :assets, as: :attachable, dependent: :destroy
+  has_many :student_reflections, class_name: "Reflection", as: :reflectable
   after_create :log_action
 
   def log_action
@@ -18,4 +19,9 @@ class Project < ActiveRecord::Base
       school_id: school.try(:id)
     )
   end
+
+  def whole_team
+    (leaders + participants).flatten.uniq
+  end
+
 end

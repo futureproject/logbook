@@ -15,7 +15,11 @@ class ReflectionsController < ApplicationController
 
   # GET /my/reflections/new
   def new
-    @reflection = current_user.student_reflections.new
+    if params[:project_id]
+      @reflection = Project.find(params[:project_id]).student_reflections.new
+    else
+      @reflection = current_user.student_reflections.new
+    end
   end
 
   # GET /my/reflections/1/edit
@@ -25,11 +29,11 @@ class ReflectionsController < ApplicationController
   # POST /my/reflections
   # POST /my/reflections.json
   def create
-    @reflection = current_user.student_reflections.new(reflection_params)
+    @reflection = Reflection.new(reflection_params)
 
     respond_to do |format|
       if @reflection.save
-        format.html { redirect_to root_url, notice: 'Reflection was successfully created.' }
+        format.html { redirect_to @reflection.reflectable, notice: 'Reflection was successfully created.' }
         format.json { render :show, status: :created, location: @reflection }
       else
         format.html { render :new }
@@ -71,7 +75,9 @@ class ReflectionsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def reflection_params
       params.require(:reflection).permit(
-        :content
+        :content,
+        :reflectable_type,
+        :reflectable_id
       )
     end
 end

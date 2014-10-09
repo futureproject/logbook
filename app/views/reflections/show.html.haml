@@ -1,4 +1,4 @@
-%h1= @reflection.person.try(:name)
+%h1= @reflection.reflectable.try(:name)
 .reflection.big-reflection
   .reflection-date.section
     %header Date
@@ -6,7 +6,7 @@
   .reflection-content.section
     %header
       Reflection
-      =link_to "Edit", edit_reflection_path(@reflection) if @reflection.person == current_user
+      =link_to "Edit", edit_reflection_path(@reflection) if @reflection.owned_by?(current_user, @reflection.reflectable)
     :markdown
       #{@reflection.content}
   .reflection-assets-header.section
