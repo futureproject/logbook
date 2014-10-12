@@ -1,6 +1,6 @@
 class Api::V1::EngagementsController < Api::V1::BaseController
   wrap_parameters format: [:json], include: [:attendee_ids, :date, :kind, :school_id, :notes, :duration]
-  before_action :set_engagement, only: [:show, :edit, :update, :destroy]
+  before_action :set_engagement, only: [:show, :edit, :update, :destroy, :upload]
 
   # GET /api/v1/engagements
   # GET /api/v1/engagements.json
@@ -11,6 +11,11 @@ class Api::V1::EngagementsController < Api::V1::BaseController
   # GET /api/v1/engagements/1
   # GET /api/v1/engagements/1.json
   def show
+  end
+
+
+  def upload
+    render partial: 'engagements/upload'
   end
 
   # GET /api/v1/engagements/new

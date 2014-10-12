@@ -46,7 +46,9 @@ Rails.application.routes.draw do
       resources :projects do
         get 'stats', on: :member
       end
-      resources :engagements
+      resources :engagements do
+        get 'upload', on: :member
+      end
       resources :one_on_ones
       resources :reports
       resources :reflections

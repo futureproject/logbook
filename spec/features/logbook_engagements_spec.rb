@@ -16,6 +16,7 @@ feature 'Logbook engagements' do
     expect(page).to have_content 'Crime-Fighting Lesson'
     expect(page).to have_content 'Dick'
     expect(page).to have_content 'Tim'
+    expect(page).to have_content 'Upload Photos'
   end
 
   scenario 'editing', js: true do
