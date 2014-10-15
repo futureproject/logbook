@@ -1,0 +1,17 @@
+%h1 Activity
+%table
+  %th Who
+  %th What
+  %th Where
+  %th Details
+
+  - @actions.group_by(&:date).each do |date, actions|
+    %tr
+      %td.activity_day{colspan: 4}= date.strftime("%A, %B %d")
+    - actions.each do |action|
+      %tr[action]
+        %td=action.who
+        %td=action.what
+        %td=action.try(:school).try(:name)
+        %td=action.detail
+

@@ -10,13 +10,15 @@ class Project < ActiveRecord::Base
   after_create :log_action
 
   def log_action
+    return unless school
     Action.create(
-      who: school.try(:name),
+      who: whole_team.map{|p| p.name}.join(', '),
       what: "started a project",
       subject_id: id,
       subject_type: "Project",
       interesting: true,
-      school_id: school.try(:id)
+      school_id: school.id,
+      date: self.created_at.to_date
     )
   end
 

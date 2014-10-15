@@ -5,14 +5,15 @@ class EngagementAttendee < ActiveRecord::Base
 
   def log_action
     Action.create(
-      who: person.try(:first_name),
+      who: person.try(:name),
       actor_id: person.try(:id),
       actor_type: "Person",
-      what: "attended a engagement",
+      what: "attended an engagement",
       subject_id: engagement.try(:id),
       subject_type: "Engagement",
       interesting: false,
-      school_id: person.try(:school_id)
+      school_id: person.try(:school_id),
+      date: engagement.try(:date)
     )
   end
 end

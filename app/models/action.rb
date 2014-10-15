@@ -9,12 +9,8 @@ class Action < ActiveRecord::Base
   def detail
     return "" if subject.nil?
     case subject_type
-    when "TaskAssignment" then
-      subject.try(:task).action
-    when "OneOnOne" then
-      "it lasted #{subject.duration} #{'hour'.pluralize(subject.duration)}."
     when "Engagement" then
-      subject.attendees.map{|a| a.first_name}.join(", ")
+      subject.kind + " with " + subject.attendees.map{|a| a.name}.join(", ")
     when "Project" then
       subject.name
     when "EngagementAttendee" then

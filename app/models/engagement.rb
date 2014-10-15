@@ -7,15 +7,17 @@ class Engagement < ActiveRecord::Base
   validates_presence_of :date
 
   def log_action
+    return unless school
     Action.create(
-      who: school.try(:dream_director).try(:first_name),
-      what: "hosted a engagement",
+      who: school.try(:dream_director).try(:name),
+      what: "hosted an engagement",
       subject_id: id,
       subject_type: "Engagement",
       interesting: true,
-      school_id: school.try(:id),
-      actor_id: school.try(:dream_director).id,
-      actor_type: "User"
+      school_id: school.id,
+      actor_id: school.try(:dream_director).try(:id),
+      actor_type: "User",
+      date: self.date
     )
   end
 

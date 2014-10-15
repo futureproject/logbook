@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141009163101) do
+ActiveRecord::Schema.define(version: 20141015175504) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20141009163101) do
     t.integer  "actor_id"
     t.string   "actor_type"
     t.date     "day"
+    t.date     "date"
   end
 
   create_table "assets", force: true do |t|

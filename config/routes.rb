@@ -23,6 +23,10 @@ Rails.application.routes.draw do
   resources :people
   resources :reflections
   resources :projects
+  resources :actions, only: [:index, :show] do
+    get :from, on: :collection
+  end
+  get '/activity', to: 'actions#index', as: :activity
   resources :identities do
     get 'register', on: :member
   end

@@ -4,15 +4,17 @@ class ProjectParticipant < ActiveRecord::Base
   after_create :log_action
 
   def log_action
+    return unless person && project
     Action.create(
-      who: person.try(:first_name),
+      who: person.name,
       what: "is participating in a project",
-      actor_id: person.try(:id),
+      actor_id: person.id,
       actor_type: "Person",
-      subject_id: project.try(:id),
+      subject_id: project.id,
       subject_type: "Project",
       interesting: false,
-      school_id: person.try(:school_id)
+      school_id: person.school_id,
+      date: project.created_at.to_date
     )
   end
 end
