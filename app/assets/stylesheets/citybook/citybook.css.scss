@@ -1,2 +1,76 @@
-@import 'my';
+/*
+= require s3_direct_upload_progress_bars
+= require octicons
+*/
+@import 'bourbon';
+@import 'base/base';
+@import 'neat';
+@import 'theme';
 
+#l_citybook {
+  padding: em(96px) $gutter $gutter;
+}
+
+
+#filters {
+  overflow: visible;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: $gutter;
+  height: 6em;
+  @include clearfix;
+  > ul {
+    > li {
+      width: 50%;
+      float: left;
+    }
+    li li {
+      display: none;
+      a {
+        padding: 1em;
+        border-bottom: 1px solid $base-border-color;
+        display: block;
+        background: white;
+        font-weight: bold;
+        &:hover {
+          background: $dark-blue;
+        }
+      }
+    }
+    li li:first-child {
+      display: block;
+      a:after {
+        content: '\25BC';
+        float: right;
+        color: $base-border-color;
+      }
+    }
+    li:hover {
+      li { display: block; }
+      ul {
+        box-shadow: 0 0 10px rgba(0,0,0,.2);
+      }
+    }
+  }
+}
+.navbar-horizontal {
+  border-top: 1px solid $base-border-color;
+  display: table;
+  width: 100%;
+  .current-user { text-align: right; }
+  > * {
+    display: table-cell;
+    padding-top: $gutter;
+    vertical-align: middle;
+  }
+  img {
+    width: 2em;
+    height: 2em;
+  }
+}
+
+.activity_day {
+  padding: 4px 8px;
+}

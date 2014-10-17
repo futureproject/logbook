@@ -13,5 +13,8 @@
         %td=action.who
         %td=action.what
         %td=action.try(:school).try(:name)
-        %td=action.detail
+        %td
+          =action.detail
+          - if action.try(:subject).is_a?(Asset)
+            =link_to image_tag(action.subject.thumbnail), action.subject.data(:original)
 

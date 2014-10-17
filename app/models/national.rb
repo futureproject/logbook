@@ -9,6 +9,10 @@ class National
     res || 0
   end
 
+  def actions
+    Action.all
+  end
+
   #def self.engagement_score
   #  WeeklyLogEntry.average(:quality)
   #end

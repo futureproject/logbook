@@ -1,0 +1,34 @@
+!!!
+%html
+  %head
+    %title Citybook
+    = stylesheet_link_tag    'citybook/citybook.css', media: 'all'
+    %meta{name:"viewport", content: "width=1024"}
+    = csrf_meta_tags
+  %body#l_citybook
+    #filters
+      %ul
+        %li
+          %ul
+            - if current_scope.is_a? Site
+              %li=link_to "Viewing #{current_scope.name}", url_for(site_id: current_scope.id)
+            -else
+              %li=link_to "All Sites", url_for(site_id: nil)
+            - Site.order(:name).each do |site|
+              %li=link_to site.name, url_for(site_id: site.id)
+        %li
+          %ul
+            - if current_scope.is_a? School
+              %li=link_to "Viewing #{current_scope.name}", url_for(school_id: current_scope.id)
+            -else
+              %li=link_to "Choose a school", "#"
+            - School.order(:name).each do |school|
+              %li=link_to school.name, url_for(school_id: school.id)
+    = yield
+    .navbar.navbar-horizontal
+      .logo= link_to image_tag(asset_path('tfplogo.svg')), root_url
+      -if current_user
+        .current-user
+          = "Logged in as #{current_user.name} | "
+          = link_to "Log Out", log_out_path
+    = javascript_include_tag 'citybook/citybook.js'
