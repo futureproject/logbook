@@ -15,6 +15,8 @@ class Person < ActiveRecord::Base
   has_many :assets, as: :attachable
   has_one :identity
   ROLE_ENUM = %w(student teacher)
+  GRADE_ENUM = [6, 7, 8, 9, 10, 11, 12]
+  SEX_ENUM = %w(male female other)
 
   scope :search, lambda {|n|
     return if n.blank?

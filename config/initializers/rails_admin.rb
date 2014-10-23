@@ -68,10 +68,23 @@ RailsAdmin.config do |config|
       field :first_name
       field :last_name
       field :email
-      field :role
+      field :role, :enum do
+        enum do
+          Person::ROLE_ENUM
+        end
+      end
       field :school
       field :grade
       field :dream_team
+      field :sex, :enum do
+        enum do
+          Person::SEX_ENUM
+        end
+      end
+      field :phone
+      field :gpa
+      field :notes
+      field :media_consent
     end
   end
 
