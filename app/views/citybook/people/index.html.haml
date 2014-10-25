@@ -1,0 +1,14 @@
+#people_list.list
+  .list-title
+    %h1 People
+    .r-menu
+      =link_to "New", new_citybook_person_path
+  .list-body.scrollable
+    - @people.each do |person|
+      %a.list-item{href: citybook_person_path(person)}
+        .list-item-graphic=person.initials
+        .list-item-label=person.name
+    = paginate(@people)
+
+#people_detail.panel.list-detail
+

@@ -55,6 +55,20 @@
     }
   }
 }
+
+#tabs {
+  background: $lightest-gray;
+  padding: $gutter;
+  margin: 0 0 $gutter 0;
+  li {
+    display: inline-block;
+    margin-right: $gutter;
+    &.current {
+      a { color: $dark-blue; }
+    }
+  }
+}
+
 .navbar-horizontal {
   border-top: 1px solid $base-border-color;
   display: table;

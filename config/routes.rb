@@ -67,9 +67,10 @@ Rails.application.routes.draw do
 
   namespace :citybook do
     root 'actions#index'
-    resources :sites do
-      resources :people
-    end
+    resources :sites
+    resources :people
+    resources :projects
+    resources :engagements
     resources :actions, only: [:index, :show] do
       get :from, on: :collection
     end

@@ -1,9 +1,7 @@
-class Bluebook::PeopleController < Bluebook::ApplicationController
-  def dashboard
-  end
+class Citybook::PeopleController < Citybook::ApplicationController
 
   def index
-    @people = current_user.people.order(:first_name)
+    @people = current_scope.people.page(params[:page])
   end
 
   def create

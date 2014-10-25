@@ -13,6 +13,10 @@ class National
     Action.all
   end
 
+  def people
+    Person.all
+  end
+
   #def self.engagement_score
   #  WeeklyLogEntry.average(:quality)
   #end
