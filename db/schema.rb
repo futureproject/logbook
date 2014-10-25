@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141023163150) do
+ActiveRecord::Schema.define(version: 20141025181457) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -130,6 +130,7 @@ ActiveRecord::Schema.define(version: 20141023163150) do
     t.string   "sex"
     t.boolean  "media_consent",    default: false
     t.float    "gpa"
+    t.text     "passions"
   end
 
   create_table "project_leaders", force: true do |t|

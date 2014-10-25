@@ -116,13 +116,14 @@ class User < ActiveRecord::Base
       minutes = row["Minutes Spent in 1:1 Conversation (these can be estimates!)"]
       gpa = row["GPA"].to_f rescue nil
       media_consent = row["Media Consent Form"] =~ (/yes|true/i) ? true : false
-      notes = "Passions: #{row["Passions"]} \n #{row["Notes on student"]}"
+      notes = "#{row["Notes on student"]} Passions: #{row["Passions"]}"
+      passions = row["Passions"]
 
       person =Person.where(first_name: first, last_name: last).first_or_create do |p|
         p.update_attributes(
           first_name: first, last_name: last, email: email, phone: phone, sex: sex,
           grade: grade, gpa: gpa, media_consent: media_consent, notes: notes,
-          school_id: self.school_id
+          school_id: self.school_id, passions: passions
         )
       end
       engagement = Engagement.create(
