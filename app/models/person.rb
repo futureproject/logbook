@@ -1,19 +1,19 @@
 class Person < ActiveRecord::Base
   validates_presence_of :first_name, :last_name, :school_id
   belongs_to :school
-  has_many :project_participants
-  has_many :project_leaders
+  has_many :project_participants, dependent: :destroy
+  has_many :project_leaders, dependent: :destroy
   has_many :primary_projects, through: :project_leaders, source: :project
   has_many :secondary_projects, through: :project_participants, source: :project
   has_many :one_on_ones
-  has_many :engagement_attendees
+  has_many :engagement_attendees, dependent: :destroy
   has_many :engagements, through: :engagement_attendees
   has_many :actions, as: :actor
-  has_many :reports
-  has_many :testimonials
-  has_many :student_reflections, class_name: "Reflection", as: :reflectable
+  has_many :reports, dependent: :destroy
+  has_many :testimonials, dependent: :destroy
+  has_many :student_reflections, class_name: "Reflection", as: :reflectable, dependent: :destroy
   has_many :assets, as: :attachable
-  has_one :identity
+  has_one :identity, dependent: :destroy
   ROLE_ENUM = %w(student teacher)
   GRADE_ENUM = [6, 7, 8, 9, 10, 11, 12]
   SEX_ENUM = %w(male female other)
