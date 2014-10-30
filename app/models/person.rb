@@ -1,6 +1,7 @@
 class Person < ActiveRecord::Base
   validates_presence_of :first_name, :last_name, :school_id
   belongs_to :school
+  has_one :site, through: :school
   has_many :project_participants, dependent: :destroy
   has_many :project_leaders, dependent: :destroy
   has_many :primary_projects, through: :project_leaders, source: :project
