@@ -74,6 +74,7 @@ class Api::V1::PeopleController < Api::V1::BaseController
         :school_id,
         :grade,
         :dream_team,
+        :email,
         :notes
       )
     end

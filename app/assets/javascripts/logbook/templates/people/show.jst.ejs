@@ -8,6 +8,7 @@
 
   <div class="panel-body scrollable pad">
     <h2><%= first_name %> <%= last_name %></h2>
+    <h6><a href="mailto:<%= email %>"><%= email %></a></h6>
     <h6><%= grade%>th grade<%= dream_team ? " Dream Team " : " " %><%= role %></h6>
     <textarea id='person_notes' placeholder='General Notes (private)'><%= notes %></textarea>
     <div class='person-actions'>

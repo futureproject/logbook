@@ -2,6 +2,7 @@ class Identity < ActiveRecord::Base
   belongs_to :user
   belongs_to :person
   accepts_nested_attributes_for :person
+  validates_uniqueness_of :email
   has_secure_password validations: false
   attr_accessor :first_name, :last_name
 

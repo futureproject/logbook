@@ -10,7 +10,7 @@ feature 'Logbook people' do
     fill_in 'first_name', with: 'Terry'
     fill_in 'last_name', with: 'McGuiness'
     select 'student', from: 'role'
-    select '11', from: 'grade'
+    select 'N/A', from: 'grade'
     click_button 'Done'
     expect(page).to have_content 'Terry McGuiness'
   end
@@ -29,8 +29,10 @@ feature 'Logbook people' do
     first('.list-item').click
     find('.edit').click
     fill_in 'first_name', with: 'Richard'
+    fill_in 'email', with: 'drake@waynetech.com'
     click_button 'Done'
     expect(page).to have_content 'Richard'
+    expect(page).to have_content 'drake@waynetech.com'
   end
 
   scenario 'making a note', js: true do
