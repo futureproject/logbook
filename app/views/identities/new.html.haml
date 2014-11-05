@@ -17,4 +17,5 @@
     = f.label :password
     = f.password_field :password, required: true, placeholder: 'password'
   %hr
+  =f.hidden_field :provider, value: 'TFP'
   =f.submit 'Next'

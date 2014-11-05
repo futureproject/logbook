@@ -6,12 +6,11 @@ feature 'Logbook engagements' do
   end
 
   scenario 'adding', js: true do
-    visit '/logbook/engagements'
-    first('a.new').click()
-    all('input[type=text]')[0].set("Crime-Fighting Lesson\n")
+    visit '/logbook/engagements/new'
+    fill_in 'name', with: 'Crime-Fighting Lesson'
     fill_in 'date', with: 'tomorrow'
-    all('input[type=text]')[1].set("Dick Grayson\n")
-    all('input[type=text]')[1].set("Tim Drake\n")
+    all('input[type=text]')[2].set("Dick Grayson\n")
+    all('input[type=text]')[2].set("Tim Drake\n")
     click_button 'Done'
     expect(page).to have_content 'Crime-Fighting Lesson'
     expect(page).to have_content 'Dick'
@@ -24,8 +23,10 @@ feature 'Logbook engagements' do
     first('.list-item').click
     click_link 'Edit'
     fill_in 'kind', with: 'Self-Defense Engagement'
+    fill_in 'name', with: 'Batman Teaches Self Defense'
     click_button 'Done'
     expect(page).to have_content 'Self-Defense Engagement'
+    expect(page).to have_content 'Batman Teaches'
   end
 
   scenario 'deleting', js: true do

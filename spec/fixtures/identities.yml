@@ -12,5 +12,6 @@ dick_identity:
 tim_identity:
   token: 'youngrobin'
   email: tim.drake@waynetech.com
+  uid: tim.drake@waynetech.com
   password_digest: <%= BCrypt::Password.create("robin", cost: 4) %>
   person: tim

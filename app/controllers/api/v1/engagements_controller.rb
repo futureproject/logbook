@@ -1,5 +1,5 @@
 class Api::V1::EngagementsController < Api::V1::BaseController
-  wrap_parameters format: [:json], include: [:attendee_ids, :date, :kind, :school_id, :notes, :duration]
+  wrap_parameters format: [:json], include: [:attendee_ids, :name, :date, :kind, :school_id, :notes, :duration]
   before_action :set_engagement, only: [:show, :edit, :update, :destroy, :upload]
 
   # GET /api/v1/engagements
@@ -65,6 +65,7 @@ class Api::V1::EngagementsController < Api::V1::BaseController
     def engagement_params
       params.require(:engagement).permit(
         :kind,
+        :name,
         :date,
         :school_id,
         :duration,

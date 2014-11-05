@@ -32,6 +32,7 @@ class IdentitiesController < ApplicationController
 
   def create
     @identity = Identity.new(identity_params)
+    @identity.uid = @identity.email if @identity.uid.blank?
     if @identity.save
       session[:auth_hash] = {
         info: {
@@ -53,6 +54,7 @@ class IdentitiesController < ApplicationController
         :password,
         :token,
         :first_name,
+        :provider,
         :last_name,
         person_attributes: [:first_name, :last_name, :school_id]
       )
