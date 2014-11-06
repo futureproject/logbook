@@ -1,7 +1,16 @@
 #= require jquery
 #= require jquery_ujs
+#= require jquery_ujs
+#= require underscore-min
+#= require backbone-min
+#= require backbone.syphon
+#= require selectize
 #= require s3_direct_upload
+#= require ./app
+#= require_tree ./views
+
+
+
 $ ->
-  $('#filters select').on('change', (e) ->
-    console.log this
-  )
+  ds.init()
+

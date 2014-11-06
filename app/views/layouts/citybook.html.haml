@@ -8,7 +8,7 @@
   %body#l_citybook
     = render 'filters'
     = render 'tabs'
-    = yield
+    #yield= yield
     .navbar.navbar-horizontal
       .logo= link_to image_tag(asset_path('tfplogo.svg')), root_url
       -if current_user
