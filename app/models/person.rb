@@ -23,8 +23,13 @@ class Person < ActiveRecord::Base
     return if n.blank?
     first= "%#{n.split(' ').first.downcase}%"
     last= "%#{n.split(' ').last.downcase}%"
-    where("lower(first_name) like ? or lower(last_name) like ?", first, last).
-      order('lower(first_name)')
+    if first == last
+      where("lower(first_name) like ? or lower(last_name) like ?", first, last).
+        order('lower(first_name)').limit(10)
+    else
+      where("lower(first_name) like ? and lower(last_name) like ?", first, last).
+        order('lower(first_name)').limit(10)
+    end
   }
 
   def name
@@ -49,6 +54,10 @@ class Person < ActiveRecord::Base
 
   def auth_token
     identity.token
+  end
+
+  def school_name
+    school.try(:name)
   end
 
   # takes a CSV from the public directory and a User object

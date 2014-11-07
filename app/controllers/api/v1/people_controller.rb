@@ -4,11 +4,10 @@ class Api::V1::PeopleController < Api::V1::BaseController
   # GET /api/v1/people
   # GET /api/v1/people.json
   def index
-    @people = current_user.people
     if params[:q]
-      @people = @people.search(params[:q])
+      @people = Person.search(params[:q])
     else
-      @people = @people.order(:dream_team, :first_name, :id)
+      @people = current_user.people.order(:dream_team, :first_name, :id)
     end
     @people
   end

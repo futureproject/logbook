@@ -26,6 +26,7 @@
       float: left;
       background: $dark-gray;
       color: white;
+      white-space: nowrap;
       &:first-child {
         border-right: 1px solid white;
       }
@@ -61,9 +62,11 @@
       display: block;
     }
     .is-active {
-      li { display: block; }
-      ul {
-        box-shadow: 0 0 10px rgba(0,0,0,.2);
+      overflow: auto;
+      height: 394px;
+      box-shadow: 0 0 10px rgba(0,0,0,.2);
+      li {
+        display: block;
       }
     }
   }
@@ -88,10 +91,12 @@
       display: block;
       font-size: 9px;
       font-weight: bold;
+      color: $light-gray;
+      &:hover { color: $base-font-color; }
     }
     &.current {
       background: white;
-      a { color: $dark-blue; }
+      a { color: $blue; }
     }
   }
 }
@@ -99,6 +104,12 @@
 #yield {
   margin: 53px 0 0 72px;
   padding: $gutter;
+}
+
+input[type=search] {
+  padding-left: 0;
+  padding-right: 0;
+  box-sizing: border-box;
 }
 
 table {

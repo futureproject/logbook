@@ -1,4 +1,5 @@
-%table
+%input.search-field{type: 'text', name: 'q', placeholder: 'Find or add someone...', autocomplete: 'off', autocorrect: 'off', data: { action: api_v1_people_path }}
+%table#people-list
   %th First
   %th Last
   %th Grade
@@ -10,4 +11,5 @@
       %td=person.last_name
       %td=person.grade
       %td=person.school.try(:name)
-=paginate @people
+  %tr
+    %td{colspan: 4}=paginate @people
