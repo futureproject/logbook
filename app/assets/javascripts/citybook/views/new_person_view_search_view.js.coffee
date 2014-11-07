@@ -41,7 +41,6 @@ class ds.Views.NewPersonViaSearchView extends Backbone.View
         person_id: person_id
         engagement_id: engagement_id
     }
-    console.log engagement_data
     $.ajax
       type: 'POST'
       url: '/api/v1/engagement_attendees.json'
