@@ -1,7 +1,7 @@
 class Citybook::PeopleController < Citybook::ApplicationController
 
   def index
-    @people = current_scope.people.page(params[:page])
+    @people = current_scope.people.order(:last_name).page(params[:page])
   end
 
   def create

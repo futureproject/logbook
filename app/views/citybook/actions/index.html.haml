@@ -15,5 +15,11 @@
         %td
           =action.detail
           - if action.try(:subject).is_a?(Asset)
-            =link_to image_tag(action.subject.thumbnail), action.subject.data(:original)
+            - if action.subject.data_content_type.match(/image/i)
+              =link_to image_tag(action.subject.data(:thumb)), action.subject.data(:original)
+            - elsif action.subject.data_content_type.match(/audio/i)
+              %audio{src: action.subject.data(:original), preload: 'none', controls: true}
+            - else
+              =link_to action.subject.caption, action.subject.data(:original)
+=paginate @actions
 
