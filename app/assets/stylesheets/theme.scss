@@ -23,6 +23,11 @@ body {
   @include flash($alert-color);
 }
 
+.warn {
+  color: $error-color;
+  font-weight: bold;
+}
+
 .error {
   @include flash($error-color);
 }

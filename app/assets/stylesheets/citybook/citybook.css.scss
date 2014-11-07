@@ -110,9 +110,21 @@ input.search-field {
   font-size: 2em;
 }
 
+.date-select select {
+  display: inline-block;
+}
+
 table {
   td {
-    padding: .5em 1em .5em 0;
+    padding-right: .5em;
+    height: 80px;
+    vertical-align: middle;
+  }
+  td:last-child {
+    a {
+      font-weight: bold;
+      padding-right: 1em;
+    }
   }
 }
 
@@ -148,5 +160,14 @@ table {
     &:after {
       content: '”';
     }
+  }
+}
+
+.hide-chrome {
+  #yield {
+    margin: 0;
+  }
+  #filters, #tabs, .navbar {
+    display: none;
   }
 }

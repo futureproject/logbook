@@ -14,8 +14,8 @@ class Citybook::PeopleController < Citybook::ApplicationController
   end
 
   private
-  def person_params
-    params[:person].permit!
-  end
+    def person_params
+      params[:person].permit!
+    end
 
 end

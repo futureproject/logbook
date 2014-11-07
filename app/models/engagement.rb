@@ -5,6 +5,18 @@ class Engagement < ActiveRecord::Base
   has_many :assets, as: :attachable, dependent: :destroy
   #after_create :log_action
   validates_presence_of :date
+  KIND_ENUM = ['Coaching Session', 'Event', 'Meeting', 'Workshop']
+  DURATION_ENUM = [
+    ['15 Minutes', 0.25],
+    ['30 Minutes', 0.5],
+    ['1 Hour', 1],
+    ['2 Hours', 2],
+    ['3 Hours', 3],
+    ['4 Hours', 4],
+    ['5 Hours', 5],
+    ['6 Hours', 6],
+    ['7+ Hours', 8]
+  ]
 
   def log_action
     return unless school

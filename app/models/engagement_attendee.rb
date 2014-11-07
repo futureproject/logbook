@@ -1,6 +1,8 @@
 class EngagementAttendee < ActiveRecord::Base
   belongs_to :engagement
   belongs_to :person
+  validates_presence_of :engagement_id, :person_id
+  validates_uniqueness_of :person_id, scope: :engagement_id
   after_create :log_action
 
   def log_action

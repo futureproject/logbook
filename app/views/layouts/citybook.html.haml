@@ -5,10 +5,13 @@
     = stylesheet_link_tag    'citybook/citybook.css', media: 'all'
     %meta{name:"viewport", content: "width=1024"}
     = csrf_meta_tags
-  %body#l_citybook
+  %body#l_citybook{class: page_classes}
     = render 'filters'
     = render 'tabs'
-    #yield= yield
+    #yield
+      -if flash[:notice]
+        .notice= flash[:notice]
+      = yield
     .navbar.navbar-horizontal
       .logo= link_to image_tag(asset_path('tfplogo.svg')), root_url
       -if current_user

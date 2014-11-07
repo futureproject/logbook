@@ -69,6 +69,14 @@ class User < ActiveRecord::Base
     end
   end
 
+  def sites
+    if site
+      [site]
+    else
+      Site.order(:name)
+    end
+  end
+
   def stats
     [
       {

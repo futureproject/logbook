@@ -17,6 +17,10 @@ class National
     Person.all
   end
 
+  def engagements
+    Engagement.all
+  end
+
   #def self.engagement_score
   #  WeeklyLogEntry.average(:quality)
   #end

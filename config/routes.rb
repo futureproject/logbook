@@ -50,6 +50,7 @@ Rails.application.routes.draw do
       resources :engagements do
         get 'upload', on: :member
       end
+      resources :engagement_attendees
       resources :one_on_ones
       resources :reports
       resources :reflections
@@ -70,7 +71,9 @@ Rails.application.routes.draw do
     resources :sites
     resources :people
     resources :projects
-    resources :engagements
+    resources :engagements do
+      get 'attendance', on: :member
+    end
     resources :actions, only: [:index, :show] do
       get :from, on: :collection
     end

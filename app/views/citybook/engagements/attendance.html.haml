@@ -1,24 +1,15 @@
+%h1= "Attendance - #{@engagement.date.strftime "%D"} - #{@engagement.kind}"
+
 %input.search-field{type: 'text', name: 'q', placeholder: 'Find or add someone...', autocomplete: 'off', autocorrect: 'off', data: { action: api_v1_people_path }}
 
 =form_for Person.new(grade: 9, school_id: current_user.school_id), url: api_v1_people_path, remote: true do |f|
-  %table#people-list
+  %table#engagement-attendance
     %tr
       %th First
       %th Last
       %th Grade
       %th School
       %th Actions
-
-    %tbody.people.rails-results
-      - @people.each do |person|
-        %tr[person]
-          %td=person.first_name
-          %td=person.last_name
-          %td=person.grade
-          %td=person.school.try(:name)
-          %td
-      %tr
-        %td{colspan: 5}=paginate @people
     %tbody.search-results
     %tbody.new-record-via-search
       %tr
@@ -35,3 +26,5 @@
         %td
           =f.submit 'Add Person'
 
+:javascript
+  window.DS_DATA = #{JSON.dump( @js_data || {} )}
