@@ -1,12 +1,15 @@
 ds.Views ||= {}
+
 class ds.Views.SearchView extends Backbone.View
   initialize: ->
     return unless @el?
-    @listenTo Backbone, 'search:clear', =>
-      @$el.val('')
+    @listenTo Backbone, 'search:clear', @resetVal
+    @listenTo Backbone, 'search:added', @resetVal
   events:
     'keyup' : 'prepQuery'
 
+  resetVal: ->
+    @$el.val('')
   prepQuery: _.debounce((e) ->
     @$t = $(e.currentTarget)
     @q = @$t.val()

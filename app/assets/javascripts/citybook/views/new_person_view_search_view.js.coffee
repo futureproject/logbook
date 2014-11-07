@@ -10,6 +10,7 @@ class ds.Views.NewPersonViaSearchView extends Backbone.View
 
   events:
     'ajax:success': 'created'
+    'ajax:error': 'onError'
 
   show: (search) ->
     @$inputs.html @defaultHtml
@@ -27,3 +28,6 @@ class ds.Views.NewPersonViaSearchView extends Backbone.View
     @$inputs.html ('<tr><td colspan=5>Person added!</td></tr>')
     Backbone.trigger 'search:added',
       response
+
+  onError: (event, response, status) ->
+    alert response.responseText
