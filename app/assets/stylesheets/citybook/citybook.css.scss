@@ -106,10 +106,8 @@
   padding: $gutter;
 }
 
-input[type=search] {
-  padding-left: 0;
-  padding-right: 0;
-  box-sizing: border-box;
+input.search-field {
+  font-size: 2em;
 }
 
 table {
@@ -136,4 +134,19 @@ table {
 
 .activity_day {
   padding: 4px 8px;
+}
+
+.new-record-via-search {
+  display: none;
+  border-top: 3px solid $blue;
+  border-bottom: 3px solid $blue;
+  .person-name {
+    font-weight: bold;
+    &:before {
+      content: '“';
+    }
+    &:after {
+      content: '”';
+    }
+  }
 }

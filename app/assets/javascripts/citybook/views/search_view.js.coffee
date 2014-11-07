@@ -1,5 +1,9 @@
 ds.Views ||= {}
 class ds.Views.SearchView extends Backbone.View
+  initialize: ->
+    return unless @el?
+    @listenTo Backbone, 'search:clear', =>
+      @$el.val('')
   events:
     'keyup' : 'prepQuery'
 
@@ -17,8 +21,10 @@ class ds.Views.SearchView extends Backbone.View
         dataType: 'json'
         data:
           q: @q
-        success: (data, status, xhr) ->
-          Backbone.trigger 'search:complete', data
+        success: (data, status, xhr) =>
+          Backbone.trigger 'search:complete',
+            q: @q
+            results: data
     else
-      Backbone.trigger 'search:complete', null
+      Backbone.trigger 'search:clear'
 

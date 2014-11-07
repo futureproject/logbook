@@ -13,8 +13,11 @@ window.ds = {
             <td><%= first_name %></td>
             <td><%= last_name %></td>
             <td><%= grade %></td>
-            <td><%= school %></td>
+            <td><%= school_name %></td>
+            <td></td>
           </tr>
         "
+      new_person_via_search: new ds.Views.NewPersonViaSearchView
+        el: '#new_person'
   #make a view for searching engagements
 }

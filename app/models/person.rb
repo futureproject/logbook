@@ -15,7 +15,7 @@ class Person < ActiveRecord::Base
   has_many :student_reflections, class_name: "Reflection", as: :reflectable, dependent: :destroy
   has_many :assets, as: :attachable
   has_one :identity, dependent: :destroy
-  ROLE_ENUM = %w(student teacher)
+  ROLE_ENUM = %w(student teacher staff)
   GRADE_ENUM = [6, 7, 8, 9, 10, 11, 12]
   SEX_ENUM = %w(male female other)
 

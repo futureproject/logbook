@@ -1,15 +1,36 @@
 %input.search-field{type: 'text', name: 'q', placeholder: 'Find or add someone...', autocomplete: 'off', autocorrect: 'off', data: { action: api_v1_people_path }}
-%table#people-list
-  %th First
-  %th Last
-  %th Grade
-  %th School
 
-  - @people.each do |person|
-    %tr[person]
-      %td=person.first_name
-      %td=person.last_name
-      %td=person.grade
-      %td=person.school.try(:name)
-  %tr
-    %td{colspan: 4}=paginate @people
+=form_for Person.new(grade: 9, school_id: current_user.school_id), url: api_v1_people_path, remote: true do |f|
+  %table#people-list
+    %th First
+    %th Last
+    %th Grade
+    %th School
+    %th Actions
+
+    %tbody.people
+      - @people.each do |person|
+        %tr[person]
+          %td=person.first_name
+          %td=person.last_name
+          %td=person.grade
+          %td=person.school.try(:name)
+          %td
+      %tr
+        %td{colspan: 5}=paginate @people
+    %tbody.search-results
+    %tbody.new-record-via-search
+      %tr
+        %td{colspan: 2}
+          Add person named
+          %span.person-name
+        %td
+          =f.select :grade, Person::GRADE_ENUM
+        %td
+          =f.select :school_id, current_user.schools.map{|s| [s.name, s.id] }
+          =f.hidden_field :role, value: 'student'
+          =f.hidden_field :first_name
+          =f.hidden_field :last_name
+        %td
+          =f.submit 'Add Person'
+

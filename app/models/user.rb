@@ -61,6 +61,14 @@ class User < ActiveRecord::Base
     Site.find_by(captain_id: self.id) || school.try(:site)
   end
 
+  def schools
+    if site
+      site.schools.order(:name)
+    else
+      School.order(:name)
+    end
+  end
+
   def stats
     [
       {
