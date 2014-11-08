@@ -5,7 +5,7 @@
         %li
           %h3
             - if current_user.sites.count == 1
-              = "Viewing #{current_user.site.name}."
+              = "Viewing #{current_user.site.try(:name)}."
             - elsif current_scope.is_a? Site
               = "Viewing #{current_scope.name}."
               =link_to "View All"
