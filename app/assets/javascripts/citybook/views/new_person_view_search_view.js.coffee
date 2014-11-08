@@ -11,7 +11,6 @@ class ds.Views.NewPersonViaSearchView extends Backbone.View
   events:
     'ajax:success': 'created'
     'ajax:error': 'onError'
-    'click .mark-as-present': 'attended'
 
   show: (search) ->
     @$inputs.html @defaultHtml
@@ -33,19 +32,3 @@ class ds.Views.NewPersonViaSearchView extends Backbone.View
   onError: (event, response, status) ->
     alert response.responseText
 
-  attended: (e) ->
-    person_id = e.currentTarget.getAttribute('data-id')
-    engagement_id = window.DS_DATA.engagement_id
-    engagement_data = {
-      engagement_attendee:
-        person_id: person_id
-        engagement_id: engagement_id
-    }
-    $.ajax
-      type: 'POST'
-      url: '/api/v1/engagement_attendees.json'
-      dataType: 'json'
-      data: engagement_data
-      success: (data, status, xhr) =>
-        Backbone.trigger 'search:clear'
-        alert "Person added!"

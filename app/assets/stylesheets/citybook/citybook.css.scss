@@ -168,6 +168,10 @@ table {
   @include transition(background 1s);
 }
 
+#attendee_count {
+  color: $light-yellow;
+}
+
 .recent {
   background: $lightest-gray;
 }

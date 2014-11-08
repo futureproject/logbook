@@ -22,7 +22,7 @@ window.ds = {
       new_person_via_search: new ds.Views.NewPersonViaSearchView
         el: '#new_person'
 
-      engagement_attendance: new ds.Views.SearchResultsView
+      engagement_people_search: new ds.Views.SearchResultsView
         el: '#engagement-attendance'
         template: _.template "
           <tr class='person'>
@@ -33,5 +33,6 @@ window.ds = {
             <td><div class='mark-as-present success btn button' data-id='<%= id %>'>Mark as Present</div></td>
           </tr>
         "
-  #make a view for searching engagements
+      engagement_attendance: new ds.Views.EngagementAttendanceView
+        el: '#engagement-attendance'
 }

@@ -1,4 +1,7 @@
 %h1= "Attendance - #{@engagement.date.strftime "%D"} - #{@engagement.kind}"
+%h3
+  %span#attendee_count= @engagement.attendees.count
+  Attendees
 
 %input.search-field{type: 'text', name: 'q', placeholder: 'Find or add someone...', autocomplete: 'off', autocorrect: 'off', data: { action: api_v1_people_path }}
 

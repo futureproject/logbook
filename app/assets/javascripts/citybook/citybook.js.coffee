@@ -1,6 +1,6 @@
 #= require jquery
 #= require jquery_ujs
-#= require jquery_ujs
+#= require jquery.animatecss
 #= require underscore-min
 #= require backbone-min
 #= require backbone.syphon

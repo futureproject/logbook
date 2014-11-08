@@ -1,7 +1,7 @@
 class Citybook::EngagementsController < Citybook::ApplicationController
 
   def index
-    @engagements = current_scope.engagements.order('date DESC').page(params[:page])
+    @engagements = current_scope.engagements.order('date DESC, id DESC').page(params[:page])
     @engagement = Engagement.new(
       date: Date.today,
       school_id: current_user.school_id,
@@ -30,7 +30,10 @@ class Citybook::EngagementsController < Citybook::ApplicationController
   def destroy
     @engagement = Engagement.find(params[:id])
     if @engagement.destroy
-      redirect_to citybook_engagements_path, notice: 'Engagement deleted!'
+      respond_to do |format|
+        format.html { redirect_to citybook_engagements_path, notice: 'Engagement deleted!' }
+        format.js
+      end
     else
       render json: @engagement.errors, status: :unprocessable_entity
     end
