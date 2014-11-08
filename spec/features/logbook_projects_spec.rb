@@ -5,8 +5,7 @@ feature 'Logbook projects' do
   end
 
   scenario 'adding', js: true do
-    visit '/logbook/projects'
-    first('a.new').click()
+    visit '/logbook/projects/new'
     fill_in 'name', with: 'Build New Batplane'
     all('input[type=text]')[1].set("Dick Grayson\n")
     all('input[type=text]')[2].set("Tim Drake\n")
@@ -17,9 +16,9 @@ feature 'Logbook projects' do
   end
 
   scenario 'editing', js: true do
-    visit '/logbook/projects'
-    first('.list-item').click
-    click_link 'Edit'
+    visit '/logbook'
+    first('.tab_projects').click
+    first('#logbook_projects_index .new').click
     fill_in 'name', with: 'Repair Batplane'
     click_button 'Done'
     expect(page).to have_content 'Repair Batplane'

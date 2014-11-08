@@ -1,4 +1,4 @@
-=form_for [:citybook, @engagement] do |f|
+=form_for [:citybook, @engagement], remote: true do |f|
   %table#engagements-list
     %th Date
     %th Kind
@@ -12,16 +12,8 @@
         %td= f.select :kind, Engagement::KIND_ENUM
         %td= f.select :duration, Engagement::DURATION_ENUM
         %td=f.select :school_id, current_user.schools.map{|s| [s.name, s.id] }
-        %td=f.submit 'Add engagement'
-      - @engagements.each do |engagement|
-        %tr[engagement]
-          %td=engagement.date.strftime "%D"
-          %td=engagement.kind
-          %td= pluralize engagement.duration, 'hour'
-          %td=engagement.school.try(:name)
-          %td
-            =link_to 'Take Attendance', attendance_citybook_engagement_path(engagement)
-            =link_to 'Delete', citybook_engagement_path(engagement), data: { method: 'delete', confirm: 'are you sure?'}, class: 'warn'
+        %td=f.submit 'Add engagement', data: {disable_with: 'Adding...'}
+      =render @engagements
       %tr
         %td{colspan: 5}=paginate @engagements
 

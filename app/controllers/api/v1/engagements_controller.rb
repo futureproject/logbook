@@ -34,6 +34,7 @@ class Api::V1::EngagementsController < Api::V1::BaseController
     if @engagement.save
       render :show, status: :created, location: api_v1_engagement_url(@engagement)
     else
+      puts @engagement.errors.full_messages
       render json: @engagement.errors, status: :unprocessable_entity
     end
   end

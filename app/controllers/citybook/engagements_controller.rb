@@ -18,7 +18,10 @@ class Citybook::EngagementsController < Citybook::ApplicationController
   def create
     @engagement = Engagement.new(engagement_params)
     if @engagement.save
-      redirect_to citybook_engagements_path, notice: 'Engagement added!'
+      respond_to do |format|
+        format.html { redirect_to citybook_engagements_path, notice: 'Engagement added!' }
+        format.js
+      end
     else
       render json: @engagement.errors, status: :unprocessable_entity
     end

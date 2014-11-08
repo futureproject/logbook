@@ -4,8 +4,10 @@ window.ds = {
     @views =
       filters: new ds.Views.Filters
         el: '#filters'
+
       search: new ds.Views.SearchView
         el: '.search-field'
+
       people_index: new ds.Views.SearchResultsView
         el: '#people-list'
         template: _.template "

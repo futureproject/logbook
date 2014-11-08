@@ -1,0 +1,8 @@
+%tr[engagement]
+  %td=engagement.date.strftime "%D"
+  %td=engagement.kind
+  %td= pluralize engagement.duration, 'hour'
+  %td=engagement.school.try(:name)
+  %td
+    =link_to 'Take Attendance', attendance_citybook_engagement_path(engagement)
+    =link_to 'Delete', citybook_engagement_path(engagement), data: { method: 'delete', confirm: 'are you sure?'}, class: 'warn'

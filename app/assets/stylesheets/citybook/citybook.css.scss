@@ -1,6 +1,7 @@
 /*
 = require s3_direct_upload_progress_bars
 = require octicons
+= require animate
 */
 @import 'bourbon';
 @import 'base/base';
@@ -161,6 +162,14 @@ table {
       content: '”';
     }
   }
+}
+
+.engagement {
+  @include transition(background 1s);
+}
+
+.recent {
+  background: $lightest-gray;
 }
 
 .hide-chrome {
