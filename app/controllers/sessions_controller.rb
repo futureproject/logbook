@@ -45,9 +45,9 @@ class SessionsController < ApplicationController
     end
 
     def create_via_email_and_password
-      i = Identity.find_by(uid: params[:email]).try(:authenticate, params[:password])
+      i = Identity.find_by_lower_uid(params[:email]).try(:authenticate, params[:password])
       if i && i.owner
-        i.update_attributes(token: SecureRandom.uuid) if i.token.blank?
+        #i.update_attributes(token: SecureRandom.uuid) if i.token.blank?
         sign_in i.owner
         redirect_to session[:redirect] || root_url
       else
