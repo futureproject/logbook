@@ -1,4 +1,5 @@
 require 'spec_helper'
+
 feature 'Logbook engagements' do
 
   before do
@@ -28,6 +29,14 @@ feature 'Logbook engagements' do
     expect(page).to have_content 'Self-Defense Engagement'
     expect(page).to have_content 'Batman Teaches'
   end
+
+  scenario 'cloning', js: true do
+    visit '/logbook/engagements'
+    first('.list-item').click
+    click_link 'Duplicate'
+    expect(page).to have_content Date.today.day
+  end
+
 
   scenario 'deleting', js: true do
     visit '/logbook/engagements'

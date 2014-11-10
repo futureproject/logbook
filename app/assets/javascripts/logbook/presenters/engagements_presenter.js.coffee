@@ -8,6 +8,7 @@ class dream.EngagementsPresenter extends Backbone.View
     @initViews()
     @listenTo Backbone, 'engagements:present', @present
     @listenTo Backbone, 'engagement:destroy', @destroy
+    @listenTo Backbone, 'engagement:clone', @clone
 
   render: ->
     @$el.html("
@@ -55,3 +56,15 @@ class dream.EngagementsPresenter extends Backbone.View
   destroy: (model) ->
     model.destroy()
     Backbone.trigger 'router:update', 'logbook/engagements'
+
+  clone: (model) ->
+    data = _.omit(model.attributes, 'id')
+    data.date = Date.parse('today').toString('yyyy-MM-dd')
+    data.attendee_ids = [''] if data.attendee_ids == null
+    cloned_engagement = new dream.Models.Engagement
+    cloned_engagement.save data,
+      success: (engagement) ->
+        Backbone.trigger 'engagement:created', engagement
+        Backbone.trigger 'engagement:show', engagement
+      error: (e) =>
+        console.log e

@@ -35,6 +35,7 @@ Rails.application.configure do
   # disable Etags so Safari doesn't show a blank white screen on reload
   config.middleware.delete Rack::ETag
 
+  config.logger = Logger.new(STDOUT)
   config.log_level = :debug
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true

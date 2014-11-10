@@ -12,6 +12,9 @@ class dream.Views.Engagements.ShowView extends Backbone.View
     'click .edit': (e) ->
       e.preventDefault()
       Backbone.trigger 'engagement:edit', @model
+    'click .clone': (e) ->
+      e.preventDefault()
+      Backbone.trigger 'engagement:clone', @model
 
   display: (model) ->
     @model = model
