@@ -16,7 +16,7 @@ window.ds = {
             <td><%= last_name %></td>
             <td><%= grade %></td>
             <td><%= school_name %></td>
-            <td></td>
+            <td><a href='/people/<%= id %>'>View Profile</a></td>
           </tr>
         "
       new_person_via_search: new ds.Views.NewPersonViaSearchView

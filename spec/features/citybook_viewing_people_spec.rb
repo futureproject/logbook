@@ -10,6 +10,12 @@ feature 'Viewing people' do
     should_see_people
   end
 
+  scenario 'on their profiles' do
+    visit citybook_people_path
+    click_link 'View Profile', match: :first
+    expect(page).to have_content 'Testimonials'
+  end
+
   def should_see_people
     expect(page).to have_content 'Dick Grayson'
   end

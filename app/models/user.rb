@@ -73,6 +73,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def works_at_tfp
+    true
+  end
+
   def stats
     [
       {

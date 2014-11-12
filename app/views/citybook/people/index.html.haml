@@ -17,6 +17,7 @@
           %td=person.grade
           %td=person.school.try(:name)
           %td
+            =link_to 'View Profile', person_path(person)
       %tr
         %td{colspan: 5}=paginate @people
     %tbody.search-results

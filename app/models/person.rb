@@ -60,6 +60,10 @@ class Person < ActiveRecord::Base
     school.try(:name)
   end
 
+  def works_at_tfp
+    false
+  end
+
   # takes a CSV from the public directory and a User object
   # imports students into the system
   def self.import_from_csv(filename, dream_director)
