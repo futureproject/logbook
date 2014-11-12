@@ -33,3 +33,4 @@
     = javascript_include_tag 'logbook/logbook'
     :javascript
       dream.initialize(#{JSON.dump( @js_data || {} )})
+    = render 'analytics'
