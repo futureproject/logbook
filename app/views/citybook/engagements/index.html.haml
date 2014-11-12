@@ -8,7 +8,9 @@
 
     %tbody.engagements
       %tr
-        %td.date-select= f.date_select :date, use_short_month: true, discard_year: true
+        %td.date-select
+          New: 
+          = f.date_select :date, use_short_month: true, discard_year: true
         %td= f.select :kind, Engagement::KIND_ENUM
         %td= f.select :duration, Engagement::DURATION_ENUM
         %td=f.select :school_id, current_user.schools.map{|s| [s.name, s.id] }

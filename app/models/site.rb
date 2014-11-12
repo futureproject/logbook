@@ -29,7 +29,7 @@ class Site < ActiveRecord::Base
   end
 
   def staff
-    ([captain] + dream_directors).flatten
+    ([captain] + users).flatten
   end
 
 end

@@ -14,7 +14,7 @@
         %td=action.try(:school).try(:name)
         %td
           =action.detail
-          - if action.try(:subject).is_a?(Asset)
+          - if action.try(:subject).is_a?(Asset) && current_user.schools.include?(action.school)
             - if action.subject.data_content_type.match(/image/i)
               =link_to image_tag(action.subject.data(:thumb)), action.subject.data(:original)
             - elsif action.subject.data_content_type.match(/audio/i)
