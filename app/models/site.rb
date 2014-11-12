@@ -5,7 +5,7 @@ class Site < ActiveRecord::Base
 
   belongs_to :captain, foreign_key: 'captain_id', class_name: 'User'
   has_many :schools
-  has_many :dream_directors, through: :schools
+  has_many :users, through: :schools
   has_many :people, through: :schools
   has_many :projects, through: :schools
   has_many :project_leaders, through: :people
@@ -14,7 +14,6 @@ class Site < ActiveRecord::Base
   has_many :engagement_attendees, through: :engagements
   has_many :one_on_ones, through: :schools
   has_many :actions, through: :schools
-  has_many :task_assignments, through: :dream_directors
 
   def average association, column=nil
     begin

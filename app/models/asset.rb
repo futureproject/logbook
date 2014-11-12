@@ -42,8 +42,7 @@ class Asset < ActiveRecord::Base
       interesting: true,
       school_id: attachable.try(:school).try(:id),
       actor_id: attachable.try(:school).try(:dream_director).try(:id),
-      actor_type: "User",
-      date: attachable.created_at
+      actor_type: "User"
     )
   end
 

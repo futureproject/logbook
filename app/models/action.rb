@@ -4,7 +4,7 @@ class Action < ActiveRecord::Base
   belongs_to :school
   default_scope -> { order('date DESC') }
   scope :interesting, -> { where(interesting: true) }
-  before_create :set_day
+  before_create :set_date
 
   def detail
     return "" if subject.nil?
@@ -20,8 +20,8 @@ class Action < ActiveRecord::Base
     end
   end
 
-  def set_day
-    self.day = created_at.to_date if day.nil?
+  def set_date
+    self.date = created_at.to_date if day.nil?
   end
 
 end

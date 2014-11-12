@@ -42,7 +42,7 @@ RailsAdmin.config do |config|
     edit do
       field :name
       field :address
-      field :dream_director
+      field :users
       field :site
     end
   end
@@ -58,8 +58,16 @@ RailsAdmin.config do |config|
       field :first_name
       field :last_name
       field :email
+      field :school
       field :auth_token
       field :avatar_url
+      field :role
+    end
+    list do
+      field :id
+      field :first_name
+      field :last_name
+      field :email
       field :role
     end
   end

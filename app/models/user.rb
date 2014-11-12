@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   before_create :generate_auth_token
   has_many :identities, dependent: :destroy
-  has_one :school, foreign_key: 'dream_director_id', class_name: 'School'
+  belongs_to :school
 
   has_many :people, through: :school
   has_many :projects, through: :school
@@ -31,10 +31,6 @@ class User < ActiveRecord::Base
 
   def name
     "#{first_name} #{last_name}"
-  end
-
-  def school_id
-    school.id rescue nil
   end
 
   def self.find_by_identity(provider, uid)
