@@ -2,6 +2,11 @@
 
 =form_for Person.new(grade: 9, school_id: current_user.school_id), url: api_v1_people_path, remote: true do |f|
   %table#people-list
+    %col{style: 'width: 20%'}
+    %col{style: 'width: 20%'}
+    %col{style: 'width: 5em;'}
+    %col
+    %col
     %tr
       %th First
       %th Last
@@ -17,7 +22,10 @@
           %td=person.grade
           %td=person.school.try(:name)
           %td
-            =link_to 'View Profile', person_path(person)
+            = link_to 'View', citybook_person_path(person)
+            = link_to 'Edit', edit_citybook_person_path(person)
+            = link_to 'Delete', citybook_person_path(person), data: { confirm: 'Are you sure?', method: 'delete', remote: true }, class: 'warn'
+
       %tr
         %td{colspan: 5}=paginate @people
     %tbody.search-results

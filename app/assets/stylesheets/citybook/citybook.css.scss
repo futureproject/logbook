@@ -187,3 +187,25 @@ table {
     display: none;
   }
 }
+
+.section {
+  margin-bottom: $gutter;
+  > h3 {
+    border-bottom: 3px solid $blue;
+    margin-bottom: $gutter;
+    a {
+      float: right;
+    }
+  }
+}
+
+.clear {
+  clear: both;
+}
+
+.g4 {
+  @include span-columns(4);
+}
+.g8 {
+  @include span-columns(8);
+}

@@ -1,27 +1,47 @@
-#people_detail.panel.list-detail
-  .panel-title
-    %h1 Showing Person
-    .l-menu= link_to "Back", cic_school_path(@person.school)
-  .panel-body.scrollable.pad
-    %h1= @person.name
-    %ul.stats
-      %li.stat
-        %h1= @person.primary_projects.count
-        %span= "primary #{'project'.pluralize(@person.primary_projects.count)}"
-      %li.stat
-        %h1= @person.secondary_projects.count
-        %span= "secondary #{'project'.pluralize(@person.secondary_projects.count)}"
-      %li.stat
-        %h1= @person.engagements.count
-        %span= "#{'engagement'.pluralize(@person.engagements.count)} attended"
-      %li.stat
-        %h1= @person.one_on_ones.sum(:duration).to_s
-        %span hours in one-on-ones
-    %hr
-    %h5 Activity
-    - @person.actions.each do |a|
-      %p
-        =link_to a.what, [:logbook, a.subject]
-        = a.day.strftime("%D")
+.person
+  %h1= @person.name
+  %hr
+  .person-projects.section.g4
+    %h3
+      Projects
+      =link_to "Add", new_project_path
+    .person-primary-projects
+      - if @person.primary_projects.any?
+        %h6 Leading
+        = render @person.primary_projects
+      -else
+        %p None yet
+      - if @person.secondary_projects.any?
+        %h6 Supporting
+        = render @person.secondary_projects
+  .person-about.section.g8
+    %h3
+      About
+      =link_to "Edit", edit_citybook_person_path(@person)
+    .person-details
+      %p.person-school
+        %strong School:
+        = @person.school.name rescue 'No School'
+      %p.person-dream-director
+        %strong Dream Director:
+        = @person.school.dream_director.name rescue 'None'
+      %p.person-grade
+        %strong Grade:
+        = @person.grade || "?"
+    %strong About:
+    - if !@person.about.blank?
+      :markdown
+        #{@person.about}
 
-#people_list.list
+- if @person == current_user || current_user.works_at_tfp
+  .person-reflections.section.g4.clear
+    %h3
+      Reflections
+      =link_to "Add", new_reflection_path
+    = render @person.student_reflections
+  .person-reports.section.g4
+    %h3 DD Reports
+    = render @person.reports
+  .person-testimonials.section.g4
+    %h3 Testimonials
+    = render @person.testimonials
