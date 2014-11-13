@@ -1,0 +1,22 @@
+%h1= @reflection.reflectable.try(:name)
+.reflection.big-reflection
+  .reflection-date.section
+    %header Date
+    = @reflection.created_at.strftime "%D"
+  .reflection-content.section
+    %header
+      Reflection
+      =link_to "Edit", edit_reflection_path(@reflection) if @reflection.owned_by?(current_user, @reflection.reflectable)
+    :markdown
+      #{@reflection.content}
+  .reflection-assets-header.section
+    %header Assets
+    = s3_uploader_form callback_url: api_v1_assets_path, callback_param: "asset[external_url]", key:"uploads/#{SecureRandom.hex}-${filename}", class: 's3-uploader', data: { attachable_id: @reflection.id, attachable_type: "Reflection"} do
+      = file_field_tag :file, multiple: true
+      = render partial: 'application/s3_direct_upload_progress_bars'
+  .reflection-assets.assets=render @reflection.assets
+
+
+
+%hr
+= link_to 'Back', root_url

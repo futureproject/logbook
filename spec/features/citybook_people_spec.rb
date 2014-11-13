@@ -31,6 +31,16 @@ feature 'Managing people in citybook' do
     expect(page).to have_content 'Person deleted!'
   end
 
+  scenario 'by adding reflections' do
+    visit citybook_person_path(Person.first)
+    within('.person-reflections') do
+      click_link 'Add'
+    end
+    fill_in 'reflection[content]', with: 'Life is really good.'
+    click_button 'Save'
+    expect(page).to have_content 'Life is really good.'
+  end
+
   def should_see_people
     expect(page).to have_content 'Dick Grayson'
   end

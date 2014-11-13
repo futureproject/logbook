@@ -37,7 +37,7 @@
   .person-reflections.section.g4.clear
     %h3
       Reflections
-      =link_to "Add", new_reflection_path
+      =link_to "Add", new_citybook_person_reflection_path(@person)
     = render @person.student_reflections
   .person-reports.section.g4
     %h3 DD Reports

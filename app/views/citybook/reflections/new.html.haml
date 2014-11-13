@@ -1,0 +1,12 @@
+%h1 New Reflection
+.new-reflection
+  .reflection-assets-form.section
+    %header Assets
+    = s3_uploader_form callback_url: api_v1_assets_path, callback_param: "asset[external_url]", key:"uploads/#{SecureRandom.hex}-${filename}", class: 's3-uploader', data: { attachable_id: @person.id, attachable_type: "Person"} do
+      = file_field_tag :file, multiple: true
+      = render partial: 'application/s3_direct_upload_progress_bars'
+  .reflection-form.section
+    %header Words
+    = render 'form'
+%hr
+= link_to 'Cancel', citybook_person_path(@reflection.reflectable)

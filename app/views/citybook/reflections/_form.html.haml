@@ -1,0 +1,15 @@
+= form_for [:citybook, @person, @reflection] do |f|
+  - if @reflection.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@reflection.errors.count, "error")} prohibited this reflection from being saved:"
+      %ul
+        - @reflection.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :content, "How's it going?"
+    = f.text_area :content
+    = f.hidden_field :reflectable_id
+    = f.hidden_field :reflectable_type
+  .actions
+    = f.submit 'Save'

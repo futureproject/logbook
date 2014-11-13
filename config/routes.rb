@@ -69,7 +69,9 @@ Rails.application.routes.draw do
   namespace :citybook do
     root 'actions#index'
     resources :sites
-    resources :people
+    resources :people do
+      resources :reflections
+    end
     resources :projects
     resources :engagements do
       get 'attendance', on: :member
