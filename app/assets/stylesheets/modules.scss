@@ -432,3 +432,12 @@ a[rel=next] {
   line-height: 1;
 }
 
+
+@media(screen and max-width: 400px) {
+  .detail-container {
+    > * {
+      margin-left: -320px;
+      min-width: 320px;
+    }
+  }
+}
