@@ -6,6 +6,8 @@ class Api::V1::PeopleController < Api::V1::BaseController
   def index
     if params[:q]
       @people = Person.search(params[:q])
+    elsif params[:site_id]
+      @people = Site.find(params[:site_id]).people.order(:dream_team, :first_name, :id)
     else
       @people = current_user.people.order(:dream_team, :first_name, :id)
     end

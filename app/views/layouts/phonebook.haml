@@ -1,9 +1,9 @@
 !!!
 %html
   %head
-    %title Blue Book
-    = stylesheet_link_tag    'bluebook', media: 'all'
-    = javascript_include_tag 'bluebook/bluebook'
+    %title Phonebook
+    = stylesheet_link_tag    'phonebook/phonebook', media: 'all'
+    = javascript_include_tag 'phonebook/phonebook'
     = csrf_meta_tags
     %meta{name:"apple-mobile-web-app-status-bar-style", content:"black-translucent"}
     %meta{name:"viewport", content:"width=device-width, maximum-scale=1.0, minimum-scale=1.0, initial-scale=1.0"}
@@ -11,4 +11,4 @@
     %link{rel:"apple-touch-icon", sizes:"152x152", href: asset_path('icon-bluebook.png')}
   %body#bluebook
     :javascript
-      Bluebook.initialize(#{JSON.dump( @js_data || {} )})
+      Phonebook.initialize(#{JSON.dump( @js_data || {} )})

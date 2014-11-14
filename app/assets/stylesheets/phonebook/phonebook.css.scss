@@ -1,4 +1,8 @@
-@import 'octicons';
+/*
+= require s3_direct_upload_progress_bars
+= require octicons
+= require animate
+*/
 @import 'bourbon';
 @import 'base/base';
 @import 'neat';
@@ -47,13 +51,23 @@ body {
   }
 }
 .list-items {
-  margin: 44px 0;
+  margin: 41px auto 44px;
+  max-width: 768px;
 }
 .list-item {
   min-height: 45px;
   padding: 15px;
-  line-height: 1;
-  font-weight: bold;
-  &:last-child { border-bottom: none; }
+  line-height: 1.2;
+  &.selected {
+    background: $blue;
+    color: white;
+  }
 }
+
+.list-item-title {
+  font-weight: bold;
+}
+.list-item-description {
+}
+
 

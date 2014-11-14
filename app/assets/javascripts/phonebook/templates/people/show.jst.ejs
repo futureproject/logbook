@@ -1,0 +1,27 @@
+<div id="people-detail" class="detail detail-with-toolbar">
+  <div class='detail-toolbar'>
+    <div class='detail-toolbar-title'>Showing Person</div>
+    <div class='r-menu'>
+      <button class='edit'>Edit</button>
+    </div>
+  </div>
+  <div class='detail-content'>
+    <h1><%= first_name %> <%= last_name %></h1>
+
+    <p>
+      <b>Role:</b>
+      <%= role %>
+    </p>
+
+    <p>
+      <b>Grade:</b>
+      <%= grade %>
+    </p>
+
+    <div class='unit'>
+      <label for="toggle_core">
+        <input id="toggle_core" name="toggle_core" type="checkbox" <% if(JSON.parse(core)) { %>checked<% } %>/> Core
+      </label>
+    </div>
+  </div>
+</div>

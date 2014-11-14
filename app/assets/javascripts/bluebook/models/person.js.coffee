@@ -11,22 +11,10 @@ class Bluebook.Models.Person extends Backbone.Model
 class Bluebook.Collections.PeopleCollection extends Backbone.Collection
   model: Bluebook.Models.Person
   url: '/people'
-  local: !navigator.onLine
+  remote: true
   comparator: 'first_name'
   initialize: ->
-    @on 'change:first_name', @onChange
-    @on 'change:last_name', @onChange
-    @listenTo Backbone, 'people:filter', @sendModels
+    @listenTo Backbone, 'network:online', @fetchFromServer
 
-  onChange: ->
-    @sort()
-    @sendModels(null, null, @lastFilter)
-
-  sendModels: (collection, info, rules) ->
-    if rules?
-      @lastFilter = rules
-      Backbone.trigger 'people:models', @where(rules)
-    else
-      Backbone.trigger 'people:models', @models
-
-
+  fetchFromServer: ->
+    @fetch()

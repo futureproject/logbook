@@ -57,6 +57,9 @@ Rails.application.routes.draw do
       resources :testimonials
       resources :assets, only: [:create, :destroy]
       resources :stats, only: [:index]
+      resources :sites do
+        resources :people
+      end
     end
   end
 
@@ -81,18 +84,9 @@ Rails.application.routes.draw do
     end
   end
 
-  namespace :cic do
+  namespace :phonebook do
     root 'application#home'
-    resources :stats
-    resources :tasks
-    resources :schools
-    resources :engagements
-    resources :people
-    resources :projects
-    resources :one_on_ones
-    resources :task_assignments do
-      get 'toggle', on: :member
-    end
+    get '*anywhere', to: 'application#home'
   end
 
   namespace :bluebook do
