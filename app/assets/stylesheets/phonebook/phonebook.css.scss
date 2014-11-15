@@ -53,6 +53,7 @@ body {
 .list-items {
   margin: 41px auto 44px;
   max-width: 768px;
+  z-index: 1;
 }
 .list-item {
   min-height: 45px;
@@ -69,5 +70,27 @@ body {
 }
 .list-item-description {
 }
+
+.detail {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  display: none;
+  z-index: 2;
+  padding: 15px;
+  overflow: auto;
+  -webkit-animation-duration: .3s;
+  -webkit-overflow-scrolling: touch;
+  pre {
+    white-space: pre-wrap;
+  }
+  &.active {
+    display: block;
+  }
+}
+
 
 

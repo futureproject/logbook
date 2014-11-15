@@ -5,6 +5,7 @@
 #= require hammer-jquery
 #= require backbone.dualstorage
 #= require backbone.syphon
+#= require jquery.animatecss
 #= require_self
 #= require_tree ./helpers
 #= require_tree ./templates

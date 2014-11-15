@@ -19,7 +19,6 @@ class Phonebook.Views.Engagements.ListView extends Backbone.View
     selected = @collection.filter (model) -> model.has('selected') && model != selection
     model.unset('selected') for model in selected
 
-
 class Phonebook.Views.Engagements.ListItemView extends Backbone.View
   template: JST['phonebook/templates/engagements/list_item']
   className: 'list-item engagement'

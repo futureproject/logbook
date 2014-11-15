@@ -6,7 +6,8 @@ class Phonebook.Controllers.EngagementsController extends Backbone.View
     @views =
       list: new Phonebook.Views.Engagements.ListView
         collection: @collection
-      #show: new Phonebook.Views.Engagements.IndexView
+      show: new Phonebook.Views.Engagements.ShowView
+
     @render()
     @collection.reset(args?.data)
 
@@ -15,6 +16,7 @@ class Phonebook.Controllers.EngagementsController extends Backbone.View
   render: ->
     @$el.html @template()
     @views.list.setElement '#engagements-list-items'
+    @views.show.setElement '#show-engagement'
 
   listen: ->
     @listenTo Backbone, 'engagements:index', @index
