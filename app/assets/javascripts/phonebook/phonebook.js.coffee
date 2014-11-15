@@ -6,6 +6,7 @@
 #= require backbone.dualstorage
 #= require backbone.syphon
 #= require jquery.transit
+#= require date
 #= require_self
 #= require_tree ./helpers
 #= require_tree ./templates
@@ -39,9 +40,6 @@ window.Phonebook =
       engagements: new Phonebook.Controllers.EngagementsController
         el: '#phonebook-engagements'
         data: data.engagements
-      people: new Phonebook.Controllers.PeopleController
-        data: data.people
-
 
     Backbone.trigger 'app:loaded'
     Backbone.trigger 'network:online' if navigator.onLine

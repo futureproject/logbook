@@ -20,5 +20,12 @@ class Phonebook.Controllers.EngagementsController extends Backbone.View
 
   listen: ->
     @listenTo Backbone, 'engagements:index', @index
+    @listenTo Backbone, 'engagements:show', @show
 
   index: ->
+    @views.list.el.classList.add('active')
+    @collection.each (model) -> model.unset 'selected'
+
+  show: (id) ->
+    model = @collection.get(id)?.set('selected', true)
+    Backbone.trigger('engagements:selected', model) if model

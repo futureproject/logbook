@@ -7,26 +7,46 @@ class Phonebook.Views.Engagements.ShowView extends Backbone.View
 
   template: JST['phonebook/templates/engagements/show']
 
-  # hide when model is unselected
   events:
-    'tap': 'hide'
+    'tap .back': 'deselect'
+    'swipedown': 'deselect'
+    'touchmove .detail-title': (e) -> e.preventDefault()
+    'touchmove .detail-content': (e) ->
+      e.preventDefault()
+      e.stopPropagation()
 
   listen: ->
-    @listenTo Backbone, 'people:selected', @onSelect
+    @listenTo Backbone, 'engagements:selected', @onSelect
 
   onSelect: (model, view) ->
     @model = model
+    @listenToOnce @model, 'change:selected', @animateOut
     @render()
     if view
-      @originalPosition = view.el.getBoundingClientRect()
-      @$el.transition({x: @originalPosition.left, y: @originalPosition.top, duration: 0 })
-      @el.classList.add 'active'
-      @$el.transition({x: @originalPosition.left, y: 0, opacity: 1 })
-# animate me
+      @animateIn(view)
+    else
+      @$el.addClass('active')
 
-  hide: ->
-    console.log @originalPosition
+  deselect: ->
+    @model.unset('selected')
+
+  animateIn: (view) ->
+    @originalPosition = view.el.getBoundingClientRect()
+    @$el.transition
+      x: @originalPosition.left,
+      y: @originalPosition.top,
+      scale: 0.95
+      duration: 0
+      complete: =>
+        @el.classList.add 'active'
+        @$el.transition
+          x: @originalPosition.left
+          y: 0, opacity: 1
+          scale: 1
+
+  animateOut: ->
     @originalPosition ||= { top: '100%', left: 0 }
+    Backbone.trigger 'engagements:router:update', ''
     @$el.transition
       x: @originalPosition.left
       y: @originalPosition.top

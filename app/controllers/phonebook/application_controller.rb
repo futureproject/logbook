@@ -13,8 +13,7 @@ class Phonebook::ApplicationController < ApplicationController
     def init_js_data
       @js_data = {}
       @js_data[:current_user] = current_user.as_json(include: [:site])
-      @js_data[:people] = current_user.site.people.as_json
-      @js_data[:engagements] = current_user.engagements.as_json
+      @js_data[:engagements] = current_user.engagements.order('date DESC').limit(200).as_json
     end
 
     def check_for_site

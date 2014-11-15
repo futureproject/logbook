@@ -18,6 +18,7 @@ class Phonebook.Views.Engagements.ListView extends Backbone.View
     return unless selection.has('selected')
     selected = @collection.filter (model) -> model.has('selected') && model != selection
     model.unset('selected') for model in selected
+    @el.classList.add('active')
 
 class Phonebook.Views.Engagements.ListItemView extends Backbone.View
   template: JST['phonebook/templates/engagements/list_item']
@@ -34,7 +35,7 @@ class Phonebook.Views.Engagements.ListItemView extends Backbone.View
     @listenTo @model, 'change:selected', () ->
       if @model.has('selected')
         @$el.addClass 'selected'
-        Backbone.trigger 'people:selected', @model, @
+        Backbone.trigger 'engagements:selected', @model, @
       else
         @$el.removeClass 'selected'
 
@@ -43,3 +44,4 @@ class Phonebook.Views.Engagements.ListItemView extends Backbone.View
 
   ontap: ->
     @model.set('selected', true)
+    Backbone.trigger 'engagements:router:update', @model.get('id')

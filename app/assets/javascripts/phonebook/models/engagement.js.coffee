@@ -5,6 +5,10 @@ class Phonebook.Models.Engagement extends Backbone.Model
     duration: 1
     date: new Date()
 
+  save: (key, val, options) ->
+    @set 'date', Date.parse(@get('date')).toString('yyyy-MM-dd')
+    super
+
 class Phonebook.Collections.EngagementsCollection extends Backbone.Collection
   model: Phonebook.Models.Engagement
   url: ds.apiHelper.urlFor 'engagements'
