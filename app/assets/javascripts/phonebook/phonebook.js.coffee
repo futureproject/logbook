@@ -5,7 +5,7 @@
 #= require hammer-jquery
 #= require backbone.dualstorage
 #= require backbone.syphon
-#= require jquery.animatecss
+#= require jquery.transit
 #= require_self
 #= require_tree ./helpers
 #= require_tree ./templates
@@ -42,13 +42,6 @@ window.Phonebook =
       people: new Phonebook.Controllers.PeopleController
         data: data.people
 
-
-    # instead of placing all views here,
-    # views.people should be a master view, with everything else
-    # people-related as a sub-view
-    #@views.people =
-    #  index: new Phonebook.Views.People.IndexView
-    #    el: '#phonebook-people'
 
     Backbone.trigger 'app:loaded'
     Backbone.trigger 'network:online' if navigator.onLine

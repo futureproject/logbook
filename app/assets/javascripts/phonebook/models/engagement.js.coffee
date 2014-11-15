@@ -5,10 +5,6 @@ class Phonebook.Models.Engagement extends Backbone.Model
     duration: 1
     date: new Date()
 
-  initialize: ->
-    @on 'change:selected', () =>
-      Backbone.trigger('people:selected', @) if @has('selected')
-
 class Phonebook.Collections.EngagementsCollection extends Backbone.Collection
   model: Phonebook.Models.Engagement
   url: ds.apiHelper.urlFor 'engagements'

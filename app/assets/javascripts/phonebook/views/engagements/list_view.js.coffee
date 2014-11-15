@@ -32,7 +32,11 @@ class Phonebook.Views.Engagements.ListItemView extends Backbone.View
 
   listen: ->
     @listenTo @model, 'change:selected', () ->
-      @$el.toggleClass('selected', !!@model.get('selected'))
+      if @model.has('selected')
+        @$el.addClass 'selected'
+        Backbone.trigger 'people:selected', @model, @
+      else
+        @$el.removeClass 'selected'
 
   events:
     'tap' : 'ontap'

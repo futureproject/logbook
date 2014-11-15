@@ -57,7 +57,7 @@ body {
 }
 .list-item {
   min-height: 45px;
-  padding: 15px;
+  padding: 15px 20px;
   line-height: 1.2;
   &.selected {
     background: $blue;
@@ -74,16 +74,15 @@ body {
 .detail {
   position: fixed;
   top: 0;
-  bottom: 0;
+  height: 100%;
   left: 0;
   right: 0;
   background: white;
-  display: none;
-  z-index: 2;
   padding: 15px;
   overflow: auto;
-  -webkit-animation-duration: .3s;
   -webkit-overflow-scrolling: touch;
+  display: none;
+  opacity: 0;
   pre {
     white-space: pre-wrap;
   }
