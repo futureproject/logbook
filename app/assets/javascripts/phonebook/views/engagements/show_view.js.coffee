@@ -9,7 +9,7 @@ class Phonebook.Views.Engagements.ShowView extends Backbone.View
 
   events:
     'tap .back': 'deselect'
-    'swipedown': 'deselect'
+    'swiperight': 'deselect'
     'touchmove .detail-title': (e) -> e.preventDefault()
     'touchmove .detail-content': (e) ->
       e.preventDefault()
@@ -39,10 +39,12 @@ class Phonebook.Views.Engagements.ShowView extends Backbone.View
       duration: 0
       complete: =>
         @el.classList.add 'active'
-        @$el.transition
+        @$el.transition({
           x: @originalPosition.left
-          y: 0, opacity: 1
+          y: 0,
+          opacity: 1
           scale: 1
+        }, 350)
 
   animateOut: ->
     @originalPosition ||= { top: '100%', left: 0 }

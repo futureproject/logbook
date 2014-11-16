@@ -6,3 +6,4 @@ class Phonebook.Controllers.AppController extends Backbone.View
     @
 
   template: JST['phonebook/templates/app']
+

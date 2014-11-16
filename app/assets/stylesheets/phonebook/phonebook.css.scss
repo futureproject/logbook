@@ -116,7 +116,12 @@ body {
   position: absolute;
   button, .button {
     border: none;
+    background: none;
     position: relative;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    margin-top: -10px;
+    box-sizing: content-box;
     &:hover {
       background: inherit;
     }
