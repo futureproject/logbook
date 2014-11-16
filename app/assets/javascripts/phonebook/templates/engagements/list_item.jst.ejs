@@ -1,5 +1,10 @@
-<div class='list-item-title'><%= kind %></div>
-<div class='list-item-description'>
-  <%= date %>
+<div class="list-item-graphic">
+  <div class="calendar-date">
+    <div class="calendar-date-month"><%= Date.parse(date).toString('MMMM').slice(0,3) %></div>
+    <div class="calendar-date-day"><%= date.split('-')[2] %></div>
+  </div>
 </div>
-
+<div class="list-item-label">
+  <h6><%= kind %></h6>
+  <%= name %>
+</div>

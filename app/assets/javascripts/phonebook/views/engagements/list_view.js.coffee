@@ -28,7 +28,7 @@ class Phonebook.Views.Engagements.ListItemView extends Backbone.View
     @listen()
 
   render: ->
-    @$el.html @template @model.toJSON()
+    @$el.html @template @model.tplAttrs()
     @
 
   listen: ->

@@ -9,33 +9,34 @@ class Phonebook.Views.Engagements.ShowView extends Backbone.View
 
   events:
     'tap .back': 'deselect'
-    'swiperight': 'deselect'
+    'swiperight': 'animateOutRight'
     'touchmove .detail-title': (e) -> e.preventDefault()
     'touchmove .detail-content': (e) ->
       e.preventDefault()
       e.stopPropagation()
+      #TODO
+      #only block scrolling when list is at top or at bottom
 
   listen: ->
     @listenTo Backbone, 'engagements:selected', @onSelect
 
   onSelect: (model, view) ->
     @model = model
-    @listenToOnce @model, 'change:selected', @animateOut
+    @listenToOnce @model, 'change:selected', @animateOutToItemView
     @render()
     if view
-      @animateIn(view)
+      @animateInFromItemView(view)
     else
-      @$el.addClass('active')
+      @showSansAnimation()
 
   deselect: ->
     @model.unset('selected')
 
-  animateIn: (view) ->
+  animateInFromItemView: (view) ->
     @originalPosition = view.el.getBoundingClientRect()
     @$el.transition
       x: @originalPosition.left,
       y: @originalPosition.top,
-      scale: 0.95
       duration: 0
       complete: =>
         @el.classList.add 'active'
@@ -43,10 +44,9 @@ class Phonebook.Views.Engagements.ShowView extends Backbone.View
           x: @originalPosition.left
           y: 0,
           opacity: 1
-          scale: 1
         }, 350)
 
-  animateOut: ->
+  animateOutToItemView: ->
     @originalPosition ||= { top: '100%', left: 0 }
     Backbone.trigger 'engagements:router:update', ''
     @$el.transition
@@ -56,7 +56,18 @@ class Phonebook.Views.Engagements.ShowView extends Backbone.View
       complete: =>
         @$el.removeClass('active')
 
+  animateOutRight: ->
+    @$el.transition
+      x: '100%'
+      y: 0
+      opacity: 0
+      complete: =>
+        @deselect()
+
+  showSansAnimation: ->
+    @$el.addClass('active')
+
   render: ->
-    @$el.html @template @model.toJSON()
+    @$el.html @template @model.tplAttrs()
     @
 
