@@ -14,6 +14,9 @@ class Phonebook.Models.Engagement extends Backbone.Model
     @set 'date', Date.parse(@get('date')).toString('yyyy-MM-dd')
     super
 
+  toJSON: ->
+    _.omit _.clone(@attributes), ['selected']
+
   tplAttrs: ->
     attrs = _.clone @attributes
     attrs['shortmonth'] = if Date.parse(@get('date')) then Date.parse(@get('date')).toString('MMMM').slice(0,3) else ''

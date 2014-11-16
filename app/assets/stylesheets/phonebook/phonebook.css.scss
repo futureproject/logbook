@@ -6,6 +6,7 @@
 @import 'bourbon';
 @import 'base/base';
 @import 'neat';
+@import 'theme';
 
 * {
   box-sizing: border-box;
@@ -76,19 +77,19 @@ body {
     display: table-cell;
     vertical-align: top;
   }
-  .list-item-graphic {
-    width: 50px;
-    font-size: 1.5em;
-  }
-  .list-item-label {
-    padding: 0 15px;
-  }
-
   &.selected {
     background: $blue;
     color: white;
   }
 }
+
+.list-item-graphic {
+  width: 60px;
+}
+.list-item-label {
+  padding: 0 15px;
+}
+
 
 .list-item-title {
   font-weight: bold;
@@ -100,15 +101,13 @@ body {
   text-align: center;
 }
 .calendar-date-month {
-  font-weight: normal;
-  font-size: .5em;
-  text-transform: uppercase;
-  line-height: 1;
   overflow: hidden;
   text-overflow: ellipsis;
+  text-transform: uppercase;
 }
 .calendar-date-day {
   color: $light-yellow;
+  font-size: 1.75em;
 }
 
 .detail {
