@@ -9,7 +9,12 @@ class Phonebook.Controllers.EngagementsController extends Backbone.View
       show: new Phonebook.Views.Engagements.ShowView
 
     @render()
-    @collection.reset(args?.data)
+    ds.bootstrapper.load @collection
+    #@collection.reset(args?.data,
+    #  success: =>
+    #    @collection.fetch
+    #      remote: true
+    #)
 
   template: JST['phonebook/templates/engagements/controller']
 

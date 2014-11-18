@@ -1,14 +1,10 @@
 class Phonebook.Models.Engagement extends Backbone.Model
   defaults: ->
-    school_id: Phonebook.USER.school_id
+    school_id: Phonebook.user.get('school_id')
     kind: 'Dream Team Meeting'
+    attendee_ids: []
     duration: 1
     date: new Date()
-
-  initialize: ->
-    console.log @get('date')
-    #@set 'shortmonth', Date.parse(@get('date')).toString('MMMM').slice(0,3)
-    #@set 'shortday', @get('date').split('-')[2]
 
   save: (key, val, options) ->
     @set 'date', Date.parse(@get('date')).toString('yyyy-MM-dd')
@@ -19,8 +15,9 @@ class Phonebook.Models.Engagement extends Backbone.Model
 
   tplAttrs: ->
     attrs = _.clone @attributes
-    attrs['shortmonth'] = if Date.parse(@get('date')) then Date.parse(@get('date')).toString('MMMM').slice(0,3) else ''
-    attrs['day_of_month'] = @get('date').split('-')[2]
+    attrs['shortmonth'] = if Date.parse(@get('date')) then Date.parse(@get('date')).toString('MMMM').slice(0,3) else '?'
+    attrs['day_of_month'] = @get('date').split('-')[2] || '??'
+    attrs['school'] = Phonebook.schools.get(@get('school_id'))?.get('name')
     attrs
 
 

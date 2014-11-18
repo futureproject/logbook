@@ -1,3 +1,32 @@
+body, .detail-content, .list-items {
+  background: $base-background-color;
+}
+.tab-bar, .list-title, .detail-title {
+  background: $base-accent-color;
+  color: $base-background-color;
+}
+
+.list-title, .detail-title {
+  border-top: 20px solid $base-accent-color;
+  button, .button {
+    color: $base-background-color;
+  }
+}
+
 .engagement-kind {
   font-weight: bold;
 }
+
+.list-item {
+  border-bottom: 0.5px solid $base-border-color;
+  @include transition(background .2s);
+  &.selected {
+    background: $base-border-color;
+  }
+}
+
+.calendar-date-month {
+  text-transform: uppercase;
+  color: $blue;
+}
+

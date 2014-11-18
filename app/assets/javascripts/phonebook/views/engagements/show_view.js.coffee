@@ -21,6 +21,7 @@ class Phonebook.Views.Engagements.ShowView extends Backbone.View
     @listenTo Backbone, 'engagements:selected', @onSelect
 
   onSelect: (model, view) ->
+    #return if @model == model
     @model = model
     @listenToOnce @model, 'change:selected', @animateOutToItemView
     @render()

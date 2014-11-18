@@ -1,4 +1,4 @@
-#= require jquery
+#= require jquery-2.1.1
 #= require underscore-min
 #= require backbone-min
 #= require hammer-min
@@ -32,14 +32,15 @@ window.Phonebook =
       jqXHR.withCredentials = true
       console.log options.url
 
-    @USER = data.current_user
+    @user = new Phonebook.Models.User(data.current_user)
+
+    @schools = new Phonebook.Collections.SchoolsCollection(@user.get('schools'))
 
     @controllers =
       app: new Phonebook.Controllers.AppController
         el: 'body'
       engagements: new Phonebook.Controllers.EngagementsController
         el: '#phonebook-engagements'
-        data: data.engagements
 
     Backbone.trigger 'app:loaded'
     Backbone.trigger 'network:online' if navigator.onLine
