@@ -1,7 +1,11 @@
 ethics:
   date: '2014-08-15'
   school: gotham_city_high
+  kind: 'Workshop'
+  duration: 2.0
 
 combat_training:
   date: '2014-08-17'
   school: gotham_city_high
+  kind: 'Workshop'
+  duration: 2.0

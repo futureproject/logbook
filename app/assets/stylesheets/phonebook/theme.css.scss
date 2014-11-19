@@ -29,4 +29,19 @@ body, .detail-content, .list-items {
   text-transform: uppercase;
   color: $blue;
 }
+.engagement-detail {
+  .calendar-date {
+    background: $light-green;
+    * { color: white; }
+  }
+}
+
+.engagement-school {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.engagement-notes {
+  border-top: 0.5px solid $base-border-color;
+}
 
