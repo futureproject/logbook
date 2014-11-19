@@ -30,7 +30,7 @@ class Api::V1::EngagementsController < Api::V1::BaseController
   # POST /api/v1/engagements
   # POST /api/v1/engagements.json
   def create
-    @engagement = Engagement.new(engagement_params.merge(school_id: current_user.school_id))
+    @engagement = current_user.engagements.new(engagement_params_with_school)
     if @engagement.save
       render :show, status: :created, location: api_v1_engagement_url(@engagement)
     else
@@ -73,5 +73,13 @@ class Api::V1::EngagementsController < Api::V1::BaseController
         :notes,
         attendee_ids: []
       )
+    end
+
+    def engagement_params_with_school
+      if engagement_params[:school_id].nil?
+        engagement_params.merge(school_id: current_user.school_id)
+      else
+        engagement_params
+      end
     end
 end

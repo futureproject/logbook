@@ -6,8 +6,7 @@ class User < ActiveRecord::Base
   # you could add an api endpoint here to get the whole site's people
   has_many :people, through: :school
   has_many :projects, through: :school
-  # if you assign a user_id to engagements, you can decouple them from schools!!
-  has_many :engagements, through: :school
+  has_many :engagements
   has_many :engagement_attendees, through: :engagements
   has_many :one_on_ones, through: :school
   #has_many :tasks

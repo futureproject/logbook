@@ -3,9 +3,11 @@ ethics:
   school: gotham_city_high
   kind: 'Workshop'
   duration: 2.0
+  user: bruce
 
 combat_training:
   date: '2014-08-17'
   school: gotham_city_high
   kind: 'Workshop'
   duration: 2.0
+  user: bruce
