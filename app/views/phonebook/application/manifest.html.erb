@@ -1,11 +1,10 @@
 CACHE MANIFEST
 <%- if Rails.env.production? %>
-#v2
+#v3
 
 CACHE:
 <%= asset_path("phonebook/phonebook.css") %>
 <%= asset_path("phonebook/phonebook.js") %>
-<%= asset_path("octicons.woff") %>
 
 <%- else %>
 #v<%= Time.now.to_i/2 %>
