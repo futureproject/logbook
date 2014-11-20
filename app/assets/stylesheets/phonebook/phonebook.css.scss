@@ -80,6 +80,16 @@ body {
   display: none;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: -1px;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    pointer-events: none;
+  }
   &.active { display: block; }
 }
 .list-item {
