@@ -1,16 +1,17 @@
 html {
   -webkit-tap-highlight-color: transparent;
 }
+
 body, .detail-content, .list-items {
   background: $base-background-color;
 }
+
 .tab-bar, .list-title, .detail-title {
   background: $base-accent-color;
   color: $base-background-color;
 }
 
 .list-title, .detail-title {
-  border-top: 20px solid $base-accent-color;
   button, .button {
     color: $base-background-color;
   }
