@@ -4,17 +4,19 @@
   </div>
   <h1><%= kind %></h1>
 </div>
-<div class='engagement-detail detail-content'>
-  <div class="calendar-date">
-    <div class="calendar-date-month"><%= shortmonth %></div>
-    <div class="calendar-date-day"><%= day_of_month %></div>
-  </div>
-  <h6 class='engagement-name'><%= name || kind %></h6>
-  <div class='engagement-school'><%= school %></div>
-  <div class='engagement-duration'>
-    <%= attendee_ids.length %> People, <%= duration %> Hours
-  </div>
-  <div class='engagement-notes'>
-    <pre><%= notes %></pre>
+<div class='engagement-detail detail-content scrollable'>
+  <div>
+    <div class="calendar-date">
+      <div class="calendar-date-month"><%= shortmonth %></div>
+      <div class="calendar-date-day"><%= day_of_month %></div>
+    </div>
+    <h6 class='engagement-name'><%= name || kind %></h6>
+    <div class='engagement-school'><%= school %></div>
+    <div class='engagement-duration'>
+      <%= attendee_ids.length %> People, <%= duration %> Hours
+    </div>
+    <div class='engagement-notes'>
+      <pre><%= notes %></pre>
+    </div>
   </div>
 </div>

@@ -1,5 +1,6 @@
 body {
   -webkit-tap-highlight-color: transparentize($blue, .9);
+  border-top: 60px solid $blue;
 }
 #sidebar {
   background-color: $lightest-gray;

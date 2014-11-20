@@ -12,12 +12,12 @@ class Phonebook.Views.Engagements.ListView extends Backbone.View
     for model in @collection.models
       view = new Phonebook.Views.Engagements.ListItemView
         model: model
-      view.listenTo @, 'clean_up', view.remove
+      view.listenTo @, 'cleanup', view.remove
       fragment.appendChild view.render().el
     @$el.html fragment
 
   removeItems: ->
-    @trigger 'clean_up'
+    @trigger 'cleanup'
 
   clearSelection: (selection) ->
     return unless selection.has('selected')
@@ -50,7 +50,6 @@ class Phonebook.Views.Engagements.ListItemView extends Backbone.View
 
   ontap: ->
     @model.set('selected', true)
-    Backbone.trigger 'engagements:router:update', @model.get('id')
 
   toggleActiveClass: ->
     if @model.has('selected')

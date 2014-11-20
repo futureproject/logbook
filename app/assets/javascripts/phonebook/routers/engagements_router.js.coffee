@@ -3,6 +3,7 @@ class Phonebook.Routers.EngagementsRouter extends Backbone.Router
     @listenTo Backbone, 'engagements:router:update', @update
 
   routes:
+    'phonebook/engagements/new': 'new'
     'phonebook/engagements/:id': 'show'
     'phonebook': 'index'
     'phonebook/': 'index'
@@ -14,5 +15,12 @@ class Phonebook.Routers.EngagementsRouter extends Backbone.Router
   show: (id) ->
     Backbone.trigger 'engagements:show', id
 
-  update: (route) ->
-    @navigate "phonebook/engagements/#{route}"
+  new: ->
+    Backbone.trigger 'engagements:new'
+
+  update: (url) ->
+    url = url.toString()
+    if url.match(/phonebook/i)
+      @navigate url
+    else
+      @navigate "phonebook/engagements/#{url}"

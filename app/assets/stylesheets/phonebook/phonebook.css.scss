@@ -10,7 +10,12 @@
 * {
   box-sizing: border-box;
   cursor: default;
-  &:not(p) { -webkit-user-select: none; }
+  -webkit-backface-visiblity: hidden;
+}
+
+html, body {
+  overflow: hidden;
+  height: 100%;
 }
 
 body {
@@ -20,28 +25,9 @@ body {
   line-height: 1.4;
 }
 
-.tab-bar {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  height: 44px;
-  text-align: center;
-  width: 100%;
-}
-
-.tab {
-  display: inline-block;
-  height: 44px;
-  line-height: 44px;
-  padding: 0 10px;
-  margin: 0 10px;
-  cursor: pointer;
-  font-size: 9px;
-  max-width: 60px;
-}
 
 .list-title {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   height: 60px;
@@ -55,11 +41,45 @@ body {
     white-space: nowrap;
     text-overflow: ellipsis;
   }
+  button, .button {
+    border: none;
+    background: none;
+    position: relative;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    margin-top: -10px;
+    box-sizing: content-box;
+    &:hover {
+      background: inherit;
+    }
+    &.back:before {
+      content: '‹';
+      display: inline-block;
+      position: absolute;
+      left: -8px;
+      top: -3px;
+      font-size: 2em;
+      font-weight: normal;
+    }
+  }
+}
+.list {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
 }
 .list-items {
-  margin: 41px auto 44px;
-  z-index: 1;
+  position: absolute;
+  top: 60px;
+  left: 0;
+  right: 0;
+  bottom: 0;
   display: none;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
   &.active { display: block; }
 }
 .list-item {
@@ -96,17 +116,25 @@ body {
 }
 
 .detail {
-  position: fixed;
+  position: absolute;
   top: 0;
-  height: 100%;
   left: 0;
   right: 0;
+  height: 100%;
   display: none;
+  z-index: 2;
   pre {
     white-space: pre-wrap;
   }
   &.active {
     display: block;
+  }
+  .scrollable {
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    > * {
+      min-height: 101%;
+    }
   }
 }
 
@@ -123,27 +151,11 @@ body {
 
 .detail-title {
   @extend .list-title;
-  position: absolute;
-  button, .button {
-    border: none;
-    background: none;
-    position: relative;
-    border-top: 10px solid transparent;
-    border-bottom: 10px solid transparent;
-    margin-top: -10px;
-    box-sizing: content-box;
-    &:hover {
-      background: inherit;
-    }
-    &.back:before {
-      content: '‹';
-      display: inline-block;
-      position: absolute;
-      left: -8px;
-      top: -3px;
-      font-size: 2em;
-      font-weight: normal;
-    }
+}
+
+.standalone.focusin {
+  .detail-title, .list-title {
+    * { display: none; }
   }
 }
 
@@ -175,6 +187,7 @@ body {
   }
 }
 
+
 pre {
   font-family: $base-font-family;
 }
@@ -190,6 +203,4 @@ pre {
   margin-top: 15px;
   clear: both;
 }
-
-
 

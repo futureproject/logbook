@@ -1,5 +1,3 @@
-Phonebook.Views.Engagements ||= {}
-
 class Phonebook.Views.Engagements.ShowView extends Backbone.View
   initialize: (args) ->
     @model ||= new Phonebook.Models.Engagement
@@ -8,30 +6,29 @@ class Phonebook.Views.Engagements.ShowView extends Backbone.View
   template: JST['phonebook/templates/engagements/show']
 
   events:
-    'tap .back': 'deselect'
-    'swiperight': 'animateOutRight'
+    'mouseup .back': 'hide'
+    'touchend .back': 'hide'
+    'swiperight': -> ds.animator.outRight(@)
     'touchmove .detail-title': (e) -> e.preventDefault()
-    'touchmove .detail-content': (e) ->
-      e.preventDefault()
-      e.stopPropagation()
-      #TODO
-      #only block scrolling when list is at top or at bottom
 
   listen: ->
-    @listenTo Backbone, 'engagements:selected', @onSelect
+    @listenTo Backbone, 'engagements:selected', @show
 
-  onSelect: (model, view) ->
-    #return if @model == model
+  show: (model, view) ->
     @model = model
+    Backbone.trigger 'engagements:router:update', @model.get('id')
     @listenToOnce @model, 'change:selected', @animateOutToItemView
     @render()
     if view
       @animateInFromItemView(view)
     else
       @showSansAnimation()
+    Backbone.trigger 'engagements:views:shown', @
 
-  deselect: ->
+  hide: ->
     @model.unset('selected')
+    Backbone.trigger 'engagements:router:update', ''
+    Backbone.trigger 'engagements:views:hidden', @
 
   animateInFromItemView: (view) ->
     @originalPosition = view.el.getBoundingClientRect()
@@ -49,21 +46,12 @@ class Phonebook.Views.Engagements.ShowView extends Backbone.View
 
   animateOutToItemView: ->
     @originalPosition ||= { top: '100%', left: 0 }
-    Backbone.trigger 'engagements:router:update', ''
     @$el.transition
       x: @originalPosition.left
       y: @originalPosition.top
       opacity: 0
       complete: =>
         @$el.removeClass('active')
-
-  animateOutRight: ->
-    @$el.transition
-      x: '100%'
-      y: 0
-      opacity: 0
-      complete: =>
-        @deselect()
 
   showSansAnimation: ->
     @$el.addClass('active')

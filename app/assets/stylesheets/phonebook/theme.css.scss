@@ -1,3 +1,6 @@
+html {
+  -webkit-tap-highlight-color: transparent;
+}
 body, .detail-content, .list-items {
   background: $base-background-color;
 }
@@ -31,8 +34,10 @@ body, .detail-content, .list-items {
 }
 .engagement-detail {
   .calendar-date {
-    background: $light-green;
-    * { color: white; }
+    background: $lightest-gray;
+  }
+  .calendar-date-month {
+    color: $light-red;
   }
 }
 
@@ -43,5 +48,13 @@ body, .detail-content, .list-items {
 }
 .engagement-notes {
   border-top: 0.5px solid $base-border-color;
+}
+
+input {
+  box-shadow: none;
+  -webkit-appearance: none;
+}
+select {
+  width: 100%;
 }
 

@@ -10,4 +10,13 @@ module ApplicationHelper
   def page_title
     "Dream Suite"
   end
+
+  def manifest_path(path_to_manifest)
+    if Rails.env.production?
+      { manifest: path_to_manifest }
+    else
+      {}
+    end
+  end
+
 end
