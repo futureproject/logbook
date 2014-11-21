@@ -8,6 +8,7 @@ class Phonebook.Controllers.EngagementsController extends Backbone.View
         collection: @collection
       show: new Phonebook.Views.Engagements.ShowView
       new: new Phonebook.Views.Engagements.NewView
+      edit: new Phonebook.Views.Engagements.EditView
 
     @render()
     ds.bootstrapper.load @collection
@@ -22,10 +23,12 @@ class Phonebook.Controllers.EngagementsController extends Backbone.View
     @views.list.setElement '#engagements-list-items'
     @views.show.setElement '#show-engagement'
     @views.new.setElement '#new-engagement'
+    @views.edit.setElement '#edit-engagement'
 
   listen: ->
     @listenTo Backbone, 'engagements:index', @index
     @listenTo Backbone, 'engagements:show', @show
+    @listenTo Backbone, 'engagements:edit', @edit
     @listenTo Backbone, 'engagements:saved', @onSave
     @listenTo Backbone, 'engagements:views:hidden', @afterHide
 
@@ -45,8 +48,13 @@ class Phonebook.Controllers.EngagementsController extends Backbone.View
     @views.list.show()
 
   show: (id) ->
-    model = @collection.get(id)?.set('selected', true)
+    model = @collection.get(id)
     Backbone.trigger('engagements:selected', model) if model
 
   new: (e) ->
     Backbone.trigger 'engagements:new', e
+
+  edit: (id) ->
+    console.log 'editing...'
+    model = @collection.get(id)
+    Backbone.trigger('engagements:editing', model) if model

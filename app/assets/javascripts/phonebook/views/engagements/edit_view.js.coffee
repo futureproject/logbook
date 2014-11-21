@@ -1,9 +1,10 @@
 Phonebook.Views.Engagements ||= {}
-class Phonebook.Views.Engagements.NewView extends Backbone.View
-  initialize: ->
+
+class Phonebook.Views.Engagements.EditView extends Backbone.View
+  initialize: (args) ->
     @listen()
 
-  template: JST['phonebook/templates/engagements/new']
+  template: JST['phonebook/templates/engagements/edit']
 
   events:
     'tap .back': 'animateOut'
@@ -12,24 +13,24 @@ class Phonebook.Views.Engagements.NewView extends Backbone.View
     'touchmove .detail-title' : (e) -> e.preventDefault()
 
   listen: ->
-    @listenTo Backbone, 'engagements:new', @show
+    @listenTo Backbone, 'engagements:editing', @show
     @listenTo Backbone, 'engagements:saved', @hide
     @listenTo Backbone, 'engagements:selected', @hide
 
-  show: (event) ->
-    return if @model?.has('new')
-    @model = new Phonebook.Models.Engagement
-    Backbone.trigger 'engagements:router:update', 'new'
-    @model.set 'new', true
+  show: (model, prevView) ->
+    return if @model?.has('editing')
+    @model = model
+    Backbone.trigger 'engagements:router:update', "#{@model.get('id')}/edit"
+    @model.set 'editing', true
     @render()
-    if event
+    if prevView
       @animateIn()
     else
       @showSansAnimation()
     Backbone.trigger 'engagements:views:shown', @
 
   hide: ->
-    @model?.unset('new')
+    @model?.unset('editing')
     @removeSubviews() # remove associated subviews
     @$el.removeClass('active').attr('style','') #reset CSS styles
 
@@ -40,35 +41,27 @@ class Phonebook.Views.Engagements.NewView extends Backbone.View
   render: ->
     @$el.html @template @model.tplAttrs()
     @form = new Phonebook.Views.Engagements.FormView(
-      el: '#new-engagement-form'
+      el: '#edit-engagement-form'
       model: @model
     ).render()
 
   animateIn: ->
-    @$el.transition
-      x: '0'
-      y: '100%'
-      duration: 0
-      opacity: 0
-      complete: =>
-        @el.classList.add 'active'
-        @$el.transition({
-          x: 0,
-          y: 0
-          opacity: 1
-        }, 350, 'easeOutExpo')
+    @el.classList.add 'active'
+    @$el.css('opacity', 0)
+    @$el.transition({
+      opacity: 1
+    }, 350, 'easeOutExpo')
 
   animateOut: ->
     Backbone.trigger 'engagements:views:hidden', @ #announce that this view got hid
     @$el.transition
-      x: 0
-      y: '100%'
       opacity: 0
       complete: =>
         @hide()
 
   showSansAnimation: ->
-    @$el.addClass('active').attr('style', '')
+    @el.classList.add('active')
+    @el.setAttribute 'style', ''
 
   remove: ->
     @removeSubviews()

@@ -14,7 +14,6 @@ class Phonebook.Views.Engagements.FormView extends Backbone.View
   render: ->
     @$el.html @template @model.tplAttrs()
     Backbone.Syphon.deserialize @, @model.tplAttrs()
-    @$el.find('input').first().focus()
     @
 
   submit: (e) ->
@@ -25,6 +24,7 @@ class Phonebook.Views.Engagements.FormView extends Backbone.View
       success: (e) =>
         Backbone.trigger 'engagements:saved', @model
         @model.unset 'new'
+        @model.unset 'editing'
       error: (e) =>
         console.log e
 

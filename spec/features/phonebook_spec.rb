@@ -24,8 +24,23 @@ feature 'using the phonebook' do
     should_see_engagement_named('Cooking Class')
   end
 
-  scenario 'deleting', js: true
-  scenario 'editing', js: true
+  scenario 'deleting', js: true do
+    visit phonebook_root_path
+    item = find('.list-item:last-child')
+    item.trigger :swipeleft
+    item.find('.delete').click
+    expect(page).not_to have_content 'Ethics Class'
+  end
+
+  scenario 'editing', js: true do
+    visit phonebook_root_path
+    first('.list-item').click
+    first('.edit').click
+    fill_in 'name', with: "Nightwing Guest Lecture"
+    click_button 'Save'
+    should_see_engagement_named 'Nightwing Guest Lecture'
+  end
+
   scenario 'cloning', js: true
 
   def should_see_engagements_list
@@ -39,7 +54,7 @@ feature 'using the phonebook' do
 
   def fill_in_form(args)
     fill_in 'name', with: args[:name]
-    fill_in 'kind', with: 'Workshop'
+    select 'Workshop', from: 'kind'
   end
 
 end

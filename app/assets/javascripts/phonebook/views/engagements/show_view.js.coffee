@@ -1,12 +1,14 @@
+Phonebook.Views.Engagements ||= {}
+
 class Phonebook.Views.Engagements.ShowView extends Backbone.View
   initialize: (args) ->
-    @model ||= new Phonebook.Models.Engagement
     @listen()
 
   template: JST['phonebook/templates/engagements/show']
 
   events:
     'tap .back': 'animateOutToItemView'
+    'tap .edit': -> Backbone.trigger 'engagements:editing', @model, @
     'swiperight': -> ds.animator.outRight(@)
     'touchmove .detail-title': (e) -> e.preventDefault()
 
@@ -15,7 +17,9 @@ class Phonebook.Views.Engagements.ShowView extends Backbone.View
 
   show: (model, view) ->
     @model = model
+    return unless @model?
     Backbone.trigger 'engagements:router:update', @model.get('id')
+    @model.set 'selected', true
     @render()
     if view
       @animateInFromItemView(view)
@@ -24,7 +28,7 @@ class Phonebook.Views.Engagements.ShowView extends Backbone.View
     Backbone.trigger 'engagements:views:shown', @
 
   hide: ->
-    @model.unset('selected')
+    @model?.unset('selected')
     @$el.removeClass('active').attr('style','')
     Backbone.trigger 'engagements:views:hidden', @ #announce that this view got hid
 
