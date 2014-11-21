@@ -11,6 +11,7 @@ class Phonebook.Views.Engagements.ShowView extends Backbone.View
     'tap .edit': -> Backbone.trigger 'engagements:editing', @model, @
     'swiperight': -> ds.animator.outRight(@)
     'touchmove .detail-title': (e) -> e.preventDefault()
+    'blur .editable': 'saveContent'
 
   listen: ->
     @listenTo Backbone, 'engagements:selected', @show
@@ -62,3 +63,11 @@ class Phonebook.Views.Engagements.ShowView extends Backbone.View
     @$el.html @template @model.tplAttrs()
     @
 
+  saveContent: (e) ->
+    window.scroll(0,0)
+    key = e.currentTarget.getAttribute('name')
+    val = e.currentTarget.value
+    attrs = {}
+    attrs["#{key}"] = val
+    if @model.get(key) != val
+      @model.save(attrs)

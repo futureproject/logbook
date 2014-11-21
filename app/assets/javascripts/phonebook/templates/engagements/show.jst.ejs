@@ -18,8 +18,13 @@
     <div class='engagement-duration'>
       <%= attendee_ids.length %> People, <%= duration %> Hours
     </div>
+    <div class='engagement-actions'>
+      <div class='attendance button'>Take Attendance</div>
+      <div class='media button'>Upload Media</div>
+    </div>
     <div class='engagement-notes'>
-      <pre><%= notes %></pre>
+      <h6>Notes:</h6>
+      <textarea class='editable' name='notes'><%= notes %></textarea>
     </div>
   </div>
 </div>

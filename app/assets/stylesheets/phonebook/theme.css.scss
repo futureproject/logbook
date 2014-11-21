@@ -58,11 +58,22 @@ body, .detail-content, .list-items {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.engagement-actions {
+  border-top: 0.5px solid $base-border-color;
+  text-align: center;
+  .button {
+    background: $light-green;
+    &.media { background: $dark-blue; }
+  }
+}
 .engagement-notes {
   border-top: 0.5px solid $base-border-color;
+  textarea {
+    font-size: 12px;
+  }
 }
 
-input {
+input, textarea {
   box-shadow: none;
   -webkit-appearance: none;
 }

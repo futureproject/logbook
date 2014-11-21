@@ -157,9 +157,6 @@ body {
   height: 100%;
   display: none;
   z-index: 2;
-  pre {
-    white-space: pre-wrap;
-  }
   &.active {
     display: block;
   }
@@ -185,12 +182,6 @@ body {
 
 .detail-title {
   @extend .list-title;
-}
-
-.standalone.focusin {
-  .detail-title, .list-title {
-    * { display: none; }
-  }
 }
 
 .l-menu, .r-menu {
@@ -232,10 +223,22 @@ pre {
     margin: 0 15px 15px 0;
     padding: 6px 1em 0;
   }
+  .engagement-duration {
+    margin-bottom: 15px;
+  }
 }
 .engagement-notes {
+  h6 { margin-top: 15px; }
   margin-top: 15px;
   clear: both;
+}
+
+.engagement-actions {
+  clear: both;
+  .button {
+    display: block;
+    margin: 1em 0;
+  }
 }
 
 
@@ -253,3 +256,28 @@ pre {
     font-size: 64px !important;
   }
 }
+
+textarea {
+  white-space: pre-wrap;
+  height: 140px;
+}
+
+.standalone {
+  .focusin {
+    .detail-title, .list-title {
+      * { display: none; }
+    }
+  }
+  textarea:focus {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: auto;
+    font-size: 14px;
+    border: none;
+    padding: 15px;
+  }
+}
+
