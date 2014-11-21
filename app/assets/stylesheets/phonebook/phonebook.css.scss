@@ -238,3 +238,18 @@ pre {
   clear: both;
 }
 
+
+#installer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  padding: 12%;
+  background: $blue;
+  color: white;
+  text-align: center;
+  .octicon {
+    font-size: 64px !important;
+  }
+}

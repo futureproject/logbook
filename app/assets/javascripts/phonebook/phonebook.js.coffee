@@ -24,7 +24,14 @@ window.Phonebook =
   Controllers: {}
   Collections: {}
   Routers: {}
+
   initialize: (data) ->
+    if navigator.userAgent.match(/iphone|ipad|ipod/i) && ! navigator.standalone
+      ds.installer.run()
+    else
+      @run(data)
+
+  run: (data) ->
     $(document).hammer({
       dragLockToAxis: true
       dragBlockHorizontal: true
