@@ -6,8 +6,7 @@ class Phonebook.Views.Engagements.ShowView extends Backbone.View
   template: JST['phonebook/templates/engagements/show']
 
   events:
-    'mouseup .back': 'hide'
-    'touchend .back': 'hide'
+    'tap .back': 'animateOutToItemView'
     'swiperight': -> ds.animator.outRight(@)
     'touchmove .detail-title': (e) -> e.preventDefault()
 
@@ -17,7 +16,6 @@ class Phonebook.Views.Engagements.ShowView extends Backbone.View
   show: (model, view) ->
     @model = model
     Backbone.trigger 'engagements:router:update', @model.get('id')
-    @listenToOnce @model, 'change:selected', @animateOutToItemView
     @render()
     if view
       @animateInFromItemView(view)
@@ -27,8 +25,8 @@ class Phonebook.Views.Engagements.ShowView extends Backbone.View
 
   hide: ->
     @model.unset('selected')
-    Backbone.trigger 'engagements:router:update', ''
-    Backbone.trigger 'engagements:views:hidden', @
+    @$el.removeClass('active').attr('style','')
+    Backbone.trigger 'engagements:views:hidden', @ #announce that this view got hid
 
   animateInFromItemView: (view) ->
     @originalPosition = view.el.getBoundingClientRect()
@@ -42,7 +40,7 @@ class Phonebook.Views.Engagements.ShowView extends Backbone.View
           x: @originalPosition.left
           y: 0,
           opacity: 1
-        }, 350)
+        }, 450, 'easeOutExpo')
 
   animateOutToItemView: ->
     @originalPosition ||= { top: '100%', left: 0 }
@@ -51,10 +49,10 @@ class Phonebook.Views.Engagements.ShowView extends Backbone.View
       y: @originalPosition.top
       opacity: 0
       complete: =>
-        @$el.removeClass('active')
+        @hide()
 
   showSansAnimation: ->
-    @$el.addClass('active')
+    @$el.addClass('active').attr('style','')
 
   render: ->
     @$el.html @template @model.tplAttrs()

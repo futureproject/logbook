@@ -1,6 +1,5 @@
 class Phonebook.Models.Engagement extends Backbone.Model
-  initialize: ->
-    console.log "engagement date is a: #{typeof @get 'date'}"
+  urlRoot: ds.apiHelper.urlFor 'engagements'
 
   defaults: ->
     school_id: Phonebook.user.get('school_id')
@@ -8,13 +7,15 @@ class Phonebook.Models.Engagement extends Backbone.Model
     attendee_ids: []
     duration: 1
     date: new Date().toString('yyyy-MM-dd')
+    notes: ''
 
   save: (key, val, options) ->
     @set 'date', Date.parse(@get('date')).toString('yyyy-MM-dd')
+    @set('attendee_ids',['']) if @get('attendee_ids') == null
     super
 
   toJSON: ->
-    _.omit _.clone(@attributes), ['selected']
+    _.omit _.clone(@attributes), ['selected', 'editing']
 
   tplAttrs: ->
     attrs = _.clone @attributes

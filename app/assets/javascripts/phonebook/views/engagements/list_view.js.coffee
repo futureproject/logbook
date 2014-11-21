@@ -6,6 +6,9 @@ class Phonebook.Views.Engagements.ListView extends Backbone.View
     @listenTo @collection, 'reset add', @render
     @listenTo @collection, 'change:selected', @clearSelection
 
+  show: -> @$el.addClass 'active'
+  hide: -> @$el.removeClass 'active'
+
   render: ->
     @removeItems()
     fragment = document.createDocumentFragment()
@@ -37,24 +40,51 @@ class Phonebook.Views.Engagements.ListItemView extends Backbone.View
     @listen()
 
   render: ->
-    console.log 'rendered an engagement list item'
     @$el.html @template @model.tplAttrs()
     @
 
   listen: ->
     @listenTo @model, 'change:date change:name change:kind', @render
     @listenTo @model, 'change:selected', @toggleActiveClass
+    @listenTo @model, 'destroy', @remove
+    @listenTo @model, 'change:editing', @toggleControls
 
   events:
+    'tap .delete' : 'delete'
     'tap' : 'ontap'
+    'swipeleft': -> @model.set('editing', true)
+    'swiperight': -> @model.unset('editing')
 
   ontap: ->
-    @model.set('selected', true)
+    if @model.has('editing')
+      @model.unset('editing')
+    else
+      @model.set('selected', true)
 
   toggleActiveClass: ->
     if @model.has('selected')
-      @$el.addClass 'selected'
+      @$el.addClass('selected').attr('style','')
       Backbone.trigger 'engagements:selected', @model, @
-      console.log 'engagement selected'
     else
       @$el.removeClass 'selected'
+
+  toggleControls: ->
+    if @model.has('editing') then @showControls() else @hideControls()
+
+  showControls: (e) ->
+    @$el.transition({
+      x: -120
+    }, 300, 'easeOutBack')
+
+  hideControls: (e) ->
+    @$el.transition({
+      x: 0
+    }, 300, 'easeOutBack')
+
+  delete: (e) ->
+    @$el.css({transformOrigin: 'left top'}).transition
+      scale: [1, 0.00001]
+      complete: =>
+        @model.destroy()
+
+

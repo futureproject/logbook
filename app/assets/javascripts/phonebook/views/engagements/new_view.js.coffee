@@ -1,25 +1,26 @@
 Phonebook.Views.Engagements ||= {}
 class Phonebook.Views.Engagements.NewView extends Backbone.View
   initialize: ->
-    @model = new Phonebook.Models.Engagement
     @listen()
 
   template: JST['phonebook/templates/engagements/new']
 
   events:
-    'mouseup .back': 'deselect'
-    'touchend .back': 'deselect'
+    'tap .back': 'animateOut'
     'tap .done': 'submitForm'
     'swiperight': -> ds.animator.outRight(@)
     'touchmove .detail-title' : (e) -> e.preventDefault()
 
   listen: ->
     @listenTo Backbone, 'engagements:new', @show
+    @listenTo Backbone, 'engagements:saved', @hide
+    @listenTo Backbone, 'engagements:selected', @hide
 
   show: (event) ->
+    return if @model?.has('new')
+    @model = new Phonebook.Models.Engagement
     Backbone.trigger 'engagements:router:update', 'new'
-    @model.set 'selected', true
-    @listenToOnce @model, 'change:selected', @hide
+    @model.set 'new', true
     @render()
     if event
       @animateIn()
@@ -28,14 +29,10 @@ class Phonebook.Views.Engagements.NewView extends Backbone.View
     Backbone.trigger 'engagements:views:shown', @
 
 
-  deselect: ->
-    @model.unset 'selected'
-
   hide: ->
-    Backbone.trigger 'engagements:router:update', ''
-    Backbone.trigger 'engagements:views:hidden', @
-    @animateOut()
-    @form.remove()
+    @model?.unset('new') # beacuse the view is listening to changed:selected, it disappears
+    @removeSubviews() # remove associated subviews
+    @$el.removeClass('active').attr('style','')
 
   submitForm: (e) ->
     e.stopPropagation()
@@ -60,15 +57,16 @@ class Phonebook.Views.Engagements.NewView extends Backbone.View
           x: 0,
           y: 0
           opacity: 1
-        }, 250)
+        }, 350, 'easeOutExpo')
 
   animateOut: ->
+    Backbone.trigger 'engagements:views:hidden', @ #announce that this view got hid
     @$el.transition
       x: 0
       y: '100%'
       opacity: 0
       complete: =>
-        @$el.removeClass('active').attr('style','')
+        @hide()
 
   showSansAnimation: ->
     @$el.addClass('active').attr('style', '')
@@ -78,4 +76,4 @@ class Phonebook.Views.Engagements.NewView extends Backbone.View
     super
 
   removeSubviews: ->
-    @trigger 'cleanup'
+    @form?.remove()

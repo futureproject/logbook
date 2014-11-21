@@ -1,5 +1,7 @@
 ds.animator =
-  outRight: (view) ->
+  outRight: (view, namespace) ->
+    namespace ||= "engagements"
+    Backbone.trigger "#{namespace}:views:hidden", view #announce that this view got hid
     view.$el.transition
       x: '100%'
       y: 0

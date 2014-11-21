@@ -20,8 +20,11 @@ class Phonebook.Views.Engagements.FormView extends Backbone.View
   submit: (e) ->
     e.preventDefault()
     $('body').removeClass 'focusin'
-    # save the model
-    # if new, add it to the collection
-    # and if save works, do these
-    @model.unset 'selected'
-    @remove()
+    data = Backbone.Syphon.serialize @
+    @model.save data,
+      success: (e) =>
+        Backbone.trigger 'engagements:saved', @model
+        @model.unset 'new'
+      error: (e) =>
+        console.log e
+

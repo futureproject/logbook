@@ -19,12 +19,14 @@ feature 'using the phonebook' do
     visit phonebook_root_path
     first('.new').click
     fill_in_form(name: 'Cooking Class')
+    sleep 1
+    click_button 'Save'
     should_see_engagement_named('Cooking Class')
   end
 
+  scenario 'deleting', js: true
   scenario 'editing', js: true
   scenario 'cloning', js: true
-  scenario 'deleting', js: true
 
   def should_see_engagements_list
     expect(page).to have_content 'Engagements'
@@ -38,7 +40,6 @@ feature 'using the phonebook' do
   def fill_in_form(args)
     fill_in 'name', with: args[:name]
     fill_in 'kind', with: 'Workshop'
-    click_button 'Done'
   end
 
 end

@@ -22,10 +22,18 @@ body, .detail-content, .list-items {
 }
 
 .list-item {
-  border-bottom: 0.5px solid $base-border-color;
+  border-bottom: 1px solid $base-border-color;
   @include transition(background .2s);
   &.selected {
     background: $base-border-color;
+  }
+  .controls {
+    color: white;
+    background: $light-red;
+    font-weight: bold;
+  }
+  .delete {
+    background: $light-red;
   }
 }
 
@@ -39,6 +47,9 @@ body, .detail-content, .list-items {
   }
   .calendar-date-month {
     color: $light-red;
+  }
+  .calendar-date-day {
+    margin-bottom: 8px;
   }
 }
 

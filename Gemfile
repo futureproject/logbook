@@ -94,6 +94,7 @@ group :test do
   gem 'pry'
   gem 'capybara'
   gem 'capybara-webkit'
+  gem 'launchy'
 end
 
 # Use ActiveModel has_secure_password

@@ -25,7 +25,11 @@ window.Phonebook =
   Collections: {}
   Routers: {}
   initialize: (data) ->
-    $(document).hammer()
+    $(document).hammer({
+      dragLockToAxis: true
+      dragBlockHorizontal: true
+      swipeVelocityX: 0.2
+    })
 
     $.ajaxPrefilter (options, originalOptions, jqXHR) ->
       #options.url = "/api/v1#{options.url}.json"

@@ -25,8 +25,6 @@ require 'capybara/rspec'
 require 'capybara-webkit'
 Capybara.default_selector = :css
 Capybara.javascript_driver = :webkit
-#Capybara.default_wait_time = 5
-
 
 RSpec.configure do |config|
   # ## Mock Framework

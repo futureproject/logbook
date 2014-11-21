@@ -4,9 +4,10 @@ ds.bootstrapper =
       reset: true
       remote: false
       success: ->
+        collection.syncDirtyAndDestroyed()
         collection.fetch
           reset: collection.length <= 1
           remote: true
           success: ->
-            console.log 'synced from server'
+            console.log "#{collection.constructor.name} synced from server"
 

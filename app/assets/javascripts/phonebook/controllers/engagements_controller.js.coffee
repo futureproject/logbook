@@ -26,15 +26,23 @@ class Phonebook.Controllers.EngagementsController extends Backbone.View
   listen: ->
     @listenTo Backbone, 'engagements:index', @index
     @listenTo Backbone, 'engagements:show', @show
+    @listenTo Backbone, 'engagements:saved', @onSave
     @listenTo Backbone, 'engagements:views:hidden', @afterHide
 
   afterHide: (view) ->
     @views.list.el.classList.add 'active'
+    Backbone.trigger 'engagements:router:update', ''
+
+  onSave: (model) ->
+    @collection.add model,
+      merge: true
+    Backbone.trigger 'engagements:show', model.get('id')
+
+  # THERE BE ROUTER ACTIONS BELOW
 
   index: ->
-    @views.list.el.classList.add('active') #show the list
-    @collection.each (model) -> model.unset 'selected' #deselect each listItem model (to hide)
-    @views.new.model.unset 'selected' #deslect the New model (to hide the view)
+    _.each @views, (view) -> view.hide()
+    @views.list.show()
 
   show: (id) ->
     model = @collection.get(id)?.set('selected', true)
