@@ -3,7 +3,7 @@ class Phonebook.Models.Engagement extends Backbone.Model
 
   defaults: ->
     school_id: Phonebook.user.get('school_id')
-    kind: 'Dream Team Meeting'
+    kind: 'Meeting'
     attendee_ids: []
     duration: 1
     date: new Date().toString('yyyy-MM-dd')

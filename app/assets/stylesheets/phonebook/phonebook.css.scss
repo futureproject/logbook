@@ -48,7 +48,6 @@ body {
     border-top: 10px solid transparent;
     border-bottom: 10px solid transparent;
     margin-top: -6px;
-    box-sizing: content-box;
     &:hover {
       background: inherit;
     }
@@ -96,31 +95,35 @@ body {
 .list-item {
   cursor: pointer;
   min-height: 45px;
-  padding: 15px;
+  padding: 10px;
   line-height: 1.2;
   -webkit-user-select: none;
   position: relative;
+  @include transition-property(transform);
+  @include transition-duration(0.2s);
+  @include transition-timing-function(cubic-bezier(0.175, 0.885, 0.32, 1.275));
   > * {
     display: table-cell;
     vertical-align: top;
+    overflow: hidden;
   }
   .controls {
     position: absolute;
     top: 0;
-    right: 0;
     bottom: 0;
-    width: 120px;
-    padding: 15px;
-    @include transform(translateX(120px));
+    right: -20px;
+    width: 140px;
+    @include transform(translate3d(120px, 0, 0));
     * {
-      display: table-cell;
       text-align: center;
       height: 100%;
       width: 100%;
-      padding: 15px;
-      margin: 0;
-      vertical-align: middle;
+      padding: 25px 15px;
+      margin-left: -10px;
     }
+  }
+  &.controls-showing {
+    @include transform(translate3d(-120px, 0, 0));
   }
 }
 

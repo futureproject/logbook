@@ -1,7 +1,22 @@
 <form>
   <div class="field">
     <label for="kind">Kind</label>
-    <input id="kind" name="kind" type="text">
+    <select id="kind" name="kind">
+      <option value="Coaching Session">Coaching</option>
+      <option value="Workshop">Workshop</option>
+      <option value="Event">Event</option>
+      <option value="Meeting">Meeting</option>
+    </select>
+  </div>
+  <div class="field">
+    <label for="school_id">School</label>
+    <select id="engagement_school_id" name="school_id">
+      <% for (var i=0; i < Phonebook.schools.length; i++) { %>
+        <option value="<%= Phonebook.schools.models[i].get('id') %>">
+          <%= Phonebook.schools.models[i].get('name') %>
+        </option>
+      <% } %>
+    </select>
   </div>
   <div class="field">
     <label for="name">Name</label>

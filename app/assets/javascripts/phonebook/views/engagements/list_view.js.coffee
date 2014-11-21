@@ -72,19 +72,18 @@ class Phonebook.Views.Engagements.ListItemView extends Backbone.View
     if @model.has('editing') then @showControls() else @hideControls()
 
   showControls: (e) ->
-    @$el.transition({
-      x: -120
-    }, 300, 'easeOutBack')
+    @el.classList.add('controls-showing')
 
   hideControls: (e) ->
-    @$el.transition({
-      x: 0
-    }, 300, 'easeOutBack')
+    @el.classList.remove('controls-showing')
 
   delete: (e) ->
-    @$el.css({transformOrigin: 'left top'}).transition
-      scale: [1, 0.00001]
+    @$el.css({'min-height': '0', overflow: 'hidden', height: @$el.height() + 'px' }).transition({
+      height: '0px'
+      padding: '0 10px'
       complete: =>
         @model.destroy()
+    }, 200)
+
 
 
