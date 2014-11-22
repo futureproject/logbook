@@ -23,6 +23,12 @@ body {
   margin: 0;
   padding: 0;
   line-height: 1.4;
+  position: relative;
+}
+
+textarea {
+  white-space: pre-wrap;
+  height: 140px;
 }
 
 
@@ -55,7 +61,8 @@ body {
       content: '‹';
       display: inline-block;
       position: absolute;
-      left: -8px;
+      left: 4px;
+      top: -3px;
       font-size: 2em;
       font-weight: normal;
     }
@@ -94,36 +101,37 @@ body {
 .list-item {
   cursor: pointer;
   min-height: 45px;
-  padding: 15px 10px;
   line-height: 1.2;
   -webkit-user-select: none;
+  padding: 15px 10px;
   position: relative;
-  @include transition-property(transform);
-  @include transition-duration(0.2s);
-  @include transition-timing-function(cubic-bezier(0.175, 0.885, 0.32, 1.275));
+  @include transform-origin(left top);
   > * {
     display: table-cell;
     vertical-align: top;
-    overflow: hidden;
   }
-  .controls {
+  .list-item-controls {
     position: absolute;
     top: 0;
     bottom: 0;
-    right: -20px;
-    width: 140px;
-    @include transform(translate3d(120px, 0, 0));
+    left: 100%;
+    width: 100%;
     * {
-      text-align: center;
+      text-align: left;
       height: 100%;
       width: 100%;
       padding: 25px 15px;
-      margin-left: -10px;
     }
   }
-  &.controls-showing {
-    @include transform(translate3d(-120px, 0, 0));
+  &.deleting {
+    background: $light-red;
+    color: white;
   }
+}
+.transitions {
+  @include transition-property(transform);
+  @include transition-duration(0.4s);
+  @include transition-timing-function(cubic-bezier(0.175, 0.885, 0.32, 1.275));
 }
 
 .list-item-graphic {
@@ -209,8 +217,8 @@ body {
 }
 
 
-pre {
-  font-family: $base-font-family;
+.engagement-date {
+  width: 30px;
 }
 
 .engagement-detail {
@@ -251,11 +259,6 @@ pre {
   .octicon {
     font-size: 64px !important;
   }
-}
-
-textarea {
-  white-space: pre-wrap;
-  height: 140px;
 }
 
 .standalone {

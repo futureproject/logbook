@@ -39,18 +39,19 @@ class Phonebook.Views.Engagements.ShowView extends Backbone.View
       x: @originalPosition.left,
       y: @originalPosition.top,
       duration: 0
+      opacity: 0
       complete: =>
-        @el.classList.add 'active'
+        @$el.addClass 'active'
         @$el.transition({
           x: @originalPosition.left
           y: 0,
           opacity: 1
-        }, 450, 'easeOutExpo')
+        }, 350, 'ease')
 
   animateOutToItemView: ->
     @originalPosition ||= { top: '100%', left: 0 }
     @$el.transition
-      x: @originalPosition.left
+      x: 0
       y: @originalPosition.top
       opacity: 0
       complete: =>

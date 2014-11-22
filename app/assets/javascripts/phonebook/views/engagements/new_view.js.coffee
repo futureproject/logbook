@@ -56,7 +56,7 @@ class Phonebook.Views.Engagements.NewView extends Backbone.View
           x: 0,
           y: 0
           opacity: 1
-        }, 350, 'easeOutExpo')
+        }, 350, 'ease')
 
   animateOut: ->
     Backbone.trigger 'engagements:views:hidden', @ #announce that this view got hid

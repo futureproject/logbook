@@ -18,9 +18,8 @@ class Phonebook.Views.Engagements.ListItemView extends Backbone.View
   events:
     'tap .delete' : 'delete'
     'tap' : 'ontap'
-    'touchstart': ds.swiper.ontouchstart
-    'touchmove': ds.swiper.ontouchmove
-    'touchend': ds.swiper.ontouchend
+    'swipeleft': -> @model.set('operating', true)
+    'swiperight': -> @model.unset('operating')
 
   ontap: (e) ->
     e.gesture.srcEvent.preventDefault()
@@ -40,20 +39,26 @@ class Phonebook.Views.Engagements.ListItemView extends Backbone.View
     if @model.has('operating') then @showControls() else @hideControls()
 
   showControls: (e) ->
-    @$el.transition({
-      x: -120
-    }, 200, 'easeOutBack')
+    @el.classList.add('controls-showing')
 
   hideControls: (e) ->
-    @$el.transition({
-      x: 0
-    }, 300, 'easeOutBack')
+    @el.classList.remove('controls-showing')
 
   delete: (e) ->
     e.gesture.srcEvent.preventDefault()
-    @$el.addClass('deleting').transition({
-      x: '-50%'
-      scale: [1, .00001]
-      complete: =>
-        @model.destroy()
+    t = @el.style.webkitTransitionDuration
+    h = @$el.height()
+    $siblings = @$el.nextAll()
+    $siblings.each ->
+      this.style.webkitTransitionDuration = '0'
+      $(this).transition({
+        y: - h
+        duration: t
+        complete: =>
+          this.setAttribute('style', '')
     })
+
+    @$el.addClass('deleting').one('webkitTransitionEnd', () =>
+      @model.destroy()
+    )
+

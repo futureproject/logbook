@@ -31,10 +31,11 @@ body, .detail-content, .list-items {
 
 .list-item {
   @include transition(background .2s);
+  background: white;
   &.selected {
     background: $base-border-color;
   }
-  .controls {
+  .list-item-controls {
     color: white;
     background: $light-red;
     font-weight: bold;
@@ -100,3 +101,8 @@ select {
   width: 100%;
 }
 
+@media screen and (orientation: portrait) {
+  .standalone {
+    border-top: 20px solid $blue;
+  }
+}
