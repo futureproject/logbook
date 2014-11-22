@@ -1,3 +1,9 @@
+@mixin heading {
+  font-family: 'bebas neue', sans-serif;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
 html {
   -webkit-tap-highlight-color: transparent;
 }
@@ -14,15 +20,16 @@ body, .detail-content, .list-items {
 .list-title, .detail-title {
   button, .button {
     color: $base-background-color;
+    font-weight: normal;
+  }
+  h1 {
+    color: $dark-gray;
+    font-size: 1em;
+    line-height: 44px;
   }
 }
 
-.engagement-kind {
-  font-weight: bold;
-}
-
 .list-item {
-  border-bottom: 1px solid $base-border-color;
   @include transition(background .2s);
   &.selected {
     background: $base-border-color;
@@ -37,11 +44,22 @@ body, .detail-content, .list-items {
   }
 }
 
+.list-item-title {
+  @include heading;
+}
+
+.calendar-date {
+  @include heading;
+  font-weight: normal;
+}
 .calendar-date-month {
-  text-transform: uppercase;
   color: $blue;
 }
 .engagement-detail {
+  .engagement-name {
+    @include heading;
+    font-size: 1.25em;
+  }
   .calendar-date {
     background: $lightest-gray;
   }
@@ -58,6 +76,7 @@ body, .detail-content, .list-items {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
 .engagement-actions {
   border-top: 0.5px solid $base-border-color;
   text-align: center;

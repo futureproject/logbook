@@ -1,5 +1,10 @@
 class Phonebook.Controllers.AppController extends Backbone.View
   initialize: ->
+    $(document).hammer({
+      dragLockToAxis: true
+      dragBlockHorizontal: true
+      swipeVelocityX: 0.2
+    })
     @render()
 
   render: ->

@@ -32,18 +32,13 @@ window.Phonebook =
       @run(data)
 
   run: (data) ->
-    $(document).hammer({
-      dragLockToAxis: true
-      dragBlockHorizontal: true
-      swipeVelocityX: 0.2
-    })
+    @user = new Phonebook.Models.User(data.current_user)
 
-    $.ajaxPrefilter (options, originalOptions, jqXHR) ->
-      #options.url = "/api/v1#{options.url}.json"
+
+    $.ajaxPrefilter (options, originalOptions, jqXHR) =>
+      #options.url += "?token=#{@user.get('auth_token')}"
       jqXHR.withCredentials = true
       console.log options.url
-
-    @user = new Phonebook.Models.User(data.current_user)
 
     @schools = new Phonebook.Collections.SchoolsCollection(@user.get('schools'))
 

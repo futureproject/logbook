@@ -13,3 +13,16 @@
 @import 'layout';
 @import 'modules';
 @import 'state';
+
+@media screen and (max-width: 700px) {
+  #new_session {
+    text-align: center;
+    .students { display: none; }
+    .logo {
+      float: none;
+      width: 100%;
+      margin: 1em auto;
+    }
+    .staff { display: block; float: none; margin: 0 auto; width: 100%; }
+  }
+}

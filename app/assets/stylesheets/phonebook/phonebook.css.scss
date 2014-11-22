@@ -2,6 +2,7 @@
 = require s3_direct_upload_progress_bars
 = require octicons
 */
+@import 'fonts';
 @import 'bourbon';
 @import 'base/base';
 @import 'neat';
@@ -34,8 +35,6 @@ body {
   text-align: center;
   -webkit-user-select: none;
   h1 {
-    font-size: 1em;
-    line-height: 44px;
     margin: 0 80px;
     overflow: hidden;
     white-space: nowrap;
@@ -48,6 +47,7 @@ body {
     border-top: 10px solid transparent;
     border-bottom: 10px solid transparent;
     margin-top: -6px;
+    box-sizing: content-box;
     &:hover {
       background: inherit;
     }
@@ -56,7 +56,6 @@ body {
       display: inline-block;
       position: absolute;
       left: -8px;
-      top: -3px;
       font-size: 2em;
       font-weight: normal;
     }
@@ -95,7 +94,7 @@ body {
 .list-item {
   cursor: pointer;
   min-height: 45px;
-  padding: 10px;
+  padding: 15px 10px;
   line-height: 1.2;
   -webkit-user-select: none;
   position: relative;
@@ -131,9 +130,6 @@ body {
   width: 44px;
 }
 
-.list-item-title {
-  font-weight: bold;
-}
 .list-item-label {
   padding-left: 15px;
 }
@@ -200,7 +196,7 @@ body {
   left: 0;
   text-align: left;
   *:first-child {
-    margin-left: 1em;
+    padding-left: 1em;
   }
 }
 .r-menu {
@@ -208,7 +204,7 @@ body {
   text-align: right;
   overflow: hidden;
   *:last-child {
-    margin-right: 1em;
+    padding-right: 1em;
   }
 }
 

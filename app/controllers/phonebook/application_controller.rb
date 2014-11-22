@@ -1,6 +1,6 @@
 class Phonebook::ApplicationController < ApplicationController
-  before_action :init_js_data
   before_action :authorize!
+  before_action :init_js_data
   skip_before_action :authenticate!
   skip_before_action :authorize, only: [:manifest]
 
@@ -18,6 +18,5 @@ class Phonebook::ApplicationController < ApplicationController
       @js_data = {}
       @js_data[:current_user] = current_user.as_json(include: [:site, :schools])
     end
-
 
 end

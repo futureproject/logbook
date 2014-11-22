@@ -48,6 +48,7 @@ module Authorization
   end
 
   def current_user
+    #token = params[:token] || cookies[:auth_token]
     token = ENV['DANGEROUS_AUTH_HACK'] || cookies[:auth_token]
     if token
       User.find_by(auth_token: token) || Person.find_by_auth_token(token)
