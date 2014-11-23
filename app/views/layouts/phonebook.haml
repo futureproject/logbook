@@ -4,11 +4,12 @@
     %title Phonebook
     = stylesheet_link_tag    'phonebook/phonebook', media: 'all'
     = csrf_meta_tags
+    %meta{name:"apple-mobile-web-app-capable", content:"yes"}
+    %meta{name:"mobile-web-app-capable", content:"yes"}
     %meta{name:"apple-mobile-web-app-status-bar-style", content:"black-translucent"}
     %meta{name:"viewport", content:"maximum-scale=1.0, minimum-scale=1.0, initial-scale=1.0"}
-    %meta{name:"apple-mobile-web-app-capable", content:"yes"}
-
     %link{rel:"apple-touch-icon", href: asset_path('phonebook-icon.png')}
+
     / iPhone 6 plus (native)
     %link{:href => asset_path("phonebook-startup-1242x2148.png"), :media => "(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3)", :rel => "apple-touch-startup-image"}
     / iPhone 6 (scaled)
