@@ -1,6 +1,6 @@
 $light-gray: #acacac;
 @mixin heading {
-  font-family: 'bebas neue', sans-serif;
+  font-family: 'bebas neue', 'avenir next condensed', 'arial narrow', sans-serif;
   text-transform: uppercase;
   font-weight: bold;
 }
@@ -20,15 +20,11 @@ $light-gray: #acacac;
 
 html {
   -webkit-tap-highlight-color: transparent;
-  background: url(/assets/ios.png);
-  background-size: contain;
 }
 
-//body { border-top: 20px solid $blue; }
 
 body, .detail-content, .list-items {
   background: $base-background-color;
- // opacity: .75;
 }
 
 .tab-bar, .list-title, .detail-title {
