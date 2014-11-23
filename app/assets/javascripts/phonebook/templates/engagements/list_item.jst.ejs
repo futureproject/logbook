@@ -1,13 +1,7 @@
-<div class="list-item-graphic engagement-date">
-  <div class="calendar-date">
-    <div class="calendar-date-month"><%= shortmonth %></div>
-    <div class="calendar-date-day"><%= day_of_month %></div>
-  </div>
-</div>
-<div class="list-item-label">
-  <div class='engagement-kind list-item-title'><%= kind %></div>
-  <div class='engagement-name list-item-description'><%= name %></div>
-</div>
+<div class='engagement-kind list-item-title'><%= kind %></div>
+<div class='engagement-name list-item-subject'><%= name || school %></div>
+<div class='list-item-excerpt'><%= notes %></div>
+<div class='engagement-date list-item-timestamp'><%= date %></div>
 <div class='list-item-controls'>
   <div class='delete'>Delete</div>
 </div>

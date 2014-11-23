@@ -48,9 +48,8 @@ class Phonebook.Views.Engagements.EditView extends Backbone.View
   animateIn: ->
     @el.classList.add 'active'
     @$el.css('opacity', 0)
-    @$el.transition({
+    @$el.transition
       opacity: 1
-    }, 350, 'easeOutExpo')
 
   animateOut: ->
     Backbone.trigger 'engagements:views:hidden', @ #announce that this view got hid

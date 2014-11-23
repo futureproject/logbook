@@ -7,7 +7,7 @@ class Phonebook.Views.Engagements.ShowView extends Backbone.View
   template: JST['phonebook/templates/engagements/show']
 
   events:
-    'tap .back': 'animateOutToItemView'
+    'tap .back': 'animateOut'
     'tap .edit': -> Backbone.trigger 'engagements:editing', @model, @
     'swiperight': -> ds.animator.outRight(@)
     'touchmove .detail-title': (e) -> e.preventDefault()
@@ -23,7 +23,7 @@ class Phonebook.Views.Engagements.ShowView extends Backbone.View
     @model.set 'selected', true
     @render()
     if view
-      @animateInFromItemView(view)
+      @animateIn(view)
     else
       @showSansAnimation()
     Backbone.trigger 'engagements:views:shown', @
@@ -31,31 +31,16 @@ class Phonebook.Views.Engagements.ShowView extends Backbone.View
   hide: ->
     @model?.unset('selected')
     @$el.removeClass('active').attr('style','')
-    Backbone.trigger 'engagements:views:hidden', @ #announce that this view got hid
 
-  animateInFromItemView: (view) ->
+  animateIn: (view) ->
     @originalPosition = view.el.getBoundingClientRect()
-    @$el.transition
-      x: @originalPosition.left,
-      y: @originalPosition.top,
-      duration: 0
-      opacity: 0
-      complete: =>
-        @$el.addClass 'active'
-        @$el.transition({
-          x: @originalPosition.left
-          y: 0,
-          opacity: 1
-        }, 350, 'ease')
+    @$el.addClass 'active'
 
-  animateOutToItemView: ->
-    @originalPosition ||= { top: '100%', left: 0 }
-    @$el.transition
-      x: 0
-      y: @originalPosition.top
-      opacity: 0
-      complete: =>
-        @hide()
+  animateOut: ->
+    Backbone.trigger 'engagements:views:hidden', @ #announce that this view got hid
+    @$el.removeClass('active').one('webkitTransitionEnd', () =>
+      @hide()
+    )
 
   showSansAnimation: ->
     @$el.addClass('active').attr('style','')

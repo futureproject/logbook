@@ -30,11 +30,18 @@ class Phonebook.Controllers.EngagementsController extends Backbone.View
     @listenTo Backbone, 'engagements:show', @show
     @listenTo Backbone, 'engagements:edit', @edit
     @listenTo Backbone, 'engagements:saved', @onSave
-    @listenTo Backbone, 'engagements:views:hidden', @afterHide
+    @listenTo Backbone, 'engagements:views:shown', @onShow
+    @listenTo Backbone, 'engagements:views:hidden', @onHide
 
-  afterHide: (view) ->
+  onShow: (view) ->
+    if view == @views.show
+      @views.list.$el.addClass('shifted')
+
+  onHide: (view) ->
     @views.list.el.classList.add 'active'
     Backbone.trigger 'engagements:router:update', ''
+    if view == @views.show
+      @views.list.$el.removeClass('shifted')
 
   onSave: (model) ->
     @collection.add model,

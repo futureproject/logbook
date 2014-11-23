@@ -100,38 +100,50 @@ textarea {
 }
 .list-item {
   cursor: pointer;
-  min-height: 45px;
+  min-height: 44px;
   line-height: 1.2;
   -webkit-user-select: none;
-  padding: 15px 10px;
+  padding: 12px 12px 12px 28px;
   position: relative;
+  box-sizing: border-box;
   @include transform-origin(left top);
-  > * {
-    display: table-cell;
-    vertical-align: top;
-  }
-  .list-item-controls {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 100%;
-    width: 100%;
-    * {
-      text-align: left;
-      height: 100%;
-      width: 100%;
-      padding: 25px 15px;
-    }
-  }
   &.deleting {
     background: $light-red;
     color: white;
   }
 }
-.transitions {
-  @include transition-property(transform);
-  @include transition-duration(0.4s);
-  @include transition-timing-function(cubic-bezier(0.175, 0.885, 0.32, 1.275));
+
+.list-item-timestamp {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  white-space: nowrap;
+  width: 60px;
+  text-align: right;
+}
+
+.list-item-name, .list-item-subject {
+  margin-right: 72px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.list-item-excerpt {
+  max-height: 2.4em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.list-item-controls {
+  position: absolute;
+  top: 0;
+  bottom: -1px;
+  left: 100%;
+  width: 50%;
+  * {
+    height: 100%;
+    width: 100%;
+    padding: 25px 15px;
+  }
 }
 
 .list-item-graphic {
@@ -172,6 +184,7 @@ textarea {
     }
   }
 }
+
 
 .detail-content {
   position: absolute;
@@ -216,9 +229,30 @@ textarea {
   }
 }
 
+.transitions {
+  @include transition-property(transform);
+  @include transition-duration(0.3s);
+  @include transition-timing-function(cubic-bezier(0.175, 0.885, 0.32, 1.275));
+}
 
-.engagement-date {
-  width: 30px;
+.detail-show {
+  display: block;
+  @extend .transitions;
+  @include transform(translate3d(100%,0,0));
+  @include transition-timing-function(ease-in-out);
+  &.active {
+    @include transform(translate3d(0,0,0));
+    box-shadow: 0 2px 8px rgba(0,0,0,.5);
+  }
+}
+
+.list-items {
+  @extend .transitions;
+  @include transition-duration(.4s);
+  @include transition-timing-function(ease-in-out);
+  &.shifted {
+    @include transform(translate3d(-100%,0,0));
+  }
 }
 
 .engagement-detail {
@@ -229,6 +263,9 @@ textarea {
   }
   .engagement-duration {
     margin-bottom: 15px;
+  }
+  .engagement-date {
+    width: 30px;
   }
 }
 .engagement-notes {
