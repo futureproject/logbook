@@ -21,6 +21,14 @@ class National
     Engagement.all
   end
 
+  def identities
+    Identity.where('person_id IS NOT NULL')
+  end
+
+  def id
+    nil
+  end
+
   #def self.engagement_score
   #  WeeklyLogEntry.average(:quality)
   #end

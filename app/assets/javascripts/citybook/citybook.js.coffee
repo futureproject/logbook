@@ -6,6 +6,7 @@
 #= require backbone.syphon
 #= require selectize
 #= require s3_direct_upload
+#= require sweet-alert
 #= require ./app
 #= require_tree ./views
 

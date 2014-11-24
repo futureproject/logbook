@@ -51,6 +51,8 @@ gem 'omniauth-facebook'
 # haml for views
 gem "haml-rails"
 
+gem 'sweet-alert'
+
 # enable heroku best-practices
 gem 'rails_12factor', group: :production
 

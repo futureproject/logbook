@@ -2,7 +2,12 @@ class Citybook::PeopleController < Citybook::ApplicationController
   before_action :set_person, only: [:show, :edit, :update, :destroy]
 
   def index
-    @people = current_scope.people.order(:last_name).page(params[:page])
+    if params[:sort] == "identity"
+      @people = current_scope.people.joins(:identity)
+    else
+      @people = current_scope.people
+    end
+    @people = @people.order(:last_name).page(params[:page])
   end
 
   def create

@@ -26,7 +26,7 @@ class ds.Views.NewPersonViaSearchView extends Backbone.View
 
   created: (event, response, status) ->
     return true unless !!event.target.nodeName.match(/form/i)
-    @$inputs.html ('<tr><td colspan=5>Person added!</td></tr>')
+    @$inputs.html ('<tr><td colspan=6>Person added!</td></tr>')
     Backbone.trigger 'search:added',
       response
 

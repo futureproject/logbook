@@ -12,6 +12,7 @@
       %th Last
       %th Grade
       %th School
+      %th=link_to "Profile", url_for(scope_params.merge(sort: 'identity'))
       %th Actions
 
     %tbody.people.rails-results
@@ -22,12 +23,18 @@
           %td=person.grade
           %td=person.school.try(:name)
           %td
+            - if person.identity
+              =link_to "View", person_path(person)
+            - else
+              N/A
+          %td
             = link_to 'View', citybook_person_path(person)
             = link_to 'Edit', edit_citybook_person_path(person)
             = link_to 'Delete', citybook_person_path(person), data: { confirm: 'Are you sure?', method: 'delete', remote: true }, class: 'warn'
 
       %tr
         %td{colspan: 5}=paginate @people
+
     %tbody.search-results
     %tbody.new-record-via-search
       %tr

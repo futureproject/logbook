@@ -18,8 +18,7 @@ feature 'Managing people in citybook' do
 
   scenario 'by editing' do
     visit citybook_people_path
-    click_link 'View', match: :first
-    click_link 'Edit'
+    click_link 'Edit', match: :first
     fill_in 'person[last_name]', with: 'Mangino'
     click_button 'Save'
     expect(page).to have_content 'Mangino'

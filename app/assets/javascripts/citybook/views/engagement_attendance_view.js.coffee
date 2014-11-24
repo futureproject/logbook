@@ -18,13 +18,23 @@ class ds.Views.EngagementAttendanceView extends Backbone.View
       dataType: 'json'
       data: engagement_data
       success: (data, status, xhr) =>
+        console.log data
         Backbone.trigger 'search:clear'
         count = parseInt($('#attendee_count').text())
         count += 1
         $('#attendee_count').text(count)
+        sweetAlert
+          title: "High fives!"
+          text: "Marked #{data.person.name} as present"
+          timer: 2000
+          type: 'success'
       error: (response) ->
         if response.responseJSON.person_id?
-          alert("That person has already been marked present.")
+          sweetAlert
+            title: "Time/Space Error"
+            text: "That person has already been marked present."
+            timer: 2000
+            type: 'error'
         else
           alert("error: #{response.responseText}")
 
