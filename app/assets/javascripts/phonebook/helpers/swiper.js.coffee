@@ -3,8 +3,8 @@ ds.swiper =
     @$el.removeClass('transitions')
     @isScrolling = null
     @startPos =
-      x: e.originalEvent.touches[0].screenX
-      y: e.originalEvent.touches[0].screenY
+      x: e.originalEvent.touches?[0].screenX || e.screenX
+      y: e.originalEvent.touches?[0].screenY || e.screenY
       t: e.timeStamp
     @currentPos = @startPos
     @diff =
@@ -13,9 +13,10 @@ ds.swiper =
       t: @currentPos.t - @startPos.t
 
   ontouchmove: (e) ->
+    return unless @startPos
     @currentPos =
-      x: e.originalEvent.touches[0].screenX
-      y: e.originalEvent.touches[0].screenY
+      x: e.originalEvent.touches?[0].screenX || e.screenX
+      y: e.originalEvent.touches?[0].screenY || e.screenY
       t: e.timeStamp
 
     @diff =
@@ -31,6 +32,7 @@ ds.swiper =
 
   ontouchend: (e) ->
     return if @isScrolling
+    @startPos = null
     if @model.has('operating')# if the fucking thing is open
       # CLOSE IT
       @$el.addClass('transitions').css({transform: "translate3d(0, 0, 0)"})

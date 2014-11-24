@@ -20,6 +20,9 @@ class Phonebook.Views.Engagements.ListItemView extends Backbone.View
     'touchstart': ds.swiper.ontouchstart
     'touchmove': ds.swiper.ontouchmove
     'touchend': ds.swiper.ontouchend
+    'mousedown': ds.swiper.ontouchstart
+    'mousemove': ds.swiper.ontouchmove
+    'mouseup': ds.swiper.ontouchend
 
   ontap: (e) ->
     @model.set('selected', true) unless @model.has('operating')
