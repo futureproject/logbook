@@ -10,7 +10,7 @@ class Phonebook.Views.Engagements.ListItemView extends Backbone.View
     @
 
   listen: ->
-    @listenTo @model, 'change:date change:name change:kind', @render
+    @listenTo @model, 'change:date change:name change:kind change:notes', @render
     @listenTo @model, 'change:selected', @toggleActiveClass
     @listenTo @model, 'destroy', @remove
 

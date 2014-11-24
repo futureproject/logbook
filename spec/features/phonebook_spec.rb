@@ -46,15 +46,13 @@ feature 'using the phonebook' do
     first('.list-item').click
     fill_in 'notes', with: 'Best meeting ever!'
     first('.back').click
-    first('.list-item').click
-    expect(first('textarea').text).to eq 'Best meeting ever!'
+    expect(page).to have_content 'Best meeting ever!'
   end
 
   scenario 'cloning', js: true
 
   def should_see_engagements_list
     expect(page).to have_content 'Engagements'
-    expect(page).to have_content 'Workshop'
   end
 
   def should_see_engagement_named(name)

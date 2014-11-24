@@ -7,8 +7,8 @@ class Phonebook.Views.Engagements.NewView extends Backbone.View
 
   events:
     'tap .back': 'animateOut'
+    'swiperight': 'animateOut'
     'tap .done': 'submitForm'
-    'swiperight': -> ds.animator.outRight(@)
     'touchmove .detail-title' : (e) -> e.preventDefault()
 
   listen: ->
@@ -22,10 +22,7 @@ class Phonebook.Views.Engagements.NewView extends Backbone.View
     Backbone.trigger 'engagements:router:update', 'new'
     @model.set 'new', true
     @render()
-    if event
-      @animateIn()
-    else
-      @showSansAnimation()
+    @animateIn()
     Backbone.trigger 'engagements:views:shown', @
 
   hide: ->
@@ -45,30 +42,13 @@ class Phonebook.Views.Engagements.NewView extends Backbone.View
     ).render()
 
   animateIn: ->
-    @$el.transition
-      x: '0'
-      y: '100%'
-      duration: 0
-      opacity: 0
-      complete: =>
-        @el.classList.add 'active'
-        @$el.transition({
-          x: 0,
-          y: 0
-          opacity: 1
-        }, 350, 'ease')
+    @$el.addClass('active')
 
   animateOut: ->
     Backbone.trigger 'engagements:views:hidden', @ #announce that this view got hid
-    @$el.transition
-      x: 0
-      y: '100%'
-      opacity: 0
-      complete: =>
-        @hide()
-
-  showSansAnimation: ->
-    @$el.addClass('active').attr('style', '')
+    @$el.removeClass('active').one('webkitTransitionEnd', () =>
+      @hide()
+    )
 
   remove: ->
     @removeSubviews()

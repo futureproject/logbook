@@ -8,8 +8,8 @@ class Phonebook.Views.Engagements.ShowView extends Backbone.View
 
   events:
     'tap .back': 'animateOut'
+    'swiperight': 'animateOut'
     'tap .edit': -> Backbone.trigger 'engagements:editing', @model, @
-    'swiperight': -> ds.animator.outRight(@)
     'touchmove .detail-title': (e) -> e.preventDefault()
     'blur .editable': 'saveContent'
 
@@ -22,10 +22,7 @@ class Phonebook.Views.Engagements.ShowView extends Backbone.View
     Backbone.trigger 'engagements:router:update', @model.get('id')
     @model.set 'selected', true
     @render()
-    if view
-      @animateIn(view)
-    else
-      @showSansAnimation()
+    @animateIn(view)
     Backbone.trigger 'engagements:views:shown', @
 
   hide: ->
@@ -33,17 +30,13 @@ class Phonebook.Views.Engagements.ShowView extends Backbone.View
     @$el.removeClass('active').attr('style','')
 
   animateIn: (view) ->
-    @originalPosition = view.el.getBoundingClientRect()
-    @$el.addClass 'active'
+    @$el.addClass('active')
 
   animateOut: ->
     Backbone.trigger 'engagements:views:hidden', @ #announce that this view got hid
     @$el.removeClass('active').one('webkitTransitionEnd', () =>
       @hide()
     )
-
-  showSansAnimation: ->
-    @$el.addClass('active').attr('style','')
 
   render: ->
     @$el.html @template @model.tplAttrs()

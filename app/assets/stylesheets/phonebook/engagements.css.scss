@@ -1,0 +1,26 @@
+.engagement-detail {
+  .calendar-date {
+    float: left;
+    margin: 0 15px 15px 0;
+    padding: 6px 1em 0;
+  }
+  .engagement-duration {
+    margin-bottom: 15px;
+  }
+  .engagement-date {
+    width: 30px;
+  }
+}
+.engagement-notes {
+  h6 { margin-top: 15px; }
+  margin-top: 15px;
+  clear: both;
+}
+
+.engagement-actions {
+  clear: both;
+  .button {
+    display: block;
+    margin: 1em 0;
+  }
+}

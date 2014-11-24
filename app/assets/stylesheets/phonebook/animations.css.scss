@@ -1,0 +1,57 @@
+.transitions {
+  @include transition-property(transform);
+  @include transition-duration(0.5s);
+  // eased
+  @include transition-timing-function(cubic-bezier(0.23,1,0.32,1));
+}
+
+.detail-show {
+  display: block;
+  @extend .transitions;
+  @include transform(translate3d(100%,0,0));
+  &.active {
+    @include transform(translate3d(0,0,0));
+    box-shadow: 0 2px 8px rgba(0,0,0,.5);
+  }
+}
+
+.detail-new {
+  display: block;
+  @extend .transitions;
+  @include transform(translate3d(0,100%,0));
+  &.active {
+    @include transform(translate3d(0,0,0));
+    box-shadow: 0 2px 8px rgba(0,0,0,.5);
+  }
+}
+
+.detail-edit {
+  display: block;
+  @extend .transitions;
+  @include transition-property(opacity);
+  opacity: 0;
+  pointer-events: none;
+  &.active {
+    z-index: 2;
+    pointer-events: auto;
+    opacity: 1;
+    box-shadow: 0 2px 8px rgba(0,0,0,.5);
+  }
+}
+
+.list-items {
+  @extend .transitions;
+  &.shifted {
+    @include transform(translate3d(-50%,0,0));
+  }
+}
+
+.list-item.transitions {
+  // bounce!
+  @include transition-timing-function(cubic-bezier(0.175, 0.885, 0.32, 1.275));
+  @include transition-duration(0.3s);
+}
+
+.detail.swiped-out {
+  @include transform(translate3d(100%,0,0));
+}

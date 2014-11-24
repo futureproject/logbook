@@ -8,8 +8,8 @@ class Phonebook.Views.Engagements.EditView extends Backbone.View
 
   events:
     'tap .back': 'animateOut'
+    'swiperight': 'animateOut'
     'tap .done': 'submitForm'
-    'swiperight': -> ds.animator.outRight(@)
     'touchmove .detail-title' : (e) -> e.preventDefault()
 
   listen: ->
@@ -23,10 +23,7 @@ class Phonebook.Views.Engagements.EditView extends Backbone.View
     Backbone.trigger 'engagements:router:update', "#{@model.get('id')}/edit"
     @model.set 'editing', true
     @render()
-    if prevView
-      @animateIn()
-    else
-      @showSansAnimation()
+    @animateIn()
     Backbone.trigger 'engagements:views:shown', @
 
   hide: ->
@@ -46,17 +43,13 @@ class Phonebook.Views.Engagements.EditView extends Backbone.View
     ).render()
 
   animateIn: ->
-    @el.classList.add 'active'
-    @$el.css('opacity', 0)
-    @$el.transition
-      opacity: 1
+    @el.classList.add('active')
 
   animateOut: ->
     Backbone.trigger 'engagements:views:hidden', @ #announce that this view got hid
-    @$el.transition
-      opacity: 0
-      complete: =>
-        @hide()
+    @$el.removeClass('active').one('webkitTransitionEnd', () =>
+      @hide()
+    )
 
   showSansAnimation: ->
     @el.classList.add('active')
