@@ -13,7 +13,6 @@ class Phonebook.Views.Engagements.ListItemView extends Backbone.View
     @listenTo @model, 'change:date change:name change:kind', @render
     @listenTo @model, 'change:selected', @toggleActiveClass
     @listenTo @model, 'destroy', @remove
-    @listenTo @model, 'change:operating', @toggleControls
 
   events:
     'tap .delete' : 'delete'
@@ -23,11 +22,8 @@ class Phonebook.Views.Engagements.ListItemView extends Backbone.View
     'touchend': ds.swiper.ontouchend
 
   ontap: (e) ->
+    @model.set('selected', true) unless @model.has('operating')
     e.gesture.srcEvent.preventDefault()
-    if @model.has('operating')
-      @model.unset('operating')
-    else
-      @model.set('selected', true)
 
   toggleActiveClass: ->
     if @model.has('selected')
@@ -35,19 +31,6 @@ class Phonebook.Views.Engagements.ListItemView extends Backbone.View
       Backbone.trigger 'engagements:selected', @model, @
     else
       @$el.removeClass 'selected'
-
-  toggleControls: ->
-    if @model.has('operating') then @showControls() else @hideControls()
-
-  showControls: (e) ->
-    @$el.transition({
-      x: -120
-    }, 200, 'easeOutBack')
-
-  hideControls: (e) ->
-    @$el.transition({
-      x: 0
-    }, 300, 'easeOutBack')
 
   delete: (e) ->
     e.gesture.srcEvent.preventDefault()

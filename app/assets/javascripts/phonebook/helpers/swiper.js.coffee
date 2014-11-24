@@ -1,5 +1,6 @@
 ds.swiper =
   ontouchstart: (e) ->
+    @$el.removeClass('transitions')
     @isScrolling = null
     @startPos =
       x: e.originalEvent.touches[0].screenX
@@ -26,17 +27,19 @@ ds.swiper =
 
     return if @isScrolling || @diff.x > 0
 
-    @$el.removeClass('transitions').css({transform: "translate3d(#{@diff.x}px, 0, 0)"})
+    @$el.css({transform: "translate3d(#{@diff.x}px, 0, 0)"})
 
   ontouchend: (e) ->
-    console.log @diff.x
-    return if @isScrolling || @diff.x > 0
-    if Math.abs(@diff.x) > 70 && !@model.has('operating')
+    return if @isScrolling
+    if @model.has('operating')# if the fucking thing is open
+      # CLOSE IT
+      @$el.addClass('transitions').css({transform: "translate3d(0, 0, 0)"})
+        .one('webkitTransitionEnd', => @model.unset('operating'))
+    else if Math.abs(@diff.x) > 70# otherwise, if the thing has moved more than 70px
+      # OPEN IT
       @model.set('operating', true)
       @$el.addClass('transitions').css({transform: "translate3d(-50%, 0, 0)"})
-    else if @model.has('operating')
-      @$el.addClass('transitions').css({transform: "translate3d(0, 0, 0)"})
     else
-      @model.unset('operating')
+      # PUT THE FUCKING THING BACK
       @$el.addClass('transitions').css({transform: "translate3d(0, 0, 0)"})
 
