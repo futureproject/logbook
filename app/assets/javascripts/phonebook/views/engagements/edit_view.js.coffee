@@ -8,7 +8,6 @@ class Phonebook.Views.Engagements.EditView extends Backbone.View
 
   events:
     'tap .back': 'animateOut'
-    'swiperight': 'animateOut'
     'tap .done': 'submitForm'
     'touchmove .detail-title' : (e) -> e.preventDefault()
 
