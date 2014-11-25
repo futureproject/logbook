@@ -19,17 +19,24 @@ class Person < ActiveRecord::Base
   GRADE_ENUM = [6, 7, 8, 9, 10, 11, 12]
   SEX_ENUM = %w(male female other)
 
-  scope :search, lambda {|n|
-    return if n.blank?
-    first= "%#{n.split(' ').first.downcase}%"
-    last= "%#{n.split(' ').last.downcase}%"
+  scope :search, lambda {|query, user=nil|
+    return if query.blank?
+    first = "%#{query.split(' ').first.downcase}%"
+    last = "%#{query.split(' ').last.downcase}%"
+    results = self.all.limit(200)
     if first == last
-      where("lower(first_name) like ? or lower(last_name) like ?", first, last).
+      results = results.where("lower(first_name) like ? or lower(last_name) like ?", first, last).
         order('lower(first_name)').limit(10)
     else
-      where("lower(first_name) like ? and lower(last_name) like ?", first, last).
+      results = results.where("lower(first_name) like ? and lower(last_name) like ?", first, last).
         order('lower(first_name)').limit(10)
     end
+    if user && user.site
+      school_results = user.school ? results.joins(:school).where('schools.id=?', user.school_id) : results.none
+      site_results = results.joins(:site).where('sites.id=?', user.site.id)
+      results = (school_results + site_results + results).flatten.uniq
+    end
+    results.first(10)
   }
 
   def name
