@@ -7,6 +7,7 @@
 #= require backbone.syphon
 #= require jquery.transit
 #= require date
+#= require s3_direct_upload
 #= require_self
 #= require_tree ./helpers
 #= require_tree ./templates
@@ -44,7 +45,7 @@ window.Phonebook =
 
     @controllers =
       app: new Phonebook.Controllers.AppController
-        el: 'body'
+        el: '#phonebook'
       engagements: new Phonebook.Controllers.EngagementsController
         el: '#phonebook-engagements'
 

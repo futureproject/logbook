@@ -1,8 +1,6 @@
 $light-gray: #acacac;
 @mixin heading {
-  font-family: 'bebas neue', 'avenir next condensed', 'arial narrow', sans-serif;
-  text-transform: uppercase;
-  font-weight: bold;
+  font-weight: 600;
 }
 
 @mixin hairline {
@@ -41,6 +39,7 @@ body, .detail-content, .list-items {
     color: $dark-gray;
     font-size: 1em;
     line-height: 44px;
+    font-weight: 600;
   }
 }
 
@@ -66,6 +65,10 @@ body, .detail-content, .list-items {
 
 .list-item-title {
   @include heading;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-right: 80px;
 }
 
 .list-item-excerpt {
@@ -73,14 +76,13 @@ body, .detail-content, .list-items {
 }
 
 .list-item-timestamp {
-  @include heading;
+  font-family: 'avenir next condensed';
   color: $light-gray;
   font-weight: normal;
 }
 
 .calendar-date {
-  @include heading;
-  font-weight: normal;
+  text-transform: uppercase;
 }
 .calendar-date-month {
   color: $blue;
@@ -88,7 +90,6 @@ body, .detail-content, .list-items {
 .engagement-detail {
   .engagement-name {
     @include heading;
-    font-size: 1.25em;
   }
   .calendar-date {
     background: $lightest-gray;
@@ -112,13 +113,24 @@ body, .detail-content, .list-items {
   text-align: center;
   .button {
     background: $light-green;
-    &.media { background: $dark-blue; }
+    &.upload { background: $dark-blue; }
   }
 }
 .engagement-notes {
   border-top: 0.5px solid $base-border-color;
   textarea {
     font-size: 12px;
+  }
+}
+
+#upload-form h3 { display: none; }
+
+.upload {
+  width: auto;
+  .progress {
+    border: 3px solid $light-green;
+    .bar { background: $light-green; }
+    margin: 15px auto;
   }
 }
 
@@ -132,6 +144,8 @@ select {
 
 @media screen and (orientation: portrait) {
   .standalone {
+    position: relative;
     border-top: 20px solid $blue;
   }
 }
+

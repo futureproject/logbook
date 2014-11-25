@@ -23,7 +23,7 @@ class dream.AppPresenter extends Backbone.View
   prepAjax: ->
     $.ajaxPrefilter (options, originalOptions, jqXHR) ->
       jqXHR.withCredentials = true
-      if options.url.indexOf('http') == -1
+      if options.url.indexOf('http') == -1 && !options.url.match(/api/i)
         options.url = "/api/v1#{options.url}.json"
       console.log options.url
 

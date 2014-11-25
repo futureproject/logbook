@@ -9,6 +9,7 @@ class Phonebook.Controllers.EngagementsController extends Backbone.View
       show: new Phonebook.Views.Engagements.ShowView
       new: new Phonebook.Views.Engagements.NewView
       edit: new Phonebook.Views.Engagements.EditView
+      upload: new Phonebook.Views.Engagements.UploadView
 
     @render()
     ds.bootstrapper.load @collection
@@ -24,11 +25,13 @@ class Phonebook.Controllers.EngagementsController extends Backbone.View
     @views.show.setElement '#show-engagement'
     @views.new.setElement '#new-engagement'
     @views.edit.setElement '#edit-engagement'
+    @views.upload.setElement '#engagement-uploads'
 
   listen: ->
     @listenTo Backbone, 'engagements:index', @index
     @listenTo Backbone, 'engagements:show', @show
     @listenTo Backbone, 'engagements:edit', @edit
+    @listenTo Backbone, 'engagements:upload', @upload
     @listenTo Backbone, 'engagements:saved', @onSave
     @listenTo Backbone, 'engagements:views:shown', @onShow
     @listenTo Backbone, 'engagements:views:hidden', @onHide
@@ -39,7 +42,10 @@ class Phonebook.Controllers.EngagementsController extends Backbone.View
 
   onHide: (view) ->
     @views.list.el.classList.add 'active'
-    Backbone.trigger 'engagements:router:update', ''
+    if view == @views.new || view == @views.show
+      Backbone.trigger 'engagements:router:update', ''
+    else if view.model
+      Backbone.trigger 'engagements:router:update', view.model.get('id')
     if view == @views.show
       @views.list.$el.removeClass('shifted')
 
@@ -62,6 +68,13 @@ class Phonebook.Controllers.EngagementsController extends Backbone.View
     Backbone.trigger 'engagements:new', e
 
   edit: (id) ->
-    console.log 'editing...'
     model = @collection.get(id)
-    Backbone.trigger('engagements:editing', model) if model
+    if model
+      Backbone.trigger('engagements:selected', model)
+      Backbone.trigger('engagements:editing', model)
+
+  upload: (id) ->
+    model = @collection.get(id)
+    if model
+      Backbone.trigger('engagements:selected', model)
+      Backbone.trigger('engagements:uploading', model)

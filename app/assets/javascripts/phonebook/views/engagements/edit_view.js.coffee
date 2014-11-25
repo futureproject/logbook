@@ -16,7 +16,7 @@ class Phonebook.Views.Engagements.EditView extends Backbone.View
     @listenTo Backbone, 'engagements:saved', @hide
     @listenTo Backbone, 'engagements:selected', @hide
 
-  show: (model, prevView) ->
+  show: (model) ->
     return if @model?.has('editing')
     @model = model
     Backbone.trigger 'engagements:router:update', "#{@model.get('id')}/edit"
@@ -49,10 +49,6 @@ class Phonebook.Views.Engagements.EditView extends Backbone.View
     @$el.removeClass('active').one('webkitTransitionEnd', () =>
       @hide()
     )
-
-  showSansAnimation: ->
-    @el.classList.add('active')
-    @el.setAttribute 'style', ''
 
   remove: ->
     @removeSubviews()

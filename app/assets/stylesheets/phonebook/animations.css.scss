@@ -15,7 +15,7 @@
   }
 }
 
-.detail-new {
+.detail-new, .detail-upload {
   display: block;
   @extend .transitions;
   @include transform(translate3d(0,100%,0));
@@ -41,9 +41,10 @@
 
 .list-items {
   @extend .transitions;
-  &.shifted {
-    @include transform(translate3d(-50%,0,0));
-  }
+}
+
+.shifted {
+  @include transform(translate3d(-50%,0,0));
 }
 
 .list-item.transitions {

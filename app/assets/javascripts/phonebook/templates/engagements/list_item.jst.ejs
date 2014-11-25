@@ -1,7 +1,7 @@
 <div class='engagement-kind list-item-title'><%= kind %></div>
 <div class='engagement-name list-item-subject'><%= name || school %></div>
 <div class='list-item-excerpt'><%= notes %></div>
-<div class='engagement-date list-item-timestamp'><%= date %></div>
+<div class='engagement-date list-item-timestamp'><%= Date.parse(date).toString('MM/dd') %></div>
 <div class='list-item-controls'>
   <div class='list-item-controls-inner'>
     <div class='delete'>Delete</div>

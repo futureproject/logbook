@@ -9,27 +9,28 @@ class Phonebook.Views.Engagements.ShowView extends Backbone.View
   events:
     'tap .back': 'animateOut'
     'swiperight': 'animateOut'
-    'tap .edit': -> Backbone.trigger 'engagements:editing', @model, @
+    'tap .edit': -> Backbone.trigger 'engagements:editing', @model
+    'tap .upload': 'showUploads'
     'touchmove .detail-title': (e) -> e.preventDefault()
     'blur .editable': 'saveContent'
 
   listen: ->
     @listenTo Backbone, 'engagements:selected', @show
 
-  show: (model, view) ->
+  show: (model) ->
     @model = model
     return unless @model?
     Backbone.trigger 'engagements:router:update', @model.get('id')
     @model.set 'selected', true
     @render()
-    @animateIn(view)
+    @animateIn()
     Backbone.trigger 'engagements:views:shown', @
 
   hide: ->
     @model?.unset('selected')
     @$el.removeClass('active').attr('style','')
 
-  animateIn: (view) ->
+  animateIn: () ->
     @$el.addClass('active')
 
   animateOut: ->
@@ -41,6 +42,10 @@ class Phonebook.Views.Engagements.ShowView extends Backbone.View
   render: ->
     @$el.html @template @model.tplAttrs()
     @
+
+  showUploads: (e) ->
+    Backbone.trigger 'engagements:uploading', @model
+    e.gesture.srcEvent.preventDefault()
 
   saveContent: (e) ->
     window.scroll(0,0)

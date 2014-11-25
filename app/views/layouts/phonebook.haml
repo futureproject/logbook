@@ -22,7 +22,12 @@
     / iOS 6 & 7 iPhone (retina)
     %link{:href => asset_path("phonebook-startup-640x920.png"), :media => "(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)", :rel => "apple-touch-startup-image"}
 
-  %body#phonebook
+  %body
+    #form-to-s3.hidden
+      = s3_uploader_form callback_url: '/api/v1/assets', callback_param: "asset[external_url]", key:"uploads/#{SecureRandom.hex}-${filename}", class: 's3-uploader' do
+        = file_field_tag :file, multiple: true
+        = render partial: 'application/s3_direct_upload_progress_bars.html'
     = javascript_include_tag 'phonebook/phonebook'
+    #phonebook
     :javascript
       Phonebook.initialize(#{JSON.dump( @js_data || {} )})
