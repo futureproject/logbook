@@ -5,7 +5,6 @@
 #= require hammer-jquery
 #= require backbone.dualstorage
 #= require backbone.syphon
-#= require jquery.transit
 #= require date
 #= require s3_direct_upload
 #= require_self

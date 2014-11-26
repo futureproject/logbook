@@ -1,4 +1,4 @@
-class Phonebook.Views.Engagements.ListItemView extends Backbone.View
+class Phonebook.Views.Engagements.ListItemView extends Phonebook.Views.Base.ListItemView
   template: JST['phonebook/templates/engagements/list_item']
   className: 'list-item engagement'
   initialize: ->
@@ -13,17 +13,11 @@ class Phonebook.Views.Engagements.ListItemView extends Backbone.View
     @listenTo @model, 'change:date change:name change:kind change:notes', @render
     @listenTo @model, 'change:selected', @toggleActiveClass
     @listenTo @model, 'destroy', @remove
-
-  events:
-    #'tap' : 'ontap'
-    'touchstart': ds.swiper.ontouchstart
-    'touchmove': ds.swiper.ontouchmove
-    'touchend .delete' : ds.swiper.delete
-    'touchend': ds.swiper.ontouchend
-    'close': ds.swiper.close
-    'mouseup': ds.swiper.ontouchend
+    @events['tap'] = 'ontap'
 
   ontap: (e) ->
+    e.gesture.srcEvent.preventDefault()
+    @model.set 'selected', true
 
   toggleActiveClass: ->
     if @model.has('selected')
