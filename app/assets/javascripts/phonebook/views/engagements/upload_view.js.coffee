@@ -8,11 +8,11 @@ class Phonebook.Views.Engagements.UploadView extends Backbone.View
 
   listen: ->
     @listenTo Backbone, 'engagements:uploading', @show
-    #@listenTo Backbone, 'engagements:saved', @hide
     @listenTo Backbone, 'engagements:selected', @hide
 
   events:
     'tap .done': 'animateOut'
+    'touchmove .detail-title': (e) -> e.preventDefault()
 
   show: (model) ->
     @model = model
@@ -40,9 +40,6 @@ class Phonebook.Views.Engagements.UploadView extends Backbone.View
     @$el.removeClass('active').one('webkitTransitionEnd', () =>
       @hide()
     )
-
-  assetTap: (e) ->
-    console.log @
 
   loadUploads: ->
     $.ajax
