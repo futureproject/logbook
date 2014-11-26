@@ -33,7 +33,6 @@ body, .detail-content, .list-items {
 .list-title, .detail-title {
   button, .button {
     color: $base-background-color;
-    font-weight: normal;
   }
   h1 {
     color: $dark-gray;
@@ -126,6 +125,10 @@ body, .detail-content, .list-items {
   }
 }
 
+.button, button {
+  font-weight: 600;
+}
+
 #upload-form h3 { display: none; }
 
 .upload {
@@ -149,6 +152,28 @@ select {
   .standalone {
     position: relative;
     border-top: 20px solid $blue;
+  }
+  input[type=file] {
+    visiblity: hidden;
+    position: relative;
+    width: 100%;
+    height: 44px;
+    line-height: 44px;
+    -webkit-appearance: none;
+    &:after {
+      content: 'Choose Files...';
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: $dark-blue;
+      color: white;
+      font-weight: 600;
+      text-align: center;
+      border-radius: $base-border-radius;
+    }
   }
 }
 

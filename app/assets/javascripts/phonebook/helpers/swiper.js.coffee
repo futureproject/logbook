@@ -35,22 +35,12 @@ ds.swiper =
 
     if @model.has('operating')# if the fucking thing is open
       # CLOSE IT
-        @el.style['-webkit-transition-property'] = "-webkit-transform"
-        @el.style['-webkit-timing-function'] = "ease-out"
-        @el.style['-webkit-transition-duration'] = '.1s'
         @el.style['-webkit-transform'] = 'translate3d(0,0,0)'
-        @$el.one 'webkitTransitionEnd', -> this.removeAttribute 'style'
         @model.unset('operating')
     else if Math.abs(@diff.x) > 40# otherwise, if the thing has moved more than 40px left
       # OPEN IT
       @model.set('operating', true)
-      @el.style['-webkit-transition-property'] = "-webkit-transform"
-      @el.style['-webkit-transition-duration'] = '.1s'
-      @el.style['-webkit-timing-function'] = "ease-out"
       @el.style['-webkit-transform'] = 'translate3d(-50%,0,0)'
-      @$el.one 'webkitTransitionEnd', ->
-        this.style['-webkit-transition-property'] = "none"
-        this.style['-webkit-transition-duration'] = "0"
     else if @diff.t < 300 #select the thing!
       e.preventDefault()
       @$el.css({transform: "translate3d(0, 0, 0)"})
