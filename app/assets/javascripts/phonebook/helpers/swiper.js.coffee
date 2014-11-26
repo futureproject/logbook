@@ -1,6 +1,5 @@
 ds.swiper =
   ontouchstart: (e) ->
-    @$el.removeClass('transitions')
     @isScrolling = null
     @startPos =
       x: e.originalEvent.touches?[0].screenX || e.screenX
@@ -26,22 +25,48 @@ ds.swiper =
 
     @isScrolling = !!(@isScrolling || Math.abs(@diff.y) > Math.abs(@diff.x))
 
-    return if @isScrolling || @diff.x > 0
+    return if @isScrolling
 
     @$el.css({transform: "translate3d(#{@diff.x}px, 0, 0)"})
 
   ontouchend: (e) ->
-    return if @isScrolling
-    @startPos = null
+    return if @isScrolling || !@startPos?
+    @diff.t = e.timeStamp - @startPos.t
+
     if @model.has('operating')# if the fucking thing is open
       # CLOSE IT
-      @$el.addClass('transitions').css({transform: "translate3d(0, 0, 0)"})
-        .one('webkitTransitionEnd', => @model.unset('operating'))
-    else if Math.abs(@diff.x) > 70# otherwise, if the thing has moved more than 70px
+        @el.style['-webkit-transition-property'] = "-webkit-transform"
+        @el.style['-webkit-timing-function'] = "ease-out"
+        @el.style['-webkit-transition-duration'] = '.1s'
+        @el.style['-webkit-transform'] = 'translate3d(0,0,0)'
+        @$el.one 'webkitTransitionEnd', -> this.removeAttribute 'style'
+        @model.unset('operating')
+    else if Math.abs(@diff.x) > 40# otherwise, if the thing has moved more than 40px left
       # OPEN IT
       @model.set('operating', true)
-      @$el.addClass('transitions').css({transform: "translate3d(-50%, 0, 0)"})
+      @el.style['-webkit-transition-property'] = "-webkit-transform"
+      @el.style['-webkit-transition-duration'] = '.1s'
+      @el.style['-webkit-timing-function'] = "ease-out"
+      @el.style['-webkit-transform'] = 'translate3d(-50%,0,0)'
+      @$el.one 'webkitTransitionEnd', ->
+        this.style['-webkit-transition-property'] = "none"
+        this.style['-webkit-transition-duration'] = "0"
+    else if @diff.t < 300 #select the thing!
+      e.preventDefault()
+      @$el.css({transform: "translate3d(0, 0, 0)"})
+      @model.set('selected', true)
     else
-      # PUT THE FUCKING THING BACK
-      @$el.addClass('transitions').css({transform: "translate3d(0, 0, 0)"})
+      @el.removeAttribute 'style'
+
+  delete: (e) ->
+    @diff.t = e.timeStamp - @startPos.t
+    return unless @diff.t < 300
+    e.preventDefault()
+    e.stopPropagation()
+    @el.style['-webkit-transition-property'] = "-webkit-transform"
+    @el.style['-webkit-transition-duration'] = '.5s'
+    @el.style['-webkit-transform'] = 'translate3d(-200%,0,0)'
+    @$el.addClass('deleting').one('webkitTransitionEnd', =>
+      @model.destroy()
+    )
 
