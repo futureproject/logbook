@@ -6,6 +6,7 @@ class Phonebook.Routers.EngagementsRouter extends Backbone.Router
     'phonebook/engagements/new': 'new'
     'phonebook/engagements/:id/edit': 'edit'
     'phonebook/engagements/:id/upload': 'upload'
+    'phonebook/engagements/:id/attendance': 'attendance'
     'phonebook/engagements/:id': 'show'
     'phonebook': 'index'
     'phonebook/': 'index'
@@ -22,6 +23,9 @@ class Phonebook.Routers.EngagementsRouter extends Backbone.Router
 
   upload: (id) ->
     Backbone.trigger 'engagements:upload', id
+
+  attendance: (id) ->
+    Backbone.trigger 'engagements:attendance', id
 
 # this Route, unlike the rest, does not delegate to the engagements controller.
 # instead, the new engagements view is listening directly.

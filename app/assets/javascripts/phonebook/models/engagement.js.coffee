@@ -15,7 +15,7 @@ class Phonebook.Models.Engagement extends Backbone.Model
     super
 
   toJSON: ->
-    _.omit _.clone(@attributes), ['selected', 'editing', 'operating', 'uploading']
+    _.omit _.clone(@attributes), ['selected', 'editing', 'operating', 'uploading', 'taking_attendance']
 
   tplAttrs: ->
     attrs = _.clone @attributes

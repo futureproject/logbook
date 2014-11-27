@@ -10,6 +10,7 @@ class Phonebook.Controllers.EngagementsController extends Backbone.View
       new: new Phonebook.Views.Engagements.NewView
       edit: new Phonebook.Views.Engagements.EditView
       upload: new Phonebook.Views.Engagements.UploadView
+      attendance: new Phonebook.Views.Engagements.AttendanceView
 
     @render()
     ds.bootstrapper.load @collection
@@ -26,12 +27,14 @@ class Phonebook.Controllers.EngagementsController extends Backbone.View
     @views.new.setElement '#new-engagement'
     @views.edit.setElement '#edit-engagement'
     @views.upload.setElement '#engagement-uploads'
+    @views.attendance.setElement '#engagement-attendance'
 
   listen: ->
     @listenTo Backbone, 'engagements:index', @index
     @listenTo Backbone, 'engagements:show', @show
     @listenTo Backbone, 'engagements:edit', @edit
     @listenTo Backbone, 'engagements:upload', @upload
+    @listenTo Backbone, 'engagements:attendance', @attendance
     @listenTo Backbone, 'engagements:saved', @onSave
     @listenTo Backbone, 'engagements:views:shown', @onShow
     @listenTo Backbone, 'engagements:views:hidden', @onHide
@@ -78,3 +81,9 @@ class Phonebook.Controllers.EngagementsController extends Backbone.View
     if model
       Backbone.trigger('engagements:selected', model)
       Backbone.trigger('engagements:uploading', model)
+
+  attendance: (id) ->
+    model = @collection.get(id)
+    if model
+      Backbone.trigger('engagements:selected', model)
+      Backbone.trigger('engagements:taking_attendance', model)

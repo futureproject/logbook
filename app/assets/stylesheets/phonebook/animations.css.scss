@@ -1,6 +1,6 @@
 .transitions {
   @include transition-property(transform);
-  @include transition-duration(0.5s);
+  @include transition-duration(0.6s);
   // eased
   @include transition-timing-function(cubic-bezier(0.23,1,0.32,1));
 }
@@ -8,13 +8,14 @@
 .detail-show {
   display: block;
   @extend .transitions;
-  @include transform(translate3d(100%,0,0));
+  @include transform(translate3d(102%,0,0));
+  box-shadow: 0 2px 8px rgba(0,0,0,.25);
   &.active {
     @include transform(translate3d(0,0,0));
   }
 }
 
-.detail-new, .detail-upload {
+.detail-new, .detail-upload, .detail-attendance {
   display: block;
   @extend .transitions;
   @include transform(translate3d(0,100%,0));

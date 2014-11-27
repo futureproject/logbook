@@ -11,6 +11,7 @@ class Phonebook.Views.Engagements.ShowView extends Backbone.View
     'swiperight': 'animateOut'
     'tap .edit': -> Backbone.trigger 'engagements:editing', @model
     'tap .upload': 'showUploads'
+    'tap .attendance': 'showAttendance'
     'touchmove .detail-title': (e) -> e.preventDefault()
     'blur .editable': 'saveContent'
 
@@ -45,6 +46,10 @@ class Phonebook.Views.Engagements.ShowView extends Backbone.View
 
   showUploads: (e) ->
     Backbone.trigger 'engagements:uploading', @model
+    e.gesture.srcEvent.preventDefault()
+
+  showAttendance: (e) ->
+    Backbone.trigger 'engagements:taking_attendance', @model
     e.gesture.srcEvent.preventDefault()
 
   saveContent: (e) ->
