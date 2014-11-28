@@ -24,13 +24,7 @@ feature 'using the phonebook' do
     should_see_engagement_named('Cooking Class')
   end
 
-  scenario 'deleting', js: true do
-    visit phonebook_root_path
-    item = find('.list-item:last-child')
-    item.trigger :swipeleft
-    item.find('.delete').click
-    expect(page).not_to have_content 'Ethics Class'
-  end
+  scenario 'deleting'
 
   scenario 'editing', js: true do
     visit phonebook_root_path

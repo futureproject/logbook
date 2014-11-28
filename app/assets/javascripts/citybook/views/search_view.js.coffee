@@ -5,11 +5,13 @@ class ds.Views.SearchView extends Backbone.View
     return unless @el?
     @listenTo Backbone, 'search:clear', @resetVal
     @listenTo Backbone, 'search:added', @resetVal
+
   events:
     'keyup' : 'prepQuery'
 
   resetVal: ->
     @$el.val('')
+
   prepQuery: _.debounce((e) ->
     @$t = $(e.currentTarget)
     @q = @$t.val()
