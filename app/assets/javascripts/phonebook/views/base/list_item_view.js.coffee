@@ -53,7 +53,6 @@ class Phonebook.Views.Base.ListItemView extends Backbone.View
 
   delete: (e) ->
     @diff.t = e.timeStamp - @startPos.t
-    console.log @diff.t
     return unless @diff.t < 300
     e.preventDefault()
     e.stopPropagation()

@@ -1,6 +1,6 @@
 class Api::V1::EngagementsController < Api::V1::BaseController
   wrap_parameters format: [:json], include: [:attendee_ids, :name, :date, :kind, :school_id, :notes, :duration]
-  before_action :set_engagement, only: [:show, :edit, :update, :destroy, :upload]
+  before_action :set_engagement, only: [:show, :edit, :update, :destroy, :upload, :attendees]
 
   # GET /api/v1/engagements
   # GET /api/v1/engagements.json
@@ -25,6 +25,11 @@ class Api::V1::EngagementsController < Api::V1::BaseController
 
   # GET /api/v1/engagements/1/edit
   def edit
+  end
+
+  def attendees
+    @people = @engagement.attendees.order('updated_at DESC')
+    render template: 'api/v1/people/index'
   end
 
   # POST /api/v1/engagements

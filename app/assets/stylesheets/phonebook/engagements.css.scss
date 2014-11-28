@@ -24,3 +24,44 @@
     margin: 1em 0;
   }
 }
+
+.attending-person.list-item {
+  padding-left: 12px;
+  .list-item-timestamp {
+    right: 0;
+    color: $light-green;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  &:after {
+    left: 0;
+  }
+}
+.engagement-attendees .list-item-timestamp {
+  &:empty:before {
+    content: 'Absent';
+    color: $light-gray;
+  }
+}
+
+#engagement-attendees-list {
+  &:before {
+    display: block;
+    content: 'Attendees:';
+    font-weight: 600;
+    background: $lightest-gray;
+    padding: 0 4px;
+  }
+}
+
+#engagement-search-results:not(:empty) {
+  margin-bottom: 15px;
+  &:before {
+    display: block;
+    content: 'Search Results:';
+    font-weight: 600;
+    background: $lightest-gray;
+    padding: 0 4px;
+  }
+}

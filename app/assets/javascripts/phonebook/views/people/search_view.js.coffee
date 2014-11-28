@@ -19,6 +19,7 @@ class Phonebook.Views.People.SearchView extends Backbone.View
   , 200)
 
   search: ->
+    Backbone.trigger 'people:search:started'
     if @q.length > 0
       $.ajax
         url: @url

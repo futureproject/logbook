@@ -1,6 +1,6 @@
 class EngagementAttendee < ActiveRecord::Base
-  belongs_to :engagement
-  belongs_to :person
+  belongs_to :engagement, touch: true
+  belongs_to :person, touch: true
   validates_presence_of :person_id
   validates_uniqueness_of :person_id, scope: :engagement_id, allow_nil: true
   after_create :log_action

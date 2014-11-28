@@ -49,6 +49,7 @@ Rails.application.routes.draw do
       end
       resources :engagements do
         get 'upload', on: :member
+        get 'attendees', on: :member
       end
       resources :engagement_attendees
       resources :one_on_ones

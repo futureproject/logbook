@@ -20,6 +20,7 @@ class Phonebook.Views.Engagements.ShowView extends Backbone.View
 
   show: (model) ->
     @model = model
+    @listenTo @model, 'change:attendee_ids', @render
     return unless @model?
     Backbone.trigger 'engagements:router:update', @model.get('id')
     @model.set 'selected', true

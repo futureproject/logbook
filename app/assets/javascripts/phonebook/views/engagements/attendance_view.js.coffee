@@ -2,8 +2,6 @@ Phonebook.Views.Engagements ||= {}
 
 class Phonebook.Views.Engagements.AttendanceView extends Backbone.View
   initialize: ->
-    @$search = new Phonebook.Views.People.SearchView
-      url: ds.apiHelper.urlFor 'people'
     @listen()
 
   template: JST['phonebook/templates/engagements/attendance']
@@ -11,8 +9,7 @@ class Phonebook.Views.Engagements.AttendanceView extends Backbone.View
   listen: ->
     @listenTo Backbone, 'engagements:taking_attendance', @show
     @listenTo Backbone, 'engagements:selected', @hide
-    @listenTo Backbone, 'people:search:complete', @showResults
-    @listenTo Backbone, 'people:search:clear', @hideResults
+    @listenTo Backbone, 'engagements:attendee_ids', @updateAttendees
 
   events:
     'tap .done': 'animateOut'
@@ -23,7 +20,14 @@ class Phonebook.Views.Engagements.AttendanceView extends Backbone.View
     Backbone.trigger 'engagements:router:update', "#{@model.get('id')}/attendance"
     @model.set 'taking_attendance', true
     @render()
-    @$search.setElement '#engagement-attendance-search-form'
+    @search = new Phonebook.Views.People.SearchView
+      url: ds.apiHelper.urlFor 'people'
+      el: '#engagement-attendance-search-form'
+    @search_results = new Phonebook.Views.Engagements.SearchResultsView
+      el: '#engagement-search-results'
+    @attendees_list = new Phonebook.Views.Engagements.AttendeesListView
+      el:'#engagement-attendees-list'
+    @loadAttendeesFromServer()
     @animateIn()
     Backbone.trigger 'engagements:views:shown', @
 
@@ -46,18 +50,22 @@ class Phonebook.Views.Engagements.AttendanceView extends Backbone.View
 
   removeSubviews: ->
     @search?.remove()
+    @search_results?.remove()
+    @attendees_list?.remove()
+    Backbone.trigger 'attendees:clean'
 
   remove: ->
     @removeSubviews()
     super
 
-  showResults: (data) ->
-    frag = document.createDocumentFragment()
-    _.each data.results, (result) =>
-      v = new Phonebook.Views.People.AttendingPersonView
-        model: new Phonebook.Models.Person(result)
-      frag.appendChild v.render().el
-    @$el.find('.search-results').html frag
+  updateAttendees: (ids) ->
+    @model.save
+      attendee_ids: ids
 
-  hideResults: ->
-    @$el.find('.search-results').unbind().empty()
+  loadAttendeesFromServer: ->
+    $.ajax
+      url: ds.apiHelper.urlFor 'engagement_attendees', @model.get('id')
+      complete: (response) =>
+        attendees = JSON.parse response.responseText
+        Backbone.trigger 'engagement_attendees:loaded', attendees
+
