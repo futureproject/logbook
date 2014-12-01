@@ -1,5 +1,5 @@
 class Phonebook::ApplicationController < ApplicationController
-  before_action :init_js_data
+  before_action :init_js_data, only: [:home]
   skip_before_action :authenticate!
 
   def home
