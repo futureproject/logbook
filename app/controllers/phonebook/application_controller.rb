@@ -1,8 +1,6 @@
 class Phonebook::ApplicationController < ApplicationController
-  before_action :authorize!
   before_action :init_js_data
   skip_before_action :authenticate!
-  skip_before_action :authorize, only: [:manifest]
 
   def home
     render layout: 'phonebook', text: ''
@@ -16,7 +14,11 @@ class Phonebook::ApplicationController < ApplicationController
   private
     def init_js_data
       @js_data = {}
-      @js_data[:current_user] = current_user.as_json(include: [:site, :schools])
+      if current_user
+        @js_data[:current_user] = current_user.as_json(include: [:site, :schools])
+      else
+        store_location
+      end
     end
 
 end

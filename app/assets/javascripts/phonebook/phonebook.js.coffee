@@ -32,22 +32,26 @@ window.Phonebook =
       @run(data)
 
   run: (data) ->
-    @user = new Phonebook.Models.User(data.current_user)
+    if data.current_user?
+      @user = new Phonebook.Models.User(data.current_user)
 
+      $.ajaxPrefilter (options, originalOptions, jqXHR) =>
+        #options.url += "?token=#{@user.get('auth_token')}"
+        jqXHR.withCredentials = true
+        console.log options.url
 
-    $.ajaxPrefilter (options, originalOptions, jqXHR) =>
-      #options.url += "?token=#{@user.get('auth_token')}"
-      jqXHR.withCredentials = true
-      console.log options.url
+      @schools = new Phonebook.Collections.SchoolsCollection(@user.get('schools'))
 
-    @schools = new Phonebook.Collections.SchoolsCollection(@user.get('schools'))
+      @controllers =
+        app: new Phonebook.Controllers.AppController
+          el: '#phonebook'
+        engagements: new Phonebook.Controllers.EngagementsController
+          el: '#phonebook-engagements'
 
-    @controllers =
-      app: new Phonebook.Controllers.AppController
-        el: '#phonebook'
-      engagements: new Phonebook.Controllers.EngagementsController
-        el: '#phonebook-engagements'
+      Backbone.trigger 'app:loaded'
+      Backbone.trigger 'network:online' if navigator.onLine
+      Backbone.history.start({ pushState: true })
 
-    Backbone.trigger 'app:loaded'
-    Backbone.trigger 'network:online' if navigator.onLine
-    Backbone.history.start({ pushState: true })
+    else
+      location.href = '/sessions/new'
+
