@@ -63,6 +63,17 @@
     pointer-events: none;
   }
   &.active { display: block; }
+  &:empty {
+    &:before {
+      content: 'This list is empty.';
+      display: inline-block;
+      height: 44px;
+      padding: 15px 0;
+      width: 100%;
+      text-align: center;
+      color: $light-gray;
+    }
+  }
 }
 .list-item {
   cursor: pointer;
