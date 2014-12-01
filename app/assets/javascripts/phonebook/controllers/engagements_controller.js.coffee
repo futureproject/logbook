@@ -13,7 +13,7 @@ class Phonebook.Controllers.EngagementsController extends Backbone.View
       attendance: new Phonebook.Views.Engagements.AttendanceView
 
     @render()
-    ds.bootstrapper.load @collection
+    ds.bootstrapper.loadLocal @collection
 
   template: JST['phonebook/templates/engagements/controller']
   events:
@@ -30,6 +30,7 @@ class Phonebook.Controllers.EngagementsController extends Backbone.View
     @views.attendance.setElement '#engagement-attendance'
 
   listen: ->
+    @listenTo Backbone, 'network:online', -> ds.bootstrapper.loadRemote(@collection)
     @listenTo Backbone, 'engagements:index', @index
     @listenTo Backbone, 'engagements:show', @show
     @listenTo Backbone, 'engagements:edit', @edit

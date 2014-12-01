@@ -1,13 +1,13 @@
 ds.bootstrapper =
-  load: (collection) ->
+  loadLocal: (collection) ->
     collection.fetch
       reset: true
       remote: false
-      success: ->
-        collection.syncDirtyAndDestroyed()
-        collection.fetch
-          reset: true
-          remote: true
-          success: ->
-            console.log "#{collection.constructor.name} synced from server"
 
+  loadRemote: (collection) ->
+    collection.syncDirtyAndDestroyed()
+    collection.fetch
+      reset: true
+      remote: true
+      success: ->
+        console.log "#{collection.constructor.name} synced from server"
