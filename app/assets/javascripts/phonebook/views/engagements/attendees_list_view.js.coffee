@@ -33,6 +33,7 @@ class Phonebook.Views.Engagements.AttendeesListView extends Backbone.View
     frag
 
   addOrRemove: (person) ->
+    @collection.remove person
     @collection.add person,
       merge: true
       at: 0

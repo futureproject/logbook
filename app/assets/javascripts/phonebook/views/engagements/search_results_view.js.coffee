@@ -25,6 +25,7 @@ class Phonebook.Views.Engagements.SearchResultsView extends Backbone.View
     frag ||= document.createDocumentFragment()
     v = new Phonebook.Views.People.AttendingPersonView
       model: person
+    v.$el.on 'tap', (e) -> Backbone.trigger 'people:search:clear'
     frag.appendChild v.render().el
     frag
 
