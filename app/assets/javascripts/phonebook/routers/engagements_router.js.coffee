@@ -11,6 +11,8 @@ class Phonebook.Routers.EngagementsRouter extends Backbone.Router
     'phonebook': 'index'
     'phonebook/': 'index'
     'phonebook/engagements/': 'index'
+    'logbookapp': 'index'
+    'logbookapp/': 'index'
 
   index: ->
     Backbone.trigger 'engagements:index'
