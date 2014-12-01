@@ -43,6 +43,7 @@ class Phonebook.Views.Engagements.AttendanceView extends Backbone.View
     @$el.addClass('active')
 
   animateOut: ->
+    document.activeElement?.blur()
     Backbone.trigger 'engagements:views:hidden', @ #announce that this view got hid
     @$el.removeClass('active').one('webkitTransitionEnd', () =>
       @hide()

@@ -10,7 +10,6 @@ class Phonebook.Views.People.SearchView extends Backbone.View
     'keyup' : 'throttledSearch'
 
   reset: ->
-    document.activeElement.blur()
     @$el.val('')
 
   throttledSearch: _.debounce((e) ->
