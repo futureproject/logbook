@@ -1,14 +1,14 @@
 !!!
 %html{manifest_path('/phonebook/manifest.appcache')}
   %head
-    %title Phonebook
+    %title Logbook
     = stylesheet_link_tag    'phonebook/phonebook', media: 'all'
     = csrf_meta_tags
     %meta{name:"apple-mobile-web-app-capable", content:"yes"}
     %meta{name:"mobile-web-app-capable", content:"yes"}
     %meta{name:"apple-mobile-web-app-status-bar-style", content:"black-translucent"}
     %meta{name:"viewport", content:"maximum-scale=1.0, minimum-scale=1.0, initial-scale=1.0"}
-    %meta{name:"apple-mobile-web-app-title", content:"Phonebook"}
+    %meta{name:"apple-mobile-web-app-title", content:"Logbook"}
     %link{rel:"apple-touch-icon", href: asset_path('phonebook-icon.png')}
 
     / iPhone 6 plus (native)
