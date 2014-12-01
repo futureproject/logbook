@@ -85,6 +85,7 @@ Rails.application.routes.draw do
     end
   end
 
+  get '/logbookapp' => 'phonebook/application#home', as: 'logbook_app'
   namespace :phonebook do
     root 'application#home'
     get 'manifest.appcache', to: 'application#manifest'
