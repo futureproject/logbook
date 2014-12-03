@@ -17,7 +17,7 @@ class Person < ActiveRecord::Base
   has_one :identity, dependent: :destroy
   ROLE_ENUM = %w(student teacher staff)
   GRADE_ENUM = [6, 7, 8, 9, 10, 11, 12]
-  SEX_ENUM = %w(male female other)
+  SEX_ENUM = %w(M F _)
 
   scope :search, lambda {|query, user=nil|
     return if query.blank?
@@ -75,7 +75,13 @@ class Person < ActiveRecord::Base
   # imports students into the system
   def self.import_from_csv(filename, dream_director)
     CSV.foreach("#{Rails.root.to_s}/public/#{filename}", headers: true) do |row|
-      p = Person.create!(row.to_hash.merge(school_id: dream_director.school_id))
+      data = row.to_hash
+      if dream_director.people.where(first_name: data['first_name'], last_name: data['last_name']).any?
+        puts "person #{data['first_name']} #{data['last_name']} already exists"
+      else
+        p = Person.create!(data.merge(school_id: dream_director.school_id))
+        puts "created #{p.name}"
+      end
     end
   end
 
