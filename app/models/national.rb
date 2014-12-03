@@ -29,6 +29,10 @@ class National
     nil
   end
 
+  def name
+    "National"
+  end
+
   #def self.engagement_score
   #  WeeklyLogEntry.average(:quality)
   #end

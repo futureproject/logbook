@@ -1,0 +1,100 @@
+#header {
+  line-height: 3;
+  position: absolute;
+  top: 0;
+  left: 66px;
+  right: 0;
+  padding: 1em;
+  @include row;
+  z-index: 10;
+  background: rgba($base-accent-color, .95);
+  color: white;
+  a {
+    color: $base-font-color;
+    &:hover { text-decoration: underline; }
+  }
+  #home {
+    @include span-columns(2);
+    color: white;
+    font-weight: bold;
+    line-height: 2;
+    font-size: 1.5em;
+  }
+  #filters {
+    @include span-columns(6);
+    .filter-label {
+      font-weight: bold;
+      cursor: s-resize;
+    }
+    .filter {
+      @include span-columns(3 of 6);
+      .filter-options {
+        display: none;
+      }
+      a {
+        display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .active { font-weight: bold; }
+      &:hover .filter-options {
+        display: block;
+      }
+    }
+  }
+  #current_location {
+    @include span-columns(4);
+    color: $base-font-color;
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+#yield {
+  margin-top: 60px;
+  margin-left: 66px;
+  padding: 2em 1em;
+}
+
+#tabs {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  overflow: hidden;
+  width: 66px;
+  background: $dark-gray;
+  text-align: center;
+  img {
+    width: 44px;
+    display: block;
+    margin: 8px auto;
+  }
+  li {
+    margin-bottom: 1px;
+    font-size: 9px;
+    .octicon {
+      display: block;
+      margin: 0 auto;
+    }
+    a {
+      display: block;
+      border-top: 1px solid darken($base-font-color, 11%);
+      padding: 2em 0;
+      margin: 0 4px;
+    }
+    &.current {
+      a { color: white; }
+    }
+  }
+  .octicon {
+    margin-right: .5em;
+  }
+  a {
+    color: $medium-gray;
+  }
+}
+

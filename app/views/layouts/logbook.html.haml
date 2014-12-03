@@ -1,36 +1,44 @@
 !!!
-%html{manifest: '/logbook/manifest.appcache'}
+%html
   %head
     %title Logbook
-    = stylesheet_link_tag    'application', media: 'all'
-    %meta{name:"viewport", content: "width=device-width, maximum-scale=1.0, minimum-scale=1.0, initial-scale=1.0"}
-    %meta{name:"apple-mobile-web-app-status-bar-style", content:"black-translucent"}
-    %meta{name:"apple-mobile-web-app-capable", content:"yes"}
-    %link{rel:"apple-touch-icon", href: asset_path('icon-arrow.png')}
-
-    %link{href: asset_path("apple-touch-startup-image-1536x2008.png"), media: "(device-width: 768px) and (device-height: 1024px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)", rel: "apple-touch-startup-image"}
-
-    %link{href: asset_path("apple-touch-startup-image-1496x2048.png"), media: "(device-width: 768px) and (device-height: 1024px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)", rel: "apple-touch-startup-image"}
-
-
-    %link{href: asset_path("apple-touch-startup-image-768x1004.png"), media: "(device-width: 768px) and (device-height: 1024px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 1)", rel: "apple-touch-startup-image"}
-
-    %link{href: asset_path("apple-touch-startup-image-748x1024.png"), media: "(device-width: 768px) and (device-height: 1024px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 1)", rel: "apple-touch-startup-image"}
+    = stylesheet_link_tag    'logbook/logbook', media: 'all'
+    %meta{name:"viewport", content: "width=1024"}
     = csrf_meta_tags
-  %body#l_logbook
-    #app
-      #sidebar
-        =image_tag asset_path('tfplogo.svg'), class: 'avatar'
-        %ul.tabs
-      #canvas
-      #flash
-        - flash.each do |k, v|
-          .flash{class: k}
-            .message= v
-            .flash_dismiss
-              %span.mega-octicon.octicon-x
+  %body
 
-    = javascript_include_tag 'logbook/logbook'
-    :javascript
-      dream.initialize(#{JSON.dump( @js_data || {} )})
+    #header
+      %a#home{href: logbook_root_url}
+        Logbook
+      #current_location= current_scope.name
+      #filters
+        .filter
+          .filter-label Schools
+          .filter-options
+            - current_user.schools.each do |school|
+              =link_to school.name, url_for(school_id: school.id), class: ('active' if school.id.to_s == params[:school_id])
+
+        - if !current_user.site
+          .filter
+            .filter-label Sites
+            .filter-options
+              - Site.all.each do |site|
+                =link_to site.name, url_for(site_id: site.id), class: ('active' if site.id.to_s == params[:site_id])
+
+    #flash
+      - flash.each do |k, v|
+        .flash{class: k}
+          .message= v
+          .flash_dismiss
+            %span.mega-octicon.octicon-x
+    #tabs
+      =image_tag asset_path('tfplogo.svg'), alt: 'The Future Project'
+      %ul.tabs
+        = nav_link_to "<div class='octicon octicon-rss'></div> Activity", logbook_root_url(scope_params)
+        = nav_link_to "<div class='octicon octicon-organization'></div> People", logbook_people_path(scope_params)
+        = nav_link_to "<div class='octicon octicon-paintcan'></div> Projects", logbook_projects_path
+        = nav_link_to "<div class='octicon octicon-pulse'></div> Engagements", logbook_engagements_path(scope_params)
+
+    #yield= yield
+
     = render 'analytics'

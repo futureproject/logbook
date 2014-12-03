@@ -1,0 +1,31 @@
+.action {
+  @include row;
+  margin-bottom: 2em;
+  .action-when {
+    @include span-columns(2);
+  }
+  .action-who {
+    @include span-columns(2);
+  }
+  .action-where {
+    @include span-columns(2);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .action-detail {
+    @include span-columns(6);
+  }
+  img {
+    width: 4em;
+    height: 4em;
+  }
+}
+.pagination {
+  line-height: 3;
+  @include row;
+  @include shift(2);
+  > * {
+    @include span-columns(1);
+  }
+}

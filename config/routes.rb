@@ -65,9 +65,13 @@ Rails.application.routes.draw do
   end
 
   namespace :logbook do
-    root 'application#home'
-    get 'manifest.appcache', to: 'application#manifest'
-    get '*anywhere', to: 'application#home'
+    root 'actions#index'
+    resources :actions, only: [:index, :show] do
+      get :from, on: :collection
+    end
+    resources :people
+    resources :projects
+    resources :engagements
   end
 
   namespace :citybook do

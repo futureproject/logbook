@@ -1,18 +1,9 @@
 class Logbook::ApplicationController < ApplicationController
-  before_action :init_js_data
-  before_action :check_for_school
   before_action :authorize!
   skip_before_action :authenticate!
-  skip_before_action :check_for_school, only: [:manifest]
   layout 'logbook'
+  helper_method :current_scope
 
-  def home
-  end
-
-  def manifest
-    headers['Content-Type'] = 'text/cache-manifest'
-    render layout: false, file: "logbook/application/manifest"
-  end
 
   private
     def init_js_data
@@ -20,9 +11,14 @@ class Logbook::ApplicationController < ApplicationController
       @js_data[:current_user] = current_user.as_json(include: :school)
     end
 
-    def check_for_school
-      return if current_user.school
-      render text: "Yikes! You don't have a school in the system. If you're a Dream Director working in a school, please email chris.frank@thefutureproject.org for help."
+    def current_scope
+      if params[:site_id]
+        Site.find(params[:site_id])
+      elsif params[:school_id]
+        School.find(params[:school_id])
+      else
+        National.new
+      end
     end
 
 end
