@@ -19,6 +19,8 @@ class Logbook::ApplicationController < ApplicationController
     def current_scope
       if session[:scope_id] && session[:scope_type]
         eval "#{session[:scope_type].classify}.find(#{session[:scope_id]})"
+      elsif current_user.school
+        current_user.school
       elsif current_user.site
         current_user.site
       else
