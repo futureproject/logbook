@@ -18,6 +18,7 @@ class Person < ActiveRecord::Base
   ROLE_ENUM = %w(student teacher staff)
   GRADE_ENUM = [6, 7, 8, 9, 10, 11, 12]
   SEX_ENUM = %w(M F _)
+  include Filterable
 
   scope :search, lambda {|query, user=nil|
     return if query.blank?

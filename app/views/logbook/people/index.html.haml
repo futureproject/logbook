@@ -13,6 +13,12 @@
       .person-actions
         =f.hidden_field :role, value: 'student'
         = f.submit "Add Person"
+  - if params[:q]
+    %li.search-results.row
+      %h3
+        = pluralize @people.count, 'result'
+        = "for '#{params[:q]}'"
+
   %li.labels.person
     .person-first-name First
     .person-last-name Last
@@ -20,4 +26,4 @@
     .person-school School
     .person-actions Actions
   = render @people
-=paginate @people
+=paginate @people rescue nil
