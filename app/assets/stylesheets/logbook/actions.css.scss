@@ -1,0 +1,23 @@
+.action {
+  @include row;
+  margin-bottom: 2em;
+  .action-when {
+    @include span-columns(2);
+  }
+  .action-who {
+    @include span-columns(2);
+  }
+  .action-where {
+    @include span-columns(2);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .action-detail {
+    @include span-columns(6);
+  }
+  img {
+    width: 4em;
+    height: 4em;
+  }
+}

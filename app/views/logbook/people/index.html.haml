@@ -1,14 +1,23 @@
-#people_list.list
-  .list-title
-    %h1 People
-    .r-menu
-      =link_to "New", new_logbook_person_path
-  .list-body.scrollable
-    - @people.each do |person|
-      %a.list-item{href: logbook_person_path(person)}
-        .list-item-graphic=person.initials
-        .list-item-label=person.name
-    = link_to_next_page @people, 'Load More'
-
-#people_detail.panel.list-detail
-
+%ul.people
+  %li.person.new-person
+    = form_for [:logbook, @person] do |f|
+      %label Add
+      .person-first-name
+        =f.text_field :first_name, placeholder: 'First name', required: true
+      .person-last-name
+        =f.text_field :last_name, placeholder: 'Last name', required: true
+      .person-grade
+        =f.select :grade, Person::GRADE_ENUM
+      .person-school
+        =f.select :school_id, current_user.schools.map{|s| [s.name, s.id] }
+      .person-actions
+        =f.hidden_field :role, value: 'student'
+        = f.submit "Add Person"
+  %li.labels.person
+    .person-first-name First
+    .person-last-name Last
+    .person-grade Grade
+    .person-school School
+    .person-actions Actions
+  = render @people
+=paginate @people

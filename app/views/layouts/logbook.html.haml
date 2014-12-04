@@ -8,37 +8,25 @@
   %body
 
     #header
-      %a#home{href: logbook_root_url}
-        Logbook
-      #current_location= current_scope.name
-      #filters
-        .filter
-          .filter-label Schools
-          .filter-options
-            - current_user.schools.each do |school|
-              =link_to school.name, url_for(school_id: school.id), class: ('active' if school.id.to_s == params[:school_id])
-
-        - if !current_user.site
-          .filter
-            .filter-label Sites
-            .filter-options
-              - Site.all.each do |site|
-                =link_to site.name, url_for(site_id: site.id), class: ('active' if site.id.to_s == params[:site_id])
+      #home
+        =link_to "Logbook", logbook_set_scope_path
+        = current_scope.name
+      #filters= render 'filters'
 
     #flash
       - flash.each do |k, v|
         .flash{class: k}
           .message= v
-          .flash_dismiss
-            %span.mega-octicon.octicon-x
     #tabs
-      =image_tag asset_path('tfplogo.svg'), alt: 'The Future Project'
+      %a{href: logbook_set_scope_path}
+        =image_tag asset_path('tfplogo.svg'), alt: 'The Future Project'
       %ul.tabs
-        = nav_link_to "<div class='octicon octicon-rss'></div> Activity", logbook_root_url(scope_params)
-        = nav_link_to "<div class='octicon octicon-organization'></div> People", logbook_people_path(scope_params)
+        = nav_link_to "<div class='octicon octicon-rss'></div> Activity", logbook_root_url
+        = nav_link_to "<div class='octicon octicon-organization'></div> People", logbook_people_path
         = nav_link_to "<div class='octicon octicon-paintcan'></div> Projects", logbook_projects_path
-        = nav_link_to "<div class='octicon octicon-pulse'></div> Engagements", logbook_engagements_path(scope_params)
+        = nav_link_to "<div class='octicon octicon-pulse'></div> Engagements", logbook_engagements_path
 
     #yield= yield
 
+    = javascript_include_tag 'logbook/logbook'
     = render 'analytics'

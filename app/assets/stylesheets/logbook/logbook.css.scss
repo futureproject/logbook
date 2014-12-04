@@ -7,6 +7,8 @@
 @import 'neat';
 @import 'layout';
 @import 'modules';
+@import 'actions';
+@import 'people';
 
 html, body {
   font-size: 12px;
@@ -14,3 +16,21 @@ html, body {
   padding: 0;
 }
 
+#{$all-text-inputs} {
+  font-size: 1em;
+  padding: 0;
+  border: none;
+  border-bottom: 2px solid $base-border-color;
+  border-radius: 0;
+}
+textarea {
+  border-radius: 0;
+  border-width: 2px;
+}
+input[type=submit] {
+  box-sizing: border-box;
+  height: 18px;
+  padding: 0 4px;
+  display: inline-block;
+  border-radius: 0;
+}

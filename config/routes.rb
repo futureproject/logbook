@@ -66,6 +66,7 @@ Rails.application.routes.draw do
 
   namespace :logbook do
     root 'actions#index'
+    get '/set_scope', to: 'application#set_scope', as: :set_scope
     resources :actions, only: [:index, :show] do
       get :from, on: :collection
     end

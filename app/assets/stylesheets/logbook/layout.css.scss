@@ -1,10 +1,14 @@
+body {
+  border-left: 66px solid $dark-gray;
+}
+
 #header {
   line-height: 3;
   position: absolute;
   top: 0;
   left: 66px;
   right: 0;
-  padding: 1em;
+  padding: 1em 2em;
   @include row;
   z-index: 10;
   background: rgba($base-accent-color, .95);
@@ -14,7 +18,7 @@
     &:hover { text-decoration: underline; }
   }
   #home {
-    @include span-columns(2);
+    @include span-columns(6);
     color: white;
     font-weight: bold;
     line-height: 2;
@@ -53,14 +57,28 @@
   }
 }
 
-#yield {
+#flash {
   margin-top: 60px;
-  margin-left: 66px;
-  padding: 2em 1em;
+}
+.flash {
+  position: relative;
+  background: $light-green;
+  padding: 1em 2em;
+  color: white;
+  position: relative;
+  .flash-dismiss {
+    position: absolute;
+    top: 1em;
+    right: 2em;
+  }
+}
+
+#yield {
+  padding: 2em;
 }
 
 #tabs {
-  position: fixed;
+  position: absolute;
   left: 0;
   top: 0;
   bottom: 0;
@@ -83,11 +101,16 @@
     a {
       display: block;
       border-top: 1px solid darken($base-font-color, 11%);
-      padding: 2em 0;
+      padding: 24px 0 12px;
       margin: 0 4px;
     }
     &.current {
-      a { color: white; }
+      a {
+        color: white;
+      }
+      .octicon {
+        color: $blue;
+      }
     }
   }
   .octicon {
@@ -95,6 +118,9 @@
   }
   a {
     color: $medium-gray;
+  }
+  @include media(1025px) {
+    position: fixed;
   }
 }
 

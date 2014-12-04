@@ -4,7 +4,8 @@ class Logbook::PeopleController < Logbook::ApplicationController
   # GET /people
   # GET /people.json
   def index
-    @people = Person.page(params[:page])
+    @people = current_scope.people.page(params[:page])
+    @person = current_scope.people.new(grade: 10)
   end
 
   # GET /people/1
@@ -31,7 +32,7 @@ class Logbook::PeopleController < Logbook::ApplicationController
         format.html { redirect_to [:logbook, @person], notice: 'Person was successfully created.' }
         format.json { render :show, status: :created, location: @person }
       else
-        format.html { render :new }
+        format.html { redirect_to logbook_people_path, notice: 'Person was not saved.' }
         format.json { render json: @person.errors, status: :unprocessable_entity }
       end
     end
@@ -69,6 +70,6 @@ class Logbook::PeopleController < Logbook::ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def person_params
-      params.require(:person).permit(:first_name, :last_name, :role, :school_id, :grade, :core)
+      params.require(:person).permit!
     end
 end

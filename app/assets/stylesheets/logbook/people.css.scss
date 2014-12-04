@@ -1,0 +1,19 @@
+.person {
+  @include row;
+  margin-bottom: 2em;
+  .person-first-name {
+    @include span-columns(2);
+  }
+  .person-last-name {
+    @include span-columns(2);
+  }
+  .person-grade { @include span-columns(2); }
+  .person-school { @include span-columns(3); }
+  .person-actions {
+    @include span-columns(3);
+  }
+}
+
+.new-person {
+  border-bottom: 1px dotted $base-border-color;
+}

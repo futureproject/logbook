@@ -1,31 +1,65 @@
-.action {
+.row {
   @include row;
   margin-bottom: 2em;
-  .action-when {
-    @include span-columns(2);
-  }
-  .action-who {
-    @include span-columns(2);
-  }
-  .action-where {
-    @include span-columns(2);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  .action-detail {
-    @include span-columns(6);
-  }
-  img {
-    width: 4em;
-    height: 4em;
-  }
 }
+
+.g1 { @include span_columns(1); }
+.g2 { @include span_columns(2); }
+.g3 { @include span_columns(3); }
+.g4 { @include span_columns(4); }
+.g5 { @include span_columns(5); }
+.g6 { @include span_columns(6); }
+.g7 { @include span_columns(7); }
+.g8 { @include span_columns(8); }
+.g9 { @include span_columns(9); }
+.g10 { @include span_columns(10); }
+.g11 { @include span_columns(11); }
+.g12 { @include span_columns(12); }
+.s1 { @include shift(1); }
+.s2 { @include shift(2); }
+.s3 { @include shift(3); }
+.s4 { @include shift(4); }
+.s5 { @include shift(5); }
+.s6 { @include shift(6); }
+.s7 { @include shift(7); }
+.s8 { @include shift(8); }
+.s9 { @include shift(9); }
+.s10 { @include shift(10); }
+.s11 { @include shift(11); }
+.s12 { @include shift(12); }
+
+.label, label, .labels {
+  font-weight: bold;
+}
+
 .pagination {
-  line-height: 3;
+  border-top: 1px dotted $base-border-color;
+  padding: 2em 0;
   @include row;
-  @include shift(2);
   > * {
     @include span-columns(1);
   }
+  > *:first-child {
+    @include shift(2);
+  }
+}
+
+.actions {
+  a { @include span-columns(1 of 3); }
+}
+
+a.view { color: $light-green; }
+a.danger { color: $light-red; }
+a.edit { color: $light-yellow; }
+
+* { min-height: 1px; }
+
+.fact:empty {
+  &:after { content: 'N/A'; }
+}
+
+hr {
+  height: 0;
+  border: none;
+  border-bottom: 1px dotted $base-border-color;
 }

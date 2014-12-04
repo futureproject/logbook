@@ -1,0 +1,9 @@
+%li[person]
+  .person-first-name= person.first_name
+  .person-last-name= person.last_name
+  .person-grade= person.grade || ' '
+  .person-school= person.school.try(:name)
+  .person-actions.actions
+    = link_to 'View', logbook_person_path(person), class: 'view'
+    = link_to 'Edit', edit_logbook_person_path(person), class: 'edit'
+    = link_to 'Delete', logbook_person_path(person), data: { confirm: "Are you sure you want to delete #{person.first_name}?", method: 'delete'}, class: 'danger'

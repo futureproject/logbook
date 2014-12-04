@@ -4,42 +4,36 @@ feature 'Logbook people' do
     mock_sign_in
   end
 
-  scenario 'adding', js: true do
-    visit '/logbook/people'
-    first('a.new').click()
-    fill_in 'first_name', with: 'Terry'
-    fill_in 'last_name', with: 'McGuiness'
-    select 'student', from: 'role'
-    select 'N/A', from: 'grade'
-    click_button 'Done'
+  scenario 'CREATE' do
+    visit logbook_people_path
+    fill_in 'person[first_name]', with: 'Terry'
+    fill_in 'person[last_name]', with: 'McGuiness'
+    select '12', from: 'person[grade]'
+    click_button 'Add Person'
     expect(page).to have_content 'Terry McGuiness'
   end
 
-  scenario 'viewing and editing', js: true do
-    visit '/logbook'
-    first('#sidebar .tab_people').click()
-    #first('.refresh').click
-    expect(page).to have_content 'Tim'
+  scenario 'READ' do
+    visit logbook_people_path
+    click_link 'View', match: :first
+    expect(page).to have_content 'Viewing Person'
   end
 
-  scenario 'editing', js: true do
-    visit '/logbook'
-    first('#sidebar .tab_people').click()
-    expect(page).to have_content 'Tim'
-    first('.list-item').click
-    find('.edit').click
-    fill_in 'first_name', with: 'Richard'
-    fill_in 'email', with: 'drake@waynetech.com'
-    click_button 'Done'
+  scenario 'UPDATE' do
+    visit logbook_people_path
+    click_link 'Edit', match: :first
+    fill_in 'person[first_name]', with: 'Richard'
+    fill_in 'person[email]', with: 'drake@waynetech.com'
+    click_button 'Update Person'
     expect(page).to have_content 'Richard'
     expect(page).to have_content 'drake@waynetech.com'
   end
 
-  scenario 'making a note', js: true do
-    visit "/logbook/people/#{Person.first.id}"
-    fill_in 'person_notes', with: 'Fights crime at night'
-    first('.list-item').click()
-    expect(first('textarea').text).to eq 'Fights crime at night'
+  scenario 'DESTROY', js: true do
+    visit logbook_people_path
+    click_link 'Delete', match: :first
+    page.driver.accept_js_confirms!
+    expect(page).to have_content 'Person was successfully destroyed'
   end
 
 end
