@@ -51,13 +51,5 @@
 
   %hr
   .row
-    .person-reflections.section.g3
-      %h3
-        Reflections
-      = render @person.student_reflections
-    .person-reports.section.g6
-      %h3 DD Reports
-      = render @person.reports
-    .person-testimonials.section.g3
-      %h3 Testimonials
-      = render @person.testimonials
+    %h3 Activity
+  %ul.actions= render @person.actions

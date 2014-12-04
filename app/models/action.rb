@@ -21,7 +21,7 @@ class Action < ActiveRecord::Base
   end
 
   def set_date
-    self.date = created_at.to_date if day.nil?
+    self.date = created_at.to_date if date.nil?
   end
 
 end

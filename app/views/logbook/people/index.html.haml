@@ -1,7 +1,7 @@
 %ul.people
   %li.person.new-person
     = form_for [:logbook, @person] do |f|
-      %label Add
+      %label New
       .person-first-name
         =f.text_field :first_name, placeholder: 'First name', required: true
       .person-last-name

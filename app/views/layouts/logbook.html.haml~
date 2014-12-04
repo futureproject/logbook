@@ -25,12 +25,12 @@
         = nav_link_to "<div class='octicon octicon-organization'></div> People", logbook_people_path
         = nav_link_to "<div class='octicon octicon-paintcan'></div> Projects", logbook_projects_path
         = nav_link_to "<div class='octicon octicon-pulse'></div> Engagements", logbook_engagements_path
-      #user
-        %a{href: log_out_path}
-          .octicon.octicon-sign-out
-          .label Log Out
 
     #yield= yield
+
+    #user
+      = "Hi, #{current_user.first_name}."
+      = link_to "Log Out", log_out_path
 
     = javascript_include_tag 'logbook/logbook'
     = render 'analytics'
