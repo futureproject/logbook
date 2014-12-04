@@ -63,3 +63,20 @@ hr {
   border: none;
   border-bottom: 1px dotted $base-border-color;
 }
+
+.search-add {
+  .search {
+    input[type=text] {
+      @include span-columns(4 of 6);
+    }
+    input[type=submit] {
+      @include span-columns(1 of 6);
+    }
+  }
+  .person-first-name, .person-last-name, .person-grade {
+    @include span-columns(1 of 6);
+  }
+  .person-school {
+    @include span-columns(2 of 6);
+  }
+}

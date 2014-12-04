@@ -1,7 +1,20 @@
-%ul.people
-  %li.person.new-person
+- if params[:q]
+  .search-results.row
+    %h3
+      = pluralize @people.count, 'result'
+      = "for '#{params[:q]}'"
+      = "in #{current_scope.name}."
+      = link_to "Clear Search", params.clear
+
+.row.search-add
+  .g6.search
+    %label Search
+    %form{action: logbook_people_path, method: 'GET'}
+      %input{name: 'q', type: 'text', placeholder: 'Type a name...'}
+      %input{type: 'submit', value: 'Search'}
+  .g6.add
+    %label Add
     = form_for [:logbook, @person] do |f|
-      %label New
       .person-first-name
         =f.text_field :first_name, placeholder: 'First name', required: true
       .person-last-name
@@ -13,12 +26,7 @@
       .person-actions
         =f.hidden_field :role, value: 'student'
         = f.submit "Add Person"
-  - if params[:q]
-    %li.search-results.row
-      %h3
-        = pluralize @people.count, 'result'
-        = "for '#{params[:q]}'"
-
+%ul.people
   %li.labels.person
     .person-first-name First
     .person-last-name Last
