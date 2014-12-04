@@ -40,6 +40,16 @@ class Person < ActiveRecord::Base
     results.first(10)
   }
 
+  scope :q, lambda {|query|
+    first = "%#{query.split(' ').first.downcase}%"
+    last = "%#{query.split(' ').last.downcase}%"
+    if first == last
+      self.where("lower(first_name) like ? or lower(last_name) like ?", first, last)
+    else
+      self.where("lower(first_name) like ? and lower(last_name) like ?", first, last)
+    end
+  }
+
   def name
     "#{first_name} #{last_name}"
   end

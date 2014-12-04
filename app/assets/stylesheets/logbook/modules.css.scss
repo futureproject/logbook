@@ -65,6 +65,7 @@ hr {
 }
 
 .search-add {
+  border-bottom: 1px dotted $base-border-color;
   .search {
     input[type=text] {
       @include span-columns(4 of 6);

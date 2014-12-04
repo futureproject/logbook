@@ -4,12 +4,8 @@ class Logbook::PeopleController < Logbook::ApplicationController
   # GET /people
   # GET /people.json
   def index
-    @people = current_scope.people
-    if params[:q]
-      @people = current_scope.people.search(params[:q])
-    else
-      @people = @people.order('dream_team DESC, last_name ASC').page(params[:page])
-    end
+    @people = current_scope.people.filter(params.slice(:q))
+    @people = @people.order('dream_team DESC, last_name ASC').page(params[:page])
     @person = current_scope.people.new(grade: 10)
   end
 
