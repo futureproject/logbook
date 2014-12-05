@@ -30,7 +30,7 @@
       =f.select :school_id, current_user.schools.map{|s| [s.name, s.id] }
     .field.g3
       = f.label :sex
-      =f.select :sex, Person::SEX_ENUM
+      =f.select :sex, Person::SEX_ENUM, include_blank: true
     .field.g2
       = f.label :dream_team
       = f.check_box :dream_team

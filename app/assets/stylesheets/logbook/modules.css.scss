@@ -39,9 +39,6 @@
   > * {
     @include span-columns(1);
   }
-  > *:first-child {
-    @include shift(2);
-  }
 }
 
 .actions {
@@ -54,6 +51,11 @@ a.edit { color: $light-yellow; }
 
 * { min-height: 1px; }
 
+.fact {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .fact:empty {
   &:after { content: 'N/A'; }
 }
@@ -74,7 +76,7 @@ hr {
       @include span-columns(1 of 6);
     }
   }
-  .person-first-name, .person-last-name, .person-grade {
+  .person-first-name, .person-last-name, .person-grade, .person-actions {
     @include span-columns(1 of 6);
   }
   .person-school {

@@ -1,13 +1,10 @@
 .row
   .g9
-    %h1 Viewing Person
+    %h1= @person.name
   .g3
     %h1=link_to "Edit", edit_logbook_person_path(@person, scope_params)
 .person
   .row
-    .g3
-      %label Name
-      .fact= @person.name
     .g3
       %label School
       .fact= @person.school.try :name
@@ -17,10 +14,10 @@
     .g3
       %label Role
       .fact= @person.role
-  .row
     .g3
       %label Dream Team
       .fact= @person.dream_team ? "Yes" : "No"
+  .row
     .g3
       %label Email
       .fact=@person.email

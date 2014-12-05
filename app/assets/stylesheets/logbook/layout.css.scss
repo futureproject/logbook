@@ -23,6 +23,9 @@ body {
     font-weight: bold;
     line-height: 2;
     font-size: 1.5em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   #filters {
     @include span-columns(6);

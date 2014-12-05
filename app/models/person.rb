@@ -17,21 +17,16 @@ class Person < ActiveRecord::Base
   has_one :identity, dependent: :destroy
   ROLE_ENUM = %w(student teacher staff)
   GRADE_ENUM = [6, 7, 8, 9, 10, 11, 12]
-  SEX_ENUM = %w(M F _)
+  SEX_ENUM = %w(M F)
   include Filterable
 
   scope :search, lambda {|query, user=nil|
     return if query.blank?
     first = "%#{query.split(' ').first.downcase}%"
     last = "%#{query.split(' ').last.downcase}%"
+    operator = first == last ? "or" : "and"
     results = self.all.limit(200)
-    if first == last
-      results = results.where("lower(first_name) like ? or lower(last_name) like ?", first, last).
-        order('lower(first_name)').limit(10)
-    else
-      results = results.where("lower(first_name) like ? and lower(last_name) like ?", first, last).
-        order('lower(first_name)').limit(10)
-    end
+    results = results.where("lower(first_name) like ? #{operator} lower(last_name) like ?", first, last).order('lower(first_name)').limit(10)
     if user && user.site
       school_results = user.school ? results.joins(:school).where('schools.id=?', user.school_id) : results.none
       site_results = results.joins(:site).where('sites.id=?', user.site.id)
@@ -40,14 +35,13 @@ class Person < ActiveRecord::Base
     results.first(10)
   }
 
-  scope :q, lambda {|query|
+  scope :sort, -> (column) { order column.to_s }
+
+  scope :q, -> (query) {
     first = "%#{query.split(' ').first.downcase}%"
     last = "%#{query.split(' ').last.downcase}%"
-    if first == last
-      self.where("lower(first_name) like ? or lower(last_name) like ?", first, last)
-    else
-      self.where("lower(first_name) like ? and lower(last_name) like ?", first, last)
-    end
+    operator = first == last ? "or" : "and"
+    where("lower(first_name) like ? #{operator} lower(last_name) like ?", first, last)
   }
 
   def name

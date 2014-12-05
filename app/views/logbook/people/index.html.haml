@@ -25,12 +25,13 @@
         =f.select :school_id, current_user.schools.map{|s| [s.name, s.id] }
       .person-actions
         =f.hidden_field :role, value: 'student'
-        = f.submit "Add Person"
+        = f.submit "Add"
 %ul.people
   %li.labels.person
-    .person-first-name First
-    .person-last-name Last
-    .person-grade Grade
+    .person-first-name=link_to 'First', url_for(sort: 'first_name')
+    .person-last-name=link_to 'Last', url_for(sort: 'last_name')
+    .person-grade=link_to 'Grade', url_for(sort: 'grade')
+    .person-dream-team=link_to 'Dream Team', url_for(sort: 'dream_team DESC, first_name ASC')
     .person-school School
     .person-actions Actions
   = render @people

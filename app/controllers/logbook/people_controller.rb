@@ -4,8 +4,8 @@ class Logbook::PeopleController < Logbook::ApplicationController
   # GET /people
   # GET /people.json
   def index
-    @people = current_scope.people.filter(params.slice(:q))
-    @people = @people.order('dream_team DESC, last_name ASC').page(params[:page])
+    params[:sort] ||= ('dream_team DESC, last_name ASC')
+    @people = current_scope.people.filter(filter_params).page(params[:page])
     @person = current_scope.people.new(grade: 10)
   end
 
@@ -72,5 +72,9 @@ class Logbook::PeopleController < Logbook::ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def person_params
       params.require(:person).permit!
+    end
+
+    def filter_params
+      params.slice(:q, :sort)
     end
 end

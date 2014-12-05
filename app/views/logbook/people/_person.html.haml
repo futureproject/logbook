@@ -2,6 +2,7 @@
   .person-first-name= person.first_name
   .person-last-name= person.last_name
   .person-grade= person.grade || ' '
+  .person-dream-team= person.dream_team ? "Yes" : "No"
   .person-school= person.school.try(:name)
   .person-actions.actions
     = link_to 'View', logbook_person_path(person), class: 'view'
