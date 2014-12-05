@@ -10,6 +10,7 @@
 @import 'actions';
 @import 'people';
 @import 'projects';
+@import 'engagements';
 
 html, body {
   font-size: 12px;
@@ -42,4 +43,9 @@ form {
     padding: .4em;
     border-radius: $base-border-radius;
   }
+}
+pre {
+  white-space: pre-wrap;
+  font-family: $base-font-family;
+  margin: 0 auto;
 }

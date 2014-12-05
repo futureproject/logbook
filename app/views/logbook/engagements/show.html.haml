@@ -1,11 +1,28 @@
-#engagements_detail.panel.list-detail
-  .panel-title
-    %h1 Showing Engagement
-    .l-menu= link_to "Back", logbook_engagements_path
-    .r-menu= link_to "Edit", edit_logbook_engagement_path(@engagement)
-  .panel-body.scrollable.pad
-    %h1= @engagement.date.strftime("%D")
-    %h3 Attendees:
-    =@engagement.attendees.pluck(:first_name).join ", "
+.row
+  .g9
+    %h1
+      = @engagement.kind
+      = @engagement.date.try :strftime, "%D"
+  .g3
+    %h1
+      =link_to "Edit", edit_logbook_engagement_path(@engagement), class: 'edit'
+      =link_to "Duplicate", duplicate_logbook_engagement_path(@engagement)
+.engagement
+  .row
+    .g3
+      %label Name
+      .fact= @engagement.name
+    .g3
+      %label School
+      .fact= @engagement.school.try :name
+    .g3
+      %label Notes
+      %pre= @engagement.notes
+    .g3
+      %label MEDIA
+      .fact
 
-#engagements_list.list
+  %hr
+  .row
+    %h3 Attendees
+  %ul.people= render @engagement.attendees

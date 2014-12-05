@@ -1,10 +1,4 @@
-- if params[:q]
-  .search-results.row
-    %h3
-      = pluralize @people.count, 'result'
-      = "for '#{params[:q]}'"
-      = "in #{current_scope.name}."
-      = link_to "Clear Search", params.clear
+=render(partial: 'search_results', locals:{collection: @people}) if params[:q]
 
 .row.search-add
   .g6.search

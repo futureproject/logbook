@@ -1,10 +1,12 @@
 class Logbook::EngagementsController < Logbook::ApplicationController
-  before_action :set_engagement, only: [:show, :edit, :update, :destroy]
+  before_action :set_engagement, only: [:show, :edit, :update, :destroy, :duplicate]
 
   # GET /engagements
   # GET /engagements.json
   def index
-    @engagements = current_user.engagements.page(params[:page])
+    params[:sort] ||= 'date DESC'
+    @engagements = current_scope.engagements.filter(filter_params).page(params[:page])
+    @engagement = current_scope.engagements.new
   end
 
   # GET /engagements/1
@@ -21,6 +23,16 @@ class Logbook::EngagementsController < Logbook::ApplicationController
   def edit
   end
 
+  def duplicate
+    @clone = @engagement.dup
+    @clone.date = Date.today
+    if @clone.save
+      redirect_to edit_logbook_engagement_path(@clone), notice: "Engagement was successfully duplicated."
+    else
+      redirect_to logbook_engagement_path(@engagement), notice: "Engagement was NOT duplicated."
+    end
+  end
+
   # POST /engagements
   # POST /engagements.json
   def create
@@ -28,10 +40,10 @@ class Logbook::EngagementsController < Logbook::ApplicationController
 
     respond_to do |format|
       if @engagement.save
-        format.html { redirect_to [:logbook, @engagement], notice: 'Engagement was successfully created.' }
+        format.html { redirect_to edit_logbook_engagement_path(@engagement), notice: 'Engagement was successfully created.' }
         format.json { render :show, status: :created, location: @engagement }
       else
-        format.html { render :new }
+        format.html { redirect_to logbook_engagements_path, notice: 'Engagement was not created.' }
         format.json { render json: @engagement.errors, status: :unprocessable_entity }
       end
     end
@@ -73,7 +85,14 @@ class Logbook::EngagementsController < Logbook::ApplicationController
         :kind,
         :date,
         :school_id,
+        :name,
+        :notes,
+        :duration,
         attendee_ids: []
       )
+    end
+
+    def filter_params
+      params.slice(:q, :sort)
     end
 end

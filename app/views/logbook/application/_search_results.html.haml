@@ -1,0 +1,6 @@
+.search-results.row
+  %h3
+    = pluralize collection.count, 'result'
+    = "for '#{params[:q]}'"
+    = "in #{current_scope.name}."
+    = link_to "Clear Search", params.clear

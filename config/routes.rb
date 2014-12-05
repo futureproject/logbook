@@ -72,7 +72,9 @@ Rails.application.routes.draw do
     end
     resources :people
     resources :projects
-    resources :engagements
+    resources :engagements do
+      get 'duplicate', on: :member
+    end
   end
 
   namespace :citybook do

@@ -28,7 +28,7 @@ feature 'Logbook projects' do
     visit logbook_projects_path
     click_link 'Delete', match: :first
     page.driver.accept_js_confirms!
-    expect(page).not_to have_content 'Project successfully destroyed'
+    expect(page).to have_content 'Project was successfully destroyed'
   end
 
 end

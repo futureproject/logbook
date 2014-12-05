@@ -83,3 +83,10 @@ hr {
     @include span-columns(2 of 6);
   }
 }
+
+.date-field {
+  white-space: nowrap;
+  select {
+    display: inline-block;
+  }
+}

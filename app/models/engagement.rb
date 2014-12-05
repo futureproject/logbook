@@ -8,8 +8,10 @@ class Engagement < ActiveRecord::Base
   validates_presence_of :date
   KIND_ENUM = ['Coaching Session', 'Event', 'Meeting', 'Workshop']
   DURATION_ENUM = [
+    ['5 Minutes', 0.08333],
     ['15 Minutes', 0.25],
     ['30 Minutes', 0.5],
+    ['45 Minutes', 0.75],
     ['1 Hour', 1],
     ['2 Hours', 2],
     ['3 Hours', 3],
@@ -18,6 +20,10 @@ class Engagement < ActiveRecord::Base
     ['6 Hours', 6],
     ['7+ Hours', 8]
   ]
+
+  include Filterable
+  scope :sort, -> (column) { order column.to_s }
+  scope :q, -> (query) { where("lower(name) like ?", "%#{query.downcase}%") }
 
   def log_action
     return unless school
