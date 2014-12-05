@@ -26,7 +26,7 @@
       .fact= @person.phone
     .g3
       %label Engagement Hours
-      .fact= @person.engagements.sum(:duration)
+      .fact= @person.engagements.sum(:duration).round(1)
   %hr
   .row
     .g6

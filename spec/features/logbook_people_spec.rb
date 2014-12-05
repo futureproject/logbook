@@ -9,14 +9,14 @@ feature 'Logbook people' do
     fill_in 'person[first_name]', with: 'Terry'
     fill_in 'person[last_name]', with: 'McGuiness'
     select '12', from: 'person[grade]'
-    click_button 'Add Person'
+    click_button 'Add'
     expect(page).to have_content 'Terry McGuiness'
   end
 
   scenario 'READ' do
     visit logbook_people_path
     click_link 'View', match: :first
-    expect(page).to have_content 'Viewing Person'
+    expect(page).to have_content 'Engagement Hours'
   end
 
   scenario 'UPDATE' do

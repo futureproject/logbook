@@ -4,7 +4,9 @@ class Logbook::ProjectsController < Logbook::ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    @projects = current_user.projects.page(params[:page])
+    params[:sort] ||= 'updated_at DESC'
+    @projects = current_scope.projects.filter(filter_params).page(params[:page])
+    @project = current_scope.projects.new
   end
 
   # GET /projects/1
@@ -28,10 +30,10 @@ class Logbook::ProjectsController < Logbook::ApplicationController
 
     respond_to do |format|
       if @project.save
-        format.html { redirect_to [:logbook, @project], notice: 'Project was successfully created.' }
+        format.html { redirect_to edit_logbook_project_path(@project), notice: 'Project was successfully created.' }
         format.json { render :show, status: :created, location: @project }
       else
-        format.html { render :new }
+        format.html { redirect_to logbook_projects_path, notice: 'Project was not created.' }
         format.json { render json: @project.errors, status: :unprocessable_entity }
       end
     end
@@ -76,5 +78,9 @@ class Logbook::ProjectsController < Logbook::ApplicationController
         leader_ids: [],
         participant_ids: []
       )
+    end
+
+    def filter_params
+      params.slice(:q, :sort)
     end
 end

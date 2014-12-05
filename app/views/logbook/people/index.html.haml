@@ -26,6 +26,7 @@
       .person-actions
         =f.hidden_field :role, value: 'student'
         = f.submit "Add"
+
 %ul.people
   %li.labels.person
     .person-first-name=link_to 'First', url_for(sort: 'first_name')

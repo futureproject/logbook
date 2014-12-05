@@ -8,6 +8,11 @@ class Project < ActiveRecord::Base
   has_many :assets, as: :attachable, dependent: :destroy
   has_many :student_reflections, class_name: "Reflection", as: :reflectable
   after_create :log_action
+  include Filterable
+
+  scope :sort, -> (column) { order column.to_s }
+
+  scope :q, -> (query) { where("lower(name) like ?", "%#{query.downcase}%") }
 
   def log_action
     return unless school

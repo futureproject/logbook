@@ -4,21 +4,32 @@
     %ul
       - @project.errors.full_messages.each do |msg|
         %li= msg
-.field
-  = f.label :name
-  = f.text_field :name
 
-- if current_user.school
-  =f.hidden_field :school_id, value: current_user.school_id
-- else
-  .field
-    = f.label :school_id
-    = f.select :school_id, School.all.map{|s| [s.name, s.id] }
+= form_for [:logbook, @project] do |f|
+  .row
+    .g3
 
-.field
-  =f.label :leader_ids, "Leaders"
-  =f.select :leader_ids, current_user.people.collect{|p| [p.name, p.id]}, {}, multiple: true
+      .field
+        = f.label :name
+        = f.text_field :name
+    .g3
+      .field
+        = f.label :school_id
+        = f.select :school_id, current_user.schools.map{|s| [s.name, s.id] }
+    .g6
+      .field
+        = f.label :description
+        = f.text_area :description
+  .row
+    .g6
+      .field
+        =f.label :leader_ids, "Leaders"
+        =f.select :leader_ids, options_for_select(current_scope.people.order('dream_team DESC', :first_name).map{|p| [p.name, p.id, {'data-dream-team'=>p.dream_team}]}, selected_keys = f.object.leader_ids), {}, multiple: true
 
-.field
-  =f.label :participant_ids, "Participants"
-  =f.select :participant_ids, current_user.people.collect{|p| [p.name, p.id]}, {}, multiple: true
+    .g6
+      .field
+        =f.label :participant_ids, "Supporters"
+        =f.select :participant_ids, options_for_select(current_scope.people.order('dream_team DESC', :first_name).map{|p| [p.name, p.id, {'data-dream-team'=>p.dream_team}]}, selected_keys = f.object.participant_ids), {}, multiple: true
+  .row
+    .actions
+      = f.submit

@@ -4,33 +4,31 @@ feature 'Logbook projects' do
     mock_sign_in
   end
 
-  scenario 'adding', js: true do
-    visit '/logbook/projects/new'
-    fill_in 'name', with: 'Build New Batplane'
-    all('input[type=text]')[1].set("Dick Grayson\n")
-    all('input[type=text]')[2].set("Tim Drake\n")
-    click_button 'Done'
-    expect(page).to have_content 'Build New Batplane'
-    expect(page).to have_content 'Dick'
-    expect(page).to have_content 'Tim'
+  scenario 'CREATE' do
+    visit logbook_projects_path
+    fill_in 'project[name]', with: 'Build New Batplane'
+    click_button 'Add'
+    expect(page).to have_content 'Editing Project'
   end
 
-  scenario 'editing', js: true do
-    visit '/logbook'
-    first('.tab_projects').click
-    first('#logbook_projects_index .new').click
-    fill_in 'name', with: 'Repair Batplane'
-    click_button 'Done'
+  scenario 'READ' do
+    visit logbook_projects_path
+    expect(page).to have_selector '.project'
+  end
+
+  scenario 'UPDATE' do
+    visit logbook_projects_path
+    click_link 'Edit', match: :first
+    fill_in 'project[name]', with: 'Repair Batplane'
+    click_button 'Update Project'
     expect(page).to have_content 'Repair Batplane'
   end
 
-  scenario 'deleting', js: true do
-    visit '/logbook/projects'
-    first('.list-item').click
-    click_link 'Edit'
-    first('.button.warning').click
+  scenario 'DESTROY', js: true do
+    visit logbook_projects_path
+    click_link 'Delete', match: :first
     page.driver.accept_js_confirms!
-    expect(page).not_to have_content 'Editing Project'
+    expect(page).not_to have_content 'Project successfully destroyed'
   end
 
 end

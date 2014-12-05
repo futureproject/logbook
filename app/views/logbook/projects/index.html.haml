@@ -1,14 +1,31 @@
-#projects_list.list
-  .list-title
-    %h1 Projects
-    .r-menu
-      =link_to "New", new_logbook_project_path
-  .list-body.scrollable
-    - @projects.each do |project|
-      %a.list-item{href: logbook_project_path(project)}
-        %h6=project.name
-        =project.leaders.limit(3).pluck(:first_name).join ", "
-    = link_to_next_page @projects, 'Load More'
+- if params[:q]
+  .search-results.row
+    %h3
+      = pluralize @projects.count, 'result'
+      = "for '#{params[:q]}'"
+      = "in #{current_scope.name}."
+      = link_to "Clear Search", params.clear
 
-#projects_detail.panel.list-detail
-
+.row.search-add
+  .g6.search
+    %label Search
+    %form{action: logbook_projects_path, method: 'GET'}
+      %input{name: 'q', type: 'text', placeholder: 'Search...'}
+      %input{type: 'submit', value: 'Search'}
+  .g6.add
+    %label Add
+    = form_for [:logbook, @project] do |f|
+      .project-name
+        =f.text_field :name, placeholder: 'name', required: true
+      .project-school
+        =f.select :school_id, current_user.schools.map{|s| [s.name, s.id] }
+      .project-actions
+        = f.submit "Add"
+%ul.projects
+  %li.labels.project
+    .project-name=link_to 'Name', url_for(sort: 'name')
+    .project-leaders Leaders
+    .project-school School
+    .project-actions Actions
+  = render @projects
+=paginate @projects rescue nil

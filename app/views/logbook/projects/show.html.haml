@@ -1,15 +1,25 @@
-#projects_detail.panel.list-detail
-  .panel-title
-    %h1 Showing Project
-    .l-menu= link_to "Back", logbook_projects_path
-    .r-menu= link_to "Edit", edit_logbook_project_path(@project)
-  .panel-body.scrollable.pad
+.row
+  .g9
     %h1= @project.name
-    %hr
-    %h3 Leaders:
-    =@project.leaders.pluck(:first_name).join ", "
-    %h3 Participants:
-    =@project.participants.pluck(:first_name).join ", "
-
-
-#projects_list.list
+  .g3
+    %h1=link_to "Edit", edit_logbook_project_path(@project, scope_params)
+.project
+  .row
+    .g3
+      %label School
+      .fact= @project.school.try :name
+    .g3
+      %label Description
+      .fact= @project.description
+    .g6
+      %label MEDIA
+      .fact
+  %hr
+  .row
+    %h3 Leaders
+  .row
+    %ul.people= render @project.leaders
+  .row
+    %h3 Supporters
+  .row
+    %ul.people= render @project.participants

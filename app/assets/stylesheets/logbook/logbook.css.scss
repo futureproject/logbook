@@ -9,6 +9,7 @@
 @import 'modules';
 @import 'actions';
 @import 'people';
+@import 'projects';
 
 html, body {
   font-size: 12px;
@@ -33,4 +34,12 @@ input[type=submit] {
   padding: 0 4px;
   display: inline-block;
   border-radius: 0;
+}
+form {
+  .actions input[type=submit] {
+    font-size: 2em;
+    height: auto;
+    padding: .4em;
+    border-radius: $base-border-radius;
+  }
 }

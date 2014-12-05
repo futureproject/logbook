@@ -2,6 +2,6 @@
   .g9
     %h1 Editing Person
   .g3
-    %h1= link_to "Cancel", logbook_person_path(@person, scope_params)
+    %h1= link_to "Cancel", logbook_person_path(@person)
 
-= render partial: 'form'
+= render 'form'

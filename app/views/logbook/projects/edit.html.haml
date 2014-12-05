@@ -1,9 +1,7 @@
-#projects_list.list
-= form_for [:logbook, @project], html: { class: 'list-detail panel' } do |f|
-  .panel-title
+.row
+  .g9
     %h1 Editing Project
-    .l-menu= link_to "Cancel", logbook_project_path(@project)
-    .r-menu
-      = f.submit 'Done'
-  .panel-body.scrollable.pad
-    = render partial: 'form', locals: {f: f}
+  .g3
+    %h1= link_to "Cancel", logbook_project_path(@project)
+
+= render 'form'
