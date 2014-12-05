@@ -21,6 +21,10 @@ class National
     Engagement.all
   end
 
+  def projects
+    Project.all
+  end
+
   def identities
     Identity.where('person_id IS NOT NULL')
   end
