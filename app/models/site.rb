@@ -33,4 +33,8 @@ class Site < ActiveRecord::Base
     ([captain] + users).flatten
   end
 
+  def dream_team
+    people.where(dream_team: true)
+  end
+
 end

@@ -26,4 +26,8 @@ class School < ActiveRecord::Base
     users.order(:id).first
   end
 
+  def dream_team
+    people.where(dream_team: true)
+  end
+
 end

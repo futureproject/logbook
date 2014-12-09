@@ -1,8 +1,7 @@
 .row
   .g9
     %h1
-      = @engagement.kind
-      = @engagement.date.try :strftime, "%D"
+      = "#{@engagement.date.try(:strftime, '%D')} - #{@engagement.kind} - #{pluralize(@engagement.duration.round(2), 'Hour')}"
   .g3
     %h1
       =link_to "Edit", edit_logbook_engagement_path(@engagement), class: 'edit'
@@ -24,5 +23,5 @@
 
   %hr
   .row
-    %h3 Attendees
+    %h3= pluralize @engagement.attendees.count, 'Attendee'
   %ul.people= render @engagement.attendees

@@ -74,6 +74,7 @@ Rails.application.routes.draw do
     resources :projects
     resources :engagements do
       get 'duplicate', on: :member
+      get 'toggle_dream_team', on: :member
     end
     resources :assets, only: [:show]
   end

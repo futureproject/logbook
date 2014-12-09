@@ -28,7 +28,9 @@
 
   .row
     .g6.field
-      =f.label :attendee_ids, "Attendees"
+      =f.label :attendee_ids do
+        Attendees
+        =link_to "Toggle Dream Team", toggle_dream_team_logbook_engagement_path(@engagement), remote: true
       =f.select :attendee_ids, options_for_select(current_scope.people.order('dream_team DESC', :first_name).map{|p| [p.name, p.id, {'data-dream-team'=>p.dream_team}]}, selected_keys = f.object.attendee_ids), {}, multiple: true
     .g6.field
       =f.label :notes

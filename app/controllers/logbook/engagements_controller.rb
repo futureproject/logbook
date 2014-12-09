@@ -1,5 +1,5 @@
 class Logbook::EngagementsController < Logbook::ApplicationController
-  before_action :set_engagement, only: [:show, :edit, :update, :destroy, :duplicate]
+  before_action :set_engagement, only: [:show, :edit, :update, :destroy, :duplicate, :toggle_dream_team]
 
   # GET /engagements
   # GET /engagements.json
@@ -30,6 +30,22 @@ class Logbook::EngagementsController < Logbook::ApplicationController
       redirect_to edit_logbook_engagement_path(@clone), notice: "Engagement was successfully duplicated."
     else
       redirect_to logbook_engagement_path(@engagement), notice: "Engagement was NOT duplicated."
+    end
+  end
+
+  def toggle_dream_team
+    if @engagement.attendees.where(dream_team: true).any?
+      @ids = @engagement.attendees.where('dream_team != ?', true).pluck(:id)
+    else
+      @ids = (current_scope.dream_team.pluck(:id) + @engagement.attendee_ids).flatten.uniq
+    end
+    respond_to do |format|
+      if @engagement.update_attributes(attendee_ids: @ids)
+        format.html { redirect_to edit_logbook_engagement_path(@engagement), notice: 'Dream Team toggled!' }
+        format.js
+      else
+        render status: :unprocessible_entity
+      end
     end
   end
 

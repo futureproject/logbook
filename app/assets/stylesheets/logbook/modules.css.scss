@@ -104,3 +104,12 @@ hr {
     display: block;
   }
 }
+
+.selectize-input {
+  .item {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 180px;
+  }
+}

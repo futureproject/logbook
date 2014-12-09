@@ -13,13 +13,13 @@ class Engagement < ActiveRecord::Base
     ['15 Minutes', 0.25],
     ['30 Minutes', 0.5],
     ['45 Minutes', 0.75],
-    ['1 Hour', 1],
-    ['2 Hours', 2],
-    ['3 Hours', 3],
-    ['4 Hours', 4],
-    ['5 Hours', 5],
-    ['6 Hours', 6],
-    ['7+ Hours', 8]
+    ['1 Hour', 1.0],
+    ['2 Hours', 2.0],
+    ['3 Hours', 3.0],
+    ['4 Hours', 4.0],
+    ['5 Hours', 5.0],
+    ['6 Hours', 6.0],
+    ['7+ Hours', 8.0]
   ]
 
   include Filterable

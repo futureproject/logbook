@@ -41,6 +41,10 @@ class National
     "National"
   end
 
+  def dream_team
+    people.where(dream_team: true)
+  end
+
   #def self.engagement_score
   #  WeeklyLogEntry.average(:quality)
   #end
