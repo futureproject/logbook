@@ -7,23 +7,22 @@ class Project < ActiveRecord::Base
   has_many :participants, through: :project_participants, source: :person
   has_many :assets, as: :attachable, dependent: :destroy
   has_many :student_reflections, class_name: "Reflection", as: :reflectable
-  after_create :log_action
+  after_create :log_activity
+  has_many :activities, as: :thing, dependent: :destroy
   include Filterable
 
   scope :sort, -> (column) { order column.to_s }
 
   scope :q, -> (query) { where("lower(name) like ?", "%#{query.downcase}%") }
 
-  def log_action
-    return unless school
-    Action.create(
-      who: whole_team.map{|p| p.name}.join(', '),
-      what: "started a project",
-      subject_id: id,
-      subject_type: "Project",
-      interesting: true,
-      school_id: school.id,
-      date: self.created_at.to_date
+  def log_activity
+    Activity.create(
+      actor_id: leaders.first.try(:id),
+      actor_type: leaders.first.try(:class).try(:name),
+      thing_id: id,
+      thing_type: self.class.name,
+      school_id: self.school_id,
+      feed_date: self.created_at
     )
   end
 

@@ -21,11 +21,11 @@
 
 %ul.engagements
   %li.labels.engagement
-    .engagement-date= link_to "Date", url_for(sort: 'date DESC')
-    .engagement-kind= link_to "Kind", url_for(sort: 'kind')
-    .engagement-name= link_to "Name", url_for(sort: 'name')
-    .engagement-duration= link_to "Hours", url_for(sort: 'duration')
-    .engagement-school= link_to "School", url_for(sort: 'school_id')
+    .engagement-date= link_to_unless_current "Date", url_for(sort: 'date DESC')
+    .engagement-kind= link_to_unless_current "Kind", url_for(sort: 'kind')
+    .engagement-name= link_to_unless_current "Name", url_for(sort: 'name')
+    .engagement-duration= link_to_unless_current "Hours", url_for(sort: 'duration')
+    .engagement-school= link_to_unless_current "School", url_for(sort: 'school_id')
     .engagement-actions Actions
   = render @engagements
 =paginate @engagements rescue nil

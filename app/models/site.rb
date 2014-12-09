@@ -14,6 +14,7 @@ class Site < ActiveRecord::Base
   has_many :engagement_attendees, through: :engagements
   has_many :one_on_ones, through: :schools
   has_many :actions, through: :schools
+  has_many :activities, through: :schools
 
   def average association, column=nil
     begin

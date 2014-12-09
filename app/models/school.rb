@@ -15,6 +15,7 @@ class School < ActiveRecord::Base
   has_many :engagement_attendees, through: :engagements
   has_many :one_on_ones, through: :people
   has_many :actions
+  has_many :activities, dependent: :destroy
 
 
   def set_shortname

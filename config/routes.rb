@@ -65,7 +65,7 @@ Rails.application.routes.draw do
   end
 
   namespace :logbook do
-    root 'actions#index'
+    root 'activities#index'
     get '/set_scope', to: 'application#set_scope', as: :set_scope
     resources :actions, only: [:index, :show] do
       get :from, on: :collection
@@ -75,6 +75,7 @@ Rails.application.routes.draw do
     resources :engagements do
       get 'duplicate', on: :member
     end
+    resources :assets, only: [:show]
   end
 
   namespace :citybook do

@@ -6,10 +6,9 @@ class Asset < ActiveRecord::Base
   do_not_validate_attachment_file_type :data
   before_post_process :skip_non_images
   after_create :download_data_later
-  after_post_process :log_action
+  after_post_process :log_activity
   #validates_attachment_content_type :data, :content_type => /\Aimage/
   #
-
   def skip_non_images
     !!(data_content_type.match(/image/i))
   end
@@ -43,6 +42,18 @@ class Asset < ActiveRecord::Base
       school_id: attachable.try(:school).try(:id),
       actor_id: attachable.try(:school).try(:dream_director).try(:id),
       actor_type: "User"
+    )
+  end
+
+  def log_activity
+    return if Activity.where(thing_id: self.id, thing_type: 'Asset').any?
+    Activity.create(
+      actor_id: attachable.try(:id),
+      actor_type: attachable.try(:class).try(:name),
+      thing_id: id,
+      thing_type: self.class.name,
+      school_id: attachable.try(:school).try(:id),
+      feed_date: attachable.try(:created_at)
     )
   end
 

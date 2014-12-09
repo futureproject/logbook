@@ -17,7 +17,7 @@
         = f.submit "Add"
 %ul.projects
   %li.labels.project
-    .project-name=link_to 'Name', url_for(sort: 'name')
+    .project-name=link_to_unless_current 'Name', url_for(sort: 'name')
     .project-leaders Leaders
     .project-school School
     .project-actions Actions

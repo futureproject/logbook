@@ -4,7 +4,8 @@ class Engagement < ActiveRecord::Base
   has_many :engagement_attendees
   has_many :attendees, through: :engagement_attendees, source: :person
   has_many :assets, as: :attachable, dependent: :destroy
-  #after_create :log_action
+  has_many :activities, as: :thing, dependent: :destroy
+  after_create :log_activity
   validates_presence_of :date
   KIND_ENUM = ['Coaching Session', 'Event', 'Meeting', 'Workshop']
   DURATION_ENUM = [
@@ -25,18 +26,14 @@ class Engagement < ActiveRecord::Base
   scope :sort, -> (column) { order column.to_s }
   scope :q, -> (query) { where("lower(name) like ?", "%#{query.downcase}%") }
 
-  def log_action
-    return unless school
-    Action.create(
-      who: school.try(:dream_director).try(:name),
-      what: "hosted an engagement",
-      subject_id: id,
-      subject_type: "Engagement",
-      interesting: true,
-      school_id: school.id,
-      actor_id: school.try(:dream_director).try(:id),
-      actor_type: "User",
-      date: self.date
+  def log_activity
+    Activity.create(
+      actor_id: self.user.try(:id),
+      actor_type: self.user.class.try(:name),
+      thing_id: id,
+      thing_type: self.class.name,
+      school_id: self.school_id,
+      feed_date: self.date
     )
   end
 

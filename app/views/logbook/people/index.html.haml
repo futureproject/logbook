@@ -23,10 +23,10 @@
 
 %ul.people
   %li.labels.person
-    .person-first-name=link_to 'First', url_for(sort: 'first_name')
-    .person-last-name=link_to 'Last', url_for(sort: 'last_name')
-    .person-grade=link_to 'Grade', url_for(sort: 'grade')
-    .person-dream-team=link_to 'Dream Team', url_for(sort: 'dream_team DESC, first_name ASC')
+    .person-first-name=link_to_unless_current 'First', url_for(sort: 'first_name')
+    .person-last-name=link_to_unless_current 'Last', url_for(sort: 'last_name')
+    .person-grade=link_to_unless_current 'Grade', url_for(sort: 'grade')
+    .person-dream-team=link_to_unless_current 'Dream Team', url_for(sort: 'dream_team DESC, first_name ASC')
     .person-school School
     .person-actions Actions
   = render @people

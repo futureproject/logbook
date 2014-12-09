@@ -10,6 +10,7 @@ class Person < ActiveRecord::Base
   has_many :engagement_attendees, dependent: :destroy
   has_many :engagements, through: :engagement_attendees
   has_many :actions, as: :actor
+  has_many :activities, as: :actor, dependent: :destroy
   has_many :reports, dependent: :destroy
   has_many :testimonials, dependent: :destroy
   has_many :student_reflections, class_name: "Reflection", as: :reflectable, dependent: :destroy
