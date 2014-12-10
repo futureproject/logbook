@@ -1,5 +1,5 @@
 class Logbook::ProjectsController < Logbook::ApplicationController
-  before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :set_project, only: [:show, :edit, :update, :destroy, :toggle_dream_team]
 
   # GET /projects
   # GET /projects.json
@@ -21,6 +21,22 @@ class Logbook::ProjectsController < Logbook::ApplicationController
 
   # GET /projects/1/edit
   def edit
+  end
+
+  def toggle_dream_team
+    if @project.participants.where(dream_team: true).any?
+      @ids = @project.participants.where('dream_team != ?', true).pluck(:id)
+    else
+      @ids = (current_scope.dream_team.pluck(:id) + @project.participant_ids).flatten.uniq
+    end
+    respond_to do |format|
+      if @project.update_attributes(participant_ids: @ids)
+        format.html { redirect_to edit_logbook_project_path(@project), notice: 'Dream Team toggled!' }
+        format.js
+      else
+        render status: :unprocessible_entity
+      end
+    end
   end
 
   # POST /projects

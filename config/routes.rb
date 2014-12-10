@@ -71,7 +71,9 @@ Rails.application.routes.draw do
       get :from, on: :collection
     end
     resources :people
-    resources :projects
+    resources :projects do
+      get 'toggle_dream_team', on: :member
+    end
     resources :engagements do
       get 'duplicate', on: :member
       get 'toggle_dream_team', on: :member
