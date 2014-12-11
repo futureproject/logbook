@@ -19,7 +19,8 @@
       %pre= @engagement.notes
     .g3
       %label MEDIA
-      %ul.assets=render @engagement.assets
+      = render partial: 'logbook/assets/s3_uploader', locals: { record: @engagement }
+      .assets=render @engagement.assets
 
   %hr
   .row

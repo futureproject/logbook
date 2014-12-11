@@ -41,4 +41,11 @@ feature 'Logbook engagements' do
     expect(page).to have_content 'Engagement was successfully duplicated'
   end
 
+  scenario 'toggling the dream team' do
+    visit logbook_engagements_path
+    click_link 'Edit', match: :first
+    click_link 'Toggle Dream Team'
+    expect(page).to have_content 'Dream Team toggled'
+  end
+
 end

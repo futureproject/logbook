@@ -113,3 +113,12 @@ hr {
     max-width: 180px;
   }
 }
+
+.upload {
+  width: auto;
+  .progress {
+    border: 3px solid $light-green;
+    .bar { background: $light-green; }
+    margin: 15px auto;
+  }
+}
