@@ -12,7 +12,9 @@
       %label Description
       .fact= @project.description
     .g6
-      %label MEDIA
+      %label
+        MEDIA
+        = link_to " | Gallery ›", logbook_assets_path(attachable_type: @project.class.name, attachable_id: @project.id) if @project.assets.any?
       = render partial: 'logbook/assets/s3_uploader', locals: { record: @project }
       .assets=render @project.assets
   %hr
