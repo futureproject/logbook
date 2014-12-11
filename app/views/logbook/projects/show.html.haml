@@ -13,7 +13,8 @@
       .fact= @project.description
     .g6
       %label MEDIA
-      %ul.assets=render @project.assets
+      = render partial: 'logbook/assets/s3_uploader', locals: { record: @project }
+      .assets=render @project.assets
   %hr
   .row
     %h3 Leaders

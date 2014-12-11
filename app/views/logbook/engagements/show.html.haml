@@ -1,7 +1,6 @@
 .row
   .g9
-    %h1
-      = "#{@engagement.date.try(:strftime, '%D')} - #{@engagement.kind} - #{pluralize(@engagement.duration.round(2), 'Hour')}"
+    %h1= @engagement.kind
   .g3
     %h1
       =link_to "Edit", edit_logbook_engagement_path(@engagement), class: 'edit'
@@ -9,16 +8,25 @@
 .engagement
   .row
     .g3
+      %label Date
+      .fact= @engagement.date.try(:strftime, '%D')
+    .g3
       %label Name
       .fact= @engagement.name
     .g3
       %label School
       .fact= @engagement.school.try :name
     .g3
+      %label Duration
+      .fact= "#{@engagement.duration.try(:round, 2)} Hours"
+  .row
+    .g6
       %label Notes
       %pre= @engagement.notes
-    .g3
-      %label MEDIA
+    .g6
+      %label
+        MEDIA
+        = link_to " | Gallery ›", logbook_assets_path(attachable_type: @engagement.class.name, attachable_id: @engagement.id) if @engagement.assets.any?
       = render partial: 'logbook/assets/s3_uploader', locals: { record: @engagement }
       .assets=render @engagement.assets
 

@@ -15,11 +15,14 @@ $ ->
           attachable_type: this.getAttribute('data-attachable-type')
     )
     $t.on('ajax:complete', (e, data) ->
-      res = JSON.parse data.responseText
-      img = '//dream-os-production.s3.amazonaws.com/static-assets/document.png'
+      assetAttrs = JSON.parse data.responseText
+      if !!assetAttrs.external_url.match(/jpg|gif|png/i)
+        assetAttrs.thumbnail = assetAttrs.external_url
+      else
+        assetAttrs.thumbnail = "//dream-os-production.s3.amazonaws.com/static-assets/document.png"
       $('.assets').prepend("
-        <a href='#{res.external_url}' target='_blank' >
-          <img src='#{img}' alt='#{res.caption}' />
+        <a href='#{assetAttrs.external_url}' target='_blank' >
+          <img src='#{assetAttrs.thumbnail}' alt='#{assetAttrs.caption}' />
         </a>
       ")
     )

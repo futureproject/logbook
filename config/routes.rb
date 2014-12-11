@@ -78,7 +78,7 @@ Rails.application.routes.draw do
       get 'duplicate', on: :member
       get 'toggle_dream_team', on: :member
     end
-    resources :assets, only: [:show]
+    resources :assets, only: [:show, :index, :destroy]
   end
 
   namespace :citybook do
