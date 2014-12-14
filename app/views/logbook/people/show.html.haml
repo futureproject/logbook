@@ -62,7 +62,7 @@
         .field.g3.actions
           =f.hidden_field :school_id
           =f.hidden_field :date, value: Date.today
-          =f.hidden_field :person_id, value: @person.id
+          =f.hidden_field :attendee_ids, value: [@person.id]
           = f.submit "Add"
 
     %ul.engagements=render @person.engagements.order('date DESC')
