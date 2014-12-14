@@ -24,8 +24,7 @@ class Logbook::EngagementsController < Logbook::ApplicationController
   end
 
   def duplicate
-    @clone = @engagement.dup
-    @clone.date = Date.today
+    @clone = @engagement.custom_clone
     if @clone.save
       redirect_to edit_logbook_engagement_path(@clone), notice: "Engagement was successfully duplicated."
     else

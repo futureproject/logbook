@@ -7,7 +7,6 @@ class Engagement < ActiveRecord::Base
   has_many :activities, as: :thing, dependent: :destroy
   after_create :log_activity
   validates_presence_of :date
-  attr_accessor :attendee_ids
   KIND_ENUM = ['Coaching Session', 'Event', 'Meeting', 'Workshop']
   DURATION_ENUM = [
     ['5 Minutes', 0.08333],
@@ -36,6 +35,13 @@ class Engagement < ActiveRecord::Base
       school_id: self.school_id,
       feed_date: self.date
     )
+  end
+  
+  def custom_clone
+    clone = self.dup
+    clone.date = Date.today
+    clone.attendee_ids = self.attendee_ids
+    clone
   end
 
 end
