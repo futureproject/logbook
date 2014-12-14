@@ -1,9 +1,13 @@
 %li[activity]
   .activity-when
     =activity.feed_date.strftime("%D")
-  .activity-what= link_to activity.thing_type, url_for([:logbook, activity.thing])
+  .activity-what
+    - begin
+      = link_to activity.thing_type, url_for([:logbook, activity.thing])
+    - rescue
+      = activity.thing_type
   .activity-details
-    %ul=render activity.thing
+    %ul=render activity.thing if activity.thing
   .activity-where
     =activity.try(:school).try(:name)
   .activity-who

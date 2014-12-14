@@ -7,6 +7,7 @@ class Asset < ActiveRecord::Base
   before_post_process :skip_non_images
   after_create :download_data_later
   after_post_process :log_activity
+  has_many :activities, as: :thing, dependent: :destroy
   #validates_attachment_content_type :data, :content_type => /\Aimage/
   #
   def skip_non_images

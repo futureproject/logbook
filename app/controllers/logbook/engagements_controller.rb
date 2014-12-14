@@ -52,7 +52,7 @@ class Logbook::EngagementsController < Logbook::ApplicationController
   # POST /engagements
   # POST /engagements.json
   def create
-    @engagement = Engagement.new(engagement_params)
+    @engagement = current_user.engagements.new(engagement_params)
 
     respond_to do |format|
       if @engagement.save
@@ -85,7 +85,7 @@ class Logbook::EngagementsController < Logbook::ApplicationController
     @engagement.destroy
     respond_to do |format|
       format.html { redirect_to logbook_engagements_url, notice: 'Engagement was successfully destroyed.' }
-      format.json { head :no_content }
+      format.js
     end
   end
 
@@ -104,7 +104,8 @@ class Logbook::EngagementsController < Logbook::ApplicationController
         :name,
         :notes,
         :duration,
-        attendee_ids: []
+        :person_id,
+        attendee_ids: [],
       )
     end
 

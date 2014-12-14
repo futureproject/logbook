@@ -6,7 +6,9 @@ class Engagement < ActiveRecord::Base
   has_many :assets, as: :attachable, dependent: :destroy
   has_many :activities, as: :thing, dependent: :destroy
   after_create :log_activity
+  after_create :create_attendee
   validates_presence_of :date
+  attr_accessor :person_id
   KIND_ENUM = ['Coaching Session', 'Event', 'Meeting', 'Workshop']
   DURATION_ENUM = [
     ['5 Minutes', 0.08333],
@@ -35,6 +37,11 @@ class Engagement < ActiveRecord::Base
       school_id: self.school_id,
       feed_date: self.date
     )
+  end
+
+  def create_attendee
+    return if person_id.blank?
+    EngagementAttendee.create(person_id: person_id, engagement_id: id)
   end
 
 end

@@ -29,9 +29,11 @@ feature 'Logbook engagements' do
 
   scenario 'DESTROY', js: true do
     visit logbook_engagements_path
+    count = all('.engagement').count
     click_link 'Delete', match: :first
     page.driver.accept_js_confirms!
-    expect(page).to have_content 'Engagement was successfully destroyed'
+    sleep 1
+    expect(all('.engagement').count).to eq count-1
   end
 
   scenario 'duplicating' do

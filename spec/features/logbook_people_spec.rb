@@ -36,4 +36,11 @@ feature 'Logbook people' do
     expect(page).to have_content 'Person was successfully destroyed'
   end
 
+  scenario 'adding a coaching session from a profile' do
+    visit logbook_people_path
+    click_link 'View', match: :first
+    click_button 'Add'
+    expect(page).to have_content 'Engagement was successfully created'
+  end
+
 end

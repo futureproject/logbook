@@ -12,6 +12,7 @@ class Logbook::PeopleController < Logbook::ApplicationController
   # GET /people/1
   # GET /people/1.json
   def show
+    @engagement = Engagement.new(school_id: @person.school_id)
   end
 
   # GET /people/new
