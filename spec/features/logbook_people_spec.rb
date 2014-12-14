@@ -36,11 +36,11 @@ feature 'Logbook people' do
     expect(page).to have_content 'Person was successfully destroyed'
   end
 
-  scenario 'adding a coaching session from a profile' do
+  scenario 'adding a coaching session from a profile', js: true do
     visit logbook_people_path
     click_link 'View', match: :first
     click_button 'Add'
-    expect(page).to have_content 'Engagement was successfully created'
+    expect(page).to have_selector "#engagement_#{Engagement.last.id}"
   end
 
 end

@@ -2,6 +2,8 @@
   .g9
     %h1 Editing Engagement
   .g3
-    %h1= link_to "Cancel", logbook_engagement_path(@engagement)
+    %h1
+      = link_to "Cancel", logbook_engagement_path(@engagement)
+      = link_to "Delete", logbook_engagement_path(@engagement), method: 'delete', js: true, class: 'danger', data: { confirm: 'Are you sure?' }
 
 = render 'form'

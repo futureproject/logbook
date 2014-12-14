@@ -56,10 +56,10 @@ class Logbook::EngagementsController < Logbook::ApplicationController
     respond_to do |format|
       if @engagement.save
         format.html { redirect_to edit_logbook_engagement_path(@engagement), notice: 'Engagement was successfully created.' }
-        format.json { render :show, status: :created, location: @engagement }
+        format.js
       else
         format.html { redirect_to logbook_engagements_path, notice: 'Engagement was not created.' }
-        format.json { render json: @engagement.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end

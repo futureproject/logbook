@@ -29,11 +29,12 @@ feature 'Logbook engagements' do
 
   scenario 'DESTROY', js: true do
     visit logbook_engagements_path
-    count = all('.engagement').count
-    click_link 'Delete', match: :first
+    selector = "#engagement_#{Engagement.last.id}"
+    within(selector) do
+      click_link "Delete"
+    end
     page.driver.accept_js_confirms!
-    sleep 1
-    expect(all('.engagement').count).to eq count-1
+    expect(page).not_to have_selector selector
   end
 
   scenario 'duplicating' do
