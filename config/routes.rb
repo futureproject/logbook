@@ -79,6 +79,7 @@ Rails.application.routes.draw do
       get 'toggle_dream_team', on: :member
     end
     resources :assets, only: [:show, :index, :destroy]
+    resources :schools, only: [:index, :show]
   end
 
   namespace :citybook do

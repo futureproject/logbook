@@ -7,6 +7,10 @@ module ApplicationHelper
     end
   end
 
+  def map_image_tag(address)
+    image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{address}&zoom=13&scale=2&size=480x240&maptype=terrain&sensor=false&format=png&visual_refresh=true&markers=size:mid%7Ccolor:blue%7Clabel:%7C#{address}"
+  end
+
   def page_title
     "Dream Suite"
   end

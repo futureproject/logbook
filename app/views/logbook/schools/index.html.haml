@@ -1,0 +1,11 @@
+%ul.schools-list
+  %li.labels.school
+    .school-site Site
+    .school-name=link_to_unless_current "Name", url_for(sort: 'name')
+    .school-dream-team=link_to_unless_current "Dream Team", url_for(dream_team: 'DESC')
+    .school-projects=link_to_unless_current 'Projects', url_for(by_count: 'projects')
+    .school-engagements=link_to_unless_current 'Engagements', url_for(by_count: 'engagements')
+    .school-engagement-hours Engagement Hours
+  = render @schools
+
+  = render @empty_schools

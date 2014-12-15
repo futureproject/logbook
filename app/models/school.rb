@@ -17,6 +17,24 @@ class School < ActiveRecord::Base
   has_many :actions
   has_many :activities, dependent: :destroy
 
+  include Filterable
+
+  scope :sort, -> (column) { order column.to_s }
+
+  scope :by_count, -> (column) {
+    select("schools.id, schools.*, count(#{column}.id) AS #{column}_count").
+        joins(column.to_sym).
+        group("schools.id").
+        order("#{column}_count DESC")
+  }
+
+  scope :dream_team, -> (order='DESC') {
+    select("schools.id, schools.*, count(people.id) AS people_count").
+        joins(:people).where('people.dream_team = ?', true).
+        group("schools.id").
+        order("people_count #{order}")
+
+  }
 
   def set_shortname
     self.shortname = self.name.parameterize
@@ -28,6 +46,10 @@ class School < ActiveRecord::Base
 
   def dream_team
     people.where(dream_team: true)
+  end
+
+  def schools
+    site.try(:schools)
   end
 
 end

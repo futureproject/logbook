@@ -89,6 +89,7 @@ body {
   width: 66px;
   background: $dark-gray;
   text-align: center;
+  box-shadow: inset -6px 3px 9px rgba(0,0,0,.4);
   img {
     width: 44px;
     display: block;
@@ -99,13 +100,14 @@ body {
     font-size: 9px;
     .octicon {
       display: block;
-      margin: 0 auto;
+      margin: 0 auto 3px;
     }
     a {
       display: block;
       border-top: 1px solid darken($base-font-color, 11%);
-      padding: 24px 0 12px;
+      padding: 12px 0 8px;
       margin: 0 4px;
+      color: lighten($medium-gray, 20%);
     }
     &.current {
       a {
@@ -120,9 +122,6 @@ body {
         color: $light-gray;
       }
     }
-  }
-  .octicon {
-    margin-right: .5em;
   }
   a {
     color: $medium-gray;

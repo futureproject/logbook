@@ -29,6 +29,10 @@ class National
     Project.all
   end
 
+  def schools
+    School.all
+  end
+
   def identities
     Identity.where('person_id IS NOT NULL')
   end
