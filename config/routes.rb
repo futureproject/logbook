@@ -57,6 +57,7 @@ Rails.application.routes.draw do
       resources :reflections
       resources :testimonials
       resources :assets, only: [:create, :destroy]
+      resources :search_results, only: [:index]
       resources :stats, only: [:index]
       resources :sites do
         resources :people
