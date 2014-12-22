@@ -5,7 +5,7 @@ $ ->
   $('select[multiple]').each ->
     ds.selects[this.id] = $(this).selectize()
 
-  # active direct-to-s3 upload forms
+  # activate direct-to-s3 upload forms
   $('.s3-uploader').each ->
     $t = $(this)
     $t.S3Uploader(
@@ -27,3 +27,4 @@ $ ->
       ")
     )
 
+  # make search happen

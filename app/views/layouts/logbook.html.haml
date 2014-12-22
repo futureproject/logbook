@@ -11,7 +11,12 @@
       #home
         =link_to "Logbook", logbook_set_scope_path
         = current_scope.name
+
       #filters= render 'filters'
+
+      #search
+        %form{action: api_v1_search_results_path, method: "POST"}
+          %input{type:'text', name:'q'}
 
     #flash
       - flash.each do |k, v|

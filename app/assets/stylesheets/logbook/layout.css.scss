@@ -18,7 +18,7 @@ body {
     &:hover { text-decoration: underline; }
   }
   #home {
-    @include span-columns(6);
+    @include span-columns(3);
     color: white;
     font-weight: bold;
     line-height: 2;
@@ -50,13 +50,9 @@ body {
       }
     }
   }
-  #current_location {
-    @include span-columns(4);
-    color: $base-font-color;
-    font-weight: bold;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  #search {
+    @include span-columns(3);
+    input { border: none; }
   }
 }
 
