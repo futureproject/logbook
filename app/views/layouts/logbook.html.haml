@@ -15,8 +15,7 @@
       #filters= render 'filters'
 
       #search
-        %form{action: api_v1_search_results_path, method: "POST"}
-          %input{type:'text', name:'q'}
+        %input.typeahead{type: 'text'}
 
     #flash
       - flash.each do |k, v|
