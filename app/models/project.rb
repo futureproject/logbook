@@ -13,7 +13,7 @@ class Project < ActiveRecord::Base
 
   scope :sort, -> (column) { order column.to_s }
 
-  scope :q, -> (query) { where("lower(name) like ?", "%#{query.downcase}%") }
+  scope :q, -> (query) { where("lower(projects.name) like ?", "%#{query.downcase}%") }
 
   def log_activity
     Activity.create(

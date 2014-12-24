@@ -1,0 +1,38 @@
+// Typography
+$sans-serif: "avenir next", avenir, 'helvetica neue', helvetica;
+$base-font-family: $sans-serif;
+$header-font-family: $base-font-family;
+
+// Colors
+$blue: #80dbf5;
+$dark-blue: #18506e;
+$dark-gray: #252832;
+$medium-gray: #5d5c5d;
+$lightest-gray: #faf9f6;
+$light-gray: #DDD;
+$light-red: #ec4552;
+$light-yellow: #fec30c;
+$light-green: #77cbc7;
+$base-border-radius: em(3);
+
+// Background Color
+$base-background-color: #fdfcfd;
+
+// Font Colors
+$base-font-color: $medium-gray;
+$base-accent-color: $blue;
+
+// Link Colors
+$base-link-color: $base-accent-color;
+$hover-link-color: darken($base-accent-color, 15);
+$base-button-color: $base-link-color;
+$hover-button-color: $hover-link-color;
+
+// Border color
+$base-border-color: $light-gray;
+
+// Flash Colors
+$alert-color: $light-yellow;
+$error-color: $light-red;
+$notice-color: $blue;
+$success-color: $light-green;

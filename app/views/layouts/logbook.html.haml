@@ -8,14 +8,15 @@
   %body
 
     #header
-      #home
-        =link_to "Logbook", logbook_set_scope_path
-        = current_scope.name
-
-      #filters= render 'filters'
-
+      #home= current_scope.name
+      #filter-trigger
+        %span.octicon.octicon-chevron-down
+        Filter
       #search
-        %input.typeahead{type: 'text'}
+        %label{for: 'search-field'}
+          %span.octicon.octicon-search
+        %input#search-field.typeahead{type: 'text'}
+
 
     #flash
       - flash.each do |k, v|
@@ -35,6 +36,7 @@
           .octicon.octicon-sign-out
           .label Log Out
 
+    #filters=render 'filters'
     #yield= yield
 
     = javascript_include_tag 'logbook/logbook'

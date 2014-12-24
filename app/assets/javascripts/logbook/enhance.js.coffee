@@ -27,3 +27,7 @@ $ ->
       ")
     )
 
+  $('#filter-trigger').on('click', (e) ->
+    $('#filters').slideToggle()
+    $(this).toggleClass('open')
+  )

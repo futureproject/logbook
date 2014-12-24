@@ -24,7 +24,7 @@ class Engagement < ActiveRecord::Base
 
   include Filterable
   scope :sort, -> (column) { order column.to_s }
-  scope :q, -> (query) { where("lower(name) like ?", "%#{query.downcase}%") }
+  scope :q, -> (query) { where("lower(engagements.name) like ?", "%#{query.downcase}%") }
   scope :one_on_ones, -> { joins(:engagement_attendees).group('engagements.id').having('count(engagement_attendees.id)=1') }
 
   def log_activity
