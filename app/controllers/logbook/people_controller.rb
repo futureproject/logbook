@@ -7,6 +7,10 @@ class Logbook::PeopleController < Logbook::ApplicationController
     params[:sort] ||= ('dream_team DESC, last_name ASC')
     @people = current_scope.people.filter(filter_params).page(params[:page])
     @person = current_scope.people.new(grade: 10)
+    respond_to do |format|
+      format.html
+      format.json
+    end
   end
 
   # GET /people/1

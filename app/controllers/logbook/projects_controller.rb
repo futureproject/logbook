@@ -7,6 +7,10 @@ class Logbook::ProjectsController < Logbook::ApplicationController
     params[:sort] ||= 'updated_at DESC'
     @projects = current_scope.projects.filter(filter_params).page(params[:page])
     @project = current_scope.projects.new
+    respond_to do |format|
+      format.html
+      format.json
+    end
   end
 
   # GET /projects/1

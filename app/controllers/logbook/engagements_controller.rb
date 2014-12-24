@@ -7,6 +7,10 @@ class Logbook::EngagementsController < Logbook::ApplicationController
     params[:sort] ||= 'date DESC'
     @engagements = current_scope.engagements.filter(filter_params).page(params[:page])
     @engagement = current_scope.engagements.new
+    respond_to do |format|
+      format.html
+      format.json
+    end
   end
 
   # GET /engagements/1

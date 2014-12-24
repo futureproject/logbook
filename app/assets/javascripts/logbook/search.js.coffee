@@ -3,17 +3,17 @@ $ ->
   ds.hounds =
     people: new Bloodhound
       remote:
-        url: '/api/v1/people?q=%QUERY'
+        url: '/logbook/people?q=%QUERY'
       datumTokenizer: Bloodhound.tokenizers.whitespace('name')
       queryTokenizer: Bloodhound.tokenizers.whitespace
     projects: new Bloodhound
       remote:
-        url: '/api/v1/projects?q=%QUERY'
+        url: '/logbook/projects?q=%QUERY'
       datumTokenizer: Bloodhound.tokenizers.whitespace('name')
       queryTokenizer: Bloodhound.tokenizers.whitespace
     engagements: new Bloodhound
       remote:
-        url: '/api/v1/engagements?q=%QUERY'
+        url: '/logbook/engagements?q=%QUERY'
       datumTokenizer: Bloodhound.tokenizers.whitespace('name')
       queryTokenizer: Bloodhound.tokenizers.whitespace
 
@@ -39,4 +39,7 @@ $ ->
     source: ds.hounds.engagements.ttAdapter()
     templates:
       header: '<h3>Engagements</h3>'
-  })
+  }).on('typeahead:selected', (e, data) ->
+    if data.url?
+      location.href = data.url
+  )
