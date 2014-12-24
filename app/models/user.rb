@@ -9,8 +9,6 @@ class User < ActiveRecord::Base
   has_many :engagements
   has_many :engagement_attendees, through: :engagements
   has_many :one_on_ones, through: :school
-  #has_many :tasks
-  #has_many :task_assignments, foreign_key: 'assignee_id'
   has_many :actions, as: :subject
   has_many :activities, as: :actor, dependent: :destroy
   has_many :reports, through: :people

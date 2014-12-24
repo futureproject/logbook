@@ -27,21 +27,3 @@ $ ->
       ")
     )
 
-  ds.hound = new Bloodhound
-    local: []
-    remote:
-      url: '/api/v1/people?q=%QUERY'
-      filter: (ppl) ->
-        lst = $.map ppl, (person) -> { name: person.name }
-        console.log lst
-        lst
-    datumTokenizer: Bloodhound.tokenizers.whitespace('name')
-    queryTokenizer: Bloodhound.tokenizers.whitespace
-
-  ds.hound.initialize()
-
-  $('#search input').typeahead({hint: true, minLength: 1, highlight: true},
-    name: 'people'
-    displayKey: 'name'
-    source: ds.hound.ttAdapter()
-  )
