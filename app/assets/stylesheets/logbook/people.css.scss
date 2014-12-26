@@ -5,17 +5,6 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-  }
-  .person-first-name {
-    @include span-columns(2);
-  }
-  .person-last-name {
-    @include span-columns(2);
-  }
-  .person-grade { @include span-columns(1); }
-  .person-dream-team { @include span-columns(1); }
-  .person-school { @include span-columns(3); }
-  .person-actions {
-    @include span-columns(3);
+    text-transform: capitalize;
   }
 }

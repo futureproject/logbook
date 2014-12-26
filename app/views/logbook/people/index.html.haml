@@ -1,33 +1,15 @@
-=render(partial: 'search_results', locals:{collection: @people}) if params[:q]
+.labels
+  .g1=link_to_unless_current 'first', url_for(sort: 'first_name')
+  .g1=link_to_unless_current 'last', url_for(sort: 'last_name')
+  .g1=link_to_unless_current 'school', url_for(sort: 'school_id')
+  .g1=link_to_unless_current 'role', url_for(sort: 'role')
+  .g1=link_to_unless_current 'grade', url_for(sort: 'grade')
+  .g1=link_to_unless_current 'Prj. Lead', url_for(with_projects: 'primary', sort: 'projects_count DESC')
+  .g1=link_to_unless_current 'Prj. Team', url_for(with_projects: 'secondary', sort: 'projects_count DESC')
+  .g1=link_to_unless_current 'Coach Hrs', url_for(with_hours: 'Coaching Session', sort: 'engagement_hours DESC')
+  .g1=link_to_unless_current 'Meetings', url_for(with_engagements: 'Meeting', sort: 'engagements_count DESC')
+  .g1=link_to_unless_current 'Workshops', url_for(with_engagements: 'Workshop', sort: 'engagements_count DESC')
+  .g1=link_to_unless_current 'Events', url_for(with_engagements: 'Event', sort: 'engagements_count DESC')
 
-.row.search-add
-  .g6.search
-    %label Search
-    %form{action: logbook_people_path, method: 'GET'}
-      %input{name: 'q', type: 'text', placeholder: 'Type a name...'}
-      %input{type: 'submit', value: 'Search'}
-  .g6.add
-    %label Add
-    = form_for [:logbook, @person] do |f|
-      .person-first-name
-        =f.text_field :first_name, placeholder: 'First name', required: true
-      .person-last-name
-        =f.text_field :last_name, placeholder: 'Last name', required: true
-      .person-grade
-        =f.select :grade, Person::GRADE_ENUM
-      .person-school
-        =f.select :school_id, current_user.schools.map{|s| [s.name, s.id] }
-      .person-actions
-        =f.hidden_field :role, value: 'student'
-        = f.submit "Add"
-
-%ul.people
-  %li.labels.person
-    .person-first-name=link_to_unless_current 'First', url_for(sort: 'first_name')
-    .person-last-name=link_to_unless_current 'Last', url_for(sort: 'last_name')
-    .person-grade=link_to_unless_current 'Grade', url_for(sort: 'grade')
-    .person-dream-team=link_to_unless_current 'Dream Team', url_for(sort: 'dream_team DESC, first_name ASC')
-    .person-school School
-    .person-actions Actions
-  = render @people
+%ul.table.people= render @people
 =paginate @people rescue nil

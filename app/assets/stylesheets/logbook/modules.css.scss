@@ -28,8 +28,29 @@
 .s11 { @include shift(11); }
 .s12 { @include shift(12); }
 
-.label, label, .labels {
-  font-weight: bold;
+.labels {
+  background: $medium-gray;
+  color: white;
+  @include row;
+  position: -webkit-sticky;
+  top: 0;
+  left: 66px;
+  right: 0;
+  &.locked {
+    position: fixed;
+  }
+  a {
+    color: white;
+    opacity: .75;
+  }
+  > * {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-transform: capitalize;
+    white-space: nowrap;
+    line-height: 1;
+    font-weight: 600;
+  }
 }
 
 .pagination {
@@ -64,23 +85,6 @@ hr {
   height: 0;
   border: none;
   border-bottom: 1px dotted $base-border-color;
-}
-
-.search-add {
-  .search {
-    input[type=text] {
-      @include span-columns(4 of 6);
-    }
-    input[type=submit] {
-      @include span-columns(1 of 6);
-    }
-  }
-  .person-first-name, .person-last-name, .person-grade, .person-actions {
-    @include span-columns(1 of 6);
-  }
-  .person-school {
-    @include span-columns(2 of 6);
-  }
 }
 
 .date-field {

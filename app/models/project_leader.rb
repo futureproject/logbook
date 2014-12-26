@@ -1,6 +1,6 @@
 class ProjectLeader < ActiveRecord::Base
-  belongs_to :project
-  belongs_to :person
+  belongs_to :project, touch: true
+  belongs_to :person, touch: true
   after_create :log_action
 
   def log_action

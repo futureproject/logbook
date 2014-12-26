@@ -1,9 +1,12 @@
+#= require modernizr
 #= require jquery
 #= require jquery_ujs
 #= require underscore-min
+#= require backbone-min
 #= require selectize
 #= require twitter/typeahead
 #= require s3_direct_upload
 #= require logbook/search
 #= require logbook/enhance
+#= require_tree ./backbone/views
 #= require_self

@@ -5,17 +5,18 @@
     = stylesheet_link_tag    'logbook/logbook', media: 'all'
     %meta{name:"viewport", content: "width=1024"}
     = csrf_meta_tags
-  %body
+  %body{class: params[:controller].gsub('/','_')}
 
     #header
-      #home= current_scope.name
+      #home
+        %h1= current_scope.name
       #filter-trigger
         %span.octicon.octicon-chevron-down
         Filter
       #search
         %label{for: 'search-field'}
           %span.octicon.octicon-search
-        %input#search-field.typeahead{type: 'text'}
+        %input#search-field.typeahead{type: 'text', placeholder: "Search #{truncate current_scope.name}"}
 
 
     #flash
@@ -26,17 +27,18 @@
       %a{href: logbook_set_scope_path}
         =image_tag asset_path('tfplogo.svg'), alt: 'The Future Project'
       %ul.tabs
-        = nav_link_to "<div class='octicon octicon-rss'></div> Activity", logbook_root_url
-        = nav_link_to "<div class='octicon octicon-organization'></div> People", logbook_people_path
-        = nav_link_to "<div class='octicon octicon-paintcan'></div> Projects", logbook_projects_path
-        = nav_link_to "<div class='octicon octicon-pulse'></div> Engagements", logbook_engagements_path
-        = nav_link_to "<div class='octicon octicon-globe'></div> Schools", logbook_schools_path
+        = nav_link_to "Activity", logbook_root_url
+        = nav_link_to "People", logbook_people_path
+        = nav_link_to "Projects", logbook_projects_path
+        = nav_link_to "Engagements", logbook_engagements_path
+        = nav_link_to "Schools", logbook_schools_path
       #user
         %a{href: log_out_path}
           .octicon.octicon-sign-out
           .label Log Out
 
-    #filters=render 'filters'
+    #filters
+      =render 'filters'
     #yield= yield
 
     = javascript_include_tag 'logbook/logbook'

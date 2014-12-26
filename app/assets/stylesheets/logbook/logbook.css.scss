@@ -9,6 +9,7 @@
 @import 'neat';
 @import 'layout';
 @import 'modules';
+@import 'state';
 @import 'actions';
 @import 'people';
 @import 'projects';
@@ -50,4 +51,14 @@ h1, h2, h3, h4, h5, h6 {
 input, select, textarea {
   display: block;
   width: 100%;
+}
+
+::-webkit-input-placeholder {
+  color: $base-border-color;
+}
+::-moz-input-placeholder {
+  color: $base-border-color;
+}
+:-ms-input-placeholder {
+  color: $base-border-color;
 }

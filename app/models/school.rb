@@ -33,7 +33,6 @@ class School < ActiveRecord::Base
         joins(:people).where('people.dream_team = ?', true).
         group("schools.id").
         order("people_count #{order}")
-
   }
 
   def set_shortname

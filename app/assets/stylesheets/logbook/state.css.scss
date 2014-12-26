@@ -1,0 +1,14 @@
+%current {
+  background: darken($dark-gray, 5%);
+  border-top: 1px solid darken($dark-gray, 10%);
+  a {
+    color: white;
+  }
+}
+
+.logbook_overview { #tabs .overview { @extend %current } }
+.logbook_people { #tabs .people { @extend %current } }
+.logbook_projects { #tabs .projects { @extend %current } }
+.logbook_engagements { #tabs .engagements { @extend %current } }
+.logbook_schools { #tabs .schools { @extend %current } }
+

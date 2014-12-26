@@ -3,28 +3,32 @@ body {
 }
 
 #header {
-  line-height: 3;
   position: absolute;
   top: 0;
   left: 66px;
   height: 66px;
   right: 0;
-  padding: 1em 2em;
+  padding: 0 2em;
   @include row;
   z-index: 10;
   background: white;
   border-bottom: 1px solid $base-border-color;
+  line-height: 66px;
+  color: $light-gray;
   a {
     color: $base-font-color;
     &:hover { text-decoration: underline; }
   }
   #home {
     @include span-columns(3);
-    line-height: 2;
-    font-size: 1.5em;
     white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    color: $dark-gray;
+    h1 {
+      font-size: 1.5em;
+      font-weight: 400;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
   }
   #filter-trigger {
     cursor: pointer;
@@ -48,6 +52,7 @@ body {
       color: $base-border-color;
     }
     input {
+      display: inline-block;
       border: none;
       &:focus {
         outline: none;
@@ -75,7 +80,7 @@ body {
 #filters {
   @include row;
   display: none;
-  background: $base-accent-color;
+  background: $medium-gray;
   color: white;
   padding: 2em;
   .filter {
@@ -85,8 +90,11 @@ body {
   .filter-label { text-transform: uppercase; }
   a {
     color: white;
-    opacity: .5;
+    opacity: .75;
     display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     &.current, &:hover {
       opacity: 1;
     }
@@ -94,7 +102,7 @@ body {
 }
 
 #yield {
-  padding: 2em;
+  > * { padding: 2em; }
 }
 
 #tabs {
@@ -127,16 +135,6 @@ body {
       margin: 0 4px;
       color: lighten($medium-gray, 20%);
     }
-    &.current {
-      background: darken($dark-gray, 5%);
-      border-top: 1px solid darken($dark-gray, 10%);
-      a {
-        color: white;
-      }
-      .octicon {
-        color: $blue;
-      }
-    }
     &:hover {
       a {
         color: $light-gray;
@@ -162,6 +160,5 @@ body {
   a:hover {
     color: $light-yellow;
   }
-  .label { font-weight: normal; }
 }
 

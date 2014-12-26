@@ -20,6 +20,7 @@ class Person < ActiveRecord::Base
   GRADE_ENUM = [6, 7, 8, 9, 10, 11, 12]
   SEX_ENUM = %w(M F)
   include Filterable
+  #before_save :set_counts
 
   scope :search, lambda {|query, user=nil|
     return if query.blank?
@@ -43,6 +44,18 @@ class Person < ActiveRecord::Base
     last = "%#{query.split(' ').last.downcase}%"
     operator = first == last ? "or" : "and"
     where("lower(first_name) like ? #{operator} lower(last_name) like ?", first, last)
+  }
+
+  scope :with_engagements, -> (kind) {
+    joins(:engagements).where('engagements.kind = ?', kind).select("people.*, COUNT(engagements.id) AS engagements_count").group('people.id')
+  }
+
+  scope :with_hours, -> (kind) {
+    joins(:engagements).where('engagements.kind = ?', kind).select("people.*, SUM(engagements.duration) AS engagement_hours").group('people.id')
+  }
+
+  scope :with_projects, -> (kind='primary') {
+    joins("#{kind}_projects".to_sym).select("people.*, COUNT(projects.id) AS projects_count").group('people.id')
   }
 
   def name
