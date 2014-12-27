@@ -31,7 +31,7 @@ feature 'Logbook engagements' do
     visit logbook_engagements_path
     selector = "#engagement_#{Engagement.last.id}"
     within(selector) do
-      click_link "Delete"
+      find('a[data-method=delete]').click
     end
     page.driver.accept_js_confirms!
     expect(page).not_to have_selector selector
