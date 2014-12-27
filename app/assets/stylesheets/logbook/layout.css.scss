@@ -165,3 +165,7 @@ body {
   }
 }
 
+
+#home, #filter-trigger, #filters, .labels {
+  -webkit-user-select: none;
+}

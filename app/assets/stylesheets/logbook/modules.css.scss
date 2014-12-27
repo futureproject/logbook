@@ -69,8 +69,12 @@
   }
 }
 
-.actions {
-  a { @include span-columns(1 of 3); }
+body .actions {
+  a {
+    display: inline-block;
+    padding: 0 4px;
+    color: $light-gray;
+  }
 }
 
 a.view { color: $light-green; }
@@ -132,3 +136,4 @@ hr {
     margin: 15px auto;
   }
 }
+

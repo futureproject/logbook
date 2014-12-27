@@ -6,7 +6,7 @@
   }
 }
 
-.logbook_overview { #tabs .overview { @extend %current } }
+.logbook_stats { #tabs .overview { @extend %current } }
 .logbook_people { #tabs .people { @extend %current } }
 .logbook_projects { #tabs .projects { @extend %current } }
 .logbook_engagements { #tabs .engagements { @extend %current } }

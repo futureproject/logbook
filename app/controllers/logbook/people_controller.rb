@@ -63,7 +63,7 @@ class Logbook::PeopleController < Logbook::ApplicationController
     @person.destroy
     respond_to do |format|
       format.html { redirect_to logbook_people_url, notice: 'Person was successfully destroyed.' }
-      format.json { head :no_content }
+      format.js
     end
   end
 
