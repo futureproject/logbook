@@ -1,15 +1,17 @@
+.page-header
+  %h1 People
 .labels
-  .g1=link_to_unless_current 'first', url_for(sort: 'first_name')
-  .g1=link_to_unless_current 'last', url_for(sort: 'last_name')
-  .g1=link_to_unless_current 'school', url_for(sort: 'school_id')
-  .g1=link_to_unless_current 'role', url_for(sort: 'role')
-  .g1=link_to_unless_current 'grade', url_for(sort: 'grade')
-  .g1=link_to_unless_current 'Prj. Lead', url_for(with_projects: 'primary', sort: 'projects_count DESC')
-  .g1=link_to_unless_current 'Prj. Team', url_for(with_projects: 'secondary', sort: 'projects_count DESC')
-  .g1=link_to_unless_current 'Coach Hrs', url_for(with_hours: 'Coaching Session', sort: 'engagement_hours DESC')
-  .g1=link_to_unless_current 'Meetings', url_for(with_engagements: 'Meeting', sort: 'engagements_count DESC')
-  .g1=link_to_unless_current 'Workshops', url_for(with_engagements: 'Workshop', sort: 'engagements_count DESC')
-  .g1=link_to_unless_current 'Events', url_for(with_engagements: 'Event', sort: 'engagements_count DESC')
+  .g1=link_to_unless_current 'first', scoped_url_for(sort: 'first_name')
+  .g1=link_to_unless_current 'last', scoped_url_for(sort: 'last_name')
+  .g1=link_to_unless_current 'school', scoped_url_for(sort: 'school_id')
+  .g1=link_to_unless_current 'role', scoped_url_for(sort: 'role')
+  .g1=link_to_unless_current 'grade', scoped_url_for(sort: 'grade')
+  .g1=link_to_unless_current 'Prj. Lead', scoped_url_for(with_projects: 'primary', sort: 'projects_count DESC')
+  .g1=link_to_unless_current 'Prj. Team', scoped_url_for(with_projects: 'secondary', sort: 'projects_count DESC')
+  .g1=link_to_unless_current 'Coach Hrs', scoped_url_for(with_hours: 'Coaching Session', sort: 'engagement_hours DESC')
+  .g1=link_to_unless_current 'Meetings', scoped_url_for(with_engagements: 'Meeting', sort: 'engagements_count DESC')
+  .g1=link_to_unless_current 'Workshops', scoped_url_for(with_engagements: 'Workshop', sort: 'engagements_count DESC')
+  .g1=link_to_unless_current 'Events', scoped_url_for(with_engagements: 'Event', sort: 'engagements_count DESC')
 
 %ul.table.people= render @people
 =paginate @people rescue nil

@@ -3,17 +3,17 @@ $ ->
   ds.hounds =
     people: new Bloodhound
       remote:
-        url: '/logbook/people?q=%QUERY'
+        url: "/logbook/people?q=%QUERY&#{ds.urlsHelper.scopeParams()}"
       datumTokenizer: Bloodhound.tokenizers.whitespace('name')
       queryTokenizer: Bloodhound.tokenizers.whitespace
     projects: new Bloodhound
       remote:
-        url: '/logbook/projects?q=%QUERY'
+        url: "/logbook/projects?q=%QUERY&#{ds.urlsHelper.scopeParams()}"
       datumTokenizer: Bloodhound.tokenizers.whitespace('name')
       queryTokenizer: Bloodhound.tokenizers.whitespace
     engagements: new Bloodhound
       remote:
-        url: '/logbook/engagements?q=%QUERY'
+        url: "/logbook/engagements?q=%QUERY&#{ds.urlsHelper.scopeParams()}"
       datumTokenizer: Bloodhound.tokenizers.whitespace('name')
       queryTokenizer: Bloodhound.tokenizers.whitespace
 
@@ -40,6 +40,7 @@ $ ->
     templates:
       header: '<h3>Engagements</h3>'
   }).on('typeahead:selected', (e, data) ->
+    console.log ds.CONSTANTS.scope
     if data.url?
-      location.href = data.url
+      location.href = data.url + "?scope_type=#{ds.CONSTANTS.scope.type}&scope_id=#{ds.CONSTANTS.scope.id}"
   )

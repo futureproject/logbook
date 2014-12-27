@@ -2,13 +2,13 @@ window.ds ||= {}
 
 class ds.LabelsView extends Backbone.View
   initialize: ->
-    return if Modernizr?.csspositionsticky
+    return if Modernizr?.csspositionsticky || !@el?
     @setTriggerPosition()
     @listenTo Backbone, 'filters:toggled', @setTriggerPosition
     @activate()
 
   setTriggerPosition: ->
-    @triggerPosition = @$el.offset().top
+    @triggerPosition = @el.getBoundingClientRect().top
     console.log @triggerPosition
 
   activate: ->

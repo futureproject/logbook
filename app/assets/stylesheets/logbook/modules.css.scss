@@ -28,6 +28,13 @@
 .s11 { @include shift(11); }
 .s12 { @include shift(12); }
 
+.page-header {
+  font-weight: bold;
+  padding-bottom: 0 !important;
+  h1 {
+    margin: 0;
+  }
+}
 .labels {
   background: $medium-gray;
   color: white;

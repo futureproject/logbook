@@ -27,11 +27,11 @@
       %a{href: logbook_set_scope_path}
         =image_tag asset_path('tfplogo.svg'), alt: 'The Future Project'
       %ul.tabs
-        = nav_link_to "Activity", logbook_root_url
-        = nav_link_to "People", logbook_people_path
-        = nav_link_to "Projects", logbook_projects_path
-        = nav_link_to "Engagements", logbook_engagements_path
-        = nav_link_to "Schools", logbook_schools_path
+        = nav_link_to "Activity", logbook_root_url(scope_params)
+        = nav_link_to "People", logbook_people_path(scope_params)
+        = nav_link_to "Projects", logbook_projects_path(scope_params)
+        = nav_link_to "Engagements", logbook_engagements_path(scope_params)
+        = nav_link_to "Schools", logbook_schools_path(scope_params)
       #user
         %a{href: log_out_path}
           .octicon.octicon-sign-out
@@ -41,5 +41,8 @@
       =render 'filters'
     #yield= yield
 
+    :javascript
+      window.ds = window.ds || {}
+      ds.CONSTANTS = #{JSON.dump( @js_data || {} )}
     = javascript_include_tag 'logbook/logbook'
     = render 'analytics'

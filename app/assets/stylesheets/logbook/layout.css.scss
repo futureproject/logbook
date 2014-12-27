@@ -52,11 +52,14 @@ body {
       color: $base-border-color;
     }
     input {
-      display: inline-block;
+      display: none;
       border: none;
       &:focus {
         outline: none;
       }
+    }
+    .twitter-typeahead {
+      input { display: inline-block; }
     }
   }
 }
@@ -79,7 +82,6 @@ body {
 
 #filters {
   @include row;
-  display: none;
   background: $medium-gray;
   color: white;
   padding: 2em;
@@ -100,6 +102,7 @@ body {
     }
   }
 }
+.js #filters { display: none; }
 
 #yield {
   > * { padding: 2em; }

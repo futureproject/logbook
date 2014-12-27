@@ -67,7 +67,7 @@ class User < ActiveRecord::Base
 
   def sites
     if site
-      [site]
+      Site.where(id: site.id)
     else
       Site.order(:name)
     end
@@ -75,6 +75,16 @@ class User < ActiveRecord::Base
 
   def works_at_tfp
     true
+  end
+
+  def default_logbook_scope
+    if school
+      school
+    elsif site
+      site
+    else
+      National.new
+    end
   end
 
   def stats

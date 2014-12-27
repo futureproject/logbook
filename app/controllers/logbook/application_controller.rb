@@ -14,17 +14,14 @@ class Logbook::ApplicationController < ApplicationController
     def init_js_data
       @js_data = {}
       @js_data[:current_user] = current_user.as_json(include: :school)
+      @js_data[:scope] = { type: params[:scope_type], id: params[:scope_id]}
     end
 
     def current_scope
-      if session[:scope_id] && session[:scope_type]
-        eval "#{session[:scope_type].classify}.find(#{session[:scope_id]})"
-      elsif current_user.school
-        current_user.school
-      elsif current_user.site
-        current_user.site
-      else
-        National.new
+      begin
+        eval "#{params[:scope_type].classify}.find(#{params[:scope_id]})"
+      rescue
+        current_user.try(:default_logbook_scope) || National.new
       end
     end
 

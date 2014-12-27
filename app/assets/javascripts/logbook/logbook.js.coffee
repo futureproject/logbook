@@ -8,5 +8,6 @@
 #= require s3_direct_upload
 #= require logbook/search
 #= require logbook/enhance
+#= require_tree ./backbone/helpers
 #= require_tree ./backbone/views
 #= require_self

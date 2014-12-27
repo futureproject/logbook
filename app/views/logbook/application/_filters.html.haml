@@ -3,13 +3,13 @@
   .filter-options
     - sites = current_user.sites || Site.all
     - sites.each do |site|
-      =link_to site.name, logbook_set_scope_path(scope_id: site.id, scope_type: 'site'), class: ('current' if current_scope.id == site.id)
+      =link_to site.name, url_for(scope_id: site.id, scope_type: 'site'), class: ('current' if current_scope.id == site.id)
 
 .filter
   .filter-label School
   .filter-options
     - schools = current_scope.is_a?(Site) ? current_scope.schools : current_user.schools
     - schools.each do |school|
-      =link_to school.name, logbook_set_scope_path(scope_id: school.id, scope_type: 'school'), class: ('current' if current_scope.id == school.id)
+      =link_to school.name, url_for(scope_id: school.id, scope_type: 'school'), class: ('current' if current_scope.id == school.id)
 
 =yield :fitlers
