@@ -1,17 +1,3 @@
-.person {
-  @include row;
-  margin-bottom: 2em;
-  > * {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    text-transform: capitalize;
-  }
-}
-.people:empty:after {
-  content: "Alas! Alack! There's nobody here.";
-}
-
 .logbook_people {
   a { color: $people-color; }
   .labels, .page-header, #filters {
@@ -23,3 +9,24 @@
     border-bottom: 1px solid white;
   }
 }
+
+.person {
+  @include row;
+  padding: 1em 0;
+  position: relative;
+  .g1 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-transform: capitalize;
+  }
+}
+.people {
+  .person {
+    &:hover { background: $lightest-gray; }
+  }
+}
+.people:empty:after {
+  content: "Alas! Alack! There's nobody here.";
+}
+

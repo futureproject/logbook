@@ -6,11 +6,12 @@
   .g1= person.grade || ' '
   .g1= person.primary_projects.count
   .g1= person.secondary_projects.count
-  .g1= person.engagements.where(kind: 'Coaching Session').try(:sum, :duration).try(:round, 2)
+  .g1= person.engagements.where(kind: 'Coaching Session').sum(:duration).round(2) rescue "N/A"
   .g1= person.engagements.where(kind: 'Meeting').count
   .g1= person.engagements.where(kind: 'Workshop').count
   .g1= person.engagements.where(kind: 'Event').count
   .g1.actions
+    =link_to "View", logbook_person_path(person, scope_params), class: 'row-link'
     %a{href: edit_logbook_person_path(person), title: 'Edit'}
       %span.octicon.octicon-pencil
     %a{href: logbook_person_path(person), title: 'Delete', data: { confirm: "Are you sure you want to delete #{person.first_name}?", method: 'delete', remote: true}}
