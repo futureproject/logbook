@@ -7,10 +7,10 @@
 
 = form_for [:logbook, @engagement] do |f|
   .row
-    .field.g2
+    .field.g6
       = f.label :kind
       = f.select :kind, Engagement::KIND_ENUM
-    .field.g1
+    .field.g3
       = f.label :duration
       = f.select :duration, Engagement::DURATION_ENUM
 
@@ -18,21 +18,23 @@
       = f.label :date
       .date-field= f.date_select :date, use_short_month: true
 
-    .field.g3
+  .row
+    .field.g6
       =f.label :name
       =f.text_field :name
-
-    .g3.field
+    .g6.field
       = f.label :school_id
       = f.select :school_id, current_user.schools.map{|s| [s.name, s.id] }
 
   .row
-    .g6.field
+    .tall-field
       =f.label :attendee_ids do
         Attendees
-        =link_to "Toggle Dream Team", toggle_dream_team_logbook_engagement_path(@engagement), remote: true
+        =link_to "Toggle Dream Team", toggle_dream_team_logbook_engagement_path(@engagement), remote: true unless @engagement.new_record?
       =f.select :attendee_ids, options_for_select(current_scope.people.order('dream_team DESC', :first_name).map{|p| [p.name, p.id, {'data-dream-team'=>p.dream_team}]}, selected_keys = f.object.attendee_ids), {}, multiple: true
-    .g6.field
+
+  .row
+    .textarea
       =f.label :notes
       =f.text_area :notes
 

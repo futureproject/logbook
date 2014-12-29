@@ -1,15 +1,14 @@
 .filter
   .filter-label Site
   .filter-options
-    - sites = current_user.sites || Site.all
-    - sites.each do |site|
+    = link_to "National", url_for(scope_type: 'national')
+    - Site.order(:name).each do |site|
       =link_to site.name, url_for(scope_id: site.id, scope_type: 'site'), class: ('current' if current_scope.id == site.id)
 
 .filter
   .filter-label School
   .filter-options
-    - schools = current_scope.is_a?(Site) ? current_scope.schools : current_user.schools
-    - schools.each do |school|
+    - current_scope.schools.each do |school|
       =link_to school.name, url_for(scope_id: school.id, scope_type: 'school'), class: ('current' if current_scope.id == school.id)
 
-=yield :fitlers
+=yield :filters

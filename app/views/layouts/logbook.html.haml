@@ -5,6 +5,7 @@
     = stylesheet_link_tag    'logbook/logbook', media: 'all'
     %meta{name:"viewport", content: "width=1024"}
     = csrf_meta_tags
+    %link{rel:"apple-touch-icon", href: asset_path('icon-arrow.png')}
   %body{class: params[:controller].gsub('/','_')}
 
     #header
@@ -18,12 +19,6 @@
           %span.octicon.octicon-search
         %input#search-field.typeahead{type: 'text', placeholder: "Search #{truncate current_scope.name}"}
 
-
-
-    #flash
-      - flash.each do |k, v|
-        .flash{class: k}
-          .message= v
     #tabs
       %a{href: logbook_root_url }
         =image_tag asset_path('tfplogo.svg'), alt: 'The Future Project'
@@ -42,6 +37,9 @@
       =render 'filters'
     #yield= yield
     #global-add= render 'global_add'
+    - flash.each do |k, v|
+      .flash{class: k}
+        .message= v
 
     :javascript
       window.ds = window.ds || {}

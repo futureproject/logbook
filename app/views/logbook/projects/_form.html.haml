@@ -1,36 +1,29 @@
-- if @project.errors.any?
-  #error_explanation
-    %h2= "#{pluralize(@project.errors.count, "error")} prohibited this person from being saved:"
-    %ul
-      - @project.errors.full_messages.each do |msg|
-        %li= msg
-
 = form_for [:logbook, @project] do |f|
   .row
-    .g3
+    .g4
 
       .field
-        = f.label :name
+        = f.label :name, required: true
         = f.text_field :name
-    .g3
+    .g8
       .field
         = f.label :school_id
         = f.select :school_id, current_user.schools.map{|s| [s.name, s.id] }
-    .g6
-      .field
-        = f.label :description
-        = f.text_area :description
+  .row
+    .textarea
+      = f.label :description
+      = f.text_area :description
   .row
     .g6
-      .field
+      .tall-field
         =f.label :leader_ids, 'Leaders'
         =f.select :leader_ids, options_for_select(current_scope.people.order('dream_team DESC', :first_name).map{|p| [p.name, p.id, {'data-dream-team'=>p.dream_team}]}, selected_keys = f.object.leader_ids), {}, multiple: true
 
     .g6
-      .field
+      .tall-field
         =f.label :participant_ids do
           Supporters
-          =link_to "Toggle Dream Team", toggle_dream_team_logbook_project_path(@project), remote: true
+          =link_to "Toggle Dream Team", toggle_dream_team_logbook_project_path(@project), remote: true unless @project.new_record?
         =f.select :participant_ids, options_for_select(current_scope.people.order('dream_team DESC', :first_name).map{|p| [p.name, p.id, {'data-dream-team'=>p.dream_team}]}, selected_keys = f.object.participant_ids), {}, multiple: true
   .row
     .actions

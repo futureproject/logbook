@@ -1,0 +1,4 @@
+%nav
+  =link_to "Person", new_logbook_person_path(scope_params), remote: true, class: "people #{'active' if @person}"
+  =link_to "Project", new_logbook_project_path(scope_params), class: "projects #{'active' if @project}", remote: true
+  =link_to "Engagement", new_logbook_engagement_path(scope_params), class: "engagements #{'active' if @engagement}", remote: true

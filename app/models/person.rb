@@ -79,6 +79,10 @@ class Person < ActiveRecord::Base
     project.leaders.include? self
   end
 
+  def projects
+    (primary_projects.order('id DESC') + secondary_projects.order('id DESC')).flatten
+  end
+
   def auth_token
     identity.token
   end

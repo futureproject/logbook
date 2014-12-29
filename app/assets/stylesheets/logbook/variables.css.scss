@@ -40,3 +40,11 @@ $alert-color: $light-yellow;
 $error-color: $light-red;
 $notice-color: $blue;
 $success-color: $light-green;
+@mixin btn {
+  display: inline-block;
+  border-radius: 8px;
+  border: 2px solid $base-border-color;
+  text-transform: uppercase;
+  padding: 8px 8px 6px;
+  color: $medium-gray;
+}

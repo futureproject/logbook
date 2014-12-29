@@ -27,6 +27,7 @@ $ ->
       ")
     )
 
+  # turn on the global add menu
   vex.defaultOptions.className = 'vex-theme-wireframe'
   $(document).on('vexOpen', (e) =>
     $('#global-add').addClass('open')
@@ -40,3 +41,11 @@ $ ->
       this.classList.remove 'open'
       vex.closeAll()
   )
+
+#fade the flash notices
+  $('.flash').each ->
+    $t = $(this)
+    setTimeout ->
+      $t.slideUp('fast')
+    , 2000
+

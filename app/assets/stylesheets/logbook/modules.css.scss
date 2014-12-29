@@ -73,6 +73,10 @@
   }
 }
 
+.button {
+  @include btn;
+}
+
 body .actions {
   a {
     display: inline-block;
@@ -106,6 +110,7 @@ hr {
   white-space: nowrap;
   select {
     display: inline-block;
+    width: auto;
   }
 }
 
@@ -123,14 +128,6 @@ hr {
   }
 }
 
-.selectize-input {
-  .item {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    max-width: 180px;
-  }
-}
 
 .upload {
   width: auto;
@@ -155,16 +152,74 @@ hr {
 
 .vex.vex-theme-wireframe .vex-overlay {
   background: white;
-  background: rgba(255,255,255,.95);
+  background: rgba(255,255,255,.97);
 }
 
-.form {
+.vex-content {
+  max-width: 666px;
+  margin: 2em auto;
+  padding: 2em;
+  background: none;
+}
+
+.vex-close { display: none; }
+
+.form, .vex {
   nav {
-    .people { color: $people-color; }
-    .projects { color: $projects-color; }
-    .engagements { color: $engagements-color; }
+    .people {
+      color: $people-color;
+      &.active { background: $people-color; border-color: $people-color; color: white; }
+    }
+    .projects {
+      color: $projects-color;
+      &.active { background: $projects-color; border-color: $projects-color; color: white; }
+    }
+    .engagements {
+      color: $engagements-color;
+      &.active { background: $engagements-color; border-color: $engagements-color; color: white; }
+    }
+  }
+  header, nav {
+    text-align: center;
+  }
+  nav {
+    text-transform: uppercase;
+    padding: 1em 0 2em;
+    margin-bottom: 2em;
+    white-space: nowrap;
+    overflow: hidden;
+    a {
+      display: inline-block;
+      border: 2px solid;
+      width: 148px;
+      font-size: 1.5em;
+      padding: 8px 0 6px;
+      margin: 0 6px;
+    }
   }
 }
-.add-form {
-  .textarea { display: none; }
+
+.flash {
+  position: fixed;
+  background: $light-green;
+  padding: 1em 2em;
+  color: white;
+  z-index: 1000;
+  bottom: 0;
+  left: 66px;
+  font-size: 2em;
+  width: 100%;
+  text-align: center;
 }
+
+
+.brand-new {
+  font-weight: bold;
+}
+
+.loading {
+  position: relative;
+  top: 2em;
+}
+
+

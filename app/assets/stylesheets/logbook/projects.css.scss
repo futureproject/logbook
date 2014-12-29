@@ -1,12 +1,3 @@
-.project {
-  @extend .person;
-}
-
-.project-name { @include span-columns(3); }
-.project-leaders { @include span-columns(3); }
-.project-school { @include span-columns(3); }
-.person-actions { @include span-columns(3); }
-
 .project-leaders {
   a {
     &:not(:last-child):after { content: ', '; }

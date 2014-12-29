@@ -18,6 +18,7 @@ class Logbook::ApplicationController < ApplicationController
     end
 
     def current_scope
+      return National.new if params[:scope_type] == 'national'
       begin
         eval "#{params[:scope_type].classify}.find(#{params[:scope_id]})"
       rescue

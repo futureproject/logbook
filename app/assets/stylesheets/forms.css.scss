@@ -1,24 +1,3 @@
-.form {
-  header, nav {
-    text-align: center;
-  }
-  nav {
-    text-transform: uppercase;
-    padding: 1em 0 2em;
-    margin-bottom: 2em;
-    border-bottom: 1px solid $base-border-color;
-    white-space: nowrap;
-    overflow: hidden;
-    a {
-      display: inline-block;
-      border: 2px solid;
-      width: 148px;
-      font-size: 1.5em;
-      padding: 8px 0 6px;
-      margin: 0 6px;
-    }
-  }
-}
 input, select, textarea {
   display: block;
   width: 100%;
@@ -44,8 +23,11 @@ input, select {
     position: absolute;
     bottom: 0;
     left: 0;
-    color: darken($base-border-color, 10%);
   }
+}
+
+label {
+  color: darken($base-border-color, 10%);
 }
 
 select {
@@ -58,14 +40,9 @@ textarea {
 }
 
 input[type=submit] {
+  @include btn;
   float: right;
-  display: inline-block;
-  width: auto;
-  border-radius: 8px;
-  border: 2px solid $base-border-color;
   font-size: 1.5em;
-  text-transform: uppercase;
-  padding: 8px 8px 6px;
   &:before, &:after {
     content: '';
     display: block;
@@ -73,6 +50,14 @@ input[type=submit] {
   }
 }
 
-.add-form {
-  textarea { display: none; }
+.selectize-input {
+  border-radius: 0;
+  &.input-active { border-radius: 0; }
+  .item {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 180px;
+  }
 }
+

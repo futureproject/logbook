@@ -1,69 +1,15 @@
-.row
-  .g9
+.person-show[@person]{class: "#{'dream_team' if @person.dream_team}"}
+  %header
     %h1= @person.name
-  .g3
-    %h1=link_to "Edit", edit_logbook_person_path(@person), class: 'edit'
-.person
-  .row
-    .g3
-      %label School
-      .fact= @person.school.try :name
-    .g3
-      %label Grade
-      .fact= @person.grade
-    .g3
-      %label Role
-      .fact= @person.role
-    .g3
-      %label Dream Team
-      .fact= @person.dream_team ? "Yes" : "No"
-  .row
-    .g3
-      %label Email
-      .fact=@person.email
-    .g3
-      %label Phone
-      .fact= @person.phone
-    .g3
-      %label Engagement Hours
-      .fact= @person.engagements.sum(:duration).round(1)
-  %hr
-  .row
-    .g6
-      %label About
-      .fact= @person.about
-    .g6
-      %label Your Notes
-      .fact= @person.notes
-  %hr
-  .row
-    %h3 Projects
-  .row
-    .g6
-      %label Leading
-      .fact= render @person.primary_projects
-    .g6
-      %label Supporting
-      .fact= render @person.secondary_projects
-
-  %hr
-    .row
-      = form_for [:logbook, @engagement], remote: true do |f|
-        %h3.g3 Engagements
-        .field.g2
-          = f.label :kind
-          = f.select :kind, Engagement::KIND_ENUM
-        .field.g1
-          = f.label :duration
-          = f.select :duration, Engagement::DURATION_ENUM
-        .field.g3
-          =f.label :name
-          =f.text_field :name
-        .field.g3.actions
-          =f.hidden_field :school_id
-          =f.hidden_field :date, value: Date.today
-          =f.hidden_field :attendee_ids, value: @person.id, multiple: true
-          = f.submit "Add"
-
-    %ul.engagements=render @person.engagements.order('date DESC')
+    =link_to "Edit", edit_logbook_person_path(@person), class: 'edit button'
+  %section.person-info
+    %h3= "#{@person.grade}th grade #{@person.role} at #{@person.school.try(:name)}"
+    .person-email= @person.email
+    .person-phone= @person.phone
+  %section.person-projects
+    %h2 Projects
+    %ul.primary-projects= render @person.primary_projects
+    %ul.secondary-projects= render @person.secondary_projects
+  %section.person-activity
+    %ul= render @person.activities
 

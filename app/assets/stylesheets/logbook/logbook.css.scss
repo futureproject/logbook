@@ -8,6 +8,7 @@
 @import 'variables';
 @import 'bourbon';
 @import 'neat';
+@import 'selectize';
 @import 'forms';
 @import 'layout';
 @import 'modules';
@@ -17,7 +18,6 @@
 @import 'projects';
 @import 'schools';
 @import 'engagements';
-@import 'selectize';
 @import 'twitter-typeahead';
 @import 'loading';
 
@@ -30,6 +30,9 @@ html, body {
   background-color: $base-background-color;
   color: $base-font-color;
   -webkit-font-smoothing: antialiased;
+}
+body {
+  margin-top: 66px;
 }
 
 a {

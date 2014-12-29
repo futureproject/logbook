@@ -20,7 +20,7 @@ class Logbook::PeopleController < Logbook::ApplicationController
 
   # GET /people/new
   def new
-    @person = Person.new(school_id: current_scope.id)
+    @person = Person.new(school_id: current_scope.id, grade: 10)
   end
 
   # GET /people/1/edit
@@ -36,6 +36,7 @@ class Logbook::PeopleController < Logbook::ApplicationController
       if @person.save
         format.html { redirect_to [:logbook, @person], notice: 'Person was successfully created.' }
         format.json { render :show, status: :created, location: @person }
+        format.js
       else
         format.html { redirect_to logbook_people_path, notice: 'Person was not saved.' }
         format.json { render json: @person.errors, status: :unprocessable_entity }

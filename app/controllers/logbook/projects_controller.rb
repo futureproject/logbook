@@ -20,7 +20,7 @@ class Logbook::ProjectsController < Logbook::ApplicationController
 
   # GET /projects/new
   def new
-    @project = Project.new
+    @project = Project.new(school_id: current_scope.id)
   end
 
   # GET /projects/1/edit
@@ -52,6 +52,7 @@ class Logbook::ProjectsController < Logbook::ApplicationController
       if @project.save
         format.html { redirect_to edit_logbook_project_path(@project), notice: 'Project was successfully created.' }
         format.json { render :show, status: :created, location: @project }
+        format.js
       else
         format.html { redirect_to logbook_projects_path, notice: 'Project was not created.' }
         format.json { render json: @project.errors, status: :unprocessable_entity }

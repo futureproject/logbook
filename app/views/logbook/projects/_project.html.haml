@@ -1,9 +1,10 @@
 %li[project]
   .project-name= project.name
-  .project-leaders
-    - project.leaders.each do |p|
-      = link_to p.name, logbook_person_path(p)
+  .project-description= project.description
+  .project-leaders= project.leaders.count
+  .project-participants= project.participants.count
   .project-school= project.school.try :name
+  .project-updated-at= project.updated_at.strftime "%D"
   .project-actions.actions
     = link_to 'View', logbook_project_path(project), class: 'view'
     = link_to 'Edit', edit_logbook_project_path(project), class: 'edit'

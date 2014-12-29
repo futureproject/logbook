@@ -20,7 +20,7 @@ class Logbook::EngagementsController < Logbook::ApplicationController
 
   # GET /engagements/new
   def new
-    @engagement = Engagement.new
+    @engagement = Engagement.new(school_id: current_scope.id)
   end
 
   # GET /engagements/1/edit

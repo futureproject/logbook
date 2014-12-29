@@ -12,34 +12,32 @@
     .field.g3
       = f.label :last_name
       = f.text_field :last_name, required: true
-    .field.g3
-      = f.label :email
-      = f.text_field :email
-    .field.g3
-      = f.label :phone
-      = f.text_field :phone
+    .field.g6
+      = f.label :school_id, 'School'
+      =f.select :school_id, current_user.schools.map{|s| [s.name, s.id] }
   .row
-    .field.g2
+    .field.g3
       = f.label :role
       =f.select :role, Person::ROLE_ENUM
-    .field.g1
+    .field.g3
       = f.label :grade
       =f.select :grade, Person::GRADE_ENUM
     .field.g3
-      = f.label :school_id, 'School'
-      =f.select :school_id, current_user.schools.map{|s| [s.name, s.id] }
-    .field.g3
       = f.label :sex
       =f.select :sex, Person::SEX_ENUM, include_blank: true
-    .field.g2
+    .field.g3
       = f.label :dream_team
       = f.select :dream_team, Person::DREAM_TEAM_ENUM
   .row
-    .textarea.g6
-      = f.label :about, 'About (students can edit this)'
-      = f.text_area :about
-    .textarea.g6
-      = f.label :notes, 'Notes (only you see these)'
+    .field.g6
+      = f.label :email
+      = f.text_field :email
+    .field.g6
+      = f.label :phone
+      = f.text_field :phone
+  .row
+    .textarea
+      = f.label :notes, 'Notes'
       = f.text_area :notes
   .row
     .actions
