@@ -19,6 +19,7 @@
         %input#search-field.typeahead{type: 'text', placeholder: "Search #{truncate current_scope.name}"}
 
 
+
     #flash
       - flash.each do |k, v|
         .flash{class: k}
@@ -40,6 +41,7 @@
     #filters
       =render 'filters'
     #yield= yield
+    #global-add= render 'global_add'
 
     :javascript
       window.ds = window.ds || {}

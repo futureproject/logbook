@@ -8,10 +8,10 @@
   .row
     .field.g3
       = f.label :first_name
-      = f.text_field :first_name
+      = f.text_field :first_name, required: true
     .field.g3
       = f.label :last_name
-      = f.text_field :last_name
+      = f.text_field :last_name, required: true
     .field.g3
       = f.label :email
       = f.text_field :email
@@ -33,12 +33,12 @@
       =f.select :sex, Person::SEX_ENUM, include_blank: true
     .field.g2
       = f.label :dream_team
-      = f.check_box :dream_team
+      = f.select :dream_team, Person::DREAM_TEAM_ENUM
   .row
-    .field.g6
+    .textarea.g6
       = f.label :about, 'About (students can edit this)'
       = f.text_area :about
-    .field.g6
+    .textarea.g6
       = f.label :notes, 'Notes (only you see these)'
       = f.text_area :notes
   .row

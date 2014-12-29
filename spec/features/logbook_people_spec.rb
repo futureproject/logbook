@@ -6,10 +6,11 @@ feature 'Logbook people' do
 
   scenario 'CREATE' do
     visit logbook_people_path
+    click_link "+"
     fill_in 'person[first_name]', with: 'Terry'
     fill_in 'person[last_name]', with: 'McGuiness'
     select '12', from: 'person[grade]'
-    click_button 'Add'
+    click_button 'Create Person'
     expect(page).to have_content 'Terry McGuiness'
   end
 
@@ -31,9 +32,12 @@ feature 'Logbook people' do
 
   scenario 'DESTROY', js: true do
     visit logbook_people_path
-    click_link 'Delete', match: :first
+    selector = "#person_#{Person.last.id}"
+    within(selector) do
+      find('a[data-method=delete]').click
+    end
     page.driver.accept_js_confirms!
-    expect(page).to have_content 'Person was successfully destroyed'
+    expect(page).not_to have_selector selector
   end
 
   scenario 'adding a coaching session from a profile', js: true do

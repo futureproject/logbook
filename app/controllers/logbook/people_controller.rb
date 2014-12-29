@@ -20,7 +20,7 @@ class Logbook::PeopleController < Logbook::ApplicationController
 
   # GET /people/new
   def new
-    @person = Person.new
+    @person = Person.new(school_id: current_scope.id)
   end
 
   # GET /people/1/edit

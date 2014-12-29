@@ -1,0 +1,78 @@
+.form {
+  header, nav {
+    text-align: center;
+  }
+  nav {
+    text-transform: uppercase;
+    padding: 1em 0 2em;
+    margin-bottom: 2em;
+    border-bottom: 1px solid $base-border-color;
+    white-space: nowrap;
+    overflow: hidden;
+    a {
+      display: inline-block;
+      border: 2px solid;
+      width: 148px;
+      font-size: 1.5em;
+      padding: 8px 0 6px;
+      margin: 0 6px;
+    }
+  }
+}
+input, select, textarea {
+  display: block;
+  width: 100%;
+  -webkit-appearance: none;
+  border-radius: 0;
+  border: none;
+  background: none;
+  font-size: 1.5em;
+}
+
+input, select {
+  border-bottom: 1px solid $base-border-color;
+  &:focus {
+    border-color: $base-accent-color;
+    outline: none;
+  }
+}
+
+.field {
+  position: relative;
+  height: 4em;
+  label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    color: darken($base-border-color, 10%);
+  }
+}
+
+select {
+  font-size: 1.5em;
+  text-transform: capitalize;
+}
+
+textarea {
+  border: 1px solid $base-border-color;
+}
+
+input[type=submit] {
+  float: right;
+  display: inline-block;
+  width: auto;
+  border-radius: 8px;
+  border: 2px solid $base-border-color;
+  font-size: 1.5em;
+  text-transform: uppercase;
+  padding: 8px 8px 6px;
+  &:before, &:after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+}
+
+.add-form {
+  textarea { display: none; }
+}

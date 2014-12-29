@@ -1,0 +1,3 @@
+- model = params[:controller].classify.gsub('Logbook::', '').downcase
+- path = url_for([:new, :logbook, model]) rescue url_for([:new, :logbook, "engagement"])
+=link_to "+", path, remote: true

@@ -19,6 +19,7 @@ class Person < ActiveRecord::Base
   ROLE_ENUM = %w(student teacher staff)
   GRADE_ENUM = [6, 7, 8, 9, 10, 11, 12]
   SEX_ENUM = %w(M F)
+  DREAM_TEAM_ENUM = [["Yep", true],["Nope", false]]
   include Filterable
   #before_save :set_counts
 

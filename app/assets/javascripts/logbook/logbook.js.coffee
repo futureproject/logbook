@@ -6,6 +6,7 @@
 #= require selectize
 #= require twitter/typeahead
 #= require s3_direct_upload
+#= require vex.combined.min
 #= require logbook/search
 #= require logbook/enhance
 #= require_tree ./backbone/helpers

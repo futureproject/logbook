@@ -42,8 +42,11 @@
   position: -webkit-sticky;
   top: 0;
   left: 66px;
+  height: 66px;
   right: 0;
-  z-index: 10;
+  z-index: 8;
+  padding: 0 2em !important;
+  line-height: 66px;
   &.locked {
     position: fixed;
   }
@@ -56,7 +59,7 @@
     text-overflow: ellipsis;
     text-transform: capitalize;
     white-space: nowrap;
-    line-height: 1;
+    line-height: 66px;
     font-weight: 600;
   }
 }
@@ -148,4 +151,20 @@ hr {
   text-indent: -999em;
   overflow: hidden;
   z-index: 1;
+}
+
+.vex.vex-theme-wireframe .vex-overlay {
+  background: white;
+  background: rgba(255,255,255,.95);
+}
+
+.form {
+  nav {
+    .people { color: $people-color; }
+    .projects { color: $projects-color; }
+    .engagements { color: $engagements-color; }
+  }
+}
+.add-form {
+  .textarea { display: none; }
 }

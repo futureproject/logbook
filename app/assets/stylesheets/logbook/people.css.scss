@@ -8,7 +8,12 @@
   #filters {
     border-bottom: 1px solid white;
   }
+  #global-add {
+    a { color: $people-color; }
+  }
 }
+
+.form a.people { background: $people-color; color: white; border-color: $people-color;}
 
 .person {
   @include row;

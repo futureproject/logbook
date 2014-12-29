@@ -27,3 +27,16 @@ $ ->
       ")
     )
 
+  vex.defaultOptions.className = 'vex-theme-wireframe'
+  $(document).on('vexOpen', (e) =>
+    $('#global-add').addClass('open')
+  ).on('vexClose', (event) ->
+    $('#global-add').removeClass('open')
+  )
+  $('#global-add').on('click', (event) ->
+    if this.classList.contains 'open'
+      event.preventDefault()
+      event.stopPropagation()
+      this.classList.remove 'open'
+      vex.closeAll()
+  )

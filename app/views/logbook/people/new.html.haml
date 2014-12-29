@@ -1,9 +1,8 @@
-#people_list.list
-= form_for [:logbook, @person], html: { class: 'list-detail panel' } do |f|
-  .panel-title
-    %h1 New Person
-    .l-menu= link_to "Cancel", logbook_people_path
-    .r-menu
-      = f.submit 'Done'
-  .panel-body.scrollable.pad
-    = render partial: 'form', locals: {f: f}
+.form.add-form
+  %header
+    %h1 Add New
+  %nav
+    =link_to "Person", new_logbook_person_path, class: 'people'
+    =link_to "Project", new_logbook_project_path, class: 'projects'
+    =link_to "Engagement", new_logbook_engagement_path, class: 'engagements'
+  = render 'form'

@@ -1,12 +1,14 @@
 /*
 = require s3_direct_upload_progress_bars
 = require octicons
+= require vex
 */
 
 @import 'normalize';
 @import 'variables';
 @import 'bourbon';
 @import 'neat';
+@import 'forms';
 @import 'layout';
 @import 'modules';
 @import 'state';
@@ -27,6 +29,7 @@ html, body {
   font-family: $base-font-family;
   background-color: $base-background-color;
   color: $base-font-color;
+  -webkit-font-smoothing: antialiased;
 }
 
 a {
@@ -47,11 +50,6 @@ pre {
 
 h1, h2, h3, h4, h5, h6 {
   margin: 0;
-}
-
-input, select, textarea {
-  display: block;
-  width: 100%;
 }
 
 ::-webkit-input-placeholder {
