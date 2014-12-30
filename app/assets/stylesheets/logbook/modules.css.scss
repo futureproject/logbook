@@ -3,6 +3,20 @@
   margin-bottom: 2em;
 }
 
+%row {
+  @include row;
+  padding: 1em 0;
+  position: relative;
+  > * {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-transform: capitalize;
+    @include span-columns(1);
+  }
+  &:hover { background: $lightest-gray; }
+}
+
 .g1 { @include span_columns(1); }
 .g2 { @include span_columns(2); }
 .g3 { @include span_columns(3); }

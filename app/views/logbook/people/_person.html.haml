@@ -1,16 +1,16 @@
 %li[person]
-  .g1= person.first_name
-  .g1= person.last_name
-  .g1= person.school.try(:name)
-  .g1= person.role
-  .g1= person.grade || ' '
-  .g1= person.primary_projects.count
-  .g1= person.secondary_projects.count
-  .g1= person.engagements.where(kind: 'Coaching Session').sum(:duration).round(2) rescue "N/A"
-  .g1= person.engagements.where(kind: 'Meeting').count
-  .g1= person.engagements.where(kind: 'Workshop').count
-  .g1= person.engagements.where(kind: 'Event').count
-  .g1.actions
+  .person-first-name= person.first_name
+  .person-last-name= person.last_name
+  .person-school= person.school.try(:name)
+  .person-role= person.role
+  .person-grade= person.grade || ' '
+  .person-primary-projects= person.primary_projects.count
+  .person-secondary-projects= person.secondary_projects.count
+  .person-coaching-sessions= person.engagements.where(kind: 'Coaching Session').sum(:duration).round(2) rescue "N/A"
+  .person-meetings= person.engagements.where(kind: 'Meeting').count
+  .person-workshops= person.engagements.where(kind: 'Workshop').count
+  .person-events= person.engagements.where(kind: 'Event').count
+  .actions
     =link_to "View", logbook_person_path(person, scope_params), class: 'row-link'
     %a{href: edit_logbook_person_path(person), title: 'Edit'}
       %span.octicon.octicon-pencil

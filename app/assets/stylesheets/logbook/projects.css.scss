@@ -1,3 +1,9 @@
+.table {
+  .project {
+    @extend %row;
+  }
+}
+
 .project-leaders {
   a {
     &:not(:last-child):after { content: ', '; }

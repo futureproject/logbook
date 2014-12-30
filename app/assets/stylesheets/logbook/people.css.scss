@@ -10,23 +10,13 @@
   }
 }
 
-.person {
-  @include row;
-  padding: 1em 0;
-  position: relative;
-  .g1 {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    text-transform: capitalize;
-  }
-}
-.people {
+.table {
   .person {
-    &:hover { background: $lightest-gray; }
+    @extend %row;
   }
 }
-.people:empty:after {
+
+.people.table:empty:after {
   content: "Alas! Alack! There's nobody here.";
 }
 
