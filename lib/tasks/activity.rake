@@ -3,7 +3,7 @@ namespace :activity do
   task regenerate: :environment do
     puts "Destroying existing activity..."
     Activity.destroy_all
-    [Engagement, Project, Asset].each do |klass|
+    [Engagement, Project, Asset, EngagementAttendee].each do |klass|
       puts "regenerating activity for #{klass.count} #{klass.name.pluralize}"
       klass.all.each do |instance|
         instance.log_activity

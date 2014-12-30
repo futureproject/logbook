@@ -30,6 +30,7 @@ class Engagement < ActiveRecord::Base
   scope :with_attendees, -> (table) {
     joins(:attendees).select("engagements.*, COUNT(#{table}.id) AS #{table}_count").group("engagements.id")
   }
+
   def log_activity
     Activity.create(
       actor_id: self.user.try(:id),
@@ -40,7 +41,7 @@ class Engagement < ActiveRecord::Base
       feed_date: self.date
     )
   end
-  
+
   def custom_clone
     clone = self.dup
     clone.date = Date.today

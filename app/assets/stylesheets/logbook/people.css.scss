@@ -46,6 +46,7 @@
     padding: 2em;
     background: white;
     box-shadow: -1px 1px 0 $base-border-color;
+    position: relative;
     .edit, .delete { display: none; }
   }
   .project-name {

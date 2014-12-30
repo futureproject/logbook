@@ -18,3 +18,5 @@
     &:not(:last-child):after { content: ', '; }
   }
 }
+
+.engagements-color { color: $engagements-color; }
