@@ -1,3 +1,12 @@
+.logbook_projects {
+  a { color: $projects-color; }
+  .labels, .page-header, #filters {
+    background: $projects-color;
+    color: white;
+    a { color: white; }
+  }
+}
+
 .table {
   .project {
     @extend %row;

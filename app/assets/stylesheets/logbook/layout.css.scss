@@ -95,6 +95,7 @@ body {
   background: $medium-gray;
   color: white;
   padding: 2em;
+  border-bottom: 1px solid;
   .filter {
     @include span-columns(3);
     line-height: 2;
