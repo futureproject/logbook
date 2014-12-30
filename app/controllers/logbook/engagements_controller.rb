@@ -113,6 +113,6 @@ class Logbook::EngagementsController < Logbook::ApplicationController
     end
 
     def filter_params
-      params.slice(:q, :sort)
+      params.slice(:q, :with_attendees, :sort)
     end
 end

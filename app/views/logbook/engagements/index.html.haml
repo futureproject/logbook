@@ -1,31 +1,13 @@
-=render(partial: 'search_results', locals: {collection: @engagements}) if params[:q]
+.page-header
+  %h1 Engagements
 
-.row.search-add
-  .g6.search
-    %label Search
-    %form{action: logbook_engagements_path, method: 'GET'}
-      %input{name: 'q', type: 'text', placeholder: 'Search...'}
-      %input{type: 'submit', value: 'Search'}
-  .g6.add
-    %label Add
-    = form_for [:logbook, @engagement] do |f|
-      .engagement-kind
-        =f.select :kind, Engagement::KIND_ENUM
-      .engagement-school
-        =f.select :school_id, current_user.schools.map{|s| [s.name, s.id] }
-      .engagement-duration
-        =f.select :duration, Engagement::DURATION_ENUM
-      .engagement-actions
-        = f.hidden_field :date, value: Date.today
-        = f.submit "Add"
+.labels.engagement-labels
+  .engagement-date= link_to_unless_current "Date", scoped_url_for(sort: 'date DESC')
+  .engagement-kind= link_to_unless_current "Kind", scoped_url_for(sort: 'kind')
+  .engagement-name= link_to_unless_current "Name", scoped_url_for(sort: 'name')
+  .engagement-attendees= link_to_unless_current "Attendees", scoped_url_for(with_attendees: 'people', sort: 'people_count DESC')
+  .engagement-duration= link_to_unless_current "Hours", scoped_url_for(sort: 'duration DESC')
+  .engagement-school= link_to_unless_current "School", scoped_url_for(sort: 'school_id')
 
-%ul.engagements
-  %li.labels.engagement
-    .engagement-date= link_to_unless_current "Date", url_for(sort: 'date DESC')
-    .engagement-kind= link_to_unless_current "Kind", url_for(sort: 'kind')
-    .engagement-name= link_to_unless_current "Name", url_for(sort: 'name')
-    .engagement-duration= link_to_unless_current "Hours", url_for(sort: 'duration')
-    .engagement-school= link_to_unless_current "School", url_for(sort: 'school_id')
-    .engagement-actions Actions
-  = render @engagements
+%ul.table.engagements= render @engagements
 =paginate @engagements rescue nil

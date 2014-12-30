@@ -7,13 +7,8 @@
   }
 }
 
-.table {
-  .project {
-    @extend %row;
-  }
-}
-
 .project-labels, .table .project {
+  @extend %row;
   .project-name { @include span-columns(2); }
   .project-description { @include span-columns(3); }
   .project-leaders, .project-participants { @include span-columns(1); }

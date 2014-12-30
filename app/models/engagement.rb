@@ -27,6 +27,9 @@ class Engagement < ActiveRecord::Base
   scope :q, -> (query) { where("lower(engagements.name) like ?", "%#{query.downcase}%") }
   scope :one_on_ones, -> { joins(:engagement_attendees).group('engagements.id').having('count(engagement_attendees.id)=1') }
 
+  scope :with_attendees, -> (table) {
+    joins(:attendees).select("engagements.*, COUNT(#{table}.id) AS #{table}_count").group("engagements.id")
+  }
   def log_activity
     Activity.create(
       actor_id: self.user.try(:id),

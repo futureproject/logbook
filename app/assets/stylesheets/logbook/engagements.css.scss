@@ -1,21 +1,20 @@
-.engagement {
-  @extend .person;
+.logbook_engagements {
+  a { color: $engagements-color; }
+  .labels, .page-header, #filters {
+    background: $engagements-color;
+    color: white;
+    a { color: white; }
+  }
 }
 
-.engagement-date { @include span-columns(1); }
-.engagement-kind { @include span-columns(2); }
-.engagement-name { @include span-columns(2); }
-.engagement-duration { @include span-columns(1); }
-.engagement-school { @include span-columns(3); }
-.person-actions { @include span-columns(3); }
+.engagement-labels, .table .engagement {
+  @extend %row;
+  .engagement-kind { @include span-columns(2); }
+  .engagement-school, .engagement-name { @include span-columns(3); }
+}
 
 .engagement-leaders {
   a {
     &:not(:last-child):after { content: ', '; }
   }
-}
-
-.search-add {
-  .engagement-kind, .engagement-school { @include span-columns(2 of 6); }
-  .engagement-duration, .engagement-actions { @include span-columns(1 of 6); }
 }
