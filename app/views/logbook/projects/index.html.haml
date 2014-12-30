@@ -1,12 +1,12 @@
 .page-header
   %h1 Projects
-.labels
-  .g1=link_to_unless_current 'Name', scoped_url_for(sort: 'name')
-  .g1=link_to_unless_current 'Description', scoped_url_for(sort: 'Description')
-  .g1=link_to_unless_current 'Leaders', scoped_url_for(sort: 'people_count DESC')
-  .g1=link_to_unless_current 'Participants', scoped_url_for(sort: 'people_count DESC')
-  .g1=link_to_unless_current 'School', scoped_url_for(sort: 'school_id')
-  .g1=link_to_unless_current 'Updated', scoped_url_for(sort: 'updated_at DESC')
+.labels.project-labels
+  .project-name=link_to_unless_current 'Name', scoped_url_for(sort: 'name')
+  .project-description=link_to_unless_current 'Description', scoped_url_for(sort: 'description')
+  .project-leaders=link_to_unless_current 'Leaders', scoped_url_for(with_people: 'leaders', sort: 'people_count DESC')
+  .project-participants=link_to_unless_current 'Supporters', scoped_url_for(with_people: 'participants', sort: 'people_count DESC')
+  .project-school=link_to_unless_current 'School', scoped_url_for(sort: 'school_id')
+  .project-updated-at=link_to_unless_current 'Updated', scoped_url_for(sort: 'updated_at DESC')
 
 %ul.table.projects= render @projects
 =paginate @projects rescue nil

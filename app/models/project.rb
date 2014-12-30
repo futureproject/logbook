@@ -15,6 +15,10 @@ class Project < ActiveRecord::Base
 
   scope :q, -> (query) { where("lower(projects.name) like ?", "%#{query.downcase}%") }
 
+  scope :with_people, -> (kind='leaders') {
+    joins(kind.to_sym).select("projects.*, COUNT(people.id) AS people_count").group('projects.id')
+  }
+
   def log_activity
     Activity.create(
       actor_id: leaders.first.try(:id),

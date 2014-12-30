@@ -13,6 +13,14 @@
   }
 }
 
+.project-labels, .table .project {
+  .project-name { @include span-columns(2); }
+  .project-description { @include span-columns(3); }
+  .project-leaders, .project-participants { @include span-columns(1); }
+  .project-school { @include span-columns(2); }
+  .project-updated-at { @include span-columns(2); }
+}
+
 .project-leaders {
   a {
     &:not(:last-child):after { content: ', '; }

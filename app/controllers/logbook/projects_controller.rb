@@ -81,6 +81,7 @@ class Logbook::ProjectsController < Logbook::ApplicationController
     respond_to do |format|
       format.html { redirect_to logbook_projects_url, notice: 'Project was successfully destroyed.' }
       format.json { head :no_content }
+      format.js
     end
   end
 
@@ -102,6 +103,6 @@ class Logbook::ProjectsController < Logbook::ApplicationController
     end
 
     def filter_params
-      params.slice(:q, :sort)
+      params.slice(:q, :with_people, :sort)
     end
 end
