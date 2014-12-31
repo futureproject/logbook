@@ -14,6 +14,7 @@ input, select {
     border-color: $base-accent-color;
     outline: none;
   }
+  &[type=file] { border-bottom: none; }
 }
 
 .field {

@@ -1,0 +1,10 @@
+.engagement-asset[asset]
+  .asset
+    - if asset.data_content_type.try(:match, /image/i)
+      =link_to image_tag(asset.data(:medium)), asset.data(:original)
+    - elsif asset.data_content_type.try(:match, /audio/i)
+      %audio{src: asset.data(:original), preload: 'none', controls: true}
+    - else
+      =link_to asset.caption, asset.data(:original)
+  .asset-links
+    =link_to "Destroy", logbook_asset_path(asset), data: {remote: true, method: 'delete', confirm: 'Are you sure?' }

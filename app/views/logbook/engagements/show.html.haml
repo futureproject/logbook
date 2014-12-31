@@ -1,43 +1,34 @@
-.engagement-show[@engagement]
+.engagement-show.show-record[@engagement]
   %header
     %h1= @engagement.kind
-    =link_to "Edit", edit_logbook_engagement_path(@engagement), class: 'edit button'
-  %section.engagement-info
-    %h3= @engagement.name
-    %pre.engagement-notes= @engagement.notes
-.row
-  .g9
-    %h1= @engagement.kind
-  .g3
-    %h1
-      =link_to "Edit", edit_logbook_engagement_path(@engagement), class: 'edit'
-      =link_to "Duplicate", duplicate_logbook_engagement_path(@engagement)
-.engagement
-  .row
-    .g3
-      %label Date
-      .fact= @engagement.date.try(:strftime, '%D')
-    .g3
-      %label Name
-      .fact= @engagement.name
-    .g3
-      %label School
-      .fact= @engagement.school.try :name
-    .g3
-      %label Duration
-      .fact= "#{@engagement.duration.try(:round, 2)} Hours"
-  .row
-    .g6
-      %label Notes
-      %pre= @engagement.notes
-    .g6
-      %label
-        MEDIA
-        = link_to " | Gallery ›", logbook_assets_path(attachable_type: @engagement.class.name, attachable_id: @engagement.id) if @engagement.assets.any?
-      = render partial: 'logbook/assets/s3_uploader', locals: { record: @engagement }
-      .assets=render @engagement.assets
+  .record-info
+    %section.engagement-name
+      %h3= @engagement.name
+    %section.engagement-date
+      = @engagement.date.strftime "%A, %B %d"
+      = "- #{pluralize @engagement.duration.round(2), 'hour'}"
 
-  %hr
-  .row
-    %h3= pluralize @engagement.attendees.count, 'Attendee'
-  %ul.people= render @engagement.attendees
+    - if @engagement.notes.present?
+      %section.engagement-notes
+        %pre= @engagement.notes
+
+    %section.engagement-location
+      %h3 Location
+      .address
+        .engagement-school= @engagement.school.try(:name)
+        .engagement-address= @engagement.school.try(:address)
+
+    %section.engagement-attendees
+      %h3= pluralize @engagement.attendees.count, 'Attendee'
+      %ul.people.table
+        - @engagement.attendees.order(:first_name).each do |person|
+          %li= link_to person.name, logbook_person_path(person)
+  .record-media
+
+    %section.engagement-media
+      = render partial: 'logbook/assets/s3_uploader', locals: { record: @engagement }
+      .assets.large-assets= render collection: @engagement.assets, partial: 'asset'
+
+  .button-actions
+    =link_to "Edit", edit_logbook_engagement_path(@engagement), class: 'edit button'
+    =link_to "Duplicate", duplicate_logbook_engagement_path(@engagement), class: 'duplicate button'

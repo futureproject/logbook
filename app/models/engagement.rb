@@ -1,7 +1,7 @@
 class Engagement < ActiveRecord::Base
   belongs_to :school
   belongs_to :user
-  has_many :engagement_attendees
+  has_many :engagement_attendees, dependent: :destroy
   has_many :attendees, through: :engagement_attendees, source: :person
   has_many :assets, as: :attachable, dependent: :destroy
   has_many :activities, as: :thing, dependent: :destroy

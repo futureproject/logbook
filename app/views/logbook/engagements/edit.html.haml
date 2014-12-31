@@ -1,9 +1,8 @@
-.row
-  .g9
+.show-record
+  %header
     %h1 Editing Engagement
-  .g3
-    %h1
-      = link_to "Cancel", logbook_engagement_path(@engagement)
-      = link_to "Delete", logbook_engagement_path(@engagement), method: 'delete', js: true, class: 'danger', data: { confirm: 'Are you sure?' }
+  .button-actions
+    =link_to "Cancel", logbook_engagement_path(@engagement), class: 'cancel button'
+    =link_to "Destroy", logbook_engagement_path(@engagement), class: 'delete button', data: { method: 'delete', confirm: "Are you sure?"}
 
-= render 'form'
+  = render 'form'

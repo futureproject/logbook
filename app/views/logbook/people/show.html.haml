@@ -1,7 +1,6 @@
 .person-show[@person]{class: "#{'dream_team' if @person.dream_team}"}
   %header
     %h1= @person.name
-    =link_to "Edit", edit_logbook_person_path(@person), class: 'edit button'
   %section.person-info
     %h3= "#{@person.grade}th grade #{@person.role} at #{@person.school.try(:name)}"
     .person-email= @person.email
@@ -13,4 +12,6 @@
   %section.person-activity
     %h2.engagements-color Engagements
     %ul= render @person.activities
+  .button-actions
+    =link_to "Edit", edit_logbook_person_path(@person), class: 'edit button'
 

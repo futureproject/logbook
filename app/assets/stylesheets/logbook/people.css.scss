@@ -23,8 +23,8 @@
 .person-show {
   margin: 0 auto;
   position: relative;
-  top: 1em;
   header {
+    padding-bottom: 1em;
     border-bottom: 1px solid $base-border-color;
   }
   section { margin: 1em auto; }

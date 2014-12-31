@@ -136,6 +136,13 @@ hr {
   }
 }
 
+.large-assets {
+  > * {
+    float: none;
+    margin: 1em auto;
+  }
+  img { width: 100%; height: auto; }
+}
 
 .upload {
   width: auto;
@@ -230,4 +237,47 @@ hr {
   top: 2em;
 }
 
+.button-actions {
+  position: absolute;
+  top: 2em;
+  right: 2em;
+}
 
+.show-record {
+  position: relative;
+  form {
+    padding-top: 1em;
+  }
+  header, section {
+    margin: 1em 0;
+    padding-bottom: 1em;
+    border-bottom: 1px solid $base-border-color;
+  }
+  header {
+    margin-top: 0;
+  }
+  h3 {
+    line-height: 1;
+    font-size: 2em;
+    font-weight: 400;
+    margin-bottom: .5em;
+  }
+  .record-info {
+    @include span-columns(5);
+  }
+  .record-media {
+    @include span-columns(7);
+    @include omega;
+    .asset {
+      position: relative;
+      .asset-links {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        padding: 4px;
+        font-weight: bold;
+        a { color: $light-red; text-shadow: 0 0 8px; }
+      }
+    }
+  }
+}

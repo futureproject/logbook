@@ -20,3 +20,14 @@
 }
 
 .engagements-color { color: $engagements-color; }
+
+.engagement-show {
+  .engagement-attendees {
+    a {
+      color: $people-color;
+      font-size: 1.25em;
+    }
+  }
+}
+
+
