@@ -256,6 +256,9 @@ hr {
   header {
     margin-top: 0;
   }
+  section:last-child {
+    border-bottom: none;
+  }
   h3 {
     line-height: 1;
     font-size: 2em;
@@ -279,5 +282,10 @@ hr {
         a { color: $light-red; text-shadow: 0 0 8px; }
       }
     }
+  }
+  .icon {
+    font-size: 2em;
+    display: inline-block;
+    width: 1.25em;
   }
 }

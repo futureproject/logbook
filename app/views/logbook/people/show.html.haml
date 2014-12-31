@@ -1,17 +1,20 @@
-.person-show[@person]{class: "#{'dream_team' if @person.dream_team}"}
+.person-show.show-record[@person]{class: "#{'dream_team' if @person.dream_team}"}
+  .button-actions
+    =link_to "Edit", edit_logbook_person_path(@person), class: 'edit button'
   %header
     %h1= @person.name
   %section.person-info
     %h3= "#{@person.grade}th grade #{@person.role} at #{@person.school.try(:name)}"
-    .person-email= @person.email
-    .person-phone= @person.phone
+    .person-email
+      .icon.icon-mail
+      = @person.email || "No Email"
+    .person-phone
+      .icon.icon-device-mobile
+      = @person.phone || "No Phone"
   %section.person-projects
-    %h2 Projects
+    %h3 Projects
     %ul.primary-projects= render @person.primary_projects
     %ul.secondary-projects= render @person.secondary_projects
   %section.person-activity
-    %h2.engagements-color Engagements
+    %h3.engagements-color Engagements
     %ul= render @person.activities
-  .button-actions
-    =link_to "Edit", edit_logbook_person_path(@person), class: 'edit button'
-
