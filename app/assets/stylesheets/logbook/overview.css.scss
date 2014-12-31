@@ -1,0 +1,8 @@
+.logbook_stats {
+  a { color: $stats-color; }
+  .labels, .page-header, #filters {
+    background: $stats-color;
+    color: white;
+    a { color: white; }
+  }
+}

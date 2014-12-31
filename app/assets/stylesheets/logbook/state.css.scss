@@ -7,7 +7,7 @@
   }
 }
 
-.logbook_stats { #tabs .overview { @extend %current } }
+.logbook_stats { #tabs .overview { @extend %current; a { color: $stats-color; } } }
 .logbook_people { #tabs .people { @extend %current; a { color: $people-color; } } }
 .logbook_projects { #tabs .projects { @extend %current; a { color: $projects-color; } } }
 .logbook_engagements { #tabs .engagements { @extend %current; a {color: $engagements-color;} } }
