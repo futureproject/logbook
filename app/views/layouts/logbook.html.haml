@@ -12,11 +12,11 @@
       #home
         %h1= current_scope.name
       #filter-trigger
-        %span.octicon.octicon-chevron-down
+        %span.icon.icon-chevron-down
         Filter
       #search
         %label{for: 'search-field'}
-          %span.octicon.octicon-search
+          %span.icon.icon-search
         %input#search-field.typeahead{type: 'text', placeholder: "Search #{truncate current_scope.name}"}
 
     #tabs

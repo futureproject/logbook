@@ -33,9 +33,12 @@ body {
   #filter-trigger {
     cursor: pointer;
     @include span-columns(3);
-    .octicon { @include transition }
+    .icon {
+      @include transition;
+      display: inline-block;
+    }
     &.open {
-      .octicon {
+      .icon {
         @include transform(rotate(180deg));
       }
     }
