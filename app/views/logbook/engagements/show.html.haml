@@ -1,3 +1,10 @@
+.engagement-show[@engagement]
+  %header
+    %h1= @engagement.kind
+    =link_to "Edit", edit_logbook_engagement_path(@engagement), class: 'edit button'
+  %section.engagement-info
+    %h3= @engagement.name
+    %pre.engagement-notes= @engagement.notes
 .row
   .g9
     %h1= @engagement.kind

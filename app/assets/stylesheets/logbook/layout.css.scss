@@ -139,15 +139,15 @@ body {
     margin-bottom: 1px;
     font-size: 9px;
     border-top: 1px solid $dark-gray;
-    .octicon {
-      display: block;
-      margin: 0 auto 3px;
-    }
     a {
       display: block;
       padding: 12px 0 8px;
       margin: 0 4px;
       color: lighten($medium-gray, 20%);
+    }
+    .link-label { display: none; }
+    .link-icon {
+      font-size: 33px;
     }
     &:hover {
       a {

@@ -8,6 +8,6 @@
   .engagement-actions.actions
     =link_to "View", logbook_engagement_path(engagement, scope_params), class: 'row-link'
     %a.edit{href: edit_logbook_engagement_path(engagement, scope_params), title: 'Edit'}
-      %span.octicon.octicon-pencil
+      %span.icon-pencil
     %a.delete{href: logbook_engagement_path(engagement), title: 'Delete', data: { confirm: "Are you sure you want to delete this #{engagement.kind}?", method: 'delete', remote: true}}
-      %span.octicon.octicon-x
+      %span.icon-x

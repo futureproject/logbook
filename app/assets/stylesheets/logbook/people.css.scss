@@ -7,10 +7,13 @@
   }
 }
 
+.person { position: relative; }
+
 .table .person, .person-labels {
   @extend %row;
   .person-school { @include span-columns(2); }
   .person-role { display: none; }
+
 }
 
 .people.table:empty:after {

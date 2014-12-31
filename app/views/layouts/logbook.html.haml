@@ -23,11 +23,10 @@
       %a{href: logbook_root_url }
         =image_tag asset_path('tfplogo.svg'), alt: 'The Future Project'
       %ul.tabs
-        = nav_link_to "Overview", logbook_root_url(scope_params)
-        = nav_link_to "People", logbook_people_path(scope_params)
-        = nav_link_to "Projects", logbook_projects_path(scope_params)
-        = nav_link_to "Engagements", logbook_engagements_path(scope_params)
-        = nav_link_to "Schools", logbook_schools_path(scope_params)
+        = nav_link_to "Overview", logbook_root_url(scope_params), "ds-dashboard"
+        = nav_link_to "People", logbook_people_path(scope_params), "ds-people"
+        = nav_link_to "Projects", logbook_projects_path(scope_params), "ds-projects"
+        = nav_link_to "Engagements", logbook_engagements_path(scope_params), "ds-engagements"
       #user
         %a{href: log_out_path}
           .octicon.octicon-sign-out

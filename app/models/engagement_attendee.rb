@@ -4,7 +4,7 @@ class EngagementAttendee < ActiveRecord::Base
   validates_presence_of :person_id
   validates_uniqueness_of :person_id, scope: :engagement_id, allow_nil: true
   has_many :activities, as: :thing, dependent: :destroy
-  after_create :log_action
+  after_create :log_activity
 
   def log_activity
     Activity.create(

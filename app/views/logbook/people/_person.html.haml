@@ -13,6 +13,6 @@
   .actions
     =link_to "View", logbook_person_path(person, scope_params), class: 'row-link'
     %a.edit{href: edit_logbook_person_path(person, scope_params), title: 'Edit'}
-      %span.octicon.octicon-pencil
+      %span.icon-pencil
     %a.delete{href: logbook_person_path(person), title: 'Delete', data: { confirm: "Are you sure you want to delete #{person.first_name}?", method: 'delete', remote: true}}
-      %span.octicon.octicon-x
+      %span.icon-x

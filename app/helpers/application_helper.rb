@@ -1,8 +1,12 @@
 module ApplicationHelper
 
-  def nav_link_to(link_text, link_path, id='')
-    content_tag(:li, class: link_text.downcase, id: id) do
-      link_to raw(link_text), link_path, title: link_text
+  def nav_link_to(link_text, link_path, icon=nil)
+    content_tag(:li, class: link_text.downcase) do
+      if icon
+          link_to raw("<div class='link-icon icon-#{icon}'></div><div class='link-label'>#{link_text}</div>"), link_path, title: link_text
+      else
+        link_to raw(link_text), link_path, title: link_text
+      end
     end
   end
 
