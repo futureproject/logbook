@@ -6,6 +6,8 @@
 #= require selectize
 #= require twitter/typeahead
 #= require s3_direct_upload
+#= require highcharts
+#= require chartkick
 #= require vex.combined.min
 #= require logbook/search
 #= require logbook/enhance
