@@ -1,7 +1,9 @@
-.row
-  .g9
+.show-record
+  %header
     %h1 Editing Project
-  .g3
-    %h1= link_to "Cancel", logbook_project_path(@project)
+  .button-actions
+    =link_to "Cancel", logbook_project_path(@project), class: 'cancel button'
+    =link_to "Destroy", logbook_project_path(@project), class: 'delete button', data: { method: 'delete', confirm: "Are you sure?"}
+
 
 = render 'form'
