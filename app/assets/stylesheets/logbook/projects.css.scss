@@ -16,8 +16,18 @@
   .project-updated-at { @include span-columns(2); }
 }
 
-.project-leaders {
+.project-leaders, .project-participants {
   a {
     &:not(:last-child):after { content: ', '; }
+  }
+}
+
+.project-show {
+  h1 { color: $projects-color; }
+  .project-leaders, .project-participants {
+    a {
+      color: $people-color;
+      font-size: 1.25em;
+    }
   }
 }

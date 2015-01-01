@@ -21,9 +21,17 @@ $ ->
       else
         assetAttrs.thumbnail = "//dream-os-production.s3.amazonaws.com/static-assets/document.png"
       $('.assets').prepend("
-        <a href='#{assetAttrs.external_url}' target='_blank' >
-          <img src='#{assetAttrs.thumbnail}' alt='#{assetAttrs.caption}' />
-        </a>
+        <div class='asset' id='asset_#{assetAttrs.id}'>
+          <div class='asset'>
+            <a href='#{assetAttrs.external_url}' target='_blank' >
+              <img src='#{assetAttrs.thumbnail}' alt='#{assetAttrs.caption}' />
+            </a>
+          </div>
+          <div class='asset-links'>
+            <a href='/logbook/assets/#{assetAttrs.id}' data-confirm='Are you sure?' data-remote='true' data-method='delete'>
+              Destroy
+            </a>
+        </div>
       ")
     )
 

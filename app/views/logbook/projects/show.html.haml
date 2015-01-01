@@ -1,28 +1,38 @@
-.row
-  .g9
+.project-show.show-record[@project]
+  .button-actions
+    =link_to "Edit", edit_logbook_project_path(@project), class: 'edit button'
+  %header
     %h1= @project.name
-  .g3
-    %h1=link_to "Edit", edit_logbook_project_path(@project), class: 'edit'
-.project
-  .row
-    .g3
-      %label School
-      .fact= @project.school.try :name
-    .g3
-      %label Description
-      .fact= @project.description
-    .g6
-      %label
-        MEDIA
-        = link_to " | Gallery ›", logbook_assets_path(attachable_type: @project.class.name, attachable_id: @project.id) if @project.assets.any?
+  .record-info
+    %section.project-school
+      %h3 School
+      .address
+        .project-school= @project.school.try(:name)
+        .project-address= @project.school.try(:address)
+
+    %section.project-updated-at
+      Last update:
+      = @project.updated_at.strftime "%A, %B %d"
+
+    - if @project.description.present?
+      %section.project-description
+        %pre= @project.description
+
+
+    %section.project-leaders
+      %h3= pluralize @project.leaders.count, 'Leader'
+      %ul.people.table
+        - @project.leaders.order(:first_name).each do |person|
+          %li= link_to person.name, logbook_person_path(person)
+
+    %section.project-participants
+      %h3= pluralize @project.participants.count, 'Supporter'
+      %ul.people.table
+        - @project.participants.order(:first_name).each do |person|
+          %li= link_to person.name, logbook_person_path(person)
+
+  .record-media
+    %section.project-media
       = render partial: 'logbook/assets/s3_uploader', locals: { record: @project }
-      .assets=render @project.assets
-  %hr
-  .row
-    %h3 Leaders
-  .row
-    %ul.people= render @project.leaders
-  .row
-    %h3 Supporters
-  .row
-    %ul.people= render @project.participants
+      .assets.large-assets= render collection: @project.assets, partial: 'asset'
+

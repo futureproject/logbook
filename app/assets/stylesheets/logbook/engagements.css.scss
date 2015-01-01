@@ -22,6 +22,7 @@
 .engagements-color { color: $engagements-color; }
 
 .engagement-show {
+  h1 { color: $engagements-color; }
   .engagement-attendees {
     a {
       color: $people-color;
