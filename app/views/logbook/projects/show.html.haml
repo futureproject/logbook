@@ -33,6 +33,7 @@
 
   .record-media
     %section.project-media
+      %h3 Media
       = render partial: 'logbook/assets/s3_uploader', locals: { record: @project }
       .assets.large-assets= render collection: @project.assets, partial: 'asset'
 

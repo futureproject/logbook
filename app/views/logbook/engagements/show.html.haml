@@ -27,8 +27,8 @@
         - @engagement.attendees.order(:first_name).each do |person|
           %li= link_to person.name, logbook_person_path(person)
   .record-media
-
     %section.engagement-media
+      %h3 Media
       = render partial: 'logbook/assets/s3_uploader', locals: { record: @engagement }
       .assets.large-assets= render collection: @engagement.assets, partial: 'asset'
 

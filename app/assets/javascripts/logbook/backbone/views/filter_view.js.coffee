@@ -17,6 +17,10 @@ class ds.FiltersView extends Backbone.View
 
 
 class ds.FiltersToggleView extends Backbone.View
+  initialize: ->
+    @listenTo Backbone, 'filters:toggle', ->
+      $('html, body').animate
+        scrollTop: 0
   events:
     'click': 'toggle'
 
