@@ -95,6 +95,7 @@ body {
 
 #filters {
   @include row;
+  display: none;
   background: $medium-gray;
   color: white;
   padding: 2em;
@@ -116,12 +117,14 @@ body {
     }
   }
 }
-.js #filters { display: none; }
 
 #yield {
   > * { padding: 2em; }
 }
-#charts { padding: 0 2em 2em; }
+#charts {
+  padding: 2em;
+  h2 { margin-bottom: 4px; }
+}
 
 #tabs {
   position: absolute;

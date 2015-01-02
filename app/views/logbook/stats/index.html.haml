@@ -1,11 +1,16 @@
-.page-title
-  %h1= "Stats in #{current_scope.name}"
-
 - content_for :charts_js do
   .row
-    %h2 People / Month
-    = line_chart @people, colors: ['#42c6ee', 'red'], library: { tooltip: { pointFormat: 'People: <b>{point.y}</b>', xDateFormat: '%B %d'}}
+    .g6
+      %h2 People Added
+      = line_chart [{name: "People", data: @people }]
+    .g6
+      %h2 Projects Started
+      = line_chart [{name: "Projects", data: @projects}], colors: ['#419bd3']
   .row
-    %h2 Projects / Month
-    = line_chart @projects, colors: ['#419bd3', 'red']
+    .g6
+      %h2 People With Projects
+      = line_chart [{name: "Leaders", data: @people_leading_projects }, {name: 'Supporters', data: @people_supporting_projects }], colors: ['#419bd3', '#18506e']
+    .g6
+      %h2 Engagements by Week
+      = line_chart [{name: "Engagements", data: @engagements }], colors: ['#b363a3']
 
