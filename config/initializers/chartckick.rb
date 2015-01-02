@@ -1,5 +1,5 @@
 Chartkick.options = {
-  colors: ['#42c6ee'],
+  #colors: ['#42c6ee', '#c5eaf6'],
   library: {
     chart: {
       backgroundColor: "#fdfcfd"

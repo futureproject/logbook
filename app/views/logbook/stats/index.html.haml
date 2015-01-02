@@ -1,16 +1,15 @@
 - content_for :charts_js do
   .row
     .g6
-      %h2 People Added
-      = line_chart [{name: "People", data: @people }]
-    .g6
-      %h2 Projects Started
-      = line_chart [{name: "Projects", data: @projects}], colors: ['#419bd3']
-  .row
+      %h2 Engaged People
+      = area_chart [{name: 'Students', data: totalize(@students)}, { name: 'Teachers/Staff', data: totalize(@other_people) }]
     .g6
       %h2 People With Projects
-      = line_chart [{name: "Leaders", data: @people_leading_projects }, {name: 'Supporters', data: @people_supporting_projects }], colors: ['#419bd3', '#18506e']
-    .g6
-      %h2 Engagements by Week
-      = line_chart [{name: "Engagements", data: @engagements }], colors: ['#b363a3']
+      = area_chart [{name: "Leaders", data: totalize(@people_leading_projects) }, {name: 'Supporters', data: totalize(@people_supporting_projects) }], colors: ['#419bd3', '#18506e']
+  .row
+    %h2 Engagements by Week
+    = area_chart [{name: "Coaching Sessions", data: @coaching_sessions }, {name: "Events", data: @events}, {name: "Meetings", data: @meetings }, {name: "Workshops", data: @workshops }], colors: ['#b363a3', '#a64292', '#d9b8d2', '#ccc2ca']
 
+  .row
+    %h2 School Activity by Week
+    = area_chart @activity
