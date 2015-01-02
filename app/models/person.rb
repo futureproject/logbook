@@ -20,6 +20,7 @@ class Person < ActiveRecord::Base
   GRADE_ENUM = [6, 7, 8, 9, 10, 11, 12]
   SEX_ENUM = %w(M F)
   DREAM_TEAM_ENUM = [["Yep", true],["Nope", false]]
+  COLOR_ENUM = %w(#42C8EE #036B89 #E1F7FE #FFA140 #DB6F00 #FFF0E1)
   include Filterable
   #before_save :set_counts
 

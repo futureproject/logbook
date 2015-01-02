@@ -9,6 +9,7 @@ class Project < ActiveRecord::Base
   has_many :student_reflections, class_name: "Reflection", as: :reflectable
   after_create :log_activity
   has_many :activities, as: :thing, dependent: :destroy
+  COLOR_ENUM = %w(#419AD3 #D5ECFB #064974 #FFAC43 #B66500 #FFEDD6)
   include Filterable
 
   scope :sort, -> (column) { order column.to_s }

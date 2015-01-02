@@ -13,7 +13,8 @@ class Logbook::StatsController < Logbook::ApplicationController
     @events = @engagements.where(kind: 'Event').group_by_week('engagements.date').count
     @meetings = @engagements.where(kind: 'Meeting').group_by_week('engagements.date').count
     @workshops = @engagements.where(kind: 'Workshop').group_by_week('engagements.date').count
-    @activity = current_scope.schools.map{|s| {name: s.name, data: s.activities.group_by_week('activities.feed_date').count} }
+    @activity = current_scope.is_a?(National) ? Site.order(:name) : current_scope.schools.order(:name)
+    @activity = @activity.map{|s| {name: s.name, data: s.activities.group_by_week('activities.feed_date').count} }
   end
 
   private

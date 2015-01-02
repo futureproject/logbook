@@ -8,7 +8,7 @@
 .filter
   .filter-label=link_to "School", url_for(scope_id: current_user.school.id, scope_type: 'school') rescue "School"
   .filter-options
-    - current_scope.schools.each do |school|
+    - current_scope.schools.order(:name).each do |school|
       =link_to school.name, url_for(scope_id: school.id, scope_type: 'school'), class: ('current' if current_scope.id == school.id)
 
 =yield :filters

@@ -22,7 +22,7 @@ class Engagement < ActiveRecord::Base
     ['7+ Hours', 8.0]
   ]
 
-  COLOR_ENUM = %w(#B363A4 #E78096 #9AD978 #D7EF84 #7D226C #A12C45 #50982A #8CA72E #E9C4E2 #F9D2DA #DCF5CE #F3FBD4)
+  COLOR_ENUM = %w(#b363a4 #dcaad3 #8a2f78 #5b094b)
 
   include Filterable
   scope :sort, -> (column) { order column.to_s }
