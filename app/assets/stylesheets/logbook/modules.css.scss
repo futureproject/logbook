@@ -204,6 +204,7 @@ hr {
     margin-bottom: 2em;
     white-space: nowrap;
     overflow: hidden;
+    position: relative;
     a {
       display: inline-block;
       border: 2px solid;
@@ -213,6 +214,7 @@ hr {
       margin: 0 6px;
     }
   }
+  form { position: relative; }
 }
 
 .flash {
