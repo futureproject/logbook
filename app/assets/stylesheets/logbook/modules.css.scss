@@ -53,6 +53,7 @@
   background: $medium-gray;
   color: white;
   @include row;
+  position: static;
   position: -webkit-sticky;
   top: 0;
   left: 66px;
