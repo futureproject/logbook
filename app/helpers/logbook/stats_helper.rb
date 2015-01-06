@@ -8,4 +8,5 @@ module Logbook::StatsHelper
     end
     array
   end
+
 end

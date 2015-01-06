@@ -15,6 +15,14 @@
     %h3 Projects
     %ul.primary-projects= render @person.primary_projects
     %ul.secondary-projects= render @person.secondary_projects
+- content_for :charts_js do
   %section.person-activity
     %h3.engagements-color Engagements
-    %ul= render @person.activities
+    #activities
+      .row
+        .g8
+          - @person.graphable_engagements.each do |e|
+            - e[:data].each do |d|
+              %div{data: {date: d[0], duration: d[1], attendees: d[2], kind: e[:name] } }
+        .g4= pie_chart @person.engagements.group(:kind).count, colors: Engagement::COLOR_ENUM
+

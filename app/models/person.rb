@@ -96,6 +96,10 @@ class Person < ActiveRecord::Base
     false
   end
 
+  def graphable_engagements
+    engagements.group_by(&:kind).map{|k,v| { name: k, data: v.map{|e| [e.date.to_datetime.to_i, e.duration, e.attendees.count]} } }
+  end
+
   # takes a CSV from the public directory and a User object
   # imports students into the system
   def self.import_from_csv(filename, dream_director)

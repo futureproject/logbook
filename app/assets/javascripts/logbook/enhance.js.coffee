@@ -57,3 +57,45 @@ $ ->
       $t.slideUp('fast')
     , 2000
 
+
+  $('#activities .g8').each ->
+    $(this).highcharts
+      colors: ['#b363a4', '#dcaad3', '#8a2f78', '#5b094b'],
+      chart: {
+        type: 'bubble',
+        zoomType: 'x'
+      },
+      title: false
+      xAxis: {
+        title: {
+          enabled: true,
+          text: 'Date'
+        },
+        type: 'datetime'
+      },
+      yAxis: {
+        title: {
+            text: 'Duration (hrs)'
+        }
+      },
+      legend: {
+        layout: 'vertical',
+        align: 'left',
+        verticalAlign: 'top',
+        x: 100,
+        y: 70,
+        floating: true,
+        backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF',
+        borderWidth: 1
+      },
+      plotOptions: {
+        bubble:
+          tooltip:
+            headerFormat: "<b>Engagement Info</b><br>"
+            pointFormat: '{point.y} Hrs, {point.z} Attendees'
+      },
+      series: [{
+        name: 'Engagements',
+        data: _.map($(this).children(), (elem) ->
+          [parseInt(elem.getAttribute('data-date')*1000), parseFloat(elem.getAttribute('data-duration')), parseFloat(elem.getAttribute('data-attendees'))])
+      }]

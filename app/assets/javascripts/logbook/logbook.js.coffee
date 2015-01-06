@@ -7,6 +7,7 @@
 #= require twitter/typeahead
 #= require s3_direct_upload
 #= require highcharts
+#= require highcharts-more
 #= require chartkick
 #= require vex.combined.min
 #= require logbook/search
