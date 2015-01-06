@@ -69,7 +69,23 @@
     color: white;
     opacity: .75;
   }
-  > * {
+  .active {
+    font-weight: bold;
+    position: relative;
+    &:after {
+      top: 100%;
+      left: 50%;
+      border: solid transparent;
+      content: " ";
+      height: 0;
+      width: 0;
+      position: absolute;
+      pointer-events: none;
+      border-color: transparent;
+      border-bottom-color: $base-background-color;
+      border-width: 16px;
+      margin-left: -16px;
+    }
   }
 }
 

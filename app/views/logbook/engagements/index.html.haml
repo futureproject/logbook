@@ -2,12 +2,12 @@
   %h1= pluralize @engagements.total_count, "Engagement"
 
 .labels.engagement-labels
-  .engagement-date= link_to_unless_current "Date", scoped_url_for(sort: 'date DESC')
-  .engagement-kind= link_to_unless_current "Kind", scoped_url_for(sort: 'kind')
-  .engagement-name= link_to_unless_current "Name", scoped_url_for(sort: 'name')
-  .engagement-attendees= link_to_unless_current "Attendees", scoped_url_for(with_attendees: 'people', sort: 'people_count DESC')
-  .engagement-duration= link_to_unless_current "Hours", scoped_url_for(sort: 'duration DESC')
-  .engagement-school= link_to_unless_current "School", scoped_url_for(sort: 'school_id')
+  .engagement-date= table_link_to "Date", sort: 'date DESC'
+  .engagement-kind= table_link_to "Kind", sort: 'kind'
+  .engagement-name= table_link_to "Name", sort: 'name'
+  .engagement-attendees= table_link_to "Attendees", with_attendees: 'people', sort: 'people_count DESC'
+  .engagement-duration= table_link_to "Hours", sort: 'duration DESC'
+  .engagement-school= table_link_to "School", sort: 'school_id'
 
 %ul.table.engagements= render @engagements
 =paginate @engagements rescue nil
