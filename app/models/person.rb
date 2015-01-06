@@ -10,6 +10,7 @@ class Person < ActiveRecord::Base
   has_many :engagement_attendees, dependent: :destroy
   has_many :engagements, through: :engagement_attendees
   has_many :actions, as: :actor
+  has_many :activities, as: :actor, dependent: :destroy
   has_many :reports, dependent: :destroy
   has_many :testimonials, dependent: :destroy
   has_many :student_reflections, class_name: "Reflection", as: :reflectable, dependent: :destroy
@@ -17,26 +18,46 @@ class Person < ActiveRecord::Base
   has_one :identity, dependent: :destroy
   ROLE_ENUM = %w(student teacher staff)
   GRADE_ENUM = [6, 7, 8, 9, 10, 11, 12]
-  SEX_ENUM = %w(M F _)
+  SEX_ENUM = %w(M F)
+  DREAM_TEAM_ENUM = [["Yep", true],["Nope", false]]
+  COLOR_ENUM = %w(#42C8EE #036B89 #E1F7FE #FFA140 #DB6F00 #FFF0E1)
+  include Filterable
+  #before_save :set_counts
 
   scope :search, lambda {|query, user=nil|
     return if query.blank?
     first = "%#{query.split(' ').first.downcase}%"
     last = "%#{query.split(' ').last.downcase}%"
+    operator = first == last ? "or" : "and"
     results = self.all.limit(200)
-    if first == last
-      results = results.where("lower(first_name) like ? or lower(last_name) like ?", first, last).
-        order('lower(first_name)').limit(10)
-    else
-      results = results.where("lower(first_name) like ? and lower(last_name) like ?", first, last).
-        order('lower(first_name)').limit(10)
-    end
+    results = results.where("lower(first_name) like ? #{operator} lower(last_name) like ?", first, last).order('lower(first_name)').limit(10)
     if user && user.site
       school_results = user.school ? results.joins(:school).where('schools.id=?', user.school_id) : results.none
       site_results = results.joins(:site).where('sites.id=?', user.site.id)
       results = (school_results + site_results + results).flatten.uniq
     end
     results.first(10)
+  }
+
+  scope :sort, -> (column) { order column.to_s }
+
+  scope :q, -> (query) {
+    first = "%#{query.split(' ').first.downcase}%"
+    last = "%#{query.split(' ').last.downcase}%"
+    operator = first == last ? "or" : "and"
+    where("lower(first_name) like ? #{operator} lower(last_name) like ?", first, last)
+  }
+
+  scope :with_engagements, -> (kind) {
+    joins(:engagements).where('engagements.kind = ?', kind).select("people.*, COUNT(engagements.id) AS engagements_count").group('people.id')
+  }
+
+  scope :with_hours, -> (kind) {
+    joins(:engagements).where('engagements.kind = ?', kind).select("people.*, SUM(engagements.duration) AS engagement_hours").group('people.id')
+  }
+
+  scope :with_projects, -> (kind='primary') {
+    joins("#{kind}_projects".to_sym).select("people.*, COUNT(projects.id) AS projects_count").group('people.id')
   }
 
   def name
@@ -59,6 +80,10 @@ class Person < ActiveRecord::Base
     project.leaders.include? self
   end
 
+  def projects
+    (primary_projects.order('id DESC') + secondary_projects.order('id DESC')).flatten
+  end
+
   def auth_token
     identity.token
   end
@@ -69,6 +94,10 @@ class Person < ActiveRecord::Base
 
   def works_at_tfp
     false
+  end
+
+  def graphable_engagements
+    engagements.group_by(&:kind).map{|k,v| { name: k, data: v.map{|e| [e.date.to_datetime.to_i*1000, e.duration, e.attendees.count]} } }
   end
 
   # takes a CSV from the public directory and a User object

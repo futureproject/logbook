@@ -1,0 +1,34 @@
+.logbook_engagements {
+  a { color: $engagements-color; }
+  .labels, .page-header, #filters {
+    background: $engagements-color;
+    color: white;
+    a { color: white; }
+  }
+}
+
+.engagement-labels, .table .engagement {
+  @extend %row;
+  .engagement-kind { @include span-columns(2); }
+  .engagement-school, .engagement-name { @include span-columns(3); }
+}
+
+.engagement-leaders {
+  a {
+    &:not(:last-child):after { content: ', '; }
+  }
+}
+
+.engagements-color { color: $engagements-color; }
+
+.engagement-show {
+  h1 { color: $engagements-color; }
+  .engagement-attendees {
+    a {
+      color: $people-color;
+      font-size: 1.25em;
+    }
+  }
+}
+
+

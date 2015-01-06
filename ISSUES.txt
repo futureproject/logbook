@@ -1,1 +1,2 @@
-- Collection refresh deselects active item if there is new content
+- Project and Engagement forms (add & edit) are slooow in National and City scopes
+

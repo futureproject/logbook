@@ -1,0 +1,6 @@
+- if asset.data_content_type.match(/image/i)
+  =link_to image_tag(asset.data(:thumb)), asset.data(:original)
+- elsif asset.data_content_type.match(/audio/i)
+  %audio{src: asset.data(:original), preload: 'none', controls: true}
+- else
+  =link_to asset.caption, asset.data(:original)

@@ -1,9 +1,9 @@
-#people_list.list
-= form_for [:logbook, @person], html: { class: 'list-detail panel' } do |f|
-  .panel-title
+.show-record
+  %header
     %h1 Editing Person
-    .l-menu= link_to "Cancel", logbook_person_path(@person)
-    .r-menu
-      = f.submit 'Done'
-  .panel-body.scrollable.pad
-    = render partial: 'form', locals: {f: f}
+  .button-actions
+    =link_to "Cancel", logbook_person_path(@person), class: 'cancel button'
+    =link_to "Destroy", logbook_person_path(@person), class: 'delete button', data: { method: 'delete', confirm: "Are you sure?"}
+
+
+= render 'form'

@@ -1,36 +1,48 @@
 !!!
-%html{manifest: '/logbook/manifest.appcache'}
+%html
   %head
     %title Logbook
-    = stylesheet_link_tag    'application', media: 'all'
-    %meta{name:"viewport", content: "width=device-width, maximum-scale=1.0, minimum-scale=1.0, initial-scale=1.0"}
-    %meta{name:"apple-mobile-web-app-status-bar-style", content:"black-translucent"}
-    %meta{name:"apple-mobile-web-app-capable", content:"yes"}
-    %link{rel:"apple-touch-icon", href: asset_path('icon-arrow.png')}
-
-    %link{href: asset_path("apple-touch-startup-image-1536x2008.png"), media: "(device-width: 768px) and (device-height: 1024px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)", rel: "apple-touch-startup-image"}
-
-    %link{href: asset_path("apple-touch-startup-image-1496x2048.png"), media: "(device-width: 768px) and (device-height: 1024px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)", rel: "apple-touch-startup-image"}
-
-
-    %link{href: asset_path("apple-touch-startup-image-768x1004.png"), media: "(device-width: 768px) and (device-height: 1024px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 1)", rel: "apple-touch-startup-image"}
-
-    %link{href: asset_path("apple-touch-startup-image-748x1024.png"), media: "(device-width: 768px) and (device-height: 1024px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 1)", rel: "apple-touch-startup-image"}
+    = stylesheet_link_tag    'logbook/logbook', media: 'all'
+    %meta{name:"viewport", content: "width=1024"}
     = csrf_meta_tags
-  %body#l_logbook
-    #app
-      #sidebar
-        =image_tag asset_path('tfplogo.svg'), class: 'avatar'
-        %ul.tabs
-      #canvas
-      #flash
-        - flash.each do |k, v|
-          .flash{class: k}
-            .message= v
-            .flash_dismiss
-              %span.mega-octicon.octicon-x
-
-    = javascript_include_tag 'logbook/logbook'
+    %link{rel:"apple-touch-icon", href: asset_path('icon-arrow.png')}
     :javascript
-      dream.initialize(#{JSON.dump( @js_data || {} )})
-    = render 'analytics'
+      window.ds = window.ds || {}
+      ds.CONSTANTS = #{JSON.dump( @js_data || {} )}
+    = javascript_include_tag 'logbook/logbook'
+  %body{class: params[:controller].gsub('/','_')}
+
+    #header
+      #home
+        %h1= current_scope.name
+      #filter-trigger
+        %span.icon.icon-chevron-down
+        Filter
+      #search
+        %label{for: 'search-field'}
+          %span.icon.icon-search
+        %input#search-field.typeahead{type: 'text', placeholder: "Search #{truncate current_scope.name}"}
+
+    #tabs
+      %a{href: logbook_root_url }
+        =image_tag asset_path('tfplogo.svg'), alt: 'The Future Project'
+      %ul.tabs
+        = nav_link_to "Overview", logbook_root_url(scope_params), "ds-dashboard"
+        = nav_link_to "People", logbook_people_path(scope_params), "ds-people"
+        = nav_link_to "Projects", logbook_projects_path(scope_params), "ds-projects"
+        = nav_link_to "Engagements", logbook_engagements_path(scope_params), "ds-engagements"
+      #user
+        %a{href: log_out_path}
+          .icon.icon-sign-out
+          .label Log Out
+
+    #filters
+      =render 'filters'
+    #yield= yield
+    #global-add= render 'global_add'
+    - flash.each do |k, v|
+      .flash{class: k}
+        .message= v
+
+    #charts= yield :charts_js
+    /= render 'analytics'

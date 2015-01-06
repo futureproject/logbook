@@ -1,0 +1,33 @@
+.logbook_projects {
+  a { color: $projects-color; }
+  .labels, .page-header, #filters {
+    background: $projects-color;
+    color: white;
+    a { color: white; }
+  }
+}
+
+.project-labels, .table .project {
+  @extend %row;
+  .project-name { @include span-columns(2); }
+  .project-description { @include span-columns(3); }
+  .project-leaders, .project-participants { @include span-columns(1); }
+  .project-school { @include span-columns(2); }
+  .project-updated-at { @include span-columns(2); }
+}
+
+.project-leaders, .project-participants {
+  a {
+    &:not(:last-child):after { content: ', '; }
+  }
+}
+
+.project-show {
+  h1 { color: $projects-color; }
+  .project-leaders, .project-participants {
+    a {
+      color: $people-color;
+      font-size: 1.25em;
+    }
+  }
+}

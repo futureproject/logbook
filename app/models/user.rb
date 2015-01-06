@@ -9,9 +9,8 @@ class User < ActiveRecord::Base
   has_many :engagements
   has_many :engagement_attendees, through: :engagements
   has_many :one_on_ones, through: :school
-  #has_many :tasks
-  #has_many :task_assignments, foreign_key: 'assignee_id'
   has_many :actions, as: :subject
+  has_many :activities, as: :actor, dependent: :destroy
   has_many :reports, through: :people
 
   ROLE_ENUM = %w(dream_director captain)
@@ -68,7 +67,7 @@ class User < ActiveRecord::Base
 
   def sites
     if site
-      [site]
+      Site.where(id: site.id)
     else
       Site.order(:name)
     end
@@ -76,6 +75,16 @@ class User < ActiveRecord::Base
 
   def works_at_tfp
     true
+  end
+
+  def default_logbook_scope
+    if school
+      school
+    elsif site
+      site
+    else
+      National.new
+    end
   end
 
   def stats

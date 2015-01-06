@@ -7,18 +7,27 @@ class Project < ActiveRecord::Base
   has_many :participants, through: :project_participants, source: :person
   has_many :assets, as: :attachable, dependent: :destroy
   has_many :student_reflections, class_name: "Reflection", as: :reflectable
-  after_create :log_action
+  after_create :log_activity
+  has_many :activities, as: :thing, dependent: :destroy
+  COLOR_ENUM = %w(#419AD3 #D5ECFB #064974 #FFAC43 #B66500 #FFEDD6)
+  include Filterable
 
-  def log_action
-    return unless school
-    Action.create(
-      who: whole_team.map{|p| p.name}.join(', '),
-      what: "started a project",
-      subject_id: id,
-      subject_type: "Project",
-      interesting: true,
-      school_id: school.id,
-      date: self.created_at.to_date
+  scope :sort, -> (column) { order column.to_s }
+
+  scope :q, -> (query) { where("lower(projects.name) like ?", "%#{query.downcase}%") }
+
+  scope :with_people, -> (kind='leaders') {
+    joins(kind.to_sym).select("projects.*, COUNT(people.id) AS people_count").group('projects.id')
+  }
+
+  def log_activity
+    Activity.create(
+      actor_id: leaders.first.try(:id),
+      actor_type: leaders.first.try(:class).try(:name),
+      thing_id: id,
+      thing_type: self.class.name,
+      school_id: self.school_id,
+      feed_date: self.created_at
     )
   end
 

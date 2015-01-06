@@ -1,0 +1,7 @@
+%li[school]
+  .school-site= school.site.try(:name)
+  .school-name= link_to school.name, logbook_school_path(school)
+  .school-dream-team= school.dream_team.try(:count)
+  .school-projects= school.projects.count
+  .school-engagements= school.engagements.count
+  .school-engagement-hours= school.engagements.sum(:duration).try(:round, 2)

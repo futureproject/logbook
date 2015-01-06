@@ -4,17 +4,23 @@ class Logbook::PeopleController < Logbook::ApplicationController
   # GET /people
   # GET /people.json
   def index
-    @people = Person.page(params[:page])
+    params[:sort] ||= ('dream_team DESC, last_name ASC') if filter_params.empty?
+    @people = current_scope.people.filter(filter_params).page(params[:page])
+    respond_to do |format|
+      format.html
+      format.json
+    end
   end
 
   # GET /people/1
   # GET /people/1.json
   def show
+    @engagement = Engagement.new(school_id: @person.school_id)
   end
 
   # GET /people/new
   def new
-    @person = Person.new
+    @person = Person.new(school_id: current_scope.id, grade: 10)
   end
 
   # GET /people/1/edit
@@ -30,8 +36,9 @@ class Logbook::PeopleController < Logbook::ApplicationController
       if @person.save
         format.html { redirect_to [:logbook, @person], notice: 'Person was successfully created.' }
         format.json { render :show, status: :created, location: @person }
+        format.js
       else
-        format.html { render :new }
+        format.html { redirect_to logbook_people_path, notice: 'Person was not saved.' }
         format.json { render json: @person.errors, status: :unprocessable_entity }
       end
     end
@@ -57,7 +64,7 @@ class Logbook::PeopleController < Logbook::ApplicationController
     @person.destroy
     respond_to do |format|
       format.html { redirect_to logbook_people_url, notice: 'Person was successfully destroyed.' }
-      format.json { head :no_content }
+      format.js
     end
   end
 
@@ -69,6 +76,10 @@ class Logbook::PeopleController < Logbook::ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def person_params
-      params.require(:person).permit(:first_name, :last_name, :role, :school_id, :grade, :core)
+      params.require(:person).permit!
+    end
+
+    def filter_params
+      params.slice(:q, :with_engagements, :with_hours, :with_projects, :sort)
     end
 end

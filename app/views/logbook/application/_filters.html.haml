@@ -1,0 +1,14 @@
+.filter
+  .filter-label=link_to "Site", url_for(scope_id: current_user.site.id, scope_type: 'site') rescue "Site"
+  .filter-options
+    = link_to "National", url_for(scope_type: 'national')
+    - Site.order(:name).each do |site|
+      =link_to site.name, url_for(scope_id: site.id, scope_type: 'site'), class: ('current' if current_scope.id == site.id)
+
+.filter
+  .filter-label=link_to "School", url_for(scope_id: current_user.school.id, scope_type: 'school') rescue "School"
+  .filter-options
+    - current_scope.schools.order(:name).each do |school|
+      =link_to school.name, url_for(scope_id: school.id, scope_type: 'school'), class: ('current' if current_scope.id == school.id)
+
+=yield :filters

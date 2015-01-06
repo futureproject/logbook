@@ -3,3 +3,8 @@ costume:
   description: "The Robin costume is pretty lame. I'm going to make a better one."
   school: gotham_city_high
 
+helmet:
+  name: "Design Better Helmet"
+  description: "Batman can't turn his head when in costume."
+  school: gotham_city_high
+

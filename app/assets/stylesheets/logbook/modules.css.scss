@@ -1,0 +1,295 @@
+.row {
+  @include row;
+  margin-bottom: 2em;
+}
+
+%row {
+  @include row;
+  padding: 1em 0;
+  position: relative;
+  > * {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-transform: capitalize;
+    @include span-columns(1);
+  }
+  &:hover { background: $lightest-gray; }
+}
+
+.g1 { @include span_columns(1); }
+.g2 { @include span_columns(2); }
+.g3 { @include span_columns(3); }
+.g4 { @include span_columns(4); }
+.g5 { @include span_columns(5); }
+.g6 { @include span_columns(6); }
+.g7 { @include span_columns(7); }
+.g8 { @include span_columns(8); }
+.g9 { @include span_columns(9); }
+.g10 { @include span_columns(10); }
+.g11 { @include span_columns(11); }
+.g12 { @include span_columns(12); }
+.s1 { @include shift(1); }
+.s2 { @include shift(2); }
+.s3 { @include shift(3); }
+.s4 { @include shift(4); }
+.s5 { @include shift(5); }
+.s6 { @include shift(6); }
+.s7 { @include shift(7); }
+.s8 { @include shift(8); }
+.s9 { @include shift(9); }
+.s10 { @include shift(10); }
+.s11 { @include shift(11); }
+.s12 { @include shift(12); }
+
+.page-header {
+  font-weight: bold;
+  padding-bottom: 0 !important;
+  h1 {
+    margin: 0;
+  }
+}
+.labels {
+  background: $medium-gray;
+  color: white;
+  @include row;
+  position: static;
+  position: -webkit-sticky;
+  top: 0;
+  left: 66px;
+  height: 66px;
+  right: 0;
+  z-index: 8;
+  padding: 0 2em !important;
+  line-height: 66px;
+  &.locked {
+    position: fixed;
+  }
+  a {
+    color: white;
+    opacity: .75;
+  }
+  > * {
+  }
+}
+
+.pagination {
+  border-top: 1px dotted $base-border-color;
+  padding: 2em 0;
+  @include row;
+  > * {
+    @include span-columns(1);
+  }
+}
+
+.button {
+  @include btn;
+}
+
+body .actions {
+  a {
+    display: inline-block;
+    padding: 0 4px;
+    color: $light-gray;
+  }
+}
+
+a.view { color: $light-green; }
+a.danger { color: $light-red; }
+a.edit { color: $light-yellow; }
+
+* { min-height: 1px; }
+
+.fact {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.fact:empty {
+  &:after { content: 'N/A'; }
+}
+
+hr {
+  height: 0;
+  border: none;
+  border-bottom: 1px dotted $base-border-color;
+}
+
+.date-field {
+  white-space: nowrap;
+  select {
+    display: inline-block;
+    width: auto;
+  }
+}
+
+.assets {
+  > * {
+    display: block;
+    float: left;
+    margin: 0;
+    margin: 0 1px 1px 0;
+  }
+  img {
+    width: 4em;
+    height: 4em;
+    display: block;
+  }
+}
+
+.large-assets {
+  > * {
+    float: none;
+    margin: 1em auto;
+  }
+  img { width: 100%; height: auto; }
+}
+
+.upload {
+  width: auto;
+  .progress {
+    border: 3px solid $light-green;
+    .bar { background: $light-green; }
+    margin: 15px auto;
+  }
+}
+
+.row-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  @include span-columns(11);
+  display: block;
+  text-indent: -999em;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.vex.vex-theme-wireframe .vex-overlay {
+  background: white;
+  background: rgba(255,255,255,.97);
+}
+
+.vex-content {
+  max-width: 666px;
+  margin: 2em auto;
+  padding: 30px;
+  background: none;
+}
+
+.vex-close { display: none; }
+
+.form, .vex {
+  nav {
+    .people {
+      color: $people-color;
+      &.active { background: $people-color; border-color: $people-color; color: white; }
+    }
+    .projects {
+      color: $projects-color;
+      &.active { background: $projects-color; border-color: $projects-color; color: white; }
+    }
+    .engagements {
+      color: $engagements-color;
+      &.active { background: $engagements-color; border-color: $engagements-color; color: white; }
+    }
+  }
+  header, nav {
+    text-align: center;
+  }
+  nav {
+    text-transform: uppercase;
+    padding: 1em 0 2em;
+    margin-bottom: 2em;
+    white-space: nowrap;
+    overflow: hidden;
+    position: relative;
+    a {
+      display: inline-block;
+      border: 2px solid;
+      width: 148px;
+      font-size: 1.5em;
+      padding: 8px 0 6px;
+      margin: 0 6px;
+    }
+  }
+  form { position: relative; }
+}
+
+.flash {
+  position: fixed;
+  background: $light-green;
+  padding: 1em 2em;
+  color: white;
+  z-index: 1000;
+  bottom: 0;
+  left: 66px;
+  font-size: 2em;
+  width: 100%;
+  text-align: center;
+}
+
+
+.brand-new {
+  font-weight: bold;
+}
+
+.loading {
+  position: relative;
+  top: 2em;
+}
+
+.button-actions {
+  position: absolute;
+  top: 2em;
+  right: 2em;
+}
+
+.show-record {
+  position: relative;
+  form {
+    padding-top: 1em;
+  }
+  header, section {
+    margin: 1em 0;
+    padding-bottom: 1em;
+    border-bottom: 1px solid $base-border-color;
+  }
+  header {
+    margin-top: 0;
+  }
+  section:last-child {
+    border-bottom: none;
+  }
+  h3 {
+    line-height: 1;
+    font-size: 2em;
+    font-weight: 400;
+    margin-bottom: .5em;
+  }
+  .record-info {
+    @include span-columns(5);
+  }
+  .record-media {
+    @include span-columns(7);
+    @include omega;
+    .asset {
+      position: relative;
+      .asset-links {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        padding: 4px;
+        font-weight: bold;
+        a { color: $light-red; text-shadow: 0 0 8px; }
+      }
+    }
+  }
+  .icon {
+    font-size: 2em;
+    display: inline-block;
+    width: 1.25em;
+  }
+}
+

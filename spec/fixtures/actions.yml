@@ -1,8 +1,0 @@
-tim_completed:
-  subject_id: 200
-  subject_type: TaskAssignment
-  who: Tim Drake
-  what: completed a task
-  interesting: true
-  school: gotham_city_high
-  date: 2014-07-21

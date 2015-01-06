@@ -13,6 +13,10 @@ class National
     Action.all
   end
 
+  def activities
+    Activity.all
+  end
+
   def people
     Person.all
   end
@@ -21,12 +25,28 @@ class National
     Engagement.all
   end
 
+  def projects
+    Project.all
+  end
+
+  def schools
+    School.order(:name)
+  end
+
   def identities
     Identity.where('person_id IS NOT NULL')
   end
 
   def id
     nil
+  end
+
+  def name
+    "National"
+  end
+
+  def dream_team
+    people.where(dream_team: true)
   end
 
   #def self.engagement_score

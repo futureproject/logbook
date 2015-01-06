@@ -1,28 +1,29 @@
 class Logbook::ApplicationController < ApplicationController
-  before_action :init_js_data
-  before_action :check_for_school
   before_action :authorize!
   skip_before_action :authenticate!
-  skip_before_action :check_for_school, only: [:manifest]
   layout 'logbook'
+  helper_method :current_scope
 
-  def home
-  end
-
-  def manifest
-    headers['Content-Type'] = 'text/cache-manifest'
-    render layout: false, file: "logbook/application/manifest"
+  def set_scope
+    session[:scope_id] = params[:scope_id]
+    session[:scope_type] = params[:scope_type]
+    redirect_to request.referrer
   end
 
   private
     def init_js_data
       @js_data = {}
       @js_data[:current_user] = current_user.as_json(include: :school)
+      @js_data[:scope] = { type: params[:scope_type], id: params[:scope_id]}
     end
 
-    def check_for_school
-      return if current_user.school
-      render text: "Yikes! You don't have a school in the system. If you're a Dream Director working in a school, please email chris.frank@thefutureproject.org for help."
+    def current_scope
+      return National.new if params[:scope_type] == 'national'
+      begin
+        eval "#{params[:scope_type].classify}.find(#{params[:scope_id]})"
+      rescue
+        current_user.try(:default_logbook_scope) || National.new
+      end
     end
 
 end

@@ -1,0 +1,38 @@
+.activity {
+  @include row;
+  margin-bottom: 2em;
+  .activity-when {
+    @include span-columns(1);
+  }
+  .activity-who {
+    @include span-columns(3);
+  }
+  .activity-where {
+    @include span-columns(3);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .activity-what {
+    @include span-columns(2);
+    font-weight: bold;
+  }
+  .activity-details {
+    @include span-columns(3);
+  }
+  img {
+    width: 4em;
+    height: 4em;
+  }
+  .activity-details {
+    ul li > * {
+      width: auto;
+      display: block;
+      float: none;
+    }
+    .actions, .engagement-date, .engagement-duration, .engagement-school, .project-school {
+      display: none;
+    }
+  }
+
+}

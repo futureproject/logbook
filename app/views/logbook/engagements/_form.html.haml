@@ -5,22 +5,38 @@
       - @engagement.errors.full_messages.each do |msg|
         %li= msg
 
-.field
-  = f.label :kind
-  = f.text_field :kind
-.field
-  = f.label :date
-  .date_field= f.date_select :date
+= form_for [:logbook, @engagement] do |f|
+  .row
+    .field.g6
+      = f.label :kind
+      = f.select :kind, Engagement::KIND_ENUM
+    .field.g3
+      = f.label :duration
+      = f.select :duration, Engagement::DURATION_ENUM
 
-- if current_user.school
-  =f.hidden_field :school_id, value: current_user.school_id
+    .g3.field
+      = f.label :date
+      .date-field= f.date_select :date, use_short_month: true
 
-- else
-  .field
-    = f.label :school_id
-    = f.select :school_id, School.all.map{|s| [s.name, s.id] }
+  .row
+    .field.g6
+      =f.label :name
+      =f.text_field :name
+    .g6.field
+      = f.label :school_id
+      = f.select :school_id, current_user.schools.map{|s| [s.name, s.id] }
 
-.field
-  =f.label :attendee_ids, "Attendees"
-  =f.select :attendee_ids, current_user.people.collect{|p| [p.name, p.id]}, {}, multiple: true
+  .row
+    .tall-field
+      =f.label :attendee_ids do
+        Attendees
+        =link_to "Toggle Dream Team", toggle_dream_team_logbook_engagement_path(@engagement), remote: true unless @engagement.new_record?
+      =f.select :attendee_ids, options_for_select(current_scope.people.order('dream_team DESC', :first_name).map{|p| [p.name, p.id, {'data-dream-team'=>p.dream_team}]}, selected_keys = f.object.attendee_ids), {}, multiple: true
 
+  .row
+    .textarea
+      =f.label :notes
+      =f.text_area :notes
+
+  .row
+    .actions= f.submit

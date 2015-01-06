@@ -1,0 +1,13 @@
+%li[engagement]
+  .engagement-date= engagement.date.try :strftime, "%D"
+  .engagement-kind= engagement.kind
+  .engagement-name= engagement.name
+  .engagement-attendees= engagement.attendees.count
+  .engagement-duration= engagement.duration.try(:round, 2)
+  .engagement-school= engagement.school.try(:name)
+  .engagement-actions.actions
+    =link_to "View", logbook_engagement_path(engagement, scope_params), class: 'row-link'
+    %a.edit{href: edit_logbook_engagement_path(engagement, scope_params), title: 'Edit'}
+      %span.icon-pencil
+    %a.delete{href: logbook_engagement_path(engagement), title: 'Delete', data: { confirm: "Are you sure you want to delete this #{engagement.kind}?", method: 'delete', remote: true}}
+      %span.icon-x

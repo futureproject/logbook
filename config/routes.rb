@@ -57,6 +57,7 @@ Rails.application.routes.draw do
       resources :reflections
       resources :testimonials
       resources :assets, only: [:create, :destroy]
+      resources :search_results, only: [:index]
       resources :stats, only: [:index]
       resources :sites do
         resources :people
@@ -65,9 +66,21 @@ Rails.application.routes.draw do
   end
 
   namespace :logbook do
-    root 'application#home'
-    get 'manifest.appcache', to: 'application#manifest'
-    get '*anywhere', to: 'application#home'
+    root 'stats#index'
+    resources :actions, only: [:index, :show] do
+      get :from, on: :collection
+    end
+    resources :people
+    resources :projects do
+      get 'toggle_dream_team', on: :member
+    end
+    resources :engagements do
+      get 'duplicate', on: :member
+      get 'toggle_dream_team', on: :member
+    end
+    resources :assets, only: [:show, :index, :destroy]
+    resources :schools, only: [:index, :show]
+    resources :engagement_attendees, only: [:show]
   end
 
   namespace :citybook do

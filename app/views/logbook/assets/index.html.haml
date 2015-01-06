@@ -1,0 +1,12 @@
+- if @attachable
+  .row
+    %h1= link_to "‹ #{@attachable.name}", url_for([:logbook, @attachable])
+%ul.gallery
+  - @assets.each do |asset|
+    %li.row[asset]
+      .g3
+        %h6= asset.created_at.strftime "%D"
+        = link_to 'Delete', logbook_asset_path(asset), data: { confirm: "Are you sure you want to delete this?", method: 'delete'}, class: 'danger', remote: true
+      .g6
+        %a{href: asset.data(:original)}
+          = image_tag asset.data(:medium)

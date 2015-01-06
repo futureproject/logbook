@@ -1,11 +1,34 @@
-#engagements_detail.panel.list-detail
-  .panel-title
-    %h1 Showing Engagement
-    .l-menu= link_to "Back", logbook_engagements_path
-    .r-menu= link_to "Edit", edit_logbook_engagement_path(@engagement)
-  .panel-body.scrollable.pad
-    %h1= @engagement.date.strftime("%D")
-    %h3 Attendees:
-    =@engagement.attendees.pluck(:first_name).join ", "
+.engagement-show.show-record[@engagement]
+  .button-actions
+    =link_to "Edit", edit_logbook_engagement_path(@engagement), class: 'edit button'
+    =link_to "Duplicate", duplicate_logbook_engagement_path(@engagement), class: 'duplicate button'
+  %header
+    %h1= @engagement.kind
+  .record-info
+    %section.engagement-name
+      %h3= @engagement.name
+    %section.engagement-date
+      = @engagement.date.strftime "%A, %B %d"
+      = "- #{pluralize @engagement.duration.round(2), 'hour'}"
 
-#engagements_list.list
+    - if @engagement.notes.present?
+      %section.engagement-notes
+        %pre= @engagement.notes
+
+    %section.engagement-location
+      %h3 Location
+      .address
+        .engagement-school= @engagement.school.try(:name)
+        .engagement-address= @engagement.school.try(:address)
+
+    %section.engagement-attendees
+      %h3= pluralize @engagement.attendees.count, 'Attendee'
+      %ul.people.table
+        - @engagement.attendees.order(:first_name).each do |person|
+          %li= link_to person.name, logbook_person_path(person)
+  .record-media
+    %section.engagement-media
+      %h3 Media
+      = render partial: 'logbook/assets/s3_uploader', locals: { record: @engagement }
+      .assets.large-assets= render collection: @engagement.assets, partial: 'asset'
+

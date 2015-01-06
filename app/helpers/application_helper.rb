@@ -1,10 +1,17 @@
 module ApplicationHelper
 
-  def nav_link_to(link_text, link_path, id='')
-    class_name = current_page?(link_path) ? 'current' : ''
-    content_tag(:li, class: class_name, id: id) do
-      link_to raw(link_text), link_path
+  def nav_link_to(link_text, link_path, icon=nil)
+    content_tag(:li, class: link_text.downcase) do
+      if icon
+          link_to raw("<div class='link-icon icon-#{icon}'></div><div class='link-label'>#{link_text}</div>"), link_path, title: link_text
+      else
+        link_to raw(link_text), link_path, title: link_text
+      end
     end
+  end
+
+  def map_image_tag(address)
+    image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{address}&zoom=13&scale=2&size=480x240&maptype=terrain&sensor=false&format=png&visual_refresh=true&markers=size:mid%7Ccolor:blue%7Clabel:%7C#{address}"
   end
 
   def page_title
@@ -17,6 +24,11 @@ module ApplicationHelper
     else
       {}
     end
+  end
+
+
+  def page_classes
+    @page_classes || ''
   end
 
 end

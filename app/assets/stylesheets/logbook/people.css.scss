@@ -1,0 +1,73 @@
+.logbook_people {
+  a { color: $people-color; }
+  .labels, .page-header, #filters {
+    background: $people-color;
+    color: white;
+    a { color: white; }
+  }
+}
+
+.person { position: relative; }
+
+.table .person, .person-labels {
+  @extend %row;
+  .person-school { @include span-columns(2); }
+  .person-role { display: none; }
+
+}
+
+.person-show {
+  .person-info { @include row; }
+  .person-phone, .person-email {
+    @include span-columns(3);
+  }
+}
+
+.people.table:empty:after {
+  content: "Alas! Alack! There's nobody here.";
+}
+
+.person-projects {
+  h2 { color: $projects-color; }
+  .project {
+    margin-bottom: 2em;
+    padding: 2em;
+    background: white;
+    box-shadow: -1px 1px 0 $base-border-color;
+    position: relative;
+    .edit, .delete { display: none; }
+  }
+  .project-name {
+    font-size: 2em;
+  }
+  .project-school { display: none; }
+  .project-description {
+    margin: 1em auto;
+  }
+  .project-leaders, .project-participants, .project-updated-at, .project-actions {
+    display: inline-block;
+    margin-right: 1em;
+  }
+  .project-leaders {
+    &:after { content: ' Leaders' }
+  }
+  .project-participants {
+    &:after { content: ' Supporters' }
+  }
+  .project-updated-at:before { content: "Last Updated: " }
+  .primary-projects {
+    .project-name {
+      &:after {
+        content: "lead";
+        font-variant: small-caps;
+        background: $base-border-color;
+        color: white;
+        margin-left: 8px;
+        display: inline-block;
+        padding: 0 6px;
+        line-height: 24px;
+        height: 24px;
+      }
+    }
+  }
+}

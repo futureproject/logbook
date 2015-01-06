@@ -1,0 +1,3 @@
+%li.engagement.activity
+  .engagement-date= engagement_attendee.engagement.date.strftime("%D") rescue "N/A"
+  .engagement-kind= engagement_attendee.engagement.try(:kind)

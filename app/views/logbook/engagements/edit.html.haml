@@ -1,10 +1,8 @@
-#engagements_list.list
-
-= form_for [:logbook, @engagement], html: { class: 'list-detail panel' } do |f|
-  .panel-title
+.show-record
+  %header
     %h1 Editing Engagement
-    .l-menu= link_to "Cancel", logbook_engagements_path
-    .r-menu
-      = f.submit 'Done'
-  .panel-body.scrollable.pad
-    = render partial: 'form', locals: {f: f}
+  .button-actions
+    =link_to "Cancel", logbook_engagement_path(@engagement), class: 'cancel button'
+    =link_to "Destroy", logbook_engagement_path(@engagement), class: 'delete button', data: { method: 'delete', confirm: "Are you sure?"}
+
+  = render 'form'

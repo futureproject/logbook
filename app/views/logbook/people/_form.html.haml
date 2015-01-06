@@ -4,25 +4,41 @@
     %ul
       - @person.errors.full_messages.each do |msg|
         %li= msg
-.field
-  = f.label :first_name
-  = f.text_field :first_name
-.field
-  = f.label :last_name
-  = f.text_field :last_name
-.field
-  = f.label :role
-  = f.select :role, Person::ROLE_ENUM
-- if current_user.school
-  =f.hidden_field :school_id, value: current_user.school_id
-- else
-  .field
-    = f.label :school_id
-    = f.select :school_id, School.all.map{|s| [s.name, s.id] }
-.field
-  = f.label :grade
-  = f.select :grade, (9..12)
-.field
-  = f.label :dream_team do
-    = f.check_box :dream_team
-    Core
+=form_for [:logbook, @person] do |f|
+  .row
+    .field.g3
+      = f.label :first_name
+      = f.text_field :first_name, required: true
+    .field.g3
+      = f.label :last_name
+      = f.text_field :last_name, required: true
+    .field.g6
+      = f.label :school_id, 'School'
+      =f.select :school_id, current_user.schools.map{|s| [s.name, s.id] }
+  .row
+    .field.g3
+      = f.label :role
+      =f.select :role, Person::ROLE_ENUM
+    .field.g3
+      = f.label :grade
+      =f.select :grade, Person::GRADE_ENUM
+    .field.g3
+      = f.label :sex
+      =f.select :sex, Person::SEX_ENUM, include_blank: true
+    .field.g3
+      = f.label :dream_team
+      = f.select :dream_team, Person::DREAM_TEAM_ENUM
+  .row
+    .field.g6
+      = f.label :email
+      = f.text_field :email
+    .field.g6
+      = f.label :phone
+      = f.text_field :phone
+  .row
+    .textarea
+      = f.label :notes, 'Notes'
+      = f.text_area :notes
+  .row
+    .actions
+      = f.submit
