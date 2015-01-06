@@ -6,6 +6,10 @@
     %meta{name:"viewport", content: "width=1024"}
     = csrf_meta_tags
     %link{rel:"apple-touch-icon", href: asset_path('icon-arrow.png')}
+    :javascript
+      window.ds = window.ds || {}
+      ds.CONSTANTS = #{JSON.dump( @js_data || {} )}
+    = javascript_include_tag 'logbook/logbook'
   %body{class: params[:controller].gsub('/','_')}
 
     #header
@@ -40,9 +44,5 @@
       .flash{class: k}
         .message= v
 
-    :javascript
-      window.ds = window.ds || {}
-      ds.CONSTANTS = #{JSON.dump( @js_data || {} )}
-    = javascript_include_tag 'logbook/logbook'
     #charts= yield :charts_js
     /= render 'analytics'

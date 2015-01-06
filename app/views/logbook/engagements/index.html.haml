@@ -1,5 +1,5 @@
 .page-header
-  %h1 Engagements
+  %h1= pluralize @engagements.total_count, "Engagement"
 
 .labels.engagement-labels
   .engagement-date= link_to_unless_current "Date", scoped_url_for(sort: 'date DESC')
@@ -11,3 +11,4 @@
 
 %ul.table.engagements= render @engagements
 =paginate @engagements rescue nil
+%section= page_entries_info @engagements

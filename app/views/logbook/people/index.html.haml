@@ -1,5 +1,5 @@
 .page-header
-  %h1 People
+  %h1= pluralize @people.total_count, "Person"
 .labels.person-labels
   .person-first-name=link_to_unless_current 'first', scoped_url_for(sort: 'first_name')
   .person-last-name=link_to_unless_current 'last', scoped_url_for(sort: 'last_name')
@@ -14,4 +14,5 @@
   .person-events=link_to_unless_current 'Events', scoped_url_for(with_engagements: 'Event', sort: 'engagements_count DESC')
 
 %ul.table.people= render @people
-=paginate @people rescue nil
+= paginate @people rescue nil
+%section= page_entries_info @people

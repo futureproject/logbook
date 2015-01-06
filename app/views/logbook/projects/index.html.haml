@@ -1,5 +1,5 @@
 .page-header
-  %h1 Projects
+  %h1= pluralize @projects.total_count, "Project"
 .labels.project-labels
   .project-name=link_to_unless_current 'Name', scoped_url_for(sort: 'name')
   .project-description=link_to_unless_current 'Description', scoped_url_for(sort: 'description')
@@ -10,3 +10,4 @@
 
 %ul.table.projects= render @projects
 =paginate @projects rescue nil
+%section= page_entries_info @projects

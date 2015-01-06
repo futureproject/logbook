@@ -97,7 +97,7 @@ class Person < ActiveRecord::Base
   end
 
   def graphable_engagements
-    engagements.group_by(&:kind).map{|k,v| { name: k, data: v.map{|e| [e.date.to_datetime.to_i, e.duration, e.attendees.count]} } }
+    engagements.group_by(&:kind).map{|k,v| { name: k, data: v.map{|e| [e.date.to_datetime.to_i*1000, e.duration, e.attendees.count]} } }
   end
 
   # takes a CSV from the public directory and a User object

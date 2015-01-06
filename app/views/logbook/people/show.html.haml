@@ -15,14 +15,41 @@
     %h3 Projects
     %ul.primary-projects= render @person.primary_projects
     %ul.secondary-projects= render @person.secondary_projects
-- content_for :charts_js do
   %section.person-activity
     %h3.engagements-color Engagements
     #activities
-      .row
-        .g8
-          - @person.graphable_engagements.each do |e|
-            - e[:data].each do |d|
-              %div{data: {date: d[0], duration: d[1], attendees: d[2], kind: e[:name] } }
-        .g4= pie_chart @person.engagements.group(:kind).count, colors: Engagement::COLOR_ENUM
+    :javascript
+      $(document).ready(function(){
+        $('#activities').highcharts({
+          credits: false,
+          colors: #{Chartkick.options[:colors].last(4)},
+          chart: {
+            type: 'bubble',
+            zoomType: 'x',
+            backgroundColor: "#{Chartkick.options[:library][:chart][:backgroundColor]}",
+          },
+          title: false,
+          xAxis: {
+            type: 'datetime',
+          },
+          yAxis: {
+            title: {
+              text: 'Duration (hrs)'
+            }
+          },
+          legend: {
+            layout: 'horizontal',
+            verticalAlign: 'bottom',
+          },
+          plotOptions: {
+            bubble: {
+              tooltip: {
+                headerFormat: "<b>{series.name}</b><br>",
+                pointFormat: '{point.y} Hrs, {point.z} Attendees'
+              }
+            }
+          },
+          series: #{JSON.dump(@person.graphable_engagements)}
+        })
+      })
 
