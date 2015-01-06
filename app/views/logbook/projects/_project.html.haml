@@ -5,6 +5,7 @@
   .project-participants= project.participants.count
   .project-school= project.school.try :name
   .project-updated-at= project.updated_at.strftime "%D"
+  .project-created-at= project.created_at.strftime "%D"
   .project-actions.actions
     = link_to 'View', logbook_project_path(project, scope_params), class: 'row-link'
     %a.edit{href: edit_logbook_project_path(project, scope_params), title: 'Edit'}

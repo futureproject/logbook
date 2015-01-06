@@ -13,6 +13,9 @@
     %section.project-updated-at
       Last update:
       = @project.updated_at.strftime "%A, %B %d"
+      %br
+      Created:
+      = @project.created_at.strftime "%A, %B %d"
 
     - if @project.description.present?
       %section.project-description

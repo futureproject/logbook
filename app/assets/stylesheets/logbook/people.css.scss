@@ -44,7 +44,7 @@
   .project-description {
     margin: 1em auto;
   }
-  .project-leaders, .project-participants, .project-updated-at, .project-actions {
+  .project-leaders, .project-participants, .project-updated-at, .project-created-at, .project-actions {
     display: inline-block;
     margin-right: 1em;
   }
@@ -55,6 +55,7 @@
     &:after { content: ' Supporters' }
   }
   .project-updated-at:before { content: "Last Updated: " }
+  .project-created-at:before { content: "Created: " }
   .primary-projects {
     .project-name {
       &:after {

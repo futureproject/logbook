@@ -7,6 +7,7 @@
   .project-participants=link_to_unless_current 'Supporters', scoped_url_for(with_people: 'participants', sort: 'people_count DESC')
   .project-school=link_to_unless_current 'School', scoped_url_for(sort: 'school_id')
   .project-updated-at=link_to_unless_current 'Updated', scoped_url_for(sort: 'updated_at DESC')
+  .project-created-at=link_to_unless_current 'Created', scoped_url_for(sort: 'created_at DESC')
 
 %ul.table.projects= render @projects
 =paginate @projects rescue nil

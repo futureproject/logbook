@@ -13,7 +13,7 @@
   .project-description { @include span-columns(3); }
   .project-leaders, .project-participants { @include span-columns(1); }
   .project-school { @include span-columns(2); }
-  .project-updated-at { @include span-columns(2); }
+  .project-updated-at { @include span-columns(1); }
 }
 
 .project-leaders, .project-participants {
