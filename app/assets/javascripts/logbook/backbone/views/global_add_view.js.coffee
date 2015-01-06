@@ -15,7 +15,7 @@ class ds.GlobalAddView extends Backbone.View
         overlayClosesOnClick: false
       @setElement('.vex')
     @$el.find('form').attr('data-remote', true).find('select[multiple]').each ->
-      ds.selects[this.id] = $(this).selectize()
+      new ds.SelectizeView({ el: this })
     @$el.find('input[type=text]').first().focus()
     @
 

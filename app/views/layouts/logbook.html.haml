@@ -1,7 +1,7 @@
 !!!
 %html
   %head
-    %title Logbook
+    %title= "Logbook | #{params[:controller].split('/').last.capitalize}"
     = stylesheet_link_tag    'logbook/logbook', media: 'all'
     %meta{name:"viewport", content: "width=1024"}
     = csrf_meta_tags

@@ -14,7 +14,7 @@ class Logbook::ApplicationController < ApplicationController
     def init_js_data
       @js_data = {}
       @js_data[:current_user] = current_user.as_json(include: :school)
-      @js_data[:scope] = { type: params[:scope_type], id: params[:scope_id]}
+      @js_data[:scope] = { type: current_scope.class.name.downcase, id: current_scope.id }
     end
 
     def current_scope

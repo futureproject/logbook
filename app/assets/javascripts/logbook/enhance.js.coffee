@@ -1,10 +1,5 @@
 window.ds ||= {}
 $ ->
-  # activate selectize on select[multiples]
-  ds.selects = {}
-  $('select[multiple]').each ->
-    ds.selects[this.id] = $(this).selectize()
-
   # activate direct-to-s3 upload forms
   $('.s3-uploader').each ->
     $t = $(this)
