@@ -55,7 +55,6 @@ input[type=submit] {
   border-radius: 0;
   &.input-active { border-radius: 0; }
   .item {
-    overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
     max-width: 180px;
