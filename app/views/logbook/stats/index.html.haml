@@ -1,7 +1,7 @@
 - content_for :charts_js do
   .row
     .g6
-      %h2 Engaged People
+      %h2 People / Time
       = column_chart @people, colors: Person::COLOR_ENUM, library: { plotOptions: { series: { stacking: true } } }
     .g6
       %h2 Project Leaders & Supporters

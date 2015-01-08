@@ -1,5 +1,5 @@
 class Logbook::StatsController < Logbook::ApplicationController
-  START_DAY = Date.new(2014,9,1)
+  START_DAY = Date.new(2014,9,1).beginning_of_week
 
   # GET /logbook
   def index
@@ -17,21 +17,22 @@ class Logbook::StatsController < Logbook::ApplicationController
 
   private
     def people_over_time
-      d = Date.today
+      current_day = START_DAY
+      end_day = Date.today.beginning_of_week
       active_ppl = []
       inactive_ppl = []
       new_ppl = []
-      while d > START_DAY
-        date = d.strftime "%b %d"
-        new_count = current_scope.people.where('? >= people.created_at AND people.created_at >= ?', d, d-1.week).joins(:engagements).uniq.where('? > engagements.date AND engagements.date >= ?', d, d-1.week).count
-        active_count = current_scope.people.where('people.created_at < ?', d-1.week).joins(:engagements).uniq.where('? > engagements.date AND engagements.date >= ?', d, d-1.week).count
-        inactive_count = current_scope.people.where('people.created_at <= ?', d).count - active_count
-        new_ppl.unshift [date, new_count]
-        active_ppl.unshift [date, active_count]
-        inactive_ppl.unshift [date, inactive_count]
-        d -= 1.week
+      while current_day <= end_day
+        date = current_day.strftime "%b %d"
+        active_count = current_scope.people.created_before(current_day).joins(:engagements).merge(Engagement.week_of(current_day)).uniq.count
+        inactive_count = current_scope.people.created_before(current_day).count - active_count
+        new_count = current_scope.people.week_of(current_day).joins(:engagements).merge(Engagement.week_of(current_day)).uniq.count
+        new_ppl.push [date, new_count]
+        active_ppl.push [date, active_count - new_count]
+        inactive_ppl.push [date, inactive_count]
+        current_day += 1.week
       end
-      array = [ { name: 'Newly Engaged', data: new_ppl }, { name: 'Returning', data: active_ppl }, {name: 'Inactive', data: inactive_ppl } ]
+      array = [ { name: 'Newly Engaged', data: new_ppl }, { name: 'Active', data: active_ppl }, {name: 'Inactive', data: inactive_ppl } ]
       array
     end
 
