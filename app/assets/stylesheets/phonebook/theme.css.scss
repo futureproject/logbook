@@ -1,4 +1,5 @@
 $light-gray: #acacac;
+
 @mixin heading {
   font-weight: 600;
 }
@@ -16,34 +17,37 @@ $light-gray: #acacac;
   @include transform(scaleY(.5));
 }
 
-html {
+body {
   -webkit-tap-highlight-color: transparent;
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+  font-weight: 400;
+  font-family: $base-font-family;
+  background-color: $base-background-color;
+  color: $base-font-color;
 }
-
 
 body, .detail-content, .list-items {
   background: $base-background-color;
 }
 
 .tab-bar, .list-title, .detail-title {
-  background: $base-accent-color;
-  color: $base-background-color;
+  background: white;
+  border-bottom: 1px solid $base-border-color;
 }
 
 .list-title, .detail-title {
   button, .button {
-    color: $base-background-color;
   }
   h1 {
-    color: $dark-gray;
     font-size: 1em;
     line-height: 44px;
-    font-weight: 600;
+    font-weight: 700;
   }
 }
 
 .list-item {
-  background: white;
   &.selected {
     background: $base-border-color;
   }
@@ -89,6 +93,11 @@ body, .detail-content, .list-items {
 .calendar-date-month {
   color: $blue;
 }
+
+#phonebook-engagements {
+  .list-title, .detail-title, .list-item-timestamp { color: $engagements-color; }
+}
+
 .engagement-detail {
   .engagement-name {
     @include heading;
@@ -126,7 +135,22 @@ body, .detail-content, .list-items {
 }
 
 .button, button {
-  font-weight: 600;
+  font-weight: 700;
+  &.new {
+    position: relative;
+    &:after {
+      content: '';
+      display: block;
+      position: absolute;
+      height: 20px;
+      width: 20px;
+      pointer-events: none;
+      border: 2px solid;
+      border-radius: 50%;
+      top: 6px;
+      right: 10px;
+    }
+  }
 }
 
 #upload-form h3 { display: none; }
@@ -151,7 +175,7 @@ select {
 @media screen and (orientation: portrait) {
   .standalone {
     position: relative;
-    border-top: 20px solid $blue;
+    border-top: 20px solid $dark-gray;
   }
   input[type=file] {
     visiblity: hidden;

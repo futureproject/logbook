@@ -3,11 +3,10 @@ ds.installer =
     $('body').html("
       <div id='installer'>
         <div id='installer-content'>
-          <dic class='octicon octicon-repo'></div>
+          <dic class='icon-repo'></div>
           <h1>Logbook</h1>
-          <hr>
-          <h4>Add to home screen</h4>
-          <p>(It's the square button with an arrow pointing up.)</p>
+          <h4>Add this app to your home screen.</h4>
+          <p>(Tap the square button with an arrow pointing up.)</p>
         </div>
       </div>
     ")
