@@ -23,15 +23,17 @@
     &:hover {
       background: inherit;
     }
-    &.back:before {
-      content: '‹';
-      display: inline-block;
-      position: absolute;
-      left: 4px;
-      top: -3px;
-      font-size: 2em;
-      font-weight: normal;
-    }
+    /*
+      &.back:before {
+        content: '‹';
+        display: inline-block;
+        position: absolute;
+        left: 4px;
+        top: -3px;
+        font-size: 2em;
+        font-weight: normal;
+      }
+      */
   }
 }
 .list {
