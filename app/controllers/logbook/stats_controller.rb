@@ -19,16 +19,19 @@ class Logbook::StatsController < Logbook::ApplicationController
     def people_over_time
       d = Date.today
       active_ppl = []
-      ppl = []
+      inactive_ppl = []
+      new_ppl = []
       while d > START_DAY
         date = d.strftime "%b %d"
-        active_count = current_scope.people.where('people.created_at < ?', d).joins(:engagements).uniq.where('? > engagements.date AND engagements.date >= ?', d, d-1.week).count
-        inactive_count = current_scope.people.where('people.created_at < ?', d).count - active_count
+        new_count = current_scope.people.where('? >= people.created_at AND people.created_at >= ?', d, d-1.week).joins(:engagements).uniq.where('? > engagements.date AND engagements.date >= ?', d, d-1.week).count
+        active_count = current_scope.people.where('people.created_at < ?', d-1.week).joins(:engagements).uniq.where('? > engagements.date AND engagements.date >= ?', d, d-1.week).count
+        inactive_count = current_scope.people.where('people.created_at <= ?', d).count - active_count
+        new_ppl.unshift [date, new_count]
         active_ppl.unshift [date, active_count]
-        ppl.unshift [date, inactive_count]
+        inactive_ppl.unshift [date, inactive_count]
         d -= 1.week
       end
-      array = [ { name: 'Active', data: active_ppl }, {name: 'Inactive', data: ppl } ]
+      array = [ { name: 'Newly Engaged', data: new_ppl }, { name: 'Returning', data: active_ppl }, {name: 'Inactive', data: inactive_ppl } ]
       array
     end
 

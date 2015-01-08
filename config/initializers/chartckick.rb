@@ -3,7 +3,7 @@ Chartkick.options = {
   library: {
     chart: {
       backgroundColor: "#fdfcfd",
-      zoomType: 'x'
+      zoomType: 'xy'
     },
     plotOptions: {
       series: {
