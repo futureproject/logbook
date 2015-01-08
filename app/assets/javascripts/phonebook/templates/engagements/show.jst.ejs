@@ -9,15 +9,11 @@
 </div>
 <div class='engagement-detail detail-content scrollable'>
   <div>
-    <div class="calendar-date">
-      <div class="calendar-date-month"><%= shortmonth %></div>
-      <div class="calendar-date-day"><%= day_of_month %></div>
-    </div>
-    <h6 class='engagement-name'><%= name || kind %></h6>
-    <div class='engagement-school'><%= school %></div>
-    <div class='engagement-duration'>
-      <%= attendee_ids.length %> People, <%= duration %> Hours
-    </div>
+    <header>
+      <h2><%= name || kind %></h2>
+      <div class='engagement-school'><%= school %></div>
+      <%= Date.parse(date).toString('MMM dd') %> | <%= duration %> Hrs
+    </header>
     <div class='engagement-actions'>
       <div class='attendance button'>Take Attendance</div>
       <div class='upload button'>Upload Media</div>
