@@ -6,8 +6,6 @@ class Phonebook.Views.Engagements.ListView extends Backbone.View
     @listenTo @collection, 'reset add', @render
     @listenTo @collection, 'change:selected', @clearSelection
 
-  show: -> @$el.addClass('active').removeClass('shifted')
-  hide: -> @$el.removeClass 'active'
 
   render: ->
     @removeItems()

@@ -4,7 +4,7 @@ class Phonebook.Controllers.EngagementsController extends Backbone.View
     @listen()
     @router = new Phonebook.Routers.EngagementsRouter
     @views =
-      list: new Phonebook.Views.Engagements.ListView
+      index: new Phonebook.Views.Engagements.IndexView
         collection: @collection
       show: new Phonebook.Views.Engagements.ShowView
       new: new Phonebook.Views.Engagements.NewView
@@ -16,13 +16,10 @@ class Phonebook.Controllers.EngagementsController extends Backbone.View
     ds.bootstrapper.loadLocal @collection
 
   template: JST['phonebook/templates/engagements/controller']
-  events:
-    'tap .new': 'new'
-    'touchmove .list-title': (e) -> e.preventDefault()
 
   render: ->
     @$el.html @template()
-    @views.list.setElement '#engagements-list-items'
+    @views.index.setElement '#engagements-list'
     @views.show.setElement '#show-engagement'
     @views.new.setElement '#new-engagement'
     @views.edit.setElement '#edit-engagement'
@@ -42,16 +39,16 @@ class Phonebook.Controllers.EngagementsController extends Backbone.View
 
   onShow: (view) ->
     if view == @views.show
-      @views.list.$el.addClass('shifted')
+      @views.index.$el.addClass('shifted')
 
   onHide: (view) ->
-    @views.list.el.classList.add 'active'
+    @views.index.el.classList.add 'active'
     if view == @views.new || view == @views.show
       Backbone.trigger 'engagements:router:update', ''
     else if view.model
       Backbone.trigger 'engagements:router:update', view.model.get('id')
     if view == @views.show
-      @views.list.$el.removeClass('shifted')
+      @views.index.$el.removeClass('shifted')
 
   onSave: (model) ->
     @collection.add model,
@@ -62,7 +59,7 @@ class Phonebook.Controllers.EngagementsController extends Backbone.View
 
   index: ->
     _.each @views, (view) -> view.hide()
-    @views.list.show()
+    @views.index.show()
 
   show: (id) ->
     model = @collection.get(id)
