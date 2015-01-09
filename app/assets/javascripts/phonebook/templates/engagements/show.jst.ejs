@@ -12,15 +12,18 @@
     <header>
       <h2><%= name || kind %></h2>
       <div class='engagement-school'><%= school %></div>
-      <%= Date.parse(date).toString('MMM dd') %> | <%= duration %> Hrs
+      <span><%= Date.parse(date).toString('MMM dd') %></span>
+      <span><%= duration %> Hrs</span>
     </header>
-    <div class='engagement-actions'>
-      <div class='attendance button'>Take Attendance</div>
-      <div class='upload button'>Upload Media</div>
+    <div class='engagement-notes card'>
+      <pre><%= notes || "No notes" %></pre>
     </div>
-    <div class='engagement-notes'>
-      <h6>Notes:</h6>
-      <textarea class='editable' name='notes'><%= notes %></textarea>
+    <div class='engagement-attendace card attendance'>
+      <h4>Attendance (<%= attendee_ids.length %>)</h4>
     </div>
+    <div class='engagement-media card upload'>
+      <h4>Gallery</h4>
+    </div>
+
   </div>
 </div>

@@ -41,10 +41,8 @@ body, .detail-content, .list-items {
 }
 
 .list-title, .detail-title {
-  button, .button {
-  }
   h1 {
-    font-size: 1em;
+    font-size: 16px;
     line-height: 44px;
     font-weight: 700;
   }
@@ -85,7 +83,6 @@ body, .detail-content, .list-items {
 }
 
 .list-item-timestamp {
-  font-family: 'avenir next condensed';
   color: $light-gray;
   font-weight: normal;
 }
@@ -122,14 +119,6 @@ body, .detail-content, .list-items {
   text-overflow: ellipsis;
 }
 
-.engagement-actions {
-  border-top: 0.5px solid $base-border-color;
-  text-align: center;
-  .button {
-    background: $light-green;
-    &.upload { background: $dark-blue; }
-  }
-}
 .engagement-notes {
   border-top: 0.5px solid $base-border-color;
   textarea {
@@ -163,7 +152,7 @@ body, .detail-content, .list-items {
 #upload-form h3 { display: none; }
 
 .upload {
-  width: auto;
+  border-top: none;
   .progress {
     border: 3px solid $light-green;
     .bar { background: $light-green; }
@@ -180,10 +169,6 @@ select {
 }
 
 @media screen and (orientation: portrait) {
-  .standalone {
-    position: relative;
-    border-top: 20px solid $dark-gray;
-  }
   input[type=file] {
     visiblity: hidden;
     position: relative;

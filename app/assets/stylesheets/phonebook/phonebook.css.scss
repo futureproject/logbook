@@ -6,6 +6,7 @@
 $light-gray: #999;
 @import 'bourbon';
 @import 'neat';
+@import 'forms';
 @import 'modules';
 @import 'engagements';
 @import 'theme';
@@ -31,7 +32,12 @@ body {
 
 textarea {
   white-space: pre-wrap;
-  height: 140px;
+}
+pre {
+  white-space: pre-wrap;
+  font-family: $base-font-family;
+  margin: 0 auto;
+  line-height: 1.2;
 }
 
 #installer {
@@ -54,17 +60,6 @@ textarea {
     .detail-title, .list-title {
       * { display: none; }
     }
-  }
-  textarea:focus {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: auto;
-    font-size: 14px;
-    border: none;
-    padding: 15px;
   }
 }
 
