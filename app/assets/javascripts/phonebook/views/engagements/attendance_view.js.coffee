@@ -17,7 +17,7 @@ class Phonebook.Views.Engagements.AttendanceView extends Backbone.View
 
   show: (model) ->
     @model = model
-    Backbone.trigger 'engagements:router:update', "#{@model.get('id')}/attendance"
+    Backbone.trigger('engagements:router:update', "#{@model.get('id')}/attendance") unless @model.isNew()
     @model.set 'taking_attendance', true
     @render()
     @search = new Phonebook.Views.People.SearchView
@@ -64,9 +64,12 @@ class Phonebook.Views.Engagements.AttendanceView extends Backbone.View
       attendee_ids: ids
 
   loadAttendeesFromServer: ->
-    $.ajax
-      url: ds.apiHelper.urlFor 'engagement_attendees', @model.get('id')
-      complete: (response) =>
-        attendees = JSON.parse response.responseText
-        Backbone.trigger 'engagement_attendees:loaded', attendees
+    if @model.isNew()
+      Backbone.trigger 'engagement_attendees:loaded', []
+    else
+      $.ajax
+        url: ds.apiHelper.urlFor 'engagement_attendees', @model.get('id')
+        complete: (response) =>
+          attendees = JSON.parse response.responseText
+          Backbone.trigger 'engagement_attendees:loaded', attendees
 

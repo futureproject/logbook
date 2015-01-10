@@ -6,9 +6,18 @@ class Phonebook.Views.Engagements.NewView extends Backbone.View
   template: JST['phonebook/templates/engagements/new']
 
   events:
-    'tap .back': 'animateOut'
+    'tap .back': 'cancel'
     'tap .done': 'submitForm'
+    'tap .attendance': 'takeAttendance'
     'touchmove .detail-title' : (e) -> e.preventDefault()
+
+  cancel: ->
+    @model.destroy()
+    @animateOut()
+
+  takeAttendance: (e) ->
+    Backbone.trigger 'engagements:taking_attendance', @model
+    e.gesture.srcEvent.preventDefault()
 
   listen: ->
     @listenTo Backbone, 'engagements:new', @show

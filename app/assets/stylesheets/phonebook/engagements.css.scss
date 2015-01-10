@@ -28,8 +28,6 @@
 .attending-person.list-item {
   padding-left: 12px;
   .list-item-timestamp {
-    right: 0;
-    color: $light-green;
     font-weight: 600;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -39,30 +37,34 @@
     left: 0;
   }
 }
-.engagement-attendees .list-item-timestamp {
-  &:empty:before {
-    content: 'Absent';
-    color: $light-gray;
-  }
+.engagement-attendance {
+  .fancy-search-form { background: $engagements-color; }
 }
 
 #engagement-attendees-list {
-  &:before {
-    display: block;
-    content: 'Attendees:';
-    font-weight: 600;
-    background: $lightest-gray;
-    padding: 0 4px;
+  .attending-person {
+    background: $engagements-color;
+    color: white;
+    border-top: 1px solid lighten($engagements-color, 10%);
+    &:after { display: none; }
+    border-bottom: 1px solid darken($engagements-color, 10%);
+    .list-item-title { color: white; }
+    .list-item-timestamp {
+      opacity: .75;
+      color: white;
+      font-weight: 300;
+      &:empty:before {
+        content: 'Absent';
+        display: block;
+        color: $dark-gray;
+      }
+    }
   }
 }
 
-#engagement-search-results:not(:empty) {
-  margin-bottom: 15px;
-  &:before {
-    display: block;
-    content: 'Search Results:';
-    font-weight: 600;
-    background: $lightest-gray;
-    padding: 0 4px;
+
+#phonebook-engagements {
+  .recessed-button {
+    background: $engagements-color;
   }
 }

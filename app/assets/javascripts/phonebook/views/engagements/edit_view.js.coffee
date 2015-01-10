@@ -9,12 +9,17 @@ class Phonebook.Views.Engagements.EditView extends Backbone.View
   events:
     'tap .back': 'animateOut'
     'tap .done': 'submitForm'
+    'tap .attendance': 'takeAttendance'
     'touchmove .detail-title' : (e) -> e.preventDefault()
 
   listen: ->
     @listenTo Backbone, 'engagements:editing', @show
     @listenTo Backbone, 'engagements:saved', @hide
     @listenTo Backbone, 'engagements:selected', @hide
+
+  takeAttendance: (e) ->
+    Backbone.trigger 'engagements:taking_attendance', @model
+    e.gesture.srcEvent.preventDefault()
 
   show: (model) ->
     return if @model?.has('editing')
@@ -56,3 +61,4 @@ class Phonebook.Views.Engagements.EditView extends Backbone.View
 
   removeSubviews: ->
     @form?.remove()
+
