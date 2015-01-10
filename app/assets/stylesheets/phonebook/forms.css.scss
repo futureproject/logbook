@@ -43,7 +43,9 @@ select {
 
 textarea:focus {
   height: 8em;
+  position: relative;
   padding-left: 4px;
+  z-index: 2;
 }
 
 input[type=submit] {
