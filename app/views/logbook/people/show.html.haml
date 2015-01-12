@@ -16,7 +16,7 @@
     %ul.primary-projects= render @person.primary_projects
     %ul.secondary-projects= render @person.secondary_projects
   %section.person-activity
-    %h3.engagements-color Engagements
+    %h3.engagements-color= "Engagements - #{@person.engagements.sum(:duration)} hours"
     #activities
     :javascript
       $(document).ready(function(){
