@@ -11,4 +11,5 @@
 .logbook_people { #tabs .people { @extend %current; a { color: $people-color; } } }
 .logbook_projects { #tabs .projects { @extend %current; a { color: $projects-color; } } }
 .logbook_engagements { #tabs .engagements { @extend %current; a {color: $engagements-color;} } }
+.logbook_schools { #tabs .schools { @extend %current; a {color: $schools-color;} } }
 

@@ -1,9 +1,18 @@
-.school {
-  @extend .person;
+.logbook_schools {
+  a { color: $schools-color; }
+  .labels, .page-header, #filters {
+    background: $schools-color;
+    color: white;
+    a { color: white; }
+  }
+}
+
+.school-labels, .table .school {
+  @extend %row;
   .school-site { @include span-columns(2); }
-  .school-name { @include span-columns(3); }
-  .school-dream-team { @include span-columns(2); }
-  .school-projects { @include span-columns(1); }
-  .school-engagements { @include span-columns(2); }
-  .school-engagement-hours { @include span-columns(2); }
+  .school-name { @include span-columns(4); }
+  .school-dream-team { @include span-columns(1); }
+  .school-schools { @include span-columns(1); }
+  .school-engagements { @include span-columns(1); }
+  .school-engagement-hours { @include span-columns(1); }
 }

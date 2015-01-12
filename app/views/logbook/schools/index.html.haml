@@ -1,11 +1,14 @@
-%ul.schools-list
-  %li.labels.school
-    .school-site Site
-    .school-name=link_to_unless_current "Name", url_for(sort: 'name')
-    .school-dream-team=link_to_unless_current "Dream Team", url_for(dream_team: 'DESC')
-    .school-projects=link_to_unless_current 'Projects', url_for(by_count: 'projects')
-    .school-engagements=link_to_unless_current 'Engagements', url_for(by_count: 'engagements')
-    .school-engagement-hours Engagement Hours
-  = render @schools
+.page-header
+  %h1= pluralize current_scope.schools.count, "School"
+.labels.school-labels
+  .school-site= "Site"
+  .school-name=table_link_to 'Name', sort: 'name'
+  .school-dream-team=table_link_to 'DT', dream_team: 'DESC'
+  .school-projects=table_link_to 'Projects', by_count: 'projects'
+  .school-engagements=table_link_to 'Engagements', by_count: 'engagements'
+  .school-engagement-hours=table_link_to 'Hours', by_hours: 'DESC', sort: 'engagement_hours DESC'
 
+%ul.table.schools
+  = render @schools
   = render @empty_schools
+

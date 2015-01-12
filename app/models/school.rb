@@ -34,6 +34,9 @@ class School < ActiveRecord::Base
         group("schools.id").
         order("people_count #{order}")
   }
+  scope :by_hours, -> (order='DESC') {
+    joins(:engagements).select("schools.*, SUM(engagements.duration) AS engagement_hours").group('schools.id')
+  }
 
   def set_shortname
     self.shortname = self.name.parameterize

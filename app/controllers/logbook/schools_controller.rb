@@ -12,7 +12,7 @@ class Logbook::SchoolsController < Logbook::ApplicationController
 
   private
     def filter_params
-      params.slice(:sort, :by_count, :dream_team)
+      params.slice(:by_count, :dream_team, :by_hours, :sort)
     end
 
 end

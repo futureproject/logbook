@@ -30,7 +30,7 @@ class National
   end
 
   def schools
-    School.order(:name)
+    School.all
   end
 
   def identities
