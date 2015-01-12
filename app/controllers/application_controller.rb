@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
     if current_user.is_a? Person
       redirect_to me_path
     else
-      redirect_to os_path
+      redirect_to logbook_root_url
     end
   end
 
