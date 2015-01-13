@@ -38,6 +38,7 @@ class Phonebook.Views.Engagements.AttendanceView extends Backbone.View
     @model?.unset 'taking_attendance'
     @removeSubviews()
     @$el.removeClass('active').attr('style','')
+    window.scrollTo(0,0)
 
   render: ->
     @$el.html @template @model.tplAttrs()

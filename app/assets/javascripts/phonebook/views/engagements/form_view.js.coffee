@@ -8,7 +8,7 @@ class Phonebook.Views.Engagements.FormView extends Backbone.View
 
   events: ->
     'focus form' : (e) -> $('body').addClass('focusin')
-    'blur form' : (e) -> $('body').removeClass('focusin').scrollTop(0)
+    'blur form' : (e) -> $('body').removeClass('focusin')
     'submit' : 'submit'
 
   render: ->

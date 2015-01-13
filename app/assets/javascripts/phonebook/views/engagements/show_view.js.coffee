@@ -13,7 +13,7 @@ class Phonebook.Views.Engagements.ShowView extends Backbone.View
     'tap .upload': 'showUploads'
     'tap .attendance': 'showAttendance'
     'touchmove .detail-title': (e) -> e.preventDefault()
-    'blur .editable': 'saveContent'
+    #'blur .editable': 'saveContent'
 
   listen: ->
     @listenTo Backbone, 'engagements:selected', @show
