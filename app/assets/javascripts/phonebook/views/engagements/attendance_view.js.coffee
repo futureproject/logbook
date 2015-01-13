@@ -40,7 +40,9 @@ class Phonebook.Views.Engagements.AttendanceView extends Backbone.View
     @$el.html @template @model.tplAttrs()
 
   animateIn: ->
-    @$el.addClass('active')
+    @$el.addClass('active').one('webkitTransitionEnd', (event) =>
+      @$el.find('input').focus()
+    )
 
   animateOut: ->
     document.activeElement?.blur()

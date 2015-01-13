@@ -6,7 +6,6 @@
 }
 
 .detail-show {
-  display: block;
   @extend .transitions;
   @include transform(translate3d(102%,0,0));
   box-shadow: 0 2px 8px rgba(0,0,0,.25);

@@ -36,6 +36,7 @@ class Phonebook.Routers.EngagementsRouter extends Backbone.Router
     Backbone.trigger 'engagements:new'
 
   update: (url) ->
+    return unless url?
     url = url.toString()
     if url.match(/phonebook/i)
       @navigate url
