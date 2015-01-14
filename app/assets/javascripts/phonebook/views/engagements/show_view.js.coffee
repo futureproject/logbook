@@ -30,14 +30,14 @@ class Phonebook.Views.Engagements.ShowView extends Backbone.View
 
   hide: ->
     @model?.unset('selected')
-    @$el.removeClass('active').attr('style','')
+    @$el.removeClass('active').removeClass('hiding').attr('style','')
 
   animateIn: () ->
     @$el.addClass('active')
 
   animateOut: ->
     Backbone.trigger 'engagements:views:hidden', @ #announce that this view got hid
-    @$el.removeClass('active').one('webkitTransitionEnd', () =>
+    @$el.addClass('hiding').removeClass('active').one('webkitTransitionEnd', () =>
       @hide()
     )
 

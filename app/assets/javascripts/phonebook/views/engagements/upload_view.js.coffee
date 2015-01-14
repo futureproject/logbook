@@ -27,7 +27,7 @@ class Phonebook.Views.Engagements.UploadView extends Backbone.View
   hide: ->
     @model?.unset('uploading')
     @removeSubviews()
-    @$el.removeClass('active').attr('style','') #reset CSS styles
+    @$el.removeClass('hiding').removeClass('active').attr('style','') #reset CSS styles
 
   render: ->
     @$el.html @template @model.tplAttrs()
@@ -37,7 +37,7 @@ class Phonebook.Views.Engagements.UploadView extends Backbone.View
 
   animateOut: ->
     Backbone.trigger 'engagements:views:hidden', @ #announce that this view got hid
-    @$el.removeClass('active').one('webkitTransitionEnd', () =>
+    @$el.addClass('hiding').removeClass('active').one('webkitTransitionEnd', () =>
       @hide()
     )
 

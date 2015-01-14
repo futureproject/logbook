@@ -62,7 +62,7 @@ body, .detail-content, .list-items {
   }
   &:after {
     @include hairline;
-    left: 28px;
+    left: 12px;
   }
   &.deleting {
     background: $light-red;

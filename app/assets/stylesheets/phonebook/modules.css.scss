@@ -70,7 +70,7 @@
       content: 'This list is empty.';
       display: inline-block;
       height: 44px;
-      padding: 15px 0;
+      padding: 12px 0;
       width: 100%;
       text-align: center;
       color: $light-gray;
@@ -82,7 +82,7 @@
   min-height: 44px;
   line-height: 1.2;
   -webkit-user-select: none;
-  padding: 12px 12px 12px 28px;
+  padding: 8px 12px;
   position: relative;
   box-sizing: border-box;
   @include transform-origin(left top);
@@ -94,23 +94,22 @@
 
 .list-item-timestamp {
   position: absolute;
-  top: 12px;
+  top: 8px;
   right: 12px;
   white-space: nowrap;
   width: 60px;
   text-align: right;
 }
 
-.list-item-name, .list-item-subject {
+.list-item-title, .list-item-subject {
   margin-right: 72px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.list-item-title {
-}
 .list-item-subject {
   margin-top: 1px;
+  font-size: 14px;
 }
 .list-item-excerpt {
   max-height: 2.4em;
@@ -137,34 +136,14 @@
     }
   }
 }
-
-.list-item-graphic {
-  width: 44px;
-}
-
-.list-item-label {
-  padding-left: 15px;
-}
-
-.calendar-date {
-  text-align: center;
-}
-.calendar-date-month {
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.calendar-date-day {
-  font-size: 1.75em;
-  line-height: 1;
-}
-
 .detail {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 100%;
+  height: 0;
   z-index: 2;
+  overflow: hidden;
   .scrollable {
     overflow: auto;
     -webkit-overflow-scrolling: touch;
@@ -172,6 +151,7 @@
       min-height: 101%;
     }
   }
+  &.active, &.hiding { width: 100%; height: 100%; }
 }
 
 
@@ -189,7 +169,7 @@
   }
   header {
     text-align: center;
-    margin: 15px;
+    margin: 12px;
     font-size: 15px;
     h2 {
       margin: 0 0 10px;
@@ -304,7 +284,7 @@
   border-bottom: 1px solid $base-border-color;
   border-left: 1px solid $base-border-color;
   padding: 6px;
-  margin: 15px;
+  margin: 12px;
   font-size: 15px;
   h4 {
     margin: 0;
@@ -319,16 +299,16 @@
   box-shadow: inset 0 0 12px rgba(0,0,0,.1);
   ::-webkit-input-placeholder { color: white; }
   position: relative;
-  padding: 0 20% 15px 15px;
+  padding: 0 20% 12px 12px;
   input {
-    padding: 15px 0 0;
+    padding: 12px 0 0;
     color: white;
     border-bottom: 1px solid;
     &:focus { outline: none; }
   }
   .done {
     position: absolute;
-    padding: 15px;
+    padding: 12px;
     top: 0;
     right: 0;
     margin-left: 10px;
@@ -339,7 +319,7 @@
   box-shadow: inset 0 0 12px rgba(0,0,0,.1);
   color: white;
   background: $medium-gray;
-  padding: 15px;
+  padding: 12px;
   font-weight: 700;
 }
 

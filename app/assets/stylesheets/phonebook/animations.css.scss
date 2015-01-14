@@ -15,17 +15,18 @@
 }
 
 .detail-new, .detail-upload, .detail-attendance {
-  display: block;
   @extend .transitions;
   @include transform(translate3d(0,100%,0));
+  width: 0;
+  height: 100%;
   &.active {
+    width: 100%;
     @include transform(translate3d(0,0,0));
     //box-shadow: 0 2px 8px rgba(0,0,0,.5);
   }
 }
 
 .detail-edit {
-  display: block;
   @extend .transitions;
   @include transition-property(opacity);
   opacity: 0;

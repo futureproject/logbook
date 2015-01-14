@@ -18,9 +18,9 @@ feature 'using the phonebook' do
   scenario 'to create a new engagement', js:true do
     visit phonebook_root_path
     first('.new').click
-    fill_in_form(name: 'Cooking Class')
     take_attendance
     within '#new-engagement' do
+      fill_in 'name', with: 'Cooking Class'
       first('.button.done').click
     end
     should_see_engagement_named('Cooking Class')

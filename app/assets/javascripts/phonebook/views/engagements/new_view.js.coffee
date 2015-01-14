@@ -36,7 +36,7 @@ class Phonebook.Views.Engagements.NewView extends Backbone.View
   hide: ->
     @model?.unset('new')
     @removeSubviews() # remove associated subviews
-    @$el.removeClass('active').attr('style','') #reset CSS styles
+    @$el.removeClass('hiding').removeClass('active').attr('style','') #reset CSS styles
 
   submitForm: (e) ->
     e.stopPropagation()
@@ -54,7 +54,7 @@ class Phonebook.Views.Engagements.NewView extends Backbone.View
 
   animateOut: ->
     Backbone.trigger 'engagements:views:hidden', @ #announce that this view got hid
-    @$el.removeClass('active').one('webkitTransitionEnd', () =>
+    @$el.addClass('hiding').removeClass('active').one('webkitTransitionEnd', () =>
       @hide()
     )
 

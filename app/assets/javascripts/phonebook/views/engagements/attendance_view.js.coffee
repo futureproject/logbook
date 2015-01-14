@@ -37,7 +37,7 @@ class Phonebook.Views.Engagements.AttendanceView extends Backbone.View
   hide: ->
     @model?.unset 'taking_attendance'
     @removeSubviews()
-    @$el.removeClass('active').attr('style','')
+    @$el.removeClass('hiding').removeClass('active').attr('style','') #reset CSS styles
     window.scrollTo(0,0)
 
   render: ->
@@ -51,7 +51,7 @@ class Phonebook.Views.Engagements.AttendanceView extends Backbone.View
   animateOut: ->
     document.activeElement?.blur()
     Backbone.trigger 'engagements:views:hidden', @ #announce that this view got hid
-    @$el.removeClass('active').one('webkitTransitionEnd', () =>
+    @$el.addClass('hiding').removeClass('active').one('webkitTransitionEnd', () =>
       @hide()
     )
 

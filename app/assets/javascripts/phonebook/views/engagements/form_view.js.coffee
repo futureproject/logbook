@@ -3,6 +3,7 @@ Phonebook.Views.Engagements ||= {}
 class Phonebook.Views.Engagements.FormView extends Backbone.View
   initialize: ->
     @model ||= new Phonebook.Models.Engagement
+    @listenTo @model, 'change:attendee_ids', @render
 
   template: JST['phonebook/templates/engagements/form']
 
