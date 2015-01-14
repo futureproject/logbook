@@ -17,4 +17,4 @@ class Phonebook.Models.Person extends Backbone.Model
 
 class Phonebook.Collections.PeopleCollection extends Backbone.Collection
   model: Phonebook.Models.Person
-  url: -> ds.apiHelper.urlFor 'people', Phonebook.USER.site.id
+  url: -> ds.apiHelper.urlFor 'people'

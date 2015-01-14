@@ -28,5 +28,4 @@ class Phonebook.Views.People.AttendingPersonView extends Backbone.View
 
   update: ->
     @render()
-    Backbone.trigger 'engagements:attendee_changed', @model
 

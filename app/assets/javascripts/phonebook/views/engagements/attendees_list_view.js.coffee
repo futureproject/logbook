@@ -43,3 +43,4 @@ class Phonebook.Views.Engagements.AttendeesListView extends Backbone.View
     attending = @collection.where({attending: 'Present'})
     ids = _.pluck attending, 'id'
     Backbone.trigger 'engagements:attendee_ids', ids
+

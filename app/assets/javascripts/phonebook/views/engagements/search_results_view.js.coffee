@@ -5,9 +5,6 @@ class Phonebook.Views.Engagements.SearchResultsView extends Backbone.View
     @collection = new Phonebook.Collections.PeopleCollection
     @listen()
 
-  events:
-    'tap .add-new-from-search': (e) ->
-      console.log @currentQuery
   listen: ->
     @listenTo @collection, 'reset', @render
     @listenTo @collection, 'change:attending', @broadcastAttendee
@@ -22,7 +19,6 @@ class Phonebook.Views.Engagements.SearchResultsView extends Backbone.View
   render: ->
     markup = @renderAll()
     @$el.html markup
-    @showAddButton() if @validQuery()
     @
 
   renderOne: (person, frag) ->
@@ -38,21 +34,24 @@ class Phonebook.Views.Engagements.SearchResultsView extends Backbone.View
     @renderOne(person, frag) for person in @collection.models
     frag
 
-  showAddButton: ->
-    p = new Phonebook.Models.Person
-      first_name: @first_name
-      last_name: @last_name
-      grade: null
+  showAddButton: (q) ->
+    personAttrs = @validateQuery(q)
+    return unless personAttrs
+    personAttrs.grade = null
+    p = new Phonebook.Models.Person personAttrs
     v = new Phonebook.Views.People.CreateablePersonView
       model: p
     @$el.append v.render().el
 
-  validQuery: ->
-    return false unless @currentQuery?
-    q = @currentQuery.split(" ")
-    @first_name = q.shift()
-    @last_name= q.join(' ')
-    if (@first_name?.length > 0 && @last_name?.length > 0) then true else false
+  validateQuery: (q) ->
+    return false unless q?
+    q = q.split(" ")
+    first_name = q.shift()
+    last_name= q.join(' ')
+    if (first_name?.length > 0 && last_name?.length > 0)
+      { first_name: first_name, last_name: last_name, name: first_name + " " + last_name }
+    else
+      false
 
   broadcastAttendee: (person) ->
     Backbone.trigger 'engagement_attendees:updated', person
@@ -63,5 +62,5 @@ class Phonebook.Views.Engagements.SearchResultsView extends Backbone.View
     @$el.html loader
 
   onSearchEnd: (data) ->
-    @currentQuery = data?.q
     @resetCollection data?.results
+    @showAddButton data?.q

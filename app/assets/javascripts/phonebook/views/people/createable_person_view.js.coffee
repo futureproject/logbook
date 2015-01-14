@@ -3,14 +3,14 @@ Phonebook.Views.People ||= {}
 class Phonebook.Views.People.CreateablePersonView extends Backbone.View
   initialize: ->
     @model ||= new Phonebook.Models.Person
+    @createable = true
     @listen()
 
   events:
-    'tap': 'toggleAttending'
+    'tap': 'create'
 
   listen: ->
-    @listenTo Backbone, 'attendees:clean', @remove
-    @listenTo @model, 'change:attending', @update
+    @listenTo Backbone, 'engagements:attendee_ids', @remove
 
   render: ->
     @$el.html @template @model.tplAttrs()
@@ -20,9 +20,12 @@ class Phonebook.Views.People.CreateablePersonView extends Backbone.View
 
   className: 'list-item attending-person'
 
-  toggleAttending: ->
-# TODO
-  update: ->
-    @render()
-    Backbone.trigger 'engagements:attendee_changed', @model
-
+  create: ->
+    return unless @createable
+    @creatable = false
+    @model.save { attending: 'Present'},
+      success: =>
+        @remove()
+        Backbone.trigger 'engagement_attendees:updated', @model
+        Backbone.trigger 'people:search:clear'
+      error: => @createable = true

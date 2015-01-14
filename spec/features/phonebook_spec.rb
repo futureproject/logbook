@@ -19,31 +19,45 @@ feature 'using the phonebook' do
     visit phonebook_root_path
     first('.new').click
     fill_in_form(name: 'Cooking Class')
-    sleep 1
-    click_button 'Save'
+    take_attendance
+    within '#new-engagement' do
+      first('.button.done').click
+    end
     should_see_engagement_named('Cooking Class')
   end
-
-  scenario 'deleting'
 
   scenario 'editing', js: true do
     visit phonebook_root_path
     first('.list-item').click
     first('.edit').click
     fill_in 'name', with: "Nightwing Guest Lecture"
-    click_button 'Save'
-    should_see_engagement_named 'Nightwing Guest Lecture'
-  end
-
-  scenario 'taking notes', js: true do
-    visit phonebook_root_path
-    first('.list-item').click
     fill_in 'notes', with: 'Best meeting ever!'
-    first('.back').click
+    within '#edit-engagement' do
+      first('.button.done').click
+    end
+    should_see_engagement_named 'Nightwing Guest Lecture'
     expect(page).to have_content 'Best meeting ever!'
+    expect(page).to have_content 'Attendees (2)'
   end
 
+  scenario 'deleting'
   scenario 'cloning', js: true
+
+  def take_attendance
+    first('.attendance.recessed-button').click
+    sleep 0.5
+    fill_in 'q', with: 'Dick'
+    sleep 0.5
+    within '#engagement-attendance' do
+      first('.list-item').click
+    end
+    fill_in 'q', with: 'Selena Kyle'
+    sleep 0.5
+    within '#engagement-attendance' do
+      first('.list-item').click
+      first('.done').click
+    end
+  end
 
   def should_see_engagements_list
     expect(page).to have_content 'Engagements'
