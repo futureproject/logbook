@@ -345,7 +345,12 @@
 .fancy-list {
   overflow: auto;
   height: 100;
+  .list-item {
+    padding-bottom: 4px;
+    padding-top: 4px;
+  }
   .list-item-title { color: $dark-gray; }
+  .list-item-subject { font-size: 12px; }
   .list-item-timestamp {
     font-family: 'Avenir Next Condensed';
   }
