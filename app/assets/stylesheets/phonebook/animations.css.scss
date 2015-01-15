@@ -1,3 +1,36 @@
+@include keyframes(slideInHorizontal) {
+  from {
+    @include transform(translate3d(102%,0,0));
+  }
+  to {
+    @include transform(translate3d(0,0,0));
+  }
+}
+@include keyframes(slideOutHorizontal) {
+  from {
+    @include transform(translate3d(0,0,0));
+  }
+  to {
+    @include transform(translate3d(102%,0,0));
+  }
+}
+@include keyframes(slideInVertical) {
+  from {
+    @include transform(translate3d(0,102%,0));
+  }
+  to {
+    @include transform(translate3d(0,0,0));
+  }
+}
+@include keyframes(slideOutVertical) {
+  from {
+    @include transform(translate3d(0,0,0));
+  }
+  to {
+    @include transform(translate3d(0,102%,0));
+  }
+}
+
 .transitions {
   @include transition-property(transform);
   @include transition-duration(0.6s);
@@ -6,23 +39,18 @@
 }
 
 .detail-show {
-  @extend .transitions;
-  @include transform(translate3d(102%,0,0));
-  box-shadow: 0 2px 8px rgba(0,0,0,.25);
-  &.active {
-    @include transform(translate3d(0,0,0));
+  @include animation(slideInHorizontal .6s);
+  @include animation-timing-function(cubic-bezier(0.23,1,0.32,1));
+  &.hiding {
+    @include animation(slideOutHorizontal .4s);
   }
 }
 
 .detail-new, .detail-upload, .detail-attendance {
-  @extend .transitions;
-  @include transform(translate3d(0,100%,0));
-  width: 0;
-  height: 100%;
-  &.active {
-    width: 100%;
-    @include transform(translate3d(0,0,0));
-    //box-shadow: 0 2px 8px rgba(0,0,0,.5);
+  @include animation(slideInVertical .6s);
+  @include animation-timing-function(cubic-bezier(0.23,1,0.32,1));
+  &.hiding {
+    @include animation(slideOutVertical .4s);
   }
 }
 

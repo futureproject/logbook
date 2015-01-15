@@ -23,7 +23,6 @@ end
 require 'capybara/rails'
 require 'capybara/rspec'
 require 'capybara-webkit'
-require 'touch_action'
 Capybara.default_selector = :css
 Capybara.javascript_driver = :webkit
 

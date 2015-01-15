@@ -8,11 +8,11 @@ class Phonebook.Views.Engagements.ListItemView extends Phonebook.Views.Base.List
 
   render: ->
     @$el.html @template @model.tplAttrs()
+    @$el.toggleClass 'selected', @model.has('selected')
     @
 
   listen: ->
-    @listenTo @model, 'change:date change:name change:kind change:notes', @render
-    @listenTo @model, 'change:selected', @toggleActiveClass
+    @listenTo @model, 'change:selected', @render
     @listenTo @model, 'destroy', @remove
     @events['tap'] = 'ontap'
     @listenTo @, 'controlTap', @duplicate
@@ -20,15 +20,15 @@ class Phonebook.Views.Engagements.ListItemView extends Phonebook.Views.Base.List
   ontap: (e) ->
     e.gesture.srcEvent.preventDefault()
     @model.set 'selected', true
-
-  toggleActiveClass: ->
-    if @model.has('selected')
-      @$el.addClass('selected').attr('style','')
-      Backbone.trigger 'engagements:selected', @model, @
-    else
-      @$el.removeClass 'selected'
+    Backbone.trigger 'engagements:show', @model, @
 
   duplicate: (e) ->
     return unless e.target.classList.contains 'duplicate'
     Backbone.trigger 'engagements:duplicate', @model
 
+  onModelChange: (e) ->
+    relevant = false
+    attrs = ['name', 'date', 'selected']
+    console.log @model.get('selected')
+    changedAttrs = @model.changedAttributes()
+    @render() if relevant

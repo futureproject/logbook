@@ -1,4 +1,8 @@
 ds.bootstrapper =
+
+  bootstrap: (collection) ->
+    if navigator.onLine then @loadRemote(collection) else @loadLocal(collection)
+
   loadLocal: (collection) ->
     collection.fetch
       reset: true

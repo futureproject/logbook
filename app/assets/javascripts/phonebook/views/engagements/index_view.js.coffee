@@ -2,10 +2,17 @@ Phonebook.Views.Engagements ||= {}
 
 class Phonebook.Views.Engagements.IndexView extends Backbone.View
   initialize: (args) ->
+    @$container = args.container
     @collection = args.collection
-    @listenTo @collection, 'reset add', @render
+    @listenTo Backbone, 'engagements:views:shown', @onViewShow
+    @rendered = false
+    @list = new Phonebook.Views.Engagements.ListView(
+      collection: @collection
+    )
 
   template: JST['phonebook/templates/engagements/index']
+
+  className: 'list'
 
   events:
     'tap .new': (e) -> Backbone.trigger 'engagements:new', e
@@ -13,19 +20,13 @@ class Phonebook.Views.Engagements.IndexView extends Backbone.View
 
   render: ->
     @$el.html @template
-    @list = new Phonebook.Views.Engagements.ListView(
-      collection: @collection
-      el: '#engagements-list-items'
-    ).render()
+    @$container.append @$el
+    @list.setElement('#engagements-list-items').render()
+    @rendered = true
 
-  animateIn: ->
-    @$el.addClass('active')
-
-  animateOut: ->
-    Backbone.trigger 'engagements:views:hidden', @ #announce that this view got hid
-    @$el.removeClass('active').one('webkitTransitionEnd', () =>
-      @hide()
-    )
+  renderOnce: ->
+    return if @rendered
+    @render()
 
   remove: ->
     @removeSubviews()
@@ -35,8 +36,16 @@ class Phonebook.Views.Engagements.IndexView extends Backbone.View
     @list?.remove()
 
   show: ->
-    @render()
-    @$el.addClass('active').removeClass('shifted')
+    @renderOnce()
+    Backbone.trigger 'engagements:router:update', 'phonebook'
+    @$el.addClass('active')
+    @unslide()
 
   hide: ->
     @$el.removeClass('active')
+
+  slide: -> @$el.addClass('shifted')
+  unslide: -> @$el.removeClass('shifted')
+
+  onViewShow: (type) ->
+    @slide() if type == 'detail'

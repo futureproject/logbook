@@ -4,9 +4,10 @@ class Phonebook.Views.Engagements.ListView extends Backbone.View
   initialize: (args) ->
     @collection = args?.collection || new Phonebook.Collections.EngagementsCollection
     @listenTo @collection, 'change:selected', @clearSelection
-
+    @listenTo @collection, 'reset add', @render
 
   render: ->
+    console.log "rendered engagements index with #{@collection.length} models"
     @removeItems()
     fragment = document.createDocumentFragment()
     for model in @collection.models
@@ -16,7 +17,7 @@ class Phonebook.Views.Engagements.ListView extends Backbone.View
       fragment.appendChild view.render().el
     @$el.html fragment
     # prevent iOS scroll bounce before any interactions occur
-    @el.scrollTop += 1
+    @el.scrollTop = 1 if @el.scrollTop == 0
 
   removeItems: ->
     @trigger 'cleanup'
@@ -25,7 +26,6 @@ class Phonebook.Views.Engagements.ListView extends Backbone.View
     return unless selection.has('selected')
     selected = @collection.filter (model) -> model.has('selected') && model != selection
     model.unset('selected') for model in selected
-    @el.classList.add('active')
 
   remove: ->
     @removeItems()

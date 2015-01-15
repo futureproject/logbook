@@ -40,17 +40,7 @@ feature 'using the phonebook' do
     expect(page).to have_content 'Attendees (2)'
   end
 
-  scenario 'deleting', js: true do
-    visit phonebook_root_path
-    page.execute_script "Backbone.trigger('list_items:open_all')"
-    save_and_open_screenshot
-    text = first('.list-item').text
-    first('.delete').click
-    sleep 1
-    new_text = first('.list-item').text
-    expect(new_text).not_to eq text
-  end
-
+  scenario 'deleting'
   scenario 'cloning', js: true
 
   def take_attendance

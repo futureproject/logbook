@@ -1,9 +1,6 @@
 Phonebook.Views.Base ||= {}
 
 class Phonebook.Views.Base.ListItemView extends Backbone.View
-  initialize: ->
-    @listenTo Backbone, 'list_items:open_all', @open
-
   events:
     'touchstart .list-item-controls': (e) ->
       e.stopPropagation()
@@ -47,7 +44,6 @@ class Phonebook.Views.Base.ListItemView extends Backbone.View
 
   open: (e) ->
     @model.set('operating', true)
-    @el.style['-webkit-transition'] = '-webkit-transform .2s'
     @el.style['-webkit-transform'] = 'translate3d(-200px,0,0)'
     @listenToOnce Backbone, 'list_item:tapped', @close
 
@@ -71,10 +67,7 @@ class Phonebook.Views.Base.ListItemView extends Backbone.View
 
   resetStyle: ->
     return unless @el.getAttribute('style')?
-    @$el.one('webkitTransitionEnd', =>
-      @el.removeAttribute 'style'
-    )
-    @el.style['-webkit-transform'] = 'translate3d(0,0,0)'
+    @el.removeAttribute 'style'
 
   calculatePositions: (e) ->
 

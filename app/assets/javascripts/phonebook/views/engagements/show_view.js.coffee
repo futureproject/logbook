@@ -2,13 +2,16 @@ Phonebook.Views.Engagements ||= {}
 
 class Phonebook.Views.Engagements.ShowView extends Backbone.View
   initialize: (args) ->
+    @$container = args.container
     @listen()
 
   template: JST['phonebook/templates/engagements/show']
 
+  className: 'detail detail-show'
+
   events:
-    'tap .back': 'animateOut'
-    'swiperight': 'animateOut'
+    'tap .back': 'back'
+    'swiperight': 'back'
     'tap .edit': -> Backbone.trigger 'engagements:editing', @model
     'tap .upload': 'showUploads'
     'tap .attendance': 'showAttendance'
@@ -16,33 +19,26 @@ class Phonebook.Views.Engagements.ShowView extends Backbone.View
     #'blur .editable': 'saveContent'
 
   listen: ->
-    @listenTo Backbone, 'engagements:selected', @show
+    @listenTo @model, 'change', @render
 
-  show: (model) ->
-    @model = model
-    @listenTo @model, 'change:attendee_ids', @render
-    return unless @model?
-    Backbone.trigger 'engagements:router:update', @model.get('id')
-    @model.set 'selected', true
+  show: ->
     @render()
-    @animateIn()
-    Backbone.trigger 'engagements:views:shown', @
+    @$container.append @$el
+    @model.set 'selected', true
+    @$el.one 'webkitAnimationEnd', =>
+      @model.fetch()
+    Backbone.trigger 'engagements:router:update', @model.get('id')
+    Backbone.trigger 'engagements:views:shown', 'detail'
 
   hide: ->
-    @model?.unset('selected')
-    @$el.removeClass('active').removeClass('hiding').attr('style','')
-
-  animateIn: () ->
-    @$el.addClass('active')
-
-  animateOut: ->
-    Backbone.trigger 'engagements:views:hidden', @ #announce that this view got hid
-    @$el.addClass('hiding').removeClass('active').one('webkitTransitionEnd', () =>
-      @hide()
+    @$el.addClass('hiding').one('webkitAnimationEnd', () =>
+      @model?.unset('selected')
+      @remove()
     )
+    Backbone.trigger('engagements:views:hidden', @)
 
   render: ->
-    @$el.html @template @model.tplAttrs()
+    @$el.html(@template @model.tplAttrs())
     @
 
   showUploads: (e) ->
@@ -52,6 +48,9 @@ class Phonebook.Views.Engagements.ShowView extends Backbone.View
   showAttendance: (e) ->
     Backbone.trigger 'engagements:taking_attendance', @model
     e.gesture.srcEvent.preventDefault()
+
+  back: ->
+    Backbone.trigger 'engagements:index'
 
   saveContent: (e) ->
     window.scroll(0,0)

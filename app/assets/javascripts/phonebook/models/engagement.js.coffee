@@ -30,6 +30,9 @@ class Phonebook.Models.Engagement extends Backbone.Model
 class Phonebook.Collections.EngagementsCollection extends Backbone.Collection
   model: Phonebook.Models.Engagement
   url: ds.apiHelper.urlFor 'engagements'
+  initialize: ->
+    @listenToOnce Backbone, 'engagements:bootstrap', ->
+      ds.bootstrapper.bootstrap @
   comparator: (engagement) ->
     - Date.parse(engagement.get('date'))
 

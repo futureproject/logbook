@@ -20,6 +20,9 @@ class Phonebook.Routers.EngagementsRouter extends Backbone.Router
   show: (id) ->
     Backbone.trigger 'engagements:show', id
 
+  new: ->
+    Backbone.trigger 'engagements:new'
+
   edit: (id) ->
     Backbone.trigger 'engagements:edit', id
 
@@ -29,11 +32,6 @@ class Phonebook.Routers.EngagementsRouter extends Backbone.Router
   attendance: (id) ->
     Backbone.trigger 'engagements:attendance', id
 
-# this Route, unlike the rest, does not delegate to the engagements controller.
-# instead, the new engagements view is listening directly.
-# why? because new engagements need not be associated with the controller's collection
-  new: ->
-    Backbone.trigger 'engagements:new'
 
   update: (url) ->
     return unless url?
