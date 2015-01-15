@@ -16,6 +16,8 @@ class Phonebook.Views.Engagements.ListView extends Backbone.View
       view.listenTo @, 'cleanup', view.remove
       fragment.appendChild view.render().el
     @$el.html fragment
+    # prevent iOS scroll bounce before any interactions occur
+    @el.scrollTop += 1
 
   removeItems: ->
     @trigger 'cleanup'

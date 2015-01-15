@@ -13,8 +13,8 @@ class Phonebook.Controllers.AppController extends Backbone.View
 
   template: JST['phonebook/templates/app']
 
-  #events:
-  #  'touchstart .scrollable' : 'fixScrollBounce'
+  events:
+    'touchstart .scrollable' : 'fixScrollBounce'
 
   fixScrollBounce: (e) ->
     el = e.currentTarget
@@ -27,3 +27,4 @@ class Phonebook.Controllers.AppController extends Backbone.View
       if isAtTop
         el.scrollTop += 1
       else el.scrollTop -= 1  if isAtBottom
+

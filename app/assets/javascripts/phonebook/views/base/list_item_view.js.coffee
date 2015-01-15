@@ -8,7 +8,7 @@ class Phonebook.Views.Base.ListItemView extends Backbone.View
     'touchstart': 'ontouchstart'
     'touchmove': 'ontouchmove'
     'touchend': 'ontouchend'
-    'touchcancel': 'resetStyle'
+    #'touchcancel': 'resetStyle'
     #'mouseup': 'ontouchend'
     #'mousedown': 'ontouchend'
     #'mousemove': 'ontouchend'
@@ -38,11 +38,12 @@ class Phonebook.Views.Base.ListItemView extends Backbone.View
     if @diff.x < -40
       @open(e)
     else
-      @resetStyle()
+      @close(e)
 
   open: (e) ->
     @model.set('operating', true)
-    @el.style['-webkit-transform'] = 'translate3d(-50%,0,0)'
+    @el.style['-webkit-transition'] = '-webkit-transform .2s'
+    @el.style['-webkit-transform'] = 'translate3d(-200px,0,0)'
     @listenToOnce Backbone, 'list_item:tapped', @close
 
   close: (e) ->
@@ -64,7 +65,11 @@ class Phonebook.Views.Base.ListItemView extends Backbone.View
     )
 
   resetStyle: ->
-    @el.removeAttribute 'style'
+    return unless @el.getAttribute('style')?
+    @$el.one('webkitTransitionEnd', =>
+      @el.removeAttribute 'style'
+    )
+    @el.style['-webkit-transform'] = 'translate3d(0,0,0)'
 
   calculatePositions: (e) ->
 

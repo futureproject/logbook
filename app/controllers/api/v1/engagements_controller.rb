@@ -5,7 +5,7 @@ class Api::V1::EngagementsController < Api::V1::BaseController
   # GET /api/v1/engagements
   # GET /api/v1/engagements.json
   def index
-    @engagements = current_user.engagements.order('date DESC, id DESC').page(params[:page]).per(100)
+    @engagements = current_user.engagements.order('date DESC, updated_at DESC').page(params[:page]).per(100)
   end
 
   # GET /api/v1/engagements/1

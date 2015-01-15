@@ -49,7 +49,7 @@ window.Phonebook =
           el: '#phonebook-engagements'
 
       Backbone.trigger 'app:loaded'
-      Backbone.trigger 'network:online' if navigator.onLine
+      Backbone.trigger("network:#{navigator.onLine}")
       Backbone.history.start({ pushState: true })
 
     else
