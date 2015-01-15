@@ -34,6 +34,7 @@ class Phonebook.Controllers.EngagementsController extends Backbone.View
     @listenTo Backbone, 'engagements:upload', @upload
     @listenTo Backbone, 'engagements:attendance', @attendance
     @listenTo Backbone, 'engagements:saved', @onSave
+    @listenTo Backbone, 'engagements:duplicate', @duplicate
     @listenTo Backbone, 'engagements:views:shown', @onShow
     @listenTo Backbone, 'engagements:views:hidden', @onHide
 
@@ -54,6 +55,16 @@ class Phonebook.Controllers.EngagementsController extends Backbone.View
     @collection.add model,
       merge: true
     Backbone.trigger 'engagements:show', model.get('id')
+
+  duplicate: (model) ->
+      data = _.omit(model.attributes, 'id', 'date')
+      engagement = new Phonebook.Models.Engagement
+      engagement.save data,
+        success: (model) ->
+          Backbone.trigger 'engagements:saved', model
+        error: (e) ->
+          console.log errror
+
 
   # THERE BE ROUTER ACTIONS BELOW
 

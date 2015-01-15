@@ -1,10 +1,15 @@
 Phonebook.Views.Base ||= {}
 
 class Phonebook.Views.Base.ListItemView extends Backbone.View
+  initialize: ->
+    @listenTo Backbone, 'list_items:open_all', @open
+
   events:
-    'touchstart .list-item-controls': (e) -> e.stopPropagation()
-    'touchstart .delete': (e) -> @startPos.t = e.timeStamp
+    'touchstart .list-item-controls': (e) ->
+      e.stopPropagation()
+      @startPos.t = e.timeStamp
     'touchend .delete': 'delete'
+    'touchend .list-item-controls': 'controlTap'
     'touchstart': 'ontouchstart'
     'touchmove': 'ontouchmove'
     'touchend': 'ontouchend'
@@ -38,7 +43,7 @@ class Phonebook.Views.Base.ListItemView extends Backbone.View
     if @diff.x < -40
       @open(e)
     else
-      @close(e)
+      @resetStyle()
 
   open: (e) ->
     @model.set('operating', true)
@@ -82,3 +87,9 @@ class Phonebook.Views.Base.ListItemView extends Backbone.View
       x: @currentPos.x - @startPos.x
       y: @currentPos.y - @startPos.y
       t: @currentPos.t - @startPos.t
+
+  controlTap: (e) ->
+    @diff.t = e.timeStamp - @startPos.t
+    return unless @diff.t < 300
+    e.stopPropagation()
+    @trigger 'controlTap', e

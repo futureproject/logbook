@@ -3,7 +3,6 @@ Phonebook.Views.Engagements ||= {}
 class Phonebook.Views.Engagements.ListView extends Backbone.View
   initialize: (args) ->
     @collection = args?.collection || new Phonebook.Collections.EngagementsCollection
-    @listenTo @collection, 'reset add', @render
     @listenTo @collection, 'change:selected', @clearSelection
 
 

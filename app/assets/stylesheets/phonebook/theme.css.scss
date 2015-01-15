@@ -66,6 +66,10 @@ body, .detail-content, .list-items {
   }
   &.deleting {
     background: $light-red;
+    .list-item-controls {
+      background: $light-red;
+      * { background: $light-red; }
+    }
   }
 }
 

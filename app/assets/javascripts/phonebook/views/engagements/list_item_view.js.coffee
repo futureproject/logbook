@@ -4,6 +4,7 @@ class Phonebook.Views.Engagements.ListItemView extends Phonebook.Views.Base.List
   initialize: ->
     @model ||= new Phonebook.Models.Engagement
     @listen()
+    super
 
   render: ->
     @$el.html @template @model.tplAttrs()
@@ -14,7 +15,7 @@ class Phonebook.Views.Engagements.ListItemView extends Phonebook.Views.Base.List
     @listenTo @model, 'change:selected', @toggleActiveClass
     @listenTo @model, 'destroy', @remove
     @events['tap'] = 'ontap'
-    @events['tap .duplicate'] = 'duplicate'
+    @listenTo @, 'controlTap', @duplicate
 
   ontap: (e) ->
     e.gesture.srcEvent.preventDefault()
@@ -27,6 +28,7 @@ class Phonebook.Views.Engagements.ListItemView extends Phonebook.Views.Base.List
     else
       @$el.removeClass 'selected'
 
-
-
+  duplicate: (e) ->
+    return unless e.target.classList.contains 'duplicate'
+    Backbone.trigger 'engagements:duplicate', @model
 
