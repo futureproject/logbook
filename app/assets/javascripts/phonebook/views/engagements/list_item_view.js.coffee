@@ -14,6 +14,7 @@ class Phonebook.Views.Engagements.ListItemView extends Phonebook.Views.Base.List
     @listenTo @model, 'change:selected', @toggleActiveClass
     @listenTo @model, 'destroy', @remove
     @events['tap'] = 'ontap'
+    @events['tap .duplicate'] = 'duplicate'
 
   ontap: (e) ->
     e.gesture.srcEvent.preventDefault()
@@ -25,4 +26,7 @@ class Phonebook.Views.Engagements.ListItemView extends Phonebook.Views.Base.List
       Backbone.trigger 'engagements:selected', @model, @
     else
       @$el.removeClass 'selected'
+
+
+
 
