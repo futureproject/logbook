@@ -19,7 +19,7 @@ feature 'using the phonebook' do
     visit phonebook_root_path
     first('.new').click
     take_attendance
-    within '#new-engagement' do
+    within '.detail-new' do
       fill_in 'name', with: 'Cooking Class'
       first('.button.done').click
     end
@@ -45,15 +45,14 @@ feature 'using the phonebook' do
 
   def take_attendance
     first('.attendance.recessed-button').click
-    sleep 0.5
     fill_in 'q', with: 'Dick'
     sleep 0.5
-    within '#engagement-attendance' do
+    within '.engagement-attendance' do
       first('.list-item').click
     end
     fill_in 'q', with: 'Selena Kyle'
     sleep 0.5
-    within '#engagement-attendance' do
+    within '.engagement-attendance' do
       first('.list-item').click
       first('.done').click
     end

@@ -19,7 +19,6 @@ class Phonebook.Views.Engagements.ShowView extends Backbone.View
     #'blur .editable': 'saveContent'
 
   listen: ->
-    @listenTo @model, 'change', @render
 
   show: (animation) ->
     animation ||= 'slide-in-horizontal'
@@ -27,7 +26,10 @@ class Phonebook.Views.Engagements.ShowView extends Backbone.View
     @render()
     @$el.one 'webkitAnimationEnd', =>
       @$el.removeClass(animation)
-      @model.fetch()
+      if @model.has('attendees')
+        @renderSubviews()
+      else
+        @loadMore()
     Backbone.trigger 'engagements:router:update', @model.get('id')
     Backbone.trigger 'engagements:views:shown', 'detail'
 
@@ -43,6 +45,19 @@ class Phonebook.Views.Engagements.ShowView extends Backbone.View
     @$el.html(@template @model.tplAttrs())
     @
 
+  loadMore: ->
+    @model.fetch
+      success: => @renderSubviews()
+
+  renderSubviews: ->
+    @subviews =
+      attendance_card: new Phonebook.Views.Engagements.AttendanceCardView
+        el: @$el.find('.engagement-attendance')
+        model: @model
+      #media_card: new Phonebook.Views.MediaCard
+      #  el: @$el.find('.engagement-media')
+    _.each @subviews, (view) -> view.render()
+
   showUploads: (e) ->
     Backbone.trigger 'engagements:uploading', @model
     e.gesture.srcEvent.preventDefault()
@@ -54,11 +69,9 @@ class Phonebook.Views.Engagements.ShowView extends Backbone.View
   back: ->
     Backbone.trigger 'engagements:index'
 
-  saveContent: (e) ->
-    window.scroll(0,0)
-    key = e.currentTarget.getAttribute('name')
-    val = e.currentTarget.value
-    attrs = {}
-    attrs["#{key}"] = val
-    if @model.get(key) != val
-      @model.save(attrs)
+  removeSubviews: ->
+    _.each @subviews, (view) -> view.remove()
+
+  remove: ->
+    @removeSubviews()
+    super

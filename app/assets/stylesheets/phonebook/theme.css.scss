@@ -98,7 +98,7 @@ body, .detail-content, .list-items {
 }
 
 #phonebook-engagements {
-  .list-title, .detail-title, .list-item-timestamp { color: $engagements-color; }
+  .list-title, .detail-title, .list-item-timestamp, .card h4 { color: $engagements-color; }
 }
 
 .engagement-detail {
