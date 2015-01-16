@@ -12,7 +12,7 @@ class Phonebook.Views.Engagements.ShowView extends Backbone.View
   events:
     'tap .back': 'back'
     'swiperight': 'back'
-    'tap .edit': -> Backbone.trigger 'engagements:editing', @model
+    'tap .edit': -> Backbone.trigger 'engagements:edit', @model
     'tap .upload': 'showUploads'
     'tap .attendance': 'showAttendance'
     'touchmove .detail-title': (e) -> e.preventDefault()
@@ -21,9 +21,10 @@ class Phonebook.Views.Engagements.ShowView extends Backbone.View
   listen: ->
     @listenTo @model, 'change', @render
 
-  show: ->
+  show: (animation) ->
+    animation ||= 'slide-in-horizontal'
+    @$container.append @$el.addClass(animation)
     @render()
-    @$container.append @$el
     @model.set 'selected', true
     @$el.one 'webkitAnimationEnd', =>
       @model.fetch()

@@ -20,7 +20,7 @@ class Phonebook.Views.Engagements.ListItemView extends Phonebook.Views.Base.List
   ontap: (e) ->
     e.gesture.srcEvent.preventDefault()
     @model.set 'selected', true
-    Backbone.trigger 'engagements:show', @model, @
+    Backbone.trigger 'engagements:show', @model
 
   duplicate: (e) ->
     return unless e.target.classList.contains 'duplicate'

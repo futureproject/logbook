@@ -43,7 +43,7 @@ class Phonebook.Controllers.EngagementsController extends Backbone.View
   onSave: (model) ->
     @collection.add model,
       merge: true
-    Backbone.trigger 'engagements:show', model.get('id')
+    Backbone.trigger 'engagements:show', model.get('id'), 'fade-in'
 
   duplicate: (model) ->
       data = _.omit(model.attributes, 'id', 'date')
@@ -65,12 +65,13 @@ class Phonebook.Controllers.EngagementsController extends Backbone.View
     @views.index.show()
     Backbone.trigger 'engagements:bootstrap'
 
-  show: (id) ->
+  show: (id, animation) ->
     engagement = @collection.get(id) || new Phonebook.Models.Engagement({ id: id })
+    @views.show?.remove()
     @views.show = new Phonebook.Views.Engagements.ShowView
       model: engagement
       container: @$el
-    @views.show.show()
+    @views.show.show(animation)
 
   new: (e) ->
     @views.new = new Phonebook.Views.Engagements.NewView
@@ -78,10 +79,11 @@ class Phonebook.Controllers.EngagementsController extends Backbone.View
     @views.new.show()
 
   edit: (id) ->
-    model = @collection.get(id)
-    if model
-      Backbone.trigger('engagements:selected', model)
-      Backbone.trigger('engagements:editing', model)
+    engagement = @collection.get(id) || new Phonebook.Models.Engagement({ id: id })
+    @views.edit = new Phonebook.Views.Engagements.EditView
+      model: engagement
+      container: @$el
+    @views.edit.show()
 
   upload: (id) ->
     model = @collection.get(id)

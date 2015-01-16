@@ -1,43 +1,46 @@
 Phonebook.Views.Engagements ||= {}
-
 class Phonebook.Views.Engagements.EditView extends Backbone.View
   initialize: (args) ->
+    @$container = args.container
     @listen()
 
   template: JST['phonebook/templates/engagements/edit']
 
+  className: 'detail detail-edit'
+
   events:
-    'tap .back': 'animateOut'
+    'tap .back': 'cancel'
     'tap .done': 'submitForm'
-    'tap .attendance': 'takeAttendance'
     'touchmove .detail-title' : (e) -> e.preventDefault()
 
-  listen: ->
-    @listenTo Backbone, 'engagements:editing', @show
-    @listenTo Backbone, 'engagements:saved', @hide
-    @listenTo Backbone, 'engagements:selected', @hide
+  cancel: ->
+    @hide()
+    Backbone.trigger 'engagements:show', @model, 'fade-in'
 
   takeAttendance: (e) ->
     Backbone.trigger 'engagements:taking_attendance', @model
     e.gesture.srcEvent.preventDefault()
 
-  show: (model) ->
-    return if @model?.has('editing')
-    @model = model
-    Backbone.trigger 'engagements:router:update', "#{@model.get('id')}/edit"
-    @model.set 'editing', true
+  listen: ->
+    @listenTo @model, 'change', @render
+
+  show: (animation) ->
+    animation ||= 'fade-in'
+    @$container.append @$el.addClass(animation)
     @render()
-    @animateIn()
-    Backbone.trigger 'engagements:views:shown', @
+    Backbone.trigger 'engagements:router:update', @model.get('id') + "/edit"
+    Backbone.trigger 'engagements:views:shown', 'detail'
 
   hide: ->
-    @model?.unset('editing')
-    @removeSubviews() # remove associated subviews
-    @$el.removeClass('hiding').removeClass('active').attr('style','') #reset CSS styles
+    @$el.addClass('hiding').one('webkitAnimationEnd', () =>
+      @remove()
+    )
+    Backbone.trigger('engagements:views:hidden', @)
 
   submitForm: (e) ->
     e.stopPropagation()
     @$el.find('form').trigger 'submit'
+    @hide()
 
   render: ->
     @$el.html @template @model.tplAttrs()
@@ -46,19 +49,9 @@ class Phonebook.Views.Engagements.EditView extends Backbone.View
       model: @model
     ).render()
 
-  animateIn: ->
-    @el.classList.add('active')
-
-  animateOut: ->
-    Backbone.trigger 'engagements:views:hidden', @ #announce that this view got hid
-    @$el.addClass('hiding').removeClass('active').one('webkitTransitionEnd', () =>
-      @hide()
-    )
-
   remove: ->
     @removeSubviews()
     super
 
   removeSubviews: ->
     @form?.remove()
-

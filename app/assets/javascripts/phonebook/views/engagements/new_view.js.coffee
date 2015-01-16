@@ -12,7 +12,6 @@ class Phonebook.Views.Engagements.NewView extends Backbone.View
   events:
     'tap .back': 'cancel'
     'tap .done': 'submitForm'
-    'tap .attendance': 'takeAttendance'
     'touchmove .detail-title' : (e) -> e.preventDefault()
 
   cancel: ->
@@ -27,8 +26,9 @@ class Phonebook.Views.Engagements.NewView extends Backbone.View
   listen: ->
     @listenTo @model, 'change', @render
 
-  show: (event) ->
-    @$container.append @$el
+  show: (animation) ->
+    animation ||= 'slide-in-vertical'
+    @$container.append @$el.addClass(animation)
     @render()
     Backbone.trigger 'engagements:router:update', 'new'
     Backbone.trigger 'engagements:views:shown', 'modal'
