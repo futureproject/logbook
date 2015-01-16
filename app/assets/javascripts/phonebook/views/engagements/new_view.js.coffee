@@ -19,10 +19,6 @@ class Phonebook.Views.Engagements.NewView extends Backbone.View
     @hide()
     Backbone.trigger 'engagements:index'
 
-  takeAttendance: (e) ->
-    Backbone.trigger 'engagements:taking_attendance', @model
-    e.gesture.srcEvent.preventDefault()
-
   listen: ->
     @listenTo @model, 'change', @render
 

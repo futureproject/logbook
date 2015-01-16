@@ -17,10 +17,6 @@ class Phonebook.Views.Engagements.EditView extends Backbone.View
     @hide()
     Backbone.trigger 'engagements:show', @model, 'fade-in-fast'
 
-  takeAttendance: (e) ->
-    Backbone.trigger 'engagements:taking_attendance', @model
-    e.gesture.srcEvent.preventDefault()
-
   listen: ->
     @listenTo @model, 'change', @render
 
@@ -36,7 +32,6 @@ class Phonebook.Views.Engagements.EditView extends Backbone.View
   hide: (animation) ->
     animation ||= 'fade-out'
     @$el.addClass(animation).one('webkitAnimationEnd', () =>
-      @model?.unset('selected')
       @remove()
     )
     Backbone.trigger('engagements:views:hidden', @)

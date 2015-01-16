@@ -1,11 +1,8 @@
 class Phonebook.Controllers.EngagementsController extends Backbone.View
   initialize: (args) ->
     @collection = new Phonebook.Collections.EngagementsCollection
-    @listen()
     @router = new Phonebook.Routers.EngagementsRouter
     @views = {}
-
-  listen: ->
     @listenTo Backbone, 'engagements:index', @index
     @listenTo Backbone, 'engagements:show', @show
     @listenTo Backbone, 'engagements:new', @new
@@ -14,8 +11,6 @@ class Phonebook.Controllers.EngagementsController extends Backbone.View
     @listenTo Backbone, 'engagements:attendance', @attendance
     @listenTo Backbone, 'engagements:saved', @onSave
     @listenTo Backbone, 'engagements:duplicate', @duplicate
-
-  # THERE BE ROUTER ACTIONS BELOW
 
   index: ->
     _.each @views, (view) -> view.hide()
@@ -40,13 +35,13 @@ class Phonebook.Controllers.EngagementsController extends Backbone.View
       container: @$el
     @views.new.show(animation)
 
-  edit: (id) ->
+  edit: (id, animation) ->
     @listenToOnce Backbone, 'model:loaded', (engagement) =>
       @views.edit?.remove()
       @views.edit = new Phonebook.Views.Engagements.EditView
         model: engagement
         container: @$el
-      @views.edit.show()
+      @views.edit.show(animation)
     @getModelById(id)
 
   upload: (id) ->
@@ -55,16 +50,18 @@ class Phonebook.Controllers.EngagementsController extends Backbone.View
       Backbone.trigger('engagements:selected', model)
       Backbone.trigger('engagements:uploading', model)
 
-  attendance: (id) ->
-    model = @collection.get(id)
-    if model
-      Backbone.trigger('engagements:selected', model)
-      Backbone.trigger('engagements:taking_attendance', model)
+  attendance: (id, animation) ->
+    @listenToOnce Backbone, 'model:loaded', (engagement) =>
+      @views.attendance?.remove()
+      @views.attendance = new Phonebook.Views.Engagements.AttendanceView
+        model: engagement
+        container: @$el
+      @views.attendance.show(animation)
+    @getModelById(id)
 
   # NOT CALLED BY ROUTER, ala 'private' in a rails controller
 
   getModelById: (id) ->
-    console.log id
     if typeof(id) == "object"
       Backbone.trigger 'model:loaded', id
     else

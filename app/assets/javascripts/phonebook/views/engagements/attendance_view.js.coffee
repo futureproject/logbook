@@ -1,28 +1,28 @@
 Phonebook.Views.Engagements ||= {}
 
 class Phonebook.Views.Engagements.AttendanceView extends Backbone.View
-  initialize: ->
+  initialize: (args) ->
+    @$container = args.container
     @listen()
 
   template: JST['phonebook/templates/engagements/attendance']
 
+  className: 'detail detail-attendance'
+
   listen: ->
-    @listenTo Backbone, 'engagements:taking_attendance', @show
-    @listenTo Backbone, 'engagements:selected', @hide
     @listenTo Backbone, 'engagements:attendee_ids', @updateAttendees
 
   events:
-    'tap .done': (e) ->
-      e.gesture.srcEvent.preventDefault()
-      e.stopPropagation()
-      @animateOut()
+    'tap .done': 'done'
     'touchmove .detail-title': (e) -> e.preventDefault()
 
-  show: (model) ->
-    @model = model
-    Backbone.trigger('engagements:router:update', "#{@model.get('id')}/attendance") unless @model.isNew()
-    @model.set 'taking_attendance', true
+  show: (animation) ->
+    animation ||= 'slide-in-vertical'
+    @$container.append @$el.addClass(animation)
     @render()
+    @$el.one 'webkitAnimationEnd', =>
+      @$el.removeClass(animation)
+      @$el.find('input').focus()
     @search = new Phonebook.Views.People.SearchView
       url: ds.apiHelper.urlFor 'people'
       el: '#engagement-attendance-search-form'
@@ -31,14 +31,17 @@ class Phonebook.Views.Engagements.AttendanceView extends Backbone.View
     @attendees_list = new Phonebook.Views.Engagements.AttendeesListView
       el:'#engagement-attendees-list'
     @loadAttendeesFromServer()
-    @animateIn()
-    Backbone.trigger 'engagements:views:shown', @
+    Backbone.trigger 'engagements:views:shown', 'modal'
 
-  hide: ->
-    @model?.unset 'taking_attendance'
-    @removeSubviews()
-    @$el.removeClass('hiding').removeClass('active').attr('style','') #reset CSS styles
-    window.scrollTo(0,0)
+  hide: (animation) ->
+    animation ||= 'slide-out-vertical'
+    @$el.addClass(animation).one('webkitAnimationEnd', () =>
+      @remove()
+      window.scrollTo(0,0)
+    )
+
+  done: ->
+    @hide()
 
   render: ->
     @$el.html @template @model.tplAttrs()
@@ -46,13 +49,6 @@ class Phonebook.Views.Engagements.AttendanceView extends Backbone.View
   animateIn: ->
     @$el.addClass('active').one('webkitTransitionEnd', (event) =>
       @$el.find('input').focus()
-    )
-
-  animateOut: ->
-    document.activeElement?.blur()
-    Backbone.trigger 'engagements:views:hidden', @ #announce that this view got hid
-    @$el.addClass('hiding').removeClass('active').one('webkitTransitionEnd', () =>
-      @hide()
     )
 
   removeSubviews: ->

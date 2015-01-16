@@ -144,7 +144,10 @@
       min-height: 101%;
     }
   }
-  &.detail-edit, .detail-new {
+  &.detail-edit, &.detail-new {
+    z-index: 3;
+  }
+  &.detail-gallery, &.detail-attendance {
     z-index: 3;
   }
 }

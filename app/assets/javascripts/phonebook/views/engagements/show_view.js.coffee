@@ -48,7 +48,7 @@ class Phonebook.Views.Engagements.ShowView extends Backbone.View
     e.gesture.srcEvent.preventDefault()
 
   showAttendance: (e) ->
-    Backbone.trigger 'engagements:taking_attendance', @model
+    Backbone.trigger 'engagements:attendance', @model
     e.gesture.srcEvent.preventDefault()
 
   back: ->
