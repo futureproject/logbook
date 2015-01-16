@@ -57,25 +57,30 @@
 .slide-in-horizontal {
   @include animation(slideInHorizontal .6s);
   @include animation-timing-function(cubic-bezier(0.23,1,0.32,1));
-  &.hiding {
-    @include animation(slideOutHorizontal .4s);
-  }
 }
-
+.slide-out-horizontal {
+  @include animation(slideOutHorizontal .6s);
+  @include animation-timing-function(cubic-bezier(0.23,1,0.32,1));
+}
 .slide-in-vertical {
   @include animation(slideInVertical .6s);
   @include animation-timing-function(cubic-bezier(0.23,1,0.32,1));
-  &.hiding {
-    @include animation(slideOutVertical .4s);
-  }
+}
+.slide-out-vertical {
+  @include animation(slideOutVertical .6s);
+  @include animation-timing-function(cubic-bezier(0.23,1,0.32,1));
 }
 
 .fade-in {
   @include animation(fadeIn .6s);
   @include animation-timing-function(cubic-bezier(0.23,1,0.32,1));
-  &.hiding {
-    @include animation(fadeOut .4s);
-  }
+}
+.fade-out {
+  @include animation(fadeOut .6s);
+  @include animation-timing-function(cubic-bezier(0.23,1,0.32,1));
+}
+.fade-in-fast {
+  @include animation(fadeIn .01s);
 }
 
 .list {

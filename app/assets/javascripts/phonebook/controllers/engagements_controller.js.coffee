@@ -4,16 +4,6 @@ class Phonebook.Controllers.EngagementsController extends Backbone.View
     @listen()
     @router = new Phonebook.Routers.EngagementsRouter
     @views = {}
-    #@views =
-    #  index: new Phonebook.Views.Engagements.IndexView
-    #    collection: @collection
-    #  show: new Phonebook.Views.Engagements.ShowView
-    #  new: new Phonebook.Views.Engagements.NewView
-    #  edit: new Phonebook.Views.Engagements.EditView
-    #  upload: new Phonebook.Views.Engagements.UploadView
-    #  attendance: new Phonebook.Views.Engagements.AttendanceView
-
-
 
   listen: ->
     @listenTo Backbone, 'engagements:index', @index
@@ -24,36 +14,6 @@ class Phonebook.Controllers.EngagementsController extends Backbone.View
     @listenTo Backbone, 'engagements:attendance', @attendance
     @listenTo Backbone, 'engagements:saved', @onSave
     @listenTo Backbone, 'engagements:duplicate', @duplicate
-    #@listenTo Backbone, 'engagements:views:shown', @onShow
-    #@listenTo Backbone, 'engagements:views:hidden', @onHide
-
-  onShow: (view) ->
-    if view == @views.show
-      @views.index.$el.addClass('shifted')
-
-  onHide: (view) ->
-    @views.index.el.classList.add 'active'
-    if view == @views.new || view == @views.show
-      Backbone.trigger 'engagements:router:update', ''
-    else if view.model
-      Backbone.trigger 'engagements:router:update', view.model.get('id')
-    if view == @views.show
-      @views.index.$el.removeClass('shifted')
-
-  onSave: (model) ->
-    @collection.add model,
-      merge: true
-    Backbone.trigger 'engagements:show', model.get('id'), 'fade-in'
-
-  duplicate: (model) ->
-      data = _.omit(model.attributes, 'id', 'date')
-      engagement = new Phonebook.Models.Engagement
-      engagement.save data,
-        success: (model) ->
-          Backbone.trigger 'engagements:saved', model
-        error: (e) ->
-          console.log errror
-
 
   # THERE BE ROUTER ACTIONS BELOW
 
@@ -66,24 +26,28 @@ class Phonebook.Controllers.EngagementsController extends Backbone.View
     Backbone.trigger 'engagements:bootstrap'
 
   show: (id, animation) ->
-    engagement = @collection.get(id) || new Phonebook.Models.Engagement({ id: id })
-    @views.show?.remove()
-    @views.show = new Phonebook.Views.Engagements.ShowView
-      model: engagement
-      container: @$el
-    @views.show.show(animation)
+    @listenToOnce Backbone, 'model:loaded', (engagement) =>
+      @views.show?.remove()
+      @views.show = new Phonebook.Views.Engagements.ShowView
+        model: engagement
+        container: @$el
+      @views.show.show(animation)
+    @getModelById(id)
 
-  new: (e) ->
+  new: (animation) ->
+    @views.new?.remove()
     @views.new = new Phonebook.Views.Engagements.NewView
       container: @$el
-    @views.new.show()
+    @views.new.show(animation)
 
   edit: (id) ->
-    engagement = @collection.get(id) || new Phonebook.Models.Engagement({ id: id })
-    @views.edit = new Phonebook.Views.Engagements.EditView
-      model: engagement
-      container: @$el
-    @views.edit.show()
+    @listenToOnce Backbone, 'model:loaded', (engagement) =>
+      @views.edit?.remove()
+      @views.edit = new Phonebook.Views.Engagements.EditView
+        model: engagement
+        container: @$el
+      @views.edit.show()
+    @getModelById(id)
 
   upload: (id) ->
     model = @collection.get(id)
@@ -96,3 +60,32 @@ class Phonebook.Controllers.EngagementsController extends Backbone.View
     if model
       Backbone.trigger('engagements:selected', model)
       Backbone.trigger('engagements:taking_attendance', model)
+
+  # NOT CALLED BY ROUTER, ala 'private' in a rails controller
+
+  getModelById: (id) ->
+    console.log id
+    if typeof(id) == "object"
+      Backbone.trigger 'model:loaded', id
+    else
+      model = new Phonebook.Models.Engagement
+        id: id
+      model.fetch
+        success: -> Backbone.trigger 'model:loaded', model
+
+  onSave: (model) ->
+    @collection.add model,
+      merge: true
+    Backbone.trigger 'engagements:show', model.get('id'), 'fade-in'
+
+  duplicate: (model) ->
+      data = _.omit(_.clone(model.attributes), 'id', 'date')
+      engagement = new Phonebook.Models.Engagement
+        selected: true
+      engagement.save data,
+        success: (model) ->
+          Backbone.trigger 'engagements:saved', model
+        error: (e) ->
+          console.log errror
+
+

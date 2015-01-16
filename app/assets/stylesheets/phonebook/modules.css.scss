@@ -144,6 +144,9 @@
       min-height: 101%;
     }
   }
+  &.detail-edit, .detail-new {
+    z-index: 3;
+  }
 }
 
 

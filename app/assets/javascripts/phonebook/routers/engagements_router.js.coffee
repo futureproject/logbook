@@ -18,10 +18,10 @@ class Phonebook.Routers.EngagementsRouter extends Backbone.Router
     Backbone.trigger 'engagements:index'
 
   show: (id) ->
-    Backbone.trigger 'engagements:show', id
+    Backbone.trigger 'engagements:show', id, 'fade-in-fast'
 
   new: ->
-    Backbone.trigger 'engagements:new'
+    Backbone.trigger 'engagements:new', 'fade-in-fast'
 
   edit: (id) ->
     Backbone.trigger 'engagements:edit', id

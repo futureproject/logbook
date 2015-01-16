@@ -15,7 +15,7 @@ class Phonebook.Views.Engagements.EditView extends Backbone.View
 
   cancel: ->
     @hide()
-    Backbone.trigger 'engagements:show', @model, 'fade-in'
+    Backbone.trigger 'engagements:show', @model, 'fade-in-fast'
 
   takeAttendance: (e) ->
     Backbone.trigger 'engagements:taking_attendance', @model
@@ -28,11 +28,15 @@ class Phonebook.Views.Engagements.EditView extends Backbone.View
     animation ||= 'fade-in'
     @$container.append @$el.addClass(animation)
     @render()
+    @$el.one 'webkitAnimationEnd', =>
+      @$el.removeClass(animation)
     Backbone.trigger 'engagements:router:update', @model.get('id') + "/edit"
     Backbone.trigger 'engagements:views:shown', 'detail'
 
-  hide: ->
-    @$el.addClass('hiding').one('webkitAnimationEnd', () =>
+  hide: (animation) ->
+    animation ||= 'fade-out'
+    @$el.addClass(animation).one('webkitAnimationEnd', () =>
+      @model?.unset('selected')
       @remove()
     )
     Backbone.trigger('engagements:views:hidden', @)

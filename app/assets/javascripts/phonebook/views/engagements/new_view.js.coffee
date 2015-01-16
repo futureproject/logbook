@@ -30,11 +30,15 @@ class Phonebook.Views.Engagements.NewView extends Backbone.View
     animation ||= 'slide-in-vertical'
     @$container.append @$el.addClass(animation)
     @render()
+    @$el.one 'webkitAnimationEnd', =>
+      @$el.removeClass(animation)
     Backbone.trigger 'engagements:router:update', 'new'
     Backbone.trigger 'engagements:views:shown', 'modal'
 
-  hide: ->
-    @$el.addClass('hiding').one('webkitAnimationEnd', () =>
+  hide: (animation) ->
+    animation ||= 'slide-out-vertical'
+    @$el.addClass(animation).one('webkitAnimationEnd', () =>
+      @model?.unset('selected')
       @remove()
     )
     Backbone.trigger('engagements:views:hidden', @)

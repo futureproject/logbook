@@ -32,7 +32,7 @@ feature 'using the phonebook' do
     first('.edit').click
     fill_in 'name', with: "Nightwing Guest Lecture"
     fill_in 'notes', with: 'Best meeting ever!'
-    within '#edit-engagement' do
+    within '.detail-edit' do
       first('.button.done').click
     end
     should_see_engagement_named 'Nightwing Guest Lecture'

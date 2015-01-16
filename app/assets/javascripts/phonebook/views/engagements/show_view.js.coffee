@@ -25,15 +25,16 @@ class Phonebook.Views.Engagements.ShowView extends Backbone.View
     animation ||= 'slide-in-horizontal'
     @$container.append @$el.addClass(animation)
     @render()
-    @model.set 'selected', true
     @$el.one 'webkitAnimationEnd', =>
+      @$el.removeClass(animation)
       @model.fetch()
     Backbone.trigger 'engagements:router:update', @model.get('id')
     Backbone.trigger 'engagements:views:shown', 'detail'
 
-  hide: ->
-    @$el.addClass('hiding').one('webkitAnimationEnd', () =>
-      @model?.unset('selected')
+  hide: (animation) ->
+    animation ||= 'slide-out-horizontal'
+    @$el.addClass(animation).one('webkitAnimationEnd', () =>
+      @model.unset('selected')
       @remove()
     )
     Backbone.trigger('engagements:views:hidden', @)

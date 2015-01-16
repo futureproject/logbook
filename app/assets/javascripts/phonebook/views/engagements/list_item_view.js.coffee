@@ -12,7 +12,7 @@ class Phonebook.Views.Engagements.ListItemView extends Phonebook.Views.Base.List
     @
 
   listen: ->
-    @listenTo @model, 'change:selected', @render
+    @listenTo @model, 'change', @render
     @listenTo @model, 'destroy', @remove
     @events['tap'] = 'ontap'
     @listenTo @, 'controlTap', @duplicate
