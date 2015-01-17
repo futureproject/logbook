@@ -156,10 +156,11 @@ body, .detail-content, .list-items {
 
 .upload {
   border-top: none;
+  margin: 0;
   .progress {
     border: 3px solid $medium-gray;
     .bar { background: $medium-gray; }
-    margin: 0 auto 15px;
+    margin: 0 auto 4px;
   }
 }
 

@@ -1,6 +1,10 @@
 Phonebook.Views.Engagements ||= {}
 
 class Phonebook.Views.Engagements.AssetsCardView extends Backbone.View
+  initialize: ->
+    @model.assetsCollection ||= new Phonebook.Collections.AssetsCollection(@model.get('assets'))
+    @listenTo @model.assetsCollection, 'add reset', @renderAssets
+
   template: JST['phonebook/templates/engagements/assets_card']
 
   render: ->
@@ -12,18 +16,14 @@ class Phonebook.Views.Engagements.AssetsCardView extends Backbone.View
     @
 
   renderAssets: ->
-    assets = @model.get('assets')
-    Backbone.trigger 'assets:clean'
-    i = assets.length
-    while (i > 0)
-      @addAsset(assets[i])
-      i -= 1
+    @$thumbs.empty()
+    @model.assetsCollection.each (asset) => @addAsset(asset)
 
   addAsset: (asset) ->
     v = new Phonebook.Views.Assets.AssetView
-      model: new Phonebook.Models.Asset(asset)
+      model: (asset)
     v.listenTo Backbone, 'assets:clean', v.remove
-    @$thumbs.prepend v.render().el
+    @$thumbs.append v.render().el
 
   prepS3Form: ->
     @$form = @$el.find('form')
@@ -41,4 +41,5 @@ class Phonebook.Views.Engagements.AssetsCardView extends Backbone.View
     assetAttrs = JSON.parse data.responseText
     if !!assetAttrs.external_url.match(/jpg|gif|png/i)
       assetAttrs.thumbnail = assetAttrs.external_url
-    @addAsset(assetAttrs)
+    @model.assetsCollection.add assetAttrs,
+      at: 0
