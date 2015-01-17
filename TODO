@@ -1,4 +1,2 @@
-_Rendering Engagement Show should only rerender the header and notes (make top part a subview?)
-_Explicitly redirect after EDIT, NEW, instead of delegating to Controller.onSave
 _manage Engagement Attendees as a collection
 

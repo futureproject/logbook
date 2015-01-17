@@ -43,6 +43,7 @@ class Phonebook.Views.Engagements.NewView extends Backbone.View
     e.stopPropagation()
     @$el.find('form').trigger 'submit'
     @hide()
+    Backbone.trigger 'engagements:show', @model, 'fade-in'
 
   render: ->
     @$el.html @template @model.tplAttrs()

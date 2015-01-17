@@ -15,7 +15,7 @@ class Phonebook.Views.Engagements.EditView extends Backbone.View
 
   cancel: ->
     @hide()
-    Backbone.trigger 'engagements:show', @model, 'fade-in-fast'
+    #Backbone.trigger 'engagements:show', @model, 'fade-in-fast'
 
   listen: ->
     @listenTo @model, 'change', @render
@@ -35,6 +35,7 @@ class Phonebook.Views.Engagements.EditView extends Backbone.View
       @remove()
     )
     Backbone.trigger('engagements:views:hidden', @)
+    Backbone.trigger 'engagements:router:update', @model.get('id')
 
   submitForm: (e) ->
     e.stopPropagation()

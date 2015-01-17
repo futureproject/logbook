@@ -1,0 +1,10 @@
+<header>
+  <h2><%= name %></h2>
+  <div class='engagement-school'><%= school %></div>
+  <span><%= kind %></span>
+  <span><%= Date.parse(date).toString('MMM dd') %></span>
+  <span><%= duration %> Hrs</span>
+</header>
+<div class='engagement-notes card'>
+  <pre><%= notes || "No notes" %></pre>
+</div>

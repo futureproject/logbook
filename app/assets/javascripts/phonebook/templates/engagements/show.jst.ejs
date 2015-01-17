@@ -1,5 +1,5 @@
 <div class='detail-title'>
-  <h1><%= kind %></h1>
+  <h1>Engagement</h1>
   <div class='l-menu'>
     <div class='button back'>Back</div>
   </div>
@@ -9,14 +9,7 @@
 </div>
 <div class='engagement-detail detail-content scrollable'>
   <div>
-    <header>
-      <h2><%= name || kind %></h2>
-      <div class='engagement-school'><%= school %></div>
-      <span><%= Date.parse(date).toString('MMM dd') %></span>
-      <span><%= duration %> Hrs</span>
-    </header>
-    <div class='engagement-notes card'>
-      <pre><%= notes || "No notes" %></pre>
+    <div class='engagement-info'>
     </div>
     <div class='engagement-attendance card attendance'>
       <h4>Attendees (<%= attendee_ids.length %>)</h4>

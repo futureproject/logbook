@@ -20,6 +20,7 @@ class Phonebook.Views.Engagements.ShowView extends Backbone.View
   listen: ->
 
   show: (animation) ->
+    console.log 'rendering show view'
     animation ||= 'slide-in-horizontal'
     @$container.append @$el.addClass(animation)
     @render()
@@ -29,7 +30,7 @@ class Phonebook.Views.Engagements.ShowView extends Backbone.View
         @renderSubviews()
       else
         @loadMore()
-    Backbone.trigger 'engagements:router:update', @model.get('id')
+    Backbone.trigger 'engagements:router:update', (@model.id || @model.cid)
     Backbone.trigger 'engagements:views:shown', 'detail'
 
   hide: (animation) ->
@@ -42,6 +43,7 @@ class Phonebook.Views.Engagements.ShowView extends Backbone.View
 
   render: ->
     @$el.html(@template @model.tplAttrs())
+    @showInfo()
     @
 
   loadMore: ->
@@ -57,6 +59,12 @@ class Phonebook.Views.Engagements.ShowView extends Backbone.View
         el: @$el.find('.engagement-assets')
         model: @model
     _.each @subviews, (view) -> view.render()
+
+  showInfo: ->
+    @$infoView ||= new Phonebook.Views.Engagements.InfoView
+      el: @$el.find('.engagement-info')
+      model: @model
+    @$infoView.render()
 
   back: ->
     Backbone.trigger 'engagements:index'

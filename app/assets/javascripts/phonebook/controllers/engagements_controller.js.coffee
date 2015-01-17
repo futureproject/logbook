@@ -76,7 +76,7 @@ class Phonebook.Controllers.EngagementsController extends Backbone.View
   onSave: (model) ->
     @collection.add model,
       merge: true
-    Backbone.trigger 'engagements:show', model.get('id'), 'fade-in'
+    #Backbone.trigger 'engagements:show', model.get('id'), 'fade-in'
 
   duplicate: (model) ->
       data = _.omit(_.clone(model.attributes), 'id', 'date')
@@ -85,6 +85,7 @@ class Phonebook.Controllers.EngagementsController extends Backbone.View
       engagement.save data,
         success: (model) ->
           Backbone.trigger 'engagements:saved', model
+          Backbone.trigger 'engagements:show', model, 'fade-in'
         error: (e) ->
           console.log errror
 
