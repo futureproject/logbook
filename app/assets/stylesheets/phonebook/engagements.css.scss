@@ -64,7 +64,20 @@
 
 
 #phonebook-engagements {
+  .duplicate {
+    background: $engagements-color;
+  }
   .recessed-button {
     background: $engagements-color;
+  }
+  .loading {
+    border-left:3px solid $engagements-color;
+    border-right:3px solid $engagements-color;
+    border-bottom:3px solid $engagements-color;
+    border-top:3px solid lighten($engagements-color, 25%);
+  }
+  .upload .progress{
+    border: 3px solid $engagements-color;
+    .bar { background: $engagements-color; }
   }
 }

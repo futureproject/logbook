@@ -1,4 +1,5 @@
 class Phonebook.Models.Engagement extends Backbone.Model
+
   urlRoot: ds.apiHelper.urlFor 'engagements'
 
   defaults: ->
@@ -12,11 +13,13 @@ class Phonebook.Models.Engagement extends Backbone.Model
 
   save: (key, val, options) ->
     @set 'date', Date.parse(@get('date')).toString('yyyy-MM-dd')
-    @set('attendee_ids',['']) if @get('attendee_ids') == null
+    attendee_ids = @get 'attendee_ids'
+    if attendee_ids == null || attendee_ids.length == 0
+      @set 'attendee_ids', ['']
     super
 
   toJSON: ->
-    _.omit _.clone(@attributes), ['selected', 'editing', 'operating', 'uploading', 'taking_attendance']
+    _.omit _.clone(@attributes), ['selected', 'operating', 'attendees', 'assets']
 
   tplAttrs: ->
     attrs = _.clone @attributes
@@ -25,7 +28,6 @@ class Phonebook.Models.Engagement extends Backbone.Model
     attrs['day_of_month'] = date.toString('dd')
     attrs['school'] = Phonebook.schools.get(@get('school_id'))?.get('name')
     attrs
-
 
 class Phonebook.Collections.EngagementsCollection extends Backbone.Collection
   model: Phonebook.Models.Engagement

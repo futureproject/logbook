@@ -57,8 +57,8 @@ class Phonebook.Views.Engagements.AttendanceView extends Backbone.View
     super
 
   updateAttendees: (ids) ->
-    @model.save
-      attendee_ids: ids
+    @model.set 'attendee_ids', ids
+    @model.save()
 
   loadAttendeesFromServer: ->
     if @model.isNew()

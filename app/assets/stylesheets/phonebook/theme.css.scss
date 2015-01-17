@@ -157,9 +157,9 @@ body, .detail-content, .list-items {
 .upload {
   border-top: none;
   .progress {
-    border: 3px solid $light-green;
-    .bar { background: $light-green; }
-    margin: 15px auto;
+    border: 3px solid $medium-gray;
+    .bar { background: $medium-gray; }
+    margin: 0 auto 15px;
   }
 }
 
@@ -196,9 +196,5 @@ select {
   }
 }
 
+.warning { color: $light-red; }
 
-.engagement {
-  .duplicate {
-    background: $engagements-color;
-  }
-}

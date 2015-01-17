@@ -1,18 +1,24 @@
 Phonebook.Views.Engagements ||= {}
 
 class Phonebook.Views.Engagements.AttendanceCardView extends Backbone.View
+  initialize: ->
+    @listenTo @model, 'change:attendees', @render
+
   events:
     'tap' : 'showModal'
+
+  template: JST['phonebook/templates/engagements/attendance_card']
 
   render: ->
     $list = $('<ul class="columned-list" />')
     attendees = @model.get('attendees')
-    return unless attendees?.length > 0
     for attendee in attendees
       $list.append "<li>#{attendee.first_name} #{attendee.last_name}</li>"
-    @$el.append $list
+    @$el.html(@template @model.tplAttrs())
+    @$el.append($list) unless attendees?.length < 1
     @
 
   showModal: (e) ->
     Backbone.trigger 'engagements:attendance', @model
     e.gesture.srcEvent.preventDefault()
+

@@ -15,7 +15,8 @@ class Phonebook.Views.Assets.AssetView extends Backbone.View
     @
 
   hide: ->
-    @$el.fadeOut => @$el.remove()
+    Backbone.trigger 'asset:destroyed', @model
+    @$el.addClass('collapse').one('webkitAnimationEnd', => @$el.remove() )
 
   toggleControls: -> @$el.toggleClass('controls-showing')
 

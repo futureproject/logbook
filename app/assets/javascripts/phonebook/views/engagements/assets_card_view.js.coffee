@@ -1,10 +1,13 @@
 Phonebook.Views.Engagements ||= {}
 
 class Phonebook.Views.Engagements.AssetsCardView extends Backbone.View
+  template: JST['phonebook/templates/engagements/assets_card']
+
   render: ->
-    @$list = $('<ul class="thumbnails" />')
-    @$el.append($('#form-to-s3').html()).append(@$list)
+    @$thumbs = $('<div class="thumbnails" />')
     @renderAssets()
+    @$el.html(@template @model.tplAttrs())
+    @$el.append($('#form-to-s3').html()).append(@$thumbs)
     @prepS3Form()
     @
 
@@ -12,14 +15,15 @@ class Phonebook.Views.Engagements.AssetsCardView extends Backbone.View
     assets = @model.get('assets')
     Backbone.trigger 'assets:clean'
     i = assets.length
-    while (i -= 1)
+    while (i > 0)
       @addAsset(assets[i])
+      i -= 1
 
   addAsset: (asset) ->
     v = new Phonebook.Views.Assets.AssetView
       model: new Phonebook.Models.Asset(asset)
     v.listenTo Backbone, 'assets:clean', v.remove
-    @$list.prepend v.render().el
+    @$thumbs.prepend v.render().el
 
   prepS3Form: ->
     @$form = @$el.find('form')
@@ -37,6 +41,4 @@ class Phonebook.Views.Engagements.AssetsCardView extends Backbone.View
     assetAttrs = JSON.parse data.responseText
     if !!assetAttrs.external_url.match(/jpg|gif|png/i)
       assetAttrs.thumbnail = assetAttrs.external_url
-    else
-      assetAttrs.thumbnail = "//dream-os-production.s3.amazonaws.com/static-assets/document.png"
     @addAsset(assetAttrs)

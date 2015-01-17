@@ -38,13 +38,20 @@
     opacity: 1;
   }
 }
-
 @include keyframes(fadeOut) {
   from {
     opacity: 1;
   }
   to {
     opacity: 0;
+  }
+}
+@include keyframes(collapse) {
+  from {
+    @include transform(scale(1,1));
+  }
+  to {
+    @include transform(scale(0.0000001,0.0000001));
   }
 }
 .transitions {
@@ -70,7 +77,6 @@
   @include animation(slideOutVertical .6s);
   @include animation-timing-function(cubic-bezier(0.23,1,0.32,1));
 }
-
 .fade-in {
   @include animation(fadeIn .6s);
   @include animation-timing-function(cubic-bezier(0.23,1,0.32,1));
@@ -81,6 +87,9 @@
 }
 .fade-in-fast {
   @include animation(fadeIn .01s);
+}
+.collapse {
+  @include animation(collapse .5s);
 }
 
 .list {
