@@ -2,59 +2,48 @@ Phonebook.Views.Engagements ||= {}
 
 class Phonebook.Views.Engagements.UploadView extends Backbone.View
   initialize: (args) ->
+    @$container = args.container
     @listen()
 
   template: JST['phonebook/templates/engagements/upload']
 
+  className: 'detail detail-upload'
+
   listen: ->
-    @listenTo Backbone, 'engagements:uploading', @show
-    @listenTo Backbone, 'engagements:selected', @hide
 
   events:
-    'tap .done': 'animateOut'
+    'tap .done': 'done'
     'touchmove .detail-title': (e) -> e.preventDefault()
 
-  show: (model) ->
-    @model = model
-    #return if @model?.has('uploading')
-    Backbone.trigger 'engagements:router:update', "#{@model.get('id')}/upload"
-    @model.set 'uploading', true
+  show: (animation) ->
+    animation ||= 'slide-in-vertical'
+    @$container.append @$el.addClass(animation)
     @render()
-    @animateIn()
-    @loadUploads()
-    Backbone.trigger 'engagements:views:shown', @
+    @$el.one 'webkitAnimationEnd', =>
+      @$el.removeClass(animation)
+      @loadUploads()
 
-  hide: ->
-    @model?.unset('uploading')
-    @removeSubviews()
-    @$el.removeClass('hiding').removeClass('active').attr('style','') #reset CSS styles
+  hide: (animation) ->
+    animation ||= 'slide-out-vertical'
+    @$el.addClass(animation).one('webkitAnimationEnd', () =>
+      @remove()
+    )
+
+  done: (e) -> @hide()
 
   render: ->
     @$el.html @template @model.tplAttrs()
 
-  animateIn: ->
-    @$el.addClass('active')
-
-  animateOut: ->
-    Backbone.trigger 'engagements:views:hidden', @ #announce that this view got hid
-    @$el.addClass('hiding').removeClass('active').one('webkitTransitionEnd', () =>
-      @hide()
-    )
-
   loadUploads: ->
-    $.ajax
-      url: ds.apiHelper.urlFor 'engagement', @model.get('id')
-      complete: (response) =>
-        response = JSON.parse(response.responseText)
-        assets = response.assets
-        fragment = document.createDocumentFragment()
-        _.each assets, (asset) ->
-          v = new Phonebook.Views.Assets.AssetView
-            model: new Phonebook.Models.Asset(asset)
-          v.listenTo Backbone, 'uploads:clean', v.remove
-          fragment.appendChild v.render().el
-        @$el.find('.engagement-assets').html(fragment).before $('#form-to-s3').html()
-        @prepS3Form()
+    assets = @model.get('assets')
+    fragment = document.createDocumentFragment()
+    _.each assets, (asset) ->
+      v = new Phonebook.Views.Assets.AssetView
+        model: new Phonebook.Models.Asset(asset)
+      v.listenTo Backbone, 'uploads:clean', v.remove
+      fragment.appendChild v.render().el
+    @$el.find('.engagement-assets').html(fragment).before $('#form-to-s3').html()
+    @prepS3Form()
 
   removeSubviews: ->
     @$form?.unbind().remove()

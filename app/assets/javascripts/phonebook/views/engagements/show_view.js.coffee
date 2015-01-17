@@ -14,7 +14,6 @@ class Phonebook.Views.Engagements.ShowView extends Backbone.View
     'swiperight': 'back'
     'tap .edit': -> Backbone.trigger 'engagements:edit', @model
     'tap .upload': 'showUploads'
-    'tap .attendance': 'showAttendance'
     'touchmove .detail-title': (e) -> e.preventDefault()
     #'blur .editable': 'saveContent'
 
@@ -54,17 +53,10 @@ class Phonebook.Views.Engagements.ShowView extends Backbone.View
       attendance_card: new Phonebook.Views.Engagements.AttendanceCardView
         el: @$el.find('.engagement-attendance')
         model: @model
-      #media_card: new Phonebook.Views.MediaCard
-      #  el: @$el.find('.engagement-media')
+      assets_card: new Phonebook.Views.Engagements.AssetsCardView
+        el: @$el.find('.engagement-assets')
+        model: @model
     _.each @subviews, (view) -> view.render()
-
-  showUploads: (e) ->
-    Backbone.trigger 'engagements:uploading', @model
-    e.gesture.srcEvent.preventDefault()
-
-  showAttendance: (e) ->
-    Backbone.trigger 'engagements:attendance', @model
-    e.gesture.srcEvent.preventDefault()
 
   back: ->
     Backbone.trigger 'engagements:index'

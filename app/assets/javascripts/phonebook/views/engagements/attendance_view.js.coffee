@@ -46,11 +46,6 @@ class Phonebook.Views.Engagements.AttendanceView extends Backbone.View
   render: ->
     @$el.html @template @model.tplAttrs()
 
-  animateIn: ->
-    @$el.addClass('active').one('webkitTransitionEnd', (event) =>
-      @$el.find('input').focus()
-    )
-
   removeSubviews: ->
     @search?.remove()
     @search_results?.remove()

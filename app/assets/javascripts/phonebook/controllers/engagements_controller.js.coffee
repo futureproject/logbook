@@ -44,11 +44,14 @@ class Phonebook.Controllers.EngagementsController extends Backbone.View
       @views.edit.show(animation)
     @getModelById(id)
 
-  upload: (id) ->
-    model = @collection.get(id)
-    if model
-      Backbone.trigger('engagements:selected', model)
-      Backbone.trigger('engagements:uploading', model)
+  upload: (id, animation) ->
+    @listenToOnce Backbone, 'model:loaded', (engagement) =>
+      @views.upload?.remove()
+      @views.upload = new Phonebook.Views.Engagements.UploadView
+        model: engagement
+        container: @$el
+      @views.upload.show(animation)
+    @getModelById(id)
 
   attendance: (id, animation) ->
     @listenToOnce Backbone, 'model:loaded', (engagement) =>
