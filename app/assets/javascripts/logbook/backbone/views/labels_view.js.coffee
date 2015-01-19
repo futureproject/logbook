@@ -9,7 +9,6 @@ class ds.LabelsView extends Backbone.View
 
   setTriggerPosition: ->
     @triggerPosition = @el.getBoundingClientRect().top
-    console.log @triggerPosition
 
   activate: ->
     $(window).on('scroll', (event) =>

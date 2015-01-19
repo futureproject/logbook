@@ -40,6 +40,7 @@ class Logbook::PeopleController < Logbook::ApplicationController
       else
         format.html { redirect_to logbook_people_path, notice: 'Person was not saved.' }
         format.json { render json: @person.errors, status: :unprocessable_entity }
+        format.js { render json: @person.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -54,6 +55,7 @@ class Logbook::PeopleController < Logbook::ApplicationController
       else
         format.html { render :edit }
         format.json { render json: @person.errors, status: :unprocessable_entity }
+        format.js { render json: @person.errors, status: :unprocessable_entity }
       end
     end
   end

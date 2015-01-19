@@ -63,7 +63,7 @@ class Logbook::EngagementsController < Logbook::ApplicationController
         format.js
       else
         format.html { redirect_to logbook_engagements_path, notice: 'Engagement was not created.' }
-        format.js
+        format.js { render json: @engagement.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -78,6 +78,7 @@ class Logbook::EngagementsController < Logbook::ApplicationController
       else
         format.html { render :edit }
         format.json { render json: @engagement.errors, status: :unprocessable_entity }
+        format.js { render json: @engagement.errors, status: :unprocessable_entity }
       end
     end
   end

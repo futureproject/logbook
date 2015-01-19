@@ -14,6 +14,8 @@ class ds.GlobalAddView extends Backbone.View
       vex.open
         content: template
         overlayClosesOnClick: false
+        escapeButtonCloses: false
+        showcloseButton: false
       @setElement('.vex')
     @$el.find('form').attr('data-remote', true).find('select[multiple]').each ->
       new ds.SelectizeView({ el: this })

@@ -6,7 +6,7 @@ class Engagement < ActiveRecord::Base
   has_many :assets, as: :attachable, dependent: :destroy
   has_many :activities, as: :thing, dependent: :destroy
   after_create :log_activity
-  validates_presence_of :date
+  validates_presence_of :date, :name
   KIND_ENUM = ['Coaching Session', 'Event', 'Meeting', 'Workshop']
   DURATION_ENUM = [
     ['5 Minutes', 0.1],
