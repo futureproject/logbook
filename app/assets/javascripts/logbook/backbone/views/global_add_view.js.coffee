@@ -3,6 +3,7 @@ window.ds ||= {}
 class ds.GlobalAddView extends Backbone.View
   events:
     'ajax:success': 'success'
+    'ajax:error': 'error'
 
   render: (template) ->
     v = document.querySelector '.vex'
@@ -25,6 +26,12 @@ class ds.GlobalAddView extends Backbone.View
       $('html, body').animate
         scrollTop: 0
     new ds.FlashView({ message: "Saved!" })
+
+  error: (event, response, status) ->
+    errors = JSON.parse(response.responseText)
+    errorName = Object.keys(errors)[0]
+    message = errors[errorName][0]
+    alert "#{errorName} #{message}"
 
 
 $ ->

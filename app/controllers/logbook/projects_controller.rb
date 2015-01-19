@@ -56,6 +56,7 @@ class Logbook::ProjectsController < Logbook::ApplicationController
       else
         format.html { redirect_to logbook_projects_path, notice: 'Project was not created.' }
         format.json { render json: @project.errors, status: :unprocessable_entity }
+        format.js { render json: @project.errors, status: :unprocessable_entity }
       end
     end
   end
