@@ -24,9 +24,6 @@ class ds.GlobalAddView extends Backbone.View
 
   success: (event, data, status) ->
     vex.closeAll()
-    if document.querySelector('.table')
-      $('html, body').animate
-        scrollTop: 0
     new ds.FlashView({ message: "Saved!" })
 
   error: (event, response, status) ->

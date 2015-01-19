@@ -23,6 +23,7 @@ feature 'using the phonebook' do
       fill_in 'name', with: 'Cooking Class'
       first('.button.done').click
     end
+    sleep 1
     should_see_engagement_named('Cooking Class')
   end
 

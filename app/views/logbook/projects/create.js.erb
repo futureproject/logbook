@@ -1,3 +1,4 @@
 $html = $("<%= j render @project %>").addClass('brand-new')
-$html.hide().prependTo('.table')
+$html.hide().prependTo('.table.projects')
 $html.slideDown()
+ds.REDIRECT_URL = "<%= url_for [:logbook, @project] %>"

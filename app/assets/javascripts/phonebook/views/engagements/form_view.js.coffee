@@ -25,6 +25,6 @@ class Phonebook.Views.Engagements.FormView extends Backbone.View
     @model.save data,
       success: (e) =>
         Backbone.trigger 'engagements:saved', @model
-      error: (e) =>
-        console.log e
+      error: (model) =>
+        console.log model
 

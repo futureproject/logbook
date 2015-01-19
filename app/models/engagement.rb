@@ -6,7 +6,8 @@ class Engagement < ActiveRecord::Base
   has_many :assets, as: :attachable, dependent: :destroy
   has_many :activities, as: :thing, dependent: :destroy
   after_create :log_activity
-  validates_presence_of :date, :name
+  before_create :autoname
+  validates_presence_of :date
   KIND_ENUM = ['Coaching Session', 'Event', 'Meeting', 'Workshop']
   DURATION_ENUM = [
     ['5 Minutes', 0.1],
@@ -19,7 +20,8 @@ class Engagement < ActiveRecord::Base
     ['4 Hours', 4.0],
     ['5 Hours', 5.0],
     ['6 Hours', 6.0],
-    ['7+ Hours', 8.0]
+    ['7 Hours', 7.0],
+    ['8 Hours', 8.0]
   ]
 
   COLOR_ENUM = %w(#b363a4 #dcaad3 #8a2f78 #5b094b)
@@ -33,6 +35,19 @@ class Engagement < ActiveRecord::Base
   scope :with_attendees, -> (table) {
     joins(:attendees).select("engagements.*, COUNT(#{table}.id) AS #{table}_count").group("engagements.id")
   }
+
+  def autoname
+    if self.name.blank?
+      attendees = Person.where(id: attendee_ids).order(:first_name).limit(3)
+      if attendees.any?
+        self.name = kind + ' w/ ' + attendees.pluck(:first_name).join(', ')
+      else
+        self.name = "Unnamed #{kind}"
+      end
+    else
+      true
+    end
+  end
 
   def log_activity
     Activity.create(

@@ -1,3 +1,4 @@
 $html = $("<%= j render @engagement %>")
-$html.hide().prependTo('.table')
+$html.hide().prependTo('.engagements.table')
 $html.slideDown()
+ds.REDIRECT_URL = "<%= url_for [:logbook, @engagement] %>"

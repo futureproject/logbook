@@ -14,7 +14,7 @@
     text-transform: capitalize;
     @include span-columns(1);
   }
-  &:hover { background: $lightest-gray; }
+  &:hover { background: white; }
 }
 
 .g1 { @include span_columns(1); }
@@ -235,15 +235,23 @@ hr {
 
 .flash {
   position: fixed;
-  background: $light-green;
-  padding: 1em 2em;
-  color: white;
+  background: white;
+  border-top: 1px solid $base-border-color;
+  padding: 1em;
   z-index: 1000;
   bottom: 0;
   left: 66px;
+  right: 0;
   font-size: 2em;
-  width: 100%;
-  text-align: center;
+  .close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 1em;
+    cursor: pointer;
+    width: 66px;
+    height: 100%;
+  }
 }
 
 

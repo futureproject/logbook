@@ -18,10 +18,10 @@
   .row
     .field.g3
       = f.label :role
-      =f.select :role, Person::ROLE_ENUM
+      =f.select :role, Person::ROLE_ENUM, include_blank: true
     .field.g3
       = f.label :grade
-      =f.select :grade, Person::GRADE_ENUM
+      =f.select :grade, Person::GRADE_ENUM, include_blank: true
     .field.g3
       = f.label :sex
       =f.select :sex, Person::SEX_ENUM, include_blank: true
