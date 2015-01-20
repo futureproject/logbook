@@ -2,6 +2,7 @@ class Logbook::SchoolsController < Logbook::ApplicationController
 
   # GET /logbook
   def index
+    params[:sort] = 'name' if filter_params.empty?
     @schools = current_scope.schools.filter(filter_params)
     @empty_schools = current_scope.schools - @schools
   end
