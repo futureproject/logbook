@@ -3,6 +3,7 @@ class SessionsController < ApplicationController
   skip_before_action :authenticate!
   skip_before_action :verify_authenticity_token
   skip_before_action :init_js_data
+  layout 'eight_bit'
 
   def new
   end
@@ -20,6 +21,8 @@ class SessionsController < ApplicationController
     redirect_to root_url
   end
 
+  def students
+  end
 
   protected
     def auth_hash

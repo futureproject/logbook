@@ -9,13 +9,20 @@ feature 'Loogging in with Oauth' do
 
   scenario 'via facebook' do
     visit '/'
-    click_button 'Log in with Facebook'
+    within '.student' do
+      click_link "Click Here"
+    end
+    click_link 'Log in with Facebook'
     complete_registration
     should_see_profile
   end
 
   scenario 'with a username and password' do
     visit '/'
+    visit '/'
+    within '.student' do
+      click_link "Click Here"
+    end
     fill_in 'email', with: 'tim.drake@waynetech.com'
     fill_in 'password', with: 'robin'
     click_button 'Go!'
@@ -23,11 +30,13 @@ feature 'Loogging in with Oauth' do
   end
 
   def click_staff_login_button
-    click_button "Log in"
+    within '.staff' do
+      click_button "Click Here"
+    end
   end
 
   def should_be_logged_in
-    expect(page).to have_content "Dream Suite"
+    expect(page).to have_content "Log Out"
   end
 
   def should_see_profile

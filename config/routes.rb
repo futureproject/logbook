@@ -19,7 +19,9 @@ Rails.application.routes.draw do
 
   root 'application#home'
 
-  resources :sessions, only: [:new, :create]
+  resources :sessions, only: [:new, :create] do
+    get 'students', on: :collection
+  end
   resources :people
   resources :reflections
   resources :projects

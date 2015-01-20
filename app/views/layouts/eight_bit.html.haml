@@ -1,0 +1,11 @@
+!!!
+%html
+  %head
+    %title= page_title
+    = stylesheet_link_tag    'eight_bit', media: 'all'
+    %meta{name:"viewport", content: "width=device-width, maximum-scale=1.0, minimum-scale=1.0, initial-scale=1.0"}
+
+    = csrf_meta_tags
+  %body#eight_bit
+    = yield
+    = render 'analytics'

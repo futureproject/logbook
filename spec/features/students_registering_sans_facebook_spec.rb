@@ -3,6 +3,10 @@ feature 'Students registering sans facebook' do
 
   scenario 'when they are already in the system' do
     visit '/'
+    visit '/'
+    within '.student' do
+      click_link "Click Here"
+    end
     click_link 'Register'
     create_identity('Alfred', 'Pennyworth', 'alfred@yahoo.com', 'butler')
     choose 'Gotham City High'
@@ -11,6 +15,9 @@ feature 'Students registering sans facebook' do
 
   scenario 'for the first time' do
     visit '/'
+    within '.student' do
+      click_link "Click Here"
+    end
     click_link 'Register'
     create_identity
     complete_registration
