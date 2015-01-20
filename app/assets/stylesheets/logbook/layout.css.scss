@@ -19,23 +19,20 @@ body {
     color: $base-font-color;
     &:hover { text-decoration: underline; }
   }
-  #home {
-    @include span-columns(3);
+  #filter-trigger {
+    @include span-columns(6);
     white-space: nowrap;
     color: $dark-gray;
+    cursor: pointer;
+    .icon {
+      @include transition;
+      display: inline-block;
+    }
     h1 {
       font-size: 1.5em;
       font-weight: 400;
       text-overflow: ellipsis;
       overflow: hidden;
-    }
-  }
-  #filter-trigger {
-    cursor: pointer;
-    @include span-columns(3);
-    .icon {
-      @include transition;
-      display: inline-block;
     }
     &.open {
       .icon {
@@ -44,7 +41,7 @@ body {
     }
   }
   #search {
-    @include span-columns(3);
+    @include span-columns(4);
     position: relative;
     padding-left: 20px;
     label {
@@ -57,9 +54,14 @@ body {
     input {
       display: none;
       border: none;
+      padding-top: 5px;
       &:focus {
         outline: none;
       }
+    }
+    .icon {
+      position: relative;
+      top: 4px;
     }
     .twitter-typeahead {
       input { display: inline-block; }

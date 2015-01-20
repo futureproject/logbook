@@ -13,11 +13,10 @@
   %body{class: params[:controller].gsub('/','_')}
 
     #header
-      #home
-        %h1= current_scope.name
       #filter-trigger
-        %span.icon.icon-chevron-down
-        Filter
+        %h1
+          %span.icon.icon-chevron-down
+          = current_scope.name
       #search
         %label{for: 'search-field'}
           %span.icon.icon-search
