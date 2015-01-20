@@ -1,8 +1,8 @@
 %li[project]
   .project-name= project.name
   .project-description= project.description
-  .project-leaders= project.leaders.count
-  .project-participants= project.participants.count
+  .project-leaders.number= project.leaders.count
+  .project-participants.number= project.participants.count
   .project-school= project.school.try :name
   .project-updated-at= project.updated_at.strftime "%D"
   .project-created-at= project.created_at.strftime "%D"

@@ -1,7 +1,9 @@
 %li[school]
   .school-site= school.site.try(:name)
-  .school-name= link_to school.name, logbook_school_path(school)
-  .school-dream-team= school.dream_team.try(:count)
-  .school-projects= school.projects.count
-  .school-engagements= school.engagements.count
-  .school-engagement-hours= school.engagements.sum(:duration).try(:round, 2)
+  .school-name= school.name
+  .school-dream-team.number= school.dream_team.try(:count)
+  .school-projects.number= school.projects.count
+  .school-engagements.number= school.engagements.count
+  .school-engagement-hours.number= school.engagements.sum(:duration).try(:round, 2)
+  .school-actions.actions
+    =link_to "View", logbook_school_path(school, scope_params), class: 'row-link'

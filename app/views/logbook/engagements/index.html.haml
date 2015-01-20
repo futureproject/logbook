@@ -5,8 +5,8 @@
   .engagement-date= table_link_to "Date", sort: 'date DESC'
   .engagement-kind= table_link_to "Kind", sort: 'kind'
   .engagement-name= table_link_to "Name", sort: 'name'
-  .engagement-attendees= table_link_to "Attendees", with_attendees: 'people', sort: 'people_count DESC'
-  .engagement-duration= table_link_to "Hours", sort: 'duration DESC'
+  .engagement-attendees.number= table_link_to "Attendees", with_attendees: 'people', sort: 'people_count DESC'
+  .engagement-duration.number= table_link_to "Hours", sort: 'duration DESC'
   .engagement-school= table_link_to "School", sort: 'school_id'
 
 %ul.table.engagements= render @engagements

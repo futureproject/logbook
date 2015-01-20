@@ -3,10 +3,10 @@
 .labels.school-labels
   .school-site= "Site"
   .school-name=table_link_to 'Name', sort: 'name'
-  .school-dream-team=table_link_to 'DT', dream_team: 'DESC'
-  .school-projects=table_link_to 'Projects', by_count: 'projects'
-  .school-engagements=table_link_to 'Engagements', by_count: 'engagements'
-  .school-engagement-hours=table_link_to 'Hours', by_hours: 'DESC', sort: 'engagement_hours DESC'
+  .school-dream-team.number=table_link_to 'DT', dream_team: 'DESC'
+  .school-projects.number=table_link_to 'Projects', by_count: 'projects'
+  .school-engagements.number=table_link_to 'Engagements', by_count: 'engagements'
+  .school-engagement-hours.number=table_link_to 'Hours', by_hours: 'DESC', sort: 'engagement_hours DESC'
 
 %ul.table.schools
   = render @schools

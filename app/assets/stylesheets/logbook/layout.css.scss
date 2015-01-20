@@ -9,21 +9,23 @@ body {
   height: 66px;
   right: 0;
   padding: 0 2em;
-  @include row;
   z-index: 11;
   background: white;
   border-bottom: 1px solid $base-border-color;
-  line-height: 66px;
   color: $light-gray;
+  vertical-align: top;
   a {
     color: $base-font-color;
     &:hover { text-decoration: underline; }
   }
   #filter-trigger {
-    @include span-columns(6);
+    display: table-cell;
     white-space: nowrap;
     color: $dark-gray;
     cursor: pointer;
+    padding-right: 20px;
+    height: 66px;
+    vertical-align: middle;
     .icon {
       @include transition;
       display: inline-block;
@@ -41,9 +43,14 @@ body {
     }
   }
   #search {
-    @include span-columns(4);
+    display: table-cell;
+    height: 66px;
+    line-height: 66px;
+    width: 320px;
     position: relative;
+    margin-left: 20px;
     padding-left: 20px;
+    vertical-align: middle;
     label {
       font-weight: normal;
       position: absolute;
@@ -54,16 +61,13 @@ body {
     input {
       display: none;
       border: none;
-      padding-top: 5px;
       &:focus {
         outline: none;
       }
     }
-    .icon {
-      position: relative;
-      top: 4px;
-    }
     .twitter-typeahead {
+      position: relative;
+      top: 2px;
       input { display: inline-block; }
     }
   }

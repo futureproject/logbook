@@ -3,13 +3,13 @@
   .person-last-name= person.last_name
   .person-school= person.school.try(:name)
   .person-role= person.role
-  .person-grade= person.grade || ' '
-  .person-primary-projects= person.primary_projects.count
-  .person-secondary-projects= person.secondary_projects.count
-  .person-coaching-sessions= person.engagements.where(kind: 'Coaching Session').sum(:duration).round(2) rescue "N/A"
-  .person-meetings= person.engagements.where(kind: 'Meeting').count
-  .person-workshops= person.engagements.where(kind: 'Workshop').count
-  .person-events= person.engagements.where(kind: 'Event').count
+  .person-grade.number= person.grade || ' '
+  .person-primary-projects.number= person.primary_projects.count
+  .person-secondary-projects.number= person.secondary_projects.count
+  .person-coaching-sessions.number= person.engagements.where(kind: 'Coaching Session').sum(:duration).round(2) rescue "N/A"
+  .person-meetings.number= person.engagements.where(kind: 'Meeting').count
+  .person-workshops.number= person.engagements.where(kind: 'Workshop').count
+  .person-events.number= person.engagements.where(kind: 'Event').count
   .actions
     =link_to "View", logbook_person_path(person, scope_params), class: 'row-link'
     %a.edit{href: edit_logbook_person_path(person, scope_params), title: 'Edit'}

@@ -5,13 +5,13 @@
   .person-last-name=table_link_to 'last', sort: 'last_name'
   .person-school=table_link_to 'school', sort: 'school_id'
   .person-role=table_link_to 'role', sort: 'role'
-  .person-grade=table_link_to 'grade', sort: 'grade'
-  .person-primary-projects=table_link_to 'Prj. Lead', with_projects: 'primary', sort: 'projects_count DESC'
-  .person-secondary-projects=table_link_to 'Prj. Team', with_projects: 'secondary', sort: 'projects_count DESC'
-  .person-coaching-sessions=table_link_to 'Coach Hrs', with_hours: 'Coaching Session', sort: 'engagement_hours DESC'
-  .person-meetings=table_link_to 'Meetings', with_engagements: 'Meeting', sort: 'engagements_count DESC'
-  .person-workshops=table_link_to 'Workshops', with_engagements: 'Workshop', sort: 'engagements_count DESC'
-  .person-events=table_link_to 'Events', with_engagements: 'Event', sort: 'engagements_count DESC'
+  .person-grade.number=table_link_to 'grade', sort: 'grade'
+  .person-primary-projects.number=table_link_to 'Prj. Lead', with_projects: 'primary', sort: 'projects_count DESC'
+  .person-secondary-projects.number=table_link_to 'Prj. Team', with_projects: 'secondary', sort: 'projects_count DESC'
+  .person-coaching-sessions.number=table_link_to 'Coach Hrs', with_hours: 'Coaching Session', sort: 'engagement_hours DESC'
+  .person-meetings.number=table_link_to 'Meetings', with_engagements: 'Meeting', sort: 'engagements_count DESC'
+  .person-workshops.number=table_link_to 'Workshops', with_engagements: 'Workshop', sort: 'engagements_count DESC'
+  .person-events.number=table_link_to 'Events', with_engagements: 'Event', sort: 'engagements_count DESC'
 
 %ul.table.people= render @people
 = paginate @people rescue nil
