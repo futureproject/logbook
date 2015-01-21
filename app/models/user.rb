@@ -87,6 +87,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def level(l = 1)
+    clearance_level >= l
+  end
+
   def stats
     [
       {

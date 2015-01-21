@@ -10,6 +10,8 @@
     %h2 Engagements
     = area_chart [{name: "Coaching Sessions", data: @coaching_sessions }, {name: "Events", data: @events}, {name: "Meetings", data: @meetings }, {name: "Workshops", data: @workshops }], colors: Engagement::COLOR_ENUM
 
-  .row
-    %h2 Weekly Activity
-    = area_chart @activity, library: { legend: {itemMarginBottom: 8 } }
+  - if current_user.level(2)
+
+    .row
+      %h2 Weekly Activity
+      = area_chart @activity, library: { legend: {itemMarginBottom: 8 } }
