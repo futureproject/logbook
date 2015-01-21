@@ -8,7 +8,8 @@ feature 'Logbook engagements' do
 
   scenario 'CREATE' do
     visit logbook_engagements_path
-    click_button 'Add'
+    first('#global-add a').click
+    click_button 'Create Engagement'
     expect(page).to have_content 'Editing Engagement'
   end
 

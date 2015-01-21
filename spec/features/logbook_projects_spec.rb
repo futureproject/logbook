@@ -6,8 +6,9 @@ feature 'Logbook projects' do
 
   scenario 'CREATE' do
     visit logbook_projects_path
+    first('#global-add a').click
     fill_in 'project[name]', with: 'Build New Batplane'
-    click_button 'Add'
+    click_button 'Create Project'
     expect(page).to have_content 'Editing Project'
   end
 
@@ -26,9 +27,12 @@ feature 'Logbook projects' do
 
   scenario 'DESTROY', js: true do
     visit logbook_projects_path
-    click_link 'Delete', match: :first
+    selector = "#project_#{Project.last.id}"
+    within(selector) do
+      find('a[data-method=delete]').click
+    end
     page.driver.accept_js_confirms!
-    expect(page).to have_content 'Project was successfully destroyed'
+    expect(page).not_to have_selector selector
   end
 
 end
