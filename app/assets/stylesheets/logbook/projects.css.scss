@@ -9,8 +9,7 @@
 
 .project-labels, .table .project {
   @extend %row;
-  .project-name { @include span-columns(2); }
-  .project-description { @include span-columns(3); }
+  .project-name, .project-description { @include span-columns(2); }
   .project-leaders, .project-participants { @include span-columns(1); }
   .project-school { @include span-columns(2); }
   .project-updated-at { @include span-columns(1); }

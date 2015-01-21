@@ -104,6 +104,6 @@ class Logbook::ProjectsController < Logbook::ApplicationController
     end
 
     def filter_params
-      params.slice(:q, :with_people, :sort)
+      params.slice(:q, :with_people, :with_association, :sort)
     end
 end

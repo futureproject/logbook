@@ -1,12 +1,13 @@
 .page-header
   %h1= pluralize @projects.total_count, "Project"
 .labels.project-labels
+  .project-updated-at=table_link_to 'Updated', sort: 'updated_at DESC'
   .project-name=table_link_to 'Name', sort: 'name'
   .project-description=table_link_to 'Description', sort: 'description'
   .project-leaders.number=table_link_to 'Leaders', with_people: 'leaders', sort: 'people_count DESC'
   .project-participants.number=table_link_to 'Supporters', with_people: 'participants', sort: 'people_count DESC'
+  .project-assets.number=table_link_to 'Media', with_association: 'assets', sort: 'assets_count DESC'
   .project-school=table_link_to 'School', sort: 'school_id'
-  .project-updated-at=table_link_to 'Updated', sort: 'updated_at DESC'
   .project-created-at=table_link_to 'Created', sort: 'created_at DESC'
 
 %ul.table.projects= render @projects

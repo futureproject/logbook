@@ -1,10 +1,11 @@
 %li[project]
+  .project-updated-at= project.updated_at.strftime "%D"
   .project-name= project.name
   .project-description= project.description
   .project-leaders.number= project.leaders.count
   .project-participants.number= project.participants.count
+  .project-assets.number=project.assets.count
   .project-school= project.school.try :name
-  .project-updated-at= project.updated_at.strftime "%D"
   .project-created-at= project.created_at.strftime "%D"
   .project-actions.actions
     = link_to 'View', logbook_project_path(project, scope_params), class: 'row-link'

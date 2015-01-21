@@ -20,6 +20,10 @@ class Project < ActiveRecord::Base
     joins(kind.to_sym).select("projects.*, COUNT(people.id) AS people_count").group('projects.id')
   }
 
+  scope :with_association, -> (table) {
+    joins(table.to_sym).select("projects.*, COUNT(#{table}.id) AS #{table}_count").group('projects.id')
+  }
+
   def log_activity
     Activity.create(
       actor_id: leaders.first.try(:id),
