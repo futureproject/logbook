@@ -5,7 +5,7 @@
 
 %row {
   @include row;
-  padding: 1em 0;
+  padding: 1em 2em;
   position: relative;
   > * {
     white-space: nowrap;
@@ -14,7 +14,13 @@
     text-transform: capitalize;
     @include span-columns(1);
   }
-  &:hover { background: white; outline: 2px solid white; }
+  &:hover {
+    background: white;
+  }
+}
+
+.table {
+  padding: 2em 0 !important;
 }
 
 .g1 { @include span_columns(1); }
