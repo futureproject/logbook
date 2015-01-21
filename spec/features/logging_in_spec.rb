@@ -31,7 +31,7 @@ feature 'Loogging in with Oauth' do
 
   def click_staff_login_button
     within '.staff' do
-      click_button "Click Here"
+      click_button "Log In"
     end
   end
 

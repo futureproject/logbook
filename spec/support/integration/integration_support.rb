@@ -2,7 +2,7 @@ module IntegrationSupport
   def mock_sign_in email="bruce.wayne@thefutureproject.org"
     OmniAuth.config.add_mock(:google_apps, { info: { email: email }})
     visit '/'
-    click_button "Log in"
+    click_button "Log In"
   end
 
   def mock_student_login

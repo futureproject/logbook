@@ -6,7 +6,7 @@ feature 'Logbook people' do
 
   scenario 'CREATE' do
     visit logbook_people_path
-    click_link "+"
+    first('#global-add a').click
     fill_in 'person[first_name]', with: 'Terry'
     fill_in 'person[last_name]', with: 'McGuiness'
     select '12', from: 'person[grade]'
@@ -17,7 +17,7 @@ feature 'Logbook people' do
   scenario 'READ' do
     visit logbook_people_path
     click_link 'View', match: :first
-    expect(page).to have_content 'Engagement Hours'
+    expect(page).to have_content 'th grade student'
   end
 
   scenario 'UPDATE' do
@@ -38,13 +38,6 @@ feature 'Logbook people' do
     end
     page.driver.accept_js_confirms!
     expect(page).not_to have_selector selector
-  end
-
-  scenario 'adding a coaching session from a profile', js: true do
-    visit logbook_people_path
-    click_link 'View', match: :first
-    click_button 'Add'
-    expect(page).to have_selector "#engagement_#{Engagement.last.id}"
   end
 
 end

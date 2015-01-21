@@ -5,7 +5,7 @@
   = image_tag 'login-logo.png'
   .staff.box{style: "background-image: url(#{asset_path 'login-staff.png'})"}
     %h3 Staff Login
-    = button_to 'Click Here', '/auth/google_oauth2'
+    = button_to 'Log In', '/auth/google_oauth2'
   .student.box{style: "background-image: url(#{asset_path 'login-student.png'})"}
     %h3 Student Login
     = link_to 'Click Here', '/sessions/students'
