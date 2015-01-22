@@ -1,5 +1,24 @@
 .page-header
-  %h1= pluralize @people.total_count, "Person"
+  %h1.filtres-trigger
+    = pluralize @people.total_count, "Person"
+    = "in #{params[:in_grade]}th Grade" if params[:in_grade]
+    = "on the Dream Team" if params[:in_group] == 'dream'
+    = "(#{params[:in_group].capitalize}s)" if params[:in_group] && params[:in_group] != 'dream'
+    %span.icon.icon-chevron-down
+  .filtres
+    .filtre.dream-team
+      =filter_link_to 'All', sort: 'last_name'
+      =filter_link_to 'Dream Team', in_group: 'dream'
+      =filter_link_to 'Students', in_group: 'student'
+      =filter_link_to 'Teachers', in_group: 'teacher'
+    .filtre.grades
+      =filter_link_to '6', in_grade: '6'
+      =filter_link_to '7', in_grade: '7'
+      =filter_link_to '8', in_grade: '8'
+      =filter_link_to '9', in_grade: '9'
+      =filter_link_to '10', in_grade: '10'
+      =filter_link_to '11', in_grade: '11'
+      =filter_link_to '12', in_grade: '12'
 .labels.person-labels
   .person-first-name=table_link_to 'first', sort: 'first_name'
   .person-last-name=table_link_to 'last', sort: 'last_name'

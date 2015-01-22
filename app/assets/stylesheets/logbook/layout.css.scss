@@ -112,8 +112,9 @@ body {
   padding: 2em;
   border-bottom: 1px solid;
   .filter {
-    @include span-columns(3);
+    @include span-columns(4);
     line-height: 2;
+    &:first-child { @include span-columns(2); }
   }
   .filter-label { text-transform: uppercase; }
   a {

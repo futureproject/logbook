@@ -62,6 +62,14 @@ class Person < ActiveRecord::Base
 
   scope :created_before, -> (date) { where(created_at: 100.years.ago..date.end_of_week) }
   scope :week_of, -> (date) { where(created_at: date.beginning_of_week..date.end_of_week) }
+  scope :in_grade, -> (grade) { where(grade: grade.to_i) }
+  scope :in_group, -> (group) {
+    if group.match /dream/i
+      where(dream_team: true)
+    else
+      where(role: group)
+    end
+  }
 
   def name
     "#{first_name} #{last_name}"

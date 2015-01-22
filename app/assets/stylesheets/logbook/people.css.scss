@@ -23,10 +23,6 @@
   }
 }
 
-.people.table:empty:after {
-  content: "Alas! Alack! There's nobody here.";
-}
-
 .person-projects {
   h2 { color: $projects-color; }
   .project {

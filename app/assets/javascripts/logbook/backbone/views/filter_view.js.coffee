@@ -34,3 +34,8 @@ $ ->
 
   ds.filters_toggle_view = new ds.FiltersToggleView
     el: '#filter-trigger'
+
+  $('.filtres-trigger').on('click', (e) ->
+    $('.page-header').toggleClass('filtres-open')
+    $('.filtres').slideToggle 'fast'
+  )

@@ -82,6 +82,6 @@ class Logbook::PeopleController < Logbook::ApplicationController
     end
 
     def filter_params
-      params.slice(:q, :with_engagements, :with_hours, :with_projects, :sort)
+      params.slice(:q, :in_grade, :in_group, :with_engagements, :with_hours, :with_projects, :sort)
     end
 end

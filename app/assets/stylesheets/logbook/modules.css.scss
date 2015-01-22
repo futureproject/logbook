@@ -53,6 +53,14 @@
   padding-bottom: 0 !important;
   h1 {
     margin: 0;
+    .icon {
+      @include transition;
+      font-size: 18px;
+      display: inline-block;
+    }
+  }
+  &.filtres-open {
+    .icon { @include transform(rotate(180deg)); }
   }
 }
 .labels {
@@ -346,4 +354,26 @@ hr {
     .note-date { opacity: .5; }
   }
   .icon { color: $light-gray; }
+}
+
+.filtres {
+  @include row;
+  display: none;
+  padding-top: 15px;
+  a, span {
+    padding-right: 1em;
+  }
+  a { opacity: .75; }
+  .filtre.dream-team {
+    @include span-columns(4);
+  }
+  .filtre.grades {
+    @include span-columns(2);
+    a, span {
+      padding: 0;
+    }
+  }
+}
+.filtres-trigger {
+  cursor: pointer;
 }
