@@ -23,6 +23,9 @@
 
 .project-show {
   h1 { color: $projects-color; }
+  .table.people {
+    padding: 0 !important;
+  }
   .project-leaders, .project-participants {
     a {
       color: $people-color;

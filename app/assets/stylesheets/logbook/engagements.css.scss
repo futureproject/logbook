@@ -13,7 +13,10 @@
   .engagement-school, .engagement-name { @include span-columns(3); }
 }
 
-.engagement-leaders {
+.engagement-attendees {
+  .table.people {
+    padding: 0 !important;
+  }
   a {
     &:not(:last-child):after { content: ', '; }
   }

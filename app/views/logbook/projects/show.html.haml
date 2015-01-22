@@ -34,6 +34,16 @@
         - @project.participants.order(:first_name).each do |person|
           %li= link_to person.name, logbook_person_path(person)
 
+    %section.project-notes
+      %h3 Notes
+      .inline-form
+        = form_for [:logbook, @project.notes.new], remote: true do |f|
+          =f.text_field :content
+          =f.hidden_field :notable_type
+          =f.hidden_field :notable_id
+          =f.submit "Add"
+      %ul.notes= render @project.notes.order('id DESC')
+
   .record-media
     %section.project-media
       %h3 Gallery

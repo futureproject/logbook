@@ -71,17 +71,11 @@ input[type=submit] {
     &[type=submit] {
       font-size: 1em;
       width: 15%;
-      right: 0;
-      border-radius: 0;
-      z-index: 1;
     }
     &[type=text] {
       border: 1px solid $base-border-color;
-      border-right: 0;
       background: white;
       width: 85%;
-      left: 0;
-      z-index: 2;
     }
   }
 }

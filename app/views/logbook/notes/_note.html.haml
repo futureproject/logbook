@@ -1,0 +1,6 @@
+%li[note]
+  .note-content=note.content
+  .note-date=note.created_at.strftime "%D"
+  .note-actions
+    %a.delete{href: logbook_note_path(note), title: 'Delete', data: { confirm: "Are you sure you want to delete this note?", method: 'delete', remote: true}}
+      .icon.icon-x

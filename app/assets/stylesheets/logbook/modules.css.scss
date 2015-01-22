@@ -279,9 +279,6 @@ hr {
 
 .show-record {
   position: relative;
-  form {
-    padding-top: 1em;
-  }
   header, section {
     margin: 1em 0;
     padding-bottom: 1em;
@@ -326,3 +323,27 @@ hr {
 
 
 .number { text-align: center; }
+
+.notes {
+  .note {
+    background: white;
+    margin: 15px auto;
+    padding: 6px;
+    position: relative;
+    border-left: 1px solid $base-border-color;
+    .note-content {
+      margin-right: 12px;
+    }
+    .delete {
+      display: block;
+    }
+    .icon {
+      font-size: 12px;
+      position: absolute;
+      top: 4px;
+      right: 0;
+    }
+    .note-date { opacity: .5; }
+  }
+  .icon { color: $light-gray; }
+}

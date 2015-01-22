@@ -1,0 +1,4 @@
+$html = $("<%= j render @note %>")
+$html.hide().prependTo('.notes')
+$html.slideDown()
+$('#new_note').get(0).reset()

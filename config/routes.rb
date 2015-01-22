@@ -73,6 +73,7 @@ Rails.application.routes.draw do
       get :from, on: :collection
     end
     resources :people
+    resources :notes
     resources :projects do
       get 'toggle_dream_team', on: :member
     end

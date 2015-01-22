@@ -29,6 +29,8 @@ body {
     .icon {
       @include transition;
       display: inline-block;
+      padding: 0 3px;
+      color: $light-gray;
     }
     h1 {
       font-size: 1.5em;
