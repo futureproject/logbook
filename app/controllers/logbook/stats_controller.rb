@@ -1,5 +1,5 @@
 class Logbook::StatsController < Logbook::ApplicationController
-  START_DAY = Date.new(2014,9,1).beginning_of_week
+  START_DAY = Date.new(2014,9,1).end_of_week
 
   # GET /logbook
   def index
@@ -18,7 +18,7 @@ class Logbook::StatsController < Logbook::ApplicationController
   private
     def people_over_time
       current_day = START_DAY
-      end_day = Date.today.beginning_of_week
+      end_day = Date.today
       active_ppl = []
       inactive_ppl = []
       new_ppl = []
