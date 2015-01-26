@@ -8,6 +8,10 @@ class SessionsController < ApplicationController
   def new
   end
 
+  def failure
+    render status: :unauthorized, text: 'Auth Failure'
+  end
+
   def create
     if auth_hash.present?
       create_via_oauth

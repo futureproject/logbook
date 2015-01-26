@@ -36,6 +36,7 @@ Rails.application.routes.draw do
   get '/os', to: 'application#os', as: :os
   post '/register', to: 'people#register', as: :register
   match 'auth/:provider/callback' => 'sessions#create', via: [:post, :get]
+  get 'auth/failure' => 'sessions#failure'
 
   namespace :api do
     namespace :v1 do
