@@ -6,8 +6,8 @@ feature 'logbook schools' do
 
   scenario 'VIEWING' do
     visit logbook_schools_path
-    within '.schools-list' do
-      click_link 'Gotham City High'
+    within '.table.schools' do
+      first('.school').click
     end
     should_see_school
   end

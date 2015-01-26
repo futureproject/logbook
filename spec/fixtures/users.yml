@@ -5,3 +5,4 @@ bruce:
   auth_token: batman
   role: dream_director
   school: gotham_city_high
+  clearance_level: 2
