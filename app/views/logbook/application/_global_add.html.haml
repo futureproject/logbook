@@ -1,3 +1,3 @@
 - model = params[:controller].classify.gsub('Logbook::', '').downcase
 - path = url_for([:new, :logbook, model, scope_params]) rescue url_for([:new, :logbook, "engagement", scope_params])
-=link_to raw("<div class='icon-plus'></div>"), path, remote: true
+=link_to raw("<div class='icon-plus'></div>"), path, remote: true, data: { disable_with: "<div class='icon-plus'></div>" }
