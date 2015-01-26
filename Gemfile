@@ -45,6 +45,7 @@ gem 'paperclip', github: 'thoughtbot/paperclip'
 
 # Oauth stuff, e.g. Google Apps and Facebook
 gem 'oauth'
+gem 'omniauth-openid'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-facebook'
 
