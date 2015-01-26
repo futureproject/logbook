@@ -32,7 +32,7 @@ class Logbook::StatsController < Logbook::ApplicationController
         inactive_ppl.push [date, inactive_count]
         current_day += 1.week
       end
-      array = [ { name: 'Newly Engaged', data: new_ppl }, { name: 'Active', data: active_ppl }, {name: 'Inactive', data: inactive_ppl } ]
+      array = [ { name: 'Newly Engaged', data: new_ppl }, { name: 'Re-Engaged', data: active_ppl }, {name: 'Inactive', data: inactive_ppl } ]
       array
     end
 
