@@ -1,2 +1,13 @@
 _manage Engagement Attendees as a collection
 
+_ Get Heavy with Fragment Caching:
+
+  <% cache(cache_key_for_products) do %>
+    All available products:
+    <% Product.all.each do |p| %>
+      <% cache(p) do %>
+        <%= link_to p.name, product_url(p) %>
+      <% end %>
+    <% end %>
+  <% end %>
+
