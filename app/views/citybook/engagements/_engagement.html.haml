@@ -1,9 +1,0 @@
-%tr[engagement]
-  %td
-    =link_to 'Delete', citybook_engagement_path(engagement), data: { remote: true, method: 'delete', confirm: 'Are you sure you want to delete this engagement?'}, class: 'warn'
-    =engagement.date.strftime "%D"
-  %td=engagement.kind
-  %td= pluralize engagement.duration, 'hour'
-  %td=engagement.school.try(:name)
-  %td
-    =link_to 'Take Attendance', attendance_citybook_engagement_path(engagement)

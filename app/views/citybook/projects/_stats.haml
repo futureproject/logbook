@@ -1,9 +1,0 @@
-%h3 Assets
-= s3_uploader_form callback_url: '/assets', callback_param: "asset[external_url]", key:"uploads/#{SecureRandom.hex}-${filename}", class: 's3-uploader', data: { attachable_id: @project.id, attachable_type: "Project"} do
-  = file_field_tag :file, multiple: true
-  = render partial: 'application/s3_direct_upload_progress_bars.html'
-.project-assets.assets.section
-  - @project.assets.each do |asset|
-    .asset
-      =link_to image_tag(asset.thumbnail), asset.data(:original)
-      .asset-caption= asset.caption

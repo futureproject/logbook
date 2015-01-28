@@ -6,6 +6,6 @@
     %meta{name:"viewport", content: "width=device-width, maximum-scale=1.0, minimum-scale=1.0, initial-scale=1.0"}
 
     = csrf_meta_tags
-  %body#eight_bit
+  %body#eight_bit{class: params[:controller].parameterize }
     = yield
     = render 'analytics'

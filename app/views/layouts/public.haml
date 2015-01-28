@@ -1,9 +1,0 @@
-!!!
-%html
-  %head
-    %title= page_title
-    = stylesheet_link_tag    'public', media: 'all'
-    = csrf_meta_tags
-  %body#l-public
-    = yield
-    = javascript_include_tag 'public'

@@ -1,3 +1,0 @@
-$newRow = $("<%= escape_javascript(render partial: 'citybook/engagements/engagement', locals: { engagement: @engagement }) %>")
-$newRow.addClass('recent enagement').insertAfter('.engagements tr:first-child').animateCSS('fadeInDown')
-$newRow.siblings().removeClass('recent')

@@ -1,8 +1,0 @@
-#cic_schools.list
-  .list-title
-    %h1 Schools
-  .list-body.scrollable
-    - @schools.each do |school|
-      %a.list-item[school]{href: cic_school_path(school)}
-        %h6= school.name
-        = school.try(:dream_director).try(:name)

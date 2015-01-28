@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   include Authorization
   before_action :authenticate!
-  before_action :authorize!, only: [:os]
   before_action :init_js_data
 
   def init_js_data

@@ -5,6 +5,7 @@ html, body {
   color: #fff;
   background: #88d5f0;
   font-family: $base-font-family;
+  font-size: 12px;
 }
 
 body {
@@ -59,4 +60,73 @@ body {
   height: 214px;
   top: 220px;
   margin-left: 140px;
+}
+
+.go-redirects {
+  padding: 40px;
+  color: $dark-gray;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+th { text-align: left; }
+
+.redirects {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  line-height: 2;
+  overflow: auto;
+  li {
+    display: block;
+    overflow: auto;
+    margin-bottom: 12px;
+  }
+  .redirect-shortcut, .redirect-url, .redirect-actions {
+    float: left;
+    padding-right: 1%;
+    box-sizing: border-box;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .redirect-shortcut {
+    width: 25%;
+  }
+  .redirect-url {
+    width: 75%;
+  }
+}
+
+.logo img {
+  width: 160px;
+  height: 160px;
+}
+
+form {
+  font-size: 2em;
+  .field { margin-bottom: 20px; }
+}
+
+input {
+  font-size: 1em;
+  border: 3px solid $dark-gray;
+  &[type=text] {
+    width: 20em;
+  }
+  &[type=submit] {
+    margin-bottom: 40px;
+    -webkit-appearance: none;
+    background: white;
+    border: 3px solid $dark-gray;
+    color: $dark-gray;
+    border-radius: 6px;
+  }
+}
+
+a.edit, a.destroy {
+  opacity: .5;
 }
