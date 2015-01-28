@@ -6,7 +6,7 @@ class School < ActiveRecord::Base
 
   #belongs_to :dream_director, class_name: 'User', foreign_key: 'dream_director_id'
   has_many :users
-  belongs_to :site
+  belongs_to :site, touch: true
 
   has_many :people
   has_many :projects
