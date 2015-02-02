@@ -20,8 +20,8 @@ module RailsAdmin
             redirect_to back_or_index
           end
         end
-        register_instance_option :action_name do
-          "Dedup"
+        register_instance_option :collection? do
+          true
         end
       end
     end
