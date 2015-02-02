@@ -138,19 +138,20 @@ class Person < ActiveRecord::Base
   def self.dedup ids
     duplicates = self.where(id: ids).order(:id)
     primary = duplicates.select{|p| p.identity.present? || p.dream_team }.first || duplicates.first
+    puts primary
     count = duplicates.count
     duplicates = duplicates.where.not(id: primary.id).order(:id)
     duplicates.each do |p|
       p.engagement_attendees.each do |r|
-        r.update person_id: primary.id
+        r.update_attributes person_id: primary.id
       end
       p.project_leaders.each do |r|
-        r.update person_id: primary.id
+        r.update_attributes person_id: primary.id
       end
       p.project_participants.each do |r|
-        r.update person_id: primary.id
+        r.update_attributes person_id: primary.id
       end
-      p.destroy
+      p.delete
     end
     puts "merged #{count} people into #{primary.name}, id #{primary.id}"
     primary
