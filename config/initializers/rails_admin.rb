@@ -1,3 +1,13 @@
+require Rails.root.join('lib', 'rails_admin_dedup.rb')
+module RailsAdmin
+  module Config
+    module Actions
+      class Dedup < RailsAdmin::Config::Actions::Base
+        RailsAdmin::Config::Actions.register self
+      end
+    end
+  end
+end
 RailsAdmin.config do |config|
 
   ### Popular gems integration
@@ -28,6 +38,11 @@ RailsAdmin.config do |config|
     new
     export
     bulk_delete
+    dedup do
+      visible do
+        bindings[:abstract_model].model.to_s == "Person"
+      end
+    end
     show
     edit
     delete

@@ -135,4 +135,25 @@ class Person < ActiveRecord::Base
     Identity.find_by(token: token).try(:person)
   end
 
+  def self.dedup ids
+    duplicates = self.where(id: ids).order(:id)
+    primary = duplicates.select{|p| p.identity.present? || p.dream_team }.first || duplicates.first
+    count = duplicates.count
+    duplicates = duplicates.where.not(id: primary.id).order(:id)
+    duplicates.each do |p|
+      p.engagement_attendees.each do |r|
+        r.update person_id: primary.id
+      end
+      p.project_leaders.each do |r|
+        r.update person_id: primary.id
+      end
+      p.project_participants.each do |r|
+        r.update person_id: primary.id
+      end
+      p.destroy
+    end
+    puts "merged #{count} people into #{primary.name}, id #{primary.id}"
+    primary
+  end
+
 end
