@@ -151,6 +151,9 @@ class Person < ActiveRecord::Base
       p.project_participants.each do |r|
         r.update_attributes person_id: primary.id
       end
+      p.activities.each do |r|
+        r.update_attributes actor_id: primary.id
+      end
       p.delete
     end
     puts "merged #{count} people into #{primary.name}, id #{primary.id}"
