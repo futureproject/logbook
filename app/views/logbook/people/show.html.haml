@@ -4,7 +4,9 @@
   %header
     %h1= @person.name
   %section.person-info
-    %h3= "#{@person.grade}th grade #{@person.role} at #{@person.school.try(:name)}"
+    %h3
+      = "#{@person.grade}th grade" if @person.grade
+      = "#{@person.role} at #{@person.school.try(:name)}"
     .person-email
       .icon.icon-mail
       = @person.email || "No Email"

@@ -17,7 +17,7 @@ feature 'Logbook people' do
   scenario 'READ' do
     visit logbook_people_path
     click_link 'View', match: :first
-    expect(page).to have_content 'th grade student'
+    expect(page).to have_content 'student at Gotham'
   end
 
   scenario 'UPDATE' do
