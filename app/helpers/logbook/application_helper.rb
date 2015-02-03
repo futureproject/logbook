@@ -5,7 +5,7 @@ module Logbook::ApplicationHelper
   end
 
   def scoped_url_for(args)
-    url_for(scope_params.merge(args))
+    url_for(params.merge(args))
   end
 
   def table_link_to name, filter
