@@ -7,7 +7,7 @@
     %span.icon.icon-chevron-down
   .filtres
     .filtre.dream-team
-      =link_to 'All', sort: 'last_name'
+      =link_to 'All', url_for(params.slice(:scope_id, :scope_type))
       =filter_link_to 'Dream Team', in_group: 'dream'
       =filter_link_to 'Students', in_group: 'student'
       =filter_link_to 'Teachers', in_group: 'teacher'
