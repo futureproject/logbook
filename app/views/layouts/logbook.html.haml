@@ -12,37 +12,43 @@
     = javascript_include_tag 'logbook/logbook'
   %body{class: params[:controller].gsub('/','_')}
 
-    #header
-      #filter-trigger
-        %h1
-          = current_scope.name
-          %span.icon.icon-chevron-down
-      #search
-        %label{for: 'search-field'}
-          %span.icon.icon-search
-        %input#search-field.typeahead{type: 'text'}
+    - cache ['v1/header', current_scope] do
+      #header
+        #filter-trigger
+          %h1
+            = current_scope.name
+            %span.icon.icon-chevron-down
+        #search
+          %label{for: 'search-field'}
+            %span.icon.icon-search
+          %input#search-field.typeahead{type: 'text'}
 
-    #tabs
-      %a{href: logbook_root_url }
-        =image_tag asset_path('tfplogo.svg'), alt: 'The Future Project'
-      %ul.tabs
-        = nav_link_to "Overview", logbook_root_url(scope_params), "ds-dashboard"
-        = nav_link_to "People", logbook_people_path(scope_params), "ds-people"
-        = nav_link_to "Projects", logbook_projects_path(scope_params), "ds-projects"
-        = nav_link_to "Engagements", logbook_engagements_path(scope_params), "ds-engagements"
-        = nav_link_to "Schools", logbook_schools_path(scope_params), "mortar-board" if current_user.level(2)
-      #user
-        %a{href: log_out_path}
-          .icon.icon-sign-out
-          .label Log Out
+    - cache ['v1/tabs', scope_params] do
+      #tabs
+        %a{href: logbook_root_url }
+          =image_tag asset_path('tfplogo.svg'), alt: 'The Future Project'
+        %ul.tabs
+          = nav_link_to "Overview", logbook_root_url(scope_params), "ds-dashboard"
+          = nav_link_to "People", logbook_people_path(scope_params), "ds-people"
+          = nav_link_to "Projects", logbook_projects_path(scope_params), "ds-projects"
+          = nav_link_to "Engagements", logbook_engagements_path(scope_params), "ds-engagements"
+          = nav_link_to "Schools", logbook_schools_path(scope_params), "mortar-board" if current_user.level(2)
+        #user
+          %a{href: log_out_path}
+            .icon.icon-sign-out
+            .label Log Out
 
-    #filters
-      =render 'filters'
+    - cache ['v1/filters', current_scope] do
+      #filters
+        =render 'filters'
+
     #yield= yield
+
     #global-add= render 'global_add'
     - flash.each do |k, v|
       .flash{class: k}
         .message= v
 
     #charts= yield :charts_js
-    = render 'analytics'
+    - cache 'v1/analytics' do
+      = render 'analytics'
