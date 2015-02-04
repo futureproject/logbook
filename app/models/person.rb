@@ -22,7 +22,6 @@ class Person < ActiveRecord::Base
   DREAM_TEAM_ENUM = [["Yep", true],["Nope", false]]
   COLOR_ENUM = %w(#42C8EE #036B89 #E1F7FE #FFA140 #DB6F00 #FFF0E1)
   include Filterable
-  #before_save :set_counts
 
   scope :search, lambda {|query, user=nil|
     return if query.blank?

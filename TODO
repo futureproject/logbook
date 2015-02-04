@@ -1,13 +1,5 @@
 _manage Engagement Attendees as a collection
 
-_ Get Heavy with Fragment Caching:
-
-  <% cache(cache_key_for_products) do %>
-    All available products:
-    <% Product.all.each do |p| %>
-      <% cache(p) do %>
-        <%= link_to p.name, product_url(p) %>
-      <% end %>
-    <% end %>
-  <% end %>
-
+_ Deleting a person association does not touch said person
+_ Rename filter_params scope_params, and maybe don't make them private
+_ Rework filters to be independent of scope_params

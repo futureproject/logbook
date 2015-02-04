@@ -1,15 +1,16 @@
-%li[project]
-  .project-updated-at= project.updated_at.strftime "%D"
-  .project-name= project.name
-  .project-description= project.description
-  .project-leaders.number= project.leaders.count
-  .project-participants.number= project.participants.count
-  .project-assets.number=project.assets.count
-  .project-school= project.school.try :name
-  .project-created-at= project.created_at.strftime "%D"
-  .project-actions.actions
-    = link_to 'View', logbook_project_path(project, scope_params), class: 'row-link'
-    %a.edit{href: edit_logbook_project_path(project, scope_params), title: 'Edit'}
-      %span.icon-pencil
-    %a.delete{href: logbook_project_path(project, scope_params), title: 'Delete', data: { confirm: "Are you sure you want to delete this project?", method: 'delete', remote: true}}
-      %span.icon-x
+- cache ['v1', project] do
+  %li[project]
+    .project-updated-at= project.updated_at.strftime "%D"
+    .project-name= project.name
+    .project-description= project.description
+    .project-leaders.number= project.leaders.count
+    .project-participants.number= project.participants.count
+    .project-assets.number=project.assets.count
+    .project-school= project.school.try :name
+    .project-created-at= project.created_at.strftime "%D"
+    .project-actions.actions
+      = link_to 'View', logbook_project_path(project, scope_params), class: 'row-link'
+      %a.edit{href: edit_logbook_project_path(project, scope_params), title: 'Edit'}
+        %span.icon-pencil
+      %a.delete{href: logbook_project_path(project, scope_params), title: 'Delete', data: { confirm: "Are you sure you want to delete this project?", method: 'delete', remote: true}}
+        %span.icon-x

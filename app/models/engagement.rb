@@ -1,5 +1,5 @@
 class Engagement < ActiveRecord::Base
-  belongs_to :school
+  belongs_to :school, touch: true
   belongs_to :user
   has_many :engagement_attendees, dependent: :destroy
   has_many :attendees, through: :engagement_attendees, source: :person

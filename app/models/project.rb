@@ -1,6 +1,6 @@
 class Project < ActiveRecord::Base
   validates_presence_of :name, :school_id
-  belongs_to :school
+  belongs_to :school, touch: true
   has_many :project_participants, dependent: :destroy
   has_many :project_leaders, dependent: :destroy
   has_many :leaders, through: :project_leaders, source: :person
@@ -10,6 +10,7 @@ class Project < ActiveRecord::Base
   after_create :log_activity
   has_many :activities, as: :thing, dependent: :destroy
   has_many :notes, as: :notable, dependent: :destroy
+  after_save :touch_people
   COLOR_ENUM = %w(#419AD3 #D5ECFB #064974 #FFAC43 #B66500 #FFEDD6)
   include Filterable
 
