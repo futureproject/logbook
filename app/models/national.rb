@@ -49,6 +49,10 @@ class National
     people.where(dream_team: true)
   end
 
+  def cache_key
+    "national-#{Site.order('updated_at').last.try(:updated_at).to_i}"
+  end
+
   #def self.engagement_score
   #  WeeklyLogEntry.average(:quality)
   #end
