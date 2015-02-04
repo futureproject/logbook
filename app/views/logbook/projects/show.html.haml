@@ -1,52 +1,53 @@
-.project-show.show-record[@project]
-  .button-actions
-    =link_to "Edit", edit_logbook_project_path(@project), class: 'edit button'
-  %header
-    %h1= @project.name
-  .record-info
-    %section.project-school
-      %h3 School
-      .address
-        .project-school= @project.school.try(:name)
-        .project-address= @project.school.try(:address)
+- cache ['v1', @project] do
+  .project-show.show-record[@project]
+    .button-actions
+      =link_to "Edit", edit_logbook_project_path(@project), class: 'edit button'
+    %header
+      %h1= @project.name
+    .record-info
+      %section.project-school
+        %h3 School
+        .address
+          .project-school= @project.school.try(:name)
+          .project-address= @project.school.try(:address)
 
-    %section.project-updated-at
-      Last update:
-      = @project.updated_at.strftime "%A, %B %d"
-      %br
-      Created:
-      = @project.created_at.strftime "%A, %B %d"
+      %section.project-updated-at
+        Last update:
+        = @project.updated_at.strftime "%A, %B %d"
+        %br
+        Created:
+        = @project.created_at.strftime "%A, %B %d"
 
-    - if @project.description.present?
-      %section.project-description
-        %pre= @project.description
+      - if @project.description.present?
+        %section.project-description
+          %pre= @project.description
 
 
-    %section.project-leaders
-      %h3= pluralize @project.leaders.count, 'Leader'
-      %ul.people.table
-        - @project.leaders.order(:first_name).each do |person|
-          %li= link_to person.name, logbook_person_path(person)
+      %section.project-leaders
+        %h3= pluralize @project.leaders.count, 'Leader'
+        %ul.people.table
+          - @project.leaders.order(:first_name).each do |person|
+            %li= link_to person.name, logbook_person_path(person)
 
-    %section.project-participants
-      %h3= pluralize @project.participants.count, 'Supporter'
-      %ul.people.table
-        - @project.participants.order(:first_name).each do |person|
-          %li= link_to person.name, logbook_person_path(person)
+      %section.project-participants
+        %h3= pluralize @project.participants.count, 'Supporter'
+        %ul.people.table
+          - @project.participants.order(:first_name).each do |person|
+            %li= link_to person.name, logbook_person_path(person)
 
-    %section.project-notes
-      %h3 Notes
-      .inline-form
-        = form_for [:logbook, @project.notes.new], remote: true do |f|
-          =f.text_field :content
-          =f.hidden_field :notable_type
-          =f.hidden_field :notable_id
-          =f.submit "Add"
-      %ul.notes= render @project.notes.order('id DESC')
+      %section.project-notes
+        %h3 Notes
+        .inline-form
+          = form_for [:logbook, @project.notes.new], remote: true do |f|
+            =f.text_field :content
+            =f.hidden_field :notable_type
+            =f.hidden_field :notable_id
+            =f.submit "Add"
+        %ul.notes= render @project.notes.order('id DESC')
 
-  .record-media
-    %section.project-media
-      %h3 Gallery
-      = render partial: 'logbook/assets/s3_uploader', locals: { record: @project }
-      .assets.large-assets= render collection: @project.assets, partial: 'asset'
+    .record-media
+      %section.project-media
+        %h3 Gallery
+        = render partial: 'logbook/assets/s3_uploader', locals: { record: @project }
+        .assets.large-assets= render collection: @project.assets, partial: 'asset'
 

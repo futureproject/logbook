@@ -1,57 +1,57 @@
-.person-show.show-record[@person]{class: "#{'dream_team' if @person.dream_team}"}
-  .button-actions
-    =link_to "Edit", edit_logbook_person_path(@person), class: 'edit button'
-  %header
-    %h1= @person.name
-  %section.person-info
-    %h3
-      = "#{@person.grade}th grade" if @person.grade
-      = "#{@person.role} at #{@person.school.try(:name)}"
-    .person-email
-      .icon.icon-mail
-      = @person.email || "No Email"
-    .person-phone
-      .icon.icon-device-mobile
-      = @person.phone || "No Phone"
-  %section.person-projects
-    %h3 Projects
-    %ul.primary-projects= render @person.primary_projects
-    %ul.secondary-projects= render @person.secondary_projects
-  %section.person-activity
-    %h3.engagements-color= "Engagements - #{@person.engagements.sum(:duration)} hours"
-    #activities
-    :javascript
-      $(document).ready(function(){
-        $('#activities').highcharts({
-          credits: false,
-          colors: #{Chartkick.options[:colors].last(4)},
-          chart: {
-            type: 'bubble',
-            zoomType: 'x',
-            backgroundColor: "#{Chartkick.options[:library][:chart][:backgroundColor]}",
-          },
-          title: false,
-          xAxis: {
-            type: 'datetime',
-          },
-          yAxis: {
-            title: {
-              text: 'Duration (hrs)'
-            }
-          },
-          legend: {
-            layout: 'horizontal',
-            verticalAlign: 'bottom',
-          },
-          plotOptions: {
-            bubble: {
-              tooltip: {
-                headerFormat: "<b>{series.name}</b><br>",
-                pointFormat: '{point.y} Hrs, {point.z} Attendees'
+- cache ['v1', @person] do
+  .person-show.show-record[@person]{class: "#{'dream_team' if @person.dream_team}"}
+    .button-actions
+      =link_to "Edit", edit_logbook_person_path(@person), class: 'edit button'
+    %header
+      %h1= @person.name
+    %section.person-info
+      %h3
+        = "#{@person.grade}th grade" if @person.grade
+        = "#{@person.role} at #{@person.school.try(:name)}"
+      .person-email
+        .icon.icon-mail
+        = @person.email || "No Email"
+      .person-phone
+        .icon.icon-device-mobile
+        = @person.phone || "No Phone"
+    %section.person-projects
+      %h3 Projects
+      %ul.primary-projects= render @person.primary_projects
+      %ul.secondary-projects= render @person.secondary_projects
+    %section.person-activity
+      %h3.engagements-color= "Engagements - #{@person.engagements.sum(:duration)} hours"
+      #activities
+      :javascript
+        $(document).ready(function(){
+          $('#activities').highcharts({
+            credits: false,
+            colors: #{Chartkick.options[:colors].last(4)},
+            chart: {
+              type: 'bubble',
+              zoomType: 'x',
+              backgroundColor: "#{Chartkick.options[:library][:chart][:backgroundColor]}",
+            },
+            title: false,
+            xAxis: {
+              type: 'datetime',
+            },
+            yAxis: {
+              title: {
+                text: 'Duration (hrs)'
               }
-            }
-          },
-          series: #{JSON.dump(@person.graphable_engagements)}
+            },
+            legend: {
+              layout: 'horizontal',
+              verticalAlign: 'bottom',
+            },
+            plotOptions: {
+              bubble: {
+                tooltip: {
+                  headerFormat: "<b>{series.name}</b><br>",
+                  pointFormat: '{point.y} Hrs, {point.z} Attendees'
+                }
+              }
+            },
+            series: #{JSON.dump(@person.graphable_engagements)}
+          })
         })
-      })
-
