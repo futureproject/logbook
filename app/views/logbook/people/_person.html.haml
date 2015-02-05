@@ -1,5 +1,5 @@
-- cache ["v1", person] do
-  %li[person]
+- cache ["v2", person] do
+  %li[person]{class: ('dream_team' if person.dream_team) }
     .person-first-name= person.first_name
     .person-last-name= person.last_name
     .person-school= person.school.try(:name)

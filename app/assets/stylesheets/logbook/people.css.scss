@@ -7,16 +7,33 @@
   }
 }
 
-.person { position: relative; }
+.person {
+  position: relative;
+}
 
 .table .person, .person-labels {
   @extend %row;
   .person-school { @include span-columns(2); }
   .person-role { display: none; }
-
+  &.dream_team {
+    &:before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 8px;
+      height: 6px;
+      width: 6px;
+      border-radius: 6px;
+      background: $people-color;
+      margin-top: -5px;
+      border: 2px solid white;
+    }
+  }
 }
 
 .person-show {
+  header img { width: 27px; height: 27px; position: relative; top: 4px;}
   .person-info { @include row; }
   .person-phone, .person-email {
     @include span-columns(3);

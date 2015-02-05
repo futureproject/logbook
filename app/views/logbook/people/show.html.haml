@@ -3,7 +3,9 @@
     .button-actions
       =link_to "Edit", edit_logbook_person_path(@person), class: 'edit button'
     %header
-      %h1= @person.name
+      %h1
+        = image_tag 'lil-arrow.png' if @person.dream_team
+        = @person.name
     %section.person-info
       %h3
         = "#{@person.grade}th grade" if @person.grade
