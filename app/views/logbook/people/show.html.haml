@@ -1,4 +1,4 @@
-- cache ['v1', @person] do
+- cache ['v2', @person] do
   .person-show.show-record[@person]{class: "#{'dream_team' if @person.dream_team}"}
     .button-actions
       =link_to "Edit", edit_logbook_person_path(@person), class: 'edit button'
@@ -49,8 +49,14 @@
             plotOptions: {
               bubble: {
                 tooltip: {
-                  headerFormat: "<b>{series.name}</b><br>",
-                  pointFormat: '{point.y} Hrs, {point.z} Attendees'
+                  headerFormat: "{series.name}<br>",
+                  pointFormat: "<b>{point.title}</b><br>{point.y} Hrs, {point.z} Attendees" +
+                    "<br>{point.notes}"
+                },
+                events: {
+                  click: function(event) {
+                    location = "/logbook/engagements/" + event.point.id
+                  }
                 }
               }
             },
