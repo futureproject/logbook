@@ -1,11 +1,11 @@
 - content_for :charts_js do
-  - cache current_scope, expires_in: 1.day do
+  - cache ['v1', current_scope], expires_in: 1.day do
     .row
       .g6
         %h2 People / Time
         = column_chart cached_people_over_time, colors: Person::COLOR_ENUM, library: { plotOptions: { series: { stacking: true } } }
       .g6
-        %h2 Project Leaders & Supporters
+        %h2 People With Projects
         = column_chart [{name: "Leaders", data: totalize(cached_people_leading_projects) }, {name: 'Supporters', data: totalize(cached_people_supporting_projects) }], colors: Project::COLOR_ENUM
     .row
       %h2 Engagements
