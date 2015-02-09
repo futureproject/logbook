@@ -1,10 +1,14 @@
-- cache ['v1', project] do
+- cache ['v4', project] do
   %li[project]
     .project-updated-at= project.updated_at.strftime "%D"
     .project-name= project.name
     .project-description= project.description
-    .project-leaders.number= project.leaders.count
-    .project-participants.number= project.participants.count
+    .project-leaders
+      = project.leaders.count
+      = " - #{project.leaders.limit(3).pluck(:first_name).join(', ')}" if project.leaders.any?
+    .project-participants
+      = project.participants.count
+      = " - #{project.participants.limit(3).pluck(:first_name).join(', ')}" if project.participants.any?
     .project-assets.number=project.assets.count
     .project-school= project.school.try :name
     .project-created-at= project.created_at.strftime "%D"
