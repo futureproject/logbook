@@ -46,11 +46,14 @@
       }
     }
   }
-  .person-profile, .person-projects, .person-engagements {
+  .person-profile, .person-projects {
     @include span-columns(2);
   }
+  .person-engagements {
+    @include span-columns(4);
+  }
   .person-profile {
-    @include shift(6);
+    @include shift(4);
     text-align: right;
   }
   .person-contact {
