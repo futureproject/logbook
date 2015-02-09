@@ -13,3 +13,8 @@
 .logbook_engagements { #tabs .engagements { @extend %current; a {color: $engagements-color;} } }
 .logbook_schools { #tabs .schools { @extend %current; a {color: $schools-color;} } }
 
+.person.previewing {
+  background: white;
+  font-weight: bold;
+  .row-link { display: none; }
+}

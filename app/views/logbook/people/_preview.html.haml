@@ -1,0 +1,24 @@
+- cache ['v1', @person] do
+  .preview.person-preview
+    %section.person-projects
+      %h2= pluralize @person.projects.count, "Project"
+      %ul
+        - @person.primary_projects.order('updated_at DESC').each do |p|
+          %li= link_to p.name, logbook_project_path(p)
+        - @person.secondary_projects.order('updated_at DESC').each do |p|
+          %li= link_to p.name, logbook_project_path(p)
+    %section.person-engagements
+      %h2= pluralize @person.engagements.count, "Engagement"
+      %ul
+        - @person.engagements.order('date DESC').limit(5).each do |e|
+          %li=link_to e.kind, logbook_engagement_path(e)
+    %section.person-contact
+      %h2 Contact:
+      .person-email
+        .icon.icon-mail
+        = @person.email || "No Email"
+      .person-phone
+        .icon.icon-device-mobile
+        = @person.phone || "No Phone"
+    %section.person-profile
+      %h2=link_to "View Profile »", logbook_person_path(@person)

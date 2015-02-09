@@ -7,16 +7,26 @@
   @include row;
   padding: 1em 2em;
   position: relative;
-  > * {
+  > *:not(.preview) {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     text-transform: capitalize;
     @include span-columns(1);
+    &.actions { @include omega; }
   }
+
   &:hover {
     background: white;
   }
+}
+
+.preview {
+  clear: both;
+  float: none;
+  max-height: 140px;
+  overflow: hidden;
+  font-weight: normal;
 }
 
 .table {

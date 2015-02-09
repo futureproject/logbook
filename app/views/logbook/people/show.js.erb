@@ -1,0 +1,8 @@
+$('.person-preview').slideUp(function(){
+  $(this).closest('.person').removeClass('previewing')
+  $(this).remove()
+})
+$preview = $("<%= j render partial: "logbook/people/preview", locals: { person: @person } %>")
+$person = $("#person_<%= @person.id %>")
+$person.addClass('previewing')
+$preview.hide().appendTo($person).slideDown()

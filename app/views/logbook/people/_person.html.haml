@@ -1,4 +1,4 @@
-- cache ["v2", person] do
+- cache ["v3", person] do
   %li[person]{class: ('dream_team' if person.dream_team) }
     .person-first-name= person.first_name
     .person-last-name= person.last_name
@@ -12,7 +12,9 @@
     .person-workshops.number= person.engagements.where(kind: 'Workshop').count
     .person-events.number= person.engagements.where(kind: 'Event').count
     .actions
-      =link_to "View", logbook_person_path(person, scope_params), class: 'row-link'
+      =link_to "View", logbook_person_path(person, scope_params), class: 'row-link', data: { remote: true }
+      %a.view{href: logbook_person_path(person, scope_params), title: 'View'}
+        %span.icon-repo
       %a.edit{href: edit_logbook_person_path(person, scope_params), title: 'Edit'}
         %span.icon-pencil
       %a.delete{href: logbook_person_path(person), title: 'Delete', data: { confirm: "Are you sure you want to delete #{person.first_name}?", method: 'delete', remote: true}}

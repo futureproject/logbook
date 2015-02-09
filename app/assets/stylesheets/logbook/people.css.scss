@@ -20,15 +20,41 @@
       content: '';
       display: block;
       position: absolute;
-      top: 50%;
+      top: 15px;
       left: 8px;
       height: 6px;
       width: 6px;
       border-radius: 6px;
       background: $people-color;
-      margin-top: -5px;
       border: 2px solid white;
     }
+  }
+}
+
+.person-preview {
+  @include row;
+  padding-top: 1em;
+  line-height: 1.8;
+  h2 { font-size: 1em; text-transform: uppercase; }
+  section {
+    li {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      a {
+        color: $base-font-color;
+      }
+    }
+  }
+  .person-profile, .person-projects, .person-engagements {
+    @include span-columns(2);
+  }
+  .person-profile {
+    @include shift(6);
+    text-align: right;
+  }
+  .person-contact {
+    display: none;
   }
 }
 
@@ -40,6 +66,9 @@
   }
 }
 
+.person-engagements {
+  h2 { color: $engagements-color; }
+}
 .person-projects {
   h2 { color: $projects-color; }
   .project {
