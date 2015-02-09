@@ -11,7 +11,7 @@
       %h2= pluralize @person.engagements.count, "Engagement"
       %ul
         - @person.engagements.order('date DESC').limit(5).each do |e|
-          %li=link_to e.kind, logbook_engagement_path(e)
+          %li=link_to "#{e.name || e.kind} (#{e.date.strftime("%D")})", logbook_engagement_path(e)
     %section.person-contact
       %h2 Contact:
       .person-email

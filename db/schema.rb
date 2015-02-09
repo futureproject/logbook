@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150122044012) do
+ActiveRecord::Schema.define(version: 20150209145941) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,8 @@ ActiveRecord::Schema.define(version: 20150122044012) do
     t.text     "caption"
   end
 
+  add_index "assets", ["attachable_id", "attachable_type"], name: "index_assets_on_attachable_id_and_attachable_type", using: :btree
+
   create_table "delayed_jobs", force: true do |t|
     t.integer  "priority",   default: 0, null: false
     t.integer  "attempts",   default: 0, null: false
@@ -80,6 +82,9 @@ ActiveRecord::Schema.define(version: 20150122044012) do
     t.datetime "updated_at"
   end
 
+  add_index "engagement_attendees", ["engagement_id"], name: "index_engagement_attendees_on_engagement_id", using: :btree
+  add_index "engagement_attendees", ["person_id"], name: "index_engagement_attendees_on_person_id", using: :btree
+
   create_table "engagements", force: true do |t|
     t.date     "date"
     t.integer  "school_id"
@@ -91,6 +96,10 @@ ActiveRecord::Schema.define(version: 20150122044012) do
     t.string   "name"
     t.integer  "user_id"
   end
+
+  add_index "engagements", ["date"], name: "index_engagements_on_date", using: :btree
+  add_index "engagements", ["name"], name: "index_engagements_on_name", using: :btree
+  add_index "engagements", ["school_id"], name: "index_engagements_on_school_id", using: :btree
 
   create_table "go_redirects", force: true do |t|
     t.string   "shortcut"
@@ -116,6 +125,8 @@ ActiveRecord::Schema.define(version: 20150122044012) do
     t.string   "password_digest"
   end
 
+  add_index "identities", ["token"], name: "index_identities_on_token", using: :btree
+
   create_table "notes", force: true do |t|
     t.text     "content"
     t.integer  "user_id"
@@ -124,6 +135,8 @@ ActiveRecord::Schema.define(version: 20150122044012) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "notes", ["notable_id", "notable_type"], name: "index_notes_on_notable_id_and_notable_type", using: :btree
 
   create_table "one_on_ones", force: true do |t|
     t.integer  "school_id"
@@ -156,12 +169,20 @@ ActiveRecord::Schema.define(version: 20150122044012) do
     t.text     "passions"
   end
 
+  add_index "people", ["dream_team"], name: "index_people_on_dream_team", using: :btree
+  add_index "people", ["first_name"], name: "index_people_on_first_name", using: :btree
+  add_index "people", ["last_name"], name: "index_people_on_last_name", using: :btree
+  add_index "people", ["school_id"], name: "index_people_on_school_id", using: :btree
+
   create_table "project_leaders", force: true do |t|
     t.integer  "project_id"
     t.integer  "person_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "project_leaders", ["person_id"], name: "index_project_leaders_on_person_id", using: :btree
+  add_index "project_leaders", ["project_id"], name: "index_project_leaders_on_project_id", using: :btree
 
   create_table "project_participants", force: true do |t|
     t.integer  "project_id"
@@ -170,6 +191,9 @@ ActiveRecord::Schema.define(version: 20150122044012) do
     t.datetime "updated_at"
   end
 
+  add_index "project_participants", ["person_id"], name: "index_project_participants_on_person_id", using: :btree
+  add_index "project_participants", ["project_id"], name: "index_project_participants_on_project_id", using: :btree
+
   create_table "projects", force: true do |t|
     t.string   "name"
     t.integer  "school_id"
@@ -177,6 +201,11 @@ ActiveRecord::Schema.define(version: 20150122044012) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "projects", ["created_at"], name: "index_projects_on_created_at", using: :btree
+  add_index "projects", ["name"], name: "index_projects_on_name", using: :btree
+  add_index "projects", ["school_id"], name: "index_projects_on_school_id", using: :btree
+  add_index "projects", ["updated_at"], name: "index_projects_on_updated_at", using: :btree
 
   create_table "reflections", force: true do |t|
     t.text     "content"
@@ -253,5 +282,7 @@ ActiveRecord::Schema.define(version: 20150122044012) do
     t.integer  "school_id"
     t.integer  "clearance_level", default: 1
   end
+
+  add_index "users", ["auth_token"], name: "index_users_on_auth_token", using: :btree
 
 end
