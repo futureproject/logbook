@@ -7,10 +7,10 @@
 =form_for [:logbook, @person] do |f|
   .row
     .field.g3
-      = f.label :first_name
+      = f.label :first_name, "Person First Name"
       = f.text_field :first_name, required: true
     .field.g3
-      = f.label :last_name
+      = f.label :last_name, "Person Last Name"
       = f.text_field :last_name, required: true
     .field.g6
       = f.label :school_id, 'School'
