@@ -4,8 +4,8 @@ class Logbook::EngagementsController < Logbook::ApplicationController
   # GET /engagements
   # GET /engagements.json
   def index
-    params[:sort] ||= 'date DESC'
-    @engagements = current_scope.engagements.filter(filter_params).page(params[:page])
+    params[:user_sort] ||= 'date DESC'
+    @engagements = current_scope.engagements.sort(sort_params).page(params[:page])
     @engagement = current_scope.engagements.new
     respond_to do |format|
       format.html
@@ -113,7 +113,7 @@ class Logbook::EngagementsController < Logbook::ApplicationController
       )
     end
 
-    def filter_params
-      params.slice(:q, :with_attendees, :sort)
+    def sort_params
+      params.slice(:q, :with_attendees, :user_sort)
     end
 end

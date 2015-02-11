@@ -4,8 +4,8 @@ class Logbook::PeopleController < Logbook::ApplicationController
   # GET /people
   # GET /people.json
   def index
-    params[:sort] ||= ('dream_team DESC, last_name ASC') if filter_params.empty?
-    @people = current_scope.people.filter(filter_params).page(params[:page])
+    params[:user_sort] ||= ('dream_team DESC, last_name ASC') if sort_params.empty?
+    @people = current_scope.people.sort(view_context.filter_params).sort(sort_params).page(params[:page])
     respond_to do |format|
       format.html
       format.json
@@ -85,7 +85,8 @@ class Logbook::PeopleController < Logbook::ApplicationController
       params.require(:person).permit!
     end
 
-    def filter_params
-      params.slice(:q, :in_grade, :in_group, :with_engagements, :with_hours, :with_projects, :sort)
+    def sort_params
+      params.slice(:q, :with_engagements, :with_hours, :with_projects, :user_sort)
     end
+
 end

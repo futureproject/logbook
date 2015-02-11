@@ -55,7 +55,9 @@
                 },
                 events: {
                   click: function(event) {
-                    location = "/logbook/engagements/" + event.point.id
+                    path = "/logbook/engagements/" + event.point.id
+                    path += "?scope_id=" + ds.CONSTANTS.scope.id + "&scope_type=" + ds.CONSTANTS.scope.type
+                    location = path
                   }
                 }
               }

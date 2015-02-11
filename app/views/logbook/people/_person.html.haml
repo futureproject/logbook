@@ -12,10 +12,10 @@
     .person-workshops.number= person.engagements.where(kind: 'Workshop').count
     .person-events.number= person.engagements.where(kind: 'Event').count
     .actions
-      =link_to "View", logbook_person_path(person, scope_params), class: 'row-link', data: { remote: true }
-      %a.view{href: logbook_person_path(person, scope_params), title: 'View'}
+      =link_to "View", logbook_person_path(person), class: 'row-link', data: { remote: true }
+      %a.view{href: logbook_person_path(person), title: 'View'}
         %span.icon-repo
-      %a.edit{href: edit_logbook_person_path(person, scope_params), title: 'Edit'}
+      %a.edit{href: edit_logbook_person_path(person), title: 'Edit'}
         %span.icon-pencil
       %a.delete{href: logbook_person_path(person), title: 'Delete', data: { confirm: "Are you sure you want to delete #{person.first_name}?", method: 'delete', remote: true}}
         %span.icon-x

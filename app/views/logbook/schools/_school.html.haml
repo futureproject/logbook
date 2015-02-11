@@ -6,4 +6,4 @@
   .school-engagements.number= school.engagements.count
   .school-engagement-hours.number= school.engagements.sum(:duration).try(:round, 2)
   .school-actions.actions
-    =link_to "View", logbook_school_path(school, scope_params), class: 'row-link'
+    =link_to "View", logbook_school_path(school), class: 'row-link'

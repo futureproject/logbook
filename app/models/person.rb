@@ -21,7 +21,7 @@ class Person < ActiveRecord::Base
   SEX_ENUM = %w(M F)
   DREAM_TEAM_ENUM = [["Yep", true],["Nope", false]]
   COLOR_ENUM = %w(#42C8EE #036B89 #E1F7FE #FFA140 #DB6F00 #FFF0E1)
-  include Filterable
+  include Sortable
 
   scope :search, lambda {|query, user=nil|
     return if query.blank?
@@ -38,7 +38,7 @@ class Person < ActiveRecord::Base
     results.first(10)
   }
 
-  scope :sort, -> (column) { order column.to_s }
+  scope :user_sort, -> (column) { order column.to_s }
 
   scope :q, -> (query) {
     first = "%#{query.split(' ').first.downcase}%"

@@ -15,6 +15,8 @@ class Logbook::ApplicationController < ApplicationController
       @js_data = {}
       @js_data[:current_user] = current_user.as_json(include: :school)
       @js_data[:scope] = { type: current_scope.class.name.downcase, id: current_scope.id }
+      @js_data[:sort_params] = sort_params.as_json rescue {}
+      @js_data[:filter_params] = view_context.filter_params.as_json rescue {}
     end
 
     def current_scope

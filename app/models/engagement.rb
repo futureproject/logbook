@@ -26,8 +26,8 @@ class Engagement < ActiveRecord::Base
 
   COLOR_ENUM = %w(#b363a4 #dcaad3 #8a2f78 #5b094b)
 
-  include Filterable
-  scope :sort, -> (column) { order column.to_s }
+  include Sortable
+  scope :user_sort, -> (column) { order column.to_s }
   scope :q, -> (query) { where("lower(engagements.name) like ?", "%#{query.downcase}%") }
   scope :one_on_ones, -> { joins(:engagement_attendees).group('engagements.id').having('count(engagement_attendees.id)=1') }
   scope :week_of, -> (date) { where(date: date.beginning_of_week..date.end_of_week) }

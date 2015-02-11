@@ -17,9 +17,9 @@ class School < ActiveRecord::Base
   has_many :actions
   has_many :activities, dependent: :destroy
 
-  include Filterable
+  include Sortable
 
-  scope :sort, -> (column) { order column.to_s }
+  scope :user_sort, -> (column) { order column.to_s }
 
   scope :by_count, -> (column) {
     select("schools.id, schools.*, count(#{column}.id) AS #{column}_count").

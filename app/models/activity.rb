@@ -3,8 +3,6 @@ class Activity < ActiveRecord::Base
   belongs_to :thing, polymorphic: true
   belongs_to :school
   validates_presence_of :thing_id, :thing_type
-  include Filterable
-  scope :sort, -> (column) { order column.to_s }
 
   before_create :set_feed_date
 

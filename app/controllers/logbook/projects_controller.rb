@@ -4,8 +4,8 @@ class Logbook::ProjectsController < Logbook::ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    params[:sort] ||= 'updated_at DESC'
-    @projects = current_scope.projects.filter(filter_params).page(params[:page])
+    params[:user_sort] ||= 'updated_at DESC'
+    @projects = current_scope.projects.sort(sort_params).page(params[:page])
     @project = current_scope.projects.new
     respond_to do |format|
       format.html
@@ -103,7 +103,7 @@ class Logbook::ProjectsController < Logbook::ApplicationController
       )
     end
 
-    def filter_params
-      params.slice(:q, :with_people, :with_association, :sort)
+    def sort_params
+      params.slice(:q, :with_people, :with_association, :user_sort)
     end
 end

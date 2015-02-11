@@ -1,5 +1,29 @@
 window.ds ||= {}
 $ ->
+  # preserve scope params on links
+  $(document).on('click', 'a', (e) ->
+    if this.search.match(/scope/i) || this.getAttribute('data-unscoped')?
+      return
+    else if this.search.length == 0
+      this.search = "?scope_id=#{ds.CONSTANTS.scope.id}&scope_type=#{ds.CONSTANTS.scope.type}"
+      true
+    else
+      this.search += "&scope_id=#{ds.CONSTANTS.scope.id}&scope_type=#{ds.CONSTANTS.scope.type}"
+      true
+  ).on('click', '.filtres a', (e) ->
+    search = this.search
+    for sorter in Object.keys(ds.CONSTANTS.sort_params)
+      search += "&#{sorter}=#{ds.CONSTANTS.sort_params[sorter]}"
+    this.search = search
+    true
+  ).on('click', '.labels a', (e) ->
+    search = this.search
+    for filter in Object.keys(ds.CONSTANTS.filter_params)
+      search += "&#{filter}=#{ds.CONSTANTS.filter_params[filter]}"
+    this.search = search
+    true
+  )
+
   # activate direct-to-s3 upload forms
   $('.s3-uploader').each ->
     $t = $(this)
@@ -45,7 +69,7 @@ $ ->
       vex.closeAll()
   )
 
-#fade the flash notices
+  #fade the flash notices
   $('.flash').each ->
     $t = $(this)
     setTimeout ->

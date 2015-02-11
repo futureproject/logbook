@@ -21,17 +21,17 @@
       =filter_link_to '12', in_grade: '12'
 
 .labels.person-labels
-  .person-first-name=table_link_to 'first', sort: 'first_name'
-  .person-last-name=table_link_to 'last', sort: 'last_name'
-  .person-school=table_link_to 'school', sort: 'school_id'
-  .person-role=table_link_to 'role', sort: 'role'
-  .person-grade.number=table_link_to 'grade', sort: 'grade'
-  .person-primary-projects.number=table_link_to 'Prj. Lead', with_projects: 'primary', sort: 'projects_count DESC'
-  .person-secondary-projects.number=table_link_to 'Prj. Team', with_projects: 'secondary', sort: 'projects_count DESC'
-  .person-coaching-sessions.number=table_link_to 'Coach Hrs', with_hours: 'Coaching Session', sort: 'engagement_hours DESC'
-  .person-meetings.number=table_link_to 'Meetings', with_engagements: 'Meeting', sort: 'engagements_count DESC'
-  .person-workshops.number=table_link_to 'Workshops', with_engagements: 'Workshop', sort: 'engagements_count DESC'
-  .person-events.number=table_link_to 'Events', with_engagements: 'Event', sort: 'engagements_count DESC'
+  .person-first-name=table_link_to 'first', user_sort: 'first_name'
+  .person-last-name=table_link_to 'last', user_sort: 'last_name'
+  .person-school=table_link_to 'school', user_sort: 'school_id'
+  .person-role=table_link_to 'role', user_sort: 'role'
+  .person-grade.number=table_link_to 'grade', user_sort: 'grade'
+  .person-primary-projects.number=table_link_to 'Prj. Lead', with_projects: 'primary', user_sort: 'projects_count DESC'
+  .person-secondary-projects.number=table_link_to 'Prj. Team', with_projects: 'secondary', user_sort: 'projects_count DESC'
+  .person-coaching-sessions.number=table_link_to 'Coach Hrs', with_hours: 'Coaching Session', user_sort: 'engagement_hours DESC'
+  .person-meetings.number=table_link_to 'Meetings', with_engagements: 'Meeting', user_sort: 'engagements_count DESC'
+  .person-workshops.number=table_link_to 'Workshops', with_engagements: 'Workshop', user_sort: 'engagements_count DESC'
+  .person-events.number=table_link_to 'Events', with_engagements: 'Event', user_sort: 'engagements_count DESC'
 
 %ul.table.people= render @people
 = paginate @people rescue nil

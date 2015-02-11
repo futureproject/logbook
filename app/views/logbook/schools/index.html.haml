@@ -2,11 +2,11 @@
   %h1= pluralize current_scope.schools.count, "School"
 .labels.school-labels
   .school-site= "Site"
-  .school-name=table_link_to 'Name', sort: 'name'
+  .school-name=table_link_to 'Name', user_sort: 'name'
   .school-dream-team.number=table_link_to 'DT', dream_team: 'DESC'
   .school-projects.number=table_link_to 'Projects', by_count: 'projects'
   .school-engagements.number=table_link_to 'Engagements', by_count: 'engagements'
-  .school-engagement-hours.number=table_link_to 'Hours', by_hours: 'DESC', sort: 'engagement_hours DESC'
+  .school-engagement-hours.number=table_link_to 'Hours', by_hours: 'DESC', user_sort: 'engagement_hours DESC'
 
 %ul.table.schools
   = render @schools

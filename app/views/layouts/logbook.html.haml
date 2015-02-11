@@ -10,7 +10,7 @@
       window.ds = window.ds || {}
       ds.CONSTANTS = #{JSON.dump( @js_data || {} )}
     = javascript_include_tag 'logbook/logbook'
-  %body{class: params[:controller].gsub('/','_')}
+  %body{class: page_classes}
 
     - cache ['v1/header', current_scope] do
       #header
@@ -23,16 +23,16 @@
             %span.icon.icon-search
           %input#search-field.typeahead{type: 'text'}
 
-    - cache ['v1/tabs', scope_params] do
+    - cache 'v1/tabs' do
       #tabs
-        %a{href: logbook_root_url }
+        %a{href: logbook_root_url, data: { unscoped: true } }
           =image_tag asset_path('tfplogo.svg'), alt: 'The Future Project'
         %ul.tabs
-          = nav_link_to "Overview", logbook_root_url(scope_params), "ds-dashboard"
-          = nav_link_to "People", logbook_people_path(scope_params), "ds-people"
-          = nav_link_to "Projects", logbook_projects_path(scope_params), "ds-projects"
-          = nav_link_to "Engagements", logbook_engagements_path(scope_params), "ds-engagements"
-          = nav_link_to "Schools", logbook_schools_path(scope_params), "mortar-board" if current_user.level(2)
+          = nav_link_to "Overview", logbook_root_url, "ds-dashboard"
+          = nav_link_to "People", logbook_people_path, "ds-people"
+          = nav_link_to "Projects", logbook_projects_path, "ds-projects"
+          = nav_link_to "Engagements", logbook_engagements_path, "ds-engagements"
+          = nav_link_to "Schools", logbook_schools_path, "mortar-board"
         #user
           %a{href: log_out_path}
             .icon.icon-sign-out

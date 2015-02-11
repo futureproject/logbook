@@ -11,9 +11,9 @@ class Project < ActiveRecord::Base
   has_many :activities, as: :thing, dependent: :destroy
   has_many :notes, as: :notable, dependent: :destroy
   COLOR_ENUM = %w(#419AD3 #D5ECFB #064974 #FFAC43 #B66500 #FFEDD6)
-  include Filterable
+  include Sortable
 
-  scope :sort, -> (column) { order column.to_s }
+  scope :user_sort, -> (column) { order column.to_s }
 
   scope :q, -> (query) { where("lower(projects.name) like ?", "%#{query.downcase}%") }
 
