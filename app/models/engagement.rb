@@ -15,6 +15,7 @@ class Engagement < ActiveRecord::Base
     ['30 Minutes', 0.5],
     ['45 Minutes', 0.75],
     ['1 Hour', 1.0],
+    ['1.5 Hours', 1.5],
     ['2 Hours', 2.0],
     ['3 Hours', 3.0],
     ['4 Hours', 4.0],
