@@ -1,4 +1,4 @@
-- cache ['v2', @person] do
+- cache ['v3', @person] do
   .person-show.show-record[@person]{class: "#{'dream_team' if @person.dream_team}"}
     .button-actions
       =link_to "Edit", edit_logbook_person_path(@person), class: 'edit button'
@@ -31,7 +31,7 @@
             chart: {
               type: 'bubble',
               zoomType: 'x',
-              backgroundColor: "#{Chartkick.options[:library][:chart][:backgroundColor]}",
+              backgroundColor: "#ffffff",
             },
             title: false,
             xAxis: {

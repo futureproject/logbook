@@ -1,0 +1,30 @@
+@media print {
+  #header, #tabs, #global-add {
+    display: none;
+  }
+  body {
+    margin-top: 0;
+    border-left: none;
+  }
+  #yield > * {
+    padding: 0;
+  }
+  .person-show {
+    .button-actions, .person-email, .person-phone {
+      display: none;
+    }
+    .highcharts-container {
+      box-shadow: none;
+      @include transform-origin(left top);
+      @include transform(scale(0.5));
+    }
+  }
+  .person-projects {
+    @include clearfix;
+    .project {
+      box-shadow: none;
+      padding: 0;
+    }
+    .project-updated-at { display: none; }
+  }
+}

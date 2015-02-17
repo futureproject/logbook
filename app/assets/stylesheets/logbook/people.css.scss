@@ -63,17 +63,23 @@
 
 .person-show {
   header img { width: 27px; height: 27px; position: relative; top: 4px;}
-  .person-info { @include row; }
+  .person-info {
+    @include row;
+    h3 { text-transform: capitalize; }
+  }
   .person-phone, .person-email {
     @include span-columns(3);
+  }
+  .highcharts-container {
+    box-shadow: -1px 1px 0 $base-border-color;
   }
 }
 
 .person-engagements {
-  h2 { color: $engagements-color; }
+  h3 { color: $engagements-color; }
 }
 .person-projects {
-  h2 { color: $projects-color; }
+  h3 { color: $projects-color; }
   .project {
     margin-bottom: 2em;
     padding: 2em;
@@ -95,12 +101,12 @@
     margin-right: 1em;
   }
   .project-leaders {
-    &:after { content: ' Leaders' }
+    &:before { content: 'Leaders: ' }
   }
   .project-participants {
-    &:after { content: ' Supporters' }
+    &:before { content: 'Supporters: ' }
   }
-  .project-updated-at:before { content: "Last Updated: " }
+  3project-updated-at:before { content: "Last Updated: " }
   .project-created-at:before { content: "Created: " }
   .primary-projects {
     .project-name {
