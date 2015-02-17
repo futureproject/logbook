@@ -60,6 +60,7 @@ $ ->
     $('#global-add').addClass('open')
   ).on('vexClose', (event) ->
     $('#global-add').removeClass('open')
+    $(window).off('beforeunload.ds')
   )
   $('#global-add').on('click', (event) ->
     if this.classList.contains 'open'
@@ -76,3 +77,15 @@ $ ->
       $t.slideUp('fast')
     , 2000
 
+  # prompt if there are unsaved changes on a form
+  $(document).one('change', 'textarea, select[multiple]', (event) ->
+    $('form').on('submit', (e) ->
+      $(window).off('beforeunload.ds')
+      true
+    )
+    $(window).on('beforeunload.ds', (event) ->
+      "The information you've entered on this page will vanish into the aether if you leave before saving."
+    )
+    $(document).on('vexClose', (event) ->
+    )
+  )
