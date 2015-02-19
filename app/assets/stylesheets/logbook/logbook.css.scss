@@ -57,6 +57,14 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0;
 }
 
+input[type=submit], .button {
+  background: white;
+}
+
+a.delete {
+  color: $light-red;
+}
+
 ::-webkit-input-placeholder {
   color: $base-border-color;
 }

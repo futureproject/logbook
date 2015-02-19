@@ -1,9 +1,7 @@
 .show-record
   %header
     %h1 Editing Project
-  .button-actions
-    =link_to "Cancel", logbook_project_path(@project), class: 'cancel button'
-    =link_to "Destroy", logbook_project_path(@project), class: 'delete button', data: { method: 'delete', confirm: "Are you sure?"}
 
+  = render 'form'
 
-= render 'form'
+  =link_to "Delete Project", logbook_project_path(@project), class: 'delete', data: { method: 'delete', confirm: "Are you sure you want to delete this project?"}

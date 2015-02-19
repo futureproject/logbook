@@ -1,8 +1,7 @@
 .show-record
   %header
     %h1 Editing Engagement
-  .button-actions
-    =link_to "Cancel", logbook_engagement_path(@engagement), class: 'cancel button'
-    =link_to "Destroy", logbook_engagement_path(@engagement), class: 'delete button', data: { method: 'delete', confirm: "Are you sure?"}
 
   = render 'form'
+
+  =link_to "Delete Engagement", logbook_engagement_path(@engagement), class: 'delete', data: { method: 'delete', confirm: "Are you sure you want to delete this engagement?"}

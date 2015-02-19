@@ -1,9 +1,7 @@
 .show-record
   %header
     %h1 Editing Person
-  .button-actions
-    =link_to "Cancel", logbook_person_path(@person), class: 'cancel button'
-    =link_to "Destroy", logbook_person_path(@person), class: 'delete button', data: { method: 'delete', confirm: "Are you sure?"}
 
+  = render 'form'
 
-= render 'form'
+  =link_to "Delete Person", logbook_person_path(@person), class: 'delete', data: { method: 'delete', confirm: "Are you sure you want to delet this person?"}
