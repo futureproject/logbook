@@ -1,7 +1,8 @@
 class Person < ActiveRecord::Base
-  validates_presence_of :first_name, :last_name, :school_id
+  validates_presence_of :first_name, :last_name
   belongs_to :school, touch: true
-  has_one :site, through: :school
+  belongs_to :user, touch: true
+  belongs_to :site, touch: true
   has_many :project_participants, dependent: :destroy
   has_many :project_leaders, dependent: :destroy
   has_many :primary_projects, through: :project_leaders, source: :project
@@ -16,6 +17,8 @@ class Person < ActiveRecord::Base
   has_many :student_reflections, class_name: "Reflection", as: :reflectable, dependent: :destroy
   has_many :assets, as: :attachable
   has_one :identity, dependent: :destroy
+  before_save :set_site
+  before_save :downcase_name
   ROLE_ENUM = %w(student teacher staff)
   GRADE_ENUM = [6, 7, 8, 9, 10, 11, 12]
   SEX_ENUM = %w(M F)
@@ -38,7 +41,9 @@ class Person < ActiveRecord::Base
     results.first(10)
   }
 
-  scope :user_sort, -> (column) { order column.to_s }
+  scope :user_sort, -> (column) {
+    order "#{column.to_s}"
+  }
 
   scope :q, -> (query) {
     first = "%#{query.split(' ').first.downcase}%"
@@ -160,6 +165,20 @@ class Person < ActiveRecord::Base
     puts "merged #{count} people into #{primary.name}, id #{primary.id}"
     primary.save
     primary.touch
+  end
+
+  def set_site
+    if self.school
+      self.site_id = self.school.try(:site).try(:id)
+    else
+      self.site_id = self.user.try(:site).try(:id)
+    end
+    true
+  end
+
+  def downcase_name
+    self.first_name = self.first_name.try(:downcase)
+    self.last_name = self.last_name.try(:downcase)
   end
 
 end

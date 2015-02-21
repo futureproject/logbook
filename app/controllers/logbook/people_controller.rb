@@ -34,7 +34,7 @@ class Logbook::PeopleController < Logbook::ApplicationController
   # POST /people
   # POST /people.json
   def create
-    @person = Person.new(person_params)
+    @person = current_user.people.new(person_params)
 
     respond_to do |format|
       if @person.save

@@ -3,8 +3,7 @@ class User < ActiveRecord::Base
   has_many :identities, dependent: :destroy
   belongs_to :school
 
-  # you could add an api endpoint here to get the whole site's people
-  has_many :people, through: :school
+  has_many :people
   has_many :projects, through: :school
   has_many :engagements
   has_many :engagement_attendees, through: :engagements

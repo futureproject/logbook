@@ -19,12 +19,10 @@ feature 'using the phonebook' do
     visit phonebook_root_path
     first('.new').click
     take_attendance
-    within '.detail-new' do
-      fill_in 'name', with: 'Cooking Class'
-      first('.button.done').click
-    end
     sleep 1
-    should_see_engagement_named('Cooking Class')
+    first('.button.done').click
+    sleep 1
+    should_see_engagement_named('Coaching Session w/ Dick')
   end
 
   scenario 'editing', js: true do

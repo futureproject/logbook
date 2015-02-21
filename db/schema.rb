@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150221180610) do
+ActiveRecord::Schema.define(version: 20150221193408) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -168,6 +168,8 @@ ActiveRecord::Schema.define(version: 20150221180610) do
     t.boolean  "media_consent",    default: false
     t.float    "gpa"
     t.text     "passions"
+    t.integer  "site_id"
+    t.integer  "user_id"
   end
 
   add_index "people", ["dream_team"], name: "index_people_on_dream_team", using: :btree

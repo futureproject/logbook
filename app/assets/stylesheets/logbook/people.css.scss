@@ -106,7 +106,7 @@
   .project-participants {
     &:before { content: 'Supporters: ' }
   }
-  3project-updated-at:before { content: "Last Updated: " }
+  .project-updated-at:before { content: "Last Updated: " }
   .project-created-at:before { content: "Created: " }
   .primary-projects {
     .project-name {
@@ -123,4 +123,9 @@
       }
     }
   }
+}
+
+.person-name {
+  text-transform: capitalize;
+  color: $people-color;
 }

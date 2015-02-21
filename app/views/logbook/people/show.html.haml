@@ -1,15 +1,18 @@
-- cache ['v3', @person] do
+- cache ['v5', @person] do
   .person-show.show-record[@person]{class: "#{'dream_team' if @person.dream_team}"}
     .button-actions
       =link_to "Edit", edit_logbook_person_path(@person), class: 'edit button'
     %header
-      %h1
+      %h1.person-name
         = image_tag 'lil-arrow.png' if @person.dream_team
         = @person.name
     %section.person-info
       %h3
-        = "#{@person.grade}th grade" if @person.grade
-        = "#{@person.role} at #{@person.school.try(:name)}"
+        - if @person.school
+          = "#{@person.grade}th grade" if @person.grade
+          = "#{@person.role} at #{@person.school.try(:name)}"
+        - elsif @person.site
+          = @person.site.name
       .person-email
         .icon.icon-mail
         = @person.email || "No Email"

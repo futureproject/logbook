@@ -11,7 +11,7 @@ feature 'Logbook people' do
     fill_in 'person[last_name]', with: 'McGuiness'
     select '12', from: 'person[grade]'
     click_button 'Create Person'
-    expect(page).to have_content 'Terry McGuiness'
+    expect(page).to have_content 'terry mcguiness'
   end
 
   scenario 'READ' do
@@ -32,7 +32,7 @@ feature 'Logbook people' do
     fill_in 'person[first_name]', with: 'Richard'
     fill_in 'person[email]', with: 'drake@waynetech.com'
     click_button 'Update Person'
-    expect(page).to have_content 'Richard'
+    expect(page).to have_content 'richard'
     expect(page).to have_content 'drake@waynetech.com'
   end
 

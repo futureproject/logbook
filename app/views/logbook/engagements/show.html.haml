@@ -26,7 +26,7 @@
         %h3= pluralize @engagement.attendees.count, 'Attendee'
         %ul.people.table
           - @engagement.attendees.order(:first_name).each do |person|
-            %li= link_to person.name, logbook_person_path(person)
+            %li.person-name= link_to person.name, logbook_person_path(person)
     .record-media
       %section.engagement-media
         %h3 Media

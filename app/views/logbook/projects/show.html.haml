@@ -1,9 +1,9 @@
-- cache ['v2', @project] do
+- cache ['v3', @project] do
   .project-show.show-record[@project]
     .button-actions
       =link_to "Edit", edit_logbook_project_path(@project), class: 'edit button'
     %header
-      %h1= @project.name
+      %h1.project-name= @project.name
     .record-info
       %section.project-school
         %h3 School
@@ -27,13 +27,13 @@
         %h3= pluralize @project.leaders.count, 'Leader'
         %ul.people.table
           - @project.leaders.order(:first_name).each do |person|
-            %li= link_to person.name, logbook_person_path(person)
+            %li.person-name= link_to person.name, logbook_person_path(person)
 
       %section.project-participants
         %h3= pluralize @project.participants.count, 'Supporter'
         %ul.people.table
           - @project.participants.order(:first_name).each do |person|
-            %li= link_to person.name, logbook_person_path(person)
+            %li.person-name= link_to person.name, logbook_person_path(person)
 
       %section.project-notes
         %h3 Notes
