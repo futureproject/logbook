@@ -39,4 +39,8 @@ module Logbook::ApplicationHelper
     end
   end
 
+  def schools_for(user)
+    user.schools.map{|s| [s.name, s.id] }
+  end
+
 end

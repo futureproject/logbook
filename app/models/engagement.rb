@@ -1,5 +1,6 @@
 class Engagement < ActiveRecord::Base
   belongs_to :school, touch: true
+  belongs_to :site, touch: true
   belongs_to :user
   has_many :engagement_attendees, dependent: :destroy
   has_many :attendees, through: :engagement_attendees, source: :person
@@ -7,6 +8,7 @@ class Engagement < ActiveRecord::Base
   has_many :activities, as: :thing, dependent: :destroy
   after_create :log_activity
   before_create :autoname
+  before_save :set_site
   validates_presence_of :date
   KIND_ENUM = ['Coaching Session', 'Event', 'Meeting', 'Workshop']
   DURATION_ENUM = [
@@ -48,6 +50,15 @@ class Engagement < ActiveRecord::Base
     else
       true
     end
+  end
+
+  def set_site
+    if self.school
+      self.site_id = self.school.try(:site).try(:id)
+    else
+      self.site_id = self.user.try(:site).try(:id)
+    end
+    true
   end
 
   def log_activity

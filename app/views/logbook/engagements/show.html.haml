@@ -1,4 +1,4 @@
-- cache ['v3', @engagement] do
+- cache ['v4', @engagement] do
   .engagement-show.show-record[@engagement]
     .button-actions
       =link_to "Duplicate", duplicate_logbook_engagement_path(@engagement), class: 'duplicate button'
@@ -10,7 +10,7 @@
         %h3= @engagement.name
       %section.engagement-date
         = @engagement.date.strftime "%A, %B %d"
-        = "- #{pluralize @engagement.duration.round(2), 'hour'}"
+        = "- #{pluralize @engagement.duration.round(2), 'hour'}" if @engagement.duration
 
       - if @engagement.notes.present?
         %section.engagement-notes
@@ -19,7 +19,7 @@
       %section.engagement-location
         %h3 Location
         .address
-          .engagement-school= @engagement.school.try(:name)
+          .engagement-school= @engagement.school.try(:name) || @engagement.site.try(:name)
           .engagement-address= @engagement.school.try(:address)
 
       %section.engagement-attendees

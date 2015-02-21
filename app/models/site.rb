@@ -10,9 +10,8 @@ class Site < ActiveRecord::Base
   has_many :projects, through: :schools
   has_many :project_leaders, through: :people
   has_many :project_participants, through: :people
-  has_many :engagements, through: :schools
+  has_many :engagements
   has_many :engagement_attendees, through: :engagements
-  has_many :one_on_ones, through: :schools
   has_many :actions, through: :schools
   has_many :activities, through: :schools
 
