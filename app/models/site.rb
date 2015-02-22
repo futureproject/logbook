@@ -5,7 +5,7 @@ class Site < ActiveRecord::Base
 
   belongs_to :captain, foreign_key: 'captain_id', class_name: 'User'
   has_many :schools
-  has_many :users, through: :schools
+  has_many :users
   has_many :people
   has_many :projects, through: :schools
   has_many :project_leaders, through: :people

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150221193408) do
+ActiveRecord::Schema.define(version: 20150222195749) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -101,6 +101,7 @@ ActiveRecord::Schema.define(version: 20150221193408) do
   add_index "engagements", ["date"], name: "index_engagements_on_date", using: :btree
   add_index "engagements", ["name"], name: "index_engagements_on_name", using: :btree
   add_index "engagements", ["school_id"], name: "index_engagements_on_school_id", using: :btree
+  add_index "engagements", ["site_id"], name: "index_engagements_on_site_id", using: :btree
 
   create_table "go_redirects", force: true do |t|
     t.string   "shortcut"
@@ -176,6 +177,7 @@ ActiveRecord::Schema.define(version: 20150221193408) do
   add_index "people", ["first_name"], name: "index_people_on_first_name", using: :btree
   add_index "people", ["last_name"], name: "index_people_on_last_name", using: :btree
   add_index "people", ["school_id"], name: "index_people_on_school_id", using: :btree
+  add_index "people", ["site_id"], name: "index_people_on_site_id", using: :btree
 
   create_table "project_leaders", force: true do |t|
     t.integer  "project_id"
@@ -284,8 +286,10 @@ ActiveRecord::Schema.define(version: 20150221193408) do
     t.datetime "updated_at"
     t.integer  "school_id"
     t.integer  "clearance_level", default: 1
+    t.integer  "site_id"
   end
 
   add_index "users", ["auth_token"], name: "index_users_on_auth_token", using: :btree
+  add_index "users", ["site_id"], name: "index_users_on_site_id", using: :btree
 
 end

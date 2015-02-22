@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   before_create :generate_auth_token
   has_many :identities, dependent: :destroy
   belongs_to :school
+  belongs_to :site
 
   has_many :people
   has_many :projects, through: :school
@@ -11,6 +12,7 @@ class User < ActiveRecord::Base
   has_many :actions, as: :subject
   has_many :activities, as: :actor, dependent: :destroy
   has_many :reports, through: :people
+  before_save :set_site
 
   ROLE_ENUM = %w(dream_director captain)
 
@@ -52,10 +54,6 @@ class User < ActiveRecord::Base
     people.where(dream_team: true)
   end
 
-  def site
-    Site.find_by(captain_id: self.id) || school.try(:site)
-  end
-
   def schools
     if site
       site.schools.order(:name)
@@ -71,6 +69,12 @@ class User < ActiveRecord::Base
       Site.order(:name)
     end
   end
+
+  def set_site
+    self.site_id = self.school.try(:site).try(:id) if self.school
+    true
+  end
+
 
   def works_at_tfp
     true
@@ -88,47 +92,6 @@ class User < ActiveRecord::Base
 
   def level(l = 1)
     clearance_level >= l
-  end
-
-  def stats
-    [
-      {
-        id: 'Projects',
-        personal: projects.count,
-        site: try(:site).average(:projects),
-        national: National.average(:projects)
-      },
-      {
-        id: 'Project Leaders',
-        personal: people.joins(:project_leaders).uniq.count,
-        site: try(:site).average(:project_leaders),
-        national: National.average(:project_leaders)
-      },
-      {
-        id: 'Project Participants',
-        personal: people.joins(:project_participants).uniq.count,
-        site: try(:site).average(:project_participants),
-        national: National.average(:project_participants)
-      },
-      {
-        id: 'Engagements',
-        personal: engagements.count,
-        site: try(:site).average(:engagements),
-        national: National.average(:engagements)
-      },
-      {
-        id: 'Engagement Hours',
-        personal: engagements.sum(:duration).to_s,
-        site: try(:site).average(:engagements, :duration).round(2),
-        national: National.average(:engagements, :duration).round(2)
-      },
-      {
-        id: 'Chairs Filled',
-        personal: engagement_attendees.count,
-        site: try(:site).average(:engagement_attendees),
-        national: National.average(:engagements)
-      }
-    ]
   end
 
 end

@@ -66,6 +66,7 @@ RailsAdmin.config do |config|
       field :name
       field :captain
       field :schools
+      field :users
     end
   end
   config.model 'User' do
@@ -74,6 +75,7 @@ RailsAdmin.config do |config|
       field :last_name
       field :email
       field :school
+      field :site
       field :auth_token
       field :avatar_url
       field :role
