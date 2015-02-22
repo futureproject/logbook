@@ -27,12 +27,11 @@ feature 'Logbook projects' do
 
   scenario 'DESTROY', js: true do
     visit logbook_projects_path
-    selector = "#project_#{Project.last.id}"
-    within(selector) do
-      find('a[data-method=delete]').click
-    end
+    count = all('.project').count
+    first('a[data-method=delete]').click
     page.driver.accept_js_confirms!
-    expect(page).not_to have_selector selector
+    sleep 1
+    expect(all('.project').count).to eq (count - 1)
   end
 
 end

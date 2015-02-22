@@ -38,12 +38,11 @@ feature 'Logbook people' do
 
   scenario 'DESTROY', js: true do
     visit logbook_people_path
-    selector = "#person_#{Person.last.id}"
-    within(selector) do
-      find('a[data-method=delete]').click
-    end
+    count = all('.person').count
+    first('a[data-method=delete]').click
     page.driver.accept_js_confirms!
-    expect(page).not_to have_selector selector
+    sleep 1
+    expect(all('.person').count).to eq (count - 1)
   end
 
 end
