@@ -3,7 +3,7 @@
     .row
       .g6
         %h2 People / Time
-        = area_chart cached_people_over_time, colors: Person::COLOR_ENUM, library: { plotOptions: { series: { fillColor: { linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1}, stops: [ [0, "rgba(66,200,237,.333"], [1, "rgba(255,255,255,0)"]] } } } }
+        = area_chart cached_people_over_time, colors: Person::COLOR_ENUM, library: { plotOptions: { series: { stacking: true, fillColor: { linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1}, stops: [ [0, "rgba(66,200,237,.333"], [1, "rgba(255,255,255,0)"]] } } } }
       .g6
         %h2 People With Projects
         = area_chart [{name: "Leaders", data: totalize(cached_people_leading_projects) }, {name: 'Supporters', data: totalize(cached_people_supporting_projects) }]
