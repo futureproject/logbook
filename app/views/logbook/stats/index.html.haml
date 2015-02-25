@@ -3,13 +3,13 @@
     .row
       .g6
         %h2 People / Time
-        = column_chart cached_people_over_time, colors: Person::COLOR_ENUM, library: { plotOptions: { series: { stacking: true } } }
+        = area_chart cached_people_over_time, colors: Person::COLOR_ENUM, library: { plotOptions: { series: { fillColor: { linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1}, stops: [ [0, "rgba(66,200,237,.333"], [1, "rgba(255,255,255,0)"]] } } } }
       .g6
         %h2 People With Projects
-        = column_chart [{name: "Leaders", data: totalize(cached_people_leading_projects) }, {name: 'Supporters', data: totalize(cached_people_supporting_projects) }], colors: Project::COLOR_ENUM
+        = area_chart [{name: "Leaders", data: totalize(cached_people_leading_projects) }, {name: 'Supporters', data: totalize(cached_people_supporting_projects) }]
     .row
       %h2 Engagements
-      = area_chart [{name: "Coaching Sessions", data: cached_coaching_sessions }, {name: "Events", data: cached_events}, {name: "Meetings", data: cached_meetings }, {name: "Workshops", data: cached_workshops }], colors: Engagement::COLOR_ENUM
+      = area_chart [{name: "Coaching Sessions", data: cached_coaching_sessions }, {name: "Events", data: cached_events}, {name: "Meetings", data: cached_meetings }, {name: "Workshops", data: cached_workshops }], colors: Engagement::COLOR_ENUM, library: { plotOptions: { series: { stacking: true } } }
 
     - if current_user.level(2)
       .row

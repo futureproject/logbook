@@ -18,7 +18,7 @@ module Logbook::StatsHelper
       inactive_ppl = []
       new_ppl = []
       while current_day <= end_day
-        date = current_day.strftime "%b %d"
+        date = current_day.strftime "%D"
         active_count = current_scope.people.created_before(current_day).joins(:engagements).merge(Engagement.week_of(current_day)).uniq.count
         inactive_count = current_scope.people.created_before(current_day).count - active_count
         new_count = current_scope.people.week_of(current_day).joins(:engagements).merge(Engagement.week_of(current_day)).uniq.count
@@ -34,13 +34,13 @@ module Logbook::StatsHelper
 
   def cached_people_leading_projects
     Rails.cache.fetch([current_scope, 'logbook/people_leading_projects'], expires_in: 1.day) do
-      current_scope.people.joins(:project_leaders).group_by_week('people.created_at', range: START_DAY..Date.today, format: '%b %d').uniq.count
+      current_scope.people.joins(:project_leaders).group_by_week('people.created_at', range: START_DAY..Date.today, format: '%D').uniq.count
     end
   end
 
   def cached_people_supporting_projects
     Rails.cache.fetch([current_scope, 'logbook/people_supporting_projects'], expires_in: 1.day) do
-      current_scope.people.joins(:project_participants).group_by_week('people.created_at', range: START_DAY..Date.today, format: '%b %d').uniq.count
+      current_scope.people.joins(:project_participants).group_by_week('people.created_at', range: START_DAY..Date.today, format: '%D').uniq.count
     end
   end
 

@@ -10,7 +10,7 @@ class Project < ActiveRecord::Base
   after_create :log_activity
   has_many :activities, as: :thing, dependent: :destroy
   has_many :notes, as: :notable, dependent: :destroy
-  COLOR_ENUM = %w(#419AD3 #D5ECFB #064974 #FFAC43 #B66500 #FFEDD6)
+  COLOR_ENUM = %w(#419AD3 #568099 #064974 #FFAC43 #B66500 #FFEDD6)
   include Sortable
 
   scope :user_sort, -> (column) { order column.to_s }
