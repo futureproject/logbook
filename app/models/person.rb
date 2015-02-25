@@ -23,7 +23,7 @@ class Person < ActiveRecord::Base
   GRADE_ENUM = [6, 7, 8, 9, 10, 11, 12]
   SEX_ENUM = %w(M F)
   DREAM_TEAM_ENUM = [["Yep", true],["Nope", false]]
-  COLOR_ENUM = %w(#42C8EE #036B89 #7c878a #FFA140 #DB6F00 #FFF0E1)
+  COLOR_ENUM = %w(#42C8EE #036B89 #7c878a)
   include Sortable
 
   scope :search, lambda {|query, user=nil|

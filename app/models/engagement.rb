@@ -27,7 +27,7 @@ class Engagement < ActiveRecord::Base
     ['8 Hours', 8.0]
   ]
 
-  COLOR_ENUM = %w(#b363a4 #dcaad3 #8a2f78 #5b094b)
+  COLOR_ENUM = %w(#b363a4 #56304f #e7a2db #8457b3)
 
   include Sortable
   scope :user_sort, -> (column) { order column.to_s }

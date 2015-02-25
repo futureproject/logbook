@@ -27,7 +27,7 @@ module Logbook::StatsHelper
         inactive_ppl.push [date, inactive_count]
         current_day += 1.week
       end
-      array = [ { name: 'Newly Engaged', data: new_ppl }, { name: 'Re-Engaged', data: active_ppl }, {name: 'Inactive', data: inactive_ppl } ]
+      array = [ {name: 'Inactive', data: inactive_ppl, visible: false }, { name: 'Re-Engaged', data: active_ppl }, { name: 'Newly Engaged', data: new_ppl } ]
       array
     end
   end
