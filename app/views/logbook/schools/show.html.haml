@@ -1,7 +1,7 @@
-.row
-  .g4= map_image_tag @school.address
-  .g8
-    %h1= @school.name
-    %label Dream Director
-    .fact= @school.dream_director.name
+.page-header
+  %h1= @school.name
+  .map= map_image_tag @school.address
+.labels.engagement-labels
+
+%ul.table.engagements= render @school.engagements.order('date DESC').limit(50)
 

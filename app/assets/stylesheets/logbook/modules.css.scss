@@ -72,6 +72,9 @@
   &.filtres-open {
     .icon { @include transform(rotate(180deg)); }
   }
+  .map {
+    img { max-width: 320px }
+  }
 }
 .labels {
   background: $medium-gray;

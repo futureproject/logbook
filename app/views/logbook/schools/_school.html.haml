@@ -1,6 +1,7 @@
 %li[school]
   .school-site= school.site.try(:name)
-  .school-name= school.name
+  .school-name
+    = "#{school.name} - #{school.users.map{|u| u.name}.join(', ')}"
   .school-dream-team.number= school.dream_team.try(:count)
   .school-projects.number= school.projects.count
   .school-engagements.number= school.engagements.count
