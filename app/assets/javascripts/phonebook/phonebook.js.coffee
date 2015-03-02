@@ -1,8 +1,6 @@
 #= require jquery-2.1.1
 #= require underscore-min
 #= require backbone-min
-#= require hammer-min
-#= require hammer-jquery
 #= require backbone.dualstorage
 #= require backbone.syphon
 #= require date

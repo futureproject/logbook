@@ -11,7 +11,6 @@ class Phonebook.Views.Engagements.ShowView extends Backbone.View
 
   events:
     'tap .back': 'back'
-    'swiperight': 'back'
     'tap .edit': -> Backbone.trigger 'engagements:edit', @model
     'tap .upload': 'showUploads'
     'touchmove .detail-title': (e) -> e.preventDefault()
