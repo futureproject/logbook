@@ -9,7 +9,7 @@
         = area_chart [{name: "Leaders", data: totalize(cached_people_leading_projects), fillColor: { linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1}, stops: [ [0, Project::COLOR_ENUM[0]], [1, "rgba(255,255,255,0)"]] } }, {name: 'Supporters', data: totalize(cached_people_supporting_projects), fillColor: { linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1}, stops: [ [0, Project::COLOR_ENUM[1]], [1, "rgba(255,255,255,0)"]] } }], colors: Project::COLOR_ENUM
     .row
       %h2 Engagements per Week
-      = area_chart [{name: "Coaching Sessions", data: cached_coaching_sessions }, {name: "Events", data: cached_events}, {name: "Meetings", data: cached_meetings }, {name: "Workshops", data: cached_workshops }], colors: Engagement::COLOR_ENUM, library: { plotOptions: { series: { stacking: true, fillColor: { linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1}, stops: [ [0, "rgba(179, 99, 164, .5"], [1, "rgba(255,255,255,0)"]] } } } }
+      = area_chart [{name: "Coaching Sessions", data: cached_coaching_sessions }, {name: "Events", data: cached_events}, {name: "Meetings", data: cached_meetings }, {name: "Workshops", data: cached_workshops }], colors: Engagement::COLOR_ENUM, library: { plotOptions: { series: { stacking: true, fillColor: { linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1}, stops: [ [0, "rgba(179, 99, 164, .5)"], [1, "rgba(255,255,255,0)"]] } } } }
 
     - if current_user.level(2)
       .row
