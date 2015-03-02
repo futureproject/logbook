@@ -25,6 +25,8 @@ class Project < ActiveRecord::Base
     joins(table.to_sym).select("projects.*, COUNT(#{table}.id) AS #{table}_count").group('projects.id')
   }
 
+  scope :with_updates, -> { where('updated_at > created_at') }
+
   def log_activity
     Activity.create(
       actor_id: leaders.first.try(:id),
