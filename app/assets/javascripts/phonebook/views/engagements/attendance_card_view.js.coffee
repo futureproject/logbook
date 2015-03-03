@@ -5,7 +5,7 @@ class Phonebook.Views.Engagements.AttendanceCardView extends Backbone.View
     @listenTo @model, 'change:attendees', @render
 
   events:
-    'tap' : 'showModal'
+    'click' : 'showModal'
 
   template: JST['phonebook/templates/engagements/attendance_card']
 
@@ -20,5 +20,4 @@ class Phonebook.Views.Engagements.AttendanceCardView extends Backbone.View
 
   showModal: (e) ->
     Backbone.trigger 'engagements:attendance', @model
-    e.gesture.srcEvent.preventDefault()
 

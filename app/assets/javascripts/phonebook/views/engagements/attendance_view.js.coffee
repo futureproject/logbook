@@ -13,7 +13,7 @@ class Phonebook.Views.Engagements.AttendanceView extends Backbone.View
     @listenTo Backbone, 'engagements:attendee_ids', @updateAttendees
 
   events:
-    'tap .done': 'done'
+    'touchend .done': 'done'
     'touchmove .detail-title': (e) -> e.preventDefault()
 
   show: (animation) ->

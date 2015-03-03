@@ -10,9 +10,9 @@ class Phonebook.Views.Engagements.ShowView extends Backbone.View
   className: 'detail detail-show'
 
   events:
-    'tap .back': 'back'
-    'tap .edit': -> Backbone.trigger 'engagements:edit', @model
-    'tap .upload': 'showUploads'
+    'touchend .back': 'back'
+    'touchend .edit': -> Backbone.trigger 'engagements:edit', @model
+    'touchend .upload': 'showUploads'
     'touchmove .detail-title': (e) -> e.preventDefault()
     #'blur .editable': 'saveContent'
 
@@ -65,7 +65,8 @@ class Phonebook.Views.Engagements.ShowView extends Backbone.View
       model: @model
     @$infoView.render()
 
-  back: ->
+  back: (e) ->
+    e.stopPropagation()
     Backbone.trigger 'engagements:index'
 
   removeSubviews: ->

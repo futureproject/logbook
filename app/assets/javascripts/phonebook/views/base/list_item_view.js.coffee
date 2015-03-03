@@ -10,13 +10,9 @@ class Phonebook.Views.Base.ListItemView extends Backbone.View
     'touchstart': 'ontouchstart'
     'touchmove': 'ontouchmove'
     'touchend': 'ontouchend'
-    #'touchcancel': 'resetStyle'
-    #'mouseup': 'ontouchend'
-    #'mousedown': 'ontouchend'
-    #'mousemove': 'ontouchend'
 
   ontouchstart: (e) ->
-    Backbone.trigger 'list_item:tapped', e
+    Backbone.trigger 'list_item:touched', e
     @isScrolling = null
     @startPos =
       x: e.originalEvent.touches?[0].screenX || e.screenX
@@ -31,7 +27,7 @@ class Phonebook.Views.Base.ListItemView extends Backbone.View
     @isScrolling = !!(@isScrolling || Math.abs(@diff.y) > Math.abs(@diff.x))
 
     return if @isScrolling
-
+    e.preventDefault()
     @$el.css({transform: "translate3d(#{@diff.x}px, 0, 0)"}) if @diff.x <= 0
 
   ontouchend: (e) ->
@@ -41,11 +37,14 @@ class Phonebook.Views.Base.ListItemView extends Backbone.View
       @open(e)
     else
       @resetStyle()
+      distanceMoved = Math.sqrt(@diff.x * @diff.x + @diff.y * @diff.y)
+      @trigger('tapped') if (distanceMoved == 0 && @diff.t < 300)
+
 
   open: (e) ->
     @model.set('operating', true)
     @el.style['-webkit-transform'] = 'translate3d(-200px,0,0)'
-    @listenToOnce Backbone, 'list_item:tapped', @close
+    @listenToOnce Backbone, 'list_item:touched', @close
 
   close: (e) ->
     e.preventDefault()

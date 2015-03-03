@@ -9,8 +9,8 @@ class Phonebook.Views.Engagements.EditView extends Backbone.View
   className: 'detail detail-edit'
 
   events:
-    'tap .back': 'cancel'
-    'tap .done': 'submitForm'
+    'touchend .back': 'cancel'
+    'touchend .done': 'submitForm'
     'touchmove .detail-title' : (e) -> e.preventDefault()
 
   cancel: ->

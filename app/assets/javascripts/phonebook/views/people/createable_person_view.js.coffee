@@ -7,7 +7,7 @@ class Phonebook.Views.People.CreateablePersonView extends Backbone.View
     @listen()
 
   events:
-    'tap': 'create'
+    'click': 'create'
 
   listen: ->
     @listenTo Backbone, 'engagements:attendee_ids', @remove

@@ -1,14 +1,12 @@
 Phonebook.Views.People ||= {}
 
-class Phonebook.Views.People.AttendingPersonView extends Backbone.View
+class Phonebook.Views.People.AttendingPersonView extends Phonebook.Views.Base.TableItemView
   initialize: ->
     @model ||= new Phonebook.Models.Person
     @listen()
 
-  events:
-    'tap': 'toggleAttending'
-
   listen: ->
+    @listenTo @, 'tapped', @toggleAttending
     @listenTo Backbone, 'attendees:clean', @remove
     @listenTo @model, 'change:attending', @update
 
