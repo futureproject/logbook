@@ -30,10 +30,11 @@ html, body, #app, #phonebook {
 body {
   margin: 0;
   padding: 0;
-  line-height: 1.4;
+  font-size: 15px;
+  line-height: 20px;
   background: url(/assets/grid.png);
-  .list-title { background: rgba(255,0,0,.1); }
-  .list-items { background: rgba(255,255,0,.1); }
+  .list-title { background: rgba(255,0,0,.5); }
+  .list-items { background: rgba(255,255,0,.5); }
 }
 
 textarea {

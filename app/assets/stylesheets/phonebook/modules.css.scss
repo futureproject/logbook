@@ -2,12 +2,12 @@
   position: absolute;
   top: 0;
   left: 0;
-  height: 44px;
+  height: 45px;
   width: 100%;
   text-align: center;
   -webkit-user-select: none;
   h1 {
-    margin: 0 80px;
+    margin: 0 90px;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -15,25 +15,6 @@
   button, .button {
     border: none;
     background: none;
-    position: relative;
-    border-top: 10px solid transparent;
-    border-bottom: 10px solid transparent;
-    margin-top: -6px;
-    box-sizing: content-box;
-    &:hover {
-      background: inherit;
-    }
-    /*
-      &.back:before {
-        content: '‹';
-        display: inline-block;
-        position: absolute;
-        left: 4px;
-        top: -3px;
-        font-size: 2em;
-        font-weight: normal;
-      }
-      */
   }
 }
 .list {
@@ -48,7 +29,7 @@
 }
 .list-items {
   position: absolute;
-  top: 44px;
+  top: 45px;
   left: 0;
   right: 0;
   bottom: 0;
@@ -59,8 +40,8 @@
     content: '';
     display: block;
     position: absolute;
-    bottom: -4px;
-    height: 4px;
+    bottom: -5px;
+    height: 5px;
     left: 0;
     width: 100%;
     pointer-events: none;
@@ -68,10 +49,9 @@
 }
 .list-item {
   cursor: pointer;
-  min-height: 44px;
-  line-height: 1.2;
+  min-height: 45px;
   -webkit-user-select: none;
-  padding: 8px 12px;
+  padding: 15px;
   position: relative;
   box-sizing: border-box;
   @include transform-origin(left top);
@@ -83,29 +63,18 @@
 
 .list-item-timestamp {
   position: absolute;
-  top: 8px;
-  right: 12px;
+  top: 15px;
+  right: 15px;
   white-space: nowrap;
   width: 60px;
   text-align: right;
 }
 
 .list-item-title, .list-item-subject {
-  margin-right: 72px;
+  margin-right: 75px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
-.list-item-subject {
-  margin-top: 1px;
-  font-size: 14px;
-}
-.list-item-excerpt {
-  max-height: 2.4em;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  font-size: 13px;
-  margin-top: 2px;
 }
 .list-item-controls {
   position: absolute;
@@ -122,7 +91,7 @@
       display: table-cell;
       vertical-align: middle;
       height: 100%;
-      padding: 12px;
+      padding: 15px;
     }
   }
 }
@@ -136,7 +105,7 @@
   overflow: hidden;
   width: 100%;
   height: 100%;
-  box-shadow: 0 0 12px rgba(0,0,0,.1);
+  box-shadow: 0 0 15px rgba(0,0,0,.1);
   .scrollable {
     overflow: auto;
     -webkit-overflow-scrolling: touch;
@@ -155,7 +124,7 @@
 
 .detail-content {
   position: absolute;
-  top: 44px;
+  top: 45px;
   left: 0;
   right: 0;
   bottom: 0;
@@ -167,25 +136,25 @@
   }
   header {
     text-align: center;
-    margin: 12px;
+    margin: 15px;
     font-size: 15px;
     h2 {
       margin: 0;
-      font-size: 16px;
       font-weight: 400;
       color: $dark-gray;
       white-space: nowrap;
+      font-size: 15px;
       overflow: hidden;
       text-overflow: ellipsis;
     }
   }
   span {
-    margin: 0 4px;
+    margin: 0 5px;
     &:after {
       content: '|';
       display: inline-block;
       position: relative;
-      left: 6px;
+      left: 5px;
     }
     &:last-child:after { display: none; }
   }
@@ -202,20 +171,21 @@
 .l-menu, .r-menu {
   position: absolute;
   top: 0;
-  bottom: 0;
   a, button, .button {
     display: inline-block;
-    height: 36px;
-    line-height: 36px;
-    min-width: 44px;
-    padding: 0 4px;
+    height: 45px;
+    line-height: 45px;
+    min-width: 45px;
+    padding: 0 5px;
+    background: rgba(0,0,0,.25);
+    box-sizing: border-box;
   }
 }
 .l-menu {
   left: 0;
   text-align: left;
   *:first-child {
-    padding-left: 1em;
+    padding-left: 15px;
   }
 }
 .r-menu {
@@ -223,7 +193,7 @@
   text-align: right;
   overflow: hidden;
   *:last-child {
-    padding-right: 1em;
+    padding-right: 15px;
   }
 }
 .upload {
@@ -284,9 +254,9 @@
   background: white;
   border-bottom: 1px solid $base-border-color;
   border-left: 1px solid $base-border-color;
-  padding: 6px;
-  margin: 12px;
-  font-size: 15px;
+  padding: 10px;
+  margin: 15px;
+  font-size: 13px;
   position: relative;
   h4 {
     margin: 0;
@@ -322,22 +292,22 @@
 .fancy-search-form {
   background: $medium-gray;
   color: white;
-  box-shadow: inset 0 0 12px rgba(0,0,0,.1);
+  box-shadow: inset 0 0 15px rgba(0,0,0,.1);
   ::-webkit-input-placeholder { color: white; }
   position: relative;
-  padding: 0 20% 12px 12px;
+  padding: 0 20% 15px 15px;
   input {
-    padding: 12px 0 0;
+    padding: 15px 0 0;
     color: white;
     border-bottom: 1px solid;
     &:focus { outline: none; }
   }
   .done {
     position: absolute;
-    padding: 12px;
+    padding: 15px;
     top: 0;
     right: 0;
-    margin-left: 10px;
+    margin-left: 15px;
   }
 }
 
@@ -353,8 +323,8 @@
   overflow: auto;
   height: 100;
   .list-item {
-    padding-bottom: 4px;
-    padding-top: 4px;
+    padding-bottom: 5px;
+    padding-top: 5px;
   }
   .list-item-title { color: $dark-gray; }
   .list-item-subject { font-size: 12px; }

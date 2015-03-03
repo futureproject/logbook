@@ -16,7 +16,6 @@
 
 body {
   -webkit-tap-highlight-color: transparent;
-  font-size: 16px;
   margin: 0;
   padding: 0;
   font-weight: 400;
@@ -34,20 +33,19 @@ body, .detail-content, .list-items {
   border-bottom: 1px solid $base-border-color;
   button, .button {
     font-weight: 400;
-    font-size: 13px;
   }
-  .new { font-size: 16px; }
 }
 
 .list-title, .detail-title {
   h1 {
-    font-size: 16px;
-    line-height: 44px;
+    font-size: 15px;
+    line-height: 45px;
     font-weight: 700;
   }
 }
 
 .list-item {
+  @include transition(background-color .2s);
   &.selected {
     background: $base-border-color;
   }
@@ -62,7 +60,7 @@ body, .detail-content, .list-items {
   }
   &:after {
     @include hairline;
-    left: 12px;
+    left: 15px;
   }
   &.deleting {
     background: $light-red;

@@ -5,11 +5,11 @@ input, select, textarea {
   border-radius: 0;
   border: none;
   background: none;
-  font-size: 16px;
+  font-size: 15px;
 }
 input, select, textarea, label {
-  padding-top: 8px;
-  padding-bottom: 8px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   font-family: $base-font-family;
   margin: 0;
 }
@@ -17,34 +17,32 @@ input, select, textarea, label {
 .field {
   position: relative;
   border-bottom: 1px solid $base-border-color;
+  overflow: hidden;
+  min-height: 45px;
   label {
     position: absolute;
     left: 0;
     top: 0;
-    width: 22%;
+    width: 90px;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    padding-left: 12px;
+    padding-left: 15px;
   }
   input, select, textarea {
-    padding-left: 25%;
+    padding-left: 90px;
     &:focus { background: white; }
   }
-}
-
-label {
-  color: darken($base-border-color, 10%);
-}
-
-select {
-  text-transform: capitalize;
+  textarea {
+    height: 4em;
+  }
 }
 
 textarea:focus {
   height: 8em;
   position: relative;
-  padding-left: 4px;
+  padding-left: 15px;
+  padding-left: 15px;
   z-index: 2;
 }
 
