@@ -40,7 +40,8 @@ class Phonebook.Views.Engagements.AttendanceView extends Backbone.View
       window.scrollTo(0,0)
     )
 
-  done: ->
+  done: (e) ->
+    e.preventDefault()
     @hide()
 
   render: ->

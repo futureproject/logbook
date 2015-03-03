@@ -15,7 +15,9 @@ class Phonebook.Views.Engagements.IndexView extends Backbone.View
   className: 'list'
 
   events:
-    'tap .new': -> Backbone.trigger 'engagements:new'
+    'touchend .new': (e) ->
+      e.preventDefault()
+      Backbone.trigger 'engagements:new'
     'touchmove .list-title': (e) -> e.preventDefault()
 
   render: ->

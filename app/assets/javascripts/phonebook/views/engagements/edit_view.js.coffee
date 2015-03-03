@@ -13,7 +13,8 @@ class Phonebook.Views.Engagements.EditView extends Backbone.View
     'touchend .done': 'submitForm'
     'touchmove .detail-title' : (e) -> e.preventDefault()
 
-  cancel: ->
+  cancel: (e) ->
+    e.preventDefault()
     @hide()
     #Backbone.trigger 'engagements:show', @model, 'fade-in-fast'
 
@@ -38,6 +39,7 @@ class Phonebook.Views.Engagements.EditView extends Backbone.View
     Backbone.trigger 'engagements:router:update', @model.get('id')
 
   submitForm: (e) ->
+    e.preventDefault()
     e.stopPropagation()
     @$el.find('form').trigger 'submit'
     @hide()

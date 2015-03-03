@@ -10,11 +10,12 @@ class Phonebook.Views.Engagements.NewView extends Backbone.View
   className: 'detail detail-new'
 
   events:
-    'tap .back': 'cancel'
-    'tap .done': 'submitForm'
+    'touchend .back': 'cancel'
+    'touchend .done': 'submitForm'
     'touchmove .detail-title' : (e) -> e.preventDefault()
 
-  cancel: ->
+  cancel: (e) ->
+    e.preventDefault()
     @model.destroy()
     @hide()
     Backbone.trigger 'engagements:index'
@@ -40,6 +41,7 @@ class Phonebook.Views.Engagements.NewView extends Backbone.View
     Backbone.trigger('engagements:views:hidden', @)
 
   submitForm: (e) ->
+    e.preventDefault()
     e.stopPropagation()
     @$el.find('form').trigger 'submit'
     @hide()

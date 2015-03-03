@@ -13,7 +13,7 @@ class Phonebook.Views.People.SearchView extends Backbone.View
     @$el.val('')
 
   throttledSearch: _.debounce((e) ->
-    return if e.keyCode == 13 #don't listen to the enter key!
+    return if e.keyCode? && e.keyCode == 13 #don't listen to the enter key!
     @q = @$el.val()
     @search()
   , 200)

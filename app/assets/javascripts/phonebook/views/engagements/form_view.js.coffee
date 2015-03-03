@@ -11,7 +11,7 @@ class Phonebook.Views.Engagements.FormView extends Backbone.View
     'focus form' : (e) -> $('body').addClass('focusin')
     'blur form' : (e) -> $('body').removeClass('focusin')
     'submit' : 'submit'
-    'tap .attendance' : -> Backbone.trigger 'engagements:attendance', @model
+    'click .attendance' : -> Backbone.trigger 'engagements:attendance', @model
 
   render: ->
     @$el.html @template @model.tplAttrs()

@@ -23,6 +23,7 @@ class Phonebook.Views.People.AttendingPersonView extends Phonebook.Views.Base.Ta
       @model.set 'attending', null
     else
       @model.set 'attending', 'Present'
+    Backbone.trigger 'people:search:clear'
 
   update: ->
     @render()
