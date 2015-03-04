@@ -17,14 +17,16 @@ feature 'using the phonebook' do
 
   scenario 'to create a new engagement', js:true do
     visit phonebook_root_path
-    within "#phonebook-engagements .list-title" do
+    titlebar = find('#phonebook-engagements .list-title')
+    within titlebar do
       find('.new').click
     end
-    within '#phonebook-engagements .detail-new' do
+    new_view = find('#phonebook-engagements .detail-new')
+    within new_view do
       first('.attendance').click
     end
     take_attendance
-    within '#phonebook-engagements .detail-new' do
+    within new_view do
       find('.button.done').click
     end
     should_see_engagement_named('Coaching Session w/ Dick')
@@ -33,10 +35,12 @@ feature 'using the phonebook' do
   scenario 'editing', js: true do
     visit phonebook_root_path
     tap_first_engagement
-    within '#phonebook-engagements .detail-show .detail-title' do
+    titlebar = find('#phonebook-engagements .detail-show .detail-title')
+    within titlebar do
       find('.edit').click
     end
-    within '#phonebook-engagements .detail-edit' do
+    edit_view = find('#phonebook-engagements .detail-edit')
+    within edit_view do
       fill_in 'notes', with: 'Best meeting ever!'
       find('.button.done').click
     end
@@ -73,7 +77,8 @@ feature 'using the phonebook' do
   end
 
   def should_see_engagement_named(name)
-    within '#phonebook-engagements .detail-show' do
+    show_view = find '#phonebook-engagements .detail-show'
+    within show_view do
       expect(page).to have_content name
     end
   end

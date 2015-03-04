@@ -3,9 +3,9 @@
   .andrew{style: "background-image: url(#{asset_path 'login-andrew.png'})"}
 
   = image_tag 'login-logo.png'
+  = button_to 'Log In', '/auth/google_oauth2'
   .staff.box{style: "background-image: url(#{asset_path 'login-staff.png'})"}
     %h3 Staff Login
-    = button_to 'Log In', '/auth/google_oauth2'
   .student.box{style: "background-image: url(#{asset_path 'login-student.png'})"}
     %h3 Student Login
     = link_to 'Click Here', '/sessions/students'

@@ -22,9 +22,11 @@ end
 # Load and configure capybara
 require 'capybara/rails'
 require 'capybara/rspec'
-require 'capybara-webkit'
+
+Capybara.register_driver :selenium do |app|
+  Capybara::Selenium::Driver.new(app, :browser => :chrome)
+end
 Capybara.default_selector = :css
-Capybara.javascript_driver = :webkit
 
 RSpec.configure do |config|
   # ## Mock Framework

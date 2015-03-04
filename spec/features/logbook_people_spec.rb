@@ -44,7 +44,7 @@ feature 'Logbook people' do
     visit logbook_people_path
     count = all('.person').count
     first('a[data-method=delete]').click
-    page.driver.accept_js_confirms!
+    page.driver.browser.switch_to.alert.accept
     sleep 1
     expect(all('.person').count).to eq (count - 1)
   end
