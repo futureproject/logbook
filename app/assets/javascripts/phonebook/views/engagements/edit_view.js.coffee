@@ -19,7 +19,7 @@ class Phonebook.Views.Engagements.EditView extends Backbone.View
     #Backbone.trigger 'engagements:show', @model, 'fade-in-fast'
 
   listen: ->
-    @listenTo @model, 'change', @render
+    #@listenTo @model, 'change', @render
 
   show: (animation) ->
     animation ||= 'fade-in'
@@ -45,6 +45,7 @@ class Phonebook.Views.Engagements.EditView extends Backbone.View
     @hide()
 
   render: ->
+    console.log 'rendering edit'
     @$el.html @template @model.tplAttrs()
     @form = new Phonebook.Views.Engagements.FormView(
       el: '#edit-engagement-form'

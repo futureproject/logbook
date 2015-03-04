@@ -32,7 +32,7 @@ feature 'Logbook engagements' do
     visit logbook_engagements_path
     count = all('.engagement').count
     first('a[data-method=delete]').click
-    page.driver.accept_js_confirms!
+    page.driver.browser.switch_to.alert.accept
     sleep 1
     expect(all('.engagement').count).to eq (count - 1)
   end

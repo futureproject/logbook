@@ -103,8 +103,9 @@ end
 group :test do
   gem 'pry'
   gem 'capybara'
-  gem 'selenium-webdriver'
-  gem 'chromedriver-helper'
+  gem 'capybara-webkit'
+  #gem 'selenium-webdriver'
+  #gem 'chromedriver-helper'
   gem 'launchy'
 end
 

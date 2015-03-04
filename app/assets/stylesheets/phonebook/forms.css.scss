@@ -16,9 +16,7 @@ input, select, textarea, label {
 
 .field {
   position: relative;
-  border-bottom: 1px solid $base-border-color;
   overflow: hidden;
-  min-height: 45px;
   label {
     position: absolute;
     left: 0;
@@ -32,18 +30,23 @@ input, select, textarea, label {
   input, select, textarea {
     box-sizing: border-box;
     padding-left: 90px;
-    &:focus { background: white; }
+    margin: 0;
+    &:focus { background: white; outline: none; }
   }
-  textarea {
-    height: 4em;
+  label, input, select, textarea {
+    height: 45px;
+    padding-top: 0;
+    padding-bottom: 0;
+    line-height: 45px;
+    border-bottom: 1px solid $base-border-color;
   }
 }
 
 textarea:focus {
   height: 8em;
   position: relative;
-  padding-left: 15px;
-  padding-left: 15px;
+  line-height: 1.4;
+  padding: 15px;
   z-index: 2;
 }
 

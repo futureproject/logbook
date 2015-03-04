@@ -21,7 +21,7 @@ class Phonebook.Views.Engagements.NewView extends Backbone.View
     Backbone.trigger 'engagements:index'
 
   listen: ->
-    @listenTo @model, 'change', @render
+    #@listenTo @model, 'change', @render
 
   show: (animation) ->
     animation ||= 'slide-in-vertical'

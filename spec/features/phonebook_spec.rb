@@ -25,11 +25,10 @@ feature 'using the phonebook' do
     within new_view do
       first('.attendance').click
     end
-    take_attendance
     within new_view do
       find('.button.done').click
     end
-    should_see_engagement_named('Coaching Session w/ Dick')
+    should_see_engagement_named('Coaching Session')
   end
 
   scenario 'editing', js: true do
@@ -85,7 +84,6 @@ feature 'using the phonebook' do
 
   def fill_in_form(args)
     fill_in 'name', with: args[:name]
-    select 'Workshop', from: 'kind'
   end
 
 end
