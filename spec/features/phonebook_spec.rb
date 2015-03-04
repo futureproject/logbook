@@ -7,15 +7,13 @@ feature 'using the phonebook' do
   scenario 'to view the engagements list', js: true do
     visit phonebook_root_path
     should_see_engagements_list
-  end
 
-  scenario 'to view a particular engagement', js: true do
+    #scenario 'to view a particular engagement', js: true do
     visit phonebook_root_path
     tap_first_engagement
     should_see_engagement_named 'Gotham City High'
-  end
 
-  scenario 'to create a new engagement', js:true do
+    #scenario 'to create a new engagement', js:true do
     visit phonebook_root_path
     titlebar = find('#phonebook-engagements .list-title')
     within titlebar do
@@ -25,13 +23,13 @@ feature 'using the phonebook' do
     within new_view do
       first('.attendance').click
     end
+    take_attendance
     within new_view do
       find('.button.done').click
     end
     should_see_engagement_named('Coaching Session')
-  end
 
-  scenario 'editing', js: true do
+    #scenario 'editing', js: true do
     visit phonebook_root_path
     tap_first_engagement
     titlebar = find('#phonebook-engagements .detail-show .detail-title')
@@ -45,9 +43,6 @@ feature 'using the phonebook' do
     end
     expect(page).to have_content 'Best meeting ever!'
   end
-
-  scenario 'deleting'
-  scenario 'cloning', js: true
 
   def take_attendance
     within '.detail-attendance' do
@@ -84,6 +79,7 @@ feature 'using the phonebook' do
 
   def fill_in_form(args)
     fill_in 'name', with: args[:name]
+    select 'Workshop', from: 'kind'
   end
 
 end
