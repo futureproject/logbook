@@ -13,30 +13,30 @@ body {
 }
 
 #new-session {
-  width: 100%;
-  position: relative;
-  overflow: hidden;
-  img { display: block; margin: 0 auto; }
-  .box {
-    width: 280px;
-    height: 160px;
-    background-size: cover;
-    background-color: white;
-    margin: 20px auto;
-    position: relative;
-    h3 { display: none; }
-    a, button, input {
-      display: block;
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      margin: 0;
-      padding: 0;
-      -webkit-appearance: none;
-      opacity: 0;
-      cursor: pointer;
+  img {
+    display: block;
+    margin: 0 auto 4em;
+    width: 8em;
+    height: 8em;
+  }
+  form {
+    margin: 0 auto;
+    text-align: center;
+  }
+  input {
+    margin: 0 auto;
+    color: white;
+    background: none;
+    border-color: white;
+    cursor: pointer;
+    font-weight: bold;
+    &:focus {
+      outline: none;
+    }
+    &:active {
+      outline: none;
+      position: relative;
+      top: 1px;
     }
   }
 }
@@ -106,24 +106,13 @@ th { text-align: left; }
   height: 160px;
 }
 
-form {
-  font-size: 2em;
-  .field { margin-bottom: 20px; }
-}
 
 input {
-  font-size: 1em;
-  border: 3px solid $dark-gray;
-  &[type=text] {
-    width: 20em;
-  }
   &[type=submit] {
-    margin-bottom: 40px;
     -webkit-appearance: none;
     background: white;
-    border: 3px solid $dark-gray;
-    color: $dark-gray;
-    border-radius: 6px;
+    border: none;
+    font-size: 1.5em;
   }
 }
 
