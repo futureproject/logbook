@@ -27,6 +27,7 @@
       = s3_uploader_form callback_url: '/api/v1/assets', callback_param: "asset[external_url]", class: 's3-uploader' do
         = file_field_tag :file, multiple: true
         = render partial: 'application/s3_direct_upload_progress_bars.html'
+    = javascript_include_tag 'phantomlimb' if Rails.env.test?
     = javascript_include_tag 'phonebook/phonebook'
     #phonebook
     :javascript

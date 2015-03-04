@@ -1,6 +1,6 @@
 /*
 = require s3_direct_upload_progress_bars
-= require icons
+= require googlecons
 */
 @import 'variables';
 $light-gray: #999;
@@ -32,9 +32,6 @@ body {
   padding: 0;
   font-size: 15px;
   line-height: 20px;
-  background: url(/assets/grid.png);
-  .list-title { background: rgba(255,0,0,.5); }
-  .list-items { background: rgba(255,255,0,.5); }
 }
 
 textarea {

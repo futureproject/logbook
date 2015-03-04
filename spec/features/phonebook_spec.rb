@@ -11,49 +11,60 @@ feature 'using the phonebook' do
 
   scenario 'to view a particular engagement', js: true do
     visit phonebook_root_path
-    first('.list-item').click
+    tap_first_engagement
     should_see_engagement_named 'Gotham City High'
   end
 
   scenario 'to create a new engagement', js:true do
     visit phonebook_root_path
-    first('.new').click
+    within "#phonebook-engagements .list-title" do
+      find('.new').click
+    end
+    within '#phonebook-engagements .detail-new' do
+      first('.attendance').click
+    end
     take_attendance
-    sleep 1
-    first('.button.done').click
-    sleep 1
+    within '#phonebook-engagements .detail-new' do
+      find('.button.done').click
+    end
     should_see_engagement_named('Coaching Session w/ Dick')
   end
 
   scenario 'editing', js: true do
     visit phonebook_root_path
-    first('.list-item').click
-    first('.edit').click
-    fill_in 'name', with: "Nightwing Guest Lecture"
-    fill_in 'notes', with: 'Best meeting ever!'
-    within '.detail-edit' do
-      first('.button.done').click
+    tap_first_engagement
+    within '#phonebook-engagements .detail-show .detail-title' do
+      find('.edit').click
     end
-    should_see_engagement_named 'Nightwing Guest Lecture'
+    within '#phonebook-engagements .detail-edit' do
+      fill_in 'notes', with: 'Best meeting ever!'
+      find('.button.done').click
+    end
     expect(page).to have_content 'Best meeting ever!'
-    expect(page).to have_content 'Attendees (2)'
   end
 
   scenario 'deleting'
   scenario 'cloning', js: true
 
   def take_attendance
-    first('.attendance.recessed-button').click
-    fill_in 'q', with: 'Dick'
-    sleep 0.5
-    within '.engagement-attendance' do
-      first('.list-item').click
-    end
-    fill_in 'q', with: 'Selena Kyle'
-    sleep 0.5
-    within '.engagement-attendance' do
-      first('.list-item').click
+    within '.detail-attendance' do
+      fill_in 'q', with: 'Dick'
+      within '#engagement-search-results' do
+        expect(page).to have_content 'Dick'
+        first('.list-item').click
+      end
+      fill_in 'q', with: 'Selena Kyle'
+      within '#engagement-search-results' do
+        expect(page).to have_content 'Selena'
+        first('.list-item').click
+      end
       first('.done').click
+    end
+  end
+
+  def tap_first_engagement
+    within '#phonebook-engagements .list' do
+      first('.list-item').click
     end
   end
 
@@ -62,7 +73,9 @@ feature 'using the phonebook' do
   end
 
   def should_see_engagement_named(name)
-    expect(page).to have_content name
+    within '#phonebook-engagements .detail-show' do
+      expect(page).to have_content name
+    end
   end
 
   def fill_in_form(args)

@@ -6,11 +6,15 @@ feature 'Logbook people' do
 
   scenario 'CREATE' do
     visit logbook_people_path
-    first('#global-add a').click
-    fill_in 'person[first_name]', with: 'Terry'
-    fill_in 'person[last_name]', with: 'McGuiness'
-    select '12', from: 'person[grade]'
-    click_button 'Create Person'
+    within '#global-add' do
+      find('a').click
+    end
+    within '#new_person' do
+      fill_in 'person[first_name]', with: 'Terry'
+      fill_in 'person[last_name]', with: 'McGuiness'
+      select '12', from: 'person[grade]'
+      click_button 'Create Person'
+    end
     expect(page).to have_content 'terry mcguiness'
   end
 

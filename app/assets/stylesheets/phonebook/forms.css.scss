@@ -30,6 +30,7 @@ input, select, textarea, label {
     padding-left: 15px;
   }
   input, select, textarea {
+    box-sizing: border-box;
     padding-left: 90px;
     &:focus { background: white; }
   }
