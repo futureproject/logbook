@@ -28,9 +28,10 @@ feature 'Logbook projects' do
   scenario 'DESTROY', js: true do
     visit logbook_projects_path
     count = all('.project').count
-    first('a[data-method=delete]').click
-    page.driver.browser.switch_to.alert.accept
-    sleep 1
+    page.accept_confirm do
+      first('a[data-method=delete]').click
+    end
+    sleep 1 #wait for the delete animation to finish
     expect(all('.project').count).to eq (count - 1)
   end
 

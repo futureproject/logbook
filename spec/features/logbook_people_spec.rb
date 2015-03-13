@@ -43,9 +43,10 @@ feature 'Logbook people' do
   scenario 'DESTROY', js: true do
     visit logbook_people_path
     count = all('.person').count
-    first('a[data-method=delete]').click
-    page.driver.browser.switch_to.alert.accept
-    sleep 1
+    page.accept_confirm do
+      first('a[data-method=delete]').click
+    end
+    sleep 1 #wait for the delete animation to finish
     expect(all('.person').count).to eq (count - 1)
   end
 

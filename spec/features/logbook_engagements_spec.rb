@@ -31,9 +31,10 @@ feature 'Logbook engagements' do
   scenario 'DESTROY', js: true do
     visit logbook_engagements_path
     count = all('.engagement').count
-    first('a[data-method=delete]').click
-    page.driver.browser.switch_to.alert.accept
-    sleep 1
+    page.accept_confirm do
+      first('a[data-method=delete]').click
+    end
+    sleep 1 #wait for the delete animation to finish
     expect(all('.engagement').count).to eq (count - 1)
   end
 
