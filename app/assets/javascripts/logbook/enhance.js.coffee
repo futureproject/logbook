@@ -86,6 +86,4 @@ $ ->
     $(window).on('beforeunload.ds', (event) ->
       "The information you've entered on this page will vanish into the aether if you leave before saving."
     )
-    $(document).on('vexClose', (event) ->
-    )
   )

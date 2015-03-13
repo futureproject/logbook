@@ -62,7 +62,8 @@ class Phonebook.Controllers.EngagementsController extends Backbone.View
       @views.attendance.show(animation)
     @getModelById(id)
 
-  # NOT CALLED BY ROUTER, ala 'private' in a rails controller
+
+  # methods below are NOT called by router, like private methods in a rails controller
 
   getModelById: (id) ->
     if typeof(id) == "object"
@@ -76,7 +77,6 @@ class Phonebook.Controllers.EngagementsController extends Backbone.View
   onSave: (model) ->
     @collection.add model,
       merge: true
-    #Backbone.trigger 'engagements:show', model.get('id'), 'fade-in'
 
   duplicate: (model) ->
       data = _.omit(_.clone(model.attributes), 'id', 'date')

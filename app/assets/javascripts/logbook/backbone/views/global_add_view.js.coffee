@@ -17,7 +17,9 @@ class ds.GlobalAddView extends Backbone.View
         escapeButtonCloses: false
         showcloseButton: false
       @setElement('.vex')
-    @$el.find('form').attr('data-remote', true).find('select[multiple]').each ->
+    @$el.find('form').attr('data-remote', true).on('submit', (e) ->
+      $(this).find('input[type=submit]').attr('disabled', 'disabled')
+    ).find('select[multiple]').each ->
       new ds.SelectizeView({ el: this })
     @$el.find('input[type=text]').first().focus()
     @
