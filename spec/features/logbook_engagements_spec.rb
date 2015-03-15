@@ -9,8 +9,9 @@ feature 'Logbook engagements' do
   scenario 'CREATE' do
     visit logbook_engagements_path
     first('#global-add a').click
+    select 'Dick Grayson', from: 'engagement[attendee_ids][]'
     click_button 'Create Engagement'
-    expect(page).to have_content 'Editing Engagement'
+    expect(page).to have_content '1 Attendee'
   end
 
   scenario 'READ' do

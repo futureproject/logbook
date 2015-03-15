@@ -1,4 +1,4 @@
-- cache ['v4', @engagement] do
+- cache ['v5', @engagement] do
   .engagement-show.show-record[@engagement]
     .button-actions
       =link_to "Duplicate", duplicate_logbook_engagement_path(@engagement), class: 'duplicate button'
@@ -23,7 +23,7 @@
           .engagement-address= @engagement.school.try(:address)
 
       %section.engagement-attendees
-        %h3= pluralize @engagement.attendees.count, 'Attendee'
+        %h3= pluralize @engagement.size, 'Attendee'
         %ul.people.table
           - @engagement.attendees.order(:first_name).each do |person|
             %li.person-name= link_to person.name, logbook_person_path(person)

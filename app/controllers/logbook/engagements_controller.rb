@@ -59,7 +59,7 @@ class Logbook::EngagementsController < Logbook::ApplicationController
 
     respond_to do |format|
       if @engagement.save
-        format.html { redirect_to edit_logbook_engagement_path(@engagement), notice: 'Engagement was successfully created.' }
+        format.html { redirect_to logbook_engagement_path(@engagement), notice: 'Engagement was successfully created.' }
         format.js
       else
         format.html { redirect_to logbook_engagements_path, notice: 'Engagement was not created.' }
