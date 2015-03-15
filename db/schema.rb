@@ -96,7 +96,7 @@ ActiveRecord::Schema.define(version: 20150315150509) do
     t.string   "name"
     t.integer  "user_id"
     t.integer  "site_id"
-    t.integer  "size"
+    t.integer  "headcount"
   end
 
   add_index "engagements", ["date"], name: "index_engagements_on_date", using: :btree

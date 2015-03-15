@@ -9,6 +9,7 @@ class Engagement < ActiveRecord::Base
   after_create :log_activity
   before_create :autoname
   before_save :set_site
+  before_save :set_headcount
   validates_presence_of :date
   KIND_ENUM = ['Coaching Session', 'Event', 'Meeting', 'Workshop']
   DURATION_ENUM = [
@@ -59,6 +60,12 @@ class Engagement < ActiveRecord::Base
       self.site_id = self.user.try(:site).try(:id)
     end
     true
+  end
+
+  def set_headcount
+    if headcount.blank? || !kind.match(/event/i)
+      self.headcount = attendees.size
+    end
   end
 
   def log_activity

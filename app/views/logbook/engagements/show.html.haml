@@ -23,7 +23,7 @@
           .engagement-address= @engagement.school.try(:address)
 
       %section.engagement-attendees
-        %h3= pluralize @engagement.size, 'Attendee'
+        %h3= pluralize @engagement.headcount, 'Attendee'
         %ul.people.table
           - @engagement.attendees.order(:first_name).each do |person|
             %li.person-name= link_to person.name, logbook_person_path(person)

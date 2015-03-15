@@ -23,8 +23,8 @@ feature 'Logbook engagements' do
     visit logbook_engagements_path
     click_link 'Edit', match: :first
     fill_in 'engagement[name]', with: 'Combat Master Class'
+    select 'Tim Drake', from: 'engagement[attendee_ids][]'
     #all('input[type=text]')[2].set("Dick Grayson\n")
-    #all('input[type=text]')[2].set("Tim Drake\n")
     click_button 'Update Engagement'
     expect(page).to have_content 'Combat Master Class'
   end
@@ -65,5 +65,8 @@ feature 'Logbook engagements' do
     click_link "Check it out"
     expect(page).to have_content "Jimmy Smith"
   end
+
+  scenario 'setting engagement headcount explicitly'
+
 
 end
