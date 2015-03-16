@@ -7,9 +7,9 @@ Chartkick.options = {
     },
     plotOptions: {
       series: {
-        #fillOpacity: "0.5",
+        fillOpacity: "0.6",
         stacking: false,
-        lineWidth: 4
+        lineWidth: 3
       },
     },
     tooltip: {
