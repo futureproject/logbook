@@ -3,7 +3,6 @@ Phonebook.Views.Engagements ||= {}
 class Phonebook.Views.Engagements.FormView extends Backbone.View
   initialize: ->
     @model ||= new Phonebook.Models.Engagement
-    @listenTo @model, 'change:attendee_ids', @render
 
   template: JST['phonebook/templates/engagements/form']
 
@@ -12,6 +11,9 @@ class Phonebook.Views.Engagements.FormView extends Backbone.View
     'blur form' : (e) -> $('body').removeClass('focusin')
     'submit' : 'submit'
     'click .attendance' : -> Backbone.trigger 'engagements:attendance', @model
+    'change #kind' : (e) ->
+      kind = $(e.target).val().toLowerCase().replace(' ', '-')
+      @$el.find('form').attr('data-kind', kind)
 
   render: ->
     @$el.html @template @model.tplAttrs()

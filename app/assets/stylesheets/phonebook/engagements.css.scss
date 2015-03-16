@@ -83,4 +83,12 @@
     border: 3px solid $engagements-color;
     .bar { background: $engagements-color; }
   }
+  .headcount-field {
+    display: none;
+  }
+  form[data-kind=event] {
+    .headcount-field {
+      display: block;
+    }
+  }
 }
