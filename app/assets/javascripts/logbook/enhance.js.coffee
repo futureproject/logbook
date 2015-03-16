@@ -87,3 +87,10 @@ $ ->
       "The information you've entered on this page will vanish into the aether if you leave before saving."
     )
   )
+
+  # change Engagement form class when kind changes
+  $(document).on('change', '#engagement_kind', (event) ->
+    $t = $(this)
+    kind = $t.val().toLowerCase().replace(' ','-')
+    $t.closest('form').attr('data-kind', kind)
+  )

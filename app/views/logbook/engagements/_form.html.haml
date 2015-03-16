@@ -5,7 +5,7 @@
       - @engagement.errors.full_messages.each do |msg|
         %li= msg
 
-= form_for [:logbook, @engagement] do |f|
+= form_for [:logbook, @engagement], data: { kind: (@engagement.kind || Engagement::KIND_ENUM.first).parameterize } do |f|
   .row
     .field.g6
       = f.label :kind
@@ -22,14 +22,20 @@
     .field.g6
       =f.label :name, "Engagement Name"
       =f.text_field :name
+
     .g6.field
       = f.label :school_id, "School/City"
       = f.select :school_id, schools_for(current_user), include_blank: current_user.site.try(:name)
 
-  .row
+  .row.headcount
+    .field
+      = f.label :headcount, "How many people were there?"
+      = f.number_field :headcount, min: 0, placeholder: 100
+  .row.attendees
     .tall-field
       =f.label :attendee_ids do
-        Attendees
+        %span.primary-label Who was there?
+        %span.alternate-label Anyone in particular?
         =link_to "Toggle Dream Team", toggle_dream_team_logbook_engagement_path(@engagement), remote: true unless @engagement.new_record?
       =f.select :attendee_ids, options_for_select(current_scope.people.order('dream_team DESC', :first_name).map{|p| [p.name, p.id, {'data-dream-team'=>p.dream_team}]}, selected_keys = f.object.attendee_ids), {}, multiple: true
 

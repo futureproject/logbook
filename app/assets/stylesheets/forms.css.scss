@@ -51,14 +51,24 @@ input[type=submit] {
   }
 }
 
-.selectize-input {
+.selectize-control.multi .selectize-input {
   border-radius: 0;
   &.input-active { border-radius: 0; }
+  @include row;
   .item {
+    @include span-columns(4);
+    @include omega(4n);
+    display: inline-block;
+    margin-right: .5%;
+    width: 24.5%;
     white-space: nowrap;
     text-overflow: ellipsis;
-    max-width: 180px;
+    overflow: hidden;
+    text-transform: capitalize;
   }
+}
+.selectize-dropdown-content .option {
+  text-transform: capitalize;
 }
 
 .inline-form {
