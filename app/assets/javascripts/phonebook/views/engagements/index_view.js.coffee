@@ -6,8 +6,9 @@ class Phonebook.Views.Engagements.IndexView extends Backbone.View
     @collection = args.collection
     @listenTo Backbone, 'engagements:views:shown', @onViewShow
     @rendered = false
-    @list = new Phonebook.Views.Engagements.ListView(
+    @list = new Phonebook.Views.Base.TableView(
       collection: @collection
+      item_view: Phonebook.Views.Engagements.ListItemView
     )
 
   template: JST['phonebook/templates/engagements/index']
