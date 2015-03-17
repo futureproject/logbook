@@ -12,6 +12,7 @@
   right: 0;
   background: $base-border-color;
   @include transform-origin(left bottom);
+  @include transform(scaleY(0.5));
 }
 
 body {
@@ -45,7 +46,6 @@ body, .detail-content, .list-items {
 }
 
 .list-item {
-  @include transition(background-color .2s);
   &.selected {
     background: $base-border-color;
   }

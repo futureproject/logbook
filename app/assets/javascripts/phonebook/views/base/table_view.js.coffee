@@ -31,4 +31,3 @@ class Phonebook.Views.Base.TableView extends Backbone.View
   remove: ->
     @removeItems()
     super
-

@@ -54,7 +54,6 @@
   padding: 15px;
   position: relative;
   box-sizing: border-box;
-  @include transform-origin(left top);
   &.deleting {
     background: $light-red;
     color: white;

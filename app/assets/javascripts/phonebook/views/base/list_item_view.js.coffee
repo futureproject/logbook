@@ -5,14 +5,12 @@ class Phonebook.Views.Base.ListItemView extends Backbone.View
     'touchstart .list-item-controls': (e) ->
       e.stopPropagation()
       @startPos.t = e.timeStamp
-    'touchend .delete': 'delete'
-    'touchend .list-item-controls': 'controlTap'
     'touchstart': 'ontouchstart'
     'touchmove': 'ontouchmove'
-    'touchend': 'ontouchend'
+    #'touchend': 'ontouchend'
 
   ontouchstart: (e) ->
-    Backbone.trigger 'list_item:touched', e
+    Backbone.trigger 'list_item:touchstart', e
     @isScrolling = null
     @startPos =
       x: e.originalEvent.touches?[0].screenX || e.screenX
@@ -28,7 +26,8 @@ class Phonebook.Views.Base.ListItemView extends Backbone.View
 
     return if @isScrolling
     e.preventDefault()
-    @$el.css({transform: "translate3d(#{@diff.x}px, 0, 0)"}) if @diff.x <= 0
+    if @diff.x < -60
+      @open(e)
 
   ontouchend: (e) ->
     return if @isScrolling || !@startPos?
@@ -42,15 +41,11 @@ class Phonebook.Views.Base.ListItemView extends Backbone.View
 
 
   open: (e) ->
-    @model.set('operating', true)
-    @el.style['-webkit-transform'] = 'translate3d(-200px,0,0)'
-    @listenToOnce Backbone, 'list_item:touched', @close
+    @$el.addClass('list-item-open')
+    @listenToOnce Backbone, 'list_item:touchstart', @close
 
   close: (e) ->
-    e.preventDefault()
-    e.stopPropagation()
-    @model.unset 'operating'
-    @resetStyle()
+    @$el.removeClass('list-item-open')
 
   delete: (e) ->
     @diff.t = e.timeStamp - @startPos.t
@@ -63,10 +58,6 @@ class Phonebook.Views.Base.ListItemView extends Backbone.View
     @$el.addClass('deleting').one('webkitTransitionEnd', =>
       @model.destroy()
     )
-
-  resetStyle: ->
-    return unless @el.getAttribute('style')?
-    @el.removeAttribute 'style'
 
   calculatePositions: (e) ->
 
