@@ -1,13 +1,18 @@
 Phonebook.Views.Base ||= {}
 
 class Phonebook.Views.Base.ListItemView extends Backbone.View
+  initialize: ->
+    @listenTo Backbone, 'item:opened', @beforeOpen
+    @listenTo Backbone, 'item:closed', @afterClose
+    @canTap = true
+
   events:
     'touchstart .list-item-controls': (e) ->
       e.stopPropagation()
       @startPos.t = e.timeStamp
     'touchstart': 'ontouchstart'
     'touchmove': 'ontouchmove'
-    #'touchend': 'ontouchend'
+    'touchend': 'ontouchend'
 
   ontouchstart: (e) ->
     Backbone.trigger 'list_item:touchstart', e
@@ -32,32 +37,25 @@ class Phonebook.Views.Base.ListItemView extends Backbone.View
   ontouchend: (e) ->
     return if @isScrolling || !@startPos?
     @diff.t = e.timeStamp - @startPos.t
-    if @diff.x < -40
-      @open(e)
-    else
-      @resetStyle()
-      distanceMoved = Math.sqrt(@diff.x * @diff.x + @diff.y * @diff.y)
-      @trigger('tapped') if (distanceMoved == 0 && @diff.t < 300)
+    distanceMoved = Math.sqrt(@diff.x * @diff.x + @diff.y * @diff.y)
+    @trigger('tapped') if (distanceMoved == 0 && @diff.t < 300 && @canTap)
 
+  beforeOpen: (view) ->
+    @canTap = false
 
   open: (e) ->
+    return unless @canTap
+    Backbone.trigger 'item:opened', @
     @$el.addClass('list-item-open')
     @listenToOnce Backbone, 'list_item:touchstart', @close
 
   close: (e) ->
-    @$el.removeClass('list-item-open')
-
-  delete: (e) ->
-    @diff.t = e.timeStamp - @startPos.t
-    return unless @diff.t < 300
-    e.preventDefault()
-    e.stopPropagation()
-    @el.style['-webkit-transition-property'] = "-webkit-transform"
-    @el.style['-webkit-transition-duration'] = '.5s'
-    @el.style['-webkit-transform'] = 'translate3d(-200%,0,0)'
-    @$el.addClass('deleting').one('webkitTransitionEnd', =>
-      @model.destroy()
+    @$el.removeClass('list-item-open').one('webkitTransitionEnd', =>
+      Backbone.trigger 'item:closed', @
     )
+
+  afterClose: (view) ->
+    @canTap = true
 
   calculatePositions: (e) ->
 
@@ -70,9 +68,3 @@ class Phonebook.Views.Base.ListItemView extends Backbone.View
       x: @currentPos.x - @startPos.x
       y: @currentPos.y - @startPos.y
       t: @currentPos.t - @startPos.t
-
-  controlTap: (e) ->
-    @diff.t = e.timeStamp - @startPos.t
-    return unless @diff.t < 300
-    e.stopPropagation()
-    @trigger 'controlTap', e

@@ -31,9 +31,11 @@ body, .detail-content, .list-items {
 
 .tab-bar, .list-title, .detail-title {
   background: white;
-  border-bottom: 1px solid $base-border-color;
   button, .button {
     font-weight: 400;
+  }
+  &:after {
+    @include hairline;
   }
 }
 

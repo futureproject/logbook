@@ -14,20 +14,26 @@ class Phonebook.Views.Engagements.ListItemView extends Phonebook.Views.Base.List
   listen: ->
     @listenTo @model, 'change', @render
     @listenTo @model, 'destroy', @remove
-    @listenTo @, 'controlTap', @duplicate
     @listenTo @, 'tapped', @ontap
+    @events['click .duplicate'] = @duplicate
+    @events['click .delete'] = @delete
 
   ontap: (e) ->
     @model.set 'selected', true
     Backbone.trigger 'engagements:show', @model
 
   duplicate: (e) ->
+    @close()
     return unless e.target.classList.contains 'duplicate'
     Backbone.trigger 'engagements:duplicate', @model
 
-  onModelChange: (e) ->
-    relevant = false
-    attrs = ['name', 'date', 'selected']
-    console.log @model.get('selected')
-    changedAttrs = @model.changedAttributes()
-    @render() if relevant
+  delete: (e) ->
+    @close()
+    e.preventDefault()
+    e.stopPropagation()
+    @el.style['-webkit-transition-property'] = "-webkit-transform"
+    @el.style['-webkit-transition-duration'] = '.5s'
+    @el.style['-webkit-transform'] = 'translate3d(-200%,0,0)'
+    @$el.addClass('deleting').one('webkitTransitionEnd', =>
+      @model.destroy()
+    )

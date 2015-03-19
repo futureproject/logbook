@@ -21,10 +21,18 @@ $light-gray: #999;
 }
 
 html, body, #app, #phonebook {
-  overflow: hidden;
   height: 100%;
   -webkit-user-select: none;
   -webkit-font-smoothing: antialiased;
+}
+
+#phonebook {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
 }
 
 body {
