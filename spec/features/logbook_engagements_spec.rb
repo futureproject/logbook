@@ -66,7 +66,14 @@ feature 'Logbook engagements' do
     expect(page).to have_content "Jimmy Smith"
   end
 
-  scenario 'setting engagement headcount explicitly'
+  scenario 'setting engagement headcount explicitly' do
+    visit logbook_engagements_path
+    click_link 'Edit', match: :first
+    select 'Event', from: 'engagement[kind]'
+    fill_in 'engagement[headcount]', with: '50'
+    click_button 'Update Engagement'
+    expect(page).to have_content '50 Attendees'
+  end
 
 
 end

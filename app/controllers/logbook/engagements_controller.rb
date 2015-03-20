@@ -109,6 +109,7 @@ class Logbook::EngagementsController < Logbook::ApplicationController
         :notes,
         :duration,
         :person_id,
+        :headcount,
         attendee_ids: [],
       )
     end
