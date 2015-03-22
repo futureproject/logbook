@@ -15,7 +15,7 @@ feature 'using the phonebook' do
 
     #scenario 'to create a new engagement', js:true do
     visit phonebook_root_path
-    titlebar = find('#phonebook-engagements .list-title')
+    titlebar = find('#phonebook-engagements .titlebar')
     within titlebar do
       find('.new').click
     end
@@ -32,7 +32,7 @@ feature 'using the phonebook' do
     #scenario 'editing', js: true do
     visit phonebook_root_path
     tap_first_engagement
-    titlebar = find('#phonebook-engagements .detail-show .detail-title')
+    titlebar = find('#phonebook-engagements .detail-show .titlebar')
     within titlebar do
       find('.edit').click
     end

@@ -15,7 +15,7 @@ class Phonebook.Views.Engagements.ShowView extends Backbone.View
       e.preventDefault()
       Backbone.trigger 'engagements:edit', @model
     'touchend .upload': 'showUploads'
-    'touchmove .detail-title': (e) -> e.preventDefault()
+    'touchmove .titlebar': (e) -> e.preventDefault()
     #'blur .editable': 'saveContent'
 
   listen: ->

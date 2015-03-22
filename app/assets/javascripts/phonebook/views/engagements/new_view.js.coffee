@@ -12,7 +12,7 @@ class Phonebook.Views.Engagements.NewView extends Backbone.View
   events:
     'touchend .back': 'cancel'
     'touchend .done': 'submitForm'
-    'touchmove .detail-title' : (e) -> e.preventDefault()
+    'touchmove .titlebar' : (e) -> e.preventDefault()
 
   cancel: (e) ->
     e.preventDefault()

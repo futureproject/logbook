@@ -1,4 +1,4 @@
-.list-title {
+.titlebar {
   position: absolute;
   top: 0;
   left: 0;
@@ -156,10 +156,6 @@
     }
     &:last-child:after { display: none; }
   }
-}
-
-.detail-title {
-  @extend .list-title;
 }
 
 .detail-edit, .detail-new {

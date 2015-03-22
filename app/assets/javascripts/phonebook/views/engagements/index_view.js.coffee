@@ -19,7 +19,7 @@ class Phonebook.Views.Engagements.IndexView extends Backbone.View
     'touchend .new': (e) ->
       e.preventDefault()
       Backbone.trigger 'engagements:new'
-    'touchmove .list-title': (e) -> e.preventDefault()
+    'touchmove .titlebar': (e) -> e.preventDefault()
 
   render: ->
     @$el.html @template

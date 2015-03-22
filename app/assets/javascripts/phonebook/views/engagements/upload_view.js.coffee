@@ -13,7 +13,7 @@ class Phonebook.Views.Engagements.UploadView extends Backbone.View
 
   events:
     'tap .done': 'done'
-    'touchmove .detail-title': (e) -> e.preventDefault()
+    'touchmove .titlebar': (e) -> e.preventDefault()
 
   show: (animation) ->
     animation ||= 'slide-in-vertical'

@@ -14,7 +14,7 @@ class Phonebook.Views.Engagements.AttendanceView extends Backbone.View
 
   events:
     'touchend .done': 'done'
-    'touchmove .detail-title': (e) -> e.preventDefault()
+    'touchmove .titlebar': (e) -> e.preventDefault()
 
   show: (animation) ->
     animation ||= 'slide-in-vertical'

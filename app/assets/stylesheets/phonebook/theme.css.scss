@@ -29,7 +29,7 @@ body, .detail-content, .rows {
   background: $base-background-color;
 }
 
-.tab-bar, .list-title, .detail-title {
+.tab-bar, .titlebar {
   background: white;
   button, .button {
     font-weight: 400;
@@ -39,7 +39,7 @@ body, .detail-content, .rows {
   }
 }
 
-.list-title, .detail-title {
+.titlebar {
   h1 {
     font-size: 15px;
     line-height: 45px;
@@ -98,7 +98,7 @@ body, .detail-content, .rows {
 }
 
 #phonebook-engagements {
-  .list-title, .detail-title, .row-timestamp, .card h4 { color: $engagements-color; }
+  .titlebar, .row-timestamp, .card h4 { color: $engagements-color; }
 }
 
 .engagement-detail {
