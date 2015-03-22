@@ -23,7 +23,7 @@ class Phonebook.Controllers.EngagementsController extends Backbone.View
   show: (id, animation) ->
     @listenToOnce Backbone, 'model:loaded', (engagement) =>
       @views.show?.remove()
-      @views.show = new Phonebook.Views.Engagements.ShowView
+      @views.show = new Phonebook.Views.Engagements.DetailView
         model: engagement
         container: @$el
       @views.show.show(animation)

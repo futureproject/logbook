@@ -1,24 +1,14 @@
 Phonebook.Views.Engagements ||= {}
 
-class Phonebook.Views.Engagements.ShowView extends Backbone.View
-  initialize: (args) ->
-    @$container = args.container
-    @listen()
+class Phonebook.Views.Engagements.DetailView extends Phonebook.Views.Base.DetailView
 
   template: JST['phonebook/templates/engagements/show']
 
-  className: 'detail detail-show'
-
-  events:
-    'touchend .back': 'back'
-    'touchend .edit': (e) ->
+  listen: ->
+    @events['touchend .edit'] = (e) ->
       e.preventDefault()
       Backbone.trigger 'engagements:edit', @model
-    'touchend .upload': 'showUploads'
-    'touchmove .titlebar': (e) -> e.preventDefault()
-    #'blur .editable': 'saveContent'
-
-  listen: ->
+    @events['touchend .upload'] = @showUploads
 
   show: (animation) ->
     console.log 'rendering show view'
@@ -70,10 +60,3 @@ class Phonebook.Views.Engagements.ShowView extends Backbone.View
   back: (e) ->
     e.stopPropagation()
     Backbone.trigger 'engagements:index'
-
-  removeSubviews: ->
-    _.each @subviews, (view) -> view.remove()
-
-  remove: ->
-    @removeSubviews()
-    super
