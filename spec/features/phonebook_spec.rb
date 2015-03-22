@@ -4,7 +4,7 @@ feature 'using the phonebook' do
     mock_sign_in
   end
 
-  scenario 'to view the engagements list', js: true do
+  scenario 'to manage engagements do', js: true do
     visit phonebook_root_path
     should_see_engagements_list
 
@@ -49,20 +49,20 @@ feature 'using the phonebook' do
       fill_in 'q', with: 'Dick'
       within '#engagement-search-results' do
         expect(page).to have_content 'Dick'
-        first('.list-item').click
+        first('.row').click
       end
       fill_in 'q', with: 'Selena Kyle'
       within '#engagement-search-results' do
         expect(page).to have_content 'Selena'
-        first('.list-item').click
+        first('.row').click
       end
       first('.done').click
     end
   end
 
   def tap_first_engagement
-    within '#phonebook-engagements .list' do
-      first('.list-item').click
+    within '#phonebook-engagements .table' do
+      first('.row').click
     end
   end
 

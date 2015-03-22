@@ -92,7 +92,7 @@
   @include animation(collapse .5s);
 }
 
-.list {
+.table {
   @extend .transitions;
 }
 
@@ -101,11 +101,11 @@
   pointer-events: none;
 }
 
-.list-item {
+.row {
   @include transform-origin(left top);
   @include transform(translate3d(0,0,0));
   @include transition();
-  &.list-item-open {
+  &.row-open {
     @include transform(translate3d(-200px,0,0));
   }
 }

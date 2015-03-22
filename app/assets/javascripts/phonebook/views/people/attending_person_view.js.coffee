@@ -1,9 +1,10 @@
 Phonebook.Views.People ||= {}
 
-class Phonebook.Views.People.AttendingPersonView extends Phonebook.Views.Base.TableItemView
+class Phonebook.Views.People.AttendingPersonView extends Phonebook.Views.Base.RowView
   initialize: ->
     @model ||= new Phonebook.Models.Person
     @listen()
+    super
 
   listen: ->
     @listenTo @, 'tapped', @toggleAttending
@@ -16,7 +17,7 @@ class Phonebook.Views.People.AttendingPersonView extends Phonebook.Views.Base.Ta
 
   template: JST['phonebook/templates/people/attending_person']
 
-  className: 'list-item attending-person'
+  className: 'row attending-person'
 
   toggleAttending: ->
     if @model.has 'attending'

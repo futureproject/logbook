@@ -17,7 +17,7 @@
     background: none;
   }
 }
-.list {
+.table {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -27,7 +27,7 @@
   display: none;
   &.active { display: block; }
 }
-.list-items {
+.table-rows {
   position: absolute;
   top: 45px;
   left: 0;
@@ -47,7 +47,7 @@
     pointer-events: none;
   }
 }
-.list-item {
+.row {
   cursor: pointer;
   min-height: 45px;
   -webkit-user-select: none;
@@ -60,7 +60,7 @@
   }
 }
 
-.list-item-timestamp {
+.row-timestamp {
   position: absolute;
   top: 15px;
   right: 15px;
@@ -69,19 +69,19 @@
   text-align: right;
 }
 
-.list-item-title, .list-item-subject {
+.row-title, .row-subject {
   margin-right: 75px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.list-item-controls {
+.row-controls {
   position: absolute;
   top: 0;
   bottom: 0;
   left: 100%;
   width: 200px;
-  .list-item-controls-inner {
+  .row-controls-inner {
     display: table;
     height: 100%;
     width: 100%;
@@ -318,16 +318,16 @@
 .fancy-list {
   overflow: auto;
   height: 100;
-  .list-item {
+  .row {
     padding-bottom: 5px;
     padding-top: 5px;
   }
-  .list-item-title { color: $dark-gray; }
-  .list-item-subject { font-size: 12px; }
-  .list-item-timestamp {
+  .row-title { color: $dark-gray; }
+  .row-subject { font-size: 12px; }
+  .row-timestamp {
     font-family: 'Avenir Next Condensed';
   }
-  .list-item-subject { opacity: .75; }
+  .row-subject { opacity: .75; }
 }
 
 

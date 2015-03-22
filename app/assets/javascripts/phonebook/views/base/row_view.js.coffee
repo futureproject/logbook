@@ -1,13 +1,13 @@
 Phonebook.Views.Base ||= {}
 
-class Phonebook.Views.Base.ListItemView extends Backbone.View
+class Phonebook.Views.Base.RowView extends Backbone.View
   initialize: ->
-    @listenTo Backbone, 'item:opened', @beforeOpen
-    @listenTo Backbone, 'item:closed', @afterClose
+    @listenTo Backbone, 'row:opened', @beforeOpen
+    @listenTo Backbone, 'row:closed', @afterClose
     @canTap = true
 
   events:
-    'touchstart .list-item-controls': (e) ->
+    'touchstart .row-controls': (e) ->
       e.stopPropagation()
       @startPos.t = e.timeStamp
     'touchstart': 'ontouchstart'
@@ -15,7 +15,7 @@ class Phonebook.Views.Base.ListItemView extends Backbone.View
     'touchend': 'ontouchend'
 
   ontouchstart: (e) ->
-    Backbone.trigger 'list_item:touchstart', e
+    Backbone.trigger 'row:touchstart', e
     @isScrolling = null
     @startPos =
       x: e.originalEvent.touches?[0].screenX || e.screenX
@@ -45,13 +45,13 @@ class Phonebook.Views.Base.ListItemView extends Backbone.View
 
   open: (e) ->
     return unless @canTap
-    Backbone.trigger 'item:opened', @
-    @$el.addClass('list-item-open')
-    @listenToOnce Backbone, 'list_item:touchstart', @close
+    Backbone.trigger 'row:opened', @
+    @$el.addClass('row-open')
+    @listenToOnce Backbone, 'row:touchstart', @close
 
   close: (e) ->
-    @$el.removeClass('list-item-open').one('webkitTransitionEnd', =>
-      Backbone.trigger 'item:closed', @
+    @$el.removeClass('row-open').one('webkitTransitionEnd', =>
+      Backbone.trigger 'row:closed', @
     )
 
   afterClose: (view) ->

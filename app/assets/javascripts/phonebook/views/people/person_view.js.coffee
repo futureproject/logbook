@@ -8,7 +8,7 @@ class Phonebook.Views.People.PersonView extends Backbone.View
     @listenTo Backbone, 'people:edit', @toggleClass
     @listenTo Backbone, 'people:getScrollPos', @sendScroll
 
-  className: 'list-item'
+  className: 'row'
 
   events:
     'touchstart': 'ontouchstart'

@@ -6,14 +6,14 @@ class Phonebook.Views.Engagements.IndexView extends Backbone.View
     @collection = args.collection
     @listenTo Backbone, 'engagements:views:shown', @onViewShow
     @rendered = false
-    @list = new Phonebook.Views.Base.TableView(
+    @table = new Phonebook.Views.Base.TableView(
       collection: @collection
-      item_view: Phonebook.Views.Engagements.ListItemView
+      item_view: Phonebook.Views.Engagements.RowView
     )
 
   template: JST['phonebook/templates/engagements/index']
 
-  className: 'list'
+  className: 'table'
 
   events:
     'touchend .new': (e) ->
@@ -24,7 +24,7 @@ class Phonebook.Views.Engagements.IndexView extends Backbone.View
   render: ->
     @$el.html @template
     @$container.append @$el
-    @list.setElement('#engagements-list-items').render()
+    @table.setElement('#engagements-table').render()
     @rendered = true
 
   renderOnce: ->
@@ -36,7 +36,7 @@ class Phonebook.Views.Engagements.IndexView extends Backbone.View
     super
 
   removeSubviews: ->
-    @list?.remove()
+    @table?.remove()
 
   show: ->
     @renderOnce()

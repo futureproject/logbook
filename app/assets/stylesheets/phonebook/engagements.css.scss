@@ -51,8 +51,8 @@
     border-top: 1px solid lighten($engagements-color, 10%);
     &:after { display: none; }
     border-bottom: 1px solid darken($engagements-color, 10%);
-    .list-item-title { color: white; }
-    .list-item-timestamp {
+    .row-title { color: white; }
+    .row-timestamp {
       opacity: .75;
       color: white;
       font-weight: 300;

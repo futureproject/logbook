@@ -18,7 +18,7 @@ class Phonebook.Views.People.CreateablePersonView extends Backbone.View
 
   template: JST['phonebook/templates/people/createable_person']
 
-  className: 'list-item attending-person'
+  className: 'row attending-person'
 
   create: ->
     return unless @createable

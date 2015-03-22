@@ -25,7 +25,7 @@ body {
   color: $base-font-color;
 }
 
-body, .detail-content, .list-items {
+body, .detail-content, .rows {
   background: $base-background-color;
 }
 
@@ -47,11 +47,11 @@ body, .detail-content, .list-items {
   }
 }
 
-.list-item {
+.row {
   &.selected {
     background: $base-border-color;
   }
-  .list-item-controls {
+  .row-controls {
     color: white;
     background: $light-red;
     font-weight: bold;
@@ -66,14 +66,14 @@ body, .detail-content, .list-items {
   }
   &.deleting {
     background: $light-red;
-    .list-item-controls {
+    .row-controls {
       background: $light-red;
       * { background: $light-red; }
     }
   }
 }
 
-.list-item-title {
+.row-title {
   @include heading;
   white-space: nowrap;
   overflow: hidden;
@@ -81,11 +81,11 @@ body, .detail-content, .list-items {
   margin-right: 80px;
 }
 
-.list-item-excerpt {
+.row-excerpt {
   color: $light-gray;
 }
 
-.list-item-timestamp {
+.row-timestamp {
   color: $light-gray;
   font-weight: normal;
 }
@@ -98,7 +98,7 @@ body, .detail-content, .list-items {
 }
 
 #phonebook-engagements {
-  .list-title, .detail-title, .list-item-timestamp, .card h4 { color: $engagements-color; }
+  .list-title, .detail-title, .row-timestamp, .card h4 { color: $engagements-color; }
 }
 
 .engagement-detail {

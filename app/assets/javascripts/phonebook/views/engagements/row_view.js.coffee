@@ -1,6 +1,6 @@
-class Phonebook.Views.Engagements.ListItemView extends Phonebook.Views.Base.ListItemView
-  template: JST['phonebook/templates/engagements/list_item']
-  className: 'list-item engagement'
+class Phonebook.Views.Engagements.RowView extends Phonebook.Views.Base.RowView
+  template: JST['phonebook/templates/engagements/row']
+  className: 'row engagement'
   initialize: ->
     @model ||= new Phonebook.Models.Engagement
     @listen()
