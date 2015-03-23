@@ -29,7 +29,7 @@ body, .detail-content, .rows {
   background: $base-background-color;
 }
 
-.tab-bar, .titlebar {
+.titlebar {
   background: white;
   button, .button {
     font-weight: 400;
@@ -44,6 +44,16 @@ body, .detail-content, .rows {
     font-size: 15px;
     line-height: 45px;
     font-weight: 700;
+  }
+}
+
+.tab-bar {
+  background: $dark-gray;
+  .current {
+    color: white;
+    text-shadow: 0px 0px 6px;
+    background: darken($dark-gray, 5%);
+    border-top: 1px solid darken($dark-gray, 10%);
   }
 }
 

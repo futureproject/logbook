@@ -34,6 +34,7 @@ class Phonebook.Views.Engagements.DetailView extends Phonebook.Views.Base.Detail
 
   render: ->
     @$el.html(@template @model.tplAttrs())
+    @$el.find('.scrollable').scrollTop(1)
     @showInfo()
     @
 

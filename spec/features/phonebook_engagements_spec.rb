@@ -68,6 +68,7 @@ feature 'using the phonebook' do
 
   def should_see_engagements_list
     expect(page).to have_content 'Engagements'
+    expect(find('.tab-bar')).to have_selector('#engagements-tab.current')
   end
 
   def should_see_engagement_named(name)
