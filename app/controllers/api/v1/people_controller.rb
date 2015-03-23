@@ -7,9 +7,9 @@ class Api::V1::PeopleController < Api::V1::BaseController
     if params[:q]
       @people = Person.search(params[:q], current_user)
     elsif params[:site_id]
-      @people = Site.find(params[:site_id]).people.order(:dream_team, :first_name, :id)
+      @people = Site.find(params[:site_id]).people.order(:dream_team, :first_name, :id).limit(40)
     else
-      @people = current_user.people.order(:dream_team, :first_name, :id)
+      @people = current_user.people.where(dream_team: true).order(:first_name, :last_name).limit(40)
     end
     @people
   end

@@ -68,8 +68,8 @@
   }
 }
 
-
 #phonebook-engagements {
+  .titlebar, .row-timestamp, .card h4 { color: $engagements-color; }
   .duplicate {
     background: $engagements-color;
   }

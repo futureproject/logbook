@@ -40,12 +40,9 @@ window.Phonebook =
 
       @schools = new Phonebook.Collections.SchoolsCollection(@user.get('schools'))
 
-      @controllers =
-        app: new Phonebook.Controllers.AppController
+      @controller = new Phonebook.Controllers.AppController
           el: '#phonebook'
-        engagements: new Phonebook.Controllers.EngagementsController
-          el: '#phonebook-engagements'
-
+          
       Backbone.trigger 'app:loaded'
       Backbone.trigger("network:#{navigator.onLine}")
       Backbone.history.start({ pushState: true })

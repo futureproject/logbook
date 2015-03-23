@@ -11,10 +11,14 @@ class Phonebook.Models.Person extends Backbone.Model
     attending: null
 
   toJSON: ->
-    _.omit _.clone(@attributes), ['attending']
+    _.omit _.clone(@attributes), ['attending', 'selected']
 
   tplAttrs: ->  _.clone @attributes
 
 class Phonebook.Collections.PeopleCollection extends Backbone.Collection
   model: Phonebook.Models.Person
   url: -> ds.apiHelper.urlFor 'people'
+  initialize: ->
+    @listenToOnce Backbone, 'people:bootstrap', ->
+      ds.bootstrapper.bootstrap @
+  comparator: 'first_name'

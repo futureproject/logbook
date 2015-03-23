@@ -1,13 +1,7 @@
-<div id='people-list' class='list'>
-  <div class='titlebar'>
-    <h1>People</h1>
-  </div>
-  <div class='rows'>
-    <% for (var i=0; i < people.length; i++) { %>
-      <div class='row'>
-        <%= people[i].attributes['first_name'] %>
-        <%= people[i].attributes['last_name'] %>
-      </div>
-    <% } %>
+<div class='titlebar'>
+  <h1>People</h1>
+  <div class='r-menu'>
+    <div class='button new icon-add-circle-outline'></div>
   </div>
 </div>
+<div id='people-table' class='table-rows scrollable'></div>

@@ -15,22 +15,28 @@ class Phonebook.Routers.EngagementsRouter extends Backbone.Router
     'logbookapp/': 'index'
 
   index: ->
+    Backbone.trigger 'controller:activate', 'engagements'
     Backbone.trigger 'engagements:index'
 
   show: (id) ->
+    Backbone.trigger 'controller:activate', 'engagements'
     Backbone.trigger 'engagements:show', id, 'fade-in-fast'
 
   new: ->
+    Backbone.trigger 'controller:activate', 'engagements'
     Backbone.trigger 'engagements:new', 'fade-in-fast'
 
   edit: (id) ->
+    Backbone.trigger 'controller:activate', 'engagements'
     Backbone.trigger 'engagements:show', id, 'fade-in'
     Backbone.trigger 'engagements:edit', id, 'fade-in-fast'
 
   upload: (id) ->
+    Backbone.trigger 'controller:activate', 'engagements'
     Backbone.trigger 'engagements:upload', id
 
   attendance: (id) ->
+    Backbone.trigger 'controller:activate', 'engagements'
     Backbone.trigger 'engagements:attendance', id
 
 

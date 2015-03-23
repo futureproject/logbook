@@ -64,6 +64,17 @@ class Phonebook.Controllers.EngagementsController extends Backbone.View
 
 
   # methods below are NOT called by router, like private methods in a rails controller
+  activate: ->
+    return if @active
+    Backbone.trigger "engagements:index"
+    @$el.addClass('active')
+    @active = true
+
+  deactivate: ->
+    @active = false
+    @$el.removeClass('active')
+    for k,v of @views
+      v.remove() unless v == @views.index
 
   getModelById: (id) ->
     if typeof(id) == "object"

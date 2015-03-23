@@ -1,3 +1,9 @@
+#people-tab.current {
+  color: $people-color;
+}
+#phonebook-people {
+  .titlebar, .row-timestamp, .card h4 { color: $people-color; }
+}
 .person-name {
   text-transform: capitalize;
 }

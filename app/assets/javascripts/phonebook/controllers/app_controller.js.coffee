@@ -1,9 +1,12 @@
 class Phonebook.Controllers.AppController extends Backbone.View
   initialize: ->
-    @listenTo Backbone, 'engagements:index', @showEngagements
-    @listenTo Backbone, 'projects:index', @showProjects
-    @listenTo Backbone, 'people:index', @showPeople
     @render()
+    @controllers =
+      engagements: new Phonebook.Controllers.EngagementsController
+        el: '#phonebook-engagements'
+      people: new Phonebook.Controllers.PeopleController
+        el: '#phonebook-people'
+    @listenTo Backbone, 'controller:activate', @activateController
 
   render: ->
     @$el.html(@template())
@@ -14,9 +17,11 @@ class Phonebook.Controllers.AppController extends Backbone.View
 
   events:
     'touchstart .scrollable' : 'fixScrollBounce'
-    'touchend #engagements-tab': -> Backbone.trigger 'engagements:index'
-    'touchend #people-tab': -> Backbone.trigger 'people:index'
-    'touchend #projects-tab': -> Backbone.trigger 'projects:index'
+    'touchmove .tab-bar': (e) -> e.preventDefault()
+    'touchend .tab': 'tabTap'
+    #'touchend #engagements-tab': -> Backbone.trigger 'engagements:index'
+    #'touchend #people-tab': -> Backbone.trigger 'people:index'
+    #'touchend #projects-tab': -> Backbone.trigger 'projects:index'
 
   fixScrollBounce: (e) ->
     el = e.currentTarget
@@ -30,12 +35,12 @@ class Phonebook.Controllers.AppController extends Backbone.View
         el.scrollTop += 1
       else el.scrollTop -= 1  if isAtBottom
 
-  showProjects: ->
-    @$el.find('#projects-tab').addClass('current').siblings().removeClass('current')
+  activateController: (controller) ->
+    for k,v of @controllers
+      v.deactivate() unless @controllers[controller] == v
+    @controllers[controller].activate()
+    $("##{controller}-tab").addClass('current').siblings().removeClass('current')
 
-  showPeople: ->
-    @$el.find('#people-tab').addClass('current').siblings().removeClass('current')
-
-  showEngagements: ->
-    @$el.find('#engagements-tab').addClass('current').siblings().removeClass('current')
-
+  tabTap: (e) ->
+    controller = e.target.getAttribute('data-controller')
+    @activateController(controller)
