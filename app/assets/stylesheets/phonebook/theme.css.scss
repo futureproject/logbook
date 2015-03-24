@@ -157,14 +157,6 @@ body, .detail-content, .rows {
   }
 }
 
-input, textarea {
-  box-shadow: none;
-  -webkit-appearance: none;
-}
-select {
-  width: 100%;
-}
-
 @media screen and (orientation: portrait) {
   input[type=file] {
     visiblity: hidden;

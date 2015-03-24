@@ -7,6 +7,8 @@ class Phonebook.Views.Base.DetailView extends Backbone.View
 
   className: 'detail detail-show'
 
+  template: JST['phonebook/templates/base/detail']
+
   events:
     'touchend .back': 'back'
     'touchmove .titlebar': (e) -> e.preventDefault()
@@ -14,14 +16,14 @@ class Phonebook.Views.Base.DetailView extends Backbone.View
   listen: ->
 
   show: (animation) ->
-    console.log 'rendering show view'
+    console.log 'rendering detail view'
     animation ||= 'slide-in-horizontal'
     @$container.append @$el.addClass(animation)
+    Backbone.trigger 'view:shown', 'detail'
     @render()
     @$el.one 'webkitAnimationEnd', =>
+      @$el.removeClass(animation)
       @loadMore()
-      #Backbone.trigger 'router:update', (@model.id || @model.cid)
-      #Backbone.trigger 'view:shown', 'detail'
 
   hide: (animation) ->
     animation ||= 'slide-out-horizontal'
@@ -29,10 +31,10 @@ class Phonebook.Views.Base.DetailView extends Backbone.View
       @model.unset('selected')
       @remove()
     )
-    Backbone.trigger('view:hidden', @)
 
   render: ->
     @$el.html(@template @model.tplAttrs())
+    @$el.find('.scrollable').scrollTop(1)
     @
 
   loadMore: ->

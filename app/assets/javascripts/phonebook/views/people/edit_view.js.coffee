@@ -1,32 +1,60 @@
 Phonebook.Views.People ||= {}
 
 class Phonebook.Views.People.EditView extends Backbone.View
-  template : JST["phonebook/templates/people/edit"]
+  initialize: (args) ->
+    @$container = args.container
+    @listen()
 
-  initialize: ->
-    @listenTo Backbone, 'people:edit', @show
+  template: JST['phonebook/templates/people/edit']
 
-  events :
-    "submit #edit-person" : "update"
+  className: 'detail detail-edit'
 
-  update : (e) ->
+  events:
+    'touchend .back': 'cancel'
+    'touchend .done': 'submitForm'
+    'touchmove .titlebar' : (e) -> e.preventDefault()
+
+  cancel: (e) ->
+    e.preventDefault()
+    @hide()
+
+  listen: ->
+    #@listenTo @model, 'change', @render
+
+  show: (animation) ->
+    animation ||= 'fade-in'
+    @$container.append @$el.addClass(animation)
+    @render()
+    @$el.one 'webkitAnimationEnd', =>
+      @$el.removeClass(animation)
+    Backbone.trigger 'people:router:update', @model.get('id') + "/edit"
+    Backbone.trigger 'people:views:shown', 'detail'
+
+  hide: (animation) ->
+    animation ||= 'fade-out'
+    @$el.addClass(animation).one('webkitAnimationEnd', () =>
+      @remove()
+    )
+    Backbone.trigger('people:views:hidden', @)
+    Backbone.trigger 'people:router:update', @model.get('id')
+
+  submitForm: (e) ->
     e.preventDefault()
     e.stopPropagation()
+    @$el.find('form').trigger 'submit'
+    @hide()
 
-    data = Backbone.Syphon.serialize @
-    @model.save(data,
-      success : (person) =>
-        Backbone.trigger 'people:edited', person
-        Backbone.trigger 'people:show', person
-    )
+  render: ->
+    console.log 'rendering edit'
+    @$el.html @template @model.tplAttrs()
+    @form = new Phonebook.Views.People.FormView(
+      el: '#edit-person-form'
+      model: @model
+    ).render()
 
-  show: (model) ->
-    @model = model
-    Backbone.trigger 'peopleRouter:go', "/phonebook/people/#{@model.get('id')}/edit"
-    @render()
-    Backbone.Syphon.deserialize @, @model.attributes
+  remove: ->
+    @removeSubviews()
+    super
 
-  render : ->
-    $(@el).html(@template(@model.toJSON() ))
-
-    return this
+  removeSubviews: ->
+    @form?.remove()

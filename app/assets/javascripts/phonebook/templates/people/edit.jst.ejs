@@ -1,45 +1,12 @@
-<div id="people-detail" class="detail detail-with-toolbar">
-  <form id="edit-person" name="person">
-  <div class='detail-toolbar'>
-    <div class='detail-toolbar-title'>Editing <%= first_name %></div>
-    <div class='r-menu'>
-      <button class='done'>Done</button>
-    </div>
+<div class='titlebar'>
+  <h1>Editing Person</h1>
+  <div class='l-menu'>
+    <div class='button back'>Cancel</div>
   </div>
-  <div class='detail-content'>
-      <div class="field">
-        <label for="first_name"> First:</label>
-        <input type="text" name="first_name" id="first_name">
-      </div>
-
-      <div class="field">
-        <label for="last_name"> Last:</label>
-        <input type="text" name="last_name" id="last_name">
-      </div>
-
-      <div class="field">
-        <label for="role"> Role:</label>
-        <select name="role" id="role">
-          <option value="student">Student</option>
-          <option value="faculty">Faculty</option>
-        </select>
-      </div>
-
-      <div class="field">
-        <label for="grade"> Grade:</label>
-        <select name="grade" id="role">
-          <option value="9">9</option>
-          <option value="10">10</option>
-          <option value="11">11</option>
-          <option value="12">12</option>
-        </select>
-      </div>
-
-      <div class="field">
-        <label for="core">
-          <input id="core" name="core" type="checkbox" /> Core
-        </label>
-      </div>
+  <div class='r-menu'>
+    <div class='button done'>Save</div>
   </div>
-</form>
+</div>
+<div class='person-detail detail-content scrollable'>
+  <div id='edit-person-form'></div>
 </div>

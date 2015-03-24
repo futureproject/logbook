@@ -103,8 +103,8 @@
 
 .row {
   @include transform-origin(left top);
-  @include transform(translate3d(0,0,0));
   @include transition();
+  @include transform(translate3d(0,0,0));
   &.row-open {
     @include transform(translate3d(-200px,0,0));
   }

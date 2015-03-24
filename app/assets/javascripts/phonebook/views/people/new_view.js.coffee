@@ -1,37 +1,63 @@
 Phonebook.Views.People ||= {}
 
 class Phonebook.Views.People.NewView extends Backbone.View
-  template: JST["phonebook/templates/people/new"]
+  initialize: (args) ->
+    @$container = args.container
+    @model = new Phonebook.Models.Person
+    @listen()
+
+  template: JST['phonebook/templates/people/new']
+
+  className: 'detail detail-new'
 
   events:
-    "submit #new-person": "save"
+    'touchend .back': 'cancel'
+    'touchend .done': 'submitForm'
+    'touchmove .titlebar' : (e) -> e.preventDefault()
 
-  #constructor: (options) ->
-  #  super(options)
-  #  @model = new @collection.model()
+  cancel: (e) ->
+    e.preventDefault()
+    @model.destroy()
+    @hide()
+    Backbone.trigger 'people:index'
 
-#    @model.bind("change:errors", () =>
-#      this.render()
-#    )
+  listen: ->
+    #@listenTo @model, 'change', @render
 
-  save: (e) ->
+  show: (animation) ->
+    animation ||= 'slide-in-vertical'
+    @$container.append @$el.addClass(animation)
+    @render()
+    @$el.one 'webkitAnimationEnd', =>
+      @$el.removeClass(animation)
+    Backbone.trigger 'people:router:update', 'new'
+    Backbone.trigger 'people:views:shown', 'modal'
+
+  hide: (animation) ->
+    animation ||= 'slide-out-vertical'
+    @$el.addClass(animation).one('webkitAnimationEnd', () =>
+      @model?.unset('selected')
+      @remove()
+    )
+    Backbone.trigger('people:views:hidden', @)
+
+  submitForm: (e) ->
     e.preventDefault()
     e.stopPropagation()
-
-#    @model.unset("errors")
-#
-#    @collection.create(@model.toJSON(),
-#      success: (person) =>
-#        @model = person
-#        window.location.hash = "/#{@model.id}"
-#
-#      error: (person, jqXHR) =>
-#        @model.set({errors: $.parseJSON(jqXHR.responseText)})
-#    )
+    @$el.find('form').trigger 'submit'
+    @hide()
+    Backbone.trigger 'people:show', @model, 'fade-in'
 
   render: ->
-#    $(@el).html(@template(@model.toJSON() ))
-#
-#    this.$("form").backboneLink(@model)
-#
-#    return this
+    @$el.html @template @model.tplAttrs()
+    @form = new Phonebook.Views.People.FormView(
+      el: '#new-person-form'
+      model: @model
+    ).render()
+
+  remove: ->
+    @removeSubviews()
+    super
+
+  removeSubviews: ->
+    @form?.remove()

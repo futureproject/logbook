@@ -4,7 +4,7 @@ class Phonebook.Views.People.IndexView extends Backbone.View
   initialize: (args) ->
     @$container = args.container
     @collection = args.collection
-    @listenTo Backbone, 'people:views:shown', @onViewShow
+    @listenTo Backbone, 'view:shown', @onViewShow
     @rendered = false
     @table = new Phonebook.Views.Base.TableView(
       collection: @collection
@@ -40,7 +40,7 @@ class Phonebook.Views.People.IndexView extends Backbone.View
 
   show: ->
     @renderOnce()
-    Backbone.trigger 'people:router:update', 'phonebook'
+    Backbone.trigger 'people:router:update', 'phonebook/people'
     @$el.addClass('active')
     @unslide()
 

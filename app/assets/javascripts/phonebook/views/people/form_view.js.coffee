@@ -1,19 +1,15 @@
-Phonebook.Views.Engagements ||= {}
+Phonebook.Views.People ||= {}
 
-class Phonebook.Views.Engagements.FormView extends Backbone.View
+class Phonebook.Views.People.FormView extends Backbone.View
   initialize: ->
-    @model ||= new Phonebook.Models.Engagement
+    @model ||= new Phonebook.Models.Person
 
-  template: JST['phonebook/templates/engagements/form']
+  template: JST['phonebook/templates/people/form']
 
   events: ->
     'focus form' : (e) -> $('body').addClass('focusin')
     'blur form' : (e) -> $('body').removeClass('focusin')
     'submit' : 'submit'
-    'click .attendance' : -> Backbone.trigger 'engagements:attendance', @model
-    'change #kind' : (e) ->
-      kind = $(e.target).val().toLowerCase().replace(' ', '-')
-      @$el.find('form').attr('data-kind', kind)
 
   render: ->
     @$el.html @template @model.tplAttrs()
@@ -27,7 +23,7 @@ class Phonebook.Views.Engagements.FormView extends Backbone.View
     data = Backbone.Syphon.serialize @
     @model.save data,
       success: (e) =>
-        Backbone.trigger 'engagements:saved', @model
+        Backbone.trigger 'people:saved', @model
       error: (model) =>
         console.log model
 

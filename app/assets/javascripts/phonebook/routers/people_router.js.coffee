@@ -29,6 +29,7 @@ class Phonebook.Routers.PeopleRouter extends Backbone.Router
   update: (url) ->
     return unless url?
     url = url.toString()
+    console.log url
     if url.match(/phonebook/i)
       @navigate url
     else
