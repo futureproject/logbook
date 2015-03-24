@@ -1,9 +1,9 @@
-- cache ['v1', engagement] do
+- cache ['v2', engagement] do
   %li[engagement]
     .engagement-date= engagement.date.try :strftime, "%D"
     .engagement-kind= engagement.kind
     .engagement-name= engagement.name
-    .engagement-attendees.number= engagement.attendees.count
+    .engagement-attendees.number= engagement.headcount
     .engagement-duration.number= engagement.duration.try(:round, 2)
     .engagement-school= engagement.school.try(:name)
     .engagement-actions.actions
