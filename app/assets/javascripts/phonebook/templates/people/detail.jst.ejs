@@ -1,22 +1,56 @@
-<div id="people-detail" class="detail detail-with-toolbar">
-  <div class='detail-toolbar'>
-    <div class='detail-toolbar-title'>Showing Person</div>
-    <div class='r-menu'>
-      <button class='edit'>Edit</button>
-    </div>
+<div class='titlebar'>
+  <h1>Person</h1>
+  <div class='l-menu'>
+    <div class='button back'>Back</div>
   </div>
-  <div class='detail-content'>
-    <h1><%= first_name %> <%= last_name %></h1>
+  <div class='r-menu'>
+    <div class='button edit'>Edit</div>
+  </div>
+</div>
+<div class='person-detail detail-content scrollable'>
+  <div>
 
-    <p>
-      <b>Role:</b>
-      <%= role %>
-    </p>
+    <header>
+      <h2 class='person-name'><%= first_name %> <%= last_name %></h2>
+      <div class='engagement-school'><%= school_name %></div>
+      <span><%= grade ? (grade + "th Grade") : "No Grade" %></span>
+      <span><%= role %></span>
+    </header>
 
-    <p>
-      <b>Grade:</b>
-      <%= grade %>
-    </p>
+    <div class='person-contact card'>
+      <h4>Contact</h4>
+      <div class='links-table'>
+        <% if (phone) { %>
+          <a href="tel:<%= phone %>">
+            <div class='icon icon-call'></div>
+            Call
+          </a>
+          <a href="sms:<%= phone %>">
+            <div class='icon icon-message'></div>
+            Text
+          </a>
+        <% } else { %>
+          <div class='edit'>
+            <div class='icon icon-call'></div>
+            Add Phone
+          </div>
+        <% } %>
+        <% if (email) { %>
+          <a href="mailto:<%= email %>">
+            <div class='icon icon-email'></div>
+            Email
+          </a>
+        <% } else { %>
+          <div class='edit'>
+            <div class='icon icon-email'></div>
+            Add Email
+          </div>
+        <% } %>
+      </div>
+    </div>
+    <div class='person-notes card'>
+      <pre><%= notes || "No notes" %></pre>
+    </div>
 
   </div>
 </div>

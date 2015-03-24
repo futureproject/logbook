@@ -2,7 +2,7 @@ Phonebook.Views.People ||= {}
 
 class Phonebook.Views.People.DetailView extends Phonebook.Views.Base.DetailView
 
-  #template: JST['phonebook/templates/people/detail']
+  template: JST['phonebook/templates/people/detail']
 
   listen: ->
     @events['touchend .edit'] = (e) ->

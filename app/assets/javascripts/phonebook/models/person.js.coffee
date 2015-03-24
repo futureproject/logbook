@@ -9,6 +9,9 @@ class Phonebook.Models.Person extends Backbone.Model
     grade: 11
     dream_team: false
     attending: null
+    notes: null
+    email: null
+    phone: null
 
   toJSON: ->
     _.omit _.clone(@attributes), ['attending', 'selected']

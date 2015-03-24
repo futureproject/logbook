@@ -1,1 +1,12 @@
-json.extract! @person, :id, :created_at, :updated_at, :first_name, :last_name, :school_id, :school_name, :grade
+json.extract! @person, :id,
+  :created_at,
+  :updated_at,
+  :first_name,
+  :last_name,
+  :school_id,
+  :school_name,
+  :grade,
+  :role,
+  :notes,
+  :phone,
+  :email
