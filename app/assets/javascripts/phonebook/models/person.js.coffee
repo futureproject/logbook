@@ -18,10 +18,13 @@ class Phonebook.Models.Person extends Backbone.Model
 
   tplAttrs: ->  _.clone @attributes
 
-class Phonebook.Collections.PeopleCollection extends Backbone.Collection
+class Phonebook.Collections.PeopleCollection extends Backbone.PageableCollection
   model: Phonebook.Models.Person
   url: -> ds.apiHelper.urlFor 'people'
   initialize: ->
     @listenToOnce Backbone, 'people:bootstrap', ->
       ds.bootstrapper.bootstrap @
-  comparator: 'first_name'
+  mode: 'client'
+  state:
+    pageSize: 50
+  #comparator: 'first_name'

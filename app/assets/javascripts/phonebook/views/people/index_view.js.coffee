@@ -20,6 +20,7 @@ class Phonebook.Views.People.IndexView extends Backbone.View
       e.preventDefault()
       Backbone.trigger 'people:new'
     'touchmove .titlebar': (e) -> e.preventDefault()
+    'click .titlebar h1': (e) -> @$('.scrollable').animate({ scrollTop: 0 })
 
   render: ->
     @$el.html @template

@@ -3,6 +3,7 @@
 #= require backbone-min
 #= require backbone.dualstorage
 #= require backbone.syphon
+#= require backbone.paginator.min
 #= require date
 #= require s3_direct_upload
 #= require_self

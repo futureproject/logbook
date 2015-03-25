@@ -8,6 +8,9 @@ class Phonebook.Views.Base.TableView extends Backbone.View
     @listenTo @collection, 'change:selected', @clearSelection
     @listenTo @collection, 'reset add', @render
 
+  events: ->
+    'touchstart': 'loadNextPage'
+
   render: ->
     console.log "rendered TableView index with #{@collection.length} models"
     fragment = document.createDocumentFragment()
@@ -31,3 +34,10 @@ class Phonebook.Views.Base.TableView extends Backbone.View
   remove: ->
     @removeItems()
     super
+
+  loadNextPage: (e) ->
+    el = e.currentTarget
+    height = el.getBoundingClientRect().height
+    scrollPos = el.scrollHeight - el.scrollTop
+    if Math.abs(scrollPos - height) < 400 && @collection.state?.totalRecords > @collection.length
+      @collection.setPageSize? @collection.state.pageSize + 50
