@@ -18,7 +18,6 @@
     </header>
 
     <div class='person-contact card'>
-      <h4>Contact</h4>
       <div class='links-table'>
         <% if (phone) { %>
           <a href="tel:<%= phone %>">
@@ -30,7 +29,7 @@
             Text
           </a>
         <% } else { %>
-          <div class='edit'>
+          <div class='trigger-edit'>
             <div class='icon icon-call'></div>
             Add Phone
           </div>
@@ -41,7 +40,7 @@
             Email
           </a>
         <% } else { %>
-          <div class='edit'>
+          <div class='trigger-edit'>
             <div class='icon icon-email'></div>
             Add Email
           </div>

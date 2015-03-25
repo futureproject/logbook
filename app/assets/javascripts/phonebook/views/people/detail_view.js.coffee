@@ -2,10 +2,17 @@ Phonebook.Views.People ||= {}
 
 class Phonebook.Views.People.DetailView extends Phonebook.Views.Base.DetailView
 
+  initialize: ->
+    @fullyLoaded = false
+    super
+
   template: JST['phonebook/templates/people/detail']
 
   listen: ->
     @events['touchend .edit'] = (e) ->
+      e.preventDefault()
+      Backbone.trigger 'people:edit', @model
+    @events['click .trigger-edit'] = (e) ->
       e.preventDefault()
       Backbone.trigger 'people:edit', @model
 
@@ -19,7 +26,7 @@ class Phonebook.Views.People.DetailView extends Phonebook.Views.Base.DetailView
     super
 
   renderSubviews: ->
-    console.log @model
+    console.log @model.attributes
 
   back: (e) ->
     e.stopPropagation()

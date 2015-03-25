@@ -4,7 +4,7 @@
 #phonebook-people {
   .titlebar, .row-timestamp, .card h4 { color: $people-color; }
 }
-.person-name {
+.person-name, .person-role {
   text-transform: capitalize;
 }
 

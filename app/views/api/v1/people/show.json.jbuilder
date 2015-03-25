@@ -10,3 +10,5 @@ json.extract! @person, :id,
   :notes,
   :phone,
   :email
+json.projects @person.projects, :name, :id
+json.engagements @person.engagements.order('date DESC')
