@@ -62,6 +62,3 @@ class Phonebook.Views.Engagements.DetailView extends Phonebook.Views.Base.Detail
     e.stopPropagation()
     Backbone.trigger 'engagements:index'
 
-  remove: ->
-    @model.unset('selected')
-    super

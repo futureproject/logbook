@@ -51,5 +51,6 @@ class Phonebook.Views.Base.DetailView extends Backbone.View
     _.each @subviews, (view) -> view.remove()
 
   remove: ->
+    @model.unset('selected')
     @removeSubviews()
     super

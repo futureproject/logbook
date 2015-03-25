@@ -21,6 +21,9 @@ class Phonebook.Views.People.RowView extends Phonebook.Views.Base.RowView
     @model.set 'selected', true
     Backbone.trigger 'people:show', @model
 
+  open: ->
+  close: ->
+
   delete: (e) ->
     @close()
     e.preventDefault()

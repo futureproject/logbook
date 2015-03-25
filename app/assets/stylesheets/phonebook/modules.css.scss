@@ -111,8 +111,9 @@
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 100%;
+  right: 0;
   width: 200px;
+  display: none;
   .row-controls-inner {
     display: table;
     height: 100%;

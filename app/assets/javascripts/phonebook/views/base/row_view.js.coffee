@@ -36,6 +36,8 @@ class Phonebook.Views.Base.RowView extends Backbone.View
 
   ontouchend: (e) ->
     return if @isScrolling || !@startPos?
+    e.preventDefault()
+    e.stopPropagation()
     @diff.t = e.timeStamp - @startPos.t
     distanceMoved = Math.sqrt(@diff.x * @diff.x + @diff.y * @diff.y)
     @trigger('tapped') if (distanceMoved == 0 && @diff.t < 300 && @canTap)
@@ -46,11 +48,12 @@ class Phonebook.Views.Base.RowView extends Backbone.View
   open: (e) ->
     return unless @canTap
     Backbone.trigger 'row:opened', @
-    @$el.addClass('row-open')
+    @$el.addClass('row-open').find('.row-controls').addClass('slide-in-horizontal')
     @listenToOnce Backbone, 'row:touchstart', @close
 
   close: (e) ->
-    @$el.removeClass('row-open').one('webkitTransitionEnd', =>
+    @$el.find('.row-controls').removeClass('slide-in-horizontal').addClass('slide-out-horizontal').one('webkitAnimationEnd', =>
+      @$el.removeClass('row-open').find('.row-controls').removeClass('slide-out-horizontal')
       Backbone.trigger 'row:closed', @
     )
 
