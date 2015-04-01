@@ -97,6 +97,7 @@ class Logbook::ProjectsController < Logbook::ApplicationController
       params.require(:project).permit(
         :name,
         :school_id,
+        :status,
         :description,
         leader_ids: [],
         participant_ids: []

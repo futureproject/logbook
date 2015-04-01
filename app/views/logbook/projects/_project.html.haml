@@ -3,6 +3,7 @@
     .project-updated-at= project.updated_at.strftime "%D"
     .project-name= project.name
     .project-description= project.description
+    .project-status= project.status
     .project-leaders
       = project.leaders.count
       = " - #{project.leaders.limit(3).pluck(:first_name).join(', ')}" if project.leaders.any?

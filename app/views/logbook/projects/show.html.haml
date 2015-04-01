@@ -12,6 +12,9 @@
           .project-address= @project.school.try(:address)
 
       %section.project-updated-at
+        %h4
+          Status:
+          = @project.status
         Last update:
         = @project.updated_at.strftime "%A, %B %d"
         %br
@@ -51,3 +54,6 @@
         = render partial: 'logbook/assets/s3_uploader', locals: { record: @project }
         .assets.large-assets= render collection: @project.assets, partial: 'asset'
 
+        Last update:
+        = @project.updated_at.strftime "%A, %B %d"
+        %br

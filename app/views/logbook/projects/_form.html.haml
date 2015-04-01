@@ -4,10 +4,14 @@
       .field
         = f.label :name, "Project Name"
         = f.text_field :name, required: true
-    .g8
+    .g4
       .field
         = f.label :school_id
         = f.select :school_id, current_user.schools.map{|s| [s.name, s.id] }
+    .g4
+      .field
+        = f.label :status
+        = f.select :status, Project::STATUS_ENUM
   .row
     .textarea
       = f.label :description

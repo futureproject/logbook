@@ -21,8 +21,10 @@ feature 'Logbook projects' do
     visit logbook_projects_path
     click_link 'Edit', match: :first
     fill_in 'project[name]', with: 'Repair Batplane'
+    select 'complete',  from: 'project[status]'
     click_button 'Update Project'
     expect(page).to have_content 'Repair Batplane'
+    expect(page).to have_content 'Status: complete'
   end
 
   scenario 'DESTROY', js: true do

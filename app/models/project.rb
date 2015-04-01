@@ -11,6 +11,7 @@ class Project < ActiveRecord::Base
   has_many :activities, as: :thing, dependent: :destroy
   has_many :notes, as: :notable, dependent: :destroy
   COLOR_ENUM = %w(#419AD3 #568099 #064974 #FFAC43 #B66500 #FFEDD6)
+  STATUS_ENUM = %w(underway stalled complete)
   include Sortable
 
   scope :user_sort, -> (column) { order column.to_s }
