@@ -1,5 +1,5 @@
-- cache ['v4', project] do
-  %li[project]
+- cache ['v', project] do
+  %li[project]{class: project.status}
     .project-updated-at= project.updated_at.strftime "%D"
     .project-name= project.name
     .project-description= project.description
