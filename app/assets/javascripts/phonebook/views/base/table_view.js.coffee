@@ -22,6 +22,8 @@ class Phonebook.Views.Base.TableView extends Backbone.View
     @$el.html fragment
     # prevent iOS scroll bounce before any interactions occur
     @el.scrollTop = 1 if @el.scrollTop == 0
+    if @collection.length == 0
+      @$el.prepend('<div class="loading"></div>')
 
   removeItems: ->
     @trigger 'cleanup'

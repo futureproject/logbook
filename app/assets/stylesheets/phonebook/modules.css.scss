@@ -78,6 +78,13 @@
     width: 100%;
     pointer-events: none;
   }
+  &:empty:before {
+    display: block;
+    text-align: center;
+    padding: 15px;
+    content: "This list is, alas, empty.";
+    font-size: 13px;
+  }
 }
 .row {
   cursor: pointer;

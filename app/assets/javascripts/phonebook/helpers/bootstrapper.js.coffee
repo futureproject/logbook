@@ -7,6 +7,8 @@ ds.bootstrapper =
     collection.fetch
       reset: true
       remote: false
+      success: ->
+        $('.loading').remove()
 
   loadRemote: (collection) ->
     collection.syncDirtyAndDestroyed()
@@ -15,3 +17,4 @@ ds.bootstrapper =
       remote: true
       success: ->
         console.log "#{collection.constructor.name} synced from server"
+        $('.loading').remove()
