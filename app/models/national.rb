@@ -9,6 +9,21 @@ class National
     res || 0
   end
 
+  def self.headcount
+    durations = School.all.map{|school| school.headcount }
+    durations.inject(:+)
+  end
+
+  def self.people_with_projects
+    (Person.joins(:primary_projects) + Person.joins(:secondary_projects)).uniq.count
+  end
+
+  def self.person_hours
+    Engagement.where('headcount IS NOT NULL').where('duration IS NOT NULL').map{|e|
+      (e.headcount * e.duration).to_i
+    }.inject(:+)
+  end
+
   def actions
     Action.all
   end

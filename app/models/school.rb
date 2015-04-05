@@ -54,4 +54,8 @@ class School < ActiveRecord::Base
     site.try(:schools)
   end
 
+  def headcount
+    engagements.order('headcount DESC').limit(1).first.headcount rescue 0
+  end
+
 end

@@ -36,4 +36,8 @@ class Site < ActiveRecord::Base
     people.where(dream_team: true)
   end
 
+  def person_hours(kind="%")
+    engagements.where("kind like ?", kind).where('headcount IS NOT NULL').where('duration IS NOT NULL').map{|e| (e.headcount * e.duration).to_i}.inject(:+)
+  end
+
 end

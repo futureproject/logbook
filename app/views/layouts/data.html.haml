@@ -1,0 +1,18 @@
+!!!
+%html
+  %head
+    %title Future Data
+    = stylesheet_link_tag    'data', media: 'all'
+    %meta{name:"viewport", content: "width=1024"}
+    = csrf_meta_tags
+    %link{rel:"apple-touch-icon", href: asset_path('icon-arrow.png')}
+    :javascript
+      window.ds = window.ds || {}
+      ds.CONSTANTS = #{JSON.dump( @js_data || {} )}
+    = javascript_include_tag 'data'
+  %body{class: page_classes}
+
+    = yield
+
+    #charts= yield :charts_js
+    = render 'analytics'

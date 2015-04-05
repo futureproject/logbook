@@ -1,0 +1,46 @@
+/*
+= require googlecons
+*/
+
+@import 'normalize';
+@import 'variables';
+@import 'bourbon';
+@import 'neat';
+@import 'loading';
+
+$retro-dark: #1e2427;
+$retro-light: #f8f3f3;
+
+html, body {
+  font-size: 15px;
+  line-height: 1;
+  margin: 0;
+  padding: 0;
+  font-weight: 500;
+  font-family: $base-font-family;
+  color: #f8f3f3;
+  background: #1e2427;
+  -webkit-font-smoothing: antialiased;
+}
+
+#header {
+  padding: 15px;
+  color: $retro-dark;
+  background: $retro-light;
+  border-bottom: 15px solid #23485d;
+  text-align: center;
+  h1 {
+    font-size: 30px;
+    margin: 0;
+  }
+  .year {
+    font-size: 15px;
+  }
+}
+
+section {
+  padding: 15px;
+  float: left;
+  width: 50%;
+  &.wide { float: none; width: 100%; }
+}

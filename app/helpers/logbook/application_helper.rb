@@ -2,7 +2,7 @@ module Logbook::ApplicationHelper
 
   def page_classes
     class_name = params[:controller].gsub('/','_')
-    class_name += " clearance-level-#{current_user.clearance_level}"
+    class_name += " clearance-level-#{current_user.clearance_level}" if current_user
     class_name
   end
 

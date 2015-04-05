@@ -30,7 +30,7 @@
         $(document).ready(function(){
           $('#activities').highcharts({
             credits: false,
-            colors: #{Chartkick.options[:colors].last(4)},
+            colors: #{Engagement::COLOR_ENUM},
             chart: {
               type: 'bubble',
               zoomType: 'x',

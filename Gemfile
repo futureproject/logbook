@@ -94,6 +94,7 @@ gem 'twitter-typeahead-rails'
 # group records for fancy graphing
 gem 'groupdate'
 gem 'chartkick'
+gem 'hightop'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'

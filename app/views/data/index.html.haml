@@ -1,0 +1,37 @@
+#header
+  %h1 Future Data
+  .year 2014-2015
+%section#person-hours
+  %h2= "#{number_with_delimiter(National.person_hours)} Total Person Hours"
+  .graph#person-hours-graph
+    = bar_chart @person_hrs, colors: Engagement::COLOR_ENUM, library: @chart_options
+
+%section#engagement-counts
+  %h2= "#{number_with_delimiter Engagement.count} Total Engagements"
+  .graph#engagement-counts-graph
+    = bar_chart @engagement_counts, colors: Engagement::COLOR_ENUM, library: @chart_options
+
+%section#active-people
+  %h2= "#{number_with_delimiter National.people_with_projects} People Working on Projects"
+  = pie_chart @active_ppl, library: @chart_options
+
+%section#passive-people
+  %h2= "#{number_with_delimiter National.headcount} People Engaged"
+  = pie_chart @passive_ppl, library: @chart_options
+
+
+%section#rhythm.wide
+  %h2 2015 Engagements by Day of Week
+  = bar_chart @weekly_engagements, library: @chart_options, colors: Engagement::COLOR_ENUM
+
+%section#projects-started
+  %h2= "#{Project.count} Projects Started"
+  .project-data= pie_chart Site.order(:name).joins(:projects).group('sites.name').count, library: @chart_options
+
+%section#projects-completed
+  %h2= "#{Project.where(status: 'complete').count} Projects Completed"
+  .project-data= pie_chart Site.order(:name).joins(:projects).where('projects.status = ?', 'complete').group('sites.name').count, library: @chart_options
+
+%section#schools.wide
+  %h2 Most Active Schools
+  .graph= column_chart @schools, library: @chart_options, colors: Chartkick.options[:colors].drop(6)
