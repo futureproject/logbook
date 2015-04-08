@@ -27,7 +27,7 @@ class DataController < ApplicationController
 
     @weekly_engagements = Engagement::KIND_ENUM.map {|kind|
       data = Engagement.where(kind: kind).since(Date.new(2015,01,01)).group_by_day_of_week(:date).count
-      Date::DAYNAMES.each_with_index{|d,i| data[d] = data.delete i }
+      Date::DAYNAMES.each_with_index{|d,i| data[d] = data.delete (i-1)%7 }
       { name: kind, data: data }
     }
 
