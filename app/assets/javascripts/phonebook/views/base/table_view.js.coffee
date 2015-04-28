@@ -7,9 +7,12 @@ class Phonebook.Views.Base.TableView extends Backbone.View
     throw "TableView needs collection and item view" unless @collection && @item_view
     @listenTo @collection, 'change:selected', @clearSelection
     @listenTo @collection, 'reset add', @render
+    @listenTo @collection, 'filtered', @filter
 
   events: ->
     'touchstart': 'loadNextPage'
+    'change': (event) ->
+      console.log event
 
   render: ->
     console.log "rendered TableView index with #{@collection.length} models"
@@ -25,6 +28,16 @@ class Phonebook.Views.Base.TableView extends Backbone.View
     if @collection.length == 0
       @$el.prepend('<div class="loading"></div>')
 
+  filter: (results) ->
+    @removeItems()
+    fragment = document.createDocumentFragment()
+    for model in results
+      view = new @item_view
+        model: model
+      view.listenTo @, 'cleanup', view.remove
+      fragment.appendChild view.render().el
+    @$el.html fragment
+
   removeItems: ->
     @trigger 'cleanup'
 
@@ -38,6 +51,7 @@ class Phonebook.Views.Base.TableView extends Backbone.View
     super
 
   loadNextPage: (e) ->
+    console.log e
     el = e.currentTarget
     height = el.getBoundingClientRect().height
     scrollPos = el.scrollHeight - el.scrollTop

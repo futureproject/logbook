@@ -34,6 +34,9 @@ body, .detail-content, .rows {
   button, .button {
     font-weight: 400;
   }
+  [class^=icon-], [class*=" icon-"] {
+    font-size: 25px;
+  }
   &:after {
     @include hairline;
   }

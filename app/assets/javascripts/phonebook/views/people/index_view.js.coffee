@@ -10,15 +10,16 @@ class Phonebook.Views.People.IndexView extends Backbone.View
       collection: @collection
       item_view: Phonebook.Views.People.RowView
     )
+    @searchBar = new Phonebook.Views.Base.SearchView
+      collection: @collection
 
   template: JST['phonebook/templates/people/index']
 
   className: 'table'
 
   events:
-    'touchend .new': (e) ->
-      e.preventDefault()
-      Backbone.trigger 'people:new'
+    'touchend .new': 'newOrCloseSearch'
+    'touchend .icon-search': 'toggleSearchBar'
     'touchmove .titlebar': (e) -> e.preventDefault()
     'click .titlebar h1': (e) -> @$('.scrollable').animate({ scrollTop: 0 })
 
@@ -26,6 +27,7 @@ class Phonebook.Views.People.IndexView extends Backbone.View
     @$el.html @template
     @$container.append @$el
     @table.setElement('#people-table').render()
+    @searchBar.setElement('#people-search-container').render()
     @rendered = true
 
   renderOnce: ->
@@ -53,3 +55,18 @@ class Phonebook.Views.People.IndexView extends Backbone.View
 
   onViewShow: (type) ->
     @slide() if type == 'detail'
+
+  newOrCloseSearch: (event) ->
+    event.preventDefault()
+    if @searching
+      @toggleSearchBar()
+    else
+      Backbone.trigger 'people:new'
+
+  toggleSearchBar: ->
+    if @searching
+      @$el.removeClass('searching')
+      @searchBar.reset()
+    else
+      @$el.addClass('searching')
+    @searching = !!!@searching

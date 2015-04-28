@@ -20,6 +20,7 @@ class Phonebook.Views.Engagements.IndexView extends Backbone.View
       e.preventDefault()
       Backbone.trigger 'engagements:new'
     'touchmove .titlebar': (e) -> e.preventDefault()
+    'click .titlebar h1': (e) -> @$('.scrollable').animate({ scrollTop: 0 })
 
   render: ->
     @$el.html @template
