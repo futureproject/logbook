@@ -12,6 +12,7 @@ class Phonebook.Views.People.IndexView extends Backbone.View
     )
     @searchBar = new Phonebook.Views.Base.SearchView
       collection: @collection
+      container: @$el.find('.titlebar')
 
   template: JST['phonebook/templates/people/index']
 
@@ -20,6 +21,7 @@ class Phonebook.Views.People.IndexView extends Backbone.View
   events:
     'touchend .new': 'newOrCloseSearch'
     'touchend .icon-search': 'toggleSearchBar'
+    'click .icon-search': 'focusSearchBar'
     'touchmove .titlebar': (e) -> e.preventDefault()
     'click .titlebar h1': (e) -> @$('.scrollable').animate({ scrollTop: 0 })
 
@@ -39,6 +41,7 @@ class Phonebook.Views.People.IndexView extends Backbone.View
     super
 
   removeSubviews: ->
+    @searchBar?.remove()
     @table?.remove()
 
   show: ->
@@ -58,15 +61,10 @@ class Phonebook.Views.People.IndexView extends Backbone.View
 
   newOrCloseSearch: (event) ->
     event.preventDefault()
-    if @searching
-      @toggleSearchBar()
-    else
-      Backbone.trigger 'people:new'
+    if @searchBar.showing then @toggleSearchBar() else Backbone.trigger('people:new')
 
   toggleSearchBar: ->
-    if @searching
-      @$el.removeClass('searching')
-      @searchBar.reset()
-    else
-      @$el.addClass('searching')
-    @searching = !!!@searching
+    @searchBar.toggle()
+
+  focusSearchBar: ->
+    @searchBar.$input.focus() if @searchBar.showing

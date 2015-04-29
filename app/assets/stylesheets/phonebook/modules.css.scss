@@ -7,6 +7,7 @@
   text-align: center;
   -webkit-user-select: none;
   overflow: hidden;
+  @include transform(translate3d(0,0,0));
   h1 {
     margin: 0 90px;
     overflow: hidden;
@@ -43,14 +44,14 @@
     border: 1px solid $base-border-color;
   }
   input:focus { outline: none; }
-}
-
-.searching {
-  .titlebar-search-container {
+  &.active {
     opacity: 1;
     @include transform(translate3d(0,0,0));
   }
-  .new {
+}
+
+.search-active {
+  .button.new {
     @include transform(rotate(-45deg));
   }
 }

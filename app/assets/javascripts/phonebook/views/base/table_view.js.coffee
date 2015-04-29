@@ -11,17 +11,18 @@ class Phonebook.Views.Base.TableView extends Backbone.View
 
   events: ->
     'touchstart': 'loadNextPage'
-    'change': (event) ->
-      console.log event
+    #'change': (event) ->
 
   render: ->
     console.log "rendered TableView index with #{@collection.length} models"
     fragment = document.createDocumentFragment()
+    @subCount = 0
     for model in @collection.models
       view = new @item_view
         model: model
       view.listenTo @, 'cleanup', view.remove
       fragment.appendChild view.render().el
+      @subCount += 1
     @$el.html fragment
     # prevent iOS scroll bounce before any interactions occur
     @el.scrollTop = 1 if @el.scrollTop == 0
@@ -29,6 +30,7 @@ class Phonebook.Views.Base.TableView extends Backbone.View
       @$el.prepend('<div class="loading"></div>')
 
   filter: (results) ->
+    @subCount = 0
     @removeItems()
     fragment = document.createDocumentFragment()
     for model in results
@@ -36,6 +38,7 @@ class Phonebook.Views.Base.TableView extends Backbone.View
         model: model
       view.listenTo @, 'cleanup', view.remove
       fragment.appendChild view.render().el
+      @subCount += 1
     @$el.html fragment
 
   removeItems: ->
@@ -51,9 +54,8 @@ class Phonebook.Views.Base.TableView extends Backbone.View
     super
 
   loadNextPage: (e) ->
-    console.log e
     el = e.currentTarget
     height = el.getBoundingClientRect().height
     scrollPos = el.scrollHeight - el.scrollTop
-    if Math.abs(scrollPos - height) < 400 && @collection.state?.totalRecords > @collection.length
+    if Math.abs(scrollPos - height) < 400 && @collection.state?.totalRecords > @collection.length && @subCount >= @collection.length
       @collection.setPageSize? @collection.state.pageSize + 50

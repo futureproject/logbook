@@ -99,6 +99,7 @@
 .shifted {
   @include transform(translate3d(-50%,0,0));
   pointer-events: none;
+  input { display: none; }
 }
 
 .row {
