@@ -116,13 +116,6 @@
     width: 100%;
     pointer-events: none;
   }
-  &:empty:before {
-    display: block;
-    text-align: center;
-    padding: 15px;
-    content: "There's nothing in this list. Yet.";
-    font-size: 13px;
-  }
 }
 .row {
   cursor: pointer;

@@ -4,7 +4,20 @@ feature 'using the phonebook' do
     mock_sign_in
   end
 
-  scenario 'to manage people do', js: true
+  scenario 'to manage people do', js: true do
+    visit phonebook_root_path
+    tap_people_tab
+    should_see_people
+  end
+
+  def tap_people_tab
+    find("#people-tab").click
+    binding.pry
+  end
+
+  def should_see_people
+    expect(page).to have_content "People"
+  end
   #scenario 'to manage engagements do', js: true do
     #visit phonebook_root_path
     #should_see_engagements_list

@@ -3,16 +3,19 @@ Phonebook.Views.Base ||= {}
 class Phonebook.Views.Base.SearchView extends Backbone.View
   initialize: (args) ->
     @showing = false
-    @$input = $("<input name='q' type='text' placeholder='Search...' >")
+    @$input = $("<input autocorrect='off' autocapitalize='off' autocomplete='off' name='q' type='text' placeholder='Search' >")
     @collection = args?.collection
-    @listenTo Backbone, 'people:show', @hide
+    @listenTo Backbone, args?.hidingEvents, (event) -> @$input.blur()
     throw 'SearchView needs a collection to search' unless @collection
 
   events:
     'keyup' : 'throttledSearch'
+    'blur input' : 'onBlur'
 
   reset: ->
-    @$input.val('').blur()
+    @q = null
+    @$input.val('')
+    @$input.blur() if @$input.is(':focus')
     @collection.trigger('reset')
 
   render: ->
@@ -35,6 +38,7 @@ class Phonebook.Views.Base.SearchView extends Backbone.View
     if @showing then @hide() else @show()
 
   show: ->
+    @collection.trigger 'filtered', []
     @showing = true
     @$el.addClass('active')
     @$el.parent().addClass('search-active')
@@ -44,3 +48,7 @@ class Phonebook.Views.Base.SearchView extends Backbone.View
     @$el.removeClass('active')
     @reset()
     @$el.parent().removeClass('search-active')
+
+  onBlur: ->
+    if !@q? || @q.length == 0
+      @hide()

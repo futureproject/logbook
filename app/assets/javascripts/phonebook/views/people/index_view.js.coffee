@@ -13,6 +13,7 @@ class Phonebook.Views.People.IndexView extends Backbone.View
     @searchBar = new Phonebook.Views.Base.SearchView
       collection: @collection
       container: @$el.find('.titlebar')
+      hidingEvents: 'people:show'
 
   template: JST['phonebook/templates/people/index']
 
@@ -63,8 +64,9 @@ class Phonebook.Views.People.IndexView extends Backbone.View
     event.preventDefault()
     if @searchBar.showing then @toggleSearchBar() else Backbone.trigger('people:new')
 
-  toggleSearchBar: ->
+  toggleSearchBar: () ->
     @searchBar.toggle()
 
-  focusSearchBar: ->
+  focusSearchBar: (event) ->
+    event.preventDefault()
     @searchBar.$input.focus() if @searchBar.showing
