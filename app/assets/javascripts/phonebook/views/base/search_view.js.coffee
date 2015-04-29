@@ -2,21 +2,15 @@ Phonebook.Views.Base ||= {}
 
 class Phonebook.Views.Base.SearchView extends Backbone.View
   initialize: (args) ->
-    @showing = false
-    @$input = $("<input autocorrect='off' autocapitalize='off' autocomplete='off' name='q' type='text' placeholder='Search' >")
     @collection = args?.collection
-    @listenTo Backbone, args?.hidingEvents, (event) -> @$input.blur()
+    @listenTo Backbone, args?.enablingEvents, @enable
+    @listenTo Backbone, args?.disablingEvents, @disable
     throw 'SearchView needs a collection to search' unless @collection
 
   events:
     'keyup' : 'throttledSearch'
-    'blur input' : 'onBlur'
-
-  reset: ->
-    @q = null
-    @$input.val('')
-    @$input.blur() if @$input.is(':focus')
-    @collection.trigger('reset')
+    'focus' : 'onfocus'
+    #'blur' : 'reset'
 
   render: ->
     @$el.html @$input
@@ -24,31 +18,26 @@ class Phonebook.Views.Base.SearchView extends Backbone.View
 
   throttledSearch: _.debounce((e) ->
     return if e.keyCode? && e.keyCode == 13 #don't listen to the enter key!
-    @q = @$input.val()
+    @q = @$el.val()
     @search()
   , 200)
 
   search: ->
     collection = @collection.fullCollection || @collection
     results = collection.filter (person) =>
-      person.get('name').toLowerCase().match(@q.toLowerCase())
+      name = ("#{person.get('first_name')} #{person.get('last_name')}").toLowerCase()
+      name.match(@q.toLowerCase())
     @collection.trigger 'filtered', results
 
-  toggle: ->
-    if @showing then @hide() else @show()
+  onfocus: ->
+    @collection.trigger('reset') if @$el.val().length > 0
+    @$el.val('')
 
-  show: ->
-    @collection.trigger 'filtered', []
-    @showing = true
-    @$el.addClass('active')
-    @$el.parent().addClass('search-active')
+  enable: ->
+    window.setTimeout =>
+      @$el.removeAttr('disabled')
+    , 500
 
-  hide: ->
-    @showing = false
-    @$el.removeClass('active')
-    @reset()
-    @$el.parent().removeClass('search-active')
+  disable: () ->
+    @$el.attr('disabled', 'disabled').blur()
 
-  onBlur: ->
-    if !@q? || @q.length == 0
-      @hide()
