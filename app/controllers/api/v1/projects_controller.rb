@@ -5,7 +5,7 @@ class Api::V1::ProjectsController < Api::V1::BaseController
   # GET /api/v1/projects
   # GET /api/v1/projects.json
   def index
-    @projects = current_user.projects.order('id DESC')
+    @projects = current_user.projects.order('updated_at DESC', 'id DESC')
   end
 
   # GET /api/v1/projects/1

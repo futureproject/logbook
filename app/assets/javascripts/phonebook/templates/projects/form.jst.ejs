@@ -1,0 +1,58 @@
+<form>
+  <div class="field">
+    <label for="first_name">First</label>
+    <input id="first_name" name="first_name" type="text">
+  </div>
+  <div class="field">
+    <label for="last_name">Last</label>
+    <input id="last_name" name="last_name" type="text">
+  </div>
+  <div class="field">
+    <label for="role">Role</label>
+    <select id="role" name="role">
+      <option value="student">Student</option>
+      <option value="teacher">Teacher</option>
+      <option value="staff">Staff</option>
+    </select>
+  </div>
+  <div class="field">
+    <label for="grade">Grade</label>
+    <select id="grade" name="grade">
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+      <option value="10">10</option>
+      <option value="11">11</option>
+      <option value="12">12</option>
+    </select>
+  </div>
+  <div class="field checkbox-field">
+    <label for="dream_team">Dream Team</label>
+      <input id="dream_team" type='checkbox' name="dream_team" />
+    </label>
+  </div>
+  <div class="field">
+    <label for="phone">Phone</label>
+    <input id="phone" name="phone" type="tel">
+  </div>
+  <div class="field">
+    <label for="email">Email</label>
+    <input id="email" name="email" type="email">
+  </div>
+  <div class="field">
+    <label for="school_id">School</label>
+    <select id="person_school_id" name="school_id">
+      <option value>Citywide</option>
+      <% for (var i=0; i < Phonebook.schools.length; i++) { %>
+        <option value="<%= Phonebook.schools.models[i].get('id') %>">
+          <%= Phonebook.schools.models[i].get('name') %>
+        </option>
+      <% } %>
+    </select>
+  </div>
+  <div class="field">
+    <label for="notes">Notes</label>
+    <textarea name='notes'></textarea>
+  </div>
+</form>

@@ -25,6 +25,9 @@
       padding: 0;
       -webkit-transition: -webkit-transform .3s;
     }
+    &.searching {
+      @include transform(rotate(-45deg));
+    }
   }
 }
 input.titlebar-search {
@@ -32,8 +35,7 @@ input.titlebar-search {
   z-index: 4;
   top: 0;
   left: 0;
-  right: 60px;
-  width: calc(100% - 45px);
+  width: calc(100% - 75px);
   bottom: 1px;
   padding: 5px 5px 5px 50px;
   -webkit-transition: all .3s;

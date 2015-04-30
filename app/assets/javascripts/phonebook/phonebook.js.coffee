@@ -13,7 +13,6 @@
 #= require_tree ./views
 #= require_tree ./controllers
 #= require_tree ./routers
-#= require_tree ./presenters
 
 window.ds ||= {}
 

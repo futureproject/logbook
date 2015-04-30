@@ -6,6 +6,8 @@ class Phonebook.Controllers.AppController extends Backbone.View
         el: '#phonebook-engagements'
       people: new Phonebook.Controllers.PeopleController
         el: '#phonebook-people'
+      projects: new Phonebook.Controllers.ProjectsController
+        el: '#phonebook-projects'
     @listenTo Backbone, 'controller:activate', @activateController
 
   render: ->

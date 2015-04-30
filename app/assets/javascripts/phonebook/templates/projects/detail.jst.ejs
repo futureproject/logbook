@@ -1,0 +1,55 @@
+<div class='titlebar'>
+  <h1>Person</h1>
+  <div class='l-menu'>
+    <div class='button back'>Back</div>
+  </div>
+  <div class='r-menu'>
+    <div class='button edit'>Edit</div>
+  </div>
+</div>
+<div class='person-detail detail-content scrollable'>
+  <div>
+
+    <header>
+      <h2 class='person-name'><%= first_name %> <%= last_name %></h2>
+      <div class='engagement-school'><%= school_name %></div>
+      <span><%= grade ? (grade + "th Grade") : "No Grade" %></span>
+      <span><%= role %></span>
+    </header>
+
+    <div class='person-contact card'>
+      <div class='links-table'>
+        <% if (phone) { %>
+          <a href="tel:<%= phone %>">
+            <div class='icon icon-call'></div>
+            Call
+          </a>
+          <a href="sms:<%= phone %>">
+            <div class='icon icon-message'></div>
+            Text
+          </a>
+        <% } else { %>
+          <div class='trigger-edit'>
+            <div class='icon icon-call'></div>
+            Add Phone
+          </div>
+        <% } %>
+        <% if (email) { %>
+          <a href="mailto:<%= email %>">
+            <div class='icon icon-email'></div>
+            Email
+          </a>
+        <% } else { %>
+          <div class='trigger-edit'>
+            <div class='icon icon-email'></div>
+            Add Email
+          </div>
+        <% } %>
+      </div>
+    </div>
+    <div class='person-notes card'>
+      <pre><%= notes || "No notes" %></pre>
+    </div>
+
+  </div>
+</div>

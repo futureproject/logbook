@@ -1,6 +1,6 @@
-Phonebook.Views.People ||= {}
+Phonebook.Views.Projects ||= {}
 
-class Phonebook.Views.People.IndexView extends Backbone.View
+class Phonebook.Views.Projects.IndexView extends Backbone.View
   initialize: (args) ->
     @$container = args.container
     @collection = args.collection
@@ -10,14 +10,14 @@ class Phonebook.Views.People.IndexView extends Backbone.View
     @rendered = false
     @table = new Phonebook.Views.Base.TableView(
       collection: @collection
-      item_view: Phonebook.Views.People.RowView
+      item_view: Phonebook.Views.Projects.RowView
     )
     @searchBar = new Phonebook.Views.Base.SearchView
       collection: @collection
-      enablingEvents: 'people:index'
-      disablingEvents: 'people:show'
+      enablingEvents: 'projects:index'
+      disablingEvents: 'projects:show'
 
-  template: JST['phonebook/templates/people/index']
+  template: JST['phonebook/templates/projects/index']
 
   className: 'table'
 
@@ -29,8 +29,8 @@ class Phonebook.Views.People.IndexView extends Backbone.View
   render: ->
     @$el.html @template
     @$container.append @$el
-    @table.setElement('#people-table').render()
-    @searchBar.setElement('#people-search-field')
+    @table.setElement('#projects-table').render()
+    @searchBar.setElement('#projects-search-field')
     @rendered = true
 
   renderOnce: ->
@@ -47,7 +47,7 @@ class Phonebook.Views.People.IndexView extends Backbone.View
 
   show: ->
     @renderOnce()
-    Backbone.trigger 'people:router:update', 'phonebook/people'
+    Backbone.trigger 'projects:router:update', 'phonebook/projects'
     @$el.addClass('active')
     @unslide()
 
@@ -61,9 +61,9 @@ class Phonebook.Views.People.IndexView extends Backbone.View
     @slide() if type == 'detail'
 
   newOrCloseSearch: ->
-    if @searching then @searchBar.$el.blur() else Backbone.trigger 'people:new'
-  onSearchIn: (e) ->
+    if @searching then @searchBar.$el.blur() else Backbone.trigger 'projects:new'
 
+  onSearchIn: (e) ->
     @searching = true
     @$el.find('.button.new').addClass('searching')
   onSearchOut: (e) ->

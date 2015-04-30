@@ -7,6 +7,8 @@ ds.apiHelper =
     asset: (id) -> "/api/v1/assets/#{id}"
     people:  -> "/api/v1/people"
     person: (id) -> "/api/v1/people/#{id}"
+    projects:  -> "/api/v1/projects"
+    project: (id) -> "/api/v1/projects/#{id}"
     schools: -> "/api/v1/schools"
 
   urlFor: (path, args) ->

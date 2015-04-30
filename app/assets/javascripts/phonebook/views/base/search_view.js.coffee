@@ -10,7 +10,7 @@ class Phonebook.Views.Base.SearchView extends Backbone.View
   events:
     'keyup' : 'throttledSearch'
     'focus' : 'onfocus'
-    #'blur' : 'reset'
+    'blur' : 'onblur'
 
   render: ->
     @$el.html @$input
@@ -30,8 +30,12 @@ class Phonebook.Views.Base.SearchView extends Backbone.View
     @collection.trigger 'filtered', results
 
   onfocus: ->
+    Backbone.trigger 'searchView:in', @
     @collection.trigger('reset') if @$el.val().length > 0
     @$el.val('')
+
+  onblur: ->
+    Backbone.trigger 'searchView:out', @
 
   enable: ->
     window.setTimeout =>

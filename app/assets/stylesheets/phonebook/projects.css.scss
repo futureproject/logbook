@@ -1,0 +1,8 @@
+#projects-tab.current {
+  color: $projects-color;
+}
+
+#phonebook-projects {
+  .titlebar, .row-timestamp, .card h4 { color: $projects-color; }
+}
+
