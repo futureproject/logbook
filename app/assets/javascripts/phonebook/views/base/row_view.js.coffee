@@ -18,8 +18,8 @@ class Phonebook.Views.Base.RowView extends Backbone.View
     Backbone.trigger 'row:touchstart', e
     @isScrolling = null
     @startPos =
-      x: e.originalEvent.touches?[0].screenX || e.screenX
-      y: e.originalEvent.touches?[0].screenY || e.screenY
+      x: e.originalEvent?.touches?[0].screenX || e.screenX
+      y: e.originalEvent?.touches?[0].screenY || e.screenY
       t: e.timeStamp
     @calculatePositions(e)
 
@@ -39,7 +39,7 @@ class Phonebook.Views.Base.RowView extends Backbone.View
     e.preventDefault()
     e.stopPropagation()
     @diff.t = e.timeStamp - @startPos.t
-    distanceMoved = Math.sqrt(@diff.x * @diff.x + @diff.y * @diff.y)
+    distanceMoved = Math.sqrt(@diff.x * @diff.x + @diff.y * @diff.y) || 0
     @trigger('tapped') if (distanceMoved == 0 && @diff.t < 300 && @canTap)
 
   beforeOpen: (view) ->
@@ -63,8 +63,8 @@ class Phonebook.Views.Base.RowView extends Backbone.View
   calculatePositions: (e) ->
 
     @currentPos =
-      x: e.originalEvent.touches?[0].screenX || e.screenX
-      y: e.originalEvent.touches?[0].screenY || e.screenY
+      x: e.originalEvent?.touches?[0].screenX || e.screenX
+      y: e.originalEvent?.touches?[0].screenY || e.screenY
       t: e.timeStamp
 
     @diff =

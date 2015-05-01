@@ -6,7 +6,7 @@ feature 'using the phonebook' do
 
   scenario 'to manage people do', js: true do
     visit phonebook_root_path
-    tap_people_tab
+    tap_element('#people-tab')
     should_see_people
   end
 

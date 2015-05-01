@@ -7,40 +7,32 @@ feature 'using the phonebook' do
   scenario 'to manage engagements do', js: true do
     visit phonebook_root_path
     should_see_engagements_list
+  end
 
-    #scenario 'to view a particular engagement', js: true do
+  scenario 'to view a particular engagement', js: true do
     visit phonebook_root_path
     tap_first_engagement
     should_see_engagement_named 'Gotham City High'
+  end
 
-    #scenario 'to create a new engagement', js:true do
+  scenario 'to create a new engagement', js:true do
     visit phonebook_root_path
-    titlebar = find('#phonebook-engagements .titlebar')
-    within titlebar do
-      find('.new').click
-    end
-    new_view = find('#phonebook-engagements .detail-new')
-    within new_view do
-      first('.attendance').click
-    end
+    tap_element "#phonebook-engagements .titlebar .new"
+    first('#phonebook-engagements .detail-new .attendance').click
     take_attendance
-    within new_view do
-      find('.button.done').click
-    end
+    tap_element '#phonebook-engagements .detail-new .done'
     should_see_engagement_named('Coaching Session')
+  end
 
-    #scenario 'editing', js: true do
+  scenario 'editing', js: true do
     visit phonebook_root_path
     tap_first_engagement
-    titlebar = find('#phonebook-engagements .detail-show .titlebar')
-    within titlebar do
-      find('.edit').click
-    end
+    tap_element('#phonebook-engagements .detail-show .titlebar .edit')
     edit_view = find('#phonebook-engagements .detail-edit')
     within edit_view do
       fill_in 'notes', with: 'Best meeting ever!'
-      find('.button.done').click
     end
+    tap_element '#phonebook-engagements .detail-edit .done'
     expect(page).to have_content 'Best meeting ever!'
   end
 
@@ -49,21 +41,19 @@ feature 'using the phonebook' do
       fill_in 'q', with: 'Dick'
       within '#engagement-search-results' do
         expect(page).to have_content 'Dick'
-        first('.row').click
+        tap_element("#engagement-search-results .row:first-child")
       end
       fill_in 'q', with: 'Selena Kyle'
       within '#engagement-search-results' do
         expect(page).to have_content 'Selena'
-        first('.row').click
+        tap_element("#engagement-search-results .row:first-child")
       end
       first('.done').click
     end
   end
 
   def tap_first_engagement
-    within '#phonebook-engagements .table' do
-      first('.row').click
-    end
+    tap_element('#phonebook-engagements .table .row:first-child')
   end
 
   def should_see_engagements_list
