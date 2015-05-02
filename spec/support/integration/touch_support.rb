@@ -1,5 +1,6 @@
 module TouchSupport
   def tap_element(selector)
+    find(selector)
     page.driver.execute_script "$('#{selector}').trigger('touchstart', new($.Event))"
     page.driver.execute_script "$('#{selector}').trigger('touchend', new($.Event))"
   end

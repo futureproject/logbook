@@ -1,12 +1,12 @@
-Phonebook.Views.People ||= {}
+Phonebook.Views.Projects ||= {}
 
-class Phonebook.Views.People.NewView extends Backbone.View
+class Phonebook.Views.Projects.NewView extends Backbone.View
   initialize: (args) ->
     @$container = args.container
-    @model = new Phonebook.Models.Person
+    @model = new Phonebook.Models.Project
     @listen()
 
-  template: JST['phonebook/templates/people/new']
+  template: JST['phonebook/templates/projects/new']
 
   className: 'detail detail-new'
 
@@ -19,7 +19,7 @@ class Phonebook.Views.People.NewView extends Backbone.View
     e.preventDefault()
     @model.destroy()
     @hide()
-    Backbone.trigger 'people:index'
+    Backbone.trigger 'projects:index'
 
   listen: ->
     #@listenTo @model, 'change', @render
@@ -30,8 +30,8 @@ class Phonebook.Views.People.NewView extends Backbone.View
     @render()
     @$el.one 'webkitAnimationEnd', =>
       @$el.removeClass(animation)
-    Backbone.trigger 'people:router:update', 'new'
-    Backbone.trigger 'people:views:shown', 'modal'
+    Backbone.trigger 'projects:router:update', 'new'
+    Backbone.trigger 'projects:views:shown', 'modal'
 
   hide: (animation) ->
     animation ||= 'slide-out-vertical'
@@ -39,19 +39,19 @@ class Phonebook.Views.People.NewView extends Backbone.View
       @model?.unset('selected')
       @remove()
     )
-    Backbone.trigger('people:views:hidden', @)
+    Backbone.trigger('projects:views:hidden', @)
 
   submitForm: (e) ->
     e.preventDefault()
     e.stopPropagation()
     @$el.find('form').trigger 'submit'
     @hide()
-    Backbone.trigger 'people:show', @model, 'fade-in'
+    Backbone.trigger 'projects:show', @model, 'fade-in'
 
   render: ->
     @$el.html @template @model.tplAttrs()
-    @form = new Phonebook.Views.People.FormView(
-      el: '#new-person-form'
+    @form = new Phonebook.Views.Projects.FormView(
+      el: '#new-project-form'
       model: @model
     ).render()
 

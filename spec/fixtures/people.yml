@@ -2,16 +2,19 @@ dick:
   first_name: Dick
   last_name: Grayson
   school: gotham_city_high
+  user: bruce
   dream_team: true
 
 tim:
   first_name: Tim
   last_name: Drake
   school: gotham_city_high
+  user: bruce
   dream_team: true
 
 alfred:
   first_name: Alfred
   last_name: Pennyworth
   school: gotham_city_high
+  user: bruce
   dream_team: true

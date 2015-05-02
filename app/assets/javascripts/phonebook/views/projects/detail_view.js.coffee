@@ -1,29 +1,25 @@
-Phonebook.Views.People ||= {}
+Phonebook.Views.Projects ||= {}
 
-class Phonebook.Views.People.DetailView extends Phonebook.Views.Base.DetailView
+class Phonebook.Views.Projects.DetailView extends Phonebook.Views.Base.DetailView
 
-  initialize: ->
-    @fullyLoaded = false
-    super
-
-  template: JST['phonebook/templates/people/detail']
+  template: JST['phonebook/templates/projects/detail']
 
   listen: ->
     @listenTo @model, 'change', @render
     @events['touchend .edit'] = (e) ->
       e.preventDefault()
-      Backbone.trigger 'people:edit', @model
+      Backbone.trigger 'projects:edit', @model
     @events['click .trigger-edit'] = (e) ->
       e.preventDefault()
-      Backbone.trigger 'people:edit', @model
+      Backbone.trigger 'projects:edit', @model
 
   show: (animation) ->
-    Backbone.trigger 'people:router:update', (@model.id || @model.cid)
-    Backbone.trigger 'people:views:shown', 'detail'
+    Backbone.trigger 'projects:router:update', (@model.id || @model.cid)
+    Backbone.trigger 'projects:views:shown', 'detail'
     super
 
   hide: (animation) ->
-    Backbone.trigger('people:views:hidden', @)
+    Backbone.trigger('projects:views:hidden', @)
     super
 
   renderSubviews: ->
@@ -31,5 +27,5 @@ class Phonebook.Views.People.DetailView extends Phonebook.Views.Base.DetailView
 
   back: (e) ->
     e.stopPropagation()
-    Backbone.trigger 'people:index'
+    Backbone.trigger 'projects:index'
 

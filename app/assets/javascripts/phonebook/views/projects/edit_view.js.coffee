@@ -1,11 +1,11 @@
-Phonebook.Views.People ||= {}
+Phonebook.Views.Projects ||= {}
 
-class Phonebook.Views.People.EditView extends Backbone.View
+class Phonebook.Views.Projects.EditView extends Backbone.View
   initialize: (args) ->
     @$container = args.container
     @listen()
 
-  template: JST['phonebook/templates/people/edit']
+  template: JST['phonebook/templates/projects/edit']
 
   className: 'detail detail-edit'
 
@@ -27,16 +27,16 @@ class Phonebook.Views.People.EditView extends Backbone.View
     @render()
     @$el.one 'webkitAnimationEnd', =>
       @$el.removeClass(animation)
-    Backbone.trigger 'people:router:update', @model.get('id') + "/edit"
-    Backbone.trigger 'people:views:shown', 'detail'
+    Backbone.trigger 'projects:router:update', @model.get('id') + "/edit"
+    Backbone.trigger 'projects:views:shown', 'detail'
 
   hide: (animation) ->
     animation ||= 'fade-out'
     @$el.addClass(animation).one('webkitAnimationEnd', () =>
       @remove()
     )
-    Backbone.trigger('people:views:hidden', @)
-    Backbone.trigger 'people:router:update', @model.get('id')
+    Backbone.trigger('projects:views:hidden', @)
+    Backbone.trigger 'projects:router:update', @model.get('id')
 
   submitForm: (e) ->
     e.preventDefault()
@@ -47,8 +47,8 @@ class Phonebook.Views.People.EditView extends Backbone.View
   render: ->
     console.log 'rendering edit'
     @$el.html @template @model.tplAttrs()
-    @form = new Phonebook.Views.People.FormView(
-      el: '#edit-person-form'
+    @form = new Phonebook.Views.Projects.FormView(
+      el: '#edit-project-form'
       model: @model
     ).render()
 

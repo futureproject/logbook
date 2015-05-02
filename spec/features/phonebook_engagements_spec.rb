@@ -4,7 +4,7 @@ feature 'using the phonebook' do
     mock_sign_in
   end
 
-  scenario 'to manage engagements do', js: true do
+  scenario 'to view engagements do', js: true do
     visit phonebook_root_path
     should_see_engagements_list
   end

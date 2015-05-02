@@ -1,10 +1,10 @@
-Phonebook.Views.People ||= {}
+Phonebook.Views.Projects ||= {}
 
-class Phonebook.Views.People.FormView extends Backbone.View
+class Phonebook.Views.Projects.FormView extends Backbone.View
   initialize: ->
-    @model ||= new Phonebook.Models.Person
+    @model ||= new Phonebook.Models.Project
 
-  template: JST['phonebook/templates/people/form']
+  template: JST['phonebook/templates/projects/form']
 
   events: ->
     'focus form' : (e) -> $('body').addClass('focusin')
@@ -23,7 +23,7 @@ class Phonebook.Views.People.FormView extends Backbone.View
     data = Backbone.Syphon.serialize @
     @model.save data,
       success: (e) =>
-        Backbone.trigger 'people:saved', @model
+        Backbone.trigger 'projects:saved', @model
       error: (model) =>
         console.log model
 

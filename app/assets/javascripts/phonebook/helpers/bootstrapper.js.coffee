@@ -8,9 +8,11 @@ ds.bootstrapper =
       reset: true
       remote: false
       success: ->
+        console.log "#{collection.constructor.name} synced from localStorage"
         $('.loading').remove()
 
   loadRemote: (collection) ->
+    console.log collection
     collection.syncDirtyAndDestroyed()
     collection.fetch
       reset: true
