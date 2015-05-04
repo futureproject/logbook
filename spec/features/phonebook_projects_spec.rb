@@ -27,7 +27,7 @@ feature 'using the phonebook' do
     should_see_project_named('Design a line launcher')
   end
 
-  scenario 'editing', js: true do
+  scenario 'to edit a project', js: true do
     visit phonebook_root_path
     tap_element('#projects-tab')
     tap_element('#phonebook-projects .table .row:first-child')

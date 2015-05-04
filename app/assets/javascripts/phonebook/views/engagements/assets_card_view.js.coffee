@@ -2,12 +2,15 @@ Phonebook.Views.Engagements ||= {}
 
 class Phonebook.Views.Engagements.AssetsCardView extends Backbone.View
   initialize: ->
-    @model.assetsCollection ||= new Phonebook.Collections.AssetsCollection(@model.get('assets'))
+    @listenTo @model, 'change', @render
+    @model.assetsCollection = new Phonebook.Collections.AssetsCollection
+    @render()
     @listenTo @model.assetsCollection, 'add reset', @renderAssets
 
   template: JST['phonebook/templates/engagements/assets_card']
 
   render: ->
+    @model.assetsCollection.reset @model.get('assets')
     @$thumbs = $('<div class="thumbnails" />')
     @renderAssets()
     @$el.html(@template @model.tplAttrs())

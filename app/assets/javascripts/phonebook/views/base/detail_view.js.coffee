@@ -3,6 +3,9 @@ Phonebook.Views.Base ||= {}
 class Phonebook.Views.Base.DetailView extends Backbone.View
   initialize: (args) ->
     @$container = args.container
+    @render()
+    @initSubViews()
+
     @listen()
 
   className: 'detail detail-show'
@@ -15,12 +18,19 @@ class Phonebook.Views.Base.DetailView extends Backbone.View
 
   listen: ->
 
+  initSubViews: ->
+    @subViews ||= {}
+    #header view renders automatically
+    @subViews.header = new Phonebook.Views.Base.ModelView
+      model: @model
+      el: @el.querySelector('header')
+      template: @header_template
+
   show: (animation) ->
     console.log 'rendering detail view'
     animation ||= 'slide-in-horizontal'
     @$container.append @$el.addClass(animation)
     Backbone.trigger 'view:shown', 'detail'
-    @render()
     @$el.one 'webkitAnimationEnd', =>
       @$el.removeClass(animation)
       @loadMore()
@@ -34,13 +44,10 @@ class Phonebook.Views.Base.DetailView extends Backbone.View
   render: ->
     @$el.html(@template @model.tplAttrs())
     @$el.find('.scrollable').scrollTop(1)
-    @
+    @trigger 'rendered'
 
   loadMore: ->
-    @model.fetch
-      success: => @renderSubviews()
-
-  renderSubviews: ->
+    @model.fetch()
 
   back: (e) ->
     e.stopPropagation()

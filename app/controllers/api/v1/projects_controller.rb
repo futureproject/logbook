@@ -5,7 +5,16 @@ class Api::V1::ProjectsController < Api::V1::BaseController
   # GET /api/v1/projects
   # GET /api/v1/projects.json
   def index
-    @projects = current_user.projects.order('updated_at DESC', 'id DESC')
+    # return all of Newark's projects if the user is assigned to Newark
+    if current_user.site_id == 5
+      @projects = Site.find(5).projects
+    # otherwise, return their school's projects
+    elsif current_user.school
+      @projects = current_user.projects
+    else
+      @projects = Project.all
+    end
+    @projects = @projects.order('updated_at DESC', 'id DESC')
   end
 
   # GET /api/v1/projects/1

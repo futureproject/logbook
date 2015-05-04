@@ -1,11 +1,10 @@
 Phonebook.Views.Projects ||= {}
 
 class Phonebook.Views.Projects.DetailView extends Phonebook.Views.Base.DetailView
-
   template: JST['phonebook/templates/projects/detail']
+  header_template: JST['phonebook/templates/projects/header']
 
   listen: ->
-    @listenTo @model, 'change', @render
     @events['touchend .edit'] = (e) ->
       e.preventDefault()
       Backbone.trigger 'projects:edit', @model
@@ -21,9 +20,6 @@ class Phonebook.Views.Projects.DetailView extends Phonebook.Views.Base.DetailVie
   hide: (animation) ->
     Backbone.trigger('projects:views:hidden', @)
     super
-
-  renderSubviews: ->
-    console.log @model.attributes
 
   back: (e) ->
     e.stopPropagation()

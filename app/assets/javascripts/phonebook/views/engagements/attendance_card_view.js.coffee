@@ -2,7 +2,8 @@ Phonebook.Views.Engagements ||= {}
 
 class Phonebook.Views.Engagements.AttendanceCardView extends Backbone.View
   initialize: ->
-    @listenTo @model, 'change:attendees change:headcount', @render
+    @render()
+    @listenTo @model, 'change', @render
 
   events:
     'click' : 'showModal'
@@ -11,11 +12,11 @@ class Phonebook.Views.Engagements.AttendanceCardView extends Backbone.View
 
   render: ->
     $list = $('<ul class="columned-list" />')
-    attendees = @model.get('attendees')
+    attendees = @model.get('attendees') || []
     for attendee in attendees
       $list.append "<li class='person-name'>#{attendee.first_name} #{attendee.last_name}</li>"
     @$el.html(@template @model.tplAttrs())
-    @$el.append($list) unless attendees?.length < 1
+    @$el.append($list)
     @
 
   showModal: (e) ->

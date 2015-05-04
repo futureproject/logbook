@@ -41,7 +41,7 @@ gem 'puma'
 gem 'aws-sdk'
 
 # Simple file attatchments
-gem 'paperclip', github: 'thoughtbot/paperclip'
+gem "paperclip", "~> 4.2"
 
 # Oauth stuff, e.g. Google Apps and Facebook
 gem 'oauth'
