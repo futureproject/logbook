@@ -19,7 +19,7 @@ class Phonebook.Views.Projects.EditView extends Backbone.View
     @hide()
 
   listen: ->
-    #@listenTo @model, 'change', @render
+    @listenTo Backbone, 'projects:saved', => @hide()
 
   show: (animation) ->
     animation ||= 'fade-in'

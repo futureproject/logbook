@@ -22,7 +22,7 @@ class Phonebook.Views.Projects.NewView extends Backbone.View
     Backbone.trigger 'projects:index'
 
   listen: ->
-    #@listenTo @model, 'change', @render
+    @listenTo Backbone, 'projects:saved', => @hide()
 
   show: (animation) ->
     animation ||= 'slide-in-vertical'

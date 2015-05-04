@@ -22,7 +22,7 @@ class Phonebook.Views.People.NewView extends Backbone.View
     Backbone.trigger 'people:index'
 
   listen: ->
-    #@listenTo @model, 'change', @render
+    @listenTo Backbone, 'people:saved', => @hide()
 
   show: (animation) ->
     animation ||= 'slide-in-vertical'

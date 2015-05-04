@@ -19,7 +19,7 @@ class Phonebook.Views.People.EditView extends Backbone.View
     @hide()
 
   listen: ->
-    #@listenTo @model, 'change', @render
+    @listenTo Backbone, 'people:saved', => @hide()
 
   show: (animation) ->
     animation ||= 'fade-in'
@@ -42,7 +42,6 @@ class Phonebook.Views.People.EditView extends Backbone.View
     e.preventDefault()
     e.stopPropagation()
     @$el.find('form').trigger 'submit'
-    @hide()
 
   render: ->
     console.log 'rendering edit'

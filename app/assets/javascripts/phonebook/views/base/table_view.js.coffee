@@ -6,7 +6,7 @@ class Phonebook.Views.Base.TableView extends Backbone.View
     @item_view = args?.item_view
     throw "TableView needs collection and item view" unless @collection && @item_view
     @listenTo @collection, 'change:selected', @clearSelection
-    @listenTo @collection, 'reset add', @render
+    @listenTo @collection, 'remove reset add', @render
     @listenTo @collection, 'filtered', @filter
 
   events: ->

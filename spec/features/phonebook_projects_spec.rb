@@ -40,6 +40,8 @@ feature 'using the phonebook' do
     expect(page).to have_content 'Complete'
   end
 
+  scenario 'deleting', js: true
+
   def should_see_projects_list
     expect(page).to have_content 'Projects'
     expect(find('.tab-bar')).to have_selector('#projects-tab.current')

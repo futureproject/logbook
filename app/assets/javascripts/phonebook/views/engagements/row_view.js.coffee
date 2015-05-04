@@ -13,7 +13,6 @@ class Phonebook.Views.Engagements.RowView extends Phonebook.Views.Base.RowView
 
   listen: ->
     @listenTo @model, 'change', @render
-    @listenTo @model, 'destroy', @remove
     @listenTo @, 'tapped', @ontap
     @events['click .duplicate'] = @duplicate
     @events['click .delete'] = @delete
@@ -32,9 +31,4 @@ class Phonebook.Views.Engagements.RowView extends Phonebook.Views.Base.RowView
     @close()
     e.preventDefault()
     e.stopPropagation()
-    @el.style['-webkit-transition-property'] = "-webkit-transform"
-    @el.style['-webkit-transition-duration'] = '.5s'
-    @el.style['-webkit-transform'] = 'translate3d(-200%,0,0)'
-    @$el.addClass('deleting').one('webkitTransitionEnd', =>
-      @model.destroy()
-    )
+    @model.destroy()

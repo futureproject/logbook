@@ -11,6 +11,7 @@ class Phonebook.Views.Engagements.FormView extends Backbone.View
     'blur form' : (e) -> $('body').removeClass('focusin')
     'submit' : 'submit'
     'click .attendance' : -> Backbone.trigger 'engagements:attendance', @model
+    'click .delete' : 'destroy'
     'change #kind' : (e) ->
       kind = $(e.target).val().toLowerCase().replace(' ', '-')
       @$el.find('form').attr('data-kind', kind)
@@ -31,3 +32,9 @@ class Phonebook.Views.Engagements.FormView extends Backbone.View
       error: (model) =>
         console.log model
 
+  destroy: ->
+    if (confirm("Are you sure you want to delete this engagement?"))
+      @model.destroy()
+      Backbone.trigger 'engagements:index'
+    else
+      return

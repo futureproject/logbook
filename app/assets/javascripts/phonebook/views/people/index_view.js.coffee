@@ -63,8 +63,8 @@ class Phonebook.Views.People.IndexView extends Backbone.View
 
   newOrCloseSearch: ->
     if @searching then @searchBar.$el.blur() else Backbone.trigger 'people:new'
-  onSearchIn: (e) ->
 
+  onSearchIn: (e) ->
     @searching = true
     @$el.find('.button.new').addClass('searching')
   onSearchOut: (e) ->

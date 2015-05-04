@@ -38,7 +38,7 @@ feature 'using the phonebook' do
     expect(page).to have_content 'Alfred is a great butler.'
   end
 
-
+  scenario 'deleting', js: true
 
   def should_see_person_named(name)
     show_view = find '#phonebook-people .detail-show'

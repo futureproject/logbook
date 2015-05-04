@@ -4,6 +4,7 @@ class Phonebook.Views.Base.RowView extends Backbone.View
   initialize: ->
     @listenTo Backbone, 'row:opened', @beforeOpen
     @listenTo Backbone, 'row:closed', @afterClose
+    @listenTo @model, 'destroy', @onDestroy
     @canTap = true
 
   events:
@@ -71,3 +72,11 @@ class Phonebook.Views.Base.RowView extends Backbone.View
       x: @currentPos.x - @startPos.x
       y: @currentPos.y - @startPos.y
       t: @currentPos.t - @startPos.t
+
+
+  onDestroy: ->
+    @el.style['-webkit-transition-property'] = "-webkit-transform"
+    @el.style['-webkit-transition-duration'] = '.5s'
+    @el.style['-webkit-transform'] = 'translate3d(-200%,0,0)'
+    console.log @$el.parent()
+    @$el.addClass('deleting').one('webkitTransitionEnd', => @remove() )

@@ -12,7 +12,8 @@ feature 'using the phonebook' do
   scenario 'to view a particular engagement', js: true do
     visit phonebook_root_path
     tap_first_engagement
-    should_see_engagement_named 'Gotham City High'
+    name = first('.engagement-name').text
+    should_see_engagement_named name
   end
 
   scenario 'to create a new engagement', js:true do
@@ -35,6 +36,8 @@ feature 'using the phonebook' do
     tap_element '#phonebook-engagements .detail-edit .done'
     expect(page).to have_content 'Best meeting ever!'
   end
+
+  scenario 'deleting', js: true
 
   def take_attendance
     within '.detail-attendance' do
