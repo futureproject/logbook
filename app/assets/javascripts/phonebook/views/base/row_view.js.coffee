@@ -36,8 +36,8 @@ class Phonebook.Views.Base.RowView extends Backbone.View
 
   ontouchend: (e) ->
     return if @isScrolling || !@startPos?
-    e.preventDefault()
-    e.stopPropagation()
+    #e.preventDefault()
+    #e.stopPropagation()
     @diff.t = e.timeStamp - @startPos.t
     distanceMoved = Math.sqrt(@diff.x * @diff.x + @diff.y * @diff.y) || 0
     @trigger('tapped') if (distanceMoved == 0 && @diff.t < 300 && @canTap)

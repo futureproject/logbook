@@ -11,6 +11,8 @@ class Api::V1::ProjectsController < Api::V1::BaseController
     # otherwise, return their school's projects
     elsif current_user.school
       @projects = current_user.projects
+    elsif current_user.site
+      @projects = current_user.site.projects
     else
       @projects = Project.all
     end
