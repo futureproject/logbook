@@ -5,6 +5,7 @@ class Phonebook.Views.Base.SearchView extends Backbone.View
     @collection = args?.collection
     @listenTo Backbone, args?.enablingEvents, @enable
     @listenTo Backbone, args?.disablingEvents, @disable
+    @searchAttrs = args.searchAttrs || ['name']
     throw 'SearchView needs a collection to search' unless @collection
 
   events:
@@ -24,9 +25,11 @@ class Phonebook.Views.Base.SearchView extends Backbone.View
 
   search: ->
     collection = @collection.fullCollection || @collection
-    results = collection.filter (person) =>
-      name = ("#{person.get('first_name')} #{person.get('last_name')}").toLowerCase()
-      name.match(@q.toLowerCase())
+    results = collection.filter (model) =>
+      searchString = ""
+      _.each @searchAttrs, (attr) -> searchString += model.get(attr) + " "
+      searchString.trim().toLowerCase().match(@q.toLowerCase())
+    console.log results
     @collection.trigger 'filtered', results
 
   onfocus: ->

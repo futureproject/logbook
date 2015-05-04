@@ -16,6 +16,7 @@ class Phonebook.Views.People.IndexView extends Backbone.View
       collection: @collection
       enablingEvents: 'people:index'
       disablingEvents: 'people:show'
+      searchAttrs: ['first_name', 'last_name']
 
   template: JST['phonebook/templates/people/index']
 
