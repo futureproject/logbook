@@ -7,6 +7,12 @@
   .detail-content header h2 {
     white-space: normal;
   }
+  .row-timestamp {
+    text-transform: capitalize;
+    font-size: 10px;
+  }
+  .project-status.complete { color: $light-green; }
+  .project-status.stalled { color: $light-red; }
 }
 
 
