@@ -64,7 +64,7 @@ class Api::V1::EngagementsController < Api::V1::BaseController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_engagement
-      @engagement = current_user.engagements.find(params[:id])
+      @engagement = Engagement.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

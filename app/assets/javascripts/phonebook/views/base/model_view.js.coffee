@@ -7,5 +7,8 @@ class Phonebook.Views.Base.ModelView extends Backbone.View
     @listenTo @model, 'change', @render
 
   render: ->
-    @$el.html(@template @model.tplAttrs())
+    try
+      @$el.html(@template @model.tplAttrs())
+    catch
+      @$el.html("<div class='loading'></div>")
 

@@ -1,7 +1,9 @@
 class Phonebook.Models.Project extends Backbone.Model
   urlRoot: ds.apiHelper.urlFor 'projects'
   defaults: ->
+    #leaders: []
     leader_ids: []
+    #participants: []
     participant_ids: []
     school_id: Phonebook.user.get('school_id')
 

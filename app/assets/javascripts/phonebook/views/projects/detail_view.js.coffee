@@ -5,6 +5,7 @@ class Phonebook.Views.Projects.DetailView extends Phonebook.Views.Base.DetailVie
   header_template: JST['phonebook/templates/projects/header']
 
   listen: ->
+    @model.on('change', () => console.log @model)
     @events['touchend .edit'] = (e) ->
       e.preventDefault()
       Backbone.trigger 'projects:edit', @model
@@ -24,4 +25,13 @@ class Phonebook.Views.Projects.DetailView extends Phonebook.Views.Base.DetailVie
   back: (e) ->
     e.stopPropagation()
     Backbone.trigger 'projects:index'
+
+  initSubViews: (e) ->
+    @subViews =
+      team_card: new Phonebook.Views.Base.ModelView
+        el: @el.querySelector('.project-team')
+        template: JST['phonebook/templates/projects/team_card']
+        model: @model
+    super
+
 
