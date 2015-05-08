@@ -14,6 +14,7 @@ class Phonebook.Controllers.ProjectsController extends Backbone.View
     @views.index ||= new Phonebook.Views.Projects.IndexView
       container: @$el
       collection: @collection
+      namespace: 'projects'
     @views.index.show()
     Backbone.trigger 'projects:bootstrap'
 
@@ -23,6 +24,7 @@ class Phonebook.Controllers.ProjectsController extends Backbone.View
       @views.show = new Phonebook.Views.Projects.DetailView
         model: project
         container: @$el
+        namespace: 'projects'
       @views.show.show(animation)
     @getModelById(id)
 

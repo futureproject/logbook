@@ -14,6 +14,7 @@ class Phonebook.Controllers.PeopleController extends Backbone.View
     @views.index ||= new Phonebook.Views.People.IndexView
       container: @$el
       collection: @collection
+      namespace: 'people'
     @views.index.show()
     Backbone.trigger 'people:bootstrap'
 
@@ -23,6 +24,7 @@ class Phonebook.Controllers.PeopleController extends Backbone.View
       @views.show = new Phonebook.Views.People.DetailView
         model: person
         container: @$el
+        namespace: 'people'
       @views.show.show(animation)
     @getModelById(id)
 

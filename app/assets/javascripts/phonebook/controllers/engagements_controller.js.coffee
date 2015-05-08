@@ -17,6 +17,7 @@ class Phonebook.Controllers.EngagementsController extends Backbone.View
     @views.index ||= new Phonebook.Views.Engagements.IndexView
       container: @$el
       collection: @collection
+      namespace: 'engagements'
     @views.index.show()
     Backbone.trigger 'engagements:bootstrap'
 
@@ -26,6 +27,7 @@ class Phonebook.Controllers.EngagementsController extends Backbone.View
       @views.show = new Phonebook.Views.Engagements.DetailView
         model: engagement
         container: @$el
+        namespace: 'engagements'
       @views.show.show(animation)
     @getModelById(id)
 
