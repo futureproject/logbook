@@ -26,7 +26,7 @@
     - cache 'v1/tabs' do
       #tabs
         %a{href: logbook_root_url, data: { unscoped: true } }
-          =image_tag asset_path('tfplogo.svg'), alt: 'The Future Project'
+          =image_tag 'tfplogo.svg', alt: 'The Future Project'
         %ul.tabs
           = nav_link_to "Overview", logbook_root_url, "ds-dashboard"
           = nav_link_to "People", logbook_people_path, "ds-people"
