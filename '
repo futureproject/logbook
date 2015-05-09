@@ -33,19 +33,22 @@
   position: absolute;
   top: 0;
   left: 0;
+  height: 100%;
   width: 100%;
   padding: 0 50px;
   input {
-    background: white;
-    height: 45px;
-    &:focus { outline: none; }
+    background: $base-border-color;
   }
   .r-menu {
+    position: absolute;
+    right: 0;
+    top: 0;
+    text-align: center;
+    line-height: 45px;
+    width: 45px;
     background: white;
-    bottom: 1px;
-    .button {
+    button {
       padding: 0;
-      text-align: center;
     }
   }
 }

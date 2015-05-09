@@ -56,6 +56,7 @@ class Phonebook.Views.Base.DetailView extends Backbone.View
 
   back: (e) ->
     e.stopPropagation()
+    e.preventDefault()
     Backbone.trigger "#{@namespace}:index"
 
   removeSubviews: ->

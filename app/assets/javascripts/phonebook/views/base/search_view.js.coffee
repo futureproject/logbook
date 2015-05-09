@@ -1,50 +1,38 @@
 Phonebook.Views.Base ||= {}
 
 class Phonebook.Views.Base.SearchView extends Backbone.View
+  template: JST['phonebook/templates/base/search']
   initialize: (args) ->
     @collection = args?.collection
-    @listenTo Backbone, args?.enablingEvents, @enable
-    @listenTo Backbone, args?.disablingEvents, @disable
+    @clonedCollection = _.clone @collection
+    @$container = args?.container
     @searchAttrs = args.searchAttrs || ['name']
     throw 'SearchView needs a collection to search' unless @collection
+    @render()
 
   events:
     'keyup' : 'throttledSearch'
     'focus' : 'onfocus'
     'blur' : 'onblur'
+    'touchend .r-menu': 'remove'
 
   render: ->
-    @$el.html @$input
-    @
+    @$container.html @$el.html(@template)
 
   throttledSearch: _.debounce((e) ->
     return if e.keyCode? && e.keyCode == 13 #don't listen to the enter key!
-    @q = @$el.val()
+    @q = @$el.find('input').val()
     @search()
   , 200)
 
   search: ->
-    collection = @collection.fullCollection || @collection
+    collection = @clonedCollection.fullCollection || @clonedCollection
     results = collection.filter (model) =>
       searchString = ""
       _.each @searchAttrs, (attr) -> searchString += model.get(attr) + " "
       searchString.trim().toLowerCase().match(@q.toLowerCase())
-    console.log results
-    @collection.trigger 'filtered', results
+    @collection.reset results
 
-  onfocus: ->
-    Backbone.trigger 'searchView:in', @
-    @collection.trigger('reset') if @$el.val().length > 0
-    @$el.val('')
-
-  onblur: ->
-    Backbone.trigger 'searchView:out', @
-
-  enable: ->
-    window.setTimeout =>
-      @$el.removeAttr('disabled')
-    , 500
-
-  disable: () ->
-    @$el.attr('disabled', 'disabled').blur()
-
+  remove: ->
+    @collection.reset @clonedCollection.models
+    super

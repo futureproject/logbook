@@ -1,4 +1,9 @@
-_manage Engagement Attendees as a collection
+_ tapping a search result should not repaginate collection
+_ allow passing of searchattrs on from index_view to base/tab_view
+_ get loading messages right on table views
+_ add Dream Team indicator to people
+
+_ manage Engagement Attendees as a collection
 
 _ Deleting a person association does not touch said person
 _ Rename filter_params scope_params, and maybe don't make them private

@@ -17,6 +17,7 @@ class Phonebook.Views.Base.TabView extends Backbone.View
     'touchend .new': (event) ->
       event.preventDefault()
       Backbone.trigger "#{@namespace}:new"
+    'click .icon-search': 'showSearch'
 
   listen: ->
     @listenTo Backbone, "#{@namespace}:views:shown", @onViewShow
@@ -48,3 +49,10 @@ class Phonebook.Views.Base.TabView extends Backbone.View
 
   hide: ->
     @$el.removeClass('active')
+
+  showSearch: (event) ->
+    @subViews.search = new Phonebook.Views.Base.SearchView
+      collection: @collection
+      container: @$el.find('.titlebar-search-container')
+    @subViews.search.$el.find('input').focus()
+

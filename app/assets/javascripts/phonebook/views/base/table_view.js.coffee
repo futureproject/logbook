@@ -7,7 +7,7 @@ class Phonebook.Views.Base.TableView extends Backbone.View
     throw "TableView needs collection and item view" unless @collection && @item_view
     @listenTo @collection, 'change:selected', @clearSelection
     @listenTo @collection, 'remove reset add', @render
-    @listenTo @collection, 'filtered', @filter
+    #@listenTo @collection, 'filtered', @filter
 
   events: ->
     'touchstart': 'loadNextPage'
