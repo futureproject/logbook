@@ -13,6 +13,7 @@ class Phonebook.Views.People.EditView extends Backbone.View
     'touchend .back': 'cancel'
     'touchend .done': 'submitForm'
     'touchmove .titlebar' : (e) -> e.preventDefault()
+    'click .delete' : 'destroy'
 
   cancel: (e) ->
     e.preventDefault()
@@ -57,3 +58,11 @@ class Phonebook.Views.People.EditView extends Backbone.View
 
   removeSubviews: ->
     @form?.remove()
+
+  destroy: ->
+    if (confirm("Are you sure you want to delete this person?"))
+      @model.destroy()
+      Backbone.trigger 'people:index'
+    else
+      return
+

@@ -10,8 +10,6 @@ class Phonebook.Views.Projects.FormView extends Backbone.View
     'focus form' : (e) -> $('body').addClass('focusin')
     'blur form' : (e) -> $('body').removeClass('focusin')
     'submit' : 'submit'
-    'click .delete' : 'destroy'
-    'submit' : 'submit'
 
   render: ->
     @$el.html @template @model.tplAttrs()
@@ -28,11 +26,3 @@ class Phonebook.Views.Projects.FormView extends Backbone.View
         Backbone.trigger 'projects:saved', @model
       error: (model) =>
         console.log model
-
-  destroy: ->
-    if (confirm("Are you sure you want to delete this project?"))
-      @model.destroy()
-      Backbone.trigger 'projects:index'
-    else
-      return
-

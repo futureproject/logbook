@@ -13,6 +13,7 @@ class Phonebook.Views.Projects.EditView extends Backbone.View
     'touchend .back': 'cancel'
     'touchend .done': 'submitForm'
     'touchmove .titlebar' : (e) -> e.preventDefault()
+    'click .delete' : 'destroy'
 
   cancel: (e) ->
     e.preventDefault()
@@ -58,3 +59,11 @@ class Phonebook.Views.Projects.EditView extends Backbone.View
 
   removeSubviews: ->
     @form?.remove()
+
+  destroy: ->
+    if (confirm("Are you sure you want to delete this project?"))
+      @model.destroy()
+      Backbone.trigger 'projects:index'
+    else
+      return
+

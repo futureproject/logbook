@@ -9,7 +9,6 @@ class Phonebook.Views.People.FormView extends Backbone.View
   events: ->
     'focus form' : (e) -> $('body').addClass('focusin')
     'blur form' : (e) -> $('body').removeClass('focusin')
-    'click .delete' : 'destroy'
     'submit' : 'submit'
 
   render: ->
@@ -27,11 +26,4 @@ class Phonebook.Views.People.FormView extends Backbone.View
         Backbone.trigger 'people:saved', @model
       error: (model) =>
         console.log model
-
-  destroy: ->
-    if (confirm("Are you sure you want to delete this person?"))
-      @model.destroy()
-      Backbone.trigger 'people:index'
-    else
-      return
 

@@ -1,11 +1,14 @@
-_ remove "Delete" buttons from New views
 _ get loading messages right on table views
+_ redo table views to show only 50 items
+_ Fix delete/duplicate bug
 _ add Dream Team indicator to people
+_ rewrite upload management management
+_ add uploads to projects
+
+_ manage Engagement Attendees as a collection / rewrite attendance view
+
 _ bootstrapper should load always load local, then remote if online
 _ make controllers inherit
-
-_ manage Engagement Attendees as a collection
-
 _ Deleting a person association does not touch said person
 _ Rename filter_params scope_params, and maybe don't make them private
 _ Rework filters to be independent of scope_params
