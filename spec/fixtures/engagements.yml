@@ -9,6 +9,7 @@ ethics:
 combat_training:
   date: '2014-08-17'
   school: gotham_city_high
-  kind: 'Workshop'
+  name: "Combat Training"
+  kind: 'Coaching Session'
   duration: 2.0
   user: bruce

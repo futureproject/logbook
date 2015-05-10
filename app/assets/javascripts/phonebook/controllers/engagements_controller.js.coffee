@@ -18,6 +18,7 @@ class Phonebook.Controllers.EngagementsController extends Backbone.View
       container: @$el
       collection: @collection
       namespace: 'engagements'
+      searchAttrs: ['kind', 'name']
     @views.index.show()
     Backbone.trigger 'engagements:bootstrap'
 

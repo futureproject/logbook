@@ -1,7 +1,8 @@
-_ tapping a search result should not repaginate collection
-_ allow passing of searchattrs on from index_view to base/tab_view
+_ remove "Delete" buttons from New views
 _ get loading messages right on table views
 _ add Dream Team indicator to people
+_ bootstrapper should load always load local, then remote if online
+_ make controllers inherit
 
 _ manage Engagement Attendees as a collection
 

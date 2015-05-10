@@ -10,6 +10,15 @@ feature 'using the phonebook' do
     expect(page).to have_content "People"
   end
 
+  scenario 'to search for people', js: true do
+    visit '/phonebook/people'
+    name = find('.row-title', match: :first).text
+    find(".titlebar .icon-search").click()
+    fill_in 'q', with: name
+    resulting_name = find('.row-title').text
+    expect(name).to eq resulting_name
+  end
+
   scenario 'to view a particular person', js: true do
     visit '/phonebook/people'
     tap_element('#people-tab')

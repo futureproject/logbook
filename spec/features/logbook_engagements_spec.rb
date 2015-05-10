@@ -23,8 +23,7 @@ feature 'Logbook engagements' do
     visit logbook_engagements_path
     click_link 'Edit', match: :first
     fill_in 'engagement[name]', with: 'Combat Master Class'
-    select 'Tim Drake', from: 'engagement[attendee_ids][]'
-    #all('input[type=text]')[2].set("Dick Grayson\n")
+    all('#engagement_attendee_ids option')[0].select_option
     click_button 'Update Engagement'
     expect(page).to have_content 'Combat Master Class'
   end

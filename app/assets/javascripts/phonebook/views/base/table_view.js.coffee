@@ -29,18 +29,6 @@ class Phonebook.Views.Base.TableView extends Backbone.View
     if @collection.length == 0
       @$el.prepend('<div class="loading"></div>')
 
-  filter: (results) ->
-    @subCount = 0
-    @removeItems()
-    fragment = document.createDocumentFragment()
-    for model in results
-      view = new @item_view
-        model: model
-      view.listenTo @, 'cleanup', view.remove
-      fragment.appendChild view.render().el
-      @subCount += 1
-    @$el.html fragment
-
   removeItems: ->
     @trigger 'cleanup'
 
@@ -54,8 +42,9 @@ class Phonebook.Views.Base.TableView extends Backbone.View
     super
 
   loadNextPage: (e) ->
+    return unless @collection.state?
     el = e.currentTarget
     height = el.getBoundingClientRect().height
     scrollPos = el.scrollHeight - el.scrollTop
-    if Math.abs(scrollPos - height) < 400 && @collection.state?.totalRecords > @collection.length && @subCount >= @collection.length
-      @collection.setPageSize? @collection.state.pageSize + 50
+    if Math.abs(scrollPos - height) < 400 && @collection.length < @collection.state.totalRecords && @collection.length >= @collection.state.pageSize
+      @collection.setPageSize @collection.state.pageSize + 50

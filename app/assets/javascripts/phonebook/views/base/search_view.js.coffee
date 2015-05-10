@@ -9,6 +9,7 @@ class Phonebook.Views.Base.SearchView extends Backbone.View
     @searchAttrs = args.searchAttrs || ['name']
     throw 'SearchView needs a collection to search' unless @collection
     @render()
+    console.log @searchAttrs
 
   events:
     'keyup' : 'throttledSearch'
@@ -26,12 +27,14 @@ class Phonebook.Views.Base.SearchView extends Backbone.View
   , 200)
 
   search: ->
+    return unless @q?.length > 1
     collection = @clonedCollection.fullCollection || @clonedCollection
     results = collection.filter (model) =>
       searchString = ""
       _.each @searchAttrs, (attr) -> searchString += model.get(attr) + " "
+      console.log searchString
       searchString.trim().toLowerCase().match(@q.toLowerCase())
-    @collection.reset results
+    @collection.reset(_.first(results, 10))
 
   remove: ->
     @collection.reset @clonedCollection.models

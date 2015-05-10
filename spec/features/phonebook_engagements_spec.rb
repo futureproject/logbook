@@ -9,6 +9,17 @@ feature 'using the phonebook' do
     should_see_engagements_list
   end
 
+  scenario 'to search for engagements', js: true do
+    visit phonebook_root_path
+    should_see_engagements_list
+    name = find('.engagement-name', match: :first).text
+    find(".titlebar .icon-search").click()
+    fill_in 'q', with: name
+    resulting_name = find('.engagement-name').text
+    expect(name).to eq resulting_name
+  end
+
+
   scenario 'to view a particular engagement', js: true do
     visit phonebook_root_path
     tap_first_engagement

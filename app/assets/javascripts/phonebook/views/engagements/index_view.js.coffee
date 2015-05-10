@@ -2,7 +2,6 @@ Phonebook.Views.Engagements ||= {}
 
 class Phonebook.Views.Engagements.IndexView extends Phonebook.Views.Base.TabView
   template: JST['phonebook/templates/engagements/index']
-
   initSubViews: ->
     @subViews = {}
     @subViews.table = new Phonebook.Views.Base.TableView

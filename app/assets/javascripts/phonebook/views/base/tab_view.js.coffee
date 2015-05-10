@@ -5,6 +5,7 @@ class Phonebook.Views.Base.TabView extends Backbone.View
     @$container = $(args.container)
     @collection = args.collection
     @namespace = args.namespace || 'base'
+    @searchAttrs = args.searchAttrs
     @render()
     @initSubViews()
     @listen()
@@ -54,5 +55,7 @@ class Phonebook.Views.Base.TabView extends Backbone.View
     @subViews.search = new Phonebook.Views.Base.SearchView
       collection: @collection
       container: @$el.find('.titlebar-search-container')
+      searchAttrs: @searchAttrs
+
     @subViews.search.$el.find('input').focus()
 
