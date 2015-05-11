@@ -44,6 +44,7 @@ class Phonebook.Views.Base.TabView extends Backbone.View
     @slide() if type == 'detail'
 
   show: ->
+    @collection.each (model) -> model.unset 'selected'
     Backbone.trigger "#{@namespace}:router:update", "phonebook/#{@namespace}"
     @$el.addClass('active')
     @unslide()

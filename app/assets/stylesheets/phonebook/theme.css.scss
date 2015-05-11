@@ -80,8 +80,8 @@ body, .detail-content, .rows {
   &.deleting {
     background: $light-red;
     .row-controls {
-      background: $light-red;
-      * { background: $light-red; }
+      background: $light-red !important;
+      * { background: $light-red !important; }
     }
   }
 }
