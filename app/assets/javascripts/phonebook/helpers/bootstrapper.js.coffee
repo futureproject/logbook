@@ -1,7 +1,18 @@
 ds.bootstrapper =
 
   bootstrap: (collection) ->
-    if navigator.onLine then @loadRemote(collection) else @loadLocal(collection)
+    collection.fetch
+      reset: true
+      remote: false
+      success: ->
+        $('.loading').remove()
+        if navigator.onLine
+          collection.syncDirtyAndDestroyed()
+          collection.fetch
+            reset: true
+            remote: true
+            success: ->
+              console.log "#{collection.constructor.name} synced from server"
 
   loadLocal: (collection) ->
     collection.fetch

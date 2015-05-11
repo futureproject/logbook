@@ -17,6 +17,8 @@ class Phonebook.Models.Person extends Backbone.Model
     _.omit _.clone(@attributes), ['attending', 'selected']
 
   tplAttrs: ->  _.clone @attributes
+  parse: (attrs) ->
+    _.omit attrs, ['selected']
 
 class Phonebook.Collections.PeopleCollection extends Backbone.PageableCollection
   model: Phonebook.Models.Person

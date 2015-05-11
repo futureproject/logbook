@@ -32,6 +32,7 @@ class Phonebook.Views.Base.TableView extends Backbone.View
     @trigger 'cleanup'
 
   clearSelection: (selection) ->
+    console.log selection
     return unless selection.has('selected')
     selected = @collection.filter (model) -> model.has('selected') && model != selection
     model.unset('selected') for model in selected
