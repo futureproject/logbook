@@ -91,6 +91,7 @@ class Phonebook.Controllers.EngagementsController extends Backbone.View
   onSave: (model) ->
     @collection.add model,
       merge: true
+    @collection.trigger 'reset'
 
   duplicate: (model) ->
       data = _.omit(_.clone(model.attributes), 'id', 'date')

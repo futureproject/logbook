@@ -69,4 +69,5 @@ class Phonebook.Controllers.ProjectsController extends Backbone.View
   onSave: (model) ->
     @collection.add model,
       merge: true
+    @collection.trigger 'reset'
 

@@ -22,7 +22,6 @@ class Phonebook.Views.Engagements.RowView extends Phonebook.Views.Base.RowView
     Backbone.trigger 'engagements:show', @model
 
   duplicate: (e) ->
-    console.log 'duplicating'
     @close()
     return unless e.target.classList.contains 'duplicate'
     Backbone.trigger 'engagements:duplicate', @model

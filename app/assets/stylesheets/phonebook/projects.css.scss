@@ -13,6 +13,9 @@
   }
   .project-status.complete { color: $light-green; }
   .project-status.stalled { color: $light-red; }
+  .recessed-button {
+    background: $projects-color;
+  }
 }
 
 

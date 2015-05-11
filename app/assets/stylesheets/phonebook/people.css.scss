@@ -3,6 +3,9 @@
 }
 #phonebook-people {
   .titlebar, .row-timestamp, .card h4 { color: $people-color; }
+  .recessed-button {
+    background: $people-color;
+  }
 }
 .person-name, .person-role, input#first_name, input#last_name {
   text-transform: capitalize;
