@@ -9,15 +9,6 @@ feature 'using the phonebook' do
     should_see_engagements_list
   end
 
-  scenario 'to search for engagements', js: true do
-    visit phonebook_root_path
-    name = find('.engagement-name', match: :first).text
-    find(".titlebar .icon-search").click()
-    fill_in 'q', with: name
-    resulting_name = find('.engagement-name').text
-    expect(name).to eq resulting_name
-  end
-
   scenario 'to view a particular engagement', js: true do
     visit phonebook_root_path
     tap_first_engagement
@@ -42,9 +33,15 @@ feature 'using the phonebook' do
     edit_view = find('#phonebook-engagements .detail-edit')
     within edit_view do
       fill_in 'notes', with: 'Best meeting ever!'
+      fill_in 'name', with: "Uniquely named engagement"
     end
     tap_element '#phonebook-engagements .detail-edit .done'
     expect(page).to have_content 'Best meeting ever!'
+    tap_element '#phonebook-engagements .back'
+    find(".titlebar .icon-search").click()
+    fill_in 'q', with: "Uniquely"
+    search_result_name = find('.engagement-name').text
+    expect(search_result_name).to eq "Uniquely named engagement"
   end
 
   scenario 'deleting', js: true
