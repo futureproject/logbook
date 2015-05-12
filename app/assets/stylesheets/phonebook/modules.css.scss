@@ -22,11 +22,6 @@
     &:active {
       @include transform(scale(.8));
     }
-    &.new {
-      text-align: center;
-      display: block;
-      padding: 0;
-    }
   }
 }
 .titlebar-search-container {
@@ -43,10 +38,6 @@
   .r-menu {
     background: white;
     bottom: 1px;
-    .button {
-      padding: 0;
-      text-align: center;
-    }
   }
 }
 

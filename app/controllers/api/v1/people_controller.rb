@@ -8,8 +8,6 @@ class Api::V1::PeopleController < Api::V1::BaseController
     if params[:q]
       @people = Person.search(params[:q], current_user)
     # if the user is assigned to Newark, return the whole city
-    elsif current_user.site_id == 5
-      @people = Site.find(5).people.order(:dream_team, :first_name, :id)
     elsif current_user.school
       @people = current_user.school.people.order('dream_team DESC', :first_name, :last_name)
     else
