@@ -24,7 +24,8 @@ class Phonebook.Views.Base.TableView extends Backbone.View
     # prevent iOS scroll bounce before any interactions occur
     @el.scrollTop = 1 if @el.scrollTop == 0
     if @collection.length == 0
-      @$el.prepend('<div class="loading"></div>')
+      @loader = new Phonebook.Views.Base.LoadingView()
+      @$el.prepend @loader.el
     # append "load more"
     @$el.append("<div class='recessed-button load-more'>Load More</div>") if @hasMoreResults()
 
