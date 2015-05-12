@@ -5,11 +5,7 @@ class Api::V1::ProjectsController < Api::V1::BaseController
   # GET /api/v1/projects
   # GET /api/v1/projects.json
   def index
-    # return all of Newark's projects if the user is assigned to Newark
-    if current_user.site_id == 5
-      @projects = Site.find(5).projects
-    # otherwise, return their school's projects
-    elsif current_user.school
+    if current_user.school
       @projects = current_user.projects
     elsif current_user.site
       @projects = current_user.site.projects
