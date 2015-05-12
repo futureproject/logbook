@@ -9,7 +9,7 @@ class Phonebook.Views.Base.SearchView extends Backbone.View
     @searchAttrs = args.searchAttrs || ['name']
     throw 'SearchView needs a collection to search' unless @collection
     @render()
-    console.log @searchAttrs
+    @listenTo @collection, 'change:selected', @onselect
 
   events:
     'keyup' : 'throttledSearch'
@@ -39,3 +39,6 @@ class Phonebook.Views.Base.SearchView extends Backbone.View
   remove: ->
     @collection.reset @clonedCollection.models
     super
+
+  onselect: ->
+    @$el.find('input').blur()

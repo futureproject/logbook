@@ -8,9 +8,12 @@ class Phonebook.Views.Base.RowView extends Backbone.View
     @canTap = true
 
   events:
+    # prevent touches on controls from propogating to the general listeners
     'touchstart .row-controls': (e) ->
       e.stopPropagation()
       @startPos.t = e.timeStamp
+    'touchend .row-controls': (e) -> e.stopPropagation()
+    # do the general touch listener stuff
     'touchstart': 'ontouchstart'
     'touchmove': 'ontouchmove'
     'touchend': 'ontouchend'
@@ -78,5 +81,4 @@ class Phonebook.Views.Base.RowView extends Backbone.View
     @el.style['-webkit-transition-property'] = "-webkit-transform"
     @el.style['-webkit-transition-duration'] = '.5s'
     @el.style['-webkit-transform'] = 'translate3d(-200%,0,0)'
-    console.log @$el.parent()
     @$el.addClass('deleting').one('webkitTransitionEnd', => @remove() )

@@ -30,7 +30,7 @@ class Phonebook.Models.Engagement extends Backbone.Model
     attrs['school'] = Phonebook.schools.get(@get('school_id'))?.get('name')
     attrs
 
-class Phonebook.Collections.EngagementsCollection extends Backbone.Collection
+class Phonebook.Collections.EngagementsCollection extends Backbone.PageableCollection
   model: Phonebook.Models.Engagement
   url: ds.apiHelper.urlFor 'engagements'
   initialize: ->
@@ -38,4 +38,7 @@ class Phonebook.Collections.EngagementsCollection extends Backbone.Collection
       ds.bootstrapper.bootstrap @
   comparator: (engagement) ->
     - Date.parse(engagement.get('date'))
+  mode: 'client'
+  state:
+    pageSize: 50
 
