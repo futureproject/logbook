@@ -1,0 +1,16 @@
+.logbook_sites {
+  a { color: $base-accent-color; }
+  .labels, .page-header, #filters {
+    background: $base-accent-color;
+    color: white;
+    a { color: white; }
+  }
+}
+
+.site-labels, .table .site {
+  @extend %row;
+  .site-name { @include span-columns(4); }
+  .site-people { @include span-columns(2); }
+  .site-projects { @include span-columns(2); }
+  .site-engagements { @include span-columns(2); }
+}

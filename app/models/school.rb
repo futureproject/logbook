@@ -58,4 +58,8 @@ class School < ActiveRecord::Base
     engagements.order('headcount DESC').limit(1).first.headcount rescue 0
   end
 
+  def person_hours(kind="%")
+    engagements.where("kind like ?", kind).where('headcount IS NOT NULL').where('duration IS NOT NULL').map{|e| (e.headcount * e.duration).to_i}.inject(:+)
+  end
+
 end

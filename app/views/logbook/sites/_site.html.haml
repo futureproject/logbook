@@ -1,0 +1,8 @@
+%section[site]
+  %h2.site-name= site.name
+  .site-schools.number= "#{site.schools.count} Schools"
+  .site-people.number= "#{site.people.count} People"
+  .site-projects.number= "#{site.projects.count} Projects"
+  .site-engagements.number= "#{site.engagements.count} Engagements"
+  .site-actions.actions
+    =link_to "View", logbook_site_path(site), class: 'row-link'

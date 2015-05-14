@@ -85,6 +85,7 @@ Rails.application.routes.draw do
     end
     resources :assets, only: [:show, :index, :destroy]
     resources :schools, only: [:index, :show]
+    resources :sites, only: [:index, :show]
     resources :engagement_attendees, only: [:show]
   end
 

@@ -14,6 +14,15 @@ class Site < ActiveRecord::Base
   has_many :engagement_attendees, through: :engagements
   has_many :actions, through: :schools
   has_many :activities, through: :schools
+  include Sortable
+  scope :user_sort, -> (column) { order column.to_s }
+
+  scope :by_count, -> (column) {
+    select("sites.id, sites.*, count(#{column}.id) AS #{column}_count").
+        joins(column.to_sym).
+        group("sites.id").
+        order("#{column}_count DESC")
+  }
 
   def average association, column=nil
     begin
@@ -38,6 +47,15 @@ class Site < ActiveRecord::Base
 
   def person_hours(kind="%")
     engagements.where("kind like ?", kind).where('headcount IS NOT NULL').where('duration IS NOT NULL').map{|e| (e.headcount * e.duration).to_i}.inject(:+)
+  end
+
+  def people_with_projects
+    (people.joins(:primary_projects) + people.joins(:secondary_projects)).uniq.count
+  end
+
+  def headcount
+    durations = schools.map{|school| school.headcount }
+    durations.inject(:+)
   end
 
 end
