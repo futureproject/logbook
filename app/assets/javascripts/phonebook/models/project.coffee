@@ -9,7 +9,7 @@ class Phonebook.Models.Project extends Backbone.Model
     school_id: Phonebook.user.get('school_id')
 
   toJSON: ->
-    _.omit _.clone(@attributes), ['selected', 'leaders', 'participants']
+    _.omit _.clone(@attributes), ['selected', 'leaders', 'participants','assets']
 
   tplAttrs: ->
     attrs = _.clone @attributes

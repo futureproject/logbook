@@ -15,4 +15,3 @@ class Phonebook.Views.Engagements.DetailView extends Phonebook.Views.Base.Detail
       assets_card: new Phonebook.Views.Assets.ModelAssetsView
         model: @model
         el: @$el.find('.engagement-assets')
-        namespace: 'Engagement'

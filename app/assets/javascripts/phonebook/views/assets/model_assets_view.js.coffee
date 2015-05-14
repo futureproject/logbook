@@ -5,7 +5,8 @@ class Phonebook.Views.Assets.ModelAssetsView extends Backbone.View
     window.model = @model
     @listenTo @model, 'change:assets', @reset
     @collection = new Phonebook.Collections.AssetsCollection
-    @listenTo @collection, 'add reset', @render
+    @listenTo @collection, 'reset', @render
+    @listenTo @collection, 'add', (model) -> @renderAsset(model, @el)
     @reset()
 
   template: JST['phonebook/templates/base/assets']
@@ -16,15 +17,17 @@ class Phonebook.Views.Assets.ModelAssetsView extends Backbone.View
   render: ->
     @trigger 'cleanup'
     fragment = document.createDocumentFragment()
-    for model in @collection.models
-      view = new Phonebook.Views.Assets.AssetView
-        model: model
-      view.listenTo @, 'cleanup', view.remove
-      fragment.appendChild view.render().el
+    @renderAsset(asset, fragment) for asset in @collection.models
     $(fragment).prepend($('#form-to-s3').html()).prepend(@template())
     @$el.html(fragment)
     @prepS3Form()
     @
+
+  renderAsset: (asset, container) ->
+    view = new Phonebook.Views.Assets.AssetView
+      model: asset
+    view.listenTo @, 'cleanup', view.remove
+    container.appendChild view.render().el
 
   remove: ->
     @trigger 'cleanup'

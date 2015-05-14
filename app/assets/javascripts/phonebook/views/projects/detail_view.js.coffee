@@ -10,6 +10,9 @@ class Phonebook.Views.Projects.DetailView extends Phonebook.Views.Base.DetailVie
         el: @el.querySelector('.project-team')
         template: JST['phonebook/templates/projects/team_card']
         model: @model
+      assets_card: new Phonebook.Views.Assets.ModelAssetsView
+        model: @model
+        el: @$el.find('.project-assets')
     super
 
 
