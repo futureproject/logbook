@@ -2,8 +2,8 @@ Phonebook.Views.Engagements ||= {}
 
 class Phonebook.Views.Engagements.AssetsCardView extends Backbone.View
   initialize: ->
-    @listenTo @model, 'change', @render
     @model.assetsCollection = new Phonebook.Collections.AssetsCollection
+    @listenTo @model, 'change', @render
     @render()
     @listenTo @model.assetsCollection, 'add reset', @renderAssets
 

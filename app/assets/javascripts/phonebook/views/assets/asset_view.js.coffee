@@ -7,11 +7,11 @@ class Phonebook.Views.Assets.AssetView extends Backbone.View
     @listenTo @model, 'destroy', @hide
 
   events:
-    'tap' : 'toggleControls'
-    'tap .delete': -> @model.destroy()
+    'click' : 'toggleControls'
+    'click .delete': -> @model.destroy()
 
   render: ->
-    @$el.html @template(@model.toJSON())
+    @$el.html @template(@model.tplAttrs())
     @
 
   hide: ->

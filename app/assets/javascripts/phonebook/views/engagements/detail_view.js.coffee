@@ -2,7 +2,6 @@ Phonebook.Views.Engagements ||= {}
 
 class Phonebook.Views.Engagements.DetailView extends Phonebook.Views.Base.DetailView
   template: JST['phonebook/templates/engagements/detail']
-  listen: -> @events['touchend .upload'] = @showUploads
 
   initSubViews: ->
     @subViews =
@@ -13,6 +12,7 @@ class Phonebook.Views.Engagements.DetailView extends Phonebook.Views.Base.Detail
       attendance_card: new Phonebook.Views.Engagements.AttendanceCardView
         el: @$el.find('.engagement-attendance')
         model: @model
-      assets_card: new Phonebook.Views.Engagements.AssetsCardView
-        el: @$el.find('.engagement-assets')
+      assets_card: new Phonebook.Views.Assets.ModelAssetsView
         model: @model
+        el: @$el.find('.engagement-assets')
+        namespace: 'Engagement'

@@ -1,5 +1,5 @@
 class Phonebook.Models.Engagement extends Backbone.Model
-
+  className: 'Engagement'
   urlRoot: ds.apiHelper.urlFor 'engagements'
 
   defaults: ->

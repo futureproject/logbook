@@ -1,4 +1,5 @@
 class Phonebook.Models.Person extends Backbone.Model
+  className: 'Person'
   urlRoot: ds.apiHelper.urlFor 'people'
   defaults: ->
     first_name: null

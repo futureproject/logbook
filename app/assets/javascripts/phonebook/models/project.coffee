@@ -1,4 +1,5 @@
 class Phonebook.Models.Project extends Backbone.Model
+  className: 'Project'
   urlRoot: ds.apiHelper.urlFor 'projects'
   defaults: ->
     #leaders: []
