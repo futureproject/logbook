@@ -1,13 +1,12 @@
 class Phonebook.Views.People.RowView extends Phonebook.Views.Base.RowView
   template: JST['phonebook/templates/people/row']
-  className: 'row person'
   initialize: ->
     @model ||= new Phonebook.Models.Person
     @listen()
     super
 
   render: ->
-    @$el.html @template @model.tplAttrs()
+    @$el.html(@template @model.tplAttrs()).attr('class', @className())
     @$el.toggleClass 'selected', @model.has('selected')
     @
 

@@ -7,6 +7,8 @@ class Phonebook.Views.Base.RowView extends Backbone.View
     @listenTo @model, 'destroy', @onDestroy
     @canTap = true
 
+  className: -> "row #{@model.className.toLowerCase()} #{'createable' if @model.isNew()}"
+
   events:
     # prevent touches on controls from propogating to the general listeners
     'touchstart .row-controls': (e) ->
@@ -44,7 +46,14 @@ class Phonebook.Views.Base.RowView extends Backbone.View
     e.stopPropagation()
     @diff.t = e.timeStamp - @startPos.t
     distanceMoved = Math.sqrt(@diff.x * @diff.x + @diff.y * @diff.y) || 0
-    @trigger('tapped') if (distanceMoved == 0 && @diff.t < 300 && @canTap)
+    if (distanceMoved == 0 && @diff.t < 300 && @canTap)
+      if @model.isNew()
+        console.log @model.namespace
+        console.log 'saving somebody!'
+        @model.save @model.attributes,
+          success: =>
+            Backbone.trigger "#{@model.namespace}:saved}", @model
+      @trigger('tapped')
 
   beforeOpen: (view) ->
     @canTap = false

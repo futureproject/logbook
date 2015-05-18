@@ -15,7 +15,7 @@ class Phonebook.Controllers.PeopleController extends Backbone.View
       container: @$el
       collection: @collection
       namespace: 'people'
-      searchAttrs: ['first_name', 'last_name']
+      searchAttrs: ['first_name', 'last_name', 'createable']
     @views.index.show()
     Backbone.trigger 'people:bootstrap'
 

@@ -1,5 +1,8 @@
+_ Allow creating new record in search view
+_ Rewrite Engagement attendance to use standard search view
+_ 
+
 _ let uploads take a new photo!!
-_ prepend new uploads, not append
 
 _ manage Engagement Attendees as a collection / rewrite attendance view
 

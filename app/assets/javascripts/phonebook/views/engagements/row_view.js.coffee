@@ -1,6 +1,5 @@
 class Phonebook.Views.Engagements.RowView extends Phonebook.Views.Base.RowView
   template: JST['phonebook/templates/engagements/row']
-  className: 'row engagement'
   initialize: ->
     @model ||= new Phonebook.Models.Engagement
     @listen()

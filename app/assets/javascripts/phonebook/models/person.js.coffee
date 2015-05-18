@@ -1,5 +1,6 @@
 class Phonebook.Models.Person extends Backbone.Model
   className: 'Person'
+  namespace: 'people'
   urlRoot: ds.apiHelper.urlFor 'people'
   defaults: ->
     first_name: null
@@ -7,15 +8,18 @@ class Phonebook.Models.Person extends Backbone.Model
     role: 'student'
     school_id: Phonebook.user.get('school_id')
     school_name: ''
-    grade: 11
+    grade: null
     dream_team: false
     attending: null
     notes: null
     email: null
     phone: null
 
-  toJSON: ->
-    _.omit _.clone(@attributes), ['attending', 'selected']
+# Backbone.DualStorage saves selected state, so ignore it
+  parse: (response) -> _.omit response, ['selected']
+
+  #toJSON: ->
+    #_.omit _.clone(@attributes), ['attending', 'selected']
 
   tplAttrs: ->  _.clone @attributes
 

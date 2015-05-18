@@ -1,5 +1,6 @@
 class Phonebook.Models.Engagement extends Backbone.Model
   className: 'Engagement'
+  namespace: 'engagements'
   urlRoot: ds.apiHelper.urlFor 'engagements'
 
   defaults: ->
@@ -12,6 +13,9 @@ class Phonebook.Models.Engagement extends Backbone.Model
     date: new Date().toString('yyyy-MM-dd')
     notes: ''
 
+# Backbone.DualStorage saves selected state, so ignore it
+  parse: (response) -> _.omit response, ['selected']
+
   save: (key, val, options) ->
     @set 'date', Date.parse(@get('date')).toString('yyyy-MM-dd')
     attendee_ids = @get 'attendee_ids'
@@ -19,8 +23,8 @@ class Phonebook.Models.Engagement extends Backbone.Model
       @set 'attendee_ids', ['']
     super
 
-  toJSON: ->
-    _.omit _.clone(@attributes), ['selected', 'attendees', 'assets']
+  #toJSON: ->
+    #_.omit _.clone(@attributes), ['selected', 'attendees', 'assets']
 
   tplAttrs: ->
     attrs = _.clone @attributes

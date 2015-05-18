@@ -114,6 +114,21 @@
     background: $light-red;
     color: white;
   }
+  &.createable {
+    padding: 0 15px;
+    min-height: 0;
+    height: 35px;
+    line-height: 35px;
+    background: $base-border-color;
+    .row-subject { display: none; }
+    .row-title:before {
+      content: "Add '";
+    }
+    .row-title:after {
+      content: "'";
+    }
+    .row-timestamp { display: none; }
+  }
 }
 
 .row-timestamp {

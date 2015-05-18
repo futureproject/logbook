@@ -1,6 +1,5 @@
 class Phonebook.Views.Projects.RowView extends Phonebook.Views.Base.RowView
   template: JST['phonebook/templates/projects/row']
-  className: 'row project'
   initialize: ->
     @model ||= new Phonebook.Models.Project
     @listen()

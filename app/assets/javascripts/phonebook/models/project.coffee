@@ -1,15 +1,18 @@
 class Phonebook.Models.Project extends Backbone.Model
   className: 'Project'
+  namespace: 'projects'
   urlRoot: ds.apiHelper.urlFor 'projects'
   defaults: ->
-    #leaders: []
     leader_ids: []
-    #participants: []
     participant_ids: []
     school_id: Phonebook.user.get('school_id')
+    description: null
+    status: 'underway'
 
-  toJSON: ->
-    _.omit _.clone(@attributes), ['selected', 'leaders', 'participants','assets']
+# Backbone.DualStorage saves selected state, so ignore it
+  parse: (response) -> _.omit response, ['selected']
+  #toJSON: ->
+    #_.omit _.clone(@attributes), ['selected', 'leaders', 'participants','assets']
 
   tplAttrs: ->
     attrs = _.clone @attributes

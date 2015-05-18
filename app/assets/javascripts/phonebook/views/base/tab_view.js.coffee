@@ -53,8 +53,9 @@ class Phonebook.Views.Base.TabView extends Backbone.View
     @$el.removeClass('active')
 
   showSearch: (event) ->
+    return if @subViews.search?.$el.is(":visible")
     @subViews.search = new Phonebook.Views.Base.SearchView
-      collection: @collection
+      collection: @collection.fullCollection
       container: @$el.find('.titlebar-search-container')
       searchAttrs: @searchAttrs
 

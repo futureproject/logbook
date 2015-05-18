@@ -4,6 +4,7 @@ class Phonebook.Views.Base.SearchView extends Backbone.View
   template: JST['phonebook/templates/base/search']
   initialize: (args) ->
     @collection = args?.collection
+    ds.bootstrapper.bootstrap @collection
     @clonedCollection = _.clone @collection
     @$container = args?.container
     @searchAttrs = args.searchAttrs || ['name']
@@ -13,8 +14,8 @@ class Phonebook.Views.Base.SearchView extends Backbone.View
 
   events:
     'keyup' : 'throttledSearch'
-    'focus' : 'onfocus'
-    'blur' : 'onblur'
+    #'focus input' : 'onfocus'
+    #'blur' : 'onblur'
     'touchend .r-menu': 'remove'
 
   render: ->
@@ -27,14 +28,14 @@ class Phonebook.Views.Base.SearchView extends Backbone.View
   , 200)
 
   search: ->
-    return unless @q?.length > 1
-    collection = @clonedCollection.fullCollection || @clonedCollection
-    results = collection.filter (model) =>
-      searchString = ""
-      _.each @searchAttrs, (attr) -> searchString += model.get(attr) + " "
-      console.log searchString
-      searchString.trim().toLowerCase().match(@q.toLowerCase())
-    @collection.reset(_.first(results, 10))
+    if @q?.length > 1
+      collection = @clonedCollection
+      results = collection.filter (model) =>
+        searchString = ""
+        _.each @searchAttrs, (attr) -> searchString += model.get(attr) + " "
+        searchString.trim().toLowerCase().match(@q.toLowerCase())
+      results = if results.length > 0 then results else @conditionallyAddNewRecord()
+      @collection.reset(_.first(results, 10))
 
   remove: ->
     @collection.reset @clonedCollection.models
@@ -42,3 +43,19 @@ class Phonebook.Views.Base.SearchView extends Backbone.View
 
   onselect: ->
     @$el.find('input').blur()
+
+  conditionallyAddNewRecord: ->
+    return [] unless _.contains(@searchAttrs,'createable') && @q?.length > 1
+    q = @q.split(" ")
+    if _.contains @searchAttrs, 'first_name'
+      first_name = q.shift()
+      last_name= q.join(' ')
+      if (first_name?.length > 0 && last_name?.length > 0)
+        [{ first_name: first_name, last_name: last_name, name: first_name + " " + last_name }]
+      else
+        []
+    else if _.contains @searchAttrs, 'name'
+      [{ name: @q }]
+    else
+      []
+
