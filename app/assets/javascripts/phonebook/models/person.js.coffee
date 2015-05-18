@@ -29,6 +29,7 @@ class Phonebook.Collections.PeopleCollection extends Backbone.PageableCollection
   initialize: ->
     @listenToOnce Backbone, 'people:bootstrap', ->
       ds.bootstrapper.bootstrap @
+
   mode: 'client'
   state:
     pageSize: 50

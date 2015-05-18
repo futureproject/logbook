@@ -19,7 +19,7 @@ ds.bootstrapper =
       reset: true
       remote: false
       success: ->
-        console.log "#{collection.constructor.name} synced from localStorage"
+        Backbone.trigger 'collection:bootstrapped', collection
         $('.loading').remove()
 
   loadRemote: (collection) ->
@@ -29,5 +29,5 @@ ds.bootstrapper =
       reset: true
       remote: true
       success: ->
-        console.log "#{collection.constructor.name} synced from server"
+        Backbone.trigger 'collection:bootstrapped', collection
         $('.loading').remove()
