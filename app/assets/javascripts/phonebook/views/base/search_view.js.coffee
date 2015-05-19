@@ -3,14 +3,18 @@ Phonebook.Views.Base ||= {}
 class Phonebook.Views.Base.SearchView extends Backbone.View
   template: JST['phonebook/templates/base/search']
   initialize: (args) ->
-    @collection = args?.collection
-    ds.bootstrapper.bootstrap @collection
-    @clonedCollection = _.clone @collection
+    @namespace = args.namespace
     @$container = args?.container
     @searchAttrs = args.searchAttrs || ['name']
-    throw 'SearchView needs a collection to search' unless @collection
     @render()
-    @listenTo @collection, 'change:selected', @onselect
+    @setCollection()
+
+  setCollection: ->
+    @listenTo Backbone, "#{@namespace}:bootstrapped", (collection) =>
+      @collection = collection.fullCollection || collection
+      @clonedCollection = _.clone @collection
+      @listenTo @collection, 'change:selected', @onSelect
+    Backbone.trigger "#{@namespace}:fetch"
 
   events:
     'keyup' : 'throttledSearch'
@@ -41,7 +45,7 @@ class Phonebook.Views.Base.SearchView extends Backbone.View
     @collection.reset @clonedCollection.models
     super
 
-  onselect: ->
+  onSelect: ->
     @$el.find('input').blur()
 
   conditionallyAddNewRecord: ->

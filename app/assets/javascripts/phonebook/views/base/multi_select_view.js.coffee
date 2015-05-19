@@ -4,9 +4,10 @@ class Phonebook.Views.Base.MultiSelectView extends Backbone.View
   initialize: (args) ->
     @$container = args.container
     @namespace = args.namespace || 'base'
+    @searchAttrs = args.searchAttrs || ['name']
     @render()
     @initSubViews()
-    @liten()
+    #@listen()
 
   className: 'detail detail-multi-select'
   template: JST['phonebook/templates/base/multi_select']
@@ -35,11 +36,12 @@ class Phonebook.Views.Base.MultiSelectView extends Backbone.View
 
   initSubViews: ->
     @subViews ||=
-      searchBar: new Phonebook.Views.Base.MultiSelectSearchView
-        url: ds.apiHelper.urlFor @namespace
-        el: @el.querySelector '.multi-select-input'
-      searchResultsList: new Phonebook.Views.Base.SearchResultsView
-        el: @el.querySelector '.multi-select-search-results'
+      search: new Phonebook.Views.Base.SearchView
+        namespace: @namespace
+        container: @$el.find '.multi-select-input-wrapper'
+        searchAttrs: @searchAttrs
+      #searchResultsList: new Phonebook.Views.Base.SearchResultsView
+        #el: @el.querySelector '.multi-select-search-results'
 
   removeSubviews: ->
     _.each @subViews, (view) -> view.remove()

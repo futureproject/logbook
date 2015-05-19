@@ -25,9 +25,12 @@ class Phonebook.Models.Person extends Backbone.Model
 
 class Phonebook.Collections.PeopleCollection extends Backbone.PageableCollection
   model: Phonebook.Models.Person
-  url: -> ds.apiHelper.urlFor 'people'
+  namespace: 'people'
+  url: -> ds.apiHelper.urlFor @namespace
   initialize: ->
-    @listenToOnce Backbone, 'people:bootstrap', ->
+    @listenToOnce Backbone, "#{@namespace}:bootstrap", ->
+      ds.bootstrapper.bootstrap @
+    @listenTo Backbone, "#{@namespace}:fetch", ->
       ds.bootstrapper.bootstrap @
 
   mode: 'client'

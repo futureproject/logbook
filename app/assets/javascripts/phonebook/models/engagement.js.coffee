@@ -36,9 +36,12 @@ class Phonebook.Models.Engagement extends Backbone.Model
 
 class Phonebook.Collections.EngagementsCollection extends Backbone.PageableCollection
   model: Phonebook.Models.Engagement
-  url: ds.apiHelper.urlFor 'engagements'
+  namespace: 'engagements'
+  url: -> ds.apiHelper.urlFor @namespace
   initialize: ->
-    @listenToOnce Backbone, 'engagements:bootstrap', ->
+    @listenToOnce Backbone, "#{@namespace}:bootstrap", ->
+      ds.bootstrapper.bootstrap @
+    @listenTo Backbone, "#{@namespace}:fetch", ->
       ds.bootstrapper.bootstrap @
   comparator: (engagement) ->
     - Date.parse(engagement.get('date'))

@@ -44,6 +44,7 @@ class Phonebook.Views.Base.DetailView extends Backbone.View
     animation ||= 'slide-out-horizontal'
     Backbone.trigger "#{@namespace}:views:hidden", @
     @$el.addClass(animation).one('webkitAnimationEnd', () =>
+      @model.unset 'selected'
       @remove()
     )
 

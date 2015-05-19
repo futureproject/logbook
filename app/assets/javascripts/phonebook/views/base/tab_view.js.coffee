@@ -44,7 +44,6 @@ class Phonebook.Views.Base.TabView extends Backbone.View
     @slide() if type == 'detail'
 
   show: ->
-    @collection.each (model) -> model.unset 'selected'
     Backbone.trigger "#{@namespace}:router:update", "phonebook/#{@namespace}"
     @$el.addClass('active')
     @unslide()
@@ -55,7 +54,7 @@ class Phonebook.Views.Base.TabView extends Backbone.View
   showSearch: (event) ->
     return if @subViews.search?.$el.is(":visible")
     @subViews.search = new Phonebook.Views.Base.SearchView
-      collection: @collection.fullCollection
+      namespace: @namespace
       container: @$el.find('.titlebar-search-container')
       searchAttrs: @searchAttrs
 

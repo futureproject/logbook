@@ -62,6 +62,8 @@ class Phonebook.Controllers.EngagementsController extends Backbone.View
       @views.attendance = new Phonebook.Views.Base.MultiSelectView
         model: engagement
         namespace: 'people'
+        searchAttrs: ['first_name', 'last_name', 'createable']
+        container: @$el
       @views.attendance.show(animation)
     @getModelById(id)
 

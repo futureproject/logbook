@@ -20,9 +20,12 @@ class Phonebook.Models.Project extends Backbone.Model
 
 class Phonebook.Collections.ProjectsCollection extends Backbone.PageableCollection
   model: Phonebook.Models.Project
-  url: -> ds.apiHelper.urlFor 'projects'
+  namespace: 'projects'
+  url: -> ds.apiHelper.urlFor @namespace
   initialize: ->
-    @listenToOnce Backbone, 'projects:bootstrap', ->
+    @listenToOnce Backbone, "#{@namespace}:bootstrap", ->
+      ds.bootstrapper.bootstrap @
+    @listenTo Backbone, "#{@namespace}:fetch", ->
       ds.bootstrapper.bootstrap @
   mode: 'client'
   state:
