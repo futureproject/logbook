@@ -189,6 +189,9 @@
   &.detail-gallery, &.detail-attendance {
     z-index: 3;
   }
+  &.detail-modal {
+    z-index: 100;
+  }
 }
 
 
@@ -365,6 +368,9 @@
     right: 0;
     margin-left: 15px;
   }
+  .r-menu span { display: block; padding: 0; }
+  .icon-cancel { font-family: $base-font-family; }
+  .icon-cancel:before { display: none; }
 }
 
 .recessed-button {
@@ -436,4 +442,25 @@
 .empty-view {
   text-align: center;
   padding: 0 15px;
+}
+
+.multi-select-options {
+  .row {
+    color: white;
+    border-top: 1px solid rgba(255,255,255,.15);
+    border-bottom: 1px solid rgba(0,0,0,.15);
+    opacity: .5;
+    &.selected {
+      opacity: 1;
+    }
+    &:after { display: none; }
+    .row-title { color: white; }
+    .row-timestamp {
+      display: none;
+      opacity: .75;
+      color: white;
+      font-weight: 300;
+    }
+  }
+
 }

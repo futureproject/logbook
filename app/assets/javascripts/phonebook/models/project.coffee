@@ -27,6 +27,8 @@ class Phonebook.Collections.ProjectsCollection extends Backbone.PageableCollecti
       ds.bootstrapper.bootstrap @
     @listenTo Backbone, "#{@namespace}:fetch", ->
       ds.bootstrapper.bootstrap @
+    @listenTo Backbone, "#{@namespace}:search:removed", () ->
+      ds.bootstrapper.bootstrap @
   mode: 'client'
   state:
     pageSize: 50

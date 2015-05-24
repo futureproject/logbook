@@ -31,41 +31,10 @@
   }
 }
 
-.attending-person.list-item {
-  padding-left: 15px;
-  .list-item-timestamp {
-    font-weight: 600;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-style: normal;
-  }
-  &:after {
-    left: 0;
-  }
-}
 .engagement-attendance {
-  .fancy-search-form { background: $engagements-color; }
 }
 
 #engagement-attendees-list {
-  .attending-person {
-    background: $engagements-color;
-    color: white;
-    border-top: 1px solid lighten($engagements-color, 10%);
-    &:after { display: none; }
-    border-bottom: 1px solid darken($engagements-color, 10%);
-    .row-title { color: white; }
-    .row-timestamp {
-      opacity: .75;
-      color: white;
-      font-weight: 300;
-      &:empty:before {
-        content: 'Absent';
-        display: block;
-        color: $dark-gray;
-      }
-    }
-  }
 }
 
 #phonebook-engagements {
@@ -92,6 +61,16 @@
   form[data-kind=event] {
     .headcount-field {
       display: block;
+    }
+  }
+}
+.detail-modal.engagements {
+  .fancy-search-form {
+    background: $engagements-color;
+  }
+  .multi-select-options {
+    .row {
+      background: $engagements-color;
     }
   }
 }

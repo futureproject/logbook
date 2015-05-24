@@ -8,6 +8,7 @@ class Phonebook.Views.Base.SearchView extends Backbone.View
     @searchAttrs = args.searchAttrs || ['name']
     @render()
     @setCollection()
+    Backbone.trigger 'search:initialized', @
 
   setCollection: ->
     @listenTo Backbone, "#{@namespace}:bootstrapped", (collection) =>
@@ -42,7 +43,7 @@ class Phonebook.Views.Base.SearchView extends Backbone.View
       @collection.reset(_.first(results, 10))
 
   remove: ->
-    @collection.reset @clonedCollection.models
+    Backbone.trigger "#{@namespace}:search:removed" if @$el.is(":visible")
     super
 
   onSelect: ->

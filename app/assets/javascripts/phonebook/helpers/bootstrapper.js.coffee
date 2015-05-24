@@ -5,7 +5,6 @@ ds.bootstrapper =
       reset: true
       remote: false
       success: ->
-        $('.loading').remove()
         Backbone.trigger "#{collection.namespace}:bootstrapped", collection
         if navigator.onLine
           collection.syncDirtyAndDestroyed()
@@ -20,8 +19,7 @@ ds.bootstrapper =
       #reset: true
       #remote: false
       #success: ->
-        #Backbone.trigger 'collection:bootstrapped', collection
-        #$('.loading').remove()
+        #Backbone.trigger "#{collection.namespace}:bootstrapped", collection
 
   #loadRemote: (collection) ->
     #console.log collection

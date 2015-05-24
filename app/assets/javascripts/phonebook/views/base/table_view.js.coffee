@@ -13,12 +13,12 @@ class Phonebook.Views.Base.TableView extends Backbone.View
     #'change': (event) ->
 
   render: ->
-    console.log "rendered TableView index with #{@collection.length} models"
+    console.log "rendered view #{@cid} with #{@collection.length} models"
     fragment = document.createDocumentFragment()
     for model in @collection.models
       view = new @item_view
         model: model
-      view.listenTo @, 'cleanup', view.remove
+      view.listenTo @, 'clean', view.remove
       fragment.appendChild view.render().el
     @$el.html(fragment)
     # prevent iOS scroll bounce before any interactions occur
@@ -29,16 +29,13 @@ class Phonebook.Views.Base.TableView extends Backbone.View
     # append "load more"
     @$el.append("<div class='recessed-button load-more'>Load More</div>") if @hasMoreResults()
 
-  removeItems: ->
-    @trigger 'cleanup'
-
   clearSelection: (selection) ->
     return unless selection.has('selected')
     selected = @collection.filter (model) -> model.has('selected') && model != selection
     model.unset('selected') for model in selected
 
   remove: ->
-    @removeItems()
+    @trigger 'clean'
     super
 
   loadNextPage: (e) ->

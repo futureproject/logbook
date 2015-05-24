@@ -59,11 +59,9 @@ class Phonebook.Controllers.EngagementsController extends Backbone.View
   attendance: (id, animation) ->
     @listenToOnce Backbone, 'model:loaded', (engagement) =>
       @views.attendance?.remove()
-      @views.attendance = new Phonebook.Views.Base.MultiSelectView
+      @views.attendance = new Phonebook.Views.People.SelectorView
         model: engagement
-        namespace: 'people'
-        searchAttrs: ['first_name', 'last_name', 'createable']
-        container: @$el
+        association: 'attendees'
       @views.attendance.show(animation)
     @getModelById(id)
 

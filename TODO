@@ -1,8 +1,9 @@
-_ Allow creating new record in search view
-_ Rewrite Engagement attendance to use standard search view
-_ 
+_ Move selectionview SAVE logic to selector_view
+_ Allow adding new items to MultiSelect View
 
 _ let uploads take a new photo!!
+
+_ stop views from rendering when their controller is not active
 
 _ manage Engagement Attendees as a collection / rewrite attendance view
 

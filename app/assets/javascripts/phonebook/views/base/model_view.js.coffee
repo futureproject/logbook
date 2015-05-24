@@ -11,4 +11,5 @@ class Phonebook.Views.Base.ModelView extends Backbone.View
       @$el.html(@template @model.tplAttrs())
     catch
       @$el.html("<div class='loading'></div>")
+    @
 

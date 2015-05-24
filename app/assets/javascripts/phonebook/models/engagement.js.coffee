@@ -18,9 +18,10 @@ class Phonebook.Models.Engagement extends Backbone.Model
 
   save: (key, val, options) ->
     @set 'date', Date.parse(@get('date')).toString('yyyy-MM-dd')
-    attendee_ids = @get 'attendee_ids'
-    if attendee_ids == null || attendee_ids.length == 0
-      @set 'attendee_ids', ['']
+    a = @get('attendees')
+# rails misinterprets an empty array of association_ids, so give it a blank  string
+    ids = if a.length == 0 then [''] else _.pluck(@get('attendees'), 'id')
+    @set 'attendee_ids', ids
     super
 
   #toJSON: ->
@@ -42,6 +43,8 @@ class Phonebook.Collections.EngagementsCollection extends Backbone.PageableColle
     @listenToOnce Backbone, "#{@namespace}:bootstrap", ->
       ds.bootstrapper.bootstrap @
     @listenTo Backbone, "#{@namespace}:fetch", ->
+      ds.bootstrapper.bootstrap @
+    @listenTo Backbone, "#{@namespace}:search:removed", () ->
       ds.bootstrapper.bootstrap @
   comparator: (engagement) ->
     - Date.parse(engagement.get('date'))

@@ -3,17 +3,23 @@ Phonebook.Views.Base ||= {}
 class Phonebook.Views.Base.MultiSelectView extends Backbone.View
   initialize: (args) ->
     @$container = args.container
-    @namespace = args.namespace || 'base'
+    @collectionClass = args.collectionClass
+    @namespace = @collectionClass.namespace || 'base'
+    console.log @namespace
+    @selectionProperty = args.selectionProperty || 'children'
     @searchAttrs = args.searchAttrs || ['name']
     @render()
     @initSubViews()
-    #@listen()
+    @listen()
 
-  className: 'detail detail-multi-select'
+  className: 'detail detail-modal'
   template: JST['phonebook/templates/base/multi_select']
   events:
     'touchend .done': 'done'
     'touchmove .titlebar': (e) -> e.preventDefault()
+
+  listen: ->
+    @listenTo Backbone, "#{@namespace}:search:removed", => @hide()
 
   show: (animation) ->
     animation ||= 'slide-in-vertical'
@@ -42,9 +48,16 @@ class Phonebook.Views.Base.MultiSelectView extends Backbone.View
         searchAttrs: @searchAttrs
       #searchResultsList: new Phonebook.Views.Base.SearchResultsView
         #el: @el.querySelector '.multi-select-search-results'
+      selectionList: new Phonebook.Views.Base.SelectionView
+        model: @model
+        association: @selectionProperty
 
   removeSubviews: ->
     _.each @subViews, (view) -> view.remove()
+
+  remove: ->
+    @removeSubviews()
+    super
 
   done: (e) ->
     e.preventDefault()
