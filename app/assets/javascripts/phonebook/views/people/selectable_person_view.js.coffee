@@ -1,17 +1,17 @@
 Phonebook.Views.People ||= {}
 
-class Phonebook.Views.People.SelectablePersonView extends Backbone.View
+class Phonebook.Views.People.SelectablePersonView extends Phonebook.Views.Base.RowView
   initialize: ->
-    @listenTo @model, 'change', @render
+    @listen()
+    super
 
-  events:
-    'click': 'toggle'
+  listen: ->
+    @listenTo @model, 'change', @render
+    @listenTo @, 'tapped', @toggle
 
   template: JST['phonebook/templates/people/selectable_person']
 
-  className: -> "row #{@model.className.toLowerCase()} #{'selected' if @model.has('selected')}"
-
-  toggle: ->
+  toggle: (e) ->
     if @model.has('selected')
       @model.set('selected', null)
     else

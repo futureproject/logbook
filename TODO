@@ -1,4 +1,3 @@
-_ extend rowview for attendees, and use tap listeners to toggle
 _ create a searchresults view
 _ Allow adding new items to MultiSelect View
 

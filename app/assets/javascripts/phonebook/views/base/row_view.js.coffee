@@ -52,8 +52,6 @@ class Phonebook.Views.Base.RowView extends Backbone.View
     distanceMoved = Math.sqrt(@diff.x * @diff.x + @diff.y * @diff.y) || 0
     if (distanceMoved == 0 && @diff.t < 300 && @canTap)
       if @model.isNew()
-        console.log @model.namespace
-        console.log 'saving somebody!'
         @model.save @model.attributes,
           success: =>
             Backbone.trigger "#{@model.namespace}:saved}", @model
