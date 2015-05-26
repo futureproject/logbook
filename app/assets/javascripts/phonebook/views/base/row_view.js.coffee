@@ -7,7 +7,11 @@ class Phonebook.Views.Base.RowView extends Backbone.View
     @listenTo @model, 'destroy', @onDestroy
     @canTap = true
 
-  className: -> "row #{@model.className.toLowerCase()} #{'createable' if @model.isNew()}"
+  className: ->
+    c = "row #{@model.className.toLowerCase()}"
+    c += " createable" if @model.isNew()
+    c += " selected" if @model.has('selected')
+    c
 
   events:
     # prevent touches on controls from propogating to the general listeners

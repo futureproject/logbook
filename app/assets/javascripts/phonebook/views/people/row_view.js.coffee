@@ -7,7 +7,6 @@ class Phonebook.Views.People.RowView extends Phonebook.Views.Base.RowView
 
   render: ->
     @$el.html(@template @model.tplAttrs()).attr('class', @className())
-    @$el.toggleClass 'selected', @model.has('selected')
     @
 
   listen: ->

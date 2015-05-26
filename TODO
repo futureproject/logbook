@@ -1,13 +1,15 @@
-_ Move selectionview SAVE logic to selector_view
+_ extend rowview for attendees, and use tap listeners to toggle
+_ create a searchresults view
 _ Allow adding new items to MultiSelect View
 
 _ let uploads take a new photo!!
 
+_ create actual tab views, are you seriously reading data-attrs??
 _ stop views from rendering when their controller is not active
 
-_ manage Engagement Attendees as a collection / rewrite attendance view
 
 _ make controllers inherit
 _ Deleting a person association does not touch said person
+
 _ Rename filter_params scope_params, and maybe don't make them private
 _ Rework filters to be independent of scope_params

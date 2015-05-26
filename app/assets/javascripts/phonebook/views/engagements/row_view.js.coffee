@@ -6,8 +6,7 @@ class Phonebook.Views.Engagements.RowView extends Phonebook.Views.Base.RowView
     super
 
   render: ->
-    @$el.html @template @model.tplAttrs()
-    @$el.toggleClass 'selected', @model.has('selected')
+    @$el.html(@template @model.tplAttrs()).attr('class', @className())
     @
 
   listen: ->
