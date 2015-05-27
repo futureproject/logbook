@@ -21,9 +21,6 @@ class Phonebook.Controllers.AppController extends Backbone.View
     'touchstart .scrollable' : 'fixScrollBounce'
     'touchmove .tab-bar': (e) -> e.preventDefault()
     'touchend .tab': 'tabTap'
-    #'touchend #engagements-tab': -> Backbone.trigger 'engagements:index'
-    #'touchend #people-tab': -> Backbone.trigger 'people:index'
-    #'touchend #projects-tab': -> Backbone.trigger 'projects:index'
 
   fixScrollBounce: (e) ->
     el = e.currentTarget

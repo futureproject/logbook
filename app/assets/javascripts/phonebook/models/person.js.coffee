@@ -27,18 +27,8 @@ class Phonebook.Collections.PeopleCollection extends Backbone.PageableCollection
   model: Phonebook.Models.Person
   namespace: 'people'
   url: -> ds.apiHelper.urlFor @namespace
-  initialize: ->
-    @listenToOnce Backbone, "#{@namespace}:bootstrap", ->
-      ds.bootstrapper.bootstrap @
-    @listenTo Backbone, "#{@namespace}:fetch", ->
-      ds.bootstrapper.bootstrap @
-    @listenTo Backbone, "#{@namespace}:search:removed", () ->
-      ds.bootstrapper.bootstrap @
-
   mode: 'client'
   state:
     pageSize: 50
   #comparator: 'first_name'
 
-class Phonebook.Collections.AssociatedPeopleCollection extends Backbone.Collection
-  model: Phonebook.Models.Person

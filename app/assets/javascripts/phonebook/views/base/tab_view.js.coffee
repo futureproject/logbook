@@ -57,6 +57,7 @@ class Phonebook.Views.Base.TabView extends Backbone.View
       namespace: @namespace
       container: @$el.find('.titlebar-search-container')
       searchAttrs: @searchAttrs
+      collection: @collection
 
     @subViews.search.$el.find('input').focus()
 

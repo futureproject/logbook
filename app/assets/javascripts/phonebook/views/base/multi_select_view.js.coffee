@@ -5,7 +5,6 @@ class Phonebook.Views.Base.MultiSelectView extends Backbone.View
     @$container = args.container
     @collectionClass = args.collectionClass
     @namespace = @collectionClass.namespace || 'base'
-    console.log @namespace
     @selectionProperty = args.selectionProperty || 'children'
     @searchAttrs = args.searchAttrs || ['name']
     @render()

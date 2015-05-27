@@ -1,8 +1,10 @@
 class Phonebook.Controllers.PeopleController extends Backbone.View
   initialize: (args) ->
-    @collection = new Phonebook.Collections.PeopleCollection
+    Phonebook.collections.people ||= new Phonebook.Collections.PeopleCollection
+    @collection = Phonebook.collections.people
     @router = new Phonebook.Routers.PeopleRouter
     @views = {}
+    @listenToOnce Backbone, "people:bootstrap", -> ds.bootstrapper.bootstrap @collection
     @listenTo Backbone, 'people:index', @index
     @listenTo Backbone, 'people:show', @show
     @listenTo Backbone, 'people:new', @new

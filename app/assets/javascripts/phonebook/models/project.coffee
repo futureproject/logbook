@@ -22,13 +22,6 @@ class Phonebook.Collections.ProjectsCollection extends Backbone.PageableCollecti
   model: Phonebook.Models.Project
   namespace: 'projects'
   url: -> ds.apiHelper.urlFor @namespace
-  initialize: ->
-    @listenToOnce Backbone, "#{@namespace}:bootstrap", ->
-      ds.bootstrapper.bootstrap @
-    @listenTo Backbone, "#{@namespace}:fetch", ->
-      ds.bootstrapper.bootstrap @
-    @listenTo Backbone, "#{@namespace}:search:removed", () ->
-      ds.bootstrapper.bootstrap @
   mode: 'client'
   state:
     pageSize: 50

@@ -9,6 +9,7 @@ class Phonebook.Models.Engagement extends Backbone.Model
     name: ''
     kind: 'Coaching Session'
     attendee_ids: []
+    attendees: []
     duration: 0.1
     date: new Date().toString('yyyy-MM-dd')
     notes: ''
@@ -39,13 +40,6 @@ class Phonebook.Collections.EngagementsCollection extends Backbone.PageableColle
   model: Phonebook.Models.Engagement
   namespace: 'engagements'
   url: -> ds.apiHelper.urlFor @namespace
-  initialize: ->
-    @listenToOnce Backbone, "#{@namespace}:bootstrap", ->
-      ds.bootstrapper.bootstrap @
-    @listenTo Backbone, "#{@namespace}:fetch", ->
-      ds.bootstrapper.bootstrap @
-    @listenTo Backbone, "#{@namespace}:search:removed", () ->
-      ds.bootstrapper.bootstrap @
   comparator: (engagement) ->
     - Date.parse(engagement.get('date'))
   mode: 'client'

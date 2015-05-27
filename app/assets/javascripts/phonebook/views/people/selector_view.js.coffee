@@ -6,7 +6,9 @@ Phonebook.Views.People ||= {}
 class Phonebook.Views.People.SelectorView extends Backbone.View
   initialize: (args) ->
     @association = args.association
-    @collection = new Phonebook.Collections.AssociatedPeopleCollection
+    @collection = new Phonebook.Collections.PeopleCollection
+    @selection = new Phonebook.Collections.PeopleCollection
+    @selection.reset @model.get(@association)
     @render()
     @initSubViews()
     @listen()
@@ -47,10 +49,14 @@ class Phonebook.Views.People.SelectorView extends Backbone.View
         namespace: 'people'
         searchAttrs: ['first_name', 'last_name', 'createable']
         container: @$el.find '.multi-select-input-wrapper'
+        collection: @collection
+      results: new Phonebook.Views.Base.SearchResultsView
+        el: @el.querySelector '.multi-select-search-results'
+        item_view: Phonebook.Views.People.SelectablePersonView
       selection: new Phonebook.Views.People.SelectionView
         model: @model
         association: @association
-        collection: @collection
+        selection: @selection
         el: @el.querySelector '.multi-select-selected'
 
   removeSubviews: ->
@@ -63,7 +69,7 @@ class Phonebook.Views.People.SelectorView extends Backbone.View
   done: (e) ->
     e?.preventDefault()
     e?.stopPropagation()
-    selection = @collection.where({selected: true})
+    selection = @selection.where({selected: true})
     selection = _.map selection, (m) -> m.attributes
     @model.set(@association, selection)
     @model.save()

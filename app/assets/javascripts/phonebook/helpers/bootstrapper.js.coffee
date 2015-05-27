@@ -5,21 +5,16 @@ ds.bootstrapper =
       reset: true
       remote: false
       success: ->
-        Backbone.trigger "#{collection.namespace}:bootstrapped", collection
         if navigator.onLine
           collection.syncDirtyAndDestroyed()
           collection.fetch
             reset: true
             remote: true
-            success: ->
-              Backbone.trigger "#{collection.namespace}:bootstrapped", collection
 
-  #loadLocal: (collection) ->
-    #collection.fetch
-      #reset: true
-      #remote: false
-      #success: ->
-        #Backbone.trigger "#{collection.namespace}:bootstrapped", collection
+  loadLocal: (collection) ->
+    collection.fetch
+      reset: true
+      remote: false
 
   #loadRemote: (collection) ->
     #console.log collection

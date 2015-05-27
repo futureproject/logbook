@@ -22,6 +22,7 @@ window.Phonebook =
   Controllers: {}
   Collections: {}
   Routers: {}
+  collections: {}
 
   initialize: (data) ->
     if navigator.userAgent.match(/iphone|ipad|ipod/i) && ! navigator.standalone
@@ -41,8 +42,8 @@ window.Phonebook =
       @schools = new Phonebook.Collections.SchoolsCollection(@user.get('schools'))
 
       @controller = new Phonebook.Controllers.AppController
-          el: '#phonebook'
-          
+        el: '#phonebook'
+
       Backbone.trigger 'app:loaded'
       Backbone.trigger("network:#{navigator.onLine}")
       Backbone.history.start({ pushState: true })

@@ -1,16 +1,13 @@
-Phonebook.Views.People ||= {}
+Phonebook.Views.Base ||= {}
 
-class Phonebook.Views.People.SelectionView extends Backbone.View
+class Phonebook.Views.Base.SearchResultsView extends Backbone.View
   initialize: (args) ->
-    @selection = args.selection
-    @association = args.association
-    @listenTo @model, "change:#{@association}", @render
-    @render()
+    @listenTo Backbone, 'search:results', @render
 
-  render: ->
+  render: (collection) ->
+    @trigger 'clean'
     fragment = document.createDocumentFragment()
-    for model in @selection.models
-      model.set('selected', true)
+    for model in collection.models
       view = new Phonebook.Views.People.SelectablePersonView
         model: model
       view.listenTo @, 'clean', view.remove

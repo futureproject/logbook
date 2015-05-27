@@ -7,15 +7,15 @@ class Phonebook.Views.Base.SearchView extends Backbone.View
     @$container = args?.container
     @searchAttrs = args.searchAttrs || ['name']
     @render()
-    @setCollection()
+    @setCollection(args.collection)
     Backbone.trigger 'search:initialized', @
 
-  setCollection: ->
-    @listenTo Backbone, "#{@namespace}:bootstrapped", (collection) =>
-      @collection = collection.fullCollection || collection
+  setCollection: (collection) ->
+    @collection = collection
+    @listenTo @collection, "reset", (collection) =>
       @clonedCollection = _.clone @collection
       @listenTo @collection, 'change:selected', @onSelect
-    Backbone.trigger "#{@namespace}:fetch"
+    ds.bootstrapper.bootstrap @collection
 
   events:
     'keyup' : 'throttledSearch'
@@ -34,16 +34,21 @@ class Phonebook.Views.Base.SearchView extends Backbone.View
 
   search: ->
     if @q?.length > 1
-      collection = @clonedCollection
+      collection = @clonedCollection.fullCollection || @clonedCollection
       results = collection.filter (model) =>
         searchString = ""
         _.each @searchAttrs, (attr) -> searchString += model.get(attr) + " "
         searchString.trim().toLowerCase().match(@q.toLowerCase())
       results = if results.length > 0 then results else @conditionallyAddNewRecord()
       @collection.reset(_.first(results, 10))
+      Backbone.trigger 'search:results', @collection
 
   remove: ->
-    Backbone.trigger "#{@namespace}:search:removed" if @$el.is(":visible")
+    if @collection
+      ds.bootstrapper.loadLocal(@collection)
+      Backbone.trigger "#{@namespace}:search:removed"
+      @collection.stopListening()
+      @collection = null
     super
 
   onSelect: ->

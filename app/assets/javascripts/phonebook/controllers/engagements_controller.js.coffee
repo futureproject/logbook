@@ -1,8 +1,10 @@
 class Phonebook.Controllers.EngagementsController extends Backbone.View
   initialize: (args) ->
-    @collection = new Phonebook.Collections.EngagementsCollection
+    Phonebook.collections.engagements ||= new Phonebook.Collections.EngagementsCollection
+    @collection = Phonebook.collections.engagements
     @router = new Phonebook.Routers.EngagementsRouter
     @views = {}
+    @listenToOnce Backbone, "engagements:bootstrap", -> ds.bootstrapper.bootstrap @collection
     @listenTo Backbone, 'engagements:index', @index
     @listenTo Backbone, 'engagements:show', @show
     @listenTo Backbone, 'engagements:new', @new
