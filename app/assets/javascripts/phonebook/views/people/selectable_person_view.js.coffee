@@ -16,7 +16,12 @@ class Phonebook.Views.People.SelectablePersonView extends Phonebook.Views.Base.R
       @model.set('selected', null)
     else
       @model.set('selected', true)
+      Backbone.trigger 'result:selected', @model, e
 
   render: ->
     @$el.html(@template @model.tplAttrs()).attr('class', @className())
     @
+
+  broadcastClick: (event) ->
+    console.log event
+

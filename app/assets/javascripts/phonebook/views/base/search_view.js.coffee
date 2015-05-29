@@ -9,6 +9,8 @@ class Phonebook.Views.Base.SearchView extends Backbone.View
     @render()
     @setCollection(args.collection)
     Backbone.trigger 'search:initialized', @
+    @listenTo Backbone, 'search:focus', ->
+      @$el.find('input').focus()
 
   setCollection: (collection) ->
     @collection = collection

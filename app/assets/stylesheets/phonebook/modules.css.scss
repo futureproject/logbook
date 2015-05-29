@@ -455,12 +455,8 @@
     }
     &:after { display: none; }
     .row-title { color: white; }
-    .row-timestamp {
+    .row-timestamp, .row-subject {
       display: none;
-      opacity: .75;
-      color: white;
-      font-weight: 300;
     }
   }
-
 }

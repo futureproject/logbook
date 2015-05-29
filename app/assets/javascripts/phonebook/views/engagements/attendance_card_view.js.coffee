@@ -3,7 +3,7 @@ Phonebook.Views.Engagements ||= {}
 class Phonebook.Views.Engagements.AttendanceCardView extends Backbone.View
   initialize: ->
     @render()
-    @listenTo @model, 'change', @render
+    @listenTo @model, 'change:attendees', @render
 
   events:
     'click' : 'showModal'

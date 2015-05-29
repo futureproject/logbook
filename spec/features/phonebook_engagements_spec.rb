@@ -47,18 +47,18 @@ feature 'using the phonebook' do
   scenario 'deleting', js: true
 
   def take_attendance
-    within '.detail-attendance' do
+    within '.detail-modal.engagements' do
       fill_in 'q', with: 'Dick'
-      within '#engagement-search-results' do
+      within '.multi-select-search-results' do
         expect(page).to have_content 'Dick'
-        tap_element("#engagement-search-results .row:first-child")
+        tap_element(".multi-select-search-results .row:first-child")
       end
       fill_in 'q', with: 'Selena Kyle'
-      within '#engagement-search-results' do
+      within '.multi-select-search-results' do
         expect(page).to have_content 'Selena'
-        tap_element("#engagement-search-results .row:first-child")
+        tap_element(".multi-select-search-results .row:first-child")
       end
-      first('.done').click
+      tap_element '.multi-select .icon-cancel'
     end
   end
 
