@@ -21,7 +21,7 @@ class Phonebook.Models.Engagement extends Backbone.Model
     @set 'date', Date.parse(@get('date')).toString('yyyy-MM-dd')
     a = @get('attendees')
 # rails misinterprets an empty array of association_ids, so give it a blank  string
-    ids = if a.length == 0 then [''] else _.pluck(@get('attendees'), 'id')
+    ids = if a.length == 0 then [''] else _.pluck(a, 'id')
     @set 'attendee_ids', ids
     super
 

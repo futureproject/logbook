@@ -28,3 +28,13 @@
   }
 }
 
+.detail-modal.projects {
+  .fancy-search-form {
+    background: $projects-color;
+  }
+  .multi-select-options {
+    .row {
+      background: $projects-color;
+    }
+  }
+}

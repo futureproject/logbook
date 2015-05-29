@@ -5,6 +5,8 @@ class Phonebook.Models.Project extends Backbone.Model
   defaults: ->
     leader_ids: []
     participant_ids: []
+    leaders: []
+    participants: []
     school_id: Phonebook.user.get('school_id')
     description: null
     status: 'underway'
@@ -17,6 +19,16 @@ class Phonebook.Models.Project extends Backbone.Model
   tplAttrs: ->
     attrs = _.clone @attributes
     attrs
+
+  save: ->
+    # rails misinterprets an empty array of association_ids, so give it a blank  string
+    l = @get('leaders')
+    ids = if l.length == 0 then [''] else _.pluck(l, 'id')
+    @set 'leader_ids', ids
+    p = @get('participants')
+    ids = if p.length == 0 then [''] else _.pluck(p, 'id')
+    @set 'participant_ids', ids
+    super
 
 class Phonebook.Collections.ProjectsCollection extends Backbone.PageableCollection
   model: Phonebook.Models.Project

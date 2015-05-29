@@ -9,6 +9,8 @@ class Phonebook.Controllers.ProjectsController extends Backbone.View
     @listenTo Backbone, 'projects:show', @show
     @listenTo Backbone, 'projects:new', @new
     @listenTo Backbone, 'projects:edit', @edit
+    @listenTo Backbone, 'projects:leaders', @leaders
+    @listenTo Backbone, 'projects:participants', @participants
     @listenTo Backbone, 'projects:saved', @onSave
 
   index: ->
@@ -44,6 +46,26 @@ class Phonebook.Controllers.ProjectsController extends Backbone.View
         container: @$el
       @views.edit.show(animation)
     @getModelById(id)
+
+  leaders: (id, animation) ->
+    @listenToOnce Backbone, 'model:loaded', (project) =>
+      @views.leaders?.remove()
+      @views.leaders = new Phonebook.Views.People.SelectorView
+        model: project
+        association: 'leaders'
+      @views.leaders.show(animation)
+    @getModelById(id)
+
+  participants: (id, animation) ->
+    @listenToOnce Backbone, 'model:loaded', (project) =>
+      @views.participants?.remove()
+      @views.participants = new Phonebook.Views.People.SelectorView
+        model: project
+        association: 'participants'
+      @views.participants.show(animation)
+    @getModelById(id)
+
+
 
 
   # methods below are NOT called by router, like private methods in a rails controller
