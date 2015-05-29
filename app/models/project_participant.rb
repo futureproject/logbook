@@ -2,6 +2,8 @@ class ProjectParticipant < ActiveRecord::Base
   belongs_to :project, touch: true
   belongs_to :person, touch: true
   after_create :log_action
+  validates_presence_of :person_id
+  validates_uniqueness_of :person_id, scope: :project_id, allow_nil: true
 
   def log_action
     return unless person && project
