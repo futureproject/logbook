@@ -19,10 +19,16 @@ class Logbook::SchoolsController < Logbook::ApplicationController
     Engagement::KIND_ENUM.each do |kind|
       @dd_hrs[kind] = @school.engagements.where(kind: kind).sum(:duration)
     end
-    logger.info @dd_hrs
 
     @engagement_counts = @school.engagements.group(:kind).count
+    @engagements_by_size = @school.engagements.order(:duration).group(:duration).count
+
     @projects = @school.projects.group(:status).count
+    @weekly_engagements = Engagement::KIND_ENUM.map {|kind|
+      data = @school.engagements.where(kind: kind).group_by_day_of_week(:date).count
+      Date::DAYNAMES.each_with_index{|d,i| data[d] = data.delete (i-1)%7 }
+      { name: kind, data: data }
+    }
     @chart_options = {
       plotOptions: {
         series: {
