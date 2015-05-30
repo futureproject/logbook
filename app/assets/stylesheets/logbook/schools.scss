@@ -5,6 +5,10 @@
     color: white;
     a { color: white; }
   }
+  section {
+    @include span-columns(4);
+    @include omega(3);
+  }
 }
 
 .school-labels, .table .school {

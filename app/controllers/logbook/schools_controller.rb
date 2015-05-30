@@ -9,6 +9,27 @@ class Logbook::SchoolsController < Logbook::ApplicationController
 
   def show
     @school = School.find params[:id]
+
+    @person_hrs = {}
+    Engagement::KIND_ENUM.each do |kind|
+      @person_hrs[kind] = @school.person_hours(kind)
+    end
+
+    @dd_hrs = {}
+    Engagement::KIND_ENUM.each do |kind|
+      @dd_hrs[kind] = @school.engagements.where(kind: kind).sum(:duration)
+    end
+    logger.info @dd_hrs
+
+    @engagement_counts = @school.engagements.group(:kind).count
+    @projects = @school.projects.group(:status).count
+    @chart_options = {
+      plotOptions: {
+        series: {
+          stacking: true,
+        }
+      }
+    }
   end
 
   private

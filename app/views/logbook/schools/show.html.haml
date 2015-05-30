@@ -1,7 +1,23 @@
 .page-header
   %h1= @school.name
-  .map= map_image_tag @school.address
-.labels.engagement-labels
+  %br
 
-%ul.table.engagements= render @school.engagements.order('date DESC').limit(50)
+%section#person-hours
+  %h2= "#{number_with_delimiter(@school.person_hours)} Student Engagement Hours"
+  .graph#person-hours-graph
+    = column_chart @person_hrs, colors: Engagement::COLOR_ENUM, library: @chart_options
+
+%section#dd-hours
+  %h2= "#{number_with_delimiter(@school.engagements.sum(:duration))} DD Engagement Hours"
+  .graph#person-hours-graph
+    = column_chart @dd_hrs, colors: Engagement::COLOR_ENUM, library: @chart_options
+
+%section#engagement-counts
+  %h2= "#{number_with_delimiter @school.engagements.count} Engagements"
+  .graph#engagement-counts-graph
+    = column_chart @engagement_counts, colors: Engagement::COLOR_ENUM, library: @chart_options
+
+%section#projects
+  %h2= "#{@school.projects.count} Projects"
+  .project-data= pie_chart @projects, library: @chart_options
 
