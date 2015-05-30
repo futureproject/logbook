@@ -4,49 +4,9 @@
 
 .row
   %h1 Engagements
+.row
   #engagement-bubbles
-  :javascript
-    $(document).ready(function(){
-      $('#engagement-bubbles').highcharts({
-        credits: false,
-        colors: #{Engagement::COLOR_ENUM},
-        chart: {
-          type: 'bubble',
-          zoomType: 'x',
-          backgroundColor: "#ffffff",
-        },
-        title: false,
-        xAxis: {
-          type: 'datetime',
-        },
-        yAxis: {
-          title: {
-            text: 'Duration (hrs)'
-          }
-        },
-        legend: {
-          layout: 'horizontal',
-          verticalAlign: 'bottom',
-        },
-        plotOptions: {
-          bubble: {
-            tooltip: {
-              headerFormat: "{series.name}<br>",
-              pointFormat: "<b>{point.title}</b><br>{point.y} Hrs, {point.z} Attendees" +
-                "<br>{point.notes}"
-            },
-            events: {
-              click: function(event) {
-                path = "/logbook/engagements/" + event.point.id
-                path += "?scope_id=" + ds.CONSTANTS.scope.id + "&scope_type=" + ds.CONSTANTS.scope.type
-                location = path
-              }
-            }
-          }
-        },
-        series: #{JSON.dump(@school.graphable_engagements)}
-      })
-    })
+  = render partial: 'logbook/application/bubbles', locals: { container: '#engagement-bubbles', colors: Engagement::COLOR_ENUM, data:@school.graphable_engagements }
 .row
   %section#person-hours.g4
     %h2= "#{number_with_delimiter(@school.person_hours)} Student Engagement Hours"
@@ -79,6 +39,8 @@
       %span % of school actively engaged
       %span % of school passsively engaged
 
+.row
+  %h1 Projects
 .row
   %section#projects.g4
     %h2= "#{@school.projects.count} Projects"
