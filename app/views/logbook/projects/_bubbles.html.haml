@@ -1,0 +1,42 @@
+:javascript
+  $(document).ready(function(){
+    $("#{container}").highcharts({
+      credits: false,
+      colors: #{colors},
+      chart: {
+        type: 'bubble',
+        zoomType: 'x',
+        backgroundColor: "#f6f7f6",
+      },
+      title: false,
+      xAxis: {
+        type: 'datetime',
+      },
+      yAxis: {
+        title: {
+          text: 'Team Size (count)'
+        }
+      },
+      legend: {
+        layout: 'horizontal',
+        verticalAlign: 'bottom',
+      },
+      plotOptions: {
+        bubble: {
+          tooltip: {
+            headerFormat: "{series.name}<br>",
+            pointFormat: "<b>{point.title}</b><br>{point.y} ppl, {point.z} notes" +
+              "<br>{point.description}"
+          },
+          events: {
+            click: function(event) {
+              path = "/logbook/projects/" + event.point.id
+              path += "?scope_id=" + ds.CONSTANTS.scope.id + "&scope_type=" + ds.CONSTANTS.scope.type
+              location = path
+            }
+          }
+        }
+      },
+      series: #{JSON.dump(data)}
+    })
+  })

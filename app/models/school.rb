@@ -62,8 +62,5 @@ class School < ActiveRecord::Base
     engagements.where("kind like ?", kind).where('headcount IS NOT NULL').where('duration IS NOT NULL').map{|e| (e.headcount * e.duration).to_i}.inject(:+)
   end
 
-  def graphable_engagements
-    engagements.group_by(&:kind).map{|k,v| { name: k, data: v.map{|e| { x: e.date.to_datetime.to_i*1000, y: e.duration, z: e.headcount, title: e.name, id: e.id, notes: e.notes.try(:first, 44) } } } }
-  end
 
 end

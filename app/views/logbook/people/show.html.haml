@@ -25,46 +25,5 @@
       %ul.secondary-projects= render @person.secondary_projects
     %section.person-activity
       %h3.engagements-color= "Engagements - #{@person.engagements.sum(:duration)} hours"
-      #activities
-      :javascript
-        $(document).ready(function(){
-          $('#activities').highcharts({
-            credits: false,
-            colors: #{Engagement::COLOR_ENUM},
-            chart: {
-              type: 'bubble',
-              zoomType: 'x',
-              backgroundColor: "#ffffff",
-            },
-            title: false,
-            xAxis: {
-              type: 'datetime',
-            },
-            yAxis: {
-              title: {
-                text: 'Duration (hrs)'
-              }
-            },
-            legend: {
-              layout: 'horizontal',
-              verticalAlign: 'bottom',
-            },
-            plotOptions: {
-              bubble: {
-                tooltip: {
-                  headerFormat: "{series.name}<br>",
-                  pointFormat: "<b>{point.title}</b><br>{point.y} Hrs, {point.z} Attendees" +
-                    "<br>{point.notes}"
-                },
-                events: {
-                  click: function(event) {
-                    path = "/logbook/engagements/" + event.point.id
-                    path += "?scope_id=" + ds.CONSTANTS.scope.id + "&scope_type=" + ds.CONSTANTS.scope.type
-                    location = path
-                  }
-                }
-              }
-            },
-            series: #{JSON.dump(@person.graphable_engagements)}
-          })
-        })
+      #engagement-bubbles
+      = render partial: 'logbook/engagements/bubbles', locals: { container: '#engagement-bubbles', colors: Engagement::COLOR_ENUM, data: Engagement.as_bubbles(@person.engagements) }

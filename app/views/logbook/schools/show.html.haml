@@ -3,10 +3,10 @@
   %br
 
 .row
-  %h1 Engagements
+  %h1= pluralize @school.engagements.count, "Engagement"
 .row
   #engagement-bubbles
-  = render partial: 'logbook/application/bubbles', locals: { container: '#engagement-bubbles', colors: Engagement::COLOR_ENUM, data:@school.graphable_engagements }
+  = render partial: 'logbook/engagements/bubbles', locals: { container: '#engagement-bubbles', colors: Engagement::COLOR_ENUM, data: Engagement.as_bubbles(@school.engagements) }
 .row
   %section#person-hours.g4
     %h2= "#{number_with_delimiter(@school.person_hours)} Student Engagement Hours"
@@ -40,7 +40,12 @@
       %span % of school passsively engaged
 
 .row
-  %h1 Projects
+  %h1= pluralize @school.projects.count, "Project"
+
+.row
+  #project-bubbles
+  = render partial: 'logbook/projects/bubbles', locals: { container: '#project-bubbles', colors: Project::COLOR_ENUM, data: Project.as_bubbles(@school.projects) }
+
 .row
   %section#projects.g4
     %h2= "#{@school.projects.count} Projects"

@@ -4,17 +4,19 @@
       credits: false,
       colors: #{colors},
       chart: {
-        type: 'bubble',
-        zoomType: 'x',
-        backgroundColor: "#ffffff",
+        type: 'scatter',
+        zoomType: 'xy',
+        backgroundColor: "#f6f7f6",
       },
       title: false,
       xAxis: {
-        type: 'datetime',
+        title: {
+          text: 'Leaders (count)'
+        }
       },
       yAxis: {
         title: {
-          text: 'Duration (hrs)'
+          text: 'Supporters (count)'
         }
       },
       legend: {
@@ -30,7 +32,7 @@
           },
           events: {
             click: function(event) {
-              path = "/logbook/engagements/" + event.point.id
+              path = "/logbook/projects/" + event.point.id
               path += "?scope_id=" + ds.CONSTANTS.scope.id + "&scope_type=" + ds.CONSTANTS.scope.type
               location = path
             }
