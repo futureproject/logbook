@@ -26,12 +26,12 @@
 .row
   %section#rhythm.g4
     %h2 Engagements by Day of Week
-    = bar_chart @weekly_engagements, colors: Engagement::COLOR_ENUM, library: @chart_options.merge({ yAxis: { title: { text: "Engagements (count)" } }, xAxis: {title: {text: "Day" } } })
+    = bar_chart @weekly_engagements, colors: Engagement::COLOR_ENUM, library: @chart_options.merge({ yAxis: { title: { text: "Engagements (count)" } } })
 
-  %section#engagements-by-duration.g4
-    %h2 Engagements by Duration
+  %section#engagements-in-context.g4
+    %h2 Engagements in Context
     .graph
-      = bar_chart @engagements_by_size, colors: Engagement::COLOR_ENUM, library: @chart_options.merge({ yAxis: { title: { text: "Engagements (count)" } }, xAxis: {title: {text: "Duration (hrs)" } } })
+      = bar_chart @engagements_in_context, colors: Engagement::COLOR_ENUM, library: @chart_options.merge({ yAxis: { title: { text: "Engagements (count)" } } })
 
   %section#engagement-percentage.g4
     %h2 Engagement Percentage
@@ -51,3 +51,7 @@
     %h2= "#{@school.projects.count} Projects"
     .project-data= pie_chart @projects, library: @chart_options
 
+  %section#projects-in-context.g4
+    %h2 Projects in Context
+    .graph
+      = bar_chart @projects_in_context, colors: Project::COLOR_ENUM, library: @chart_options.merge({ yAxis: { title: { text: "Projects (count)" } } })

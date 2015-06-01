@@ -20,10 +20,13 @@ class Logbook::SchoolsController < Logbook::ApplicationController
       @dd_hrs[kind] = @school.engagements.where(kind: kind).sum(:duration)
     end
 
-    @engagement_counts = @school.engagements.group(:kind).count
-    @engagements_by_size = @school.engagements.order(:duration).group(:duration).count
+    @engagement_counts = @school.engagements.order(:kind).group(:kind).count
+    @engagements_in_context = {
+      "#{@school.name}" => @school.engagements.count,
+      "City Avg" => @school.site.engagements.count / @school.site.schools.count,
+      "National Avg" => Engagement.count / School.count
+    }
 
-    @projects = @school.projects.group(:status).count
     @weekly_engagements = Engagement::KIND_ENUM.map {|kind|
       data = @school.engagements.where(kind: kind).group_by_day_of_week(:date).count
       Date::DAYNAMES.each_with_index{|d,i| data[d] = data.delete (i-1)%7 }
@@ -35,6 +38,12 @@ class Logbook::SchoolsController < Logbook::ApplicationController
           stacking: true,
         }
       }
+    }
+    @projects = @school.projects.group(:status).count
+    @projects_in_context = {
+      "#{@school.name}" => @school.projects.count,
+      "City Avg" => @school.site.projects.count / @school.site.schools.count,
+      "National Avg" => Project.count / School.count
     }
   end
 
