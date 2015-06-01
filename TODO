@@ -1,10 +1,13 @@
+% of whole school actively engaged (like there is actually a logbook entry for these people)
+% of whole school passively engaged (using largest engagement as an estimate)
+comparison of above to Site & National averages
+
+Person by engagement hour on a scatter plot
+
 Potentially Interesting People
 Potentially Interesting Projects
 Potentially Interesting Engagements
 
-% of whole school actively engaged (like there is actually a logbook entry for these people)
-% of whole school passively engaged (using largest engagement as an estimate)
-comparison of above to Site & National averages
 
 _ create actual tab views, are you seriously reading data-attrs??
 _ stop views from rendering when their controller is not active

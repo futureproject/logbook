@@ -34,10 +34,9 @@
       = bar_chart @engagements_in_context, colors: Engagement::COLOR_ENUM, library: @chart_options.merge({ yAxis: { title: { text: "Engagements (count)" } } })
 
   %section#engagement-percentage.g4
-    %h2 Engagement Percentage
+    %h2 Percent of School Population Engaged
     .graph
-      %span % of school actively engaged
-      %span % of school passsively engaged
+      = bar_chart @engagement_pct, colors: Engagement::COLOR_ENUM, library: @chart_options.merge({ yAxis: { title: { text: "School Population Engaged (%)" } } })
 
 .row
   %h1= pluralize @school.projects.count, "Project"
