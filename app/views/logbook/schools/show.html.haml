@@ -3,6 +3,23 @@
   %br
 
 .row
+  %h1
+    = pluralize @school.people.count, "Person"
+    in Logbook,
+    = @school.headcount
+    People at School
+    = "(#{((@school.people.count.fdiv @school.headcount)*100).to_i}%)"
+.row
+  #people-bubbles
+  = render partial: 'logbook/people/bubbles', locals: { container: '#people-bubbles', colors: Person::COLOR_ENUM, data: Person.as_bubbles(@school.people) }
+
+.row
+  %section#projects.g4
+    %h2 How much of the school is working on a project?
+    .graph#person-hours-graph
+      = pie_chart @people_with_projects, colors: Person::COLOR_ENUM, library: @chart_options
+
+.row
   %h1= pluralize @school.engagements.count, "Engagement"
 .row
   #engagement-bubbles
@@ -54,3 +71,4 @@
     %h2 Projects in Context
     .graph
       = bar_chart @projects_in_context, colors: Project::COLOR_ENUM, library: @chart_options.merge({ yAxis: { title: { text: "Projects (count)" } } })
+

@@ -5,16 +5,18 @@
       colors: #{colors},
       chart: {
         type: 'bubble',
-        zoomType: 'x',
+        zoomType: 'xy',
         backgroundColor: "#f6f7f6",
       },
       title: false,
       xAxis: {
-        type: 'datetime',
+        title: {
+          text: 'Time Logged (hrs)'
+        }
       },
       yAxis: {
         title: {
-          text: 'Team Size (count)'
+          text: 'Engagements Attended (count)'
         }
       },
       legend: {
@@ -25,12 +27,11 @@
         bubble: {
           tooltip: {
             headerFormat: "",
-            pointFormat: "<b>{point.title}</b><br>{series.name}<br>{point.y} People" +
-              "<br>{point.description}"
+            pointFormat: "<b>{point.title}</b><br>{series.name}<br>{point.x} Hours, {point.y} Engagements<br>{point.z} Projects"
           },
           events: {
             click: function(event) {
-              path = "/logbook/projects/" + event.point.id
+              path = "/logbook/people/" + event.point.id
               path += "?scope_id=" + ds.CONSTANTS.scope.id + "&scope_type=" + ds.CONSTANTS.scope.type
               location = path
             }

@@ -111,6 +111,20 @@ class Person < ActiveRecord::Base
     false
   end
 
+  def set_site
+    if self.school
+      self.site_id = self.school.try(:site).try(:id)
+    else
+      self.site_id = self.user.try(:site).try(:id)
+    end
+    true
+  end
+
+  def downcase_name
+    self.first_name = self.first_name.try(:downcase)
+    self.last_name = self.last_name.try(:downcase)
+  end
+
   # takes a CSV from the public directory and a User object
   # imports students into the system
   def self.import_from_csv(filename, dream_director)
@@ -163,18 +177,19 @@ class Person < ActiveRecord::Base
     primary.touch
   end
 
-  def set_site
-    if self.school
-      self.site_id = self.school.try(:site).try(:id)
-    else
-      self.site_id = self.user.try(:site).try(:id)
-    end
-    true
+  def self.as_bubbles(scope=self.all)
+    scope.order(:dream_team).joins(:engagements).select('people.id, people.first_name, people.last_name, people.dream_team, SUM(engagements.duration) AS hours').group('people.id').group_by(&:dream_team).map{|k,v| { name: (k ? "Dream-Team" : "Non Dream-Team"), data: v.map{|p| { x: p.hours, y: p.engagements.count, z: p.projects.count, title: p.name, id: p.id } } } }
   end
 
-  def downcase_name
-    self.first_name = self.first_name.try(:downcase)
-    self.last_name = self.last_name.try(:downcase)
+  def self.as_project_pie_chart(scope=self.all)
+    primary = scope.joins(:primary_projects).uniq
+    secondary = scope.joins(:secondary_projects).uniq
+    secondary = secondary - primary
+    logger.info secondary.size
+    {
+      "Leading" => primary.count,
+      "Supporting" => secondary.count
+    }
   end
 
 end

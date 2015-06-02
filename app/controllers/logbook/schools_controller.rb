@@ -10,6 +10,10 @@ class Logbook::SchoolsController < Logbook::ApplicationController
   def show
     @school = School.find params[:id]
 
+
+    @people_with_projects = Person.as_project_pie_chart(@school.people)
+    @people_with_projects["Nope"] = @school.headcount - @people_with_projects["Leading"] - @people_with_projects["Supporting"]
+
     @person_hrs = {}
     Engagement::KIND_ENUM.each do |kind|
       @person_hrs[kind] = @school.person_hours(kind)
@@ -27,8 +31,8 @@ class Logbook::SchoolsController < Logbook::ApplicationController
       "National Avg" => Engagement.count / School.count
     }
     @engagement_pct = {
-      "Logbook Estimate" => "#{(@school.engaged_people.count.fdiv(@school.size)*100).to_i}%",
-      "Rough Estimate" => "#{(@school.headcount.fdiv(@school.size)*100).to_i}%"
+      "Logbook Estimate" => "#{(@school.engaged_people.count.fdiv(@school.headcount)*100).to_i}%",
+      "Rough Estimate" => "#{(@school.headcount.fdiv(@school.headcount)*100).to_i}%"
     }
     @weekly_engagements = Engagement::KIND_ENUM.map {|kind|
       data = @school.engagements.where(kind: kind).group_by_day_of_week(:date).count
@@ -48,6 +52,7 @@ class Logbook::SchoolsController < Logbook::ApplicationController
       "#{@school.site.try(:name)} Avg" => @school.site.projects.count / @school.site.schools.count,
       "National Avg" => Project.count / School.count
     }
+
   end
 
   private
