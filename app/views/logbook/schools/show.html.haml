@@ -4,56 +4,61 @@
 
 .row
   %h1
+    = pluralize @school.headcount, "Person"
+    at School,
     = pluralize @school.people.count, "Person"
-    in Logbook,
-    = @school.headcount
-    People at School
-    = "(#{((@school.people.count.fdiv @school.headcount)*100).to_i}%)"
+    in Logbook
 .row
   #people-bubbles
   = render partial: 'logbook/people/bubbles', locals: { container: '#people-bubbles', colors: Person::COLOR_ENUM, data: Person.as_bubbles(@school.people) }
 
 .row
-  %section#projects.g4
-    %h2 How much of the school is working on a project?
-    .graph#person-hours-graph
-      = pie_chart @people_with_projects, colors: Person::COLOR_ENUM, library: @chart_options
+  %section#people-projects.g4
+    %h2 How many people have projects?
+    .graph= pie_chart @people_with_projects, colors: Person::COLOR_ENUM, library: @chart_options
+  %section#people-engagements.g4
+    %h2 How many people engaged?
+    .graph= pie_chart @people_at_engagements, colors: [Person::COLOR_ENUM[0], Person::COLOR_ENUM[2]], library: @chart_options
+  %section#notable-engagements.g4
+    %h2 Who are some notable students?
+    %p Most Engagements, Most Projects, Most Coached
+.row
+  %section#people-context
+    %h2 Could I have some context, please?
+    .graph= bar_chart @people_in_context, colors: Person::COLOR_ENUM, library: @chart_options.merge({ plotOptions: { series: { stacking: false } } })
 
 .row
   %h1= pluralize @school.engagements.count, "Engagement"
+
 .row
   #engagement-bubbles
   = render partial: 'logbook/engagements/bubbles', locals: { container: '#engagement-bubbles', colors: Engagement::COLOR_ENUM, data: Engagement.as_bubbles(@school.engagements) }
 .row
   %section#person-hours.g4
-    %h2= "#{number_with_delimiter(@school.person_hours)} Student Engagement Hours"
+    %h2= "How did students spend their #{number_with_delimiter(@school.person_hours)} logged hours?"
     .graph#person-hours-graph
       = pie_chart @person_hrs, colors: Engagement::COLOR_ENUM, library: @chart_options
 
   %section#dd-hours.g4
-    %h2= "#{number_with_delimiter(@school.engagements.sum(:duration))} DD Engagement Hours"
+    %h2= "How did DDs & Apprentices spend their #{number_with_delimiter(@school.engagements.sum(:duration).to_i)} program hours?"
     .graph#person-hours-graph
       = pie_chart @dd_hrs, colors: Engagement::COLOR_ENUM, library: @chart_options
 
   %section#engagement-counts.g4
-    %h2= "#{number_with_delimiter @school.engagements.count} Engagements"
+    %h2 How many engagements happened here?
     .graph#engagement-counts-graph
       = pie_chart @engagement_counts, colors: Engagement::COLOR_ENUM, library: @chart_options
 
 .row
   %section#rhythm.g4
-    %h2 Engagements by Day of Week
+    %h2 What days of the week are most active?
     = bar_chart @weekly_engagements, colors: Engagement::COLOR_ENUM, library: @chart_options.merge({ yAxis: { title: { text: "Engagements (count)" } } })
-
   %section#engagements-in-context.g4
-    %h2 Engagements in Context
-    .graph
-      = bar_chart @engagements_in_context, colors: Engagement::COLOR_ENUM, library: @chart_options.merge({ yAxis: { title: { text: "Engagements (count)" } } })
-
-  %section#engagement-percentage.g4
-    %h2 Percent of School Population Engaged
-    .graph
-      = bar_chart @engagement_pct, colors: Engagement::COLOR_ENUM, library: @chart_options.merge({ yAxis: { title: { text: "School Population Engaged (%)" } } })
+    %h2 Does this school have more engagements than average?
+    .graph= bar_chart @engagements_in_context, colors: Engagement::COLOR_ENUM, library: @chart_options.merge({ yAxis: { title: { text: "Engagements (count)" } } })
+  %section#notable-engagements.g4
+    %h2 What were some notable engagements?
+    %p Longest, Largest, With Media
 
 .row
   %h1= pluralize @school.projects.count, "Project"
@@ -64,11 +69,13 @@
 
 .row
   %section#projects.g4
-    %h2= "#{@school.projects.count} Projects"
+    %h2= "What's the status of these #{@school.projects.count} Projects?"
     .project-data= pie_chart @projects, library: @chart_options
 
   %section#projects-in-context.g4
-    %h2 Projects in Context
-    .graph
-      = bar_chart @projects_in_context, colors: Project::COLOR_ENUM, library: @chart_options.merge({ yAxis: { title: { text: "Projects (count)" } } })
+    %h2 Does this school have more projects than average?
+    .graph= bar_chart @projects_in_context, colors: Project::COLOR_ENUM, library: @chart_options.merge({ yAxis: { title: { text: "Projects (count)" } } })
 
+  %section#notable-engagements.g4
+    %h2 What were some notable projects?
+    %p Largest, With Media, Most Notes

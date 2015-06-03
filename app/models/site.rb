@@ -53,8 +53,8 @@ class Site < ActiveRecord::Base
     (people.joins(:primary_projects) + people.joins(:secondary_projects)).uniq.count
   end
 
-  def headcount
-    durations = schools.map{|school| school.headcount }
+  def engaged_people_estimate
+    durations = schools.map{|school| school.engaged_people_estimate }
     durations.inject(:+)
   end
 

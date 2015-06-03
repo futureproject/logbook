@@ -10,9 +10,10 @@ class Logbook::SchoolsController < Logbook::ApplicationController
   def show
     @school = School.find params[:id]
 
+    @people_with_projects = Person.as_project_pie_chart(@school.people, @school.headcount)
+    @people_at_engagements = Person.as_engagement_pie_chart(@school.people, @school.headcount)
+    @people_in_context = @school.data_for_context_graph
 
-    @people_with_projects = Person.as_project_pie_chart(@school.people)
-    @people_with_projects["Nope"] = @school.headcount - @people_with_projects["Leading"] - @people_with_projects["Supporting"]
 
     @person_hrs = {}
     Engagement::KIND_ENUM.each do |kind|
@@ -26,13 +27,13 @@ class Logbook::SchoolsController < Logbook::ApplicationController
 
     @engagement_counts = @school.engagements.order(:kind).group(:kind).count
     @engagements_in_context = {
-      "#{@school.name}" => @school.engagements.count,
-      "#{@school.site.try(:name)} Avg" => @school.site.engagements.count / @school.site.schools.count,
+      "School" => @school.engagements.count,
+      "City Avg" => @school.site.engagements.count / @school.site.schools.count,
       "National Avg" => Engagement.count / School.count
     }
     @engagement_pct = {
       "Logbook Estimate" => "#{(@school.engaged_people.count.fdiv(@school.headcount)*100).to_i}%",
-      "Rough Estimate" => "#{(@school.headcount.fdiv(@school.headcount)*100).to_i}%"
+      "Rough Estimate" => "#{(@school.engaged_people_estimate.fdiv(@school.headcount)*100).to_i}%"
     }
     @weekly_engagements = Engagement::KIND_ENUM.map {|kind|
       data = @school.engagements.where(kind: kind).group_by_day_of_week(:date).count
@@ -48,8 +49,8 @@ class Logbook::SchoolsController < Logbook::ApplicationController
     }
     @projects = @school.projects.group(:status).count
     @projects_in_context = {
-      "#{@school.name}" => @school.projects.count,
-      "#{@school.site.try(:name)} Avg" => @school.site.projects.count / @school.site.schools.count,
+      "School" => @school.projects.count,
+      "Site Avg" => @school.site.projects.count / @school.site.schools.count,
       "National Avg" => Project.count / School.count
     }
 

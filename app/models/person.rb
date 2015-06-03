@@ -178,17 +178,25 @@ class Person < ActiveRecord::Base
   end
 
   def self.as_bubbles(scope=self.all)
-    scope.order(:dream_team).joins(:engagements).select('people.id, people.first_name, people.last_name, people.dream_team, SUM(engagements.duration) AS hours').group('people.id').group_by(&:dream_team).map{|k,v| { name: (k ? "Dream-Team" : "Non Dream-Team"), data: v.map{|p| { x: p.hours, y: p.engagements.count, z: p.projects.count, title: p.name, id: p.id } } } }
+    scope.order(:dream_team).joins(:engagements).select('people.id, people.first_name, people.last_name, people.dream_team, SUM(engagements.duration) AS hours').group('people.id').group_by(&:dream_team).map{|k,v| { name: (k ? "Dream-Team" : "Non Dream-Team"), data: v.map{|p| { x: p.hours, y: p.engagements.count, z: p.projects.count, title: p.name.titlecase, id: p.id } } } }
   end
 
-  def self.as_project_pie_chart(scope=self.all)
+  def self.as_project_pie_chart(scope=self.all, headcount=607)
     primary = scope.joins(:primary_projects).uniq
     secondary = scope.joins(:secondary_projects).uniq
     secondary = secondary - primary
-    logger.info secondary.size
     {
       "Leading" => primary.count,
-      "Supporting" => secondary.count
+      "Just Supporting" => secondary.count,
+      "Nope" => headcount
+    }
+  end
+
+  def self.as_engagement_pie_chart(scope=self.all, headcount=607)
+    engaged = scope.joins(:engagements).uniq.count
+    {
+      "Engaged" => engaged,
+      "Nope" => headcount - engaged
     }
   end
 

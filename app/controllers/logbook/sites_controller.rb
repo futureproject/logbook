@@ -24,7 +24,7 @@ class Logbook::SitesController < Logbook::ApplicationController
     @passive_ppl = {}
     @site.schools.order(:name).each{|school|
       people = (school.people.joins(:primary_projects) + school.people.joins(:secondary_projects)).uniq.count
-      @passive_ppl[school.name] = school.headcount
+      @passive_ppl[school.name] = school.engaged_people_estimate
       @active_ppl[school.name] = people
     }
     @chart_options = {

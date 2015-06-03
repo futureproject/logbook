@@ -9,8 +9,8 @@ class National
     res || 0
   end
 
-  def self.headcount
-    durations = School.all.map{|school| school.headcount }
+  def self.engaged_people_estimate
+    durations = School.all.map{|school| school.engaged_people_estimate }
     durations.inject(:+)
   end
 

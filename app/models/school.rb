@@ -63,10 +63,39 @@ class School < ActiveRecord::Base
   end
   #
   # estimate the number of distinct people engaged at this school
-  def headcount
+  def engaged_people_estimate
     exact = engaged_people.count
     rough = engagements.order('headcount DESC').limit(1).first.headcount rescue 0
     rough > exact ? rough : exact
+  end
+
+  def data_for_context_graph
+    [
+      {
+        name: "This School",
+        data: [
+          ['School Size', self.headcount],
+          ['Engaged Ppl', self.people.joins(:engagements).uniq.count],
+          ['Program Hours', self.engagements.sum(:duration).to_i],
+        ]
+      },
+      {
+        name: "Site Avg",
+        data: [
+          ['School Size', self.site.schools.average(:headcount)],
+          ['Engaged Ppl',self.site.people.joins(:engagements).uniq.count / self.site.schools.count],
+          ['Program Hours', (self.site.engagements.sum(:duration) / self.schools.count).to_i],
+        ]
+      },
+      {
+        name: "National Avg",
+        data: [
+          ['School Size',National.average(:schools, :headcount)],
+          ['Engaged Ppl',Person.joins(:engagements).uniq.count / School.count],
+          ['Program Hours', (Engagement.sum(:duration) / School.count).to_i],
+        ]
+      },
+    ]
   end
 
 
