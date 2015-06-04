@@ -116,6 +116,10 @@ body {
     line-height: 2;
     &:first-child { @include span-columns(2); }
   }
+  .filter-options {
+    max-height: 19em;
+    overflow: auto;
+  }
   .filter-label { text-transform: uppercase; }
   a {
     color: white;

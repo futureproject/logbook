@@ -15,4 +15,21 @@
   .school-schools { @include span-columns(1); }
   .school-engagements { @include span-columns(1); }
   .school-engagement-hours { @include span-columns(1); }
+  .school-graph-nav-item {
+    @include span-columns(2);
+  }
+}
+
+.school-facts {
+  width: 100%;
+  margin-top: 5px;
+  td, th {
+    @include span-columns(2);
+    padding: 0 2em 0 0;
+    vertical-align: top;
+  }
+  th {
+    text-align: left;
+  }
+  td { font-weight: normal; }
 }

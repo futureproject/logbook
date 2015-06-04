@@ -18,6 +18,11 @@ class ds.LabelsView extends Backbone.View
       else
         @$el.removeClass('locked').next().css('margin-top','')
     )
+  events:
+    'click a': (event) ->
+      @$el.find('a').removeClass('active')
+      $(event.currentTarget).addClass('active')
+
 $ ->
   ds.labels_view = new ds.LabelsView({ el: '.labels' })
 

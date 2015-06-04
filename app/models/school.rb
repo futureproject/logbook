@@ -72,27 +72,35 @@ class School < ActiveRecord::Base
   def data_for_context_graph
     [
       {
-        name: "This School",
+        name: "Program Hours",
         data: [
-          ['School Size', self.headcount],
-          ['Engaged Ppl', self.people.joins(:engagements).uniq.count],
-          ['Program Hours', self.engagements.sum(:duration).to_i],
+          ['School', self.engagements.sum(:duration)],
+          ['City Avg', (self.site.engagements.sum(:duration)/self.site.schools.count).to_i],
+          ['National Avg', (Engagement.sum(:duration)/School.count).to_i],
         ]
       },
       {
-        name: "Site Avg",
+        name: "Projects",
         data: [
-          ['School Size', self.site.schools.average(:headcount)],
-          ['Engaged Ppl',self.site.people.joins(:engagements).uniq.count / self.site.schools.count],
-          ['Program Hours', (self.site.engagements.sum(:duration) / self.schools.count).to_i],
+          ['School', self.projects.count],
+          ['City Avg', (self.site.projects.count/self.site.schools.count).to_i],
+          ['National Avg', (Project.count/School.count).to_i],
         ]
       },
       {
-        name: "National Avg",
+        name: "Engaged People",
         data: [
-          ['School Size',National.average(:schools, :headcount)],
-          ['Engaged Ppl',Person.joins(:engagements).uniq.count / School.count],
-          ['Program Hours', (Engagement.sum(:duration) / School.count).to_i],
+          ['School', self.engaged_people_estimate],
+          ['City Avg', (self.site.engaged_people_estimate/self.site.schools.count).to_i],
+          ['National Avg', (National.engaged_people_estimate/School.count).to_i],
+        ]
+      },
+      {
+        name: "Size",
+        data: [
+          ['School', self.headcount],
+          ['City Avg', (self.site.schools.sum(:headcount)/self.site.schools.count).to_i],
+          ['National Avg', (School.sum(:headcount)/School.count).to_i],
         ]
       },
     ]

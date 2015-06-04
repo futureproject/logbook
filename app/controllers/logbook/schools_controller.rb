@@ -10,10 +10,10 @@ class Logbook::SchoolsController < Logbook::ApplicationController
   def show
     @school = School.find params[:id]
 
+    @school_in_context = @school.data_for_context_graph
+
     @people_with_projects = Person.as_project_pie_chart(@school.people, @school.headcount)
     @people_at_engagements = Person.as_engagement_pie_chart(@school.people, @school.headcount)
-    @people_in_context = @school.data_for_context_graph
-
 
     @person_hrs = {}
     Engagement::KIND_ENUM.each do |kind|

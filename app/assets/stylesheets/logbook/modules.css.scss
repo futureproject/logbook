@@ -60,7 +60,6 @@
 
 .page-header {
   font-weight: bold;
-  padding-bottom: 0 !important;
   h1 {
     margin: 0;
     .icon {
@@ -100,6 +99,7 @@
   .active {
     font-weight: bold;
     position: relative;
+    opacity: 1;
     &:after {
       top: 100%;
       left: 50%;
