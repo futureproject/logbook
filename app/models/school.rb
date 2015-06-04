@@ -66,7 +66,7 @@ class School < ActiveRecord::Base
   def engaged_people_estimate
     exact = engaged_people.count
     rough = engagements.order('headcount DESC').limit(1).first.headcount rescue 0
-    rough > exact ? rough : exact
+    (rough && rough > exact) ? rough : exact
   end
 
   def data_for_context_graph
