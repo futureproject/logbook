@@ -185,11 +185,11 @@ class Person < ActiveRecord::Base
     primary = scope.joins(:primary_projects).uniq
     secondary = scope.joins(:secondary_projects).uniq
     secondary = secondary - primary
-    {
-      "Leading" => primary.count,
-      "Just Supporting" => secondary.count,
-      "Nope" => headcount
-    }
+    [
+      { name: 'Leading', y: primary.count},
+      { name: 'Just Supporting', y: secondary.count},
+      { name: 'Nope', y: headcount},
+    ]
   end
 
   def self.as_engagement_pie_chart(scope=self.all, headcount=607)

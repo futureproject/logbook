@@ -51,8 +51,8 @@ class Api::V1::SchoolsController < Api::V1::BaseController
 
   def context_graph
     render json: {
-      data: @school.people.limit(10),
-      type: 'bar'
+      data: Person.as_project_pie_chart(@school.people),
+      type: 'pie'
     }
   end
 

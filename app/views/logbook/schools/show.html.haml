@@ -27,10 +27,10 @@
 
 .row
   %section#school-in-context
-    /.graph{data: { url: context_graph_api_v1_school_path(@school) } }
-    /  .loading
     %h1 School data in context:
-    .graph= bar_chart school_in_context(@school), colors: [Engagement::COLOR_ENUM[0], Project::COLOR_ENUM[0], Person::COLOR_ENUM].flatten, library: @chart_options
+    .graph{data: { url: context_graph_api_v1_school_path(@school) } }
+      .loading
+      /= bar_chart school_in_context(@school), colors: [Engagement::COLOR_ENUM[0], Project::COLOR_ENUM[0], Person::COLOR_ENUM].flatten, library: @chart_options
 
 .row#school-people
   %h1 People
@@ -41,9 +41,6 @@
 
 .row
   %section#people-projects.g4
-    - pwp = people_with_projects(@school)
-    %h2= "#{pwp['Leading'] + pwp['Just Supporting']} people have projects."
-    .graph= pie_chart pwp, colors: Person::COLOR_ENUM, library: @chart_options.merge({plotOptions:{pie:{size: '70%'}}})
   %section#people-engagements.g4
     - ppe = people_at_engagements(@school)
     %h2= "#{ppe['Engaged']} people attended an engagement."

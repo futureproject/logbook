@@ -14,49 +14,21 @@ class ds.GraphView extends Backbone.View
         @render(response)
 
   render: (chart_info) ->
-    @$el.highcharts
+    @$el.empty().highcharts
+      credits: false
       chart:
-        plotBackgroundColor: null
-        plotBorderWidth: null
-        plotShadow: false
-      title: text: 'Browser market shares at a specific website, 2014'
+        backgroundColor: 'transparent'
+      title: null
       tooltip: pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-      plotOptions: pie:
-        allowPointSelect: true
-        cursor: 'pointer'
-        dataLabels:
-          enabled: true
-          format: '<b>{point.name}</b>: {point.percentage:.1f} %'
-          style: color: Highcharts.theme and Highcharts.theme.contrastTextColor or 'black'
+      plotOptions:
+        pie:
+          allowPointSelect: true
+          cursor: 'pointer'
+          dataLabels:
+            enabled: true
+            format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+            style: color: Highcharts.theme and Highcharts.theme.contrastTextColor or 'black'
       series: [ {
-        type: 'pie'
-        name: 'Browser share'
-        data: [
-          [
-            'Firefox'
-            45.0
-          ]
-          [
-            'IE'
-            26.8
-          ]
-          {
-            name: 'Chrome'
-            y: 12.8
-            sliced: true
-            selected: true
-          }
-          [
-            'Safari'
-            8.5
-          ]
-          [
-            'Opera'
-            6.2
-          ]
-          [
-            'Others'
-            0.7
-          ]
-        ]
+        type: chart_info.type
+        data: chart_info.data
       } ]
