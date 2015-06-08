@@ -200,4 +200,8 @@ class Person < ActiveRecord::Base
     }
   end
 
+  def self.meaningfully_engaged(scope=self.all)
+    (scope.joins(:engagements) + scope.joins(:primary_projects) + scope.joins(:secondary_projects)).flatten.uniq
+  end
+
 end

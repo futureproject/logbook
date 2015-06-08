@@ -1,18 +1,22 @@
 .page-header.school-header
   %h1= @school.name
-  %table.school-facts
-    %tr
-      %th Staff
-      %th Site
-      %th Chief DD
-      %th School Size
-    %tr
-      %td
-        - @school.users.order(:id).each do |user|
-          .user= "#{user.name}, #{user.role}"
-      %td= @school.site.try(:name)
-      %td= @school.site.try(:captain).try(:name)
-      %td= @school.headcount
+  .school-facts
+    .school-dd
+      %label Dream Director:
+      = @school.dream_director.try(:name)
+    .school-city
+      %label City:
+      = @school.site.try(:name)
+    .school-chief
+      %label Chief DD:
+      = @school.site.try(:captain).try(:name)
+    .school-enrollment
+      %label School Enrollment:
+      = @school.headcount
+    .school-users
+      %label Users:
+      - @school.users.order(:id).each do |user|
+        = "#{user.name}, #{user.role};"
 .labels.school-labels
   .school-graph-nav-item
     %a.active{href: "#", data: { unscoped: true }} Context
@@ -24,7 +28,7 @@
     %a{href: "#school-projects", data: { unscoped: true }} Projects
 .row
   %section#school-in-context
-    %h1 School in context:
+    %h1 School data in context:
     .graph= bar_chart @school_in_context, colors: [Engagement::COLOR_ENUM[0], Project::COLOR_ENUM[0], Person::COLOR_ENUM].flatten, library: @chart_options
 
 .row#school-people
@@ -69,7 +73,7 @@
 .row
   %section#rhythm.g4
     %h2 The weekly rhythm at this school:
-    = bar_chart @weekly_engagements, colors: Engagement::COLOR_ENUM, library: @chart_options.merge({ yAxis: { title: { text: "Engagements (count)" } } })
+    = bar_chart @weekly_engagements, colors: Engagement::COLOR_ENUM, library: @chart_options.merge({ yAxis: { title: { text: "Engagements (count)" } }, plotOptions: { series: { stacking: true }}})
   %section#engagements-in-context.g4
     %h2 Engagements here vs elsewhere:
     .graph= bar_chart @engagements_in_context, colors: Engagement::COLOR_ENUM, library: @chart_options.merge({ yAxis: { title: { text: "Engagements (count)" } } })

@@ -40,20 +40,19 @@ class Logbook::SchoolsController < Logbook::ApplicationController
       Date::DAYNAMES.each_with_index{|d,i| data[d] = data.delete (i-1)%7 }
       { name: kind, data: data }
     }
-    @chart_options = {
-      plotOptions: {
-        series: {
-          stacking: true,
-        }
-      }
-    }
     @projects = @school.projects.group(:status).count
     @projects_in_context = {
       "School" => @school.projects.count,
-      "Site Avg" => @school.site.projects.count / @school.site.schools.count,
+      "City Avg" => @school.site.projects.count / @school.site.schools.count,
       "National Avg" => Project.count / School.count
     }
-
+    @chart_options = {
+      plotOptions: {
+        series: {
+          stacking: false,
+        }
+      }
+    }
   end
 
   private

@@ -90,13 +90,13 @@ class School < ActiveRecord::Base
       {
         name: "Engaged People",
         data: [
-          ['School', self.engaged_people_estimate],
-          ['City Avg', (self.site.engaged_people_estimate/self.site.schools.count).to_i],
-          ['National Avg', (National.engaged_people_estimate/School.count).to_i],
+          ['School', Person.meaningfully_engaged(self.people).count],
+          ['City Avg', (Person.meaningfully_engaged(self.site.people).count/self.site.schools.count).to_i],
+          ['National Avg', (Person.meaningfully_engaged.count/School.count).to_i],
         ]
       },
       {
-        name: "Size",
+        name: "Enrollment",
         data: [
           ['School', self.headcount],
           ['City Avg', (self.site.schools.sum(:headcount)/self.site.schools.count).to_i],

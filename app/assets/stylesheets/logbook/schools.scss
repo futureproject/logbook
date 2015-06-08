@@ -21,15 +21,13 @@
 }
 
 .school-facts {
-  width: 100%;
-  margin-top: 5px;
-  td, th {
-    @include span-columns(2);
-    padding: 0 2em 0 0;
-    vertical-align: top;
+  margin-top: 1em;
+  margin-bottom: -2em;
+  line-height: 1.5;
+  border-bottom: 1px solid rgba(255,255,255,.5);
+  padding-bottom: 2em;
+  label {
+    color: white;
+    opacity: .75;
   }
-  th {
-    text-align: left;
-  }
-  td { font-weight: normal; }
 }
