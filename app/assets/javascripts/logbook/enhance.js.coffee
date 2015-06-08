@@ -94,3 +94,10 @@ $ ->
     kind = $t.val().toLowerCase().replace(' ','-')
     $t.closest('form').attr('data-kind', kind)
   )
+
+  # load AJAX graphs
+  $('.graph').each ->
+    new ds.GraphView
+      url: this.getAttribute('data-url')
+      el: this
+

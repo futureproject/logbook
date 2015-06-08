@@ -1,5 +1,5 @@
 class Api::V1::SchoolsController < Api::V1::BaseController
-  before_action :set_school, only: [:show, :edit, :update, :destroy, :stats]
+  before_action :set_school, except: [:index, :new, :create]
 
   # GET /api/v1/schools
   # GET /api/v1/schools.json
@@ -49,10 +49,17 @@ class Api::V1::SchoolsController < Api::V1::BaseController
     head :no_content
   end
 
+  def context_graph
+    render json: {
+      data: @school.people.limit(10),
+      type: 'bar'
+    }
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_school
-      @school = schools.find(params[:id])
+      @school = School.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -47,7 +47,11 @@ Rails.application.routes.draw do
       resources :people do
         get 'stats', on: :member
       end
-      resources :schools
+      resources :schools do
+        member do
+          get 'context_graph'
+        end
+      end
       resources :projects do
         get 'stats', on: :member
       end
@@ -62,10 +66,16 @@ Rails.application.routes.draw do
       resources :testimonials
       resources :assets, only: [:create, :destroy]
       resources :search_results, only: [:index]
-      resources :stats, only: [:index]
       resources :sites do
         resources :people
       end
+      resources :stats, only: [:index]
+      resources :graphs do
+        collection do
+          get 'school_context'
+        end
+      end
+
     end
   end
 
