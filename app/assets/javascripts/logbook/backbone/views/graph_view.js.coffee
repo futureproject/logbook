@@ -21,6 +21,8 @@ class ds.GraphView extends Backbone.View
       chart:
         type: chart_info.type
         backgroundColor: 'transparent'
+        zoomType: 'xy'
+        height: 360
       title: text: chart_info.title
       #tooltip: pointFormat: '{point.name}: <b>{point.y}</b>'
       xAxis: categories: chart_info.categories
