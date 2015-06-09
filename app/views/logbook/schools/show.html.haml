@@ -28,7 +28,7 @@
 .row
   %section#school-in-context
     %h1 School data in context:
-    = bar_chart @school.data_for_context_graph, colors: [Engagement::COLOR_ENUM[0], Project::COLOR_ENUM[0], Person::COLOR_ENUM].flatten, library: @chart_options
+    /= bar_chart @school.data_for_context_graph, colors: [Engagement::COLOR_ENUM[0], Project::COLOR_ENUM[0], Person::COLOR_ENUM].flatten, library: @chart_options
 
 .row#school-people
   %h1 People
