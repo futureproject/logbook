@@ -50,6 +50,14 @@ Rails.application.routes.draw do
       resources :schools do
         member do
           get 'context_graph'
+          get 'engagement_percentage_graph'
+          get 'people_projects_graph'
+          get 'logged_hours_graph'
+          get 'program_hours_graph'
+          get 'engagement_counts_graph'
+          get 'weekly_rhythm_graph'
+          get 'engagements_context_graph'
+          get 'projects_context_graph'
         end
       end
       resources :projects do

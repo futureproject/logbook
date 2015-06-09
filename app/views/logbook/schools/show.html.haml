@@ -9,7 +9,7 @@
       = @school.site.try(:captain).try(:name)
     .school-enrollment
       %label School Enrollment:
-      = @school.headcount
+      = @school.enrollment
     .school-apprentices
       %label Apprentices:
       - users = @school.users.where.not(id: @school.dream_director.id).order(:id).map{|u| u.name }
@@ -28,23 +28,20 @@
 .row
   %section#school-in-context
     %h1 School data in context:
-    .graph{data: { url: context_graph_api_v1_school_path(@school) } }
-      .loading
-      /= bar_chart school_in_context(@school), colors: [Engagement::COLOR_ENUM[0], Project::COLOR_ENUM[0], Person::COLOR_ENUM].flatten, library: @chart_options
+    = bar_chart @school.data_for_context_graph, colors: [Engagement::COLOR_ENUM[0], Project::COLOR_ENUM[0], Person::COLOR_ENUM].flatten, library: @chart_options
 
 .row#school-people
   %h1 People
 
 .row
   #people-bubbles
-  .graph= render partial: 'logbook/people/bubbles', locals: { container: '#people-bubbles', colors: Person::COLOR_ENUM, data: Person.as_bubbles(@school.people) }
+  = render partial: 'logbook/people/bubbles', locals: { container: '#people-bubbles', colors: Person::COLOR_ENUM, data: Person.as_bubbles(@school.people) }
 
 .row
   %section#people-projects.g4
+    .graph{data: { url: people_projects_graph_api_v1_school_path(@school) } }
   %section#people-engagements.g4
-    - ppe = people_at_engagements(@school)
-    %h2= "#{ppe['Engaged']} people attended an engagement."
-    .graph= pie_chart ppe, colors: [Person::COLOR_ENUM[0], Person::COLOR_ENUM[2]], library: @chart_options.merge({plotOptions:{pie:{size: '70%'}}})
+    .graph{data: { url: engagement_percentage_graph_api_v1_school_path(@school) } }
   %section#notable-engagements.g4
     %h2 Notable people
     %hr
@@ -66,27 +63,19 @@
   = render partial: 'logbook/engagements/bubbles', locals: { container: '#engagement-bubbles', colors: Engagement::COLOR_ENUM, data: Engagement.as_bubbles(@school.engagements) }
 .row
   %section#person-hours.g4
-    %h2= "Students logged #{number_with_delimiter(@school.person_hours)} hours."
-    .graph#person-hours-graph
-      = pie_chart person_hours(@school), colors: Engagement::COLOR_ENUM, library: @chart_options.merge({plotOptions:{pie:{size: '70%'}}})
+    .graph{data: { url: logged_hours_graph_api_v1_school_path(@school) } }
 
   %section#dd-hours.g4
-    %h2= "TFP offered #{number_with_delimiter(@school.engagements.sum(:duration).to_i)} program hours..."
-    .graph#person-hours-graph
-      = pie_chart program_hours(@school), colors: Engagement::COLOR_ENUM, library: @chart_options.merge({plotOptions:{pie:{size: '70%'}}})
+    .graph{data: { url: program_hours_graph_api_v1_school_path(@school) } }
 
   %section#engagement-counts.g4
-    %h2= "... split across #{@school.engagements.count} engagements."
-    .graph#engagement-counts-graph
-      = pie_chart engagement_counts(@school), colors: Engagement::COLOR_ENUM, library: @chart_options.merge({plotOptions:{pie:{size: '70%'}}})
+    .graph{data: { url: engagement_counts_graph_api_v1_school_path(@school) } }
 
 .row
   %section#rhythm.g4
-    %h2 The weekly rhythm at this school:
-    = bar_chart weekly_engagements(@school), colors: Engagement::COLOR_ENUM, library: @chart_options.merge({ yAxis: { title: { text: "Engagements (count)" } }, plotOptions: { series: { stacking: true }}})
+    .graph{data: { url: weekly_rhythm_graph_api_v1_school_path(@school) } }
   %section#engagements-in-context.g4
-    %h2 Engagements here vs elsewhere:
-    .graph= bar_chart engagements_in_context(@school), colors: Engagement::COLOR_ENUM, library: @chart_options.merge({ yAxis: { title: { text: "Engagements (count)" } } })
+    .graph{data: { url: engagements_context_graph_api_v1_school_path(@school) } }
   %section#notable-engagements.g4
     %h2 Notable engagements:
     %p Longest, Largest, With Media
@@ -104,8 +93,7 @@
     .project-data= pie_chart @school.projects.group(:status).count, library: @chart_options.merge({plotOptions:{pie:{size: '70%'}}})
 
   %section#projects-in-context.g4
-    %h2 Projects here vs elsewhere:
-    .graph= bar_chart projects_in_context(@school), colors: Project::COLOR_ENUM, library: @chart_options.merge({ yAxis: { title: { text: "Projects (count)" } } })
+    .graph{data: { url: projects_context_graph_api_v1_school_path(@school) } }
 
   %section#notable-engagements.g4
     %h2 Notable projects:

@@ -181,24 +181,6 @@ class Person < ActiveRecord::Base
     scope.order(:dream_team).joins(:engagements).select('people.id, people.first_name, people.last_name, people.dream_team, SUM(engagements.duration) AS hours').group('people.id').group_by(&:dream_team).map{|k,v| { name: (k ? "Dream-Team" : "Non Dream-Team"), data: v.map{|p| { x: p.hours, y: p.engagements.count, z: p.projects.count, title: p.name.titlecase, id: p.id } } } }
   end
 
-  def self.as_project_pie_chart(scope=self.all, headcount=607)
-    primary = scope.joins(:primary_projects).uniq
-    secondary = scope.joins(:secondary_projects).uniq
-    secondary = secondary - primary
-    [
-      { name: 'Leading', y: primary.count},
-      { name: 'Just Supporting', y: secondary.count},
-      { name: 'Nope', y: headcount},
-    ]
-  end
-
-  def self.as_engagement_pie_chart(scope=self.all, headcount=607)
-    engaged = scope.joins(:engagements).uniq.count
-    {
-      "Engaged" => engaged,
-      "Nope" => headcount - engaged
-    }
-  end
 
   def self.meaningfully_engaged(scope=self.all)
     (scope.joins(:engagements) + scope.joins(:primary_projects) + scope.joins(:secondary_projects)).flatten.uniq

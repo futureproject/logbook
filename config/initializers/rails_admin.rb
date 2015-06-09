@@ -57,7 +57,7 @@ RailsAdmin.config do |config|
     edit do
       field :name
       field :address
-      field :headcount
+      field :enrollment
       field :users
       field :site
     end

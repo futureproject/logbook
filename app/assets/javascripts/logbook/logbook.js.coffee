@@ -12,6 +12,7 @@
 #= require vex.combined.min
 #= require logbook/search
 #= require logbook/enhance
+#= require logbook/highcharts.theme
 #= require_tree ./backbone/helpers
 #= require_tree ./backbone/views
 #= require_self

@@ -7,7 +7,7 @@ class DataController < ApplicationController
     @active_ppl = {}
     @passive_ppl = {}
     Site.order(:name).each{|site|
-      durations = site.schools.map{|school| school.headcount }
+      durations = site.schools.map{|school| school.enrollment }
       people =  (site.people.joins(:primary_projects) + site.people.joins(:secondary_projects)).uniq.count
       @passive_ppl[site.name] = durations.inject(:+)
       @active_ppl[site.name] = people

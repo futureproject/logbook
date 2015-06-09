@@ -49,10 +49,104 @@ class Api::V1::SchoolsController < Api::V1::BaseController
     head :no_content
   end
 
-  def context_graph
+  def people_projects_graph
+    graph_data = StatCollector.people_projects_data(
+      people: @school.people,
+      total: @school.enrollment
+    )
     render json: {
-      data: Person.as_project_pie_chart(@school.people),
-      type: 'pie'
+      data: graph_data,
+      type: 'pie',
+      title: "#{graph_data.first[:data].first(2).map{|key| key[:y]}.reduce(:+)} people have projects.",
+      colors: Person::COLOR_ENUM,
+    }
+  end
+
+  def engagement_percentage_graph
+    graph_data = StatCollector.engagement_percentage_data(
+      people: @school.people,
+      total: @school.enrollment
+    )
+    render json: {
+      data: graph_data,
+      type: 'pie',
+      title: "#{graph_data.first()[:data].first[:y]} people attended an engagement.",
+      colors: [Person::COLOR_ENUM[0], Person::COLOR_ENUM[2]]
+    }
+  end
+
+  def logged_hours_graph
+    graph_data = StatCollector.logged_hours_data(
+      scope: @school,
+    )
+    render json: {
+      data: graph_data,
+      type: 'pie',
+      title: "Students logged #{graph_data.first()[:data].map{|key| key[:y]}.reduce(:+)} hours.",
+      colors: Engagement::COLOR_ENUM
+    }
+  end
+
+  def program_hours_graph
+    graph_data = StatCollector.program_hours_data(
+      scope: @school,
+    )
+    render json: {
+      data: graph_data,
+      type: 'pie',
+      title: "TFP has offered #{graph_data.first()[:data].map{|key| key[:y]}.reduce(:+)} program hours...",
+      colors: Engagement::COLOR_ENUM
+    }
+  end
+
+  def engagement_counts_graph
+    graph_data = StatCollector.engagement_counts_data(
+      scope: @school,
+    )
+    render json: {
+      data: graph_data,
+      type: 'pie',
+      title: "... spread across #{graph_data.first()[:data].map{|key| key[:y]}.reduce(:+)} engagements.",
+      colors: Engagement::COLOR_ENUM
+    }
+  end
+
+  def weekly_rhythm_graph
+    graph_data = StatCollector.weekly_rhythm_data(
+      scope: @school,
+    )
+    render json: {
+      data: graph_data,
+      type: 'bar',
+      title: "The weekly rhythm at this school:",
+      colors: Engagement::COLOR_ENUM,
+      categories: Date::DAYNAMES
+    }
+  end
+
+  def projects_context_graph
+    graph_data = StatCollector.projects_context_data(
+      scope: @school,
+    )
+    render json: {
+      data: graph_data,
+      type: 'bar',
+      title: "Projects in context:",
+      colors: Project::COLOR_ENUM,
+      categories: ['School', 'City Avg', 'National Avg']
+    }
+  end
+
+  def engagements_context_graph
+    graph_data = StatCollector.engagements_context_data(
+      scope: @school,
+    )
+    render json: {
+      data: graph_data,
+      type: 'bar',
+      title: "Engagements in context:",
+      colors: Engagement::COLOR_ENUM,
+      categories: ['School', 'City Avg', 'National Avg']
     }
   end
 

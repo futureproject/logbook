@@ -61,11 +61,11 @@ class School < ActiveRecord::Base
   def engaged_people
     (people.joins(:primary_projects) + people.joins(:secondary_projects) + people.joins(:engagements)).flatten.uniq
   end
-  #
+
   # estimate the number of distinct people engaged at this school
   def engaged_people_estimate
     exact = engaged_people.count
-    rough = engagements.order('headcount DESC').limit(1).first.headcount rescue 0
+    rough = engagements.order('enrollment DESC').limit(1).first.enrollment rescue 0
     (rough && rough > exact) ? rough : exact
   end
 
@@ -98,9 +98,9 @@ class School < ActiveRecord::Base
       {
         name: "Enrollment",
         data: [
-          ['School', self.headcount],
-          ['City Avg', (self.site.schools.sum(:headcount)/self.site.schools.count).to_i],
-          ['National Avg', (School.sum(:headcount)/School.count).to_i],
+          ['School', self.enrollment],
+          ['City Avg', (self.site.schools.sum(:enrollment)/self.site.schools.count).to_i],
+          ['National Avg', (School.sum(:enrollment)/School.count).to_i],
         ]
       },
     ]
