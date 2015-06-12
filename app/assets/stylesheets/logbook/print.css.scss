@@ -1,13 +1,30 @@
 @media print {
+  @page {
+    margin: .25in;
+  }
   #header, #tabs, #global-add {
     display: none;
   }
   body {
     margin-top: 0;
     border-left: none;
+    font-size: 10px;
+    line-height: 1.2;
+    margin: 0;
+  }
+  #yield {
+    margin-top: -66px;
+  }
+  #yield > article {
+    page-break-before: always;
   }
   #yield > * {
+    margin-top: 0;
     padding: 0;
+  }
+  .school-header {
+    margin-top: -66px;
+    margin-bottom: 66px;
   }
   .person-show {
     .button-actions, .person-email, .person-phone {
@@ -26,5 +43,29 @@
       padding: 0;
     }
     .project-updated-at { display: none; }
+  }
+  .school-labels {
+    display: none;
+  }
+  .graph {
+    margin: 0 auto;
+    overflow: hidden;
+  }
+  .bubble-graph {
+    height: 30em;
+  }
+}
+.print {
+  width: 8in;
+  section {
+    height: 5in;
+    .graph {
+      height: 4in;
+    }
+  }
+  .g1, .g2, .g3, .g4, .g5, .g6, .g7, .g8, .g9, .g10, .g11, .g12 {
+    float: none;
+    margin: 0;
+    width: 100%;
   }
 }

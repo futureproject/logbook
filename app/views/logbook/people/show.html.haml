@@ -1,4 +1,4 @@
-- cache ['v5', @person] do
+- cache ['v7', @person] do
   .person-show.show-record[@person]{class: "#{'dream_team' if @person.dream_team}"}
     .button-actions
       =link_to "Edit", edit_logbook_person_path(@person), class: 'edit button'
@@ -25,5 +25,4 @@
       %ul.secondary-projects= render @person.secondary_projects
     %section.person-activity
       %h3.engagements-color= "Engagements - #{@person.engagements.sum(:duration)} hours"
-      #engagement-bubbles
-      = render partial: 'logbook/engagements/bubbles', locals: { container: '#engagement-bubbles', colors: Engagement::COLOR_ENUM, data: Engagement.as_bubbles(@person.engagements) }
+      .graph.bubble-graph{data: { url: engagements_bubble_graph_api_v1_person_path(@person) } }

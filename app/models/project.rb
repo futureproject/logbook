@@ -27,6 +27,7 @@ class Project < ActiveRecord::Base
   }
 
   scope :with_updates, -> { where('updated_at > created_at') }
+  scope :btw, -> (range) { where(created_at: range) }
 
   def log_activity
     Activity.create(
@@ -41,10 +42,6 @@ class Project < ActiveRecord::Base
 
   def whole_team
     (leaders + participants).flatten.uniq
-  end
-
-  def self.as_bubbles(scope=self.all)
-    scope.group_by(&:status).map{|k,v| { name: k, data: v.map{|e| { x: e.created_at.to_datetime.to_i*1000, y: e.whole_team.count, z: e.whole_team.count, title: e.name, id: e.id, description: e.description.try(:first, 44) } } } }
   end
 
 end

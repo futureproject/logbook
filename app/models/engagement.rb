@@ -36,8 +36,12 @@ class Engagement < ActiveRecord::Base
   scope :one_on_ones, -> { joins(:engagement_attendees).group('engagements.id').having('count(engagement_attendees.id)=1') }
   scope :week_of, -> (date) { where(date: date.beginning_of_week..date.end_of_week) }
   scope :since, -> (date) { where('date >= ?', date) }
+  scope :btw, -> (range) { where(date: range) }
   scope :with_attendees, -> (table) {
     joins(:attendees).select("engagements.*, COUNT(#{table}.id) AS #{table}_count").group("engagements.id")
+  }
+  scope :with_association, -> (table) {
+    joins(table.to_sym).select("engagements.*, COUNT(#{table}.id) AS #{table}_count").group('engagements.id')
   }
 
   def autoname

@@ -11,26 +11,44 @@ class ds.GraphView extends Backbone.View
       dataType: 'json'
       url: @url
       success: (response) =>
-        @render(response)
+        @setChart(response)
+        @render()
 
-  render: (chart_info) ->
-    console.log chart_info
-    @$el.empty().highcharts
+  render: ->
+    @chart.reflow()
+
+  setChart: (chart_info) ->
+    @chart = new Highcharts.Chart
       colors: chart_info.colors || Highcharts.theme.colors
       credits: false
       chart:
+        renderTo: @el
         type: chart_info.type
         backgroundColor: 'transparent'
         zoomType: 'xy'
-        height: 360
+        height: (if chart_info.type.match(/bubble|scatter/) then 420 else 320)
+      exporting:
+        width: 600
       title: text: chart_info.title
-      #tooltip: pointFormat: '{point.name}: <b>{point.y}</b>'
-      xAxis: categories: chart_info.categories
+      xAxis:
+        categories: chart_info.categories
+        type: chart_info.x_axis_type
+        title: text: null
+      yAxis:
+        min: 0
+        title: text: null
       plotOptions:
-        series:
-          stacking: true
+        areaspline:
+          marker: enabled: false
+          fillOpacity: 1
+          stacking: 'normal'
+          tooltip:
+            pointFormat: '{series.name}: <b>{point.y}</b>'
         bar:
-          tooltip: pointFormat: 'Value: <b>{point.y}</b>'
+          tooltip:
+            headerFormat: '{series.name}<br>'
+            pointFormat: 'Value: <b>{point.y}</b>'
+          stacking: (if chart_info.separated then false else true)
         pie:
           allowPointSelect: true
           cursor: 'pointer'
@@ -40,4 +58,22 @@ class ds.GraphView extends Backbone.View
             enabled: true
             format: '<b>{point.name}</b>: {point.percentage:.1f} %'
             style: color: Highcharts.theme and Highcharts.theme.contrastTextColor or 'black'
+        scatter:
+          tooltip:
+            headerFormat: chart_info.header_format
+            pointFormat: chart_info.point_format
+          events:
+            click: (event) ->
+              path = "/logbook/" + event.point.url
+              path += "?scope_id=" + ds.CONSTANTS.scope.id + "&scope_type=" + ds.CONSTANTS.scope.type
+              window.location = path
+        bubble:
+          tooltip:
+            headerFormat: chart_info.header_format
+            pointFormat: chart_info.point_format
+          events:
+            click: (event) ->
+              path = "/logbook/" + event.point.url
+              path += "?scope_id=" + ds.CONSTANTS.scope.id + "&scope_type=" + ds.CONSTANTS.scope.type
+              window.location = path
       series: chart_info.data

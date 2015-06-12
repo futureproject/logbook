@@ -45,19 +45,9 @@ Rails.application.routes.draw do
         get 'stats', on: :member
       end
       resources :people do
-        get 'stats', on: :member
-      end
-      resources :schools do
         member do
-          get 'context_graph'
-          get 'engagement_percentage_graph'
-          get 'people_projects_graph'
-          get 'logged_hours_graph'
-          get 'program_hours_graph'
-          get 'engagement_counts_graph'
-          get 'weekly_rhythm_graph'
-          get 'engagements_context_graph'
-          get 'projects_context_graph'
+          get 'stats'
+          get 'engagements_bubble_graph'
         end
       end
       resources :projects do
@@ -78,9 +68,23 @@ Rails.application.routes.draw do
         resources :people
       end
       resources :stats, only: [:index]
-      resources :graphs do
-        collection do
-          get 'school_context'
+      resources :schools do
+        member do
+          get 'engagement_percentage_graph'
+          get 'engagement_bubbles_graph'
+          get 'people_projects_graph'
+          get 'logged_hours_graph'
+          get 'program_hours_graph'
+          get 'engagement_counts_graph'
+          get 'weekly_rhythm_graph'
+          get 'engagements_context_graph'
+          get 'engagements_per_week_graph'
+          get 'projects_context_graph'
+          get 'projects_scatter_graph'
+          get 'projects_timeline_graph'
+          get 'people_bubbles_graph'
+          get 'people_context_graph'
+          get 'people_timeline_graph'
         end
       end
 

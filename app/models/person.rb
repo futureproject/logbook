@@ -23,7 +23,7 @@ class Person < ActiveRecord::Base
   GRADE_ENUM = [6, 7, 8, 9, 10, 11, 12]
   SEX_ENUM = %w(M F)
   DREAM_TEAM_ENUM = [["Yep", true],["Nope", false]]
-  COLOR_ENUM = %w(#42C8EE #036B89 #7c878a)
+  COLOR_ENUM = %w(#42C8EE #036B89 #7c878a #419AD3 #568099)
   include Sortable
 
   scope :search, lambda {|query, user=nil|
@@ -73,6 +73,12 @@ class Person < ActiveRecord::Base
     else
       where(role: group)
     end
+  }
+  scope :btw, -> (range) { where(created_at: range) }
+  scope :leading_projects, -> { joins(:project_leaders).uniq }
+  scope :just_supporting_projects, -> {
+    joins(:project_participants).includes(:project_leaders)
+    .where(project_leaders: { person_id: nil }).uniq
   }
 
   def name
@@ -176,11 +182,6 @@ class Person < ActiveRecord::Base
     primary.save
     primary.touch
   end
-
-  def self.as_bubbles(scope=self.all)
-    scope.order(:dream_team).joins(:engagements).select('people.id, people.first_name, people.last_name, people.dream_team, SUM(engagements.duration) AS hours').group('people.id').group_by(&:dream_team).map{|k,v| { name: (k ? "Dream-Team" : "Non Dream-Team"), data: v.map{|p| { x: p.hours, y: p.engagements.count, z: p.projects.count, title: p.name.titlecase, id: p.id } } } }
-  end
-
 
   def self.meaningfully_engaged(scope=self.all)
     (scope.joins(:engagements) + scope.joins(:primary_projects) + scope.joins(:secondary_projects)).flatten.uniq

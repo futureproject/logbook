@@ -62,6 +62,7 @@ class Api::V1::SchoolsController < Api::V1::BaseController
     }
   end
 
+
   def engagement_percentage_graph
     graph_data = StatCollector.engagement_percentage_data(
       people: @school.people,
@@ -94,7 +95,7 @@ class Api::V1::SchoolsController < Api::V1::BaseController
     render json: {
       data: graph_data,
       type: 'pie',
-      title: "TFP has offered #{graph_data.first()[:data].map{|key| key[:y]}.reduce(:+)} program hours...",
+      title: "TFP offered #{graph_data.first()[:data].map{|key| key[:y]}.reduce(:+)} program hours...",
       colors: Engagement::COLOR_ENUM
     }
   end
@@ -124,6 +125,20 @@ class Api::V1::SchoolsController < Api::V1::BaseController
     }
   end
 
+  def people_context_graph
+    graph_data = StatCollector.people_context_data(
+      scope: @school
+    )
+    render json: {
+      data: graph_data,
+      type: 'bar',
+      separated: true,
+      title: "People",
+      colors: Person::COLOR_ENUM,
+      categories: ['School', 'City Avg', 'National Avg']
+    }
+  end
+
   def projects_context_graph
     graph_data = StatCollector.projects_context_data(
       scope: @school,
@@ -131,9 +146,48 @@ class Api::V1::SchoolsController < Api::V1::BaseController
     render json: {
       data: graph_data,
       type: 'bar',
-      title: "Projects in context:",
+      title: "Projects",
       colors: Project::COLOR_ENUM,
       categories: ['School', 'City Avg', 'National Avg']
+    }
+  end
+
+  def projects_timeline_graph
+    graph_data = StatCollector.projects_timeline_data(
+      scope: @school,
+    )
+    render json: {
+      data: graph_data,
+      type: 'areaspline',
+      x_axis_type: 'datetime',
+      title: "People with Projects over time:",
+      colors: Project::COLOR_ENUM,
+    }
+  end
+
+  def people_timeline_graph
+    graph_data = StatCollector.people_timeline_data(
+      scope: @school,
+    )
+    render json: {
+      data: graph_data,
+      type: 'areaspline',
+      x_axis_type: 'datetime',
+      title: "Engaged people over time:",
+      colors: Person::COLOR_ENUM,
+    }
+  end
+
+  def engagements_per_week_graph
+    graph_data = StatCollector.engagements_per_week_data(
+      scope: @school,
+    )
+    render json: {
+      data: graph_data,
+      type: 'areaspline',
+      x_axis_type: 'datetime',
+      title: "Engagements per week:",
+      colors: Engagement::COLOR_ENUM,
     }
   end
 
@@ -144,9 +198,53 @@ class Api::V1::SchoolsController < Api::V1::BaseController
     render json: {
       data: graph_data,
       type: 'bar',
-      title: "Engagements in context:",
+      title: "Engagements",
       colors: Engagement::COLOR_ENUM,
       categories: ['School', 'City Avg', 'National Avg']
+    }
+  end
+
+  def engagement_bubbles_graph
+    graph_data = StatCollector.engagement_bubble_data(
+      scope: @school,
+    )
+    render json: {
+      data: graph_data,
+      type: 'bubble',
+      x_axis_type: 'datetime',
+      header_format: "{series.name}<br>",
+      point_format: "<b>{point.title}</b><br>{point.y} Hrs, {point.z} Attendees<br>{point.notes}",
+      title: "Engagements",
+      colors: Engagement::COLOR_ENUM,
+    }
+  end
+
+  def people_bubbles_graph
+    graph_data = StatCollector.people_bubble_data(
+      scope: @school,
+    )
+    render json: {
+      data: graph_data,
+      type: 'bubble',
+      header_format: "",
+      point_format: "<b>{point.title}</b><br>{series.name}<br>{point.x} Hours, {point.y} Engagements<br>{point.z} Projects",
+      title: "Engaged People",
+      colors: Person::COLOR_ENUM,
+    }
+  end
+
+  def projects_scatter_graph
+    graph_data = StatCollector.projects_scatter_data(
+      scope: @school,
+    )
+    render json: {
+      data: graph_data,
+      type: 'scatter',
+      x_axis_type: 'datetime',
+      header_format: "",
+      point_format: "<b>{point.title}</b><br>{series.name}<br>{point.y} People<br>{point.description}",
+      title: "Timeline (x) vs Team Size (y)",
+      colors: Project::COLOR_ENUM,
     }
   end
 

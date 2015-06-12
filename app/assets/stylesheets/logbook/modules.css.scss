@@ -1,6 +1,7 @@
 .row {
   @include row;
   margin-bottom: 2em;
+  clear: both;
 }
 
 %row {
@@ -388,9 +389,7 @@ hr {
 .filtres-trigger {
   cursor: pointer;
 }
-.profile {
-}
-
 .graph {
   height: 24em;
 }
+.bubble-graph { height: 35em; }

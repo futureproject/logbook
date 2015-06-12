@@ -96,8 +96,16 @@ $ ->
   )
 
   # load AJAX graphs
+  ds.graphs ||= []
   $('.graph').each ->
-    new ds.GraphView
+    graph = new ds.GraphView
       url: this.getAttribute('data-url')
       el: this
+    ds.graphs.push graph
+  if window.matchMedia?
+    mq = window.matchMedia('print')
+    mq.addListener ->
+      $('body').toggleClass('print', mq.matches)
+      graph.chart.reflow() for graph in ds.graphs
+
 

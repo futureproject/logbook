@@ -26,75 +26,135 @@
     %a{href: "#school-projects", data: { unscoped: true }} Projects
 
 .row
-  %section#school-in-context
-    %h1 School data in context:
-    /= bar_chart @school.data_for_context_graph, colors: [Engagement::COLOR_ENUM[0], Project::COLOR_ENUM[0], Person::COLOR_ENUM].flatten, library: @chart_options
-
-.row#school-people
-  %h1 People
-
+  %h1 School Data in Context
 .row
-  #people-bubbles
-  = render partial: 'logbook/people/bubbles', locals: { container: '#people-bubbles', colors: Person::COLOR_ENUM, data: Person.as_bubbles(@school.people) }
-
-.row
-  %section#people-projects.g4
-    .graph{data: { url: people_projects_graph_api_v1_school_path(@school) } }
-  %section#people-engagements.g4
-    .graph{data: { url: engagement_percentage_graph_api_v1_school_path(@school) } }
-  %section#notable-engagements.g4
-    %h2 Notable people
-    %hr
-    %h3 Most Coached:
-    %ul
-      - @school.people.with_hours('Coaching Session').order('engagement_hours DESC').limit(3).each do |p|
-        %li.person-name= link_to "#{p.name} (#{p.engagement_hours} hrs)", logbook_person_path(p)
-    %hr
-    %h3 Most Engagements:
-    %ul
-      - @school.people.joins(:engagements).select("people.*, COUNT(engagements.id) as e_count").group('people.id').order('e_count DESC').limit(3).each do |p|
-        %li.person-name= link_to "#{p.name} (#{p.e_count})", logbook_person_path(p)
-
-.row#school-engagements
-  %h1= pluralize @school.engagements.count, "Engagement"
-
-.row
-  #engagement-bubbles
-  = render partial: 'logbook/engagements/bubbles', locals: { container: '#engagement-bubbles', colors: Engagement::COLOR_ENUM, data: Engagement.as_bubbles(@school.engagements) }
-.row
-  %section#person-hours.g4
-    .graph{data: { url: logged_hours_graph_api_v1_school_path(@school) } }
-
-  %section#dd-hours.g4
-    .graph{data: { url: program_hours_graph_api_v1_school_path(@school) } }
-
-  %section#engagement-counts.g4
-    .graph{data: { url: engagement_counts_graph_api_v1_school_path(@school) } }
-
-.row
-  %section#rhythm.g4
-    .graph{data: { url: weekly_rhythm_graph_api_v1_school_path(@school) } }
+  %section#people-in-context.g4
+    .graph{data: { url: people_context_graph_api_v1_school_path(@school) } }
+      .loading
   %section#engagements-in-context.g4
     .graph{data: { url: engagements_context_graph_api_v1_school_path(@school) } }
-  %section#notable-engagements.g4
-    %h2 Notable engagements:
-    %p Longest, Largest, With Media
-
-.row#school-projects
-  %h1= pluralize @school.projects.count, "Project"
-
-.row
-  #project-bubbles
-  = render partial: 'logbook/projects/bubbles', locals: { container: '#project-bubbles', colors: Project::COLOR_ENUM, data: Project.as_bubbles(@school.projects) }
-
-.row
-  %section#projects.g4
-    %h2 Projects by status:
-    .project-data= pie_chart @school.projects.group(:status).count, library: @chart_options.merge({plotOptions:{pie:{size: '70%'}}})
-
+      .loading
   %section#projects-in-context.g4
     .graph{data: { url: projects_context_graph_api_v1_school_path(@school) } }
+      .loading
+%hr
+%article
+  .row#school-people
+    %h1 People
+  .row
+    .graph.g6{data: { url: people_bubbles_graph_api_v1_school_path(@school) } }
+      .loading
+    %section#engagements-timeline.g6
+      .graph{data: { url: people_timeline_graph_api_v1_school_path(@school) } }
+        .loading
 
-  %section#notable-engagements.g4
-    %h2 Notable projects:
-    %p Largest, With Media, Most Notes
+  .row
+    %section#people-projects.g4
+      .graph{data: { url: people_projects_graph_api_v1_school_path(@school) } }
+        .loading
+    %section#people-engagements.g4
+      .graph{data: { url: engagement_percentage_graph_api_v1_school_path(@school) } }
+        .loading
+    %section#notable-people.g4
+      %h2 Notable people
+      %hr
+      %h3 Most Coached:
+      %ul
+        - @school.people.with_hours('Coaching Session').order('engagement_hours DESC').limit(3).each do |p|
+          %li
+            = link_to p.name.titlecase, logbook_person_path(p)
+            = "- #{p.engagement_hours} hrs"
+      %hr
+      %h3 Most Engagements:
+      %ul
+        - @school.people.joins(:engagements).select("people.*, COUNT(engagements.id) as e_count").group('people.id').order('e_count DESC').limit(3).each do |p|
+          %li
+            = link_to p.name.titlecase, logbook_person_path(p)
+            = "- #{p.e_count}"
+
+%hr
+%article
+  .row#school-engagements
+    %h1= pluralize @school.engagements.count, "Engagement"
+
+  .row
+    .graph.bubble-graph{data: { url: engagement_bubbles_graph_api_v1_school_path(@school) } }
+      .loading
+  .row
+    %section#person-hours.g4
+      .graph{data: { url: logged_hours_graph_api_v1_school_path(@school) } }
+        .loading
+
+    %section#dd-hours.g4
+      .graph{data: { url: program_hours_graph_api_v1_school_path(@school) } }
+        .loading
+
+    %section#engagement-counts.g4
+      .graph{data: { url: engagement_counts_graph_api_v1_school_path(@school) } }
+        .loading
+  .row
+    %section#rhythm.g4
+      .graph{data: { url: weekly_rhythm_graph_api_v1_school_path(@school) } }
+        .loading
+    %section#engagements-per-week.g4
+      .graph{data: { url: engagements_per_week_graph_api_v1_school_path(@school) } }
+        .loading
+    %section#notable-engagements.g4
+      %h2 Notable engagements:
+      %hr
+      %h3 Longest:
+      %ul
+        - @school.engagements.where('duration IS NOT NULL').order('duration DESC').limit(3).each do |e|
+          %li
+            = link_to e.name, logbook_engagement_path(e)
+            = "- #{e.date.strftime '%D'} - #{e.duration} hrs"
+      %hr
+      %h3 Largest:
+      %ul
+        - @school.engagements.where('headcount IS NOT NULL').order('headcount DESC').limit(3).each do |e|
+          %li
+            = link_to e.name, logbook_engagement_path(e)
+            = "- #{e.date.strftime '%D'} - #{e.headcount} ppl"
+      %hr
+      %h3 With Media:
+      %ul
+        - @school.engagements.with_association('assets').order('assets_count DESC').limit(3).each do |e|
+          %li
+            = link_to e.name, logbook_engagement_path(e)
+            = "- #{e.date.strftime '%D'} - #{e.assets_count} uploads"
+%hr
+%article
+  .row#school-projects
+    %h1= pluralize @school.projects.count, "Project"
+
+  .row
+    .graph.bubble-graph{data: { url: projects_scatter_graph_api_v1_school_path(@school) } }
+      .loading
+
+  .row
+    %section#projects-timeline.g8
+      .graph{data: { url: projects_timeline_graph_api_v1_school_path(@school) } }
+        .loading
+    %section#notable-projects.g4
+      %h2 Notable projects:
+      %hr
+      %h3 Largest:
+      %ul
+        - @school.projects.with_people.order('people_count DESC').limit(3).each do |p|
+          %li
+            = link_to p.name, logbook_project_path(p)
+            = "- #{p.people_count} ppl"
+      %hr
+      %h3 With Media:
+      %ul
+        - @school.projects.with_association('assets').order('assets_count DESC').limit(3).each do |p|
+          %li
+            = link_to p.name, logbook_project_path(p)
+            = "- #{p.assets_count} uploads"
+      %hr
+      %h3 With Notes:
+      %ul
+        - @school.projects.with_association('notes').order('notes_count DESC').limit(3).each do |p|
+          %li
+            = link_to p.name, logbook_project_path(p)
+            = "- #{p.notes_count} notes"
