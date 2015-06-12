@@ -80,6 +80,15 @@ class StatCollector
     days
   end
 
+  # column chart
+  def self.hours_per_person_data(args)
+    scope = args[:scope] || National.new
+    dates = args[:dates] || 10.months.ago..Date.today
+    ppl = scope.people.joins(:engagements).merge(Engagement.btw(dates)).select('people.id, people.first_name, people.last_name, people.dream_team, SUM(engagements.duration) AS hours').order('hours desc').group('people.id')
+    length = ppl.length
+    ppl.group_by(&:dream_team).map{|k,v| { name: (k ? "Dream-Team" : "Non Dream-Team"), data: v.each_with_index.map{|p| {y: p.hours, name: p.name, url: "people/#{p.id}" } } } }
+  end
+
   # bar chart
   def self.people_context_data(args)
     scope = args[:scope] || National.new

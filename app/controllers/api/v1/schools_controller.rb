@@ -125,6 +125,18 @@ class Api::V1::SchoolsController < Api::V1::BaseController
     }
   end
 
+  def hours_per_person_graph
+    graph_data = StatCollector.hours_per_person_data(
+      scope: @school,
+    )
+    render json: {
+      data: graph_data,
+      type: 'column',
+      title: "Logged hours per person:",
+      colors: Person::COLOR_ENUM,
+    }
+  end
+
   def people_context_graph
     graph_data = StatCollector.people_context_data(
       scope: @school

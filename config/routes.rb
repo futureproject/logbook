@@ -85,6 +85,7 @@ Rails.application.routes.draw do
           get 'people_bubbles_graph'
           get 'people_context_graph'
           get 'people_timeline_graph'
+          get 'hours_per_person_graph'
         end
       end
 

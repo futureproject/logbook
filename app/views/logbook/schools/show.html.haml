@@ -42,11 +42,11 @@
   .row#school-people
     %h1 People
   .row
-    .graph.g6{data: { url: people_bubbles_graph_api_v1_school_path(@school) } }
-      .loading
     %section#engagements-timeline.g6
       .graph{data: { url: people_timeline_graph_api_v1_school_path(@school) } }
         .loading
+    %section#hours-per-person.graph.g6{data: { url: hours_per_person_graph_api_v1_school_path(@school) } }
+      .loading
 
   .row
     %section#people-projects.g4

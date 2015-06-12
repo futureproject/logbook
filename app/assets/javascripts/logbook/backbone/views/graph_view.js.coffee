@@ -34,6 +34,7 @@ class ds.GraphView extends Backbone.View
         categories: chart_info.categories
         type: chart_info.x_axis_type
         title: text: null
+        labels: enabled: (if chart_info.type == 'column' then false else true)
       yAxis:
         min: 0
         title: text: null
@@ -49,6 +50,15 @@ class ds.GraphView extends Backbone.View
             headerFormat: '{series.name}<br>'
             pointFormat: 'Value: <b>{point.y}</b>'
           stacking: (if chart_info.separated then false else true)
+        column:
+          tooltip:
+            headerFormat: '{series.name}<br>'
+            pointFormat: '{point.name}: <b>{point.y}</b>'
+          events:
+            click: (event) ->
+              path = "/logbook/" + event.point.url
+              path += "?scope_id=" + ds.CONSTANTS.scope.id + "&scope_type=" + ds.CONSTANTS.scope.type
+              window.location = path
         pie:
           allowPointSelect: true
           cursor: 'pointer'
