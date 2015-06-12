@@ -255,7 +255,7 @@ class Api::V1::SchoolsController < Api::V1::BaseController
       x_axis_type: 'datetime',
       header_format: "",
       point_format: "<b>{point.title}</b><br>{series.name}<br>{point.y} People<br>{point.description}",
-      title: "Timeline (x) vs Team Size (y)",
+      title: "Project Start Date (x) & Team Size (y)",
       colors: Project::COLOR_ENUM,
     }
   end

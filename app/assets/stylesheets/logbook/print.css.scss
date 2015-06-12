@@ -54,18 +54,10 @@
   .bubble-graph {
     height: 30em;
   }
-}
-.print {
-  width: 8in;
-  section {
-    height: 5in;
-    .graph {
-      height: 4in;
-    }
-  }
-  .g1, .g2, .g3, .g4, .g5, .g6, .g7, .g8, .g9, .g10, .g11, .g12 {
+  .print-row {
     float: none;
-    margin: 0;
     width: 100%;
+    margin-left: 0;
+    margin-right: 0;
   }
 }

@@ -17,18 +17,26 @@
 
 .labels.school-labels
   .school-graph-nav-item
-    %a.active{href: "#", data: { unscoped: true }} Context
+    Jump to:
   .school-graph-nav-item
-    %a{href: "#school-people", data: { unscoped: true }} People
+    %a.active{href: "#", data: { unscoped: true }}
+      %span.icon-mortar-board
+      Context
   .school-graph-nav-item
-    %a{href: "#school-engagements", data: { unscoped: true }} Engagements
+    %a{href: "#school-people", data: { unscoped: true }}
+      %span.icon-ds-people
+      People
   .school-graph-nav-item
-    %a{href: "#school-projects", data: { unscoped: true }} Projects
+    %a{href: "#school-engagements", data: { unscoped: true }}
+      %span.icon-ds-engagements
+      Engagements
+  .school-graph-nav-item
+    %a{href: "#school-projects", data: { unscoped: true }}
+      %span.icon-ds-projects
+      Projects
 
 .row
-  %h1 School Data in Context
-.row
-  %section#people-in-context.g4
+  %section#people-in-context.g4.print-row
     .graph{data: { url: people_context_graph_api_v1_school_path(@school) } }
       .loading
   %section#engagements-in-context.g4
@@ -37,9 +45,9 @@
   %section#projects-in-context.g4
     .graph{data: { url: projects_context_graph_api_v1_school_path(@school) } }
       .loading
-%hr
-%article
-  .row#school-people
+
+%article#school-people
+  .row
     %h1 People
   .row
     %section#engagements-timeline.g6
@@ -72,9 +80,8 @@
             = link_to p.name.titlecase, logbook_person_path(p)
             = "- #{p.e_count}"
 
-%hr
-%article
-  .row#school-engagements
+%article#school-engagements
+  .row
     %h1= pluralize @school.engagements.count, "Engagement"
 
   .row
@@ -122,9 +129,9 @@
           %li
             = link_to e.name, logbook_engagement_path(e)
             = "- #{e.date.strftime '%D'} - #{e.assets_count} uploads"
-%hr
-%article
-  .row#school-projects
+
+%article#school-projects
+  .row
     %h1= pluralize @school.projects.count, "Project"
 
   .row

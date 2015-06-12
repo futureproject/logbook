@@ -16,7 +16,8 @@
   .school-engagements { @include span-columns(1); }
   .school-engagement-hours { @include span-columns(1); }
   .school-graph-nav-item {
-    @include span-columns(2);
+    display: inline-block;
+    width: auto;
   }
 }
 
