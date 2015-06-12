@@ -51,6 +51,7 @@ class ds.GraphView extends Backbone.View
             pointFormat: 'Value: <b>{point.y}</b>'
           stacking: (if chart_info.separated then false else true)
         column:
+          pointWidth: 10
           tooltip:
             headerFormat: '{series.name}<br>'
             pointFormat: '{point.name}: <b>{point.y}</b>'

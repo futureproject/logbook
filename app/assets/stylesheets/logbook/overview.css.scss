@@ -1,8 +1,4 @@
 .logbook_stats {
-  #header {
-    position: fixed;
-    background: rgba(255,255,255,.95);
-  }
   a { color: $stats-color; }
   .labels, .page-header, #filters {
     background: $stats-color;

@@ -24,12 +24,6 @@ feature 'Logbook people' do
     expect(page).to have_content 'student at Gotham'
   end
 
-  scenario 'PREVIEW', js: true do
-    visit logbook_people_path
-    first('.person').click
-    expect(page).to have_selector '.person-preview'
-  end
-
   scenario 'UPDATE' do
     visit logbook_people_path
     click_link 'Edit', match: :first
