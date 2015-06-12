@@ -12,7 +12,7 @@ feature 'Logbook activity' do
   end
 
   def should_see_activity
-    expect(page).to have_content 'Activity'
+    expect(page).to have_content 'Gotham City High'
   end
 
 end

@@ -1,17 +1,1 @@
-- content_for :charts_js do
-  - cache ['v3', current_scope], expires_in: 1.day do
-    .row
-      .g6
-        %h2 People Engaged per Week
-        = area_chart cached_people_over_time, colors: Person::COLOR_ENUM.reverse, library: { plotOptions: { series: { stacking: true } } }
-      .g6
-        %h2 Total Project Leaders &amp; Supporters
-        = area_chart [{name: "Leaders", data: totalize(cached_people_leading_projects), fillColor: { linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1}, stops: [ [0, Project::COLOR_ENUM[0]], [1, "rgba(255,255,255,0)"]] } }, {name: 'Supporters', data: totalize(cached_people_supporting_projects), fillColor: { linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1}, stops: [ [0, Project::COLOR_ENUM[1]], [1, "rgba(255,255,255,0)"]] } }], colors: Project::COLOR_ENUM
-    .row
-      %h2 Engagements per Week
-      = area_chart [{name: "Coaching Sessions", data: cached_coaching_sessions }, {name: "Events", data: cached_events}, {name: "Meetings", data: cached_meetings }, {name: "Workshops", data: cached_workshops }], colors: Engagement::COLOR_ENUM, library: { plotOptions: { series: { stacking: true } } }
-
-    - if current_user.level(2)
-      .row
-        %h2 Weekly Activity
-        = area_chart @activity, library: { legend: {itemMarginBottom: 8 }, plotOptions: { series: { fillColor: { linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1}, stops: [ [0, "#d2e9f2"], [1, "rgba(255,255,255,0)"]] } } } }
+= render partial: "logbook/#{current_scope.class.name.tableize}/stats"

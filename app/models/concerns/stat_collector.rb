@@ -146,14 +146,14 @@ class StatCollector
   def self.projects_scatter_data(args)
     scope = args[:scope] || National.new
     dates = args[:dates] || 10.months.ago..Date.today
-    scope.projects.group_by(&:status).map{|k,v| { name: k.titlecase, data: v.map{|e| { x: e.created_at.to_datetime.to_i*1000, y: e.whole_team.count, title: e.name, url: "projects/#{e.id}", description: e.description.try(:first, 44) } } } }
+    scope.projects.group_by(&:status).map{|k,v| { name: k, data: v.map{|e| { x: e.created_at.to_datetime.to_i*1000, y: e.whole_team.count, title: e.name, url: "projects/#{e.id}", description: e.description.try(:first, 44) } } } }
   end
 
   # bubble graph
   def self.people_bubble_data(args)
     scope = args[:scope] || National.new
     dates = args[:dates] || 10.months.ago..Date.today
-    scope.people.order(:dream_team).joins(:engagements).select('people.id, people.first_name, people.last_name, people.dream_team, SUM(engagements.duration) AS hours').group('people.id').group_by(&:dream_team).map{|k,v| { name: (k ? "Dream-Team" : "Non Dream-Team"), data: v.map{|p| { x: p.hours, y: p.engagements.count, z: p.projects.count, title: p.name.titlecase, url: "people/#{p.id}" } } } }
+    scope.people.order(:dream_team).joins(:engagements).select('people.id, people.first_name, people.last_name, people.dream_team, SUM(engagements.duration) AS hours').group('people.id').group_by(&:dream_team).map{|k,v| { name: (k ? "Dream-Team" : "Non Dream-Team"), data: v.map{|p| { x: p.hours, y: p.engagements.count, z: p.projects.count, title: p.name, url: "people/#{p.id}" } } } }
   end
 
   # bubble graph
