@@ -96,6 +96,9 @@ gem 'groupdate'
 gem 'chartkick'
 gem 'hightop'
 
+# set a shorter timeout than default 30s
+gem 'rack-timeout'
+
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
   gem 'dotenv-rails'
