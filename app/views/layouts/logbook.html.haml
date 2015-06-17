@@ -47,6 +47,5 @@
       .flash{class: k}
         .message= v
 
-    #charts= yield :charts_js
     - cache 'v1/analytics', skip_digest: true do
       = render 'analytics'

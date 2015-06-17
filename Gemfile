@@ -55,8 +55,11 @@ gem "haml-rails"
 gem 'sweet-alert'
 
 # enable heroku best-practices
-gem 'rails_12factor', group: :production
-gem 'rack-timeout', group: :production
+group :production do
+  gem 'rails_12factor'
+  gem 'rack-timeout'
+end
+gem 'airbrake'
 
 # rails_admin for CRMish stuff
 gem 'rails_admin'
