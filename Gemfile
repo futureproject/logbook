@@ -56,6 +56,7 @@ gem 'sweet-alert'
 
 # enable heroku best-practices
 gem 'rails_12factor', group: :production
+gem 'rack-timeout', group: :production
 
 # rails_admin for CRMish stuff
 gem 'rails_admin'
@@ -97,7 +98,6 @@ gem 'chartkick'
 gem 'hightop'
 
 # set a shorter timeout than default 30s
-gem 'rack-timeout'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'

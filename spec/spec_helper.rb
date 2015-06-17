@@ -57,5 +57,8 @@ RSpec.configure do |config|
   config.include AuthHelpers, :type => :controller
   config.include JsonHelper, :type => :controller
   config.global_fixtures = :all
+  config.formatter = :documentation
+
 
 end
+
