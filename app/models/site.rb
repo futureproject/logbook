@@ -58,4 +58,8 @@ class Site < ActiveRecord::Base
     durations.inject(:+)
   end
 
+  def enrollment
+    schools.sum(:enrollment)
+  end
+
 end

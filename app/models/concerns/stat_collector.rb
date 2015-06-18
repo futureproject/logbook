@@ -186,11 +186,22 @@ class StatCollector
     scope = args[:scope] || National.new
     dates = args[:dates] || 10.months.ago..Date.today
     series = []
-    Engagement::KIND_ENUM.each do |kind|
-      engagements = scope.engagements.where(kind: kind).group_by_week(:created_at, range: dates, format: Proc.new{|d| d.to_datetime.to_i*1000}).count.to_a
+    categories = case scope.class.name
+                 when "National" then Site.order(:name)
+                 when "Site" then scope.schools.order(:name)
+                 else Engagement::KIND_ENUM
+                 end
+    categories.each do |x|
+      if x.is_a? String
+        e = scope.engagements.where(kind: x)
+        name = x
+      else
+        e = x.engagements
+        name = x.name
+      end
       series.push({
-        name: kind,
-        data: engagements
+        name: name,
+        data: e.group_by_week(:date, range: dates, format: Proc.new{|d| d.to_datetime.to_i*1000}).count.to_a
       })
     end
     series

@@ -64,28 +64,27 @@ Rails.application.routes.draw do
       resources :testimonials
       resources :assets, only: [:create, :destroy]
       resources :search_results, only: [:index]
-      resources :sites do
-        resources :people
-      end
-      resources :stats, only: [:index]
-      resources :schools do
-        member do
-          get 'engagement_percentage_graph'
-          get 'engagement_bubbles_graph'
-          get 'people_projects_graph'
-          get 'logged_hours_graph'
-          get 'program_hours_graph'
-          get 'engagement_counts_graph'
-          get 'weekly_rhythm_graph'
-          get 'engagements_context_graph'
-          get 'engagements_per_week_graph'
-          get 'projects_context_graph'
-          get 'projects_scatter_graph'
-          get 'projects_timeline_graph'
-          get 'people_bubbles_graph'
-          get 'people_context_graph'
-          get 'people_timeline_graph'
-          get 'hours_per_person_graph'
+      resources :sites
+      [:schools, :sites, :nationals].each do |endpoint|
+        resources endpoint, only: [:index, :show] do
+          member do
+            get 'engagement_percentage_graph'
+            get 'engagement_bubbles_graph'
+            get 'people_projects_graph'
+            get 'logged_hours_graph'
+            get 'program_hours_graph'
+            get 'engagement_counts_graph'
+            get 'weekly_rhythm_graph'
+            get 'engagements_context_graph'
+            get 'engagements_per_week_graph'
+            get 'projects_context_graph'
+            get 'projects_scatter_graph'
+            get 'projects_timeline_graph'
+            get 'people_bubbles_graph'
+            get 'people_context_graph'
+            get 'people_timeline_graph'
+            get 'hours_per_person_graph'
+          end
         end
       end
 
@@ -112,33 +111,13 @@ Rails.application.routes.draw do
     resources :engagement_attendees, only: [:show]
   end
 
-  namespace :citybook do
-    root 'actions#index'
-    resources :sites
-    resources :people do
-      resources :reflections
-    end
-    resources :projects
-    resources :engagements do
-      get 'attendance', on: :member
-    end
-    resources :actions, only: [:index, :show] do
-      get :from, on: :collection
-    end
-  end
-
   get '/logbookapp' => 'phonebook/application#home', as: 'logbook_app'
   namespace :phonebook do
     root 'application#home'
     get 'manifest.appcache', to: 'application#manifest'
     get '*anywhere', to: 'application#home'
   end
-
-  namespace :bluebook do
-    root 'application#home'
-    get '*anywhere', to: 'application#home'
-  end
-
+  #
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
