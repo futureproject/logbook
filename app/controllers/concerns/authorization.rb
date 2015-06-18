@@ -24,8 +24,8 @@ module Authorization
 
   #allow only TFP staff through
   def authorize!
-    if current_user.present? && current_user.is_a?(User)
-      true
+    if (current_user.present? && current_user.is_a?(User) && !current_user.banned)
+      return true
     else
       respond_to do |format|
         format.html do

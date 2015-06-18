@@ -80,6 +80,7 @@ RailsAdmin.config do |config|
       field :auth_token
       field :avatar_url
       field :role
+      field :banned
     end
     list do
       field :id

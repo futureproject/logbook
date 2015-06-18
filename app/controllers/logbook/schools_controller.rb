@@ -9,7 +9,6 @@ class Logbook::SchoolsController < Logbook::ApplicationController
 
   def show
     @school = School.find params[:id]
-    @chart_options = { plotOptions: { series: { stacking: false } } }
   end
 
   private
