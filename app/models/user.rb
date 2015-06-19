@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   has_many :activities, as: :actor, dependent: :destroy
   has_many :reports, through: :people
   before_save :set_site
+  validates_presence_of :role
 
   ROLE_ENUM = ['DD', 'CDD', 'APR']
 
