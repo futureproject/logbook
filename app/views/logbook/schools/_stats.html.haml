@@ -12,7 +12,7 @@
       = current_scope.enrollment
     .school-apprentices
       %label Apprentices:
-      - users = current_scope.users.where.not(id: current_scope.dream_director.id).order(:id).map{|u| u.name }
+      - users = current_scope.users.where.not(id: current_scope.dream_director.try(:id)).order(:id).map{|u| u.name }
       = users.join(', ')
 
 .labels.school-labels
