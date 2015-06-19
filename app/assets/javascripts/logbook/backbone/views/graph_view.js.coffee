@@ -21,6 +21,7 @@ class ds.GraphView extends Backbone.View
     @chart = new Highcharts.Chart
       colors: chart_info.colors || Highcharts.theme.colors
       credits: false
+      tooltip: shared: true
       chart:
         renderTo: @el
         type: chart_info.type
@@ -44,17 +45,17 @@ class ds.GraphView extends Backbone.View
           fillOpacity: 1
           stacking: 'normal'
           tooltip:
-            pointFormat: '{series.name}: <b>{point.y}</b>'
+            pointFormat: '{series.name}: <b>{point.y}</b><br>'
         bar:
           tooltip:
             headerFormat: '{series.name}<br>'
-            pointFormat: 'Value: <b>{point.y}</b>'
+            pointFormat: 'Value: <b>{point.y}</b><br>'
           stacking: (if chart_info.separated then false else true)
         column:
           pointWidth: 10
           tooltip:
             headerFormat: '{series.name}<br>'
-            pointFormat: '{point.name}: <b>{point.y}</b>'
+            pointFormat: '{point.name}: <b>{point.y}</b><br>'
           events:
             click: (event) ->
               path = "/logbook/" + event.point.url
@@ -63,11 +64,11 @@ class ds.GraphView extends Backbone.View
         pie:
           allowPointSelect: true
           cursor: 'pointer'
-          tooltip: pointFormat: 'Value: <b>{point.y}</b><br>Percentage: <b>{point.percentage:.1f}%</b>'
+          tooltip: pointFormat: 'Value: <b>{point.y}</b><br>Percentage: <b>{point.percentage:.1f}%</b><br>'
           size: '70%'
           dataLabels:
             enabled: true
-            format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+            format: '<b>{point.name}</b>: {point.percentage:.1f} %<br>'
             style: color: Highcharts.theme and Highcharts.theme.contrastTextColor or 'black'
         scatter:
           tooltip:

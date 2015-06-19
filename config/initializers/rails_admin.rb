@@ -69,6 +69,12 @@ RailsAdmin.config do |config|
       field :schools
       field :users
     end
+    show do
+      field :name
+      field :captain
+      field :schools
+      field :users
+    end
   end
   config.model 'User' do
     edit do

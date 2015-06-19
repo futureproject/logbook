@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   has_many :reports, through: :people
   before_save :set_site
 
-  ROLE_ENUM = %w(dream_director captain)
+  ROLE_ENUM = ['DD', 'CDD', 'APR']
 
   # make a #token to remember this user for later logins
   def generate_auth_token

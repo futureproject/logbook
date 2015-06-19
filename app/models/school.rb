@@ -43,7 +43,7 @@ class School < ActiveRecord::Base
   end
 
   def dream_director
-    users.order(:id).first
+    users.find_by(role: 'DD')
   end
 
   def dream_team
