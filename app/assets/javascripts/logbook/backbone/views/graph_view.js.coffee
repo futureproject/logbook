@@ -21,7 +21,6 @@ class ds.GraphView extends Backbone.View
     @chart = new Highcharts.Chart
       colors: chart_info.colors || Highcharts.theme.colors
       credits: false
-      tooltip: shared: true
       chart:
         renderTo: @el
         type: chart_info.type
@@ -31,6 +30,7 @@ class ds.GraphView extends Backbone.View
       exporting:
         width: 600
       title: text: chart_info.title
+      tooltip: shared: chart_info.type.match(/area/i)
       xAxis:
         categories: chart_info.categories
         type: chart_info.x_axis_type
