@@ -12,15 +12,7 @@ class ApplicationController < ActionController::Base
   end
 
   def home
-    if current_user.is_a? Person
-      redirect_to me_path
-    else
-      redirect_to logbook_root_url
-    end
-  end
-
-  def os
-    render layout: 'my', template: 'application/os'
+    redirect_to logbook_root_url
   end
 
 end

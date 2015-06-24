@@ -1,7 +1,0 @@
-complete_training:
-  action: Complete training
-  user: bruce
-
-make_costume:
-  action: Make a new Robin costume
-  user: bruce

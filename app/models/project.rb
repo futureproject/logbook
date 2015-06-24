@@ -6,9 +6,9 @@ class Project < ActiveRecord::Base
   has_many :leaders, through: :project_leaders, source: :person
   has_many :participants, through: :project_participants, source: :person
   has_many :assets, as: :attachable, dependent: :destroy
-  has_many :student_reflections, class_name: "Reflection", as: :reflectable
-  after_create :log_activity
-  has_many :activities, as: :thing, dependent: :destroy
+  #has_many :student_reflections, class_name: "Reflection", as: :reflectable
+  #after_create :log_activity
+  #has_many :activities, as: :thing, dependent: :destroy
   has_many :notes, as: :notable, dependent: :destroy
   COLOR_ENUM = %w(#419AD3 #568099 #064974 #FFAC43 #B66500 #FFEDD6)
   STATUS_ENUM = %w(underway stalled complete)
@@ -29,16 +29,16 @@ class Project < ActiveRecord::Base
   scope :with_updates, -> { where('updated_at > created_at') }
   scope :btw, -> (range) { where(created_at: range) }
 
-  def log_activity
-    Activity.create(
-      actor_id: leaders.first.try(:id),
-      actor_type: leaders.first.try(:class).try(:name),
-      thing_id: id,
-      thing_type: self.class.name,
-      school_id: self.school_id,
-      feed_date: self.created_at
-    )
-  end
+  #def log_activity
+    #Activity.create(
+      #actor_id: leaders.first.try(:id),
+      #actor_type: leaders.first.try(:class).try(:name),
+      #thing_id: id,
+      #thing_type: self.class.name,
+      #school_id: self.school_id,
+      #feed_date: self.created_at
+    #)
+  #end
 
   def whole_team
     (leaders + participants).flatten.uniq

@@ -1,5 +1,0 @@
-.report
-  .report-date= report.created_at.strftime "%D"
-  .report-content=report.content
-  .report-source= report.person.try(:dream_director).try(:name)
-

@@ -1,9 +1,0 @@
-%ul.activity-feed
-  %li.labels.activity
-    .activity-when=link_to_unless_current 'When', url_for(sort: 'feed_date ASC')
-    .activity-what= link_to_unless_current 'What', url_for(sort: 'thing_type')
-    .activity-details Info
-    .activity-where Where
-    .activity-who Who
-  = render @activities
-=paginate @activities

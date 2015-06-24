@@ -7,14 +7,8 @@ class Person < ActiveRecord::Base
   has_many :project_leaders, dependent: :destroy
   has_many :primary_projects, through: :project_leaders, source: :project
   has_many :secondary_projects, through: :project_participants, source: :project
-  has_many :one_on_ones
   has_many :engagement_attendees, dependent: :destroy
   has_many :engagements, through: :engagement_attendees
-  has_many :actions, as: :actor
-  has_many :activities, as: :actor, dependent: :destroy
-  has_many :reports, dependent: :destroy
-  has_many :testimonials, dependent: :destroy
-  has_many :student_reflections, class_name: "Reflection", as: :reflectable, dependent: :destroy
   has_many :assets, as: :attachable
   has_one :identity, dependent: :destroy
   before_save :set_site

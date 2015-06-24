@@ -28,10 +28,6 @@ class National
     Action.all
   end
 
-  def activities
-    Activity.all
-  end
-
   def people
     Person.all
   end

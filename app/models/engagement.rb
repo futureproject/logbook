@@ -5,8 +5,8 @@ class Engagement < ActiveRecord::Base
   has_many :engagement_attendees, dependent: :destroy
   has_many :attendees, through: :engagement_attendees, source: :person
   has_many :assets, as: :attachable, dependent: :destroy
-  has_many :activities, as: :thing, dependent: :destroy
-  after_create :log_activity
+  #has_many :activities, as: :thing, dependent: :destroy
+  #after_create :log_activity
   before_create :autoname
   before_save :set_site
   before_save :set_headcount
@@ -72,16 +72,16 @@ class Engagement < ActiveRecord::Base
     end
   end
 
-  def log_activity
-    Activity.create(
-      actor_id: self.user.try(:id),
-      actor_type: self.user.class.try(:name),
-      thing_id: id,
-      thing_type: self.class.name,
-      school_id: self.school_id,
-      feed_date: self.date
-    )
-  end
+  #def log_activity
+    #Activity.create(
+      #actor_id: self.user.try(:id),
+      #actor_type: self.user.class.try(:name),
+      #thing_id: id,
+      #thing_type: self.class.name,
+      #school_id: self.school_id,
+      #feed_date: self.date
+    #)
+  #end
 
   def custom_clone
     clone = self.dup
@@ -90,8 +90,8 @@ class Engagement < ActiveRecord::Base
     clone
   end
 
-  def self.as_bubbles(scope=self.all)
-    scope.order(:kind).group_by(&:kind).map{|k,v| { name: k, data: v.map{|e| { x: e.date.to_datetime.to_i*1000, y: e.duration, z: e.headcount, title: e.name, id: e.id, notes: e.notes.try(:first, 44) } } } }
-  end
+  #def self.as_bubbles(scope=self.all)
+    #scope.order(:kind).group_by(&:kind).map{|k,v| { name: k, data: v.map{|e| { x: e.date.to_datetime.to_i*1000, y: e.duration, z: e.headcount, title: e.name, id: e.id, notes: e.notes.try(:first, 44) } } } }
+  #end
 
 end

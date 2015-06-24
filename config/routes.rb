@@ -1,40 +1,12 @@
 Rails.application.routes.draw do
-
-
-  namespace :go do
-    resources :redirects
-  end
-
-  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-
-  constraints(:subdomain => /go/) do
-    namespace :go, path: '/' do
-      root to: 'redirects#index'
-      resources :redirects
-      get '/*shortcut', to: 'redirects#redirect'
-    end
-  end
-
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   root 'application#home'
-
-  resources :sessions, only: [:new, :create] do
-    get 'students', on: :collection
-  end
-  resources :people
-  resources :reflections
-  resources :projects
-  get '/activity', to: 'actions#index', as: :activity
-  resources :identities do
-    get 'register', on: :member
-  end
+  resources :sessions, only: [:new, :create]
 
   resources :sessions, only: [:new, :create]
   get 'auth/logout', to: 'sessions#destroy', as: :log_out
-  get '/me', to: 'people#me', as: :me
-  get '/os', to: 'application#os', as: :os
-  post '/register', to: 'people#register', as: :register
   match 'auth/:provider/callback' => 'sessions#create', via: [:post, :get]
   get 'auth/failure' => 'sessions#failure'
   get '/data' => 'data#index'
@@ -87,15 +59,11 @@ Rails.application.routes.draw do
           end
         end
       end
-
     end
   end
 
   namespace :logbook do
     root 'stats#index'
-    resources :actions, only: [:index, :show] do
-      get :from, on: :collection
-    end
     resources :people
     resources :notes
     resources :projects do

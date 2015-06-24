@@ -12,8 +12,6 @@ class Site < ActiveRecord::Base
   has_many :project_participants, through: :people
   has_many :engagements
   has_many :engagement_attendees, through: :engagements
-  has_many :actions, through: :schools
-  has_many :activities, through: :schools
   include Sortable
   scope :user_sort, -> (column) { order column.to_s }
 
