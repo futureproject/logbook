@@ -11,37 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150618132349) do
+ActiveRecord::Schema.define(version: 20150624215814) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "actions", force: true do |t|
-    t.integer  "subject_id"
-    t.string   "subject_type"
-    t.text     "what"
-    t.boolean  "interesting"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "who"
-    t.integer  "school_id"
-    t.integer  "actor_id"
-    t.string   "actor_type"
-    t.date     "day"
-    t.date     "date"
-  end
-
-  create_table "activities", force: true do |t|
-    t.integer  "actor_id"
-    t.string   "actor_type"
-    t.integer  "thing_id"
-    t.string   "thing_type"
-    t.integer  "school_id"
-    t.text     "action"
-    t.date     "feed_date"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "assets", force: true do |t|
     t.integer  "attachable_id"
@@ -104,16 +77,6 @@ ActiveRecord::Schema.define(version: 20150618132349) do
   add_index "engagements", ["school_id"], name: "index_engagements_on_school_id", using: :btree
   add_index "engagements", ["site_id"], name: "index_engagements_on_site_id", using: :btree
 
-  create_table "go_redirects", force: true do |t|
-    t.string   "shortcut"
-    t.string   "url"
-    t.integer  "hit_count"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "go_redirects", ["shortcut"], name: "index_go_redirects_on_shortcut", using: :btree
-
   create_table "identities", force: true do |t|
     t.integer  "user_id"
     t.string   "provider"
@@ -140,16 +103,6 @@ ActiveRecord::Schema.define(version: 20150618132349) do
   end
 
   add_index "notes", ["notable_id", "notable_type"], name: "index_notes_on_notable_id_and_notable_type", using: :btree
-
-  create_table "one_on_ones", force: true do |t|
-    t.integer  "school_id"
-    t.integer  "person_id"
-    t.date     "date"
-    t.float    "duration"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.text     "note"
-  end
 
   create_table "people", force: true do |t|
     t.string   "first_name"
@@ -215,23 +168,6 @@ ActiveRecord::Schema.define(version: 20150618132349) do
   add_index "projects", ["status"], name: "index_projects_on_status", using: :btree
   add_index "projects", ["updated_at"], name: "index_projects_on_updated_at", using: :btree
 
-  create_table "reflections", force: true do |t|
-    t.text     "content"
-    t.integer  "person_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "reflectable_id"
-    t.string   "reflectable_type"
-  end
-
-  create_table "reports", force: true do |t|
-    t.text     "content"
-    t.integer  "person_id"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "schools", force: true do |t|
     t.string   "name"
     t.string   "shortname"
@@ -252,31 +188,6 @@ ActiveRecord::Schema.define(version: 20150618132349) do
     t.float    "longitude"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "task_assignments", force: true do |t|
-    t.integer  "task_id"
-    t.integer  "assignee_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.boolean  "complete",    default: false
-  end
-
-  create_table "tasks", force: true do |t|
-    t.string   "action"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.boolean  "complete",   default: false
-  end
-
-  create_table "testimonials", force: true do |t|
-    t.text     "content"
-    t.integer  "person_id"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "source"
   end
 
   create_table "users", force: true do |t|
