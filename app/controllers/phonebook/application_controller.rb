@@ -7,8 +7,7 @@ class Phonebook::ApplicationController < ApplicationController
   end
 
   def manifest
-    headers['Content-Type'] = 'text/cache-manifest'
-    render layout: false, file: "phonebook/application/manifest"
+    render layout: false, file: "phonebook/application/manifest", content_type: 'text/cache-manifest'
   end
 
   private
