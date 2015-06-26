@@ -2,6 +2,15 @@
 / gimme some people stats
 / gimme some engagement stats
 / gimme some project stats
+.page-header
+  %h1= "#{current_scope.captain.try(:name)}, Chief"
+  .site-schools
+    %label Schools:
+    = number_with_delimiter current_scope.schools.count
+  .site-enrollment
+    %label Total Enrolled Students:
+    = number_with_delimiter current_scope.enrollment
+
 .row
   %section#projects-timeline
     .graph{data: { url: projects_timeline_graph_api_v1_site_path(current_scope) } }

@@ -1,0 +1,31 @@
+#header
+  %h1= link_to "Sites", logbook_sites_path
+  .year= @site.name
+
+
+%section#person-hours
+  %h2= "#{number_with_delimiter(@site.person_hours)} Total Person Hours"
+  .graph#person-hours-graph
+    = bar_chart @person_hrs, colors: Engagement::COLOR_ENUM, library: @chart_options
+
+%section#engagement-counts
+  %h2= "#{number_with_delimiter @site.engagements.count} Total Engagements"
+  .graph#engagement-counts-graph
+    = bar_chart @engagement_counts, colors: Engagement::COLOR_ENUM, library: @chart_options
+
+%section#active-people
+  %h2= "#{number_with_delimiter @site.people_with_projects} People Working on Projects"
+  = pie_chart @active_ppl, library: @chart_options
+
+%section#passive-people
+  %h2= "#{number_with_delimiter @site.engaged_people_estimate} People Engaged"
+  = pie_chart @passive_ppl, library: @chart_options
+
+%section#projects-started
+  %h2= "#{@site.projects.count} Projects Started"
+  .project-data= pie_chart @site.schools.order(:name).joins(:projects).group('schools.name').count, library: @chart_options
+
+%section#projects-completed
+  %h2= "#{@site.projects.where(status: 'complete').count} Projects Completed"
+  .project-data= pie_chart @site.schools.order(:name).joins(:projects).where('projects.status = ?', 'complete').group('schools.name').count, library: @chart_options
+

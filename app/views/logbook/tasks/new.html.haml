@@ -1,9 +1,0 @@
-= form_for @task, html: { class: 'list-detail panel' } do |f|
-  .panel-title
-    %h1 New Task
-    .l-menu= link_to "Cancel", tasks_path
-    .r-menu
-      = f.submit 'Done'
-  .panel-body.scrollable.pad
-    = render partial: 'form', locals: {f: f}
-

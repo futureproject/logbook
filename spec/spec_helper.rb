@@ -59,6 +59,10 @@ RSpec.configure do |config|
   config.global_fixtures = :all
   config.formatter = :documentation
 
+  config.before type: :feature do
+    page.driver.block_unknown_urls if Capybara.current_driver == :webkit
+  end
+
 
 end
 
