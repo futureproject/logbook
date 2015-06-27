@@ -2,7 +2,7 @@ module Logbook::ApplicationHelper
 
   def page_classes
     class_name = params[:controller].gsub('/','_')
-    class_name += " clearance-level-#{current_user.clearance_level}" if current_user
+    class_name += scope_class(current_scope)
     class_name
   end
 
@@ -12,6 +12,12 @@ module Logbook::ApplicationHelper
 
   def scoped_url_for(args)
     url_for(scope_params.merge(args))
+  end
+
+  def scope_class(scope)
+    clss =  " #{scope.class.name.parameterize}_scope_#{scope.id}"
+    clss += " site_scope_#{scope.site.id}" if scope.is_a? School
+    clss
   end
 
   def table_link_to name, sort_param

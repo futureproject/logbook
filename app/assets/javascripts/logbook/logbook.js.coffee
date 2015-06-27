@@ -1,18 +1,16 @@
 #= require modernizr
 #= require jquery
-#= require jquery_ujs
-#= require underscore-min
-#= require backbone-min
+#= require underscore-1.8.3
+#= require backbone-1.2.1
 #= require selectize
 #= require twitter/typeahead
 #= require s3_direct_upload
 #= require highcharts
 #= require highcharts-more
-#= require chartkick
-#= require vex.combined.min
-#= require logbook/search
-#= require logbook/enhance
 #= require logbook/highcharts.theme
-#= require_tree ./backbone/helpers
-#= require_tree ./backbone/views
+#= require_tree ./helpers
+#= require_tree ./views
+#= require ./app
 #= require_self
+$ ->
+  ds.run()

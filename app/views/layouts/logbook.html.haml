@@ -9,43 +9,33 @@
     :javascript
       window.ds = window.ds || {}
       ds.CONSTANTS = #{JSON.dump( @js_data || {} )}
-    = javascript_include_tag 'logbook/logbook'
   %body{class: page_classes}
 
-    - cache ['v1/header', current_scope] do
-      #header
-        #filter-trigger
-          %h1
-            = current_scope.name
-            %span.icon.icon-chevron-down
-        #search
-          %label{for: 'search-field'}
-            %span.icon.icon-search
-          %input#search-field.typeahead{type: 'text'}
+    #nav
+      %h1 Logbook
+      %section#scope-nav
+        %header
+          Current Scope
+        #current-scope-indicator National
 
-    - cache 'v1/tabs' do
-      #tabs
-        %a{href: logbook_root_url, data: { unscoped: true } }
-          =image_tag 'tfplogo.svg', alt: 'The Future Project'
-        %ul.tabs
-          = nav_link_to "Overview", logbook_root_url, "ds-dashboard"
-          = nav_link_to "People", logbook_people_path, "ds-people"
-          = nav_link_to "Engagements", logbook_engagements_path, "ds-engagements"
-          = nav_link_to "Projects", logbook_projects_path, "ds-projects"
-        #user
-          %a{href: log_out_path}
-            .icon.icon-sign-out
-            .label Log Out
+      %header Navigation
+      %ul.tabs
+        = nav_link_to "Dashboard", logbook_root_url, "ds-dashboard"
+        = nav_link_to "People", logbook_people_path, "ds-people"
+        = nav_link_to "Engagements", logbook_engagements_path, "ds-engagements"
+        = nav_link_to "Projects", logbook_projects_path, "ds-projects"
 
-    #filters
-      =render 'filters'
+    #user
+      =image_tag current_user.avatar
+      .current-user-name= current_user.name
+      %a{href: log_out_path}
+        Log Out
 
     #yield= yield
 
-    #global-add= render 'global_add'
-    - flash.each do |k, v|
-      .flash{class: k}
-        .message= v
+    /#global-add= render 'global_add'
 
     - cache 'v1/analytics', skip_digest: true do
       = render 'analytics'
+
+  = javascript_include_tag 'logbook/logbook'

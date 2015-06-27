@@ -8,26 +8,9 @@
   @include row;
   padding: 1em 2em;
   position: relative;
-  > *:not(.preview) {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    text-transform: capitalize;
-    @include span-columns(1);
-    &.actions { @include omega; }
-  }
-
   &:hover {
     background: white;
   }
-}
-
-.preview {
-  clear: both;
-  float: none;
-  max-height: 140px;
-  overflow: hidden;
-  font-weight: normal;
 }
 
 .table {
@@ -59,70 +42,6 @@
 .s11 { @include shift(11); }
 .s12 { @include shift(12); }
 
-.page-header {
-  font-weight: bold;
-  color: white;
-  background: $stats-color;
-  a { color: white; }
-  label {
-    color: white;
-  }
-  h1 {
-    margin: 0;
-    .icon {
-      @include transition;
-      font-size: 18px;
-      display: inline-block;
-    }
-  }
-  &.filtres-open {
-    .icon { @include transform(rotate(180deg)); }
-  }
-  .map {
-    img { max-width: 320px }
-  }
-}
-.labels {
-  background: $medium-gray;
-  color: white;
-  @include row;
-  position: static;
-  position: -webkit-sticky;
-  top: 0;
-  left: 66px;
-  height: 66px;
-  right: 0;
-  z-index: 8;
-  padding: 0 2em !important;
-  line-height: 66px;
-  &:hover { outline: none; }
-  &.locked {
-    position: fixed;
-  }
-  a {
-    color: white;
-    opacity: .75;
-  }
-  .active {
-    font-weight: bold;
-    position: relative;
-    opacity: 1;
-    &:after {
-      top: 100%;
-      left: 50%;
-      border: solid transparent;
-      content: " ";
-      height: 0;
-      width: 0;
-      position: absolute;
-      pointer-events: none;
-      border-color: transparent;
-      border-bottom-color: $base-background-color;
-      border-width: 16px;
-      margin-left: -16px;
-    }
-  }
-}
 
 .pagination {
   border-top: 1px dotted $base-border-color;
@@ -137,34 +56,12 @@
   @include btn;
 }
 
-body .actions {
-  a {
-    display: inline-block;
-    padding: 0 4px;
-    color: $light-gray;
-  }
-}
-
 a.view { color: $light-green; }
 a.danger { color: $light-red; }
 a.edit { color: $light-yellow; }
 
 * { min-height: 1px; }
 
-.fact {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.fact:empty {
-  &:after { content: 'N/A'; }
-}
-
-hr {
-  height: 0;
-  border: none;
-  border-bottom: 1px dotted $base-border-color;
-}
 
 .date-field {
   white-space: nowrap;

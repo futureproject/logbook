@@ -49,7 +49,7 @@ class National
   end
 
   def id
-    nil
+    "usa"
   end
 
   def name

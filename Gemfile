@@ -97,10 +97,6 @@ gem 'twitter-typeahead-rails'
 
 # group records for fancy graphing
 gem 'groupdate'
-gem 'chartkick'
-gem 'hightop'
-
-# set a shorter timeout than default 30s
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
