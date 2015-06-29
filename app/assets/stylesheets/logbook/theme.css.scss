@@ -1,6 +1,6 @@
 a {
   text-decoration: none;
-  color: #3182a2;
+  color: $base-accent-color;
 }
 
 header {
@@ -9,4 +9,9 @@ header {
   font-size: 10px;
   line-height: 1.5;
   margin-top: 15px;
+}
+#nav, #user {
+  color: $base-background-color;
+  a { color: $base-background-color; }
+  header { opacity: 0.8 }
 }

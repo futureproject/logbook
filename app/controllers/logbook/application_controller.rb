@@ -9,7 +9,8 @@ class Logbook::ApplicationController < ApplicationController
       @js_data = {}
       @js_data[:current_user] = current_user.as_json(include: :school)
       @js_data[:scope] = { type: current_scope.class.name.downcase, id: current_scope.id }
-      @js_data[:sites] = Site.order(:name).includes(:schools).as_json
+      @js_data[:sites] = Site.order(:name).as_json
+      @js_data[:schools] = School.order(:name).as_json
     end
 
     def current_scope
