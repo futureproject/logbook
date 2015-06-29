@@ -24,6 +24,10 @@ class National
     }.inject(:+)
   end
 
+  def self.scopes
+    Site.order(:name).unshift self.new
+  end
+
   def actions
     Action.all
   end
@@ -62,6 +66,10 @@ class National
 
   def cache_key
     "national-#{Site.order('updated_at').last.try(:updated_at).to_i}"
+  end
+
+  def as_json
+    { name: 'National', id: 'usa' }
   end
 
   #def self.engagement_score

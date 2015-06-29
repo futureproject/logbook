@@ -8,28 +8,40 @@
     %link{rel:"apple-touch-icon", href: asset_path('icon-arrow.png')}
     :javascript
       window.ds = window.ds || {}
-      ds.CONSTANTS = #{JSON.dump( @js_data || {} )}
-  %body{class: page_classes}
-
+      ds.CONSTANTS = #{JSON.dump({
+          current_user: current_user.as_json(include: :school),
+          scope: current_scope.as_json,
+          sites: National.scopes.as_json,
+          schools: current_scope.schools.order(:name).as_json
+        })
+      }
+  %body
     #nav
       %h1 Logbook
-      %section#scope-nav
+      %section#scope-toggle
         %header
           Current Scope
-        #current-scope-indicator National
+        #current-scope-indicator --
 
+      %section#scope-menu
+        #sites
+          %header Cities
+          %ul#sites-list
+        #schools
+          %header Schools
+          %ul#schools-list
       %header Navigation
       %ul.tabs
-        = nav_link_to "Dashboard", logbook_root_url, "ds-dashboard"
-        = nav_link_to "People", logbook_people_path, "ds-people"
-        = nav_link_to "Engagements", logbook_engagements_path, "ds-engagements"
-        = nav_link_to "Projects", logbook_projects_path, "ds-projects"
+        %li= link_to "Dashboard", logbook_root_url
+        %li= link_to "People", logbook_people_path
+        %li= link_to "Engagements", logbook_engagements_path
+        %li= link_to "Projects", logbook_projects_path
 
-    #user
-      =image_tag current_user.avatar
-      .current-user-name= current_user.name
-      %a{href: log_out_path}
-        Log Out
+      #user
+        =image_tag current_user.avatar
+        .current-user-name= current_user.name
+        %a{href: log_out_path}
+          Log Out
 
     #yield= yield
 

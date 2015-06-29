@@ -2,16 +2,17 @@ window.ds ||= {}
 
 class ds.ScopeToggleView extends Backbone.View
   initialize: ->
-    @menu = new ds.ScopeMenuView
-
+    @$el.find('#current-scope-indicator').html ds.CONSTANTS.scope.name
   events:
     'click': (event) -> Backbone.trigger 'nav:toggle'
 
 class ds.ScopeMenuView extends Backbone.View
   initialize: ->
-    @visible = false
-    @collection = ds.collections.sites
-    @listenTo @collection, 'reset', @render
+    @hide()
+    @sites = { el: '#sites-list', collection: ds.collections.sites }
+    @schools = { el: '#schools-list', collection: ds.collections.schools }
+    @listenTo @schools.collection, 'reset', @render
+    @listenTo @sites.collection, 'reset', @render
     @listenTo Backbone, 'nav:toggle', @toggle
 
   className: 'scope-menu'
@@ -20,22 +21,21 @@ class ds.ScopeMenuView extends Backbone.View
     if @visible then @hide() else @show()
 
   hide: ->
-    @$el.hide()
+    @$el.slideUp()
     @visible = false
 
   show: ->
     @visible = true
-    @$el.show()
+    @$el.slideDown()
 
   template: JST['logbook/templates/scopes']
 
   render: ->
-    @$el.hide().appendTo('body')
-    fragment = document.createDocumentFragment()
-    @collection.each (model) =>
-      console.log model
-      div = document.createElement('div')
-      div.innerHTML = @template(model.toJSON())
-      fragment.appendChild div
-    @$el.html(fragment)
+    _.each [@sites, @schools], (set) =>
+      list = document.createElement('ul')
+      set.collection.each (model) =>
+        item = document.createElement('li')
+        item.innerHTML = @template(model.toJSON())
+        list.appendChild item
+      $(set.el).html list
 

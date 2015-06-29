@@ -7,30 +7,33 @@
   padding: 15px;
   font-weight: 600;
   @include linear-gradient(-45deg, #23485d, #3182a2);
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
   h1 {
     font-size: 25px;
     line-height: 1;
     margin-bottom: 5px;
     font-weight: 700;
   }
+  li {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
-#scope-nav {
+#scope-toggle {
   cursor: pointer;
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  user-select: none;
 }
 
 #scope-menu {
-  position: fixed;
-  top: 65px;
-  left: 0;
-  background: white;
-  padding: 15px;
+  display: none;
 }
 
 #user {
-  position: fixed;
+  position: absolute;
   bottom: 0;
   left: 0;
   width: 240px;

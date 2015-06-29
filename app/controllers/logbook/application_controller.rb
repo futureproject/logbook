@@ -5,13 +5,6 @@ class Logbook::ApplicationController < ApplicationController
   helper_method :current_scope
 
   private
-    def init_js_data
-      @js_data = {}
-      @js_data[:current_user] = current_user.as_json(include: :school)
-      @js_data[:scope] = { type: current_scope.class.name.downcase, id: current_scope.id }
-      @js_data[:sites] = Site.order(:name).as_json
-      @js_data[:schools] = School.order(:name).as_json
-    end
 
     def current_scope
       return National.new if params[:scope_type] == 'national'
