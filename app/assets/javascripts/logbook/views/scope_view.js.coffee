@@ -3,6 +3,7 @@ window.ds ||= {}
 class ds.ScopeToggleView extends Backbone.View
   initialize: ->
     @$el.find('#current-scope-indicator').html ds.CONSTANTS.scope.name
+  el: '#scope-toggle'
   events:
     'click': (event) -> Backbone.trigger 'nav:toggle'
 
@@ -15,8 +16,7 @@ class ds.ScopeMenuView extends Backbone.View
     @listenTo @sites.collection, 'reset', @render
     @listenTo Backbone, 'nav:toggle', @toggle
 
-  className: 'scope-menu'
-  id: 'scope-menu'
+  el: '#scope-menu'
   toggle: ->
     if @visible then @hide() else @show()
 
@@ -25,8 +25,8 @@ class ds.ScopeMenuView extends Backbone.View
     @visible = false
 
   show: ->
-    @visible = true
     @$el.slideDown()
+    @visible = true
 
   template: JST['logbook/templates/scopes']
 

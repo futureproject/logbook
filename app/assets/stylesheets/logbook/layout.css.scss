@@ -7,10 +7,12 @@
   padding: 15px;
   font-weight: 600;
   @include linear-gradient(-45deg, #23485d, #3182a2);
+  @include box-sizing(border-box);
   -moz-user-select: none;
   -webkit-user-select: none;
   user-select: none;
-  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   h1 {
     font-size: 25px;
@@ -23,6 +25,9 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
+  a:hover {
+    color: $base-font-color;
+  }
 }
 #scope-toggle {
   cursor: pointer;
@@ -30,6 +35,9 @@
 
 #scope-menu {
   display: none;
+  font-size: 12px;
+  line-height: 20px;
+  font-weight: 500;
 }
 
 #user {
@@ -40,6 +48,7 @@
   padding: 15px;
   font-weight: 500;
   height: 75px;
+  @include transition;
   img {
     height: 45px;
     width: 45px;
@@ -50,6 +59,13 @@
   }
   .current-user-name {
     font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  &.hidden {
+    opacity: 0;
+    @include transform(translate3d(0,75px,0));
   }
 }
 #yield {

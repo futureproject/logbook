@@ -38,10 +38,6 @@
         %li= link_to "Projects", logbook_projects_path
 
       #user
-        =image_tag current_user.avatar
-        .current-user-name= current_user.name
-        %a{href: log_out_path}
-          Log Out
 
     #yield= yield
 

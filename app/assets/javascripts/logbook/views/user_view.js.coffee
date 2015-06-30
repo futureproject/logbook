@@ -1,16 +1,26 @@
 class ds.UserView extends Backbone.View
   initialize: ->
+    @model = ds.current_user
     @visible = true
     @listenTo Backbone, 'nav:toggle', @toggle
+    @render()
+
+  el: '#user'
 
   toggle: ->
     if @visible then @hide() else @show()
 
   hide: ->
-    @$el.hide()
+    @$el.addClass('hidden')
     @visible = false
 
   show: ->
     @visible = true
-    @$el.show()
+    @$el.removeClass('hidden')
+
+  template: JST['logbook/templates/user']
+
+  render: ->
+    @$el.html @template(@model.toJSON())
+    @
 
