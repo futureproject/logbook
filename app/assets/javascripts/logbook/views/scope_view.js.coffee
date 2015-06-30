@@ -35,7 +35,7 @@ class ds.ScopeMenuView extends Backbone.View
       list = document.createElement('ul')
       set.collection.each (model) =>
         item = document.createElement('li')
-        item.innerHTML = @template(model.toJSON())
+        item.innerHTML = @template(model.tplAttrs())
         list.appendChild item
       $(set.el).html list
 

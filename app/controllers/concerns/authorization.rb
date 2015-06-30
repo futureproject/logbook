@@ -45,6 +45,7 @@ module Authorization
 
   def sign_out user
     cookies.permanent[:auth_token] = nil
+    session[:scope_id] = session[:scope_type] = nil
   end
 
   def current_user

@@ -4,14 +4,19 @@ class Logbook::ApplicationController < ApplicationController
   layout 'logbook'
   helper_method :current_scope
 
+  def set_scope
+    session[:scope_id] = params[:scope_id]
+    session[:scope_type] = params[:scope_type].classify
+    redirect_to params[:redirect] || request.referrer
+  end
+
   private
 
     def current_scope
-      return National.new if params[:scope_type] == 'national'
-      begin
-        eval "#{params[:scope_type].classify}.find(#{params[:scope_id]})"
-      rescue
-        current_user.try(:default_logbook_scope) || National.new
+      if session[:scope_id] == "usa"
+        National.new
+      else
+        eval("#{session[:scope_type].classify}.find(#{session[:scope_id]})") rescue current_user.default_logbook_scope
       end
     end
 

@@ -48,7 +48,8 @@
   padding: 15px;
   font-weight: 500;
   height: 75px;
-  @include transition;
+  @include transition(all .5s);
+  -webkit-font-smoothing: antialiased;
   img {
     height: 45px;
     width: 45px;

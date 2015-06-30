@@ -9,7 +9,6 @@ Rails.application.routes.draw do
   get 'auth/logout', to: 'sessions#destroy', as: :log_out
   match 'auth/:provider/callback' => 'sessions#create', via: [:post, :get]
   get 'auth/failure' => 'sessions#failure'
-  get '/data' => 'data#index'
 
   namespace :api do
     namespace :v1 do
@@ -77,6 +76,7 @@ Rails.application.routes.draw do
     resources :schools, only: [:index, :show]
     resources :sites, only: [:index, :show]
     resources :engagement_attendees, only: [:show]
+    get 'set_scope', to: 'application#set_scope'
   end
 
   get '/logbookapp' => 'phonebook/application#home', as: 'logbook_app'
