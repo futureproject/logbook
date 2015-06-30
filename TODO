@@ -1,5 +1,8 @@
-remove user site_id
-make user school_id polymorphic
+Restore graphs on school pages
+Restore graphs on city pages
+Use PJAX for most nav
+Make a view of the nav menu, yeah!
+Build city pages
 
 
 PHONEBOOK
@@ -9,5 +12,8 @@ _ make controllers inherit
 _ Deleting a person association does not touch said person
 
 
-_ Rename filter_params scope_params, and maybe don't make them private
 _ Rework filters to be independent of scope_params
+
+remove user site_id
+make user school_id polymorphic
+

@@ -6,6 +6,10 @@ module Logbook::ApplicationHelper
     class_name
   end
 
+  def page_title
+    params[:controller].split('/').last.capitalize
+  end
+
   def scope_params
     params.slice :scope_type, :scope_id
   end
