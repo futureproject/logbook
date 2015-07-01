@@ -23,11 +23,11 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  a:hover {
-    color: $base-font-color;
-  }
   section {
     padding: 15px;
+  }
+  a:hover {
+    text-decoration: underline;
   }
   #scope-menu {
     display: none;
@@ -61,12 +61,14 @@
   width: 240px;
   padding: 15px;
   font-weight: 500;
-  height: 75px;
+  height: 60px;
   @include transition(all .5s);
   -webkit-font-smoothing: antialiased;
+  font-size: 12px;
+  line-height: 15px;
   img {
-    height: 45px;
-    width: 45px;
+    height: 30px;
+    width: 30px;
     float: left;
     margin-right: 15px;
     border-radius: 100%;

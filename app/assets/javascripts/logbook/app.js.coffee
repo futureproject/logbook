@@ -12,3 +12,5 @@ ds.run = (args) ->
   ds.views.user_view = new ds.UserView
   ds.collections.sites.reset ds.CONSTANTS.sites
   ds.collections.schools.reset ds.CONSTANTS.schools
+  ds.graphs_controller = new ds.GraphsController
+
