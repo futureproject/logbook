@@ -40,7 +40,8 @@
     }
   }
 }
-#nav-header {
+
+#app-name {
   border-bottom: 1px solid rgba(0,0,0,.1);
   background: rgba(0,0,0,.1);
 }
@@ -49,6 +50,9 @@
   cursor: pointer;
 }
 
+#app-sections {
+  border-top: 1px solid rgba(0,0,0,.1);
+}
 
 #user {
   position: absolute;
