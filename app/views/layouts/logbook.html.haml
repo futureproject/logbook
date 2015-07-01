@@ -17,7 +17,8 @@
       }
   %body
     #nav
-      %h1 Logbook
+      %section#nav-header
+        %h1 Logbook
       %section#scope-toggle
         %header
           Current Scope
@@ -30,12 +31,13 @@
         #schools
           %header Schools
           %ul#schools-list
-      %header Navigation
-      %ul.tabs
-        %li= link_to "Dashboard", logbook_root_url
-        %li= link_to "People", logbook_people_path
-        %li= link_to "Engagements", logbook_engagements_path
-        %li= link_to "Projects", logbook_projects_path
+      %section
+        %header Navigation
+        %ul.tabs
+          %li= link_to "Dashboard", logbook_root_url
+          %li= link_to "People", logbook_people_path
+          %li= link_to "Engagements", logbook_engagements_path
+          %li= link_to "Projects", logbook_projects_path
 
       #user
 
