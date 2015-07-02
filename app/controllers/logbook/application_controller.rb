@@ -10,6 +10,15 @@ class Logbook::ApplicationController < ApplicationController
     redirect_to params[:redirect] || request.referrer
   end
 
+  def home
+    redirect_to url_for([:logbook, current_scope])
+  end
+
+  def dashboard
+    self.instance_variable_set "@#{current_scope.class.name.downcase}", current_scope
+    render template: "logbook/#{current_scope.class.name.tableize}/show"
+  end
+
   private
 
     def current_scope

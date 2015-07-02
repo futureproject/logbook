@@ -62,7 +62,7 @@ Rails.application.routes.draw do
   end
 
   namespace :logbook do
-    root 'stats#index'
+    root 'application#dashboard'
     resources :people
     resources :notes
     resources :projects do

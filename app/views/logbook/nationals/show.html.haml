@@ -1,8 +1,8 @@
 .row
   %section#projects-timeline
-    .graph{data: { url: projects_timeline_graph_api_v1_national_path(current_scope) } }
+    .graph{data: { url: projects_timeline_graph_api_v1_national_path(@national) } }
       .loading
 .row
   %section#engagements-per-week
-    .graph{data: { url: engagements_per_week_graph_api_v1_national_path(current_scope) } }
+    .graph{data: { url: engagements_per_week_graph_api_v1_national_path(@national) } }
       .loading

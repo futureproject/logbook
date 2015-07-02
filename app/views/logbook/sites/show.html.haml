@@ -1,21 +1,24 @@
 / list the schools in this city
+%ul.site-schools
+  - @site.schools.order(:name).each do |school|
+    %li=link_to school.name, logbook_school_path(school)
 / gimme some people stats
 / gimme some engagement stats
 / gimme some project stats
 .page-header
-  %h1= "#{current_scope.captain.try(:name)}, Chief"
+  %h1= "#{@site.captain.try(:name)}, Chief"
   .site-schools
     %label Schools:
-    = number_with_delimiter current_scope.schools.count
+    = number_with_delimiter @site.schools.count
   .site-enrollment
     %label Total Enrolled Students:
-    = number_with_delimiter current_scope.enrollment
+    = number_with_delimiter @site.enrollment
 
 .row
   %section#projects-timeline
-    .graph{data: { url: projects_timeline_graph_api_v1_site_path(current_scope) } }
+    .graph{data: { url: projects_timeline_graph_api_v1_site_path(@site) } }
       .loading
 .row
   %section#engagements-per-week
-    .graph{data: { url: engagements_per_week_graph_api_v1_site_path(current_scope) } }
+    .graph{data: { url: engagements_per_week_graph_api_v1_site_path(@site) } }
       .loading
