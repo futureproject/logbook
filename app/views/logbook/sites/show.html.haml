@@ -1,10 +1,24 @@
+.titlebar
+  %h1= @site.name
 / list the schools in this city
+.factbar
+  %ul
+    %li
+      %label Chief
+      .fact= @site.captain.try(:name)
+    %li
+      %label Schools
+      .fact= @site.schools.count
+    %li
+      %label Enrollment
+      .fact= number_with_delimiter @site.enrollment
+    %li
+      %label Engagement
+      .fact= number_with_delimiter @site.engaged_people_estimate
+
 %ul.site-schools
   - @site.schools.order(:name).each do |school|
     %li=link_to school.name, logbook_school_path(school)
-/ gimme some people stats
-/ gimme some engagement stats
-/ gimme some project stats
 .page-header
   %h1= "#{@site.captain.try(:name)}, Chief"
   .site-schools

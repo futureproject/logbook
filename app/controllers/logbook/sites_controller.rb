@@ -11,6 +11,10 @@ class Logbook::SitesController < Logbook::ApplicationController
     @site = Site.find params[:id]
   end
 
+  def graphs
+    @site = Site.find params[:id]
+  end
+
   private
     def sort_params
       params.slice(:by_count, :user_sort)

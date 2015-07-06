@@ -74,7 +74,9 @@ Rails.application.routes.draw do
     end
     resources :assets, only: [:show, :index, :destroy]
     resources :schools, only: [:index, :show]
-    resources :sites, only: [:index, :show]
+    resources :sites, only: [:index, :show] do
+      get 'graphs', on: :member
+    end
     resources :engagement_attendees, only: [:show]
     get 'set_scope', to: 'application#set_scope'
   end

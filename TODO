@@ -1,5 +1,7 @@
-restyle schools pages
 make actual city pages
+redesign schools pages
+  _ make a router
+
 make national pages
 restyle list pages
 restyle profile pages
@@ -8,6 +10,17 @@ restyle forms
 Use PJAX for most nav
 Make a view of the nav menu, yeah!
 
+
+ERRORS
+- Auth is slow. Replace with redirect-style google auth, and simplify user model
+- api/v1/engagements is timing out
+- engagements per week graph is timing out
+
+DATA
+_ Build a yearly rake task for cleaning old student data
+  - delete students with zero projects & engagements
+  - move all students with grades to the next grade
+  - deactivate all students with grades > 12
 
 PHONEBOOK
 _ create actual tab views, are you seriously reading data-attrs??

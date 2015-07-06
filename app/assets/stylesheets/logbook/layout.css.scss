@@ -14,7 +14,7 @@
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   h1 {
-    font-size: 25px;
+    font-size: 20px;
     line-height: 1;
     font-weight: 700;
   }
@@ -25,9 +25,6 @@
   }
   section {
     padding: 15px;
-  }
-  a:hover {
-    text-decoration: underline;
   }
   #scope-menu {
     display: none;
@@ -41,9 +38,31 @@
   }
 }
 
+.tabs {
+  li {
+    display: block;
+    height: 25px;
+    overflow: hidden;
+    margin-bottom: 5px;
+  }
+  .link-icon {
+    font-size: 20px;
+    display: block;
+    height: 30px;
+    width: 30px;
+    line-height: 28px;
+    float: left;
+  }
+  li, a { display: block; }
+  .link-label {
+    line-height: 30px;
+  }
+}
+
 #app-name {
   border-bottom: 1px solid rgba(0,0,0,.1);
   background: rgba(0,0,0,.1);
+  box-sizing: border-box;
 }
 
 #scope-toggle {
@@ -87,5 +106,4 @@
 }
 #yield {
   margin-left: 240px;
-  padding: 15px;
 }

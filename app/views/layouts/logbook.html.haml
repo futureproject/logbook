@@ -22,7 +22,9 @@
       %section#scope-toggle
         %header
           Current Scope
+          %span.icon.icon-arrow-drop-down
         #current-scope-indicator --
+
 
       %section#scope-menu
         #sites
@@ -34,10 +36,10 @@
       %section#app-sections
         %header Navigation
         %ul.tabs
-          %li= link_to "Dashboard", logbook_root_url
-          %li= link_to "People", logbook_people_path
-          %li= link_to "Engagements", logbook_engagements_path
-          %li= link_to "Projects", logbook_projects_path
+          = nav_link_to "Dashboard", logbook_root_url, 'ds_dashboard'
+          = nav_link_to "People", logbook_people_path, 'ds_people'
+          = nav_link_to "Engagements", logbook_engagements_path, 'ds_engagements'
+          = nav_link_to "Projects", logbook_projects_path, 'ds_projects'
 
       #user
 

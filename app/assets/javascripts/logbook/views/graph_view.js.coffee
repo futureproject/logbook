@@ -26,7 +26,7 @@ class ds.GraphView extends Backbone.View
         type: chart_info.type
         backgroundColor: 'transparent'
         zoomType: 'xy'
-        height: (if chart_info.type.match(/bubble|scatter/) then 420 else 320)
+        height: (if chart_info.type.match(/bubble|scatter/) then 320 else 210)
       exporting:
         width: 600
       title: text: chart_info.title
