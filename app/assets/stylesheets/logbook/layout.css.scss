@@ -38,7 +38,8 @@
   }
 }
 
-.tabs {
+#app-sections {
+  border-top: 1px solid rgba(0,0,0,.1);
   li {
     display: block;
     height: 25px;
@@ -63,15 +64,28 @@
   border-bottom: 1px solid rgba(0,0,0,.1);
   background: rgba(0,0,0,.1);
   box-sizing: border-box;
+  height: 50px;
 }
 
 #scope-toggle {
   cursor: pointer;
+  header:after {
+    content: '';
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 6px 5px 0 5px;
+    border-color: rgba(255,255,255,.8) transparent transparent transparent;
+    position: relative;
+    top: -1px;
+    @include transition(transform .3s);
+  }
+  &.open header:after {
+    @include transform(rotate(-180deg));
+  }
 }
 
-#app-sections {
-  border-top: 1px solid rgba(0,0,0,.1);
-}
 
 #user {
   position: absolute;
@@ -104,6 +118,7 @@
     @include transform(translate3d(0,75px,0));
   }
 }
+
 #yield {
   margin-left: 240px;
 }

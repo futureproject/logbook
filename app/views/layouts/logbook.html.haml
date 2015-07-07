@@ -22,9 +22,7 @@
       %section#scope-toggle
         %header
           Current Scope
-          %span.icon.icon-arrow-drop-down
         #current-scope-indicator --
-
 
       %section#scope-menu
         #sites
@@ -35,7 +33,7 @@
           %ul#schools-list
       %section#app-sections
         %header Navigation
-        %ul.tabs
+        %ul
           = nav_link_to "Dashboard", logbook_root_url, 'ds_dashboard'
           = nav_link_to "People", logbook_people_path, 'ds_people'
           = nav_link_to "Engagements", logbook_engagements_path, 'ds_engagements'

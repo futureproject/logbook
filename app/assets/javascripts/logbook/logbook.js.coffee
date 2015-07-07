@@ -1,6 +1,7 @@
 #= require jquery-2.1.1
 #= require underscore-1.8.3
 #= require backbone-1.2.1
+#= require backgrid.min
 #= require selectize
 #= require twitter/typeahead
 #= require s3_direct_upload

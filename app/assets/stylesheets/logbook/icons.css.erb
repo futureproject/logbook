@@ -1,0 +1,35 @@
+@font-face {
+  font-family: 'icons';
+  src: url(<%= asset_path "logbook-icons.woff" %>);
+  font-weight: normal;
+  font-style: normal;
+  }
+
+  [class^="icon-"], [class*=" icon-"] {
+  font-family: 'icons';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-ds_dashboard:before {
+  content: "\e600";
+}
+
+.icon-ds_engagements:before {
+  content: "\e601";
+}
+
+.icon-ds_people:before {
+  content: "\e602";
+}
+
+.icon-ds_projects:before {
+  content: "\e603";
+}

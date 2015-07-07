@@ -1,38 +1,46 @@
 .titlebar
-  %h1= @site.name
-/ list the schools in this city
-.factbar
-  %ul
-    %li
-      %label Chief
-      .fact= @site.captain.try(:name)
-    %li
-      %label Schools
-      .fact= @site.schools.count
-    %li
-      %label Enrollment
-      .fact= number_with_delimiter @site.enrollment
-    %li
-      %label Engagement
-      .fact= number_with_delimiter @site.engaged_people_estimate
+  .title= @site.name
+  .subtitle
+    = "- #{@site.captain.try(:name)}, Chief"
 
-%ul.site-schools
-  - @site.schools.order(:name).each do |school|
-    %li=link_to school.name, logbook_school_path(school)
-.page-header
-  %h1= "#{@site.captain.try(:name)}, Chief"
-  .site-schools
-    %label Schools:
-    = number_with_delimiter @site.schools.count
-  .site-enrollment
-    %label Total Enrolled Students:
-    = number_with_delimiter @site.enrollment
+.table
+  %table
+    %thead
+      %tr
+        %th
+        %th Schools
+        %th Enrollment
+        %th Ppl Engaged
+        %th Person Hrs
+        %th Ppl w/Projects
+    %tbody
+      %tr
+        %th= @site.name
+        %td= @site.schools.count
+        %td= number_with_delimiter @site.enrollment
+        %td= number_with_delimiter @site.engaged_people_estimate
+        %td= number_with_delimiter @site.person_hours
+        %td= number_with_delimiter @site.people_with_projects
+      - Site.where.not(id: @site.id).order(:name).each do |site|
+        %tr
+          %th= site.name
+          %td= site.schools.count
+          %td= number_with_delimiter site.enrollment
+          %td= number_with_delimiter site.engaged_people_estimate
+          %td= number_with_delimiter site.person_hours
+          %td= number_with_delimiter site.people_with_projects
 
-.row
-  %section#projects-timeline
-    .graph{data: { url: projects_timeline_graph_api_v1_site_path(@site) } }
-      .loading
-.row
-  %section#engagements-per-week
-    .graph{data: { url: engagements_per_week_graph_api_v1_site_path(@site) } }
-      .loading
+      - @site.schools.order(:name).each do |site|
+        %tr
+          %th= site.name
+          %td= site.schools.count
+          %td= number_with_delimiter site.enrollment
+          %td= number_with_delimiter site.engaged_people_estimate
+          %td= number_with_delimiter site.person_hours
+          %td= number_with_delimiter site.people_with_projects
+
+
+.graph{data: { url: projects_timeline_graph_api_v1_site_path(@site) } }
+  .loading
+.graph{data: { url: engagements_per_week_graph_api_v1_site_path(@site) } }
+  .loading

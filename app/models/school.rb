@@ -102,5 +102,9 @@ class School < ActiveRecord::Base
     ]
   end
 
+  def people_with_projects_count
+    (people.joins(:primary_projects) + people.joins(:secondary_projects)).uniq.count
+  end
+
 
 end

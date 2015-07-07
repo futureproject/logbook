@@ -2,7 +2,7 @@ class ds.UserView extends Backbone.View
   initialize: ->
     @model = ds.current_user
     @visible = true
-    @listenTo Backbone, 'nav:toggle', @toggle
+    @listenTo Backbone, 'scopes:toggle', @toggle
     @render()
 
   el: '#user'

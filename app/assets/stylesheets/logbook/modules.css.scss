@@ -1,11 +1,16 @@
 .titlebar {
   position: relative;
-  text-align: center;
   border-bottom: 1px solid $base-border-color;
   padding-bottom: 15px;
   padding: 15px;
   background: white;
-  h1 { font-weight: 700; }
+  height: 50px;
+  .title, .subtitle {
+    display: inline-block;
+  }
+  .title {
+    font-weight: 700;
+  }
 }
 .button {
   @include btn;
@@ -21,8 +26,15 @@
     display: table-cell;
   }
 }
+.table {
+  padding: 15px;
+}
 
 a.view { color: $light-green; }
 a.danger { color: $light-red; }
 a.edit { color: $light-yellow; }
 
+.graph {
+  padding: 15px;
+  min-height: 60px;
+}

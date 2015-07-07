@@ -2,10 +2,11 @@ window.ds ||= {}
 
 class ds.ScopeToggleView extends Backbone.View
   initialize: ->
+    @listenTo Backbone, 'scopes:toggle', -> @$el.toggleClass('open')
     @$el.find('#current-scope-indicator').html ds.CONSTANTS.scope.name
   el: '#scope-toggle'
   events:
-    'click': (event) -> Backbone.trigger 'nav:toggle'
+    'click': (event) -> Backbone.trigger 'scopes:toggle'
 
 class ds.ScopeMenuView extends Backbone.View
   initialize: ->
@@ -14,7 +15,7 @@ class ds.ScopeMenuView extends Backbone.View
     @schools = { el: '#schools-list', collection: ds.collections.schools }
     @listenTo @schools.collection, 'reset', @render
     @listenTo @sites.collection, 'reset', @render
-    @listenTo Backbone, 'nav:toggle', @toggle
+    @listenTo Backbone, 'scopes:toggle', @toggle
 
   el: '#scope-menu'
   toggle: ->

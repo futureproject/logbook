@@ -3,7 +3,8 @@
 */
 
 @import 'reset';
-@import 'googlecons';
+@import 'icons';
+@import 'backgrid.min';
 @import 'variables';
 @import 'bourbon';
 @import 'neat';
@@ -27,3 +28,4 @@ html, body {
   color: $base-font-color;
   line-height: 20px;
 }
+

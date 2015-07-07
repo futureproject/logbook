@@ -4,6 +4,20 @@ $base-font-family: $sans-serif;
 $header-font-family: $base-font-family;
 
 // Colors
+$retro-black: #1e2427;
+$retro-white: #f8f3f3;
+$retro-eggshell: #f9f1de;
+
+$retro-red: #db4549;
+$retro-orange: #e9a444;
+$retro-yellow: #fbe588;
+$retro-green: #a2cfc0;
+$retro-teal: #b6dee3;
+$retro-ocean: #3d99a0;
+$retro-blue: #3182a2;
+$retro-indigo: #23485d;
+$retro-violet: #694a55;
+
 $blue: #3182a2;
 $dark-blue: #18506e;
 $dark-gray: #1e2427;
@@ -22,11 +36,11 @@ $engagements-color: #b363a3;
 $schools-color: $stats-color;
 
 // Background Color
-$base-background-color: #f8f3f3;
+$base-background-color: $retro-white;
 
 // Font Colors
-$base-font-color: $dark-gray;
-$base-accent-color: $blue;
+$base-font-color: $retro-black;
+$base-accent-color: $retro-blue;
 
 // Link Colors
 $base-link-color: $base-accent-color;

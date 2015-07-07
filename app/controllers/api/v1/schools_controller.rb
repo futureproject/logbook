@@ -5,7 +5,7 @@ class Api::V1::SchoolsController < Api::V1::BaseController
   # GET /api/v1/schools
   # GET /api/v1/schools.json
   def index
-    @schools = School.all
+    @schools = School.order(:name)
   end
 
   # GET /api/v1/schools/1

@@ -12,30 +12,22 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :users do
-        get 'stats', on: :member
-      end
+      resources :users, only: [:index, :show, :update]
       resources :people do
         member do
-          get 'stats'
           get 'engagements_bubble_graph'
         end
       end
-      resources :projects do
-        get 'stats', on: :member
-      end
+      resources :projects
       resources :engagements do
         get 'upload', on: :member
         get 'attendees', on: :member
       end
       resources :engagement_attendees
-      resources :one_on_ones
       resources :reports
       resources :reflections
-      resources :testimonials
       resources :assets, only: [:create, :destroy]
       resources :search_results, only: [:index]
-      resources :sites
       [:schools, :sites, :nationals].each do |endpoint|
         resources endpoint, only: [:index, :show] do
           member do

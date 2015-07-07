@@ -1,11 +1,11 @@
 class Api::V1::SitesController < Api::V1::BaseController
-  before_action :set_site, only: [:show, :edit, :update, :destroy, :stats]
   include Graphable
+  before_action :set_site, except: [:index, :new, :create]
 
   # GET /api/v1/sites
   # GET /api/v1/sites.json
   def index
-    @sites = Site.all
+    @sites = Site.order(:name)
   end
 
   # GET /api/v1/sites/1
@@ -53,7 +53,7 @@ class Api::V1::SitesController < Api::V1::BaseController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_site
-      @site = sites.find(params[:id])
+      @site = Site.find(params[:id])
     end
 
     def set_scope

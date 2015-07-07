@@ -28,7 +28,7 @@ input, select {
 }
 
 label {
-  color: darken($base-border-color, 10%);
+  color: lighten($base-font-color, 50%);
 }
 
 select {
