@@ -100,7 +100,7 @@ class Logbook::ProjectsController < Logbook::ApplicationController
         :status,
         :description,
         leader_ids: [],
-        participant_ids: []
+        supporter_ids: []
       )
     end
 
