@@ -8,8 +8,8 @@ class Site < ActiveRecord::Base
   has_many :users
   has_many :people
   has_many :projects, through: :schools
-  has_many :project_leaders, through: :people
-  has_many :project_participants, through: :people
+  #has_many :project_leaders, through: :people
+  #has_many :project_supporters, through: :people
   has_many :engagements
   has_many :engagement_attendees, through: :engagements
   include Sortable
@@ -47,8 +47,8 @@ class Site < ActiveRecord::Base
     engagements.where("kind like ?", kind).where('headcount IS NOT NULL').where('duration IS NOT NULL').map{|e| (e.headcount * e.duration).to_i}.inject(:+)
   end
 
-  def people_with_projects
-    (people.joins(:primary_projects) + people.joins(:secondary_projects)).uniq.count
+  def people_with_projects_count
+    people.joins(:project_people).uniq.count
   end
 
   def engaged_people_estimate

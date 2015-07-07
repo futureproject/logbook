@@ -10,7 +10,6 @@ class School < ActiveRecord::Base
 
   has_many :people
   has_many :projects
-  has_many :project_leaders, through: :projects
   has_many :engagements
   has_many :engagement_attendees, through: :engagements
 

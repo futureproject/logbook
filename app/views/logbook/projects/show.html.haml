@@ -32,10 +32,10 @@
           - @project.leaders.order(:first_name).each do |person|
             %li.person-name= link_to person.name, logbook_person_path(person)
 
-      %section.project-participants
-        %h3= pluralize @project.participants.count, 'Supporter'
+      %section.project-supporters
+        %h3= pluralize @project.supporters.count, 'Supporter'
         %ul.people.table
-          - @project.participants.order(:first_name).each do |person|
+          - @project.supporters.order(:first_name).each do |person|
             %li.person-name= link_to person.name, logbook_person_path(person)
 
       %section.project-notes

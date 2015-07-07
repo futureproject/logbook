@@ -28,8 +28,8 @@ class Logbook::ProjectsController < Logbook::ApplicationController
   end
 
   def toggle_dream_team
-    if @project.participants.where(dream_team: true).any?
-      @ids = @project.participants.where('dream_team != ?', true).pluck(:id)
+    if @project.supporters.where(dream_team: true).any?
+      @ids = @project.supporters.where('dream_team != ?', true).pluck(:id)
     else
       @ids = (current_scope.dream_team.pluck(:id) + @project.participant_ids).flatten.uniq
     end

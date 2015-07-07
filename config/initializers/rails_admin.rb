@@ -30,7 +30,7 @@ RailsAdmin.config do |config|
   ### More at https://github.com/sferik/rails_admin/wiki/Base-configuration
 
   config.main_app_name = ["Logbook", "Admin"]
-  config.excluded_models = %w(Identity EngagementAttendee ProjectLeader ProjectParticipant)
+  config.excluded_models = %w(Identity EngagementAttendee ProjectPerson)
 
   config.actions do
     dashboard                     # mandatory

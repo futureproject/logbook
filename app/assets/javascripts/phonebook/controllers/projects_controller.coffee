@@ -10,7 +10,7 @@ class Phonebook.Controllers.ProjectsController extends Backbone.View
     @listenTo Backbone, 'projects:new', @new
     @listenTo Backbone, 'projects:edit', @edit
     @listenTo Backbone, 'projects:leaders', @leaders
-    @listenTo Backbone, 'projects:participants', @participants
+    @listenTo Backbone, 'projects:supporters', @supporters
     @listenTo Backbone, 'projects:saved', @onSave
 
   index: ->
@@ -56,13 +56,13 @@ class Phonebook.Controllers.ProjectsController extends Backbone.View
       @views.leaders.show(animation)
     @getModelById(id)
 
-  participants: (id, animation) ->
+  supporters: (id, animation) ->
     @listenToOnce Backbone, 'model:loaded', (project) =>
-      @views.participants?.remove()
-      @views.participants = new Phonebook.Views.People.SelectorView
+      @views.supporters?.remove()
+      @views.supporters = new Phonebook.Views.People.SelectorView
         model: project
-        association: 'participants'
-      @views.participants.show(animation)
+        association: 'supporters'
+      @views.supporters.show(animation)
     @getModelById(id)
 
 

@@ -5,7 +5,7 @@ class Phonebook.Views.Projects.DetailView extends Phonebook.Views.Base.DetailVie
   header_template: JST['phonebook/templates/projects/header']
   listen: ->
     @events['click .project-leaders'] = 'editLeaders'
-    @events['click .project-participants'] = 'editParticipants'
+    @events['click .project-supporters'] = 'editParticipants'
 
   initSubViews: (e) ->
     @subViews =
@@ -13,9 +13,9 @@ class Phonebook.Views.Projects.DetailView extends Phonebook.Views.Base.DetailVie
         el: @el.querySelector('.project-leaders')
         template: JST['phonebook/templates/projects/leaders_card']
         model: @model
-      participants_card: new Phonebook.Views.Base.ModelView
-        el: @el.querySelector('.project-participants')
-        template: JST['phonebook/templates/projects/participants_card']
+      supporters_card: new Phonebook.Views.Base.ModelView
+        el: @el.querySelector('.project-supporters')
+        template: JST['phonebook/templates/projects/supporters_card']
         model: @model
       assets_card: new Phonebook.Views.Assets.ModelAssetsView
         model: @model
@@ -24,4 +24,4 @@ class Phonebook.Views.Projects.DetailView extends Phonebook.Views.Base.DetailVie
 
 
   editLeaders: -> Backbone.trigger 'projects:leaders', @model
-  editParticipants: -> Backbone.trigger 'projects:participants', @model
+  editParticipants: -> Backbone.trigger 'projects:supporters', @model

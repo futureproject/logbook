@@ -6,7 +6,7 @@ class Phonebook.Models.Project extends Backbone.Model
     leader_ids: []
     participant_ids: []
     leaders: []
-    participants: []
+    supporters: []
     school_id: Phonebook.user.get('school_id')
     description: null
     status: 'underway'
@@ -14,7 +14,7 @@ class Phonebook.Models.Project extends Backbone.Model
 # Backbone.DualStorage saves selected state, so ignore it
   parse: (response) -> _.omit response, ['selected']
   #toJSON: ->
-    #_.omit _.clone(@attributes), ['selected', 'leaders', 'participants','assets']
+    #_.omit _.clone(@attributes), ['selected', 'leaders', 'supporters','assets']
 
   tplAttrs: ->
     attrs = _.clone @attributes
@@ -25,7 +25,7 @@ class Phonebook.Models.Project extends Backbone.Model
     l = @get('leaders')
     ids = if l.length == 0 then [''] else _.pluck(l, 'id')
     @set 'leader_ids', ids
-    p = @get('participants')
+    p = @get('supporters')
     ids = if p.length == 0 then [''] else _.pluck(p, 'id')
     @set 'participant_ids', ids
     super

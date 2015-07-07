@@ -11,7 +11,7 @@
   @extend %row;
   .project-name { @include span-columns(3); }
   .project-description { display: none; }
-  .project-leaders, .project-participants { @include span-columns(1); }
+  .project-leaders, .project-supporters { @include span-columns(1); }
   .project-school { @include span-columns(2); }
   .project-updated-at { @include span-columns(1); }
   &.complete, &.stalled {
@@ -31,7 +31,7 @@
   &.stalled:before { background: $light-red; }
 }
 
-.project-leaders, .project-participants {
+.project-leaders, .project-supporters {
   a {
     &:not(:last-child):after { content: ', '; }
   }
@@ -42,7 +42,7 @@
   .table.people {
     padding: 0 !important;
   }
-  .project-leaders, .project-participants {
+  .project-leaders, .project-supporters {
     a {
       color: $people-color;
       font-size: 1.25em;

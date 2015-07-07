@@ -24,10 +24,10 @@
 
     .g6
       .tall-field
-        =f.label :participant_ids do
+        =f.label :supporter_ids do
           Supporters
           =link_to "Toggle Dream Team", toggle_dream_team_logbook_project_path(@project), remote: true unless @project.new_record?
-        =f.select :participant_ids, options_for_select(current_scope.people.order('dream_team DESC', :first_name).map{|p| [p.name, p.id, {'data-dream-team'=>p.dream_team}]}, selected_keys = f.object.participant_ids), {}, multiple: true
+        =f.select :supporter_ids, options_for_select(current_scope.people.order('dream_team DESC', :first_name).map{|p| [p.name, p.id, {'data-dream-team'=>p.dream_team}]}, selected_keys = f.object.supporter_ids), {}, multiple: true
   .row
     .actions
       = f.submit

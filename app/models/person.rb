@@ -3,10 +3,10 @@ class Person < ActiveRecord::Base
   belongs_to :school, touch: true
   belongs_to :user, touch: true
   belongs_to :site, touch: true
-  has_many :project_participants, dependent: :destroy
-  has_many :project_leaders, dependent: :destroy
-  has_many :primary_projects, through: :project_leaders, source: :project
-  has_many :secondary_projects, through: :project_participants, source: :project
+  has_many :project_people, dependent: :destroy
+  has_many :projects, through: :project_people
+  has_many :primary_projects, -> { where(project_people: { leading: true }) }, through: :project_people, source: :project
+  has_many :secondary_projects, -> { where(project_people: { leading: false }) }, through: :project_people, source: :project
   has_many :engagement_attendees, dependent: :destroy
   has_many :engagements, through: :engagement_attendees
   has_many :assets, as: :attachable
@@ -58,6 +58,7 @@ class Person < ActiveRecord::Base
     joins("#{kind}_projects".to_sym).select("people.*, COUNT(projects.id) AS projects_count").group('people.id')
   }
 
+
   scope :created_before, -> (date) { where(created_at: 100.years.ago..date.end_of_week) }
   scope :week_of, -> (date) { where(created_at: date.beginning_of_week..date.end_of_week) }
   scope :in_grade, -> (grade) { where(grade: grade.to_i) }
@@ -69,10 +70,13 @@ class Person < ActiveRecord::Base
     end
   }
   scope :btw, -> (range) { where(created_at: range) }
-  scope :leading_projects, -> { joins(:project_leaders).uniq }
+  scope :leading_projects, -> {
+    joins(:project_people).where(project_people: {leading: true}).uniq
+  }
   scope :just_supporting_projects, -> {
-    joins(:project_participants).includes(:project_leaders)
-    .where(project_leaders: { person_id: nil }).uniq
+    joins(:project_people).where(project_people: {leading: false})
+    .where('people.id NOT IN (SELECT (person_id) FROM project_people WHERE project_people.leading IS true)')
+    .uniq
   }
 
   def name
@@ -93,10 +97,6 @@ class Person < ActiveRecord::Base
 
   def leads_project?(project)
     project.leaders.include? self
-  end
-
-  def projects
-    (primary_projects.order('id DESC') + secondary_projects.order('id DESC')).flatten
   end
 
   def auth_token
@@ -160,10 +160,7 @@ class Person < ActiveRecord::Base
       p.engagement_attendees.each do |r|
         r.update_attributes person_id: primary.id
       end
-      p.project_leaders.each do |r|
-        r.update_attributes person_id: primary.id
-      end
-      p.project_participants.each do |r|
+      p.project_people.each do |r|
         r.update_attributes person_id: primary.id
       end
       p.activities.each do |r|
@@ -177,8 +174,9 @@ class Person < ActiveRecord::Base
     primary.touch
   end
 
+  # rewrite in SQL
   def self.meaningfully_engaged(scope=self.all)
-    (scope.joins(:engagements) + scope.joins(:primary_projects) + scope.joins(:secondary_projects)).flatten.uniq
+    (scope.joins(:engagements) + scope.joins(:projects)).flatten.uniq
   end
 
 end

@@ -96,7 +96,7 @@
     margin: 1em auto;
   }
   .project-assets { display: none; }
-  .project-status, .project-leaders, .project-participants, .project-updated-at, .project-created-at, .project-actions {
+  .project-status, .project-leaders, .project-supporters, .project-updated-at, .project-created-at, .project-actions {
     display: inline-block;
     margin-right: 1em;
     text-transform: capitalize;
@@ -107,7 +107,7 @@
   .project-leaders {
     &:before { content: 'Leaders: ' }
   }
-  .project-participants {
+  .project-supporters {
     &:before { content: 'Supporters: ' }
   }
   .project-updated-at:before { content: "Last Updated: " }

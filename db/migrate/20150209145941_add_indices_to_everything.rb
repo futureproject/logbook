@@ -17,8 +17,8 @@ class AddIndicesToEverything < ActiveRecord::Migration
     add_index :engagement_attendees, :person_id
     add_index :project_leaders, :project_id
     add_index :project_leaders, :person_id
-    add_index :project_participants, :project_id
-    add_index :project_participants, :person_id
+    add_index :project_supporters, :project_id
+    add_index :project_supporters, :person_id
     add_index :notes, [:notable_id, :notable_type]
     add_index :assets, [:attachable_id, :attachable_type]
 
