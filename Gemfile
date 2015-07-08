@@ -101,6 +101,7 @@ gem 'groupdate'
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
   gem 'dotenv-rails'
+  gem 'bullet'
 end
 
 group :test do

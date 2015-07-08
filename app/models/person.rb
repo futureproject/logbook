@@ -46,8 +46,8 @@ class Person < ActiveRecord::Base
     where("lower(first_name) like ? #{operator} lower(last_name) like ?", first, last)
   }
 
-  scope :with_engagements, -> (kind) {
-    joins(:engagements).where('engagements.kind = ?', kind).select("people.*, COUNT(engagements.id) AS engagements_count").group('people.id')
+  scope :with_engagements, -> (kind="%") {
+    joins(:engagements).where('engagements.kind like ?', kind).select("people.*, COUNT(engagements.id) AS engagements_count").group('people.id')
   }
 
   scope :with_hours, -> (kind) {

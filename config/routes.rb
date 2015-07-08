@@ -30,6 +30,9 @@ Rails.application.routes.draw do
       resources :search_results, only: [:index]
       [:schools, :sites, :nationals].each do |endpoint|
         resources endpoint, only: [:index, :show] do
+          collection do
+            get 'stats'
+          end
           member do
             get 'engagement_percentage_graph'
             get 'engagement_bubbles_graph'

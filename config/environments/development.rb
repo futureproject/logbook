@@ -13,8 +13,8 @@ Rails.application.configure do
   config.consider_all_requests_local       = true
 
   # Perform caching
-  #config.action_controller.perform_caching = true
-  config.action_controller.perform_caching = false
+  config.action_controller.perform_caching = true
+  #config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
@@ -39,8 +39,17 @@ Rails.application.configure do
   config.middleware.delete Rack::ETag
 
   config.logger = Logger.new(STDOUT)
-  config.log_level = :info
+  config.log_level = :debug
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
-  
+  #
+
+  # configure Bullet to help with eager loading
+  config.after_initialize do
+    Bullet.enable = true
+    Bullet.rails_logger = true
+    #Bullet.raise = true
+    #Bullet.bullet_logger = true
+  end
+
 end

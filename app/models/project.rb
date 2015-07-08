@@ -25,9 +25,4 @@ class Project < ActiveRecord::Base
 
   scope :with_updates, -> { where('updated_at > created_at') }
   scope :btw, -> (range) { where(created_at: range) }
-
-  def whole_team
-    (leaders + supporters).flatten.uniq
-  end
-
 end

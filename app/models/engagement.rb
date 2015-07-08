@@ -93,5 +93,9 @@ class Engagement < ActiveRecord::Base
   #def self.as_bubbles(scope=self.all)
     #scope.order(:kind).group_by(&:kind).map{|k,v| { name: k, data: v.map{|e| { x: e.date.to_datetime.to_i*1000, y: e.duration, z: e.headcount, title: e.name, id: e.id, notes: e.notes.try(:first, 44) } } } }
   #end
+  #
+  def self.person_hours(scope: self.all, kind: '%', times: StatCollector.default_range)
+    scope.btw(times).where("kind like ?", kind).where('duration IS NOT NULL').where('headcount IS NOT NULL').map{|e| (e.headcount * e.duration).to_i}.inject(:+)
+  end
 
 end

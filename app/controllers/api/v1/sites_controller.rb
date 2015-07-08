@@ -1,10 +1,16 @@
 class Api::V1::SitesController < Api::V1::BaseController
   include Graphable
-  before_action :set_site, except: [:index, :new, :create]
+  before_action :set_site, except: [:index, :new, :create, :stats]
 
   # GET /api/v1/sites
   # GET /api/v1/sites.json
   def index
+    @sites = Site.order(:name).includes(:schools)
+  end
+
+  # GET /api/v1/sites/stats
+  def stats
+    @t = stat_times
     @sites = Site.order(:name)
   end
 

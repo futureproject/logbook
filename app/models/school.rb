@@ -39,7 +39,7 @@ class School < ActiveRecord::Base
   end
 
   def dream_director
-    users.find_by(role: 'DD')
+    users.find_by(role: 'DD').try(:first)
   end
 
   def dream_team
@@ -50,13 +50,6 @@ class School < ActiveRecord::Base
     site.try(:schools)
   end
 
-  def person_hours(kind="%")
-    engagements.where("kind like ?", kind).where('headcount IS NOT NULL').where('duration IS NOT NULL').map{|e| (e.headcount * e.duration).to_i}.inject(:+)
-  end
-
-  def engaged_people
-    (people.joins(:primary_projects) + people.joins(:secondary_projects) + people.joins(:engagements)).flatten.uniq
-  end
 
   # estimate the number of distinct people engaged at this school
   def engaged_people_estimate
@@ -65,46 +58,17 @@ class School < ActiveRecord::Base
     (rough && rough > exact) ? rough : exact
   end
 
-  def data_for_context_graph
-    [
-      {
-        name: "Program Hours",
-        data: [
-          ['School', self.engagements.sum(:duration)],
-          ['City Avg', (self.site.engagements.sum(:duration)/self.site.schools.count).to_i],
-          ['National Avg', (Engagement.sum(:duration)/School.count).to_i],
-        ]
-      },
-      {
-        name: "Projects",
-        data: [
-          ['School', self.projects.count],
-          ['City Avg', (self.site.projects.count/self.site.schools.count).to_i],
-          ['National Avg', (Project.count/School.count).to_i],
-        ]
-      },
-      {
-        name: "Engaged People",
-        data: [
-          ['School', Person.meaningfully_engaged(self.people).count],
-          ['City Avg', (Person.meaningfully_engaged(self.site.people).count/self.site.schools.count).to_i],
-          ['National Avg', (Person.meaningfully_engaged.count/School.count).to_i],
-        ]
-      },
-      {
-        name: "Enrollment",
-        data: [
-          ['School', self.enrollment],
-          ['City Avg', (self.site.schools.sum(:enrollment)/self.site.schools.count).to_i],
-          ['National Avg', (School.sum(:enrollment)/School.count).to_i],
-        ]
-      },
-    ]
+  # DELETE THESE STAT
+  def person_hours(kind="%", times=StatCollector.default_range)
+    engagements.btw(times).where("kind like ?", kind).where('headcount IS NOT NULL').where('duration IS NOT NULL').map{|e| (e.headcount * e.duration).to_i}.inject(:+)
+  end
+
+  def engaged_people
+    people.joins(:engagements).uniq
   end
 
   def people_with_projects_count
-    (people.joins(:primary_projects) + people.joins(:secondary_projects)).uniq.count
+    people.joins(:projects).uniq.count
   end
-
 
 end

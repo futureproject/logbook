@@ -2,7 +2,7 @@ module Graphable
   extend ActiveSupport::Concern
 
   included do
-    before_action :set_scope, except: [:index, :show, :create, :update, :destroy]
+    before_action :set_scope, only: self.instance_methods
   end
 
   def people_projects_graph

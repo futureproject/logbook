@@ -10,9 +10,7 @@
       window.ds = window.ds || {}
       ds.CONSTANTS = #{JSON.dump({
           current_user: current_user.as_json(include: :school),
-          scope: current_scope.as_json,
-          sites: National.scopes.as_json,
-          schools: current_scope.schools.order(:name).as_json
+          scope: current_scope.as_json
         })
       }
   %body

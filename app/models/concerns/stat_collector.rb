@@ -1,5 +1,10 @@
 class StatCollector
 
+  def self.default_range
+    r = -> { 10.months.ago.to_date..Date.today }
+    r.call
+  end
+
   # pie chart
   def self.people_projects_data(args)
     people = args[:people] || Person.all

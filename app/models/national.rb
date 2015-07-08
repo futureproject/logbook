@@ -48,6 +48,10 @@ class National
     School.all
   end
 
+  def sites
+    Site.all
+  end
+
   def identities
     Identity.where('person_id IS NOT NULL')
   end

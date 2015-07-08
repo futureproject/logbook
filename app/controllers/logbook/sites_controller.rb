@@ -1,5 +1,4 @@
 class Logbook::SitesController < Logbook::ApplicationController
-  skip_before_action :authorize!
 
   # GET /logbook
   def index
@@ -8,7 +7,7 @@ class Logbook::SitesController < Logbook::ApplicationController
   end
 
   def show
-    @site = Site.find params[:id]
+    @site = Site.find(params[:id]).includes(:schools)
   end
 
   def graphs

@@ -1,25 +1,5 @@
-# IN THE MASTER BRANCH
-- create polymorphic projects_people join model
-- convert all project leaders to project project_people (in migration)
-- convert all project participants to project_people (in migration)
-- rename site people_with_projects to people_with_projects_count
-- port changes to SLACK BRANCH
-
-
 # IN SLACK BRANCH
-- add sites and schools index to the api
-  _ name
-  _ schools
-  _ enrollment
-  _ ppl_engaged
-  _ person_hrs
-  _ ppl_w_projects
-  _ projects
-
-- add schools index to the api
-- make site and schools (feeding the scope menu) use the API
-
-- make project_participants polymorphic
+# SHOULD scope.btw feed updated_at or created_at?
 
 - make a router
   - trigger dashboard view on default
@@ -31,12 +11,22 @@ restyle list pages
 restyle profile pages
 restyle forms
 
+# NEW FEATURES!
+0) Weekly Reports
+0bis) Chiefs coaching DDs
+1) Linking engagements to projects
+2) Showing engagements on student profiles (maybe just coaching sessions)
+3) Make profile pictures awesome
+4) Make person profiles awesome
+
+
 Use PJAX for most nav (or possibly just set up backbone, and set a layout header on nav menu?)
 Make a Backbone view of the nav menu, ok?
 
 
 ERRORS
-- Auth is slow. Replace with auth from tfp-redirects, and simplify user model
+- Auth is slow. Replace with auth from tfp-redirects
+- simplify user model
 - api/v1/engagements is timing out
 - engagements per week graph is timing out
 

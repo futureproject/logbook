@@ -20,7 +20,7 @@
         %td= number_with_delimiter @site.enrollment
         %td= number_with_delimiter @site.engaged_people_estimate
         %td= number_with_delimiter @site.person_hours
-        %td= number_with_delimiter @site.people_with_projects
+        %td= number_with_delimiter @site.people_with_projects_count
       - Site.where.not(id: @site.id).order(:name).each do |site|
         %tr
           %th= site.name
@@ -28,7 +28,7 @@
           %td= number_with_delimiter site.enrollment
           %td= number_with_delimiter site.engaged_people_estimate
           %td= number_with_delimiter site.person_hours
-          %td= number_with_delimiter site.people_with_projects
+          %td= number_with_delimiter site.people_with_projects_count
 
       - @site.schools.order(:name).each do |site|
         %tr
@@ -37,7 +37,7 @@
           %td= number_with_delimiter site.enrollment
           %td= number_with_delimiter site.engaged_people_estimate
           %td= number_with_delimiter site.person_hours
-          %td= number_with_delimiter site.people_with_projects
+          %td= number_with_delimiter site.people_with_projects_count
 
 
 .graph{data: { url: projects_timeline_graph_api_v1_site_path(@site) } }

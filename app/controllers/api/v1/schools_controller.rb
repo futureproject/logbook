@@ -1,11 +1,16 @@
 class Api::V1::SchoolsController < Api::V1::BaseController
   include Graphable
-  before_action :set_school, except: [:index, :new, :create]
+  before_action :set_school, except: [:index, :stats, :new, :create]
 
   # GET /api/v1/schools
-  # GET /api/v1/schools.json
   def index
-    @schools = School.order(:name)
+    @schools = current_scope.schools.order(:name)
+  end
+  #
+  # GET /api/v1/schools/stats
+  def stats
+    @t = stat_times
+    @schools = current_scope.schools.order(:name)
   end
 
   # GET /api/v1/schools/1
