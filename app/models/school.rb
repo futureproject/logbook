@@ -71,4 +71,8 @@ class School < ActiveRecord::Base
     people.joins(:projects).uniq.count
   end
 
+  def as_json
+    { name: self.name, id: self.id, namespace: self.class.name.tableize }
+  end
+
 end

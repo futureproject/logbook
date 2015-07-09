@@ -60,4 +60,8 @@ class Site < ActiveRecord::Base
     schools.sum(:enrollment)
   end
 
+  def as_json
+    { name: self.name, id: self.id, namespace: self.class.name.tableize }
+  end
+
 end

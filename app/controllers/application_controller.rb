@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
   private
 
     def current_scope
-      if session[:scope_id] == "usa"
+      if session[:scope_id] == 0
         National.new
       else
         eval("#{session[:scope_type].classify}.find(#{session[:scope_id]})") rescue current_user.default_logbook_scope

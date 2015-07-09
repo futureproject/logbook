@@ -57,7 +57,7 @@ class National
   end
 
   def id
-    "usa"
+    0
   end
 
   def name
@@ -68,12 +68,16 @@ class National
     people.where(dream_team: true)
   end
 
+  def enrollment
+    School.sum(:enrollment)
+  end
+
   def cache_key
     "national-#{Site.order('updated_at').last.try(:updated_at).to_i}"
   end
 
   def as_json
-    { name: 'National', id: 'usa' }
+    { name: self.class.name, id: self.id, namespace: 'nationals' }
   end
 
   #def self.engagement_score

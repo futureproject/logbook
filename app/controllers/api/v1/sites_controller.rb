@@ -5,7 +5,7 @@ class Api::V1::SitesController < Api::V1::BaseController
   # GET /api/v1/sites
   # GET /api/v1/sites.json
   def index
-    @sites = Site.order(:name).includes(:schools)
+    @sites = Site.order(:name)
   end
 
   # GET /api/v1/sites/stats

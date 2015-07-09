@@ -82,7 +82,7 @@
     @include transition(transform .3s);
   }
   &.open header:after {
-    @include transform(rotate(-180deg));
+    @include transform(rotate(180deg));
   }
 }
 

@@ -29,6 +29,26 @@
 .table {
   padding: 15px;
 }
+.backgrid {
+  th, td {
+    border-bottom: none;
+  }
+  th {
+    border-right: 1px solid $base-border-color;
+    position: relative;
+    text-align: right;
+    @include user-select(none);
+    .sort-caret { display: none; }
+    &.ascending, &.descending {
+      a {
+        color: $base-font-color;
+      }
+    }
+    &.name {
+      text-align: left;
+    }
+  }
+}
 
 a.view { color: $light-green; }
 a.danger { color: $light-red; }

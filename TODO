@@ -1,11 +1,16 @@
 # IN SLACK BRANCH
 # SHOULD scope.btw feed updated_at or created_at?
 
-- make a router
-  - trigger dashboard view on default
+# DASHBOARD
+A DashboardView || instantiates.
+It renders.
+It instantiates and renders its subviews: a sites table, a schools table, and some graphs, tied to specific elements.
+This sites table, after render, fetches site stats and updates its collection
+
+
+
 
 redesign school pages
-make national pages
 
 restyle list pages
 restyle profile pages

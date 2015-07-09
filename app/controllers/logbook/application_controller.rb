@@ -6,8 +6,7 @@ class Logbook::ApplicationController < ApplicationController
   end
 
   def dashboard
-    self.instance_variable_set "@#{current_scope.class.name.downcase}", current_scope
-    render template: "logbook/#{current_scope.class.name.tableize}/show"
+    render layout: 'logbook', text: ''
   end
 
 end
