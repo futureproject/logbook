@@ -2,13 +2,16 @@
 # SHOULD scope.btw feed updated_at or created_at?
 
 # DASHBOARD
-A DashboardView || instantiates.
-It renders.
-It instantiates and renders its subviews: a sites table, a schools table, and some graphs, tied to specific elements.
-This sites table, after render, fetches site stats and updates its collection
+add ENGAGEMENTS BY CITY AND KIND bar graph to national dashboard
+add PROJECTS STARTED and PROJECTS COMPLETED pie graphs to national dashboard
 
+add PEOPLE TIMELINE area graph to sites dashboard
+add ENGAGEMENTS BY CITY AND KIND bar graph to sites dashboard
+add PROJECTS STARTED and PROJECTS COMPLETED pie graphs to sites dashboard
 
-
+add PEOPLE TIMELINE area graph to schools dashboard
+add ENGAGEMENTS BY CITY AND KIND bar graph to schools dashboard
+add PROJECTS STARTED and PROJECTS COMPLETED pie graphs to schools dashboard
 
 redesign school pages
 

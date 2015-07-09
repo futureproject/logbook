@@ -3,6 +3,7 @@ module Graphable
 
   included do
     before_action :set_scope, only: self.instance_methods
+    before_action :set_time, only: self.instance_methods
   end
 
   def people_projects_graph
@@ -137,12 +138,13 @@ module Graphable
   def people_timeline_graph
     graph_data = StatCollector.people_timeline_data(
       scope: @scope,
+      dates: @t
     )
     render json: {
       data: graph_data,
       type: 'areaspline',
       x_axis_type: 'datetime',
-      title: "Engaged people over time:",
+      title: "Engaged People (#{@t.first.strftime("%D")} - #{@t.last.strftime("%D")})",
       colors: Person::COLOR_ENUM,
     }
   end
@@ -216,4 +218,10 @@ module Graphable
       colors: Project::COLOR_ENUM,
     }
   end
+
+  private
+    def set_time
+      @t = stat_times
+    end
+
 end

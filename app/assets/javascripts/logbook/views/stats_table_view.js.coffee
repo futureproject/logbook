@@ -6,12 +6,14 @@ class ds.StatsTableView extends Backbone.View
       columns: @collection.backgrid_columns
 
   render: ->
-    @$el.html @grid.render().el
+    @$el.empty().append(@grid.render().el)
     @
 
   getStats: ->
-    stats_path = @collection.url() + "/stats"
-    $.getJSON stats_path, (response) =>
-      @collection.add response, { merge: true}
-      @grid.sort("name","ascending")
+    @collection.fetch
+      success: =>
+        stats_path = @collection.url() + "/stats"
+        $.getJSON stats_path, (response) =>
+          @collection.add response, { merge: true}
+          @grid.sort("name","ascending")
 

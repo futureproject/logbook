@@ -43,3 +43,10 @@ tbody {
     padding-left: 5px;
   }
 }
+
+.highcharts-container {
+  .highcharts-title {
+    width: 100% !important;
+    border-bottom: 3px solid;
+  }
+}

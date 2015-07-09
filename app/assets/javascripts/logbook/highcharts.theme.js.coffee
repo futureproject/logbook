@@ -17,13 +17,17 @@ Highcharts.theme =
   chart:
     backgroundColor: null
     style: fontFamily: 'Avenir Next, Avenir, sans-serif'
+    spacingTop: 0
+    spacingLeft: 0
+    spacingBottom: 0
+    spacingRight: 0
   title:
     align: 'left'
-    y: 8
+    useHTML: true
     style:
-      fontSize: '18px'
+      fontSize: '15px'
       fontWeight: 'bold'
-      color: '#5d5c5d'
+      color: '#1e2427'
   tooltip:
     borderWidth: 0
     backgroundColor: 'rgba(255,255,255,0.9)'

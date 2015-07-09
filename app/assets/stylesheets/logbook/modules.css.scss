@@ -26,15 +26,26 @@
     display: table-cell;
   }
 }
-.table {
+
+.section {
   padding: 15px;
+  h2 {
+    font-weight: 700;
+    border-bottom: 3px solid;
+  }
 }
+
+.table {
+  overflow: auto;
+}
+
 .backgrid {
   th, td {
     border-bottom: none;
   }
   th {
     border-right: 1px solid $base-border-color;
+    border-bottom: 1px solid $base-border-color;
     position: relative;
     text-align: right;
     @include user-select(none);

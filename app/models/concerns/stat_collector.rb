@@ -215,7 +215,7 @@ class StatCollector
   # area graph
   def self.people_timeline_data(args)
     scope = args[:scope] || National.new
-    dates = args[:dates] || 10.months.ago..Date.today
+    dates = args[:dates] ? args[:dates] : self.default_range
     series = []
     grades = [9,10,11,12,nil]
     grades.each do |grade|

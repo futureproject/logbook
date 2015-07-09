@@ -1,14 +1,16 @@
-class ds.DashboardController extends Backbone.View
-  initialize: ->
-    @listenTo Backbone, 'dashboard:show', @trigger
+class ds.DashboardController
+  constructor: ->
+    _.extend @, Backbone.Events
+    @listenTo Backbone, 'dashboard:show', @show
+    @listenTo Backbone.trigger 'controller:active', => @view?.remove()
 
-  trigger: ->
-    @listenToOnce Backbone, 'current_scope:got', @show
-    Backbone.trigger 'current_scope:get'
-
-  show: (scope) ->
-    @view ||= new ds.DashboardView
-      model: scope
-      el: "#yield"
+  show: ->
+    Backbone.trigger 'controller:active'
+    scope = ds.scopeHelper.getScope()
+    @view = switch scope.get('namespace')
+      when "sites" then new ds.SitesDashboardView({ model: scope })
+      when "schools" then new ds.SchoolsDashboardView({ model: scope })
+      else new ds.NationalDashboardView({ model: scope })
+    @view.setElement('#yield')
     @view.render()
 
