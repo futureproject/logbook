@@ -52,7 +52,7 @@ module Graphable
     render json: {
       data: graph_data,
       type: 'pie',
-      title: "TFP offered #{graph_data.first()[:data].map{|key| key[:y]}.reduce(:+)} program hours...",
+      title: "We offered #{graph_data.first()[:data].map{|key| key[:y]}.reduce(:+)} program hours...",
       colors: Engagement::COLOR_ENUM
     }
   end
@@ -144,7 +144,7 @@ module Graphable
       data: graph_data,
       type: 'areaspline',
       x_axis_type: 'datetime',
-      title: "Engaged People (#{@t.first.strftime("%D")} - #{@t.last.strftime("%D")})",
+      title: "We engaged #{graph_data.map{|k,v| k[:data].last.last}.reduce(:+)} people. (#{@t.first.strftime("%D")} - #{@t.last.strftime("%D")})",
       colors: Person::COLOR_ENUM,
     }
   end

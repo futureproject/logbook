@@ -8,7 +8,11 @@ class ds.NationalDashboardView extends Backbone.View
         collection: ds.collections.schools
         columns: ds.collections.schools.backgrid_columns
       people_timeline_graph: new ds.GraphView
-        url: '/api/v1/nationals/0/people_timeline_graph'
+        url: ds.apiHelper.urlFor("national_graphs", "people_timeline_graph")
+      program_hours_graph: new ds.GraphView
+        url: ds.apiHelper.urlFor("national_graphs", "program_hours_graph")
+      engagement_counts_graph: new ds.GraphView
+        url: ds.apiHelper.urlFor("national_graphs", "engagement_counts_graph")
 
   template: JST['logbook/templates/national_dashboard']
 
@@ -29,4 +33,8 @@ class ds.NationalDashboardView extends Backbone.View
     # activate graphs
     @views.people_timeline_graph.setElement('#people_timeline_graph')
     @views.people_timeline_graph.load()
+    @views.engagement_counts_graph.setElement('#engagement_counts_graph')
+    @views.engagement_counts_graph.load()
+    @views.program_hours_graph.setElement('#program_hours_graph')
+    @views.program_hours_graph.load()
 

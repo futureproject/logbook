@@ -69,3 +69,12 @@ a.edit { color: $light-yellow; }
   padding: 15px;
   min-height: 60px;
 }
+
+@include media(1020px) {
+  .two-col {
+    @include row;
+    > * {
+      @include span_columns(6);
+    }
+  }
+}

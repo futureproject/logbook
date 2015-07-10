@@ -2,22 +2,21 @@
 # SHOULD scope.btw feed updated_at or created_at?
 
 # DASHBOARD
-add ENGAGEMENTS BY CITY AND KIND bar graph to national dashboard
 add PROJECTS STARTED and PROJECTS COMPLETED pie graphs to national dashboard
 
-add PEOPLE TIMELINE area graph to sites dashboard
-add ENGAGEMENTS BY CITY AND KIND bar graph to sites dashboard
 add PROJECTS STARTED and PROJECTS COMPLETED pie graphs to sites dashboard
 
-add PEOPLE TIMELINE area graph to schools dashboard
-add ENGAGEMENTS BY CITY AND KIND bar graph to schools dashboard
 add PROJECTS STARTED and PROJECTS COMPLETED pie graphs to schools dashboard
+
+make graphView load automatically on setElement
 
 redesign school pages
 
 restyle list pages
 restyle profile pages
 restyle forms
+
+Make StatCollector#people_projects_data respespect date range
 
 # NEW FEATURES!
 0) Weekly Reports
