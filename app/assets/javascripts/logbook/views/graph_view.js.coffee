@@ -4,7 +4,6 @@ class ds.GraphView extends Backbone.View
   initialize: (args) ->
     return unless args?.url
     @url = args.url
-    #@load()
 
   load: ->
     $.ajax
@@ -16,6 +15,10 @@ class ds.GraphView extends Backbone.View
 
   render: ->
     @chart.reflow()
+
+  renderTo: (el) ->
+    @setElement(el)
+    @load()
 
   setChart: (chart_info) ->
     @chart = new Highcharts.Chart

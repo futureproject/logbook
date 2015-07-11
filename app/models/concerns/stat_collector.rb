@@ -122,13 +122,16 @@ class StatCollector
   # bar chart
   def self.engagements_context_data(args)
     scope = args[:scope] || National.new
+    places = scope.is_a?(National) ? scope.sites.order(:name) : scope.schools.order(:name)
     dates = args[:dates] ? args[:dates] : self.default_range
     data = []
     Engagement::KIND_ENUM.each do |kind|
-      here = scope.engagements.btw(dates).where(kind: kind).count rescue 0
-      there = (scope.site.engagements.btw(dates).where(kind: kind).count / scope.site.schools.count) rescue 0
-      everywhere = Engagement.btw(dates).where(kind: kind).count / School.count
-      data << { name: kind, data: [here, there, everywhere]}
+      counts = []
+      places.each do |place|
+        count = place.engagements.btw(dates).where(kind: kind).count rescue 0
+        counts << {name: place.name, y: count }
+      end
+      data << { name: kind, data: counts }
     end
     data
   end

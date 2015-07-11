@@ -13,6 +13,12 @@ class ds.NationalDashboardView extends Backbone.View
         url: ds.apiHelper.urlFor("national_graphs", "program_hours_graph")
       engagement_counts_graph: new ds.GraphView
         url: ds.apiHelper.urlFor("national_graphs", "engagement_counts_graph")
+      engagements_context_graph: new ds.GraphView
+        url: ds.apiHelper.urlFor("national_graphs", "engagements_context_graph")
+      projects_started_graph: new ds.GraphView
+        url: ds.apiHelper.urlFor("national_graphs", "projects_started_graph")
+      projects_completed_graph: new ds.GraphView
+        url: ds.apiHelper.urlFor("national_graphs", "projects_completed_graph")
 
   template: JST['logbook/templates/national_dashboard']
 
@@ -31,10 +37,10 @@ class ds.NationalDashboardView extends Backbone.View
       ds.statsHelper.getStats(table.collection)
 
     # activate graphs
-    @views.people_timeline_graph.setElement('#people_timeline_graph')
-    @views.people_timeline_graph.load()
-    @views.engagement_counts_graph.setElement('#engagement_counts_graph')
-    @views.engagement_counts_graph.load()
-    @views.program_hours_graph.setElement('#program_hours_graph')
-    @views.program_hours_graph.load()
+    @views.people_timeline_graph.renderTo('#people_timeline_graph')
+    @views.engagement_counts_graph.renderTo('#engagement_counts_graph')
+    @views.engagements_context_graph.renderTo('#engagements_context_graph')
+    @views.program_hours_graph.renderTo('#program_hours_graph')
+    @views.projects_started_graph.renderTo('#projects_started_graph')
+    @views.projects_completed_graph.renderTo('#projects_completed_graph')
 
