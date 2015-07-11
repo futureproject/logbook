@@ -44,6 +44,11 @@ tbody {
   }
 }
 
+.stats-row-current {
+  color: $retro-ocean;
+  font-weight: 700;
+}
+
 .highcharts-container {
   .highcharts-title {
     width: 100% !important;

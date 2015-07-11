@@ -4,6 +4,7 @@ class ds.SchoolsDashboardView extends Backbone.View
       schools_table: new Backgrid.Grid
         collection: ds.collections.schools
         columns: ds.collections.schools.backgrid_columns
+        row: ds.StatsRowView
       people_timeline_graph: new ds.GraphView
         url: ds.apiHelper.urlFor("school_graphs", {id: @model.id, graph: "people_timeline_graph"})
       program_hours_graph: new ds.GraphView

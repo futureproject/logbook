@@ -15,7 +15,7 @@ class National
   end
 
   def self.people_with_projects
-    (Person.joins(:primary_projects) + Person.joins(:secondary_projects)).uniq.count
+    Person.joins(:projects).uniq.count
   end
 
   def self.person_hours

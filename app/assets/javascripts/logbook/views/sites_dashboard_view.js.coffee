@@ -12,6 +12,10 @@ class ds.SitesDashboardView extends Backbone.View
         url: ds.apiHelper.urlFor("site_graphs", { id: @model.id, graph: "engagements_context_graph" })
       engagement_counts_graph: new ds.GraphView
         url: ds.apiHelper.urlFor("site_graphs", { id: @model.id, graph: "engagement_counts_graph" })
+      sites_table: new Backgrid.Grid
+        collection: ds.collections.sites
+        columns: ds.collections.schools.backgrid_columns
+        row: ds.StatsRowView
 
   template: JST['logbook/templates/sites_dashboard']
 
@@ -24,7 +28,8 @@ class ds.SitesDashboardView extends Backbone.View
 
   postRender: ->
     @$el.find('#schools-table').html @views.schools_table.render().el
-    _.each [@views.schools_table], (table) ->
+    @$el.find('#sites-table').html @views.sites_table.render().el
+    _.each [@views.schools_table, @views.sites_table], (table) ->
       ds.statsHelper.getStats(table.collection)
     # activate graphs
     @views.people_timeline_graph.renderTo('#people_timeline_graph')

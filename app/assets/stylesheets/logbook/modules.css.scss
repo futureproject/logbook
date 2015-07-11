@@ -12,20 +12,6 @@
     font-weight: 700;
   }
 }
-.button {
-  @include btn;
-}
-.factbar {
-  text-align: center;
-  ul {
-    display: table;
-    width: 100%;
-    table-layout: fixed;
-  }
-  li {
-    display: table-cell;
-  }
-}
 
 .section {
   padding: 15px;
@@ -36,7 +22,13 @@
 }
 
 .table {
+  min-height: 3em;
   overflow: auto;
+}
+
+.graph {
+  padding: 15px;
+  min-height: 20em;
 }
 
 .backgrid {
@@ -59,15 +51,6 @@
       text-align: left;
     }
   }
-}
-
-a.view { color: $light-green; }
-a.danger { color: $light-red; }
-a.edit { color: $light-yellow; }
-
-.graph {
-  padding: 15px;
-  min-height: 60px;
 }
 
 @include media(1020px) {
