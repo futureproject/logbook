@@ -2,14 +2,13 @@ class Site < ActiveRecord::Base
   geocoded_by :name
   validates_presence_of :name
   after_validation :geocode, :if => lambda{ |obj| obj.name_changed? }
+  before_create :set_shortname
 
   belongs_to :captain, foreign_key: 'captain_id', class_name: 'User'
   has_many :schools
   has_many :users
   has_many :people
   has_many :projects, through: :schools
-  #has_many :project_leaders, through: :people
-  #has_many :project_supporters, through: :people
   has_many :engagements
   has_many :engagement_attendees, through: :engagements
   include Sortable
@@ -61,7 +60,19 @@ class Site < ActiveRecord::Base
   end
 
   def as_json
-    { name: self.name, id: self.id, namespace: self.class.name.tableize }
+    {
+      id: self.id,
+      name: self.name,
+      shortname: self.shortname,
+      namespace: self.class.name.tableize,
+      chief_name: self.captain.try(:name),
+    }
+  end
+
+  def set_shortname
+    if self.shortname.blank?
+      self.shortname = self.name.split(' ').map{|x| x.first}.join('')
+    end
   end
 
 end

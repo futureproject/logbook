@@ -71,6 +71,22 @@ class StatCollector
     [{ data: counts }]
   end
 
+  # pie chart
+  def self.project_counts_data(args)
+    scope = args[:scope] || National.new
+    status = args[:status] || '%'
+    dates = args[:dates] ? args[:dates] : self.default_range
+    projects = []
+    places = scope.is_a?(National) ? scope.sites.order(:name) : scope.schools.order(:name)
+    places.each do |place|
+      projects.push({
+        name: place.name,
+        y: place.projects.btw(dates).where("status like '#{status}'").count
+      })
+    end
+    [{ data: projects }]
+  end
+
   # bar chart
   def self.weekly_rhythm_data(args)
     scope = args[:scope] || National.new
@@ -179,7 +195,6 @@ class StatCollector
     %w(Leaders Supporters).each do |x|
       sum = 0
       subset = x == "Leaders" ? scope.people.leading_projects : scope.people.just_supporting_projects
-
       subset = subset.group_by_week('people.created_at', range: dates, format: Proc.new{|d| d.to_datetime.to_i*1000}).count.to_a.map {|x,y| [x, sum += y] }
       series.push({
         name: x,
@@ -231,4 +246,5 @@ class StatCollector
     end
     series
   end
+
 end

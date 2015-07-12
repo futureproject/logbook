@@ -13,6 +13,22 @@
   }
 }
 
+.factbar {
+  white-space: nowrap;
+  overflow: auto;
+  background: rgba(255,255,255,.8);
+  border-bottom: 1px solid $base-border-color;
+  .fact {
+    display: inline-block;
+    padding: 5px 15px;
+    border-left: 1px solid $base-border-color;
+    &:first-child { border-left: none; }
+    text-transform: lowercase;
+    font-variant: small-caps;
+  }
+  label:after { content: ':' }
+}
+
 .section {
   padding: 15px;
   h2 {
@@ -27,7 +43,6 @@
 }
 
 .graph {
-  padding: 15px;
   min-height: 20em;
 }
 

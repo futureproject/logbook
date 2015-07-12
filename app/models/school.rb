@@ -2,7 +2,7 @@ class School < ActiveRecord::Base
   geocoded_by :address
   validates_presence_of :name, :address
   after_validation :geocode, :if => lambda{ |obj| obj.address_changed? }
-  after_validation :set_shortname, :if => lambda{ |obj| obj.name_changed? }
+  before_create :set_shortname
 
   #belongs_to :dream_director, class_name: 'User', foreign_key: 'dream_director_id'
   has_many :users
@@ -35,11 +35,13 @@ class School < ActiveRecord::Base
   }
 
   def set_shortname
-    self.shortname = self.name.parameterize
+    if self.shortname.blank?
+      self.shortname = self.name.split(' ').map{|x| x.first}.join('')
+    end
   end
 
   def dream_director
-    users.find_by(role: 'DD').try(:first)
+    users.find_by(role: 'DD')
   end
 
   def dream_team
@@ -72,7 +74,14 @@ class School < ActiveRecord::Base
   end
 
   def as_json
-    { name: self.name, id: self.id, namespace: self.class.name.tableize }
+    {
+      id: self.id,
+      name: self.name,
+      shortname: self.shortname,
+      namespace: self.class.name.tableize,
+      dd_name: self.dream_director.try(:name),
+      city_name: self.site.name,
+    }
   end
 
 end

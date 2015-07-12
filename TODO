@@ -2,13 +2,11 @@
 # SHOULD scope.btw feed updated_at or created_at?
 
 # DASHBOARD
-add PROJECTS STARTED and PROJECTS COMPLETED pie graphs to national dashboard
 
-add PROJECTS STARTED and PROJECTS COMPLETED pie graphs to sites dashboard
+add Logged hours per person to school pages
 
-add PROJECTS STARTED and PROJECTS COMPLETED pie graphs to schools dashboard
+add Notables to school pages
 
-make graphView load automatically on setElement
 
 redesign school pages
 

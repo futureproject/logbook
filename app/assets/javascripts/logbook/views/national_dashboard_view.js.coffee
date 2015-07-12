@@ -16,9 +16,9 @@ class ds.NationalDashboardView extends Backbone.View
       engagements_context_graph: new ds.GraphView
         url: ds.apiHelper.urlFor("national_graphs", "engagements_context_graph")
       projects_started_graph: new ds.GraphView
-        url: ds.apiHelper.urlFor("national_graphs", "projects_started_graph")
+        url: ds.apiHelper.urlFor("national_graphs", "project_counts_graph")
       projects_completed_graph: new ds.GraphView
-        url: ds.apiHelper.urlFor("national_graphs", "projects_completed_graph")
+        url: ds.apiHelper.urlFor("national_graphs", "project_counts_graph") + "?status=complete"
 
   template: JST['logbook/templates/national_dashboard']
 

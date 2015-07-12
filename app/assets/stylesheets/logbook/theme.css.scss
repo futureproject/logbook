@@ -53,5 +53,8 @@ tbody {
   .highcharts-title {
     width: 100% !important;
     border-bottom: 3px solid;
+    white-space: nowrap !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }

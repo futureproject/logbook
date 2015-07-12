@@ -40,6 +40,7 @@ Rails.application.routes.draw do
             get 'logged_hours_graph'
             get 'program_hours_graph'
             get 'engagement_counts_graph'
+            get 'project_counts_graph'
             get 'weekly_rhythm_graph'
             get 'engagements_context_graph'
             get 'engagements_per_week_graph'
@@ -69,9 +70,7 @@ Rails.application.routes.draw do
     end
     resources :assets, only: [:show, :index, :destroy]
     resources :schools, only: [:index, :show]
-    resources :sites, only: [:index, :show] do
-      get 'graphs', on: :member
-    end
+    resources :sites, only: [:index, :show]
     resources :engagement_attendees, only: [:show]
     get 'set_scope', to: 'application#set_scope'
   end

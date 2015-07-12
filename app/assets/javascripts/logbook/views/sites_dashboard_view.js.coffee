@@ -12,6 +12,10 @@ class ds.SitesDashboardView extends Backbone.View
         url: ds.apiHelper.urlFor("site_graphs", { id: @model.id, graph: "engagements_context_graph" })
       engagement_counts_graph: new ds.GraphView
         url: ds.apiHelper.urlFor("site_graphs", { id: @model.id, graph: "engagement_counts_graph" })
+      projects_started_graph: new ds.GraphView
+        url: ds.apiHelper.urlFor("site_graphs", { id: @model.id, graph: "project_counts_graph" })
+      projects_completed_graph: new ds.GraphView
+        url: ds.apiHelper.urlFor("site_graphs", { id: @model.id, graph: "project_counts_graph" }) + "?status=complete"
       sites_table: new Backgrid.Grid
         collection: ds.collections.sites
         columns: ds.collections.schools.backgrid_columns
@@ -36,4 +40,5 @@ class ds.SitesDashboardView extends Backbone.View
     @views.engagements_context_graph.renderTo('#engagements_context_graph')
     @views.engagement_counts_graph.renderTo('#engagement_counts_graph')
     @views.program_hours_graph.renderTo('#program_hours_graph')
-
+    @views.projects_started_graph.renderTo('#projects_started_graph')
+    @views.projects_completed_graph.renderTo('#projects_completed_graph')

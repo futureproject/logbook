@@ -64,6 +64,10 @@ class National
     "National"
   end
 
+  def shortname
+    "TFP"
+  end
+
   def dream_team
     people.where(dream_team: true)
   end
@@ -77,7 +81,7 @@ class National
   end
 
   def as_json
-    { name: self.class.name, id: self.id, namespace: 'nationals' }
+    { name: self.class.name, id: self.id, namespace: 'nationals', shortname: 'TFP' }
   end
 
   #def self.engagement_score

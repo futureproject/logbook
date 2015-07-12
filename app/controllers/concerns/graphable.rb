@@ -52,7 +52,7 @@ module Graphable
     render json: {
       data: graph_data,
       type: 'pie',
-      title: "TFP offered #{graph_data.first()[:data].map{|key| key[:y]}.reduce(:+)} program hours...",
+      title: "#{@scope.shortname} offered #{graph_data.first()[:data].map{|key| key[:y]}.reduce(:+)} program hours...",
       colors: Engagement::COLOR_ENUM
     }
   end
@@ -66,6 +66,18 @@ module Graphable
       type: 'pie',
       title: "... spread across #{graph_data.first()[:data].map{|key| key[:y]}.reduce(:+)} engagements.",
       colors: Engagement::COLOR_ENUM
+    }
+  end
+
+  def project_counts_graph
+    graph_data = StatCollector.project_counts_data(
+      scope: @scope,
+      status: params[:status]
+    )
+    render json: {
+      data: graph_data,
+      type: 'pie',
+      title: "#{graph_data.first[:data].map{|x| x[:y]}.reduce(:+)} Projects #{params[:status].to_s}",
     }
   end
 
@@ -144,7 +156,7 @@ module Graphable
       data: graph_data,
       type: 'areaspline',
       x_axis_type: 'datetime',
-      title: "TFP engaged #{graph_data.map{|k,v| k[:data].last.last}.reduce(:+)} people. (#{@t.first.strftime("%D")} - #{@t.last.strftime("%D")})",
+      title: "#{@scope.shortname} engaged #{graph_data.map{|k,v| k[:data].last.last}.reduce(:+)} people. (#{@t.first.strftime("%D")} - #{@t.last.strftime("%D")})",
       colors: Person::COLOR_ENUM,
     }
   end
