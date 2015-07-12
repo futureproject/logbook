@@ -181,7 +181,7 @@ module Graphable
     render json: {
       data: graph_data,
       type: 'bar',
-      title: "Engagements",
+      title: "Engagements in context:",
       colors: Engagement::COLOR_ENUM,
       x_axis_type: 'category'
     }

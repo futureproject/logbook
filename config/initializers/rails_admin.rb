@@ -56,6 +56,7 @@ RailsAdmin.config do |config|
   config.model 'School' do
     edit do
       field :name
+      field :shortname
       field :address
       field :enrollment
       field :users

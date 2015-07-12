@@ -18,7 +18,7 @@ class ds.SitesDashboardView extends Backbone.View
         url: ds.apiHelper.urlFor("site_graphs", { id: @model.id, graph: "project_counts_graph" }) + "?status=complete"
       sites_table: new Backgrid.Grid
         collection: ds.collections.sites
-        columns: ds.collections.schools.backgrid_columns
+        columns: ds.collections.sites.backgrid_columns
         row: ds.StatsRowView
 
   template: JST['logbook/templates/sites_dashboard']

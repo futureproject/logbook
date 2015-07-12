@@ -11,8 +11,8 @@ class ds.SitesCollection extends Backbone.Collection
   initialize: ->
     @listenTo Backbone, 'scope:set', => @fetch({ reset: true })
   backgrid_columns: [
-    {name: 'name', cell:'string', label: 'City'}
-    {name: 'schools_count', cell:'integer', label: '# Schools'}
+    {name: 'name', cell:'string', label: 'City Name'}
+    {name: 'schools_count', cell:'integer', label: 'Schools'}
     {name: 'enrollment', cell:'integer'}
     {name: 'engaged_people_count', cell:'integer', label: "Engaged Ppl"}
     {name: 'engagements_count', cell:'integer', label: "Engagements"}

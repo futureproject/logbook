@@ -80,7 +80,7 @@ class StatCollector
     places = scope.is_a?(National) ? scope.sites.order(:name) : scope.schools.order(:name)
     places.each do |place|
       projects.push({
-        name: place.name,
+        name: place.shortname,
         y: place.projects.btw(dates).where("status like '#{status}'").count
       })
     end
@@ -105,7 +105,7 @@ class StatCollector
   def self.hours_per_person_data(args)
     scope = args[:scope] || National.new
     dates = args[:dates] ? args[:dates] : self.default_range
-    ppl = scope.people.joins(:engagements).merge(Engagement.btw(dates)).select('people.id, people.first_name, people.last_name, people.dream_team, SUM(engagements.duration) AS hours').order('hours desc').group('people.id')
+    ppl = scope.people.joins(:engagements).merge(Engagement.btw(dates)).select('people.id, people.first_name, people.last_name, people.dream_team, SUM(engagements.duration) AS hours').order('hours desc').group('people.id').limit(200)
     length = ppl.length
     ppl.group_by(&:dream_team).map{|k,v| { name: (k ? "Dream-Team" : "Non Dream-Team"), data: v.each_with_index.map{|p| {y: p.hours, name: p.name, url: "people/#{p.id}" } } } }
   end
@@ -145,7 +145,7 @@ class StatCollector
       counts = []
       places.each do |place|
         count = place.engagements.btw(dates).where(kind: kind).count rescue 0
-        counts << {name: place.name, y: count }
+        counts << {name: place.shortname, y: count }
       end
       data << { name: kind, data: counts }
     end

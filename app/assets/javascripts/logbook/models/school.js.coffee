@@ -12,7 +12,7 @@ class ds.SchoolsCollection extends Backbone.Collection
   initialize: ->
     @listenTo Backbone, 'scope:set', => @fetch({ reset: true })
   backgrid_columns: [
-    {name: 'name', cell:'string', label: 'School'}
+    {name: 'name', cell:'string', label: 'School Name'}
     {name: 'enrollment', cell:'integer'}
     {name: 'engaged_people_count', cell:'integer', label: "Engaged Ppl"}
     {name: 'engagements_count', cell:'integer', label: "Engagements"}
