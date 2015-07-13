@@ -45,18 +45,21 @@ td {
 }
 
 thead {
+  border-top: 1px solid rgba(0,0,0,.1);
   border-bottom: 1px solid rgba(0,0,0,.1);
 }
 tbody {
-  td, th {
-    padding: 5px 0;
-  }
   tr:nth-child(even) {
     background: rgba(0,0,0,.03);
   }
-  th {
-    text-align: left;
-    padding-left: 5px;
+}
+.backgrid {
+  tbody td {
+    border-bottom: none;
+  }
+  thead th {
+    background: rgba(0,0,0,.03);
+    border-right: 1px solid $base-border-color;
   }
 }
 
@@ -65,16 +68,17 @@ tbody {
   font-weight: 700;
 }
 
+.section {
+  border-bottom: 1px solid $base-border-color;
+  &:last-child { border-bottom: none; }
+}
 .section-header, .highcharts-title {
   font-weight: 700 !important;
-  border-bottom: 3px solid;
-  border-bottom-color: $retro-light-gray !important;
 }
 
 
 .highcharts-container {
   .highcharts-title {
-    width: 100% !important;
     white-space: nowrap !important;
     overflow: hidden;
     text-overflow: ellipsis;

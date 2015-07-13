@@ -43,12 +43,7 @@
 }
 
 .backgrid {
-  th, td {
-    border-bottom: none;
-  }
   th {
-    border-right: 1px solid $base-border-color;
-    border-bottom: 1px solid $base-border-color;
     position: relative;
     text-align: right;
     @include user-select(none);
@@ -61,6 +56,7 @@
     &.name {
       text-align: left;
     }
+    &:last-child { border-right: none; }
   }
 }
 

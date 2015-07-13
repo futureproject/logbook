@@ -1,6 +1,6 @@
-# DESIGN
-_ make the Logged Hours Per Person graph a single series
-
+restyle list pages
+restyle profile pages
+restyle forms
 
 # IN SLACK BRANCH
 # SHOULD scope.btw feed updated_at or created_at?
@@ -15,18 +15,9 @@ Washington DC - DC
 
 Make StatCollector#engagement_percentage_data respespect date range
 
-add some graphs to school pages
-  rename people_projects_graph to project_percentage_graph
-  add people_projects_graph pie chart
-  add engagement_percentage_graph pie chart
-
 add Notables to school pages
   - how??
 
-
-restyle list pages
-restyle profile pages
-restyle forms
 
 SCHOOL YEAR STARTS August 17th
 
@@ -44,6 +35,9 @@ Cache jbuilder graph responses
 
 Use PJAX for most nav (or possibly just set up backbone, and set a layout header on nav menu?)
 Make a Backbone view of the nav menu, ok?
+
+# DESIGN
+_ make the Logged Hours Per Person graph a single series
 
 
 ERRORS
