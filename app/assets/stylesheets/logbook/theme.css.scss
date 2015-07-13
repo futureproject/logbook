@@ -1,8 +1,9 @@
 #nav {
   background: $engagements-color;
-  @include linear-gradient($retro-light-gray, darken($retro-light-gray, 15%));
+  @include linear-gradient($retro-light-gray, darken($retro-light-gray, 25%));
   color: white;
   a { color: white; }
+  box-shadow: inset -5px 0 5px rgba(0,0,0,.1);
   header {
     color: rgba(255,255,255,.5);
   }
@@ -13,10 +14,11 @@
 }
 #app-sections, #search {
   border-top: 1px solid rgba(0,0,0,.1);
+  font-size: 12px;
 }
 
 #time-filter-menu {
-  font-size: 1em;
+  font-size: 12px;
   border: none;
   font-family: $base-font-family;
   color: $retro-gray !important;
@@ -79,6 +81,7 @@ tbody {
 
 .highcharts-container {
   .highcharts-title {
+    width: 100% !important;
     white-space: nowrap !important;
     overflow: hidden;
     text-overflow: ellipsis;

@@ -25,7 +25,7 @@ $dark-blue: #18506e;
 $medium-gray: $retro-gray;
 $dark-gray: #1e2427;
 $lightest-gray: #f8f8fa;
-$light-gray: #DDD;
+$light-gray: lighten($retro-light-gray, 40%);
 $light-red: #ec4552;
 $light-yellow: #fec30c;
 $light-green: #77cbc7;

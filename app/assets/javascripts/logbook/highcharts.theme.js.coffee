@@ -38,10 +38,14 @@ Highcharts.theme =
   xAxis:
     gridLineWidth: 1
     labels: style: fontSize: '12px'
+    gridLineColor: '#d0d7da'
+    minorGridLineColor: '#f0f0f0'
   yAxis:
     minorTickInterval: 'auto'
     title: style: textTransform: 'uppercase'
     labels: style: fontSize: '12px'
+    gridLineColor: '#d0d7da'
+    minorGridLineColor: '#f0f0f0'
   plotOptions: candlestick: lineColor: '#404048'
   background2: '#F0F0EA'
 

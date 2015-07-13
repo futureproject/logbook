@@ -35,8 +35,18 @@
 
 .table {
   min-height: 3em;
-  overflow: auto;
 }
+.section .table {
+  margin-left: -15px;
+  margin-right: -15px;
+  th:first-child, td:first-child {
+    padding-left: 15px;
+  }
+  th:last-child, td:last-child {
+    padding-right: 15px;
+  }
+}
+
 
 .graph {
   min-height: 20em;
@@ -47,6 +57,7 @@
     position: relative;
     text-align: right;
     @include user-select(none);
+    padding: 5px 5px 4px 5px;
     .sort-caret { display: none; }
     &.ascending, &.descending {
       a {
