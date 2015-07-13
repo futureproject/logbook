@@ -6,10 +6,11 @@ module Graphable
     before_action :set_time, only: self.instance_methods
   end
 
-  def people_projects_graph
-    graph_data = StatCollector.people_projects_data(
-      people: @scope.people,
-      total: @scope.enrollment
+  def project_percentage_graph
+    graph_data = StatCollector.project_percentage_data(
+      scope: @scope,
+      total: @scope.enrollment,
+      dates: @t
     )
     render json: {
       data: graph_data,
@@ -22,8 +23,9 @@ module Graphable
 
   def engagement_percentage_graph
     graph_data = StatCollector.engagement_percentage_data(
-      people: @scope.people,
-      total: @scope.enrollment
+      scope: @scope,
+      total: @scope.enrollment,
+      dates: @t,
     )
     render json: {
       data: graph_data,
@@ -88,7 +90,7 @@ module Graphable
     render json: {
       data: graph_data,
       type: 'bar',
-      title: "The weekly rhythm here:",
+      title: "Engagements by day of week:",
       colors: Engagement::COLOR_ENUM,
       categories: Date::DAYNAMES
     }
@@ -101,7 +103,7 @@ module Graphable
     render json: {
       data: graph_data,
       type: 'column',
-      title: "Logged hours per person:",
+      title: "Students logged #{@scope.person_hours} hours.",
       colors: Person::COLOR_ENUM,
     }
   end
@@ -156,7 +158,7 @@ module Graphable
       data: graph_data,
       type: 'areaspline',
       x_axis_type: 'datetime',
-      title: "#{@scope.shortname} engaged #{graph_data.map{|k,v| k[:data].last.last}.reduce(:+)} people. (#{@t.first.strftime("%D")} - #{@t.last.strftime("%D")})",
+      title: "#{graph_data.map{|k,v| k[:data].last.last}.reduce(:+)} people have been engaged.",
       colors: Person::COLOR_ENUM,
     }
   end
@@ -181,7 +183,7 @@ module Graphable
     render json: {
       data: graph_data,
       type: 'bar',
-      title: "Engagements in context:",
+      title: "Engagements all around!",
       colors: Engagement::COLOR_ENUM,
       x_axis_type: 'category'
     }

@@ -16,7 +16,7 @@
   %body
     #nav
       %section#app-name
-        %h1 Logbook
+        %h1=link_to "Logbook", logbook_root_url
       %section#scope-toggle
         %header
           Current Scope
@@ -63,7 +63,10 @@
       #user
 
     #yield= yield
-    #time-trigger.icon-event
+    #time-filter
+      %select#time-filter-menu
+        %option{value: ''} this school year
+      #time-filter-trigger.icon-event
 
     :javascript
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

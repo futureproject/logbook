@@ -1,20 +1,21 @@
 # DESIGN
-debold all content in the nav menu
-clicking logbook should bring you back to dashboard
-make the Logged Hours Per Person graph a single series
-Choose a subtler off-white background
-subtler color on calendar icons
-white nav?!
+_ make the Logged Hours Per Person graph a single series
 
 
 # IN SLACK BRANCH
 # SHOULD scope.btw feed updated_at or created_at?
 
-Make StatCollector#people_projects_data respespect date range
+Detroit - DET
+Newark - NWK
+New Haven - NH
+New York - NYC
+Philadelphia - PHI
+San Francisco - SF
+Washington DC - DC
+
 Make StatCollector#engagement_percentage_data respespect date range
 
 add some graphs to school pages
-  add Weekly Rhythm graph
   rename people_projects_graph to project_percentage_graph
   add people_projects_graph pie chart
   add engagement_percentage_graph pie chart

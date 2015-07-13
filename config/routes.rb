@@ -36,7 +36,7 @@ Rails.application.routes.draw do
           member do
             get 'engagement_percentage_graph'
             get 'engagement_bubbles_graph'
-            get 'people_projects_graph'
+            get 'project_percentage_graph'
             get 'logged_hours_graph'
             get 'program_hours_graph'
             get 'engagement_counts_graph'

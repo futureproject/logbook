@@ -54,11 +54,6 @@ class Person < ActiveRecord::Base
     joins(:engagements).where('engagements.kind = ?', kind).select("people.*, SUM(engagements.duration) AS engagement_hours").group('people.id')
   }
 
-  scope :with_projects, -> (kind='primary') {
-    joins("#{kind}_projects".to_sym).select("people.*, COUNT(projects.id) AS projects_count").group('people.id')
-  }
-
-
   scope :created_before, -> (date) { where(created_at: 100.years.ago..date.end_of_week) }
   scope :week_of, -> (date) { where(created_at: date.beginning_of_week..date.end_of_week) }
   scope :in_grade, -> (grade) { where(grade: grade.to_i) }

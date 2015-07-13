@@ -6,11 +6,12 @@ class StatCollector
   end
 
   # pie chart
-  def self.people_projects_data(args)
-    people = args[:people] || Person.all
+  def self.project_percentage_data(args)
+    scope = args[:scope] || National.new
     total = args[:total] || Person.count
-    primary = people.leading_projects.count
-    secondary = people.just_supporting_projects.count
+    dates = args[:dates] ? args[:dates] : self.default_range
+    primary = scope.people.leading_projects.joins(:projects).merge(scope.projects.btw(dates)).uniq.count
+    secondary = scope.people.just_supporting_projects.joins(:projects).merge(scope.projects.btw(dates)).uniq.count
     data = [
       { name: 'Leading', y: primary},
       { name: 'Just Supporting', y: secondary},
@@ -21,10 +22,10 @@ class StatCollector
 
   # pie chart
   def self.engagement_percentage_data(args)
-    people = args[:people] || Person.all
+    scope = args[:scope] || National.new
     total = args[:total] || Person.count
     dates = args[:dates] ? args[:dates] : self.default_range
-    engaged = people.joins(:engagements).merge(Engagement.btw(dates)).uniq.count
+    engaged = scope.people.joins(:engagements).merge(scope.engagements.btw(dates)).uniq.count
     data = [{name: 'Engaged', y: engaged}, {name: 'Nope', y: (total - engaged)}]
     [{ data: data }]
   end
@@ -100,41 +101,7 @@ class StatCollector
     }
     days
   end
-
-  # column chart
-  def self.hours_per_person_data(args)
-    scope = args[:scope] || National.new
-    dates = args[:dates] ? args[:dates] : self.default_range
-    ppl = scope.people.joins(:engagements).merge(Engagement.btw(dates)).select('people.id, people.first_name, people.last_name, people.dream_team, SUM(engagements.duration) AS hours').order('hours desc').group('people.id').limit(200)
-    length = ppl.length
-    ppl.group_by(&:dream_team).map{|k,v| { name: (k ? "Dream-Team" : "Non Dream-Team"), data: v.each_with_index.map{|p| {y: p.hours, name: p.name, url: "people/#{p.id}" } } } }
-  end
-
-  # bar chart
-  def self.people_context_data(args)
-    scope = args[:scope] || National.new
-    dates = args[:dates] ? args[:dates] : self.default_range
-    data = [
-      {
-        name: 'School Enrollment',
-        data: [
-          scope.enrollment,
-          scope.site.schools.sum(:enrollment)/scope.site.schools.count,
-          School.sum(:enrollment)/School.count
-        ]
-      },
-      {
-        name: 'Engaged People',
-        data: [
-          scope.people.joins(:engagements).merge(Engagement.btw(dates)).uniq.count,
-          scope.site.people.joins(:engagements).merge(Engagement.btw(dates)).uniq.count/scope.site.schools.count,
-          Person.joins(:engagements).merge(Engagement.btw(dates)).uniq.count / School.count
-        ]
-      }
-    ]
-    data
-  end
-
+  #
   # bar chart
   def self.engagements_context_data(args)
     scope = args[:scope] || National.new
@@ -152,18 +119,13 @@ class StatCollector
     data
   end
 
-  # bar chart
-  def self.projects_context_data(args)
+  # column chart
+  def self.hours_per_person_data(args)
     scope = args[:scope] || National.new
     dates = args[:dates] ? args[:dates] : self.default_range
-    data = []
-    Project::STATUS_ENUM.each do |status|
-      here = scope.projects.where(status: status).count rescue 0
-      there = (scope.site.projects.where(status: status).count / scope.site.schools.count) rescue 0
-      everywhere = Project.where(status: status).count / School.count
-      data << { name: status.titlecase, data: [here, there, everywhere]}
-    end
-    data
+    ppl = scope.people.joins(:engagements).merge(scope.engagements.btw(dates)).select('people.id, people.first_name, people.last_name, people.dream_team, SUM(engagements.duration) AS hours').order('hours desc').group('people.id').limit(200)
+    length = ppl.length
+    ppl.group_by(&:dream_team).map{|k,v| { name: (k ? "Dream-Team" : "Non Dream-Team"), data: v.each_with_index.map{|p| {y: p.hours, name: p.name, url: "people/#{p.id}" } } } }
   end
 
   # scatter graph
