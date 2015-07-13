@@ -1,4 +1,4 @@
-#json.cache! ['v1', @sites.maximum(:updated_at), @t.first, @t.last] do
+json.cache! ['sites/v1', @sites.maximum(:updated_at), @t.first, @t.last] do
   json.array!(@sites) do |site|
     json.id site.id
     json.name site.name
@@ -9,4 +9,4 @@
     json.projects_count site.projects.btw(@t).count
     json.people_with_projects_count site.people.joins(:projects).merge(Project.btw(@t)).uniq.count
   end
-#end
+end
