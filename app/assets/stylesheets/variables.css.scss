@@ -5,7 +5,9 @@ $header-font-family: $base-font-family;
 
 // Colors
 $retro-black: #1e2427;
-$retro-white: #f8f3f3;
+$retro-white: #fafafa;
+$retro-gray: lighten($retro-black, 10%);
+$retro-light-gray: lighten($retro-black, 30%);
 $retro-eggshell: #f9f1de;
 
 $retro-red: #db4549;
@@ -21,19 +23,16 @@ $retro-violet: #694a55;
 $blue: #3182a2;
 $dark-blue: #18506e;
 $dark-gray: #1e2427;
-$medium-gray: #5d5c5d;
 $lightest-gray: #f8f8fa;
 $light-gray: #DDD;
 $light-red: #ec4552;
 $light-yellow: #fec30c;
 $light-green: #77cbc7;
 $base-border-radius: em(3);
-
-$stats-color: $medium-gray;
 $people-color: #42c6ee;
 $projects-color: #419bd3;
 $engagements-color: #b363a3;
-$schools-color: $stats-color;
+$schools-color: $retro-gray;
 
 // Background Color
 $base-background-color: $retro-white;
@@ -62,5 +61,5 @@ $success-color: $light-green;
   border: 2px solid $base-border-color;
   text-transform: uppercase;
   padding: 8px 8px 6px;
-  color: $medium-gray;
+  color: $retro-gray;
 }

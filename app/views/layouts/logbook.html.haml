@@ -41,29 +41,29 @@
             %a{href: logbook_people_path}
               .link-icon.icon-logbook_people
               .link-label People
-            .add-trigger.icon-add_circle_outline
           %li
             %a{href: logbook_engagements_path}
               .link-icon.icon-logbook_engagements
               .link-label Engagements
-            .add-trigger.icon-add_circle_outline
           %li
             %a{href: logbook_projects_path}
               .link-icon.icon-logbook_projects
               .link-label Projects
-            .add-trigger.icon-add_circle_outline
           %li
             %a{href: "#"}
               .link-icon.icon-content_paste
               .link-label Weekly Reports
-            .add-trigger.icon-content_paste
 
+      %section#search
+        %header Search
+        #search-trigger.link-icon.icon-search
+        %input#search-input{type: 'text', name: 'q'}
+
+      #global-add-trigger.icon-add_circle_outline
       #user
 
     #yield= yield
-    #global-add-trigger.icon-event
-    #search-trigger.icon-search
-
+    #time-trigger.icon-event
 
     :javascript
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

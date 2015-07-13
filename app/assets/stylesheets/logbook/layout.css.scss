@@ -3,9 +3,7 @@
   left: 0;
   top: 0;
   bottom: 0;
-  width: 240px;
-  font-weight: 600;
-  @include linear-gradient(#3182a2, #23485d);
+  width: 210px;
   @include box-sizing(border-box);
   -moz-user-select: none;
   -webkit-user-select: none;
@@ -13,6 +11,7 @@
   overflow-x: hidden;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
+  box-shadow: inset -5px 0 5px rgba(0,0,0,.1);
   h1 {
     font-size: 20px;
     line-height: 1;
@@ -39,7 +38,6 @@
 }
 
 #app-sections {
-  border-top: 1px solid rgba(0,0,0,.1);
   li {
     display: block;
     height: 25px;
@@ -60,23 +58,9 @@
     line-height: 30px;
     //padding-left: 30px;
   }
-  .add-trigger {
-    display: none;
-    position: absolute;
-    left: 0;
-    top: 0;
-    font-size: 20px;
-    height: 30px;
-    width: 30px;
-    text-align: right;
-    line-height: 30px;
-    cursor: pointer;
-  }
 }
 
 #app-name {
-  border-bottom: 1px solid rgba(0,0,0,.1);
-  background: rgba(0,0,0,.1);
   box-sizing: border-box;
   height: 50px;
 }
@@ -100,12 +84,30 @@
   }
 }
 
+#search {
+  position: relative;
+  input {
+    font-size: 12px;
+    border: none;
+    color: white;
+    font-family: $base-font-family;
+    padding-left: 30px;
+  }
+  #search-trigger {
+    position: absolute;
+    left: 15px;
+    top: 30px;
+    font-size: 20px;
+    pointer-events: none;
+  }
+}
+
 
 #user {
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 240px;
+  width: 210px;
   padding: 15px;
   font-weight: 500;
   height: 60px;
@@ -134,27 +136,20 @@
 }
 
 #yield {
-  margin-left: 240px;
+  margin-left: 210px;
 }
 
-#search-trigger, #global-add-trigger {
+#global-add-trigger, #time-trigger {
+  position: absolute;
   top: 0;
+  right: 0;
   display: block;
   height: 50px;
-  width: 50px;
+  width: 30px;
   line-height: 50px;
-  text-align: center;
-  font-size: 30px;
+  font-size: 20px;
   @include user-select(none);
-}
-#search-trigger {
-  position: fixed;
-  left: 190px;
-  color: white;
-}
-#global-add-trigger {
-  position: absolute;
-  right: 0;
+  padding-right: 10px;
   text-align: right;
-  padding-right: 15px;
+  cursor: pointer;
 }

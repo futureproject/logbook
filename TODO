@@ -1,3 +1,12 @@
+# DESIGN
+debold all content in the nav menu
+clicking logbook should bring you back to dashboard
+make the Logged Hours Per Person graph a single series
+Choose a subtler off-white background
+subtler color on calendar icons
+white nav?!
+
+
 # IN SLACK BRANCH
 # SHOULD scope.btw feed updated_at or created_at?
 
@@ -17,6 +26,8 @@ add Notables to school pages
 restyle list pages
 restyle profile pages
 restyle forms
+
+SCHOOL YEAR STARTS August 17th
 
 Port graph responses to jbuilder
 Cache jbuilder graph responses

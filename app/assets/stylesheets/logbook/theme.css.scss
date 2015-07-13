@@ -1,3 +1,20 @@
+#nav {
+  background: $engagements-color;
+  @include linear-gradient($retro-light-gray, darken($retro-light-gray, 15%));
+  color: white;
+  a { color: white; }
+  header {
+    color: rgba(255,255,255,.5);
+  }
+}
+
+#app-name {
+  border-bottom: 1px solid rgba(0,0,0,.1);
+}
+#app-sections, #search {
+  border-top: 1px solid rgba(0,0,0,.1);
+}
+
 a {
   text-decoration: none;
   color: $base-accent-color;
@@ -8,17 +25,9 @@ header, label, th {
   font-weight: 700;
   font-size: 10px;
   line-height: 1.5;
-  color: lighten($base-font-color, 50%);
-  a { color: lighten($base-font-color, 50%); }
+  color: $retro-light-gray;
+  a { color: $retro-light-gray; }
 }
-
-
-#nav, #user {
-  color: $base-background-color;
-  a { color: $base-background-color; }
-  header { color: rgba(255,255,255,.6); }
-}
-
 
 table {
   width: 100%;
@@ -36,7 +45,7 @@ tbody {
     padding: 5px 0;
   }
   tr:nth-child(even) {
-    background: rgba(255,255,255,.5);
+    background: rgba(0,0,0,.03);
   }
   th {
     text-align: left;
