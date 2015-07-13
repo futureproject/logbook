@@ -58,10 +58,16 @@ tbody {
   font-weight: 700;
 }
 
+.section-header, .highcharts-title {
+  font-weight: 700 !important;
+  border-bottom: 3px solid;
+  border-bottom-color: $retro-light-gray !important;
+}
+
+
 .highcharts-container {
   .highcharts-title {
     width: 100% !important;
-    border-bottom: 3px solid;
     white-space: nowrap !important;
     overflow: hidden;
     text-overflow: ellipsis;
