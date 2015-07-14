@@ -42,3 +42,5 @@ class ds.SitesDashboardView extends Backbone.View
     @views.program_hours_graph.renderTo('#program_hours_graph')
     @views.projects_started_graph.renderTo('#projects_started_graph')
     @views.projects_completed_graph.renderTo('#projects_completed_graph')
+
+  hide: -> _.each(@views, (view) -> view.remove() )

@@ -1,6 +1,21 @@
-restyle list pages
-restyle profile pages
-restyle forms
+Make a NavigationView
+
+Port people
+  INDEX
+  SHOW
+  EDIT
+
+Port Engagements
+  INDEX
+  SHOW
+  EDIT
+
+Port Projects
+  INDEX
+  SHOW
+  EDIT
+
+Build the ADD VIEW
 
 # IN SLACK BRANCH
 # SHOULD scope.btw feed updated_at or created_at?
@@ -13,11 +28,8 @@ Philadelphia - PHI
 San Francisco - SF
 Washington DC - DC
 
-Make StatCollector#engagement_percentage_data respespect date range
-
 add Notables to school pages
   - how??
-
 
 SCHOOL YEAR STARTS August 17th
 

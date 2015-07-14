@@ -1,7 +1,7 @@
 module ApplicationHelper
 
   def nav_link_to(link_text, link_path, icon=nil)
-    content_tag(:li, class: link_text.downcase) do
+    content_tag(:li, class: link_text.parameterize, id: "#{link_text.parameterize}-nav-item") do
       if icon
         link_to raw("<span class='link-icon icon-#{icon}'></span> <span class='link-label'>#{link_text}</span>"), link_path, title: link_text
       else

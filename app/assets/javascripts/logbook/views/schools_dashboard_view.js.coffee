@@ -37,3 +37,5 @@ class ds.SchoolsDashboardView extends Backbone.View
     @views.engagements_context_graph.renderTo('#engagements_context_graph')
     @views.program_hours_graph.renderTo('#program_hours_graph')
     @views.weekly_rhythm_graph.renderTo('#weekly_rhythm_graph')
+
+  hide: -> _.each(@views, (view) -> view.remove() )

@@ -1,11 +1,24 @@
-class ds.DashboardController
-  constructor: ->
-    _.extend @, Backbone.Events
+class ds.DashboardController extends Backbone.View
+  initialize: ->
     @listenTo Backbone, 'dashboard:show', @show
-    @listenTo Backbone.trigger 'controller:active', => @view?.remove()
+    @listenTo Backbone, 'controller:active', @cleanup
 
-  show: ->
-    Backbone.trigger 'controller:active'
+  events:
+    'click': 'show'
+
+  cleanup: (controller) ->
+    if controller == @
+      @$el.addClass('active')
+      @active = true
+    else
+      @$el.removeClass('active')
+      @view?.hide()
+      @active = false
+
+  show: (event) ->
+    event?.preventDefault()
+    return if @active
+    Backbone.trigger 'controller:active', @
     scope = ds.scopeHelper.getScope()
     @view = switch scope.get('namespace')
       when "sites" then new ds.SitesDashboardView({ model: scope })
@@ -14,3 +27,4 @@ class ds.DashboardController
     @view.setElement('#yield')
     @view.render()
 
+  el: '#dashboard-nav-item'

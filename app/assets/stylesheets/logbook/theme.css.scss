@@ -22,6 +22,7 @@
   border: none;
   font-family: $base-font-family;
   color: $retro-gray !important;
+  webkit-font-smoothing: antialiased;
 }
 
 a {

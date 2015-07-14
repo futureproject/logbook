@@ -44,3 +44,5 @@ class ds.NationalDashboardView extends Backbone.View
     @views.projects_started_graph.renderTo('#projects_started_graph')
     @views.projects_completed_graph.renderTo('#projects_completed_graph')
 
+  hide: -> _.each(@views, (view) -> view.remove() )
+

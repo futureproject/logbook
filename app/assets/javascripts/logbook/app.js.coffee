@@ -6,7 +6,6 @@ ds.collections ={}
 
 ds.run = (args) ->
   $.ajaxPrefilter (options, originalOptions, jqXHR) =>
-    #options.url += "?token=#{@user.get('auth_token')}"
     jqXHR.withCredentials = true
     console.log "AJAX call to #{options.url}"
 
@@ -17,6 +16,7 @@ ds.run = (args) ->
   ds.views.scope_menu = new ds.ScopeMenuView
   ds.views.user_view = new ds.UserView
   ds.controllers.dashboard = new ds.DashboardController
+  ds.controllers.people = new ds.PeopleController
   ds.controllers.graphs = new ds.GraphsController
   ds.router = new ds.Router
   ds.scopeHelper.setScope(ds.CONSTANTS.scope)
