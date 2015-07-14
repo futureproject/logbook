@@ -17,6 +17,9 @@ ds.run = (args) ->
   ds.views.user_view = new ds.UserView
   ds.controllers.dashboard = new ds.DashboardController
   ds.controllers.people = new ds.PeopleController
+  ds.controllers.engagements = new ds.EngagementsController
+  ds.controllers.projects = new ds.ProjectsController
+  ds.controllers.reports = new ds.ReportsController
   ds.controllers.graphs = new ds.GraphsController
   ds.router = new ds.Router
   ds.scopeHelper.setScope(ds.CONSTANTS.scope)

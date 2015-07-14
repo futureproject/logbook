@@ -1,26 +1,11 @@
-class ds.PeopleController extends Backbone.View
-  initialize: ->
-    @listenTo Backbone, 'people:show', @show
-    @listenTo Backbone, 'controller:active', @cleanup
+class ds.PeopleController extends ds.BaseController
+  rootURL: "logbook/people"
+  el: "#people-nav-item"
+  targetEl: "#yield"
+  actions: ->
+    @listenTo Backbone, "people:index", @index
 
-  events:
-    'click': 'show'
+  index: ->
+    @activate()
+    $(@targetEl).empty().html "<h1>People</h1>"
 
-  cleanup: (controller) ->
-    if controller == @
-      @$el.addClass('active')
-      @active = true
-    else
-      @$el.removeClass('active')
-      @view?.hide()
-      @active = false
-
-  show: (event) ->
-    event?.preventDefault()
-    return if @active
-    Backbone.trigger 'controller:active', @
-    $("#yield").html @template()
-
-  el: '#people-nav-item'
-
-  template: _.template("<div class='titlebar'><div class='title'>People</div></div>")

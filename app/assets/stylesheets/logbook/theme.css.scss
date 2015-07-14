@@ -17,6 +17,22 @@
   font-size: 12px;
 }
 
+#app-sections {
+  .nav-item.active {
+    font-weight: bold;
+  }
+  #dashboard-nav-item.active .link-label { color: $retro-eggshell; }
+  #dashboard-nav-item:hover .link-label { color: $retro-eggshell; }
+  #people-nav-item.active .link-label { color: $people-color; }
+  #people-nav-item:hover .link-label { color: $people-color; }
+  #engagements-nav-item.active .link-label { color: $retro-pink; }
+  #engagements-nav-item:hover .link-label { color: $retro-pink; }
+  #projects-nav-item.active .link-label { color: $projects-color; }
+  #projects-nav-item:hover .link-label { color: $projects-color; }
+  #weekly-reports-nav-item.active .link-label { color: $retro-teal; }
+  #weekly-reports-nav-item:hover .link-label { color: $retro-teal; }
+}
+
 #time-filter-menu {
   font-size: 12px;
   border: none;
