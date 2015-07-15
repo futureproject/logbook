@@ -9,13 +9,13 @@ ds.apiHelper =
     person: (id) -> "/api/v1/people/#{id}"
     projects:  -> "/api/v1/projects"
     project: (id) -> "/api/v1/projects/#{id}"
-    national_graphs: (graph) -> "/api/v1/nationals/0/#{graph}"
     schools: -> "/api/v1/schools"
     school: (id) -> "/api/v1/schools/#{id}"
-    school_graphs: (args) -> "/api/v1/schools/#{args.id}/#{args.graph}"
     sites: -> "/api/v1/sites"
-    site_graphs: (args) -> "/api/v1/sites/#{args.id}/#{args.graph}"
     site: (id) -> "/api/v1/sites/#{id}"
+    national_graphs: (graph) -> "/api/v1/nationals/usa/graphs/#{graph}"
+    site_graphs: (args) -> "/api/v1/sites/#{args.id}/graphs/#{args.graph}"
+    school_graphs: (args) -> "/api/v1/schools/#{args.id}/graphs/#{args.graph}"
 
   urlFor: (path, args) ->
     @urls[path]? args

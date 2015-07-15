@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   root 'application#home'
-  resources :sessions, only: [:new, :create]
 
   resources :sessions, only: [:new, :create]
   get 'auth/logout', to: 'sessions#destroy', as: :log_out
@@ -33,27 +32,9 @@ Rails.application.routes.draw do
           collection do
             get 'stats'
           end
-          member do
-            get 'engagement_percentage_graph'
-            get 'engagement_bubbles_graph'
-            get 'project_percentage_graph'
-            get 'logged_hours_graph'
-            get 'program_hours_graph'
-            get 'engagement_counts_graph'
-            get 'project_counts_graph'
-            get 'weekly_rhythm_graph'
-            get 'engagements_context_graph'
-            get 'engagements_per_week_graph'
-            get 'projects_context_graph'
-            get 'projects_scatter_graph'
-            get 'projects_timeline_graph'
-            get 'people_bubbles_graph'
-            get 'people_context_graph'
-            get 'people_timeline_graph'
-            get 'hours_per_person_graph'
-          end
         end
       end
+      get '/:scope_type/:scope_id/graphs/:action', controller: 'graphs'
     end
   end
 

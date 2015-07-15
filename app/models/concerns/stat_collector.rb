@@ -8,7 +8,7 @@ class StatCollector
   # pie chart
   def self.project_percentage_data(args)
     scope = args[:scope] || National.new
-    total = args[:total] || Person.count
+    total = scope.enrollment
     dates = args[:dates] ? args[:dates] : self.default_range
     primary = scope.people.leading_projects.joins(:projects).merge(scope.projects.btw(dates)).uniq.count
     secondary = scope.people.just_supporting_projects.joins(:projects).merge(scope.projects.btw(dates)).uniq.count
@@ -23,7 +23,7 @@ class StatCollector
   # pie chart
   def self.engagement_percentage_data(args)
     scope = args[:scope] || National.new
-    total = args[:total] || Person.count
+    total = scope.enrollment
     dates = args[:dates] ? args[:dates] : self.default_range
     engaged = scope.people.joins(:engagements).merge(scope.engagements.btw(dates)).uniq.count
     data = [{name: 'Engaged', y: engaged}, {name: 'Nope', y: (total - engaged)}]
@@ -200,7 +200,7 @@ class StatCollector
     grades = [9,10,11,12,nil]
     grades.each do |grade|
       sum = 0
-      people = scope.people.joins(:engagements).where(people: { grade: grade }).uniq.group_by_week('people.created_at', range: dates, format: Proc.new{|d| d.to_datetime.to_i*1000}).count.to_a.map {|x,y| [x, sum += y] }
+      people = scope.people.joins(:engagements).merge(scope.engagements.btw(dates)).where(people: { grade: grade }).uniq.group_by_week('people.created_at', range: dates, format: Proc.new{|d| d.to_datetime.to_i*1000}).count.to_a.map {|x,y| [x, sum += y] }
       series.push({
         name: "Grade #{grade || '?'}",
         data: people

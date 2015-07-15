@@ -1,6 +1,5 @@
 class Api::V1::SitesController < Api::V1::BaseController
-  include Graphable
-  before_action :set_site, except: [:index, :new, :create, :stats]
+  before_action :set_site, only: [:show, :update, :edit, :destroy]
 
   # GET /api/v1/sites
   # GET /api/v1/sites.json
@@ -60,10 +59,6 @@ class Api::V1::SitesController < Api::V1::BaseController
     # Use callbacks to share common setup or constraints between actions.
     def set_site
       @site = Site.find(params[:id])
-    end
-
-    def set_scope
-      @scope = Site.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

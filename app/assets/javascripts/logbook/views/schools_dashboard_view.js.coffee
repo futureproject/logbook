@@ -9,10 +9,12 @@ class ds.SchoolsDashboardView extends Backbone.View
         url: ds.apiHelper.urlFor("school_graphs", {id: @model.id, graph: "people_timeline_graph"})
       hours_per_person_graph: new ds.GraphView
         url: ds.apiHelper.urlFor("school_graphs", {id: @model.id, graph: "hours_per_person_graph"})
+      project_percentage_graph: new ds.GraphView
+        url: ds.apiHelper.urlFor("school_graphs", {id: @model.id, graph: "project_percentage_graph"})
+      engagement_percentage_graph: new ds.GraphView
+        url: ds.apiHelper.urlFor("school_graphs", {id: @model.id, graph: "engagement_percentage_graph"})
       program_hours_graph: new ds.GraphView
         url: ds.apiHelper.urlFor("school_graphs", { id: @model.id, graph: "program_hours_graph" })
-      engagements_context_graph: new ds.GraphView
-        url: ds.apiHelper.urlFor("school_graphs", { id: @model.id, graph: "engagements_context_graph" })
       engagement_counts_graph: new ds.GraphView
         url: ds.apiHelper.urlFor("school_graphs", { id: @model.id, graph: "engagement_counts_graph" })
       weekly_rhythm_graph: new ds.GraphView
@@ -33,8 +35,9 @@ class ds.SchoolsDashboardView extends Backbone.View
     # activate graphs
     @views.people_timeline_graph.renderTo('#people_timeline_graph')
     @views.hours_per_person_graph.renderTo('#hours_per_person_graph')
+    @views.project_percentage_graph.renderTo('#project_percentage_graph')
+    @views.engagement_percentage_graph.renderTo('#engagement_percentage_graph')
     @views.engagement_counts_graph.renderTo('#engagement_counts_graph')
-    @views.engagements_context_graph.renderTo('#engagements_context_graph')
     @views.program_hours_graph.renderTo('#program_hours_graph')
     @views.weekly_rhythm_graph.renderTo('#weekly_rhythm_graph')
 
