@@ -22,5 +22,5 @@ class ds.BaseController extends Backbone.View
     return if active_controller == @
     @$el.removeClass("active")
     @active = false
-    _.each @views, (view) -> view.remove()
+    _.each @views, (view) -> view.hide()
 

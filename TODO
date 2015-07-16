@@ -1,6 +1,4 @@
-Make StatsTable extend Backgrid.Grid
-StatsTable should listen to Backbone#dates:changed and set its dates
-
+Make TimeFilterView text align properly
 
 Port people
   INDEX

@@ -6,6 +6,7 @@ ds.collections ={}
 
 ds.run = (args) ->
   $.ajaxPrefilter (options, originalOptions, jqXHR) ->
+    console.log "AJAX call to #{options.url}"
     jqXHR.withCredentials = true
     true
 
