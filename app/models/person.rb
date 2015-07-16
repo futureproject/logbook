@@ -19,6 +19,7 @@ class Person < ActiveRecord::Base
   DREAM_TEAM_ENUM = [["Yep", true],["Nope", false]]
   COLOR_ENUM = %w(#42C8EE #036B89 #7c878a #419AD3 #568099)
   include Sortable
+  scope :in_school, -> { where(graduated_in: nil) }
 
   scope :search, lambda {|query, user=nil|
     return if query.blank?
@@ -55,7 +56,6 @@ class Person < ActiveRecord::Base
   }
 
   scope :created_before, -> (date) { where(created_at: 100.years.ago..date.end_of_week) }
-  scope :week_of, -> (date) { where(created_at: date.beginning_of_week..date.end_of_week) }
   scope :in_grade, -> (grade) { where(grade: grade.to_i) }
   scope :in_group, -> (group) {
     if group.match /dream/i
@@ -71,6 +71,12 @@ class Person < ActiveRecord::Base
   scope :just_supporting_projects, -> {
     joins(:project_people).where(project_people: {leading: false})
     .where('people.id NOT IN (SELECT (person_id) FROM project_people WHERE project_people.leading IS true)')
+    .uniq
+  }
+  scope :noisy, -> {
+    includes(:project_people).includes(:engagement_attendees)
+    .where(engagement_attendees: { person_id: nil } )
+    .where( project_people: { person_id: nil })
     .uniq
   }
 

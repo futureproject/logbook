@@ -1,3 +1,4 @@
+
 Port people
   INDEX
   SHOW
@@ -56,11 +57,6 @@ ERRORS
 - api/v1/engagements is timing out
 - engagements per week graph is timing out
 
-DATA
-_ Build a yearly rake task for cleaning old student data
-  - delete students with zero projects & engagements
-  - move all students with grades to the next grade
-  - deactivate all students with grades > 12
 
 PHONEBOOK
 _ create actual tab views, are you seriously reading data-attrs??

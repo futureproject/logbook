@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150712143356) do
+ActiveRecord::Schema.define(version: 20150716125400) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -125,10 +125,12 @@ ActiveRecord::Schema.define(version: 20150712143356) do
     t.text     "passions"
     t.integer  "site_id"
     t.integer  "user_id"
+    t.integer  "graduated_in"
   end
 
   add_index "people", ["dream_team"], name: "index_people_on_dream_team", using: :btree
   add_index "people", ["first_name"], name: "index_people_on_first_name", using: :btree
+  add_index "people", ["graduated_in"], name: "index_people_on_graduated_in", using: :btree
   add_index "people", ["last_name"], name: "index_people_on_last_name", using: :btree
   add_index "people", ["school_id"], name: "index_people_on_school_id", using: :btree
   add_index "people", ["site_id"], name: "index_people_on_site_id", using: :btree
