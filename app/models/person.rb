@@ -19,7 +19,7 @@ class Person < ActiveRecord::Base
   DREAM_TEAM_ENUM = [["Yep", true],["Nope", false]]
   COLOR_ENUM = %w(#42C8EE #036B89 #7c878a #419AD3 #568099)
   include Sortable
-  scope :in_school, -> { where(graduated_in: nil) }
+  scope :active, -> { where(graduated_in: nil) }
 
   scope :search, lambda {|query, user=nil|
     return if query.blank?

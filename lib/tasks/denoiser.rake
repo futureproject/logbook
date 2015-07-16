@@ -1,13 +1,6 @@
 namespace :denoiser do
   desc "Cleans out people with no engagements or projects"
   task yearly: :environment do
-    # delete students with zero projects & engagements (noisy)
-    noise = Person.noisy
-    puts "Deleting #{noise.size} people..."
-    Person.noisy.find_each do |person|
-      person.destroy
-    end
-    puts "... done."
 
     puts "Archiving students who have graduated..."
     Person.where(grade: 12).find_each do |person|
@@ -21,4 +14,15 @@ namespace :denoiser do
     end
     puts "... done."
   end
+
+  task denoise: :environment do
+    # delete students with zero projects & engagements (noisy)
+    noise = Person.noisy
+    puts "Deleting #{noise.size} people..."
+    Person.noisy.find_each do |person|
+      person.destroy
+    end
+    puts "... done."
+  end
+
 end

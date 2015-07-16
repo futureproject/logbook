@@ -1,11 +1,24 @@
 class StatCollector
 
-  def self.default_range
-    r = -> { 10.months.ago.to_date..Date.today }
-    r.call
+  # The school year starts on August 24th.
+  def self.beginning_of_school_year
+    today = Date.today
+    start_month = 8
+    start_day = 24
+    if today.month <= start_month && today.day <= start_day
+      year = today.year - 1
+    else
+      year = today.year
+    end
+    Date.new(year, start_month, start_day)
   end
 
-  # pie chart
+  # default stat range is from beginning_of_school_year to RIGHT NOW
+  def self.default_range
+    self.beginning_of_school_year..Date.today
+  end
+
+  # pie chart, formatted for the highcharts js library
   def self.project_percentage_data(args)
     scope = args[:scope] || National.new
     total = scope.enrollment

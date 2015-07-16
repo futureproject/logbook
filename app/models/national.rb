@@ -1,5 +1,9 @@
 class National
 
+  def self.find(args)
+    self.new
+  end
+
   def self.average association, column=nil
     if column.nil?
       res = (eval(association.to_s.classify).count.fdiv(School.count)).to_i

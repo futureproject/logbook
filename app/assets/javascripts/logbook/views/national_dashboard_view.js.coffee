@@ -1,10 +1,10 @@
 class ds.NationalDashboardView extends Backbone.View
   initialize: ->
     @views =
-      sites_table: new Backgrid.Grid
+      sites_table: new ds.StatsTableView
         collection: ds.collections.sites
         columns: ds.collections.sites.backgrid_columns
-      schools_table: new Backgrid.Grid
+      schools_table: new ds.StatsTableView
         collection: ds.collections.schools
         columns: ds.collections.schools.backgrid_columns
       people_timeline_graph: new ds.GraphView

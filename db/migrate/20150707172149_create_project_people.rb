@@ -7,11 +7,11 @@ class CreateProjectPeople < ActiveRecord::Migration
 
       t.timestamps
     end
-    ProjectParticipant.all.each do |p|
-      ProjectPerson.create!(person_id: p.person_id, project_id: p.project_id, leading: false)
+    ProjectLeader.find_each do |p|
+      ProjectPerson.create!(person_id: p.person_id, project_id: p.project_id) rescue puts("failed to create a leader")
     end
-    ProjectLeader.all.each do |p|
-      ProjectPerson.create!(person_id: p.person_id, project_id: p.project_id)
+    ProjectParticipant.find_each do |p|
+      ProjectPerson.create!(person_id: p.person_id, project_id: p.project_id, leading: false) rescue puts("failed to create a participant")
     end
   end
 

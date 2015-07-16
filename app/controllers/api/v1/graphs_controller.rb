@@ -116,9 +116,9 @@ class Api::V1::GraphsController < Api::V1::BaseController
     def set_scope
       # USE PARAMS[SCOPE] and [SCOPE_ID]
       if params[:scope_type] && params[:scope_id]
-        klass = params[:scope_type].singularize.camelize.constantize
+        klass = params[:scope_type].classify.constantize
         id = params[:scope_id].to_i
-        @scope = klass.find(id) rescue National.new
+        @scope = klass.find(id)
       else
         @scope = current_scope
       end

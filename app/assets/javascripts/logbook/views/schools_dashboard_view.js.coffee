@@ -1,7 +1,7 @@
 class ds.SchoolsDashboardView extends Backbone.View
   initialize: ->
     @views =
-      schools_table: new Backgrid.Grid
+      schools_table: new ds.StatsTableView
         collection: ds.collections.schools
         columns: ds.collections.schools.backgrid_columns
         row: ds.StatsRowView

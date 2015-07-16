@@ -1,7 +1,7 @@
 class ds.SitesDashboardView extends Backbone.View
   initialize: ->
     @views =
-      schools_table: new Backgrid.Grid
+      schools_table: new ds.StatsTableView
         collection: ds.collections.schools
         columns: ds.collections.schools.backgrid_columns
       people_timeline_graph: new ds.GraphView
@@ -16,7 +16,7 @@ class ds.SitesDashboardView extends Backbone.View
         url: ds.apiHelper.urlFor("site_graphs", { id: @model.id, graph: "project_counts_graph" })
       projects_completed_graph: new ds.GraphView
         url: ds.apiHelper.urlFor("site_graphs", { id: @model.id, graph: "project_counts_graph" }) + "?status=complete"
-      sites_table: new Backgrid.Grid
+      sites_table: new ds.StatsTableView
         collection: ds.collections.sites
         columns: ds.collections.sites.backgrid_columns
         row: ds.StatsRowView

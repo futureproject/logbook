@@ -4,6 +4,7 @@ class ds.GraphView extends Backbone.View
   initialize: (args) ->
     return unless args?.url
     @url = args.url
+    @listenTo Backbone, 'dates:changed', @load
 
   load: ->
     $.ajax

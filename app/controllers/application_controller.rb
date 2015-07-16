@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   include Authorization
   before_action :authorize!
   helper_method :current_scope
-  helper_method :default_time_range
+  helper_method :beginning_of_school_year
 
   def home
     redirect_to logbook_root_url
@@ -19,16 +19,26 @@ class ApplicationController < ActionController::Base
 
   private
 
+    def beginning_of_school_year
+      StatCollector.beginning_of_school_year
+    end
+
     def current_scope
-      if session[:scope_id] == 0
+      if session[:scope_id].nil?
+        current_user.default_logbook_scope
+      elsif session[:scope_id] == 0
         National.new
       else
-        eval("#{session[:scope_type].classify}.find(#{session[:scope_id]})") rescue current_user.default_logbook_scope
+        session[:scope_type].classify.constantize.find(session[:scope_id])
       end
     end
 
     def stat_times
-      StatCollector.default_range
+      if params[:t_start] && params[:t_end]
+        Date.parse(params[:t_start])..Date.parse(params[:t_end])
+      else
+        StatCollector.default_range
+      end
     end
 
 end

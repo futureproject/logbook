@@ -10,7 +10,8 @@
       window.ds = window.ds || {}
       ds.CONSTANTS = #{JSON.dump({
           current_user: current_user.as_json(include: :school),
-          scope: current_scope.as_json
+          scope: current_scope.as_json,
+          beginning_of_school_year: beginning_of_school_year.strftime("%Y-%m-%d")
         })
       }
   %body
@@ -50,7 +51,12 @@
     #yield= yield
     #time-filter
       %select#time-filter-menu
-        %option{value: ''} this school year
+        %option{value: 'this_school_year'}this school year
+        %option{value: 'past_two_weeks'}past two weeks
+        %option{value: 'past_month'}past month
+        %option{value: 'past_three_months'}past three months
+        %option{value: 'this_time_last_year'}this time last year
+        %option{value: 'dawn_of_time'}dawn of time
       #time-filter-trigger.icon-event
 
     :javascript
