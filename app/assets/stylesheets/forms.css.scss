@@ -1,4 +1,4 @@
-input, select, textarea {
+#{$all-text-inputs}, select, textarea {
   display: block;
   width: 100%;
   -webkit-appearance: none;
@@ -8,7 +8,7 @@ input, select, textarea {
   font-size: 1.5em;
 }
 
-input, select {
+#{$all-text-inputs}, select {
   border-bottom: 1px solid $base-border-color;
   &:focus {
     border-color: $base-accent-color;

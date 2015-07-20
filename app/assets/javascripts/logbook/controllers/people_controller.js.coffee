@@ -6,6 +6,8 @@ class ds.PeopleController extends ds.BaseController
     @listenTo Backbone, "people:index", @index
 
   index: ->
+    ds.collectionHelper.bootstrap ds.collections.people
     @activate()
-    $(@targetEl).empty().html "<h1>People</h1>"
+    @views.index = new ds.PeopleIndexView
+    @views.index.renderTo @targetEl
 

@@ -6,13 +6,14 @@ ds.collections ={}
 
 ds.run = (args) ->
   $.ajaxPrefilter (options, originalOptions, jqXHR) ->
-    console.log "AJAX call to #{options.url}"
     jqXHR.withCredentials = true
+    console.log "AJAX call to #{options.url}"
     true
 
   ds.current_user = new ds.User(ds.CONSTANTS.current_user)
   ds.collections.sites = new ds.SitesCollection
   ds.collections.schools = new ds.SchoolsCollection
+  ds.collections.people = new ds.PeopleCollection
   ds.views.scope_toggle = new ds.ScopeToggleView
   ds.views.scope_menu = new ds.ScopeMenuView
   ds.views.user_view = new ds.UserView

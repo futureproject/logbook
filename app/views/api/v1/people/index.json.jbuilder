@@ -1,14 +1,13 @@
-json.array!(@people) do |person|
-  json.extract! person, :id,
-    :first_name,
-    :last_name,
-    :name,
-    :school_id,
-    :school_name,
-    :role,
-    :dream_team,
-    :notes,
-    :email,
-    :phone,
-    :grade
-end
+#json.cache! ['people/v1', current_scope, @people.maximum(:updated_at)] do
+  json.array!(@people) do |person|
+    json.extract! person, :id,
+      :first_name,
+      :last_name,
+      :school_id,
+      :role,
+      :dream_team,
+      :email,
+      :phone,
+      :grade
+  end
+#end

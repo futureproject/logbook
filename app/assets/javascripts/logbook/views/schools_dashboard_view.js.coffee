@@ -22,6 +22,8 @@ class ds.SchoolsDashboardView extends Backbone.View
 
   template: JST['logbook/templates/schools_dashboard']
 
+  className: 'dashboard'
+
   render: ->
     @$el.html @template(@model.toJSON())
     @postRender()

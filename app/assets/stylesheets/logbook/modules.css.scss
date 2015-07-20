@@ -55,20 +55,21 @@
 .backgrid {
   th {
     position: relative;
-    text-align: right;
     @include user-select(none);
     padding: 5px 5px 4px 5px;
+    text-align: left;
     .sort-caret { display: none; }
     &.ascending, &.descending {
       a {
         color: $base-font-color;
       }
     }
-    &.name {
-      text-align: left;
-    }
     &:last-child { border-right: none; }
   }
+}
+.dashboard .backgrid th {
+  text-align: right;
+  &.name { text-align: left; }
 }
 
 @include media(1020px) {

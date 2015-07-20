@@ -4,15 +4,8 @@ class Api::V1::PeopleController < Api::V1::BaseController
   # GET /api/v1/people
   # GET /api/v1/people.json
   def index
-    # if the user is searching
-    if params[:q]
-      @people = Person.search(params[:q], current_user)
-    # if the user has a school
-    elsif current_user.school
-      @people = current_user.school.people.order('dream_team DESC', :first_name, :last_name)
-    else
-      @people = current_user.people.order('dream_team DESC', :first_name, :last_name)
-    end
+    @people = current_scope.people
+      .order('dream_team DESC', :first_name, :last_name)
   end
 
   # GET /api/v1/people/1
