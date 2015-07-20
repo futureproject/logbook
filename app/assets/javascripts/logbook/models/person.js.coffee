@@ -14,10 +14,13 @@ class ds.PeopleCollection extends Backbone.PageableCollection
   backgrid_columns: [
     {name: 'first_name', cell:'string', label: 'First'}
     {name: 'last_name', cell:'string', label: 'Last'}
+    {name: 'role', cell:'string'}
     {name: 'dream_team', cell:'boolean', label: 'Dream Team'}
     {name: 'grade', cell:'integer'}
-    {name: 'school_id', cell:'integer', label: 'School'}
+    {name: 'projects_count', cell:'integer', label: 'Projects'}
   ]
   mode: 'server'
-  state:
-    totalRecords: 10000
+  parseRecords: (response) ->
+    response.people
+  parseState: (response) ->
+    { totalRecords: response.state.total_entries }

@@ -3,6 +3,5 @@ json.cache! ['schools/v1', current_scope.id, @schools.maximum(:updated_at)] do
     json.extract! school, :id,
       :name, :enrollment, :address
     json.dd_name school.dream_director.try(:name)
-    json.city_name school.site.name
   end
 end

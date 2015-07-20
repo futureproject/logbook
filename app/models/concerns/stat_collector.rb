@@ -4,9 +4,11 @@ class StatCollector
   def self.beginning_of_school_year
     today = Date.today
     start_month = 8
-    start_day = 24
-    if today.month <= start_month && today.day <= start_day
+    start_day = 15
+    if today.month < start_month
       year = today.year - 1
+    elsif today.month == start_month
+      year = (today.day < start_day) ? today.year-1 : today.year
     else
       year = today.year
     end
@@ -220,6 +222,27 @@ class StatCollector
       })
     end
     series
+  end
+
+  # a hash of top-ranked people in a scope
+  def self.people_leaderboard_data(args)
+    scope = args[:scope] || National.new
+    dates = args[:dates] ? args[:dates] : self.default_range
+    {
+      most_coached: scope.people.joins(:engagements)
+        .where(engagements: { kind: 'Coaching Session' })
+        .merge(scope.engagements.btw(dates))
+        .select("people.*, SUM(engagements.duration) AS engagement_hours")
+        .group('people.id').order('engagement_hours DESC').limit(5),
+      most_hours: scope.people.joins(:engagements)
+        .merge(scope.engagements.btw(dates))
+        .select("people.*, SUM(engagements.duration) AS engagement_hours")
+        .group('people.id').order('engagement_hours DESC').limit(5),
+      most_engagements: scope.people.joins(:engagements)
+        .merge(scope.engagements.btw(dates))
+        .select("people.*, COUNT(engagements.id) AS engagements_count")
+        .group('people.id').order('engagements_count DESC').limit(5)
+    }
   end
 
 end

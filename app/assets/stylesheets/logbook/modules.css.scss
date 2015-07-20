@@ -100,10 +100,14 @@
       @include span_columns(6);
     }
   }
-  .three-col {
-    @include row;
+  .three-col { @include row;
     > * {
       @include span-columns(4);
+    }
+  }
+  .four-col { @include row;
+    > * {
+      @include span-columns(3);
     }
   }
 }

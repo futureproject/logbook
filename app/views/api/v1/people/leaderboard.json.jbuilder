@@ -1,28 +1,33 @@
-json.most_coached do
-  json.array!(@most_coached) do |person|
-    json.extract! person, :id,
-      :first_name,
-      :last_name
-    json.stat person.engagement_hours
-    json.unit "Hrs"
+json.cache! ['people/leaderboard/v1', @scope, @t.first, @t.last] do
+  @stats = StatCollector.people_leaderboard_data(
+    scope: current_scope,
+    dates: @t
+  )
+  json.most_coached do
+    json.array!(@stats[:most_coached]) do |person|
+      json.extract! person, :id,
+        :first_name,
+        :last_name
+      json.stat person.engagement_hours
+      json.unit "Hrs"
+    end
   end
-end
-json.most_hours do
-  p = Person.limit(10)
-  json.array!(@most_hours) do |person|
-    json.extract! person, :id,
-      :first_name,
-      :last_name
-    json.stat person.engagement_hours
-    json.unit "Hrs"
+  json.most_hours do
+    json.array!(@stats[:most_hours]) do |person|
+      json.extract! person, :id,
+        :first_name,
+        :last_name
+      json.stat person.engagement_hours
+      json.unit "Hrs"
+    end
   end
-end
-json.most_engagements do
-  json.array!(@most_engaged) do |person|
-    json.extract! person, :id,
-      :first_name,
-      :last_name
-    json.stat person.engagements_count
-    json.unit ""
+  json.most_engagements do
+    json.array!(@stats[:most_engagements]) do |person|
+      json.extract! person, :id,
+        :first_name,
+        :last_name
+      json.stat person.engagements_count
+      json.unit ""
+    end
   end
 end

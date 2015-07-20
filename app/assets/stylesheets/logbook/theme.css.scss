@@ -1,9 +1,10 @@
 #nav {
-  background-color: $retro-black;
+  background-color: $retro-light-gray;
   @include transition(background .5s);
   color: white;
   a { color: white; }
   box-shadow: inset -5px 0 5px rgba(0,0,0,.1);
+  -webkit-font-smoothing: antialiased;
   header {
     color: rgba(255,255,255,.5);
   }
@@ -18,12 +19,12 @@
     left: 0;
     right: 0;
     bottom: 0;
-    @include linear-gradient(transparent, rgba(0,0,0,.25));
+    @include linear-gradient(transparent, rgba(0,0,0,.5));
     z-index: 0;
   }
 }
 body[data-controller=dashboard] #nav {
-  background-color: $retro-slate;
+  background-color: $retro-light-gray;
 }
 body[data-controller=people] #nav {
   background-color: $people-color;
