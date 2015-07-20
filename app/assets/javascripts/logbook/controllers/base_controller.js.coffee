@@ -13,7 +13,7 @@ class ds.BaseController extends Backbone.View
     ds.router.navigate(@rootURL, {trigger: true})
 
   activate: ->
-    $('body').attr('data-controller', @constructor.name)
+    $('body').attr('data-controller', @el.id.replace(/-nav-item/i, ''))
     @$el.addClass("active")
     @active = true
     Backbone.trigger "controller:activated", @

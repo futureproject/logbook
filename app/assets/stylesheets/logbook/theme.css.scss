@@ -1,11 +1,41 @@
 #nav {
-  @include linear-gradient($retro-light-gray, darken($retro-light-gray, 25%));
+  background-color: $retro-black;
+  @include transition(background .5s);
   color: white;
   a { color: white; }
   box-shadow: inset -5px 0 5px rgba(0,0,0,.1);
   header {
     color: rgba(255,255,255,.5);
   }
+  * {
+    z-index: 1;
+  }
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    @include linear-gradient(transparent, rgba(0,0,0,.25));
+    z-index: 0;
+  }
+}
+body[data-controller=dashboard] #nav {
+  background-color: $retro-slate;
+}
+body[data-controller=people] #nav {
+  background-color: $people-color;
+}
+body[data-controller=engagements] #nav {
+  background-color: $engagements-color;
+}
+body[data-controller=projects] #nav {
+  background-color: $projects-color;
+}
+body[data-controller=weekly-reports] #nav {
+  background-color: $reports-color;
 }
 
 #app-name {
@@ -20,16 +50,6 @@
   .nav-item.active {
     font-weight: bold;
   }
-  #dashboard-nav-item.active .link-label { color: $retro-eggshell; }
-  #dashboard-nav-item:hover .link-label { color: $retro-eggshell; }
-  #people-nav-item.active .link-label { color: $people-color; }
-  #people-nav-item:hover .link-label { color: $people-color; }
-  #engagements-nav-item.active .link-label { color: $retro-pink; }
-  #engagements-nav-item:hover .link-label { color: $retro-pink; }
-  #projects-nav-item.active .link-label { color: $projects-color; }
-  #projects-nav-item:hover .link-label { color: $projects-color; }
-  #weekly-reports-nav-item.active .link-label { color: $retro-teal; }
-  #weekly-reports-nav-item:hover .link-label { color: $retro-teal; }
 }
 
 #time-filter-menu {

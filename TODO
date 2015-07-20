@@ -1,5 +1,5 @@
-add people leaderboard
 make leaderboard respect time filter
+make pagination aware of total pages
 
 Port people
   INDEX

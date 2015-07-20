@@ -10,6 +10,8 @@ $retro-gray: lighten($retro-black, 10%);
 $retro-light-gray: lighten($retro-black, 30%);
 $retro-eggshell: #f9f1de;
 
+$retro-slate: #6c8798;
+
 $retro-red: #db4549;
 $retro-orange: #e9a444;
 $retro-yellow: #fbe588;
@@ -19,7 +21,7 @@ $retro-ocean: #3d99a0;
 $retro-blue: #3182a2;
 $retro-indigo: #23485d;
 $retro-violet: #694a55;
-$retro-pink: #f1c7e9;
+$retro-pink: #a05e86;
 
 $blue: #3182a2;
 $dark-blue: #18506e;
@@ -31,10 +33,15 @@ $light-red: #ec4552;
 $light-yellow: #fec30c;
 $light-green: #77cbc7;
 $base-border-radius: em(3);
-$people-color: #42c6ee;
-$projects-color: #419bd3;
-$engagements-color: #b363a3;
+//$people-color: #42c6ee;
+//$projects-color: #419bd3;
+//$engagements-color: #b363a3;
+//$schools-color: $retro-gray;
+$people-color: $retro-blue;
+$projects-color: $retro-indigo;
+$engagements-color: $retro-pink;
 $schools-color: $retro-gray;
+$reports-color: $retro-gray;
 
 // Background Color
 $base-background-color: $retro-white;
