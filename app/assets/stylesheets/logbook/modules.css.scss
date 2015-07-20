@@ -89,11 +89,21 @@
   li { text-align: center; }
 }
 
+.leaderboard {
+  min-height: 10em;
+}
+
 @include media(1020px) {
   .two-col {
     @include row;
     > * {
       @include span_columns(6);
+    }
+  }
+  .three-col {
+    @include row;
+    > * {
+      @include span-columns(4);
     }
   }
 }

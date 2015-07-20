@@ -6,6 +6,17 @@ class Api::V1::PeopleController < Api::V1::BaseController
   def index
     @people = current_scope.people
       .order('dream_team DESC', :first_name, :last_name)
+      .page(params[:page])
+  end
+
+  # GET /api/v1/people/leaderboard
+  def leaderboard
+    @most_coached = current_scope.people.with_hours('Coaching Session')
+      .order('engagement_hours DESC').limit(5)
+    @most_hours = current_scope.people.with_hours
+      .order('engagement_hours DESC').limit(5)
+    @most_engaged = current_scope.people.with_engagements
+      .order('engagements_count DESC').limit(5)
   end
 
   # GET /api/v1/people/1

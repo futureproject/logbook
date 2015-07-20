@@ -51,8 +51,8 @@ class Person < ActiveRecord::Base
     joins(:engagements).where('engagements.kind like ?', kind).select("people.*, COUNT(engagements.id) AS engagements_count").group('people.id')
   }
 
-  scope :with_hours, -> (kind) {
-    joins(:engagements).where('engagements.kind = ?', kind).select("people.*, SUM(engagements.duration) AS engagement_hours").group('people.id')
+  scope :with_hours, -> (kind="%") {
+    joins(:engagements).where('engagements.kind like ?', kind).select("people.*, SUM(engagements.duration) AS engagement_hours").group('people.id')
   }
 
   scope :created_before, -> (date) { where(created_at: 100.years.ago..date.end_of_week) }
@@ -73,6 +73,7 @@ class Person < ActiveRecord::Base
     .where('people.id NOT IN (SELECT (person_id) FROM project_people WHERE project_people.leading IS true)')
     .uniq
   }
+  # people who have no engagements and no projects, i.e. safe to delete
   scope :noisy, -> {
     includes(:project_people).includes(:engagement_attendees)
     .where(engagement_attendees: { person_id: nil } )

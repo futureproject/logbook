@@ -12,12 +12,12 @@ class ds.PeopleCollection extends Backbone.PageableCollection
   #initialize: ->
     #@listenTo Backbone, 'scope:set', => @fetch({ reset: true })
   backgrid_columns: [
-    {name: 'first_name', cell:'string'}
-    {name: 'last_name', cell:'string'}
-    {name: 'dream_team', cell:'boolean'}
+    {name: 'first_name', cell:'string', label: 'First'}
+    {name: 'last_name', cell:'string', label: 'Last'}
+    {name: 'dream_team', cell:'boolean', label: 'Dream Team'}
     {name: 'grade', cell:'integer'}
-    {name: 'school_id', cell:'integer'}
+    {name: 'school_id', cell:'integer', label: 'School'}
   ]
-  mode: 'client'
+  mode: 'server'
   state:
-    pageSize: 30
+    totalRecords: 10000

@@ -1,5 +1,4 @@
 #nav {
-  background: $engagements-color;
   @include linear-gradient($retro-light-gray, darken($retro-light-gray, 25%));
   color: white;
   a { color: white; }
@@ -75,6 +74,7 @@ tbody {
 .backgrid {
   tbody td {
     border-bottom: none;
+    text-transform: capitalize;
   }
   thead th {
     background: rgba(0,0,0,.03);
@@ -102,5 +102,14 @@ tbody {
     white-space: nowrap !important;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+}
+.leaderboard {
+  text-transform: capitalize;
+  border: none;
+  label {
+    background: $retro-yellow;
+    padding: 0 5px;
+    color: $retro-black;
   }
 }

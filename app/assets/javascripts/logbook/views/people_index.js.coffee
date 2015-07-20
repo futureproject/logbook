@@ -1,6 +1,8 @@
 class ds.PeopleIndexView extends Backbone.View
   initialize: ->
     @views =
+      leaderboard: new ds.PeopleLeaderboardView
+        url: ds.apiHelper.urlFor "people_leaderboard"
       table: new ds.StatsTableView
         collection: ds.collections.people
         columns: ds.collections.people.backgrid_columns
@@ -17,6 +19,7 @@ class ds.PeopleIndexView extends Backbone.View
     @
 
   postRender: ->
+    @views.leaderboard.renderTo $("#people-leaderboard")
     @$el.find('#people-table').html @views.table.render().el
     @$el.find('#people-pagination').html @views.pagination.render().el
 
