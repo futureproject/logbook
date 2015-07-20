@@ -18,4 +18,6 @@ class ds.PeopleCollection extends Backbone.PageableCollection
     {name: 'grade', cell:'integer'}
     {name: 'school_id', cell:'integer'}
   ]
-  mode: 'infinite'
+  mode: 'client'
+  state:
+    pageSize: 30

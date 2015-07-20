@@ -3,6 +3,7 @@
 #= require backbone-1.2.1
 #= require backbone.paginator.min
 #= require backgrid.min
+#= require backgrid-paginator.min
 #= require selectize
 #= require twitter/typeahead
 #= require s3_direct_upload

@@ -47,6 +47,10 @@
   }
 }
 
+.index-table {
+  min-height: 20em;
+  margin-bottom: 60px;
+}
 
 .graph {
   min-height: 20em;
@@ -70,6 +74,19 @@
 .dashboard .backgrid th {
   text-align: right;
   &.name { text-align: left; }
+}
+.backgrid-paginator {
+  position: fixed;
+  bottom: 0;
+  left: 210px;
+  right: 0;
+  background: white;
+  background: rgba(255,255,255,0.95);
+  border-radius: none;
+  border-top: 1px solid $base-border-color;
+  text-align: left;
+  line-height: 1;
+  li { text-align: center; }
 }
 
 @include media(1020px) {
