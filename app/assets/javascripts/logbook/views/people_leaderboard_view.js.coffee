@@ -13,7 +13,7 @@ class ds.PeopleLeaderboardView extends Backbone.View
   addList: (list, list_name) =>
     $elem = $("<ul />")
     _.each list, (item) ->
-      $elem.append "<li>#{item.first_name} #{item.last_name} - #{item.stat} #{item.unit}</li>"
-    $elem.prepend("<li><label>#{list_name.replace('_',' ')}</label></li>")
+      $elem.append "<li>#{item.stat} - #{item.first_name} #{item.last_name}</li>"
+    $elem.prepend("<li><label>#{list_name.replace(/\_/ig,' ')}</label></li>")
     @$el.append $elem
 

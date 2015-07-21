@@ -229,12 +229,12 @@ class StatCollector
     scope = args[:scope] || National.new
     dates = args[:dates] ? args[:dates] : self.default_range
     {
-      most_coached: scope.people.joins(:engagements)
+      most_hours_coached: scope.people.joins(:engagements)
         .where(engagements: { kind: 'Coaching Session' })
         .merge(scope.engagements.btw(dates))
         .select("people.*, SUM(engagements.duration) AS engagement_hours")
         .group('people.id').order('engagement_hours DESC').limit(5),
-      most_hours: scope.people.joins(:engagements)
+      most_hours_logged: scope.people.joins(:engagements)
         .merge(scope.engagements.btw(dates))
         .select("people.*, SUM(engagements.duration) AS engagement_hours")
         .group('people.id').order('engagement_hours DESC').limit(5),

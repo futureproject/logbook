@@ -4,8 +4,9 @@ class Api::V1::PeopleController < Api::V1::BaseController
   # GET /api/v1/people
   # GET /api/v1/people.json
   def index
-    @people = current_scope.people
-      .order('dream_team DESC', :first_name, :last_name)
+    @people = current_scope.people.active
+      .conditionally_joined(params, stat_times)
+      .order(sort_params)
       .page(params[:page])
     @total = @people.total_count
   end
@@ -103,6 +104,14 @@ class Api::V1::PeopleController < Api::V1::BaseController
         person_params.merge(school_id: current_user.school_id)
       else
         person_params
+      end
+    end
+
+    def sort_params
+      if params[:sort_by] && params[:order]
+        "#{params[:sort_by]} #{params[:order]}, lower(first_name) ASC"
+      else
+        "dream_team DESC, lower(first_name) ASC"
       end
     end
 end

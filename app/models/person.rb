@@ -19,6 +19,28 @@ class Person < ActiveRecord::Base
   DREAM_TEAM_ENUM = [["Yep", true],["Nope", false]]
   COLOR_ENUM = %w(#42C8EE #036B89 #7c878a #419AD3 #568099)
   include Sortable
+
+  scope :with_engagements, -> (dates) {
+    joins(:engagements).select("people.*, COUNT(engagements.id) AS engagements_count")
+    .merge(Engagement.btw(dates))
+    .group('people.id')
+  }
+
+  scope :with_projects, -> (dates) {
+    joins(:projects).select("people.*, COUNT(projects.id) AS projects_count")
+    .merge(Project.btw(dates))
+    .group('people.id')
+  }
+
+  scope :conditionally_joined, -> (params, stat_times) {
+    if params[:sort_by] == "projects_count"
+      with_projects(stat_times)
+    elsif params[:sort_by] == "engagements_count"
+      with_engagements(stat_times)
+    else
+      all
+    end
+  }
   scope :active, -> { where(graduated_in: nil) }
 
   scope :search, lambda {|query, user=nil|
@@ -47,9 +69,6 @@ class Person < ActiveRecord::Base
     where("lower(first_name) like ? #{operator} lower(last_name) like ?", first, last)
   }
 
-  scope :with_engagements, -> (kind="%") {
-    joins(:engagements).where('engagements.kind like ?', kind).select("people.*, COUNT(engagements.id) AS engagements_count").group('people.id')
-  }
 
   scope :with_hours, -> (kind="%") {
     joins(:engagements).where('engagements.kind like ?', kind).select("people.*, SUM(engagements.duration) AS engagement_hours").group('people.id')
@@ -91,6 +110,14 @@ class Person < ActiveRecord::Base
 
   def dream_director
     school.dream_director
+  end
+
+  def projects_count
+    projects.count
+  end
+
+  def engagements_count
+    engagements.count
   end
 
   def logged_hours

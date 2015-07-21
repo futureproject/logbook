@@ -14,7 +14,8 @@
           :email,
           :phone,
           :grade
-        json.projects_count person.projects.count
+        json.projects_count person.projects_count
+        json.engagements_count person.engagements_count
       #end
     end
   end

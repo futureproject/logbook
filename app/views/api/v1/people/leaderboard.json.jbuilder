@@ -3,8 +3,8 @@ json.cache! ['people/leaderboard/v1', @scope, @t.first, @t.last] do
     scope: current_scope,
     dates: @t
   )
-  json.most_coached do
-    json.array!(@stats[:most_coached]) do |person|
+  json.most_hours_coached do
+    json.array!(@stats[:most_hours_coached]) do |person|
       json.extract! person, :id,
         :first_name,
         :last_name
@@ -12,8 +12,8 @@ json.cache! ['people/leaderboard/v1', @scope, @t.first, @t.last] do
       json.unit "Hrs"
     end
   end
-  json.most_hours do
-    json.array!(@stats[:most_hours]) do |person|
+  json.most_hours_logged do
+    json.array!(@stats[:most_hours_logged]) do |person|
       json.extract! person, :id,
         :first_name,
         :last_name
