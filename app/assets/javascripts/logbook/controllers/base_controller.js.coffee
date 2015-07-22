@@ -13,6 +13,7 @@ class ds.BaseController extends Backbone.View
     ds.router.navigate(@rootURL, {trigger: true})
 
   activate: ->
+    _.each @views, (view) -> view.hide()
     $('body').attr('data-controller', @el.id.replace(/-nav-item/i, ''))
     @$el.addClass("active")
     @active = true
@@ -22,5 +23,4 @@ class ds.BaseController extends Backbone.View
     return if active_controller == @
     @$el.removeClass("active")
     @active = false
-    _.each @views, (view) -> view.hide()
 

@@ -1,9 +1,9 @@
 class ds.Person extends Backbone.Model
   namespace: 'people'
-  urlRoot: ds.apiHelper.urlFor 'person'
+  urlRoot: ds.apiHelper.urlFor 'people'
   tplAttrs: ->
     attrs = _.extend(@toJSON(), { class_name: 'Person' })
-    attrs
+    {person: attrs }
 
 class ds.PeopleCollection extends Backbone.PageableCollection
   model: ds.Person
@@ -18,7 +18,7 @@ class ds.PeopleCollection extends Backbone.PageableCollection
     {name: 'grade', cell:'integer'}
     {name: 'projects_count', cell:'integer', label: 'Projects'}
     {name: 'engagements_count', cell:'integer', label: 'Engagements'}
-    {name: 'links', cell: ds.ActionCell}
+    #{name: 'links', cell: ds.ActionCell}
   ]
   mode: 'server'
   queryParams:

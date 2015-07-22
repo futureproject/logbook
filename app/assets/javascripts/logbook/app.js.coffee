@@ -14,6 +14,7 @@ ds.run = (args) ->
   ds.collections.sites = new ds.SitesCollection
   ds.collections.schools = new ds.SchoolsCollection
   ds.collections.people = new ds.PeopleCollection
+  #ds.views.app_view = new ds.AppView
   ds.views.scope_toggle = new ds.ScopeToggleView
   ds.views.scope_menu = new ds.ScopeMenuView
   ds.views.user_view = new ds.UserView
@@ -23,7 +24,6 @@ ds.run = (args) ->
   ds.controllers.engagements = new ds.EngagementsController
   ds.controllers.projects = new ds.ProjectsController
   ds.controllers.reports = new ds.ReportsController
-  #ds.controllers.graphs = new ds.GraphsController
   ds.router = new ds.Router
   ds.scopeHelper.setScope(ds.CONSTANTS.scope)
   Backbone.history.start({ pushState: true })

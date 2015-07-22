@@ -4,9 +4,6 @@ class ds.PermalinkFormatter extends Backgrid.CellFormatter
 
 class ds.PermalinkCell extends Backgrid.StringCell
   formatter: ds.PermalinkFormatter
-  events:
-    'click': 'onclick'
-  onclick: (e) ->
   render: ->
     this.$el.empty()
     model = this.model

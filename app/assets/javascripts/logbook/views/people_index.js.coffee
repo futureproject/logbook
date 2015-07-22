@@ -15,6 +15,7 @@ class ds.PeopleIndexView extends Backbone.View
   className: 'people'
 
   render: ->
+    console.log 'rendered index view'
     @$el.html @template()
     @postRender()
     @

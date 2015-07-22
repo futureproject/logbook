@@ -1,6 +1,3 @@
-Make people index a generic index view
-Add GOAL to engagements
-
 Port people
   INDEX
   SHOW
@@ -21,6 +18,8 @@ Build the ADD VIEW
 # IN SLACK BRANCH
 # SHOULD scope.btw feed updated_at or created_at?
 
+Add GOAL to engagements
+
 Detroit - DET
 Newark - NWK
 New Haven - NH
@@ -30,12 +29,8 @@ San Francisco - SF
 Washington DC - DC
 
 add Notables to school pages
-  - how??
 
-SCHOOL YEAR STARTS August 17th
 
-Port graph responses to jbuilder
-Cache jbuilder graph responses
 
 # NEW FEATURES!
 0) Weekly Reports
@@ -45,10 +40,6 @@ Cache jbuilder graph responses
 3) Make profile pictures awesome
 4) Make person profiles awesome
 
-
-Use PJAX for most nav (or possibly just set up backbone, and set a layout header on nav menu?)
-Make a Backbone view of the nav menu, ok?
-
 # DESIGN
 _ make the Logged Hours Per Person graph a single series
 
@@ -57,7 +48,6 @@ ERRORS
 - Auth is slow. Replace with auth from tfp-redirects
 - simplify user model
 - api/v1/engagements is timing out
-- engagements per week graph is timing out
 
 
 PHONEBOOK

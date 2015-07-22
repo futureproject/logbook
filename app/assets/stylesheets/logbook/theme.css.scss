@@ -103,6 +103,13 @@ tbody {
   }
 }
 
+.index-row {
+  cursor: pointer;
+  &:hover {
+    a { color: $retro-black; }
+  }
+}
+
 .stats-row-current {
   color: $retro-ocean;
   font-weight: 700;

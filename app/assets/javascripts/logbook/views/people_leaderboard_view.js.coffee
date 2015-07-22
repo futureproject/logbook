@@ -4,6 +4,9 @@ class ds.PeopleLeaderboardView extends Backbone.View
     @url = args.url
     @listenTo Backbone, 'dates:changed', @render
 
+  events:
+    'click a': 'linkToProfile'
+
   render: ->
     @$el.html "<div class='loading'></div>"
     $.getJSON @url, (res) =>
@@ -16,4 +19,7 @@ class ds.PeopleLeaderboardView extends Backbone.View
       $elem.append "<li>#{item.stat} - #{item.first_name} #{item.last_name}</li>"
     $elem.prepend("<li><label>#{list_name.replace(/\_/ig,' ')}</label></li>")
     @$el.append $elem
+
+  linkToProfile: (event) ->
+    #etc
 

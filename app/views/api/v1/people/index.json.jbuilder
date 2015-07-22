@@ -13,7 +13,8 @@
           :dream_team,
           :email,
           :phone,
-          :grade
+          :grade,
+          :school_id
         json.projects_count person.projects_count
         json.engagements_count person.engagements_count
       #end

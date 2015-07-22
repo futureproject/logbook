@@ -23,8 +23,8 @@
     padding: 5px 15px;
     border-left: 1px solid $base-border-color;
     &:first-child { border-left: none; }
-    text-transform: lowercase;
-    font-variant: small-caps;
+    text-transform: uppercase;
+    font-size: 10px;
   }
   label:after { content: ':' }
 }
@@ -75,12 +75,18 @@
   }
   .action-cell {
     white-space: nowrap;
+    word-spacing: 5px;
+    text-align: right;
     a {
       display: inline-block;
+      visibility: hidden;
       text-transform: uppercase;
       font-size: 10px;
       line-height: 15px;
     }
+  }
+  tr:hover .action-cell a {
+    visibility: visible;
   }
 }
 .dashboard .backgrid th {
