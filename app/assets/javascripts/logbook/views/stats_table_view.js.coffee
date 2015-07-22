@@ -10,6 +10,3 @@ class ds.StatsTableView extends Backgrid.Grid
         $.getJSON stats_path, (response) =>
           @collection.add response, { merge: true}
 
-  loadNextPage: (e) ->
-    return unless @collection.state?
-    @collection.setPageSize @collection.state.pageSize + 50

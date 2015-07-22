@@ -1,4 +1,4 @@
-ds.StatsRowView = Backgrid.Row.extend
+class ds.StatsRowView extends Backgrid.Row
   className: ->
     scope = ds.scopeHelper.getScope()
     if (@model.id == scope.id && @model.namespace == scope.namespace)

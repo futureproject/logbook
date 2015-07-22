@@ -1,4 +1,4 @@
-json.cache! ['people/leaderboard/v1', @scope, @t.first, @t.last] do
+#json.cache! ['people/leaderboard/v1', @scope, @t.first, @t.last] do
   @stats = StatCollector.people_leaderboard_data(
     scope: current_scope,
     dates: @t
@@ -30,4 +30,4 @@ json.cache! ['people/leaderboard/v1', @scope, @t.first, @t.last] do
       json.unit ""
     end
   end
-end
+#end

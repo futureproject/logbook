@@ -70,6 +70,18 @@
     }
     &:last-child { border-right: none; }
   }
+  td a {
+    display: block;
+  }
+  .action-cell {
+    white-space: nowrap;
+    a {
+      display: inline-block;
+      text-transform: uppercase;
+      font-size: 10px;
+      line-height: 15px;
+    }
+  }
 }
 .dashboard .backgrid th {
   text-align: right;
@@ -91,6 +103,8 @@
 
 .leaderboard {
   min-height: 10em;
+  padding-bottom: 0;
+  margin-bottom: -15px;
 }
 
 @include media(1020px) {
