@@ -14,7 +14,6 @@ class ds.BaseController extends Backbone.View
 
   activate: ->
     _.each @views, (view) -> view.hide()
-    $('body').attr('data-controller', @el.id.replace(/-nav-item/i, ''))
     @$el.addClass("active")
     @active = true
     Backbone.trigger "controller:activated", @

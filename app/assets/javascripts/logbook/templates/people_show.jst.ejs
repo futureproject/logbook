@@ -1,5 +1,6 @@
 <div class="titlebar">
   <div class="title"><%= person.first_name %> <%= person.last_name %></div>
+  <a class='btn' href="/logbook/people/<%= person.id %>/edit">Edit</a>
 </div>
 <ul class="factbar">
   <li class="fact">
@@ -27,4 +28,8 @@
   <div id="engagement_bubbles_graph" class="graph">
     <div class='loading'></div>
   </div>
+</div>
+<div class="section">
+  <h2 class="section-header">Recent Engagements</h2>
+  <div id="engagements-table" class="table"></div>
 </div>

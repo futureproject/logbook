@@ -17,16 +17,6 @@
   &[type=file] { border-bottom: none; }
 }
 
-.field {
-  position: relative;
-  height: 4em;
-  label {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-  }
-}
-
 label {
   color: lighten($base-font-color, 50%);
 }

@@ -7,6 +7,9 @@ class ds.AppView extends Backbone.View
       console.log "AJAX call to #{options.url}"
       true
 
+    # update the body class when the route changes
+    @listenTo Backbone, 'routed', @routeChangeHandler
+
   events:
     'click #yield a': 'internalLinkHandler'
 
@@ -17,4 +20,8 @@ class ds.AppView extends Backbone.View
     if (!(e.which > 1 || e.shiftKey || e.altKey || e.metaKey || e.ctrlKey))
       e.preventDefault()
       ds.router.navigate path, { trigger: true }
+
+  routeChangeHandler: (route) ->
+    css_class = route.replace(/\_/g, ' ')
+    @el.setAttribute 'class', css_class
 

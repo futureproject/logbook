@@ -23,19 +23,19 @@
     z-index: 0;
   }
 }
-body[data-controller=dashboard] #nav {
+body.dashboard #nav {
   background-color: $retro-light-gray;
 }
-body[data-controller=people] #nav {
+body.people #nav {
   background-color: $people-color;
 }
-body[data-controller=engagements] #nav {
+body.engagements #nav {
   background-color: $engagements-color;
 }
-body[data-controller=projects] #nav {
+body.projects #nav {
   background-color: $projects-color;
 }
-body[data-controller=weekly-reports] #nav {
+body.reports #nav {
   background-color: $reports-color;
 }
 
@@ -141,4 +141,15 @@ tbody {
     padding: 0 5px;
     color: $retro-black;
   }
+}
+
+.btn {
+  display: inline-block;
+  background: $retro-yellow;
+  color: white;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 10px;
+  padding: 0 5px;
+  border-radius: $base-border-radius;
 }

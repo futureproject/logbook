@@ -4,7 +4,8 @@ class ds.PeopleController extends ds.BaseController
   targetEl: "#yield"
   actions: ->
     @listenTo Backbone, "people:index", @index
-    @listenTo Backbone, 'people:show', @show
+    @listenTo Backbone, "people:show", @show
+    @listenTo Backbone, "people:edit", @edit
 
   index: ->
     ds.collectionHelper.bootstrap ds.collections.people
@@ -17,6 +18,12 @@ class ds.PeopleController extends ds.BaseController
     @views.show = new ds.PeopleShowView
       model: person
     @views.show.renderTo @targetEl
+
+  edit: (id) ->
+    person = @setPersonFromId(id)
+    @views.edit = new ds.PeopleEditView
+      model: person
+    @views.edit.renderTo @targetEl
 
   setPersonFromId: (id) ->
     @activate()
