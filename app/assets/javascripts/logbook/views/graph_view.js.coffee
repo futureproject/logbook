@@ -11,8 +11,12 @@ class ds.GraphView extends Backbone.View
       dataType: 'json'
       url: @url
       success: (response) =>
-        @setChart(response)
-        @render()
+        if response.data.length == 0
+          @$el.closest('.section').remove()
+          @remove()
+        else
+          @setChart(response)
+          @render()
       error: () => @hide()
 
   render: ->
