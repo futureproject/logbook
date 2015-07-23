@@ -1,17 +1,18 @@
-#{$all-text-inputs}, select, textarea {
+input, select, textarea {
   display: block;
   width: 100%;
-  -webkit-appearance: none;
-  border-radius: 0;
-  border: none;
   background: none;
-  font-size: 1.5em;
+  font-size: 1.25em;
+  border: none;
+  border-bottom: 1px solid $base-border-color;
+  padding: 5px;
+  border-radius: 0;
 }
 
 #{$all-text-inputs}, select {
-  border-bottom: 1px solid $base-border-color;
+  @include appearance(none);
   &:focus {
-    border-color: $base-accent-color;
+    border-bottom-color: $base-accent-color;
     outline: none;
   }
   &[type=file] { border-bottom: none; }
@@ -22,7 +23,6 @@ label {
 }
 
 select {
-  font-size: 1.5em;
   text-transform: capitalize;
 }
 
@@ -30,14 +30,28 @@ textarea {
   border: 1px solid $base-border-color;
 }
 
-input[type=submit] {
-  @include btn;
-  float: right;
-  font-size: 1.5em;
-  &:before, &:after {
-    content: '';
-    display: block;
+.actions-field {
+  clear: both;
+  @include clearfix;
+  input {
+    background: $retro-green;
+    color: white;
+    font-size: 1em;
     clear: both;
+    border: none;
+    font-weight: 700;
+    line-height: 25px;
+    text-transform: uppercase;
+    border-radius: 5px;
+    font-family: $base-font-family;
+    cursor: pointer;
+  }
+}
+.checkbox-field {
+  line-height: 50px;
+  input {
+    display: inline-block;
+    width: auto;
   }
 }
 

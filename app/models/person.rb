@@ -12,7 +12,6 @@ class Person < ActiveRecord::Base
   has_many :assets, as: :attachable
   has_one :identity, dependent: :destroy
   before_save :set_site
-  before_save :downcase_name
   ROLE_ENUM = %w(student teacher staff)
   GRADE_ENUM = [6, 7, 8, 9, 10, 11, 12]
   SEX_ENUM = %w(M F)
@@ -139,11 +138,6 @@ class Person < ActiveRecord::Base
       self.site_id = self.user.try(:site).try(:id)
     end
     true
-  end
-
-  def downcase_name
-    self.first_name = self.first_name.try(:downcase)
-    self.last_name = self.last_name.try(:downcase)
   end
 
   # takes a CSV from the public directory and a User object

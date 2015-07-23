@@ -1,15 +1,11 @@
 .titlebar {
   position: relative;
-  border-bottom: 1px solid $base-border-color;
   padding-bottom: 15px;
   padding: 15px;
   background: white;
   height: 50px;
   .title, .subtitle {
     display: inline-block;
-  }
-  .title {
-    font-weight: 700;
   }
 }
 
@@ -111,6 +107,10 @@
   min-height: 10em;
   padding-bottom: 0;
   margin-bottom: -15px;
+}
+
+form .field {
+  padding: 15px 0;
 }
 
 @include media(1020px) {

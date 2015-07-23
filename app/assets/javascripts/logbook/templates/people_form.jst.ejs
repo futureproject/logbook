@@ -1,77 +1,60 @@
 <form accept-charset="UTF-8">
-  <div class="row">
-    <div class="field g3">
-      <input id="first_name" name="first_name" required="required" type="text">
-      <label for="first_name">Person First Name</label>
-    </div>
-    <div class="field g3">
-      <input id="last_name" name="last_name" required="required" type="text">
-      <label for="last_name">Person Last Name</label>
-    </div>
-    <div class="field g6">
-      <select id="person_school_id" name="school_id">
-        <option value>Citywide</option>
-        <% for (var i=0; i < ds.collections.schools.length; i++) { %>
-          <option value="<%= ds.collections.schools.models[i].get('id') %>">
-            <%= ds.collections.schools.models[i].get('name') %>
-          </option>
-        <% } %>
-      </select>
-      <label for="school_id">School/City</label>
-    </div>
+  <div class="field first-name-field">
+    <input id="first_name" name="first_name" required="required" type="text">
+    <label for="first_name">Person First Name</label>
   </div>
-  <div class="row">
-    <div class="field g3">
-      <select id="role" name="role">
-        <option value=""></option>
-        <option value="student">student</option>
-        <option value="teacher">teacher</option>
-        <option value="staff">staff</option>
-      </select>
-      <label for="role">Role</label>
-    </div>
-    <div class="field g3">
-      <select id="grade" name="grade">
-        <option value=""></option>
-        <option value="6">6</option>
-        <option value="7">7</option>
-        <option value="8">8</option>
-        <option value="9">9</option>
-        <option value="10">10</option>
-        <option value="11">11</option>
-        <option value="12">12</option>
-      </select>
-      <label for="grade">Grade</label>
-    </div>
-    <div class="field g3">
-      <select id="sex" name="sex">
-        <option value=""></option>
-        <option value="M">M</option>
-        <option value="F">F</option>
-      </select>
-      <label for="sex">Sex</label>
-    </div>
-    <div class="field g3">
-      <select id="dream_team" name="dream_team">
-        <option value="true">Yep</option>
-        <option value="false">Nope</option>
-      </select>
-      <label for="dream_team">Dream team</label>
-    </div>
+  <div class="field last-name-field">
+    <input id="last_name" name="last_name" required="required" type="text">
+    <label for="last_name">Person Last Name</label>
   </div>
-  <div class="row">
-    <div class="field g6">
-      <input id="email" name="email" type="text">
-      <label for="email">Email</label>
-    </div>
-    <div class="field g6">
-      <input id="phone" name="phone" type="text">
-      <label for="phone">Phone</label>
-    </div>
+  <div class="field school-field">
+    <select id="person_school_id" name="school_id">
+    </select>
+    <label for="school_id">School</label>
   </div>
-  <div class="row">
-    <div class="actions">
-    <input name="commit" type="submit" value="Save">
-    </div>
+  <div class="field role-field">
+    <select id="role" name="role">
+      <option value=""></option>
+      <option value="student">student</option>
+      <option value="teacher">teacher</option>
+      <option value="staff">staff</option>
+    </select>
+    <label for="role">Role</label>
+  </div>
+  <div class="field grade-field">
+    <select id="grade" name="grade">
+      <option value=""></option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+      <option value="10">10</option>
+      <option value="11">11</option>
+      <option value="12">12</option>
+    </select>
+    <label for="grade">Grade</label>
+  </div>
+  <div class="field sex-field">
+    <select id="sex" name="sex">
+      <option value=""></option>
+      <option value="M">M</option>
+      <option value="F">F</option>
+    </select>
+    <label for="sex">Sex</label>
+  </div>
+  <div class="field checkbox-field dream-team-field">
+    <input id="dream_team" type='checkbox' name="dream_team" />
+    <label for="dream_team">Dream Team</label>
+  </div>
+  <div class="field email-field">
+    <input id="email" name="email" type="text">
+    <label for="email">Email</label>
+  </div>
+  <div class="field phone-field">
+    <input id="phone" name="phone" type="text">
+    <label for="phone">Phone</label>
+  </div>
+  <div class="actions-field field">
+    <input type="submit" value="Save Person">
   </div>
 </form>

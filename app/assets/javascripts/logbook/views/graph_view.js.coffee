@@ -13,6 +13,7 @@ class ds.GraphView extends Backbone.View
       success: (response) =>
         @setChart(response)
         @render()
+      error: () => @hide()
 
   render: ->
     @chart.reflow()

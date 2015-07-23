@@ -1,10 +1,34 @@
-body[data-controller=logbook_people] {
+body.people {
   a { color: $people-color; }
+  .btn {
+    color: white;
+    background: $people-color;
+  }
 }
 #people-table {
-  th.dream_team { text-align: center; }
   th.grade, th.projects_count, th.engagements_count { text-align: right; }
   td:first-child, td:nth-child(2) {
     width: 150px;
   }
+}
+#person-form {
+  @include row;
+  .first-name-field, .last-name-field, .role-field, .sex-field,
+  .grade-field, .sex-field, .dream-team-field  {
+    @include span-columns(3);
+  }
+  .dream-team-field {
+    @include omega;
+  }
+  .school-field {
+    @include span-columns(6);
+    @include omega;
+  }
+  .role-field {
+    clear: both;
+  }
+  .email-field, .phone-field {
+    @include span-columns(6);
+  }
+  .phone-field { @include omega; }
 }

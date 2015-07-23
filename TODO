@@ -1,5 +1,7 @@
-Port people
-  EDIT
+Validate PersonForm before submitting!
+
+hide timeline filter with css on relevant pages
+(everywhere except: dashboard, index)
 
 Port Engagements
   INDEX

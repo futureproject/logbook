@@ -5,6 +5,7 @@ class ds.Router extends Backbone.Router
   routes:
     "logbook": "dashboard"
     "logbook/people": "people_index"
+    "logbook/people/new": "people_new"
     "logbook/people/:id": "people_show"
     "logbook/people/:id/edit": "people_edit"
     "logbook/engagements": "engagements_index"
@@ -17,6 +18,7 @@ class ds.Router extends Backbone.Router
   #PEOPLE
   people_index: -> Backbone.trigger "people:index"
   people_show: (id) -> Backbone.trigger "people:show", id
+  people_new: (model) -> Backbone.trigger "people:new", model
   people_edit: (id) -> Backbone.trigger "people:edit", id
 
   #ENGAGEMENTS

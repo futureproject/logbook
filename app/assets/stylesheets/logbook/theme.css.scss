@@ -64,6 +64,14 @@ body.reports #nav {
 a {
   text-decoration: none;
   color: $base-accent-color;
+  &.destroy {
+    float: right;
+    @include clearfix;
+    display: inline-block;
+    background: $retro-red !important;
+    font-weight: bold;
+    border-radius: 5px;
+  }
 }
 
 header, label, th {
@@ -72,6 +80,7 @@ header, label, th {
   font-size: 10px;
   line-height: 1.5;
   color: $retro-light-gray;
+  @include user-select(none);
   a { color: $retro-light-gray; }
 }
 
@@ -143,6 +152,14 @@ tbody {
   }
 }
 
+.titlebar {
+  border-bottom: 1px solid $base-border-color;
+  text-transform: capitalize;
+  .title {
+    font-weight: 700;
+  }
+}
+
 .btn {
   display: inline-block;
   background: $retro-yellow;
@@ -151,5 +168,5 @@ tbody {
   font-weight: bold;
   font-size: 10px;
   padding: 0 5px;
-  border-radius: $base-border-radius;
+  @include user-select(none);
 }
