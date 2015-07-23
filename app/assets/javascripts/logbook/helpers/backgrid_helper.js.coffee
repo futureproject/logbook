@@ -1,9 +1,9 @@
-class ds.PermalinkFormatter extends Backgrid.CellFormatter
+class ds.LogbookLinkFormatter extends Backgrid.CellFormatter
   fromRaw: (rawValue, model) ->
     "<a href='#{ds.urlsHelper.urlFor(model)}'>#{rawValue}</a>"
 
-class ds.PermalinkCell extends Backgrid.StringCell
-  formatter: ds.PermalinkFormatter
+class ds.LogbookLinkCell extends Backgrid.StringCell
+  formatter: ds.LogbookLinkFormatter
   render: ->
     this.$el.empty()
     model = this.model

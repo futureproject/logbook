@@ -14,13 +14,12 @@ class ds.PeopleIndexView extends Backbone.View
   className: 'people'
 
   render: ->
-    console.log 'rendered index view'
     @$el.html @template()
     @postRender()
     @
 
   postRender: ->
-    @views.leaderboard.renderTo $("#people-leaderboard")
-    @$el.find('#people-table').html @views.table.render().el
-    @$el.find('#people-pagination').html @views.pagination.render().el
+    @views.leaderboard.renderTo "#people-leaderboard"
+    @views.table.renderTo "#people-table"
+    @views.pagination.renderTo '#people-pagination'
 

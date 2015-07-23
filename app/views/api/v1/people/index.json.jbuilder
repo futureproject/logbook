@@ -15,8 +15,8 @@
           :phone,
           :grade,
           :school_id
-        json.projects_count person.projects_count
-        json.engagements_count person.engagements_count
+        json.projects_count (person.respond_to?(:projects_count) ? person.projects_count : person.projects.count)
+        json.engagements_count (person.respond_to?(:engagements_count) ? person.engagements_count : person.engagements.count)
       #end
     end
   end

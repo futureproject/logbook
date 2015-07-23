@@ -16,9 +16,6 @@ Rails.application.routes.draw do
         collection do
           get 'leaderboard'
         end
-        member do
-          get 'engagements_bubble_graph'
-        end
       end
       resources :projects
       resources :engagements do

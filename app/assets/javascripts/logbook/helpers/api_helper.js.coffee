@@ -17,6 +17,7 @@ ds.apiHelper =
     national_graphs: (graph) -> "/api/v1/nationals/usa/graphs/#{graph}"
     site_graphs: (args) -> "/api/v1/sites/#{args.id}/graphs/#{args.graph}"
     school_graphs: (args) -> "/api/v1/schools/#{args.id}/graphs/#{args.graph}"
+    people_graphs: (args) -> "/api/v1/people/#{args.id}/graphs/#{args.graph}"
 
   urlFor: (path, args) ->
     @urls[path]? args

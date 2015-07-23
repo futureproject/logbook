@@ -68,21 +68,6 @@ class Api::V1::GraphsController < Api::V1::BaseController
     }
   end
 
-  def engagement_bubbles_graph
-    graph_data = StatCollector.engagement_bubble_data(
-      scope: @scope,
-    )
-    render json: {
-      data: graph_data,
-      type: 'bubble',
-      x_axis_type: 'datetime',
-      header_format: "{series.name}<br>",
-      point_format: "<b>{point.title}</b><br>{point.y} Hrs, {point.z} Attendees<br>{point.notes}",
-      title: "Engagements",
-      colors: Engagement::COLOR_ENUM,
-    }
-  end
-
   def people_bubbles_graph
     graph_data = StatCollector.people_bubble_data(
       scope: @scope,

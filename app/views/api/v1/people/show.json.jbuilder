@@ -11,5 +11,11 @@ json.extract! @person, :id,
   :notes,
   :phone,
   :email
-json.projects @person.projects, :name, :id
-json.engagements @person.engagements.order('date DESC')
+json.projects @person.project_people.includes(:project).order('projects.name') do |pp|
+  json.id pp.project.id
+  json.name pp.project.name
+  json.description pp.project.description
+  json.size pp.project.people.count
+  json.leading pp.leading
+end
+json.engagements @person.engagements.order('date DESC').limit(20)

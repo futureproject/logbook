@@ -63,21 +63,6 @@ class Api::V1::PeopleController < Api::V1::BaseController
     head :no_content
   end
 
-  def engagements_bubble_graph
-    graph_data = StatCollector.engagement_bubble_data(
-      scope: @person,
-    )
-    render json: {
-      data: graph_data,
-      type: 'bubble',
-      x_axis_type: 'datetime',
-      header_format: "{series.name}<br>",
-      point_format: "<b>{point.title}</b><br>{point.y} Hrs, {point.z} Attendees<br>{point.notes}",
-      title: "Engagements",
-      colors: Engagement::COLOR_ENUM,
-    }
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_person

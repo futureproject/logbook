@@ -158,7 +158,7 @@ class StatCollector
   end
 
   # bubble graph
-  def self.engagement_bubble_data(args)
+  def self.engagements_bubble_data(args)
     scope = args[:scope] || National.new
     dates = args[:dates] ? args[:dates] : self.default_range
     scope.engagements.btw(dates).order(:kind).group_by(&:kind).map{|k,v| { name: k, data: v.map{|e| { x: e.date.to_datetime.to_i*1000, y: e.duration, z: e.headcount, title: e.name, url: "engagements/#{e.id}", notes: e.notes.try(:first, 44) } } } }

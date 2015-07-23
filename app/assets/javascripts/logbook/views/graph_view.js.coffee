@@ -63,7 +63,6 @@ class ds.GraphView extends Backbone.View
           events:
             click: (event) ->
               path = "/logbook/" + event.point.url
-              path += "?scope_id=" + ds.CONSTANTS.scope.id + "&scope_type=" + ds.CONSTANTS.scope.type
               window.location = path
         pie:
           allowPointSelect: true
@@ -81,7 +80,6 @@ class ds.GraphView extends Backbone.View
           events:
             click: (event) ->
               path = "/logbook/" + event.point.url
-              path += "?scope_id=" + ds.CONSTANTS.scope.id + "&scope_type=" + ds.CONSTANTS.scope.type
               window.location = path
         bubble:
           tooltip:
@@ -90,6 +88,5 @@ class ds.GraphView extends Backbone.View
           events:
             click: (event) ->
               path = "/logbook/" + event.point.url
-              path += "?scope_id=" + ds.CONSTANTS.scope.id + "&scope_type=" + ds.CONSTANTS.scope.type
               window.location = path
       series: chart_info.data

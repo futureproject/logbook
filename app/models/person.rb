@@ -112,14 +112,6 @@ class Person < ActiveRecord::Base
     school.dream_director
   end
 
-  def projects_count
-    projects.count
-  end
-
-  def engagements_count
-    engagements.count
-  end
-
   def logged_hours
     engagements.sum(:duration).to_i
   end
