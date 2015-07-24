@@ -1,3 +1,19 @@
-json.array!(@projects) do |project|
-  json.extract! project, :id, :name, :description, :leader_ids, :supporter_ids, :updated_at, :created_at, :status
-end
+#json.cache! ['people/v1', current_scope, @people.maximum(:updated_at), params[:page]] do
+  json.state do
+    json.total_entries @total
+  end
+  json.projects do
+    json.array!(@projects) do |project|
+      #json.cache! ['v1', project] do
+        json.extract! project, :id,
+          :name,
+          :description,
+          :status,
+          :created_at,
+          :updated_at
+        json.size project.people.count
+        json.notes_count (project.respond_to?(:notes_count) ? project.notes_count : project.notes.count)
+      #end
+    end
+  end
+#end

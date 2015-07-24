@@ -5,14 +5,11 @@ class Api::V1::ProjectsController < Api::V1::BaseController
   # GET /api/v1/projects
   # GET /api/v1/projects.json
   def index
-    if current_user.school
-      @projects = current_user.projects
-    elsif current_user.site
-      @projects = current_user.site.projects
-    else
-      @projects = Project.all
-    end
-    @projects = @projects.order('updated_at DESC', 'id DESC')
+    @projects = current_scope.projects
+      .conditionally_joined(params, stat_times)
+      .order(sort_params)
+      .page(params[:page])
+    @total = @projects.total_count
   end
 
   # GET /api/v1/projects/1
@@ -22,6 +19,12 @@ class Api::V1::ProjectsController < Api::V1::BaseController
 
   def stats
     render partial: 'projects/stats'
+  end
+
+  # GET /api/v1/projects/leaderboard
+  def leaderboard
+    @t = stat_times
+    @scope = current_scope
   end
 
   # GET /api/v1/projects/new
@@ -77,5 +80,13 @@ class Api::V1::ProjectsController < Api::V1::BaseController
         leader_ids: [],
         supporter_ids: []
       )
+    end
+
+    def sort_params
+      if params[:sort_by] && params[:order]
+        "#{params[:sort_by]} #{params[:order]}"
+      else
+        "updated_at DESC, id DESC"
+      end
     end
 end

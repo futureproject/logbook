@@ -245,4 +245,44 @@ class StatCollector
     }
   end
 
+  # a hash of top-ranked projects in a scope
+  def self.people_leaderboard_data(args)
+    scope = args[:scope] || National.new
+    dates = args[:dates] ? args[:dates] : self.default_range
+    {
+      most_hours_coached: scope.people.joins(:engagements)
+        .where(engagements: { kind: 'Coaching Session' })
+        .merge(scope.engagements.btw(dates))
+        .select("people.*, SUM(engagements.duration) AS engagement_hours")
+        .group('people.id').order('engagement_hours DESC').limit(5),
+      most_hours_logged: scope.people.joins(:engagements)
+        .merge(scope.engagements.btw(dates))
+        .select("people.*, SUM(engagements.duration) AS engagement_hours")
+        .group('people.id').order('engagement_hours DESC').limit(5),
+      most_engagements: scope.people.joins(:engagements)
+        .merge(scope.engagements.btw(dates))
+        .select("people.*, COUNT(engagements.id) AS engagements_count")
+        .group('people.id').order('engagements_count DESC').limit(5)
+    }
+  end
+
+  # a hash of top-ranked projects in a scope
+  def self.projects_leaderboard_data(args)
+    scope = args[:scope] || National.new
+    dates = args[:dates] ? args[:dates] : self.default_range
+    {
+      most_leaders: scope.projects.btw(dates).joins(:project_people)
+        .where(project_people: { leading: true })
+        .select("projects.*, COUNT(project_people.id) AS leaders_count")
+        .group('projects.id').order('leaders_count DESC').limit(5),
+      most_supporters: scope.projects.btw(dates).joins(:project_people)
+        .where(project_people: { leading: false })
+        .select("projects.*, COUNT(project_people.id) AS supporters_count")
+        .group('projects.id').order('supporters_count DESC').limit(5),
+      most_notes: scope.projects.btw(dates).joins(:notes)
+        .select("projects.*, COUNT(notes.id) AS notes_count")
+        .group('projects.id').order('notes_count DESC').limit(5),
+    }
+  end
+
 end

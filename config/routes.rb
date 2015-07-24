@@ -13,11 +13,11 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :users, only: [:index, :show, :update]
       resources :people do
-        collection do
-          get 'leaderboard'
-        end
+        get 'leaderboard', on: :collection
       end
-      resources :projects
+      resources :projects do
+        get 'leaderboard', on: :collection
+      end
       resources :engagements do
         get 'upload', on: :member
         get 'attendees', on: :member

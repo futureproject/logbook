@@ -1,4 +1,4 @@
-class ds.PeopleLeaderboardView extends Backbone.View
+class ds.LeaderboardView extends Backbone.View
   className: 'three-col'
   initialize: (args) ->
     @url = args.url
@@ -16,7 +16,7 @@ class ds.PeopleLeaderboardView extends Backbone.View
   addList: (list, list_name) =>
     $elem = $("<ul />")
     _.each list, (item) ->
-      $elem.append "<li>#{item.stat} - #{item.first_name} #{item.last_name}</li>"
+      $elem.append "<li>#{item.stat} - #{item.name}</li>"
     $elem.prepend("<li><label>#{list_name.replace(/\_/ig,' ')}</label></li>")
     $elem.append "<li>No Results</li>" if list.length == 0
     @$el.append $elem

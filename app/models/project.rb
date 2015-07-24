@@ -11,18 +11,22 @@ class Project < ActiveRecord::Base
   STATUS_ENUM = %w(underway stalled complete)
   include Sortable
 
-  scope :user_sort, -> (column) { order column.to_s }
-
   scope :q, -> (query) { where("lower(projects.name) like ?", "%#{query.downcase}%") }
 
-  scope :with_people, -> (kind='leaders') {
-    joins(kind.to_sym).select("projects.*, COUNT(people.id) AS people_count").group('projects.id')
+  scope :with_association, -> (table, dates) {
+    joins(table.to_sym)
+    .select("projects.*, COUNT(#{table}.id) AS #{table}_count")
+    .merge(self.btw(dates))
+    .group('projects.id')
   }
 
-  scope :with_association, -> (table) {
-    joins(table.to_sym).select("projects.*, COUNT(#{table}.id) AS #{table}_count").group('projects.id')
+  scope :conditionally_joined, -> (params, stat_times) {
+    if params[:sort_by] == "projects_count"
+      with_association(:notes, stat_times)
+    else
+      btw(stat_times)
+    end
   }
 
-  scope :with_updates, -> { where('updated_at > created_at') }
-  scope :btw, -> (range) { where(created_at: range) }
+  scope :btw, -> (range) { where(updated_at: range) }
 end

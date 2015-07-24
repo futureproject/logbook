@@ -9,6 +9,7 @@ ds.apiHelper =
     people_leaderboard:  -> "/api/v1/people/leaderboard"
     person: (id) -> "/api/v1/people/#{id}"
     projects:  -> "/api/v1/projects"
+    projects_leaderboard:  -> "/api/v1/projects/leaderboard"
     project: (id) -> "/api/v1/projects/#{id}"
     schools: -> "/api/v1/schools"
     school: (id) -> "/api/v1/schools/#{id}"

@@ -1,7 +1,7 @@
 class ds.PeopleIndexView extends Backbone.View
   initialize: ->
     @views =
-      leaderboard: new ds.PeopleLeaderboardView
+      leaderboard: new ds.LeaderboardView
         url: ds.apiHelper.urlFor "people_leaderboard"
       table: new ds.IndexTableView
         collection: ds.collections.people
