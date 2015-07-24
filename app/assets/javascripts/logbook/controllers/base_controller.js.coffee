@@ -9,8 +9,9 @@ class ds.BaseController extends Backbone.View
 
   onclick: (e) ->
     e.preventDefault()
-    return if location.pathname == @rootURL
-    ds.router.navigate(@rootURL, {trigger: true})
+    url = @$el.find('a').attr('href')
+    return if location.pathname == url
+    ds.router.navigate url, {trigger: true}
 
   activate: ->
     _.each @views, (view) -> view.hide()

@@ -72,6 +72,15 @@ a {
     font-weight: bold;
     border-radius: 5px;
   }
+  &.people-link {
+    color: $people-color !important;
+  }
+  &.engagements-link {
+    color: $engagements-color !important;
+  }
+  &.projects-link {
+    color: $projects-color !important;
+  }
 }
 
 header, label, th {
@@ -154,7 +163,6 @@ tbody {
 
 .titlebar {
   border-bottom: 1px solid $base-border-color;
-  text-transform: capitalize;
   .title {
     font-weight: 700;
   }

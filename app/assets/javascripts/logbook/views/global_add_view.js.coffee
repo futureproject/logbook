@@ -1,39 +1,21 @@
 window.ds ||= {}
 
-class ds.GlobalAddView extends Backbone.View
+class ds.GlobalAddTriggerView extends Backbone.View
+  initialize: -> @listenTo Backbone, 'routed', @setCssClass
+
+  el: '#global-add-trigger'
   events:
-    'ajax:success': 'success'
-    'ajax:error': 'error'
+    'click': 'toggle'
 
-  render: (template) ->
-    v = document.querySelector '.vex'
-    if v?
-      @setElement(v)
-      @$el.find('.vex-content').html(template)
-    else
-      vex.open
-        content: template
-        overlayClosesOnClick: false
-        escapeButtonCloses: false
-        showcloseButton: false
-      @setElement('.vex')
-    @$el.find('form').attr('data-remote', true).on('submit', (e) ->
-      $(this).find('input[type=submit]').attr('disabled', 'disabled')
-    ).find('select[multiple]').each ->
-      new ds.SelectizeView({ el: this })
-    @$el.find('input[type=text]').first().focus()
-    @
+  setCssClass: ->
+    @$el.toggleClass('open', @isOpen())
 
-  success: (event, data, status) ->
-    vex.closeAll()
-    new ds.FlashView({ message: "Saved!" })
+  isOpen: -> !!location.pathname.match /new/i
 
-  error: (event, response, status) ->
-    errors = JSON.parse(response.responseText)
-    errorName = Object.keys(errors)[0]
-    message = errors[errorName][0]
-    alert "#{errorName} #{message}"
+  toggle: -> if @isOpen() then @close() else @open()
 
+  open: ->
+    ds.router.navigate "/logbook/people/new", { trigger: true }
 
-$ ->
-  ds.global_add_view = new ds.GlobalAddView
+  close: ->
+    ds.router.navigate "/logbook", { trigger: true }

@@ -9,7 +9,13 @@ class ds.Router extends Backbone.Router
     "logbook/people/:id": "people_show"
     "logbook/people/:id/edit": "people_edit"
     "logbook/engagements": "engagements_index"
+    "logbook/engagements/new": "engagements_new"
+    "logbook/engagements/:id": "engagements_show"
+    "logbook/engagements/:id/edit": "engagements_edit"
     "logbook/projects": "projects_index"
+    "logbook/projects/new": "projects_new"
+    "logbook/projects/:id": "projects_show"
+    "logbook/projects/:id/edit": "projects_edit"
     "logbook/reports": "reports_index"
 
   #DASHBOARD
@@ -23,9 +29,15 @@ class ds.Router extends Backbone.Router
 
   #ENGAGEMENTS
   engagements_index: -> Backbone.trigger "engagements:index"
+  engagements_show: (id) -> Backbone.trigger "engagements:show", id
+  engagements_new: (model) -> Backbone.trigger "engagements:new", model
+  engagements_edit: (id) -> Backbone.trigger "engagements:edit", id
 
   #PROJECTS
   projects_index: -> Backbone.trigger "projects:index"
+  projects_show: (id) -> Backbone.trigger "projects:show", id
+  projects_new: (model) -> Backbone.trigger "projects:new", model
+  projects_edit: (id) -> Backbone.trigger "projects:edit", id
 
   #REPORTS
   reports_index: -> Backbone.trigger "reports:index"

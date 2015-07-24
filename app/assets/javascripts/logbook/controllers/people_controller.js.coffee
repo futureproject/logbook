@@ -1,5 +1,4 @@
 class ds.PeopleController extends ds.BaseController
-  rootURL: "logbook/people"
   el: "#people-nav-item"
   targetEl: "#yield"
   actions: ->

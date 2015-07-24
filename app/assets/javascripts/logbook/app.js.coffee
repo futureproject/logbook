@@ -14,6 +14,7 @@ ds.run = (args) ->
   ds.views.scope_toggle = new ds.ScopeToggleView
   ds.views.scope_menu = new ds.ScopeMenuView
   ds.views.user_view = new ds.UserView
+  ds.views.global_add_trigger_view = new ds.GlobalAddTriggerView
   ds.views.time_filter = new ds.TimeFilterView
   ds.controllers.dashboard = new ds.DashboardController
   ds.controllers.people = new ds.PeopleController

@@ -1,9 +1,5 @@
 body.people {
   a { color: $people-color; }
-  .btn {
-    color: white;
-    background: $people-color;
-  }
 }
 #people-table {
   th.grade, th.projects_count, th.engagements_count { text-align: right; }
