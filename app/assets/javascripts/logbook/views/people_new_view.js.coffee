@@ -16,4 +16,5 @@ class ds.PeopleNewView extends Backbone.View
 
   postRender: ->
     @views.form.renderTo "#person-form"
+    @views.form.$el.find('input').first().focus()
 

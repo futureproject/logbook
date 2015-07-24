@@ -1,6 +1,8 @@
 <div class="titlebar">
   <div class="title"><%= person.first_name %> <%= person.last_name %></div>
-  <a class='btn' href="/logbook/people/<%= person.id %>/edit">Edit</a>
+  <nav class='titlebar-actions'>
+    <a href="/logbook/people/<%= person.id %>/edit">Edit</a>
+  </nav>
 </div>
 <ul class="factbar">
   <li class="fact">

@@ -1,12 +1,14 @@
 <div class="titlebar">
   <div class="title">Editing Person</div>
-  <a class="btn" href="/logbook/people/<%= person.id %>">Cancel</a>
+</div>
+<div class="footerbar">
+  <nav class='l'>
+    <a href="/logbook/people/<%= person.id %>">Cancel</a>
+  </nav>
+  <nav class='r'>
+    <a href="/logbook/people" class="destroy">Delete Person</a>
+  </nav>
 </div>
 <div class="section">
   <div id="person-form"></div>
-</div>
-<div class="section">
-  <a href="/logbook/people" class="destroy btn">
-    Delete Person
-  </a>
 </div>

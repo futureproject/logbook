@@ -12,11 +12,6 @@
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   * { position: relative; }
-  h1 {
-    font-size: 20px;
-    line-height: 1;
-    font-weight: 700;
-  }
   li {
     white-space: nowrap;
     overflow: hidden;
@@ -91,7 +86,7 @@
     border: none;
     color: white;
     font-family: $base-font-family;
-    padding-left: 30px;
+    padding: 0 5px 0 30px;
     background: none;
   }
   #search-trigger {
@@ -154,11 +149,12 @@
   cursor: pointer;
   @include transition(all .3s);
   &.open {
-    @include transform(rotate(45deg));
+    @include transform(rotate(-45deg));
   }
 }
 
 #time-filter {
+  display: none;
   position: absolute;
   top: 0;
   right: 0;
@@ -180,4 +176,8 @@
     direction: rtl;
     @include appearance(none);
   }
+}
+
+body.dashboard, body.index {
+  #time-filter { display: block; }
 }

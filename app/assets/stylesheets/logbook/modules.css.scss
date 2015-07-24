@@ -9,14 +9,40 @@
   }
 }
 
-.titlebar-nav {
-  display: inline-block;
-  margin-left: 15px;
+.titlebar-actions {
+  float: right;
   a:not(:last-child):after {
     display: inline-block;
     padding-left: 5px;
     content: '/';
     color: $base-font-color;
+  }
+}
+
+.titlebar-nav {
+  display: table;
+  margin: -7px auto 0;
+  table-layout: fixed;
+  font-size: 15px;
+  > * {
+    vertical-align: middle;
+    display: table-cell;
+    padding: 5px;
+    border: 1px solid $base-accent-color;
+    border-left: none;
+  }
+  > *:first-child {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-left: 1px solid $base-accent-color;
+  }
+  > *:last-child {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+  > .active {
+    background: $base-accent-color;
+    color: white;
   }
 }
 
@@ -122,6 +148,39 @@
 
 form .field {
   padding: 15px 0;
+}
+
+input.save {
+  border: none;
+  font-family: $base-font-family;
+  display: inline-block;
+  width: auto;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 50px;
+  padding: 0 15px;
+  line-height: 50px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.footerbar {
+  position: fixed;
+  bottom: 0;
+  left: 210px;
+  right: 0;
+  padding: 15px;
+  line-height: 15px;
+  nav { display: inline-block; }
+  .l { float: left; }
+  .r { float: right; }
+  a:not(:last-child):after {
+    display: inline-block;
+    padding-left: 5px;
+    content: '/';
+    color: $base-font-color;
+  }
 }
 
 @include media(1020px) {

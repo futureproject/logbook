@@ -17,10 +17,6 @@ Port Projects
   SHOW
   EDIT
 
-Build the ADD VIEW
-
-# IN SLACK BRANCH
-# SHOULD scope.btw feed updated_at or created_at?
 
 Add GOAL to engagements
 
@@ -35,8 +31,11 @@ Washington DC - DC
 add Notables to school pages
 add activity feed to person profiles
 add created_at and modified_at to project tables
+Add created_at to the people tables
 pressing ENTER on search with nothing highlighted should go to advanced search page
 Order not recently engaged students by: dream_team, engagements_count
+Revisit .section-header styling
+infinitely scrolling lists
 
 Add person profile picture to top right of person profiles
 

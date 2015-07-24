@@ -4,6 +4,7 @@ class ds.Router extends Backbone.Router
 
   routes:
     "logbook": "dashboard"
+    "logbook/dashboard": "dashboard"
     "logbook/people": "people_index"
     "logbook/people/new": "people_new"
     "logbook/people/:id": "people_show"

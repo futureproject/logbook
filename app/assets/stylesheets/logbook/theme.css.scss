@@ -14,10 +14,10 @@
   &:after {
     content: '';
     display: block;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
-    right: 0;
+    width: 210px;
     bottom: 0;
     @include linear-gradient(transparent, rgba(0,0,0,.5));
     z-index: 0;
@@ -41,6 +41,10 @@ body.reports #nav {
 
 #app-name {
   border-bottom: 1px solid rgba(0,0,0,.1);
+  h1 {
+    font-size: 20px;
+    font-weight: bold;
+  }
 }
 #app-sections, #search {
   border-top: 1px solid rgba(0,0,0,.1);
@@ -64,24 +68,20 @@ body.reports #nav {
 a {
   text-decoration: none;
   color: $base-accent-color;
-  &.destroy {
-    float: right;
-    @include clearfix;
-    display: inline-block;
-    background: $retro-red !important;
-    font-weight: bold;
-    border-radius: 5px;
-  }
-  &.people-link {
-    color: $people-color !important;
-  }
-  &.engagements-link {
-    color: $engagements-color !important;
-  }
-  &.projects-link {
-    color: $projects-color !important;
-  }
 }
+.destroy {
+  color: $retro-red !important;
+}
+.people-link {
+  color: $people-color !important;
+}
+.engagements-link {
+  color: $engagements-color !important;
+}
+.projects-link {
+  color: $projects-color !important;
+}
+
 
 header, label, th {
   text-transform: uppercase;
@@ -163,10 +163,15 @@ tbody {
 
 .titlebar {
   border-bottom: 1px solid $base-border-color;
-  font-size: 20px;
+  font-size: 18px;
   .title {
     font-weight: 700;
   }
+}
+.footerbar {
+  background: white;
+  background: rgba(255,255,255,0.95);
+  border-top: 1px solid $base-border-color;
 }
 
 .btn {
