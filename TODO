@@ -1,9 +1,11 @@
+Activate controllers with a URL listener, not by calling activate allatime
+Closing add view should go back to relevant controller
+
 Validate PersonForm before submitting!
 
 hide timeline filter with css on relevant pages
 (everywhere except: dashboard, index)
 
-Make Controller views listen to url change to set thier CSS class
 
 Port Engagements
   INDEX
@@ -31,7 +33,12 @@ San Francisco - SF
 Washington DC - DC
 
 add Notables to school pages
+add activity feed to person profiles
+add created_at and modified_at to project tables
+pressing ENTER on search with nothing highlighted should go to advanced search page
+Order not recently engaged students by: dream_team, engagements_count
 
+Add person profile picture to top right of person profiles
 
 
 # NEW FEATURES!
@@ -63,4 +70,5 @@ _ Rework filters to be independent of scope_params
 
 remove user site_id
 make user school_id polymorphic
+
 
