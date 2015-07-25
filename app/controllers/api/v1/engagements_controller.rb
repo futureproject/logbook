@@ -5,11 +5,17 @@ class Api::V1::EngagementsController < Api::V1::BaseController
   # GET /api/v1/engagements
   # GET /api/v1/engagements.json
   def index
-    if current_user.school
-      @engagements = current_user.school.engagements.order('date DESC, id DESC').page(params[:page]).per(200)
-    else
-      @engagements = current_user.engagements.order('date DESC, id DESC').page(params[:page]).per(200)
-    end
+    @engagements = current_scope.engagements
+      .conditionally_joined(params, stat_times)
+      .order(sort_params)
+      .page(params[:page])
+    @total = @engagements.total_count
+  end
+
+  # GET /api/v1/engagements/leaderboard
+  def leaderboard
+    @t = stat_times
+    @scope = current_scope
   end
 
   # GET /api/v1/engagements/1
@@ -90,6 +96,14 @@ class Api::V1::EngagementsController < Api::V1::BaseController
         engagement_params.merge(school_id: current_user.school_id)
       else
         engagement_params
+      end
+    end
+
+    def sort_params
+      if params[:sort_by] && params[:order]
+        "#{params[:sort_by]} #{params[:order]}"
+      else
+        "date DESC"
       end
     end
 end

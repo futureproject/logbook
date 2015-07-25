@@ -5,6 +5,7 @@ class Engagement < ActiveRecord::Base
   has_many :engagement_attendees, dependent: :destroy
   has_many :attendees, through: :engagement_attendees, source: :person
   has_many :assets, as: :attachable, dependent: :destroy
+  #has_many :notes, as: :notable, dependent: :destroy
   #has_many :activities, as: :thing, dependent: :destroy
   #after_create :log_activity
   before_create :autoname
@@ -30,10 +31,7 @@ class Engagement < ActiveRecord::Base
 
   COLOR_ENUM = %w(#b363a4 #56304f #f1c7e9 #8457b3)
 
-  include Sortable
-  scope :user_sort, -> (column) { order column.to_s }
   scope :q, -> (query) { where("lower(engagements.name) like ?", "%#{query.downcase}%") }
-  scope :one_on_ones, -> { joins(:engagement_attendees).group('engagements.id').having('count(engagement_attendees.id)=1') }
   scope :week_of, -> (date) { where(date: date.beginning_of_week..date.end_of_week) }
   scope :since, -> (date) { where('date >= ?', date) }
   scope :btw, -> (range) { where(date: range) }
@@ -42,6 +40,14 @@ class Engagement < ActiveRecord::Base
   }
   scope :with_association, -> (table) {
     joins(table.to_sym).select("engagements.*, COUNT(#{table}.id) AS #{table}_count").group('engagements.id')
+  }
+
+  scope :conditionally_joined, -> (params, stat_times) {
+    if params[:sort_by] == "notes_count"
+      with_association(:notes).merge(btw(stat_times))
+    else
+      btw(stat_times)
+    end
   }
 
   def autoname

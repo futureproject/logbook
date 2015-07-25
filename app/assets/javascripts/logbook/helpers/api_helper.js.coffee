@@ -3,6 +3,7 @@ ds.apiHelper =
     assets: -> "/api/v1/assets"
     asset: (id) -> "/api/v1/assets/#{id}"
     engagements: -> "/api/v1/engagements"
+    engagements_leaderboard:  -> "/api/v1/engagements/leaderboard"
     engagement: (id) -> "/api/v1/engagements/#{id}"
     engagement_attendees: (id) -> "/api/v1/engagements/#{id}/attendees"
     people:  -> "/api/v1/people"

@@ -12,19 +12,15 @@ class Api::V1::ProjectsController < Api::V1::BaseController
     @total = @projects.total_count
   end
 
-  # GET /api/v1/projects/1
-  # GET /api/v1/projects/1.json
-  def show
-  end
-
-  def stats
-    render partial: 'projects/stats'
-  end
-
   # GET /api/v1/projects/leaderboard
   def leaderboard
     @t = stat_times
     @scope = current_scope
+  end
+
+  # GET /api/v1/projects/1
+  # GET /api/v1/projects/1.json
+  def show
   end
 
   # GET /api/v1/projects/new

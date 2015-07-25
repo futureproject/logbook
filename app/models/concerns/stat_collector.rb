@@ -285,4 +285,18 @@ class StatCollector
     }
   end
 
+  # a hash of top-ranked engagements in a scope
+  def self.engagements_leaderboard_data(args)
+    scope = args[:scope] || National.new
+    dates = args[:dates] ? args[:dates] : self.default_range
+    {
+      longest: scope.engagements.where('duration IS NOT NULL')
+        .btw(dates).order('duration DESC').limit(5),
+      largest: scope.engagements.where('headcount IS NOT NULL')
+        .btw(dates).order('headcount DESC').limit(5),
+      most_media: scope.engagements.btw(dates).joins(:assets)
+        .select("engagements.*, COUNT(assets.id) AS assets_count")
+        .group('engagements.id').order('assets_count DESC').limit(5)
+    }
+  end
 end

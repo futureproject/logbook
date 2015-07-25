@@ -19,6 +19,7 @@ Rails.application.routes.draw do
         get 'leaderboard', on: :collection
       end
       resources :engagements do
+        get 'leaderboard', on: :collection
         get 'upload', on: :member
         get 'attendees', on: :member
       end

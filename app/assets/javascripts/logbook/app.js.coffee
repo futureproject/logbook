@@ -10,6 +10,7 @@ ds.run = (args) ->
   ds.collections.schools = new ds.SchoolsCollection
   ds.collections.people = new ds.PeopleCollection
   ds.collections.projects = new ds.ProjectsCollection
+  ds.collections.engagements = new ds.EngagementsCollection
   ds.views.app_view = new ds.AppView
   ds.views.scope_toggle = new ds.ScopeToggleView
   ds.views.scope_menu = new ds.ScopeMenuView

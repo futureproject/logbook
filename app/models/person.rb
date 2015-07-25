@@ -17,7 +17,6 @@ class Person < ActiveRecord::Base
   SEX_ENUM = %w(M F)
   DREAM_TEAM_ENUM = [["Yep", true],["Nope", false]]
   COLOR_ENUM = %w(#42C8EE #036B89 #7c878a #419AD3 #568099)
-  include Sortable
 
   scope :with_engagements, -> (dates) {
     joins(:engagements).select("people.*, COUNT(engagements.id) AS engagements_count")

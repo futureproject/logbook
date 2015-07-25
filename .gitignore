@@ -16,3 +16,4 @@
 /tmp
 .env
 spec/loadtest.sh
+*.swp

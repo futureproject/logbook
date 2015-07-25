@@ -1,6 +1,7 @@
 class ds.LeaderboardView extends Backbone.View
   className: 'three-col'
   initialize: (args) ->
+    throw "ds.LeaderboardView needs a URL argument" unless args?.url
     @url = args.url
     @listenTo Backbone, 'dates:changed', @render
 

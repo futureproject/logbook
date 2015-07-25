@@ -144,6 +144,11 @@
   min-height: 10em;
   padding-bottom: 0;
   margin-bottom: -15px;
+  li {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
 
 form .field {

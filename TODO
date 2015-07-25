@@ -1,21 +1,18 @@
-Activate controllers with a URL listener, not by calling activate allatime
 Closing add view should go back to relevant controller
-
 Validate PersonForm before submitting!
-
-hide timeline filter with css on relevant pages
-(everywhere except: dashboard, index)
-
+change project conditionallyJoined to respect sorting by size
 
 Port Engagements
   INDEX
   SHOW
+  NEW
   EDIT
 
 Port Projects
   INDEX
   SHOW
   EDIT
+  NEW
 
 
 Add GOAL to engagements

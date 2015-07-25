@@ -9,20 +9,18 @@ class Project < ActiveRecord::Base
   has_many :notes, as: :notable, dependent: :destroy
   COLOR_ENUM = %w(#419AD3 #568099 #064974 #FFAC43 #B66500 #FFEDD6)
   STATUS_ENUM = %w(underway stalled complete)
-  include Sortable
 
   scope :q, -> (query) { where("lower(projects.name) like ?", "%#{query.downcase}%") }
 
   scope :with_association, -> (table, dates) {
     joins(table.to_sym)
     .select("projects.*, COUNT(#{table}.id) AS #{table}_count")
-    .merge(self.btw(dates))
     .group('projects.id')
   }
 
   scope :conditionally_joined, -> (params, stat_times) {
-    if params[:sort_by] == "projects_count"
-      with_association(:notes, stat_times)
+    if params[:sort_by] == "notes_count"
+      with_association(:notes).merge(btw(stat_times))
     else
       btw(stat_times)
     end
