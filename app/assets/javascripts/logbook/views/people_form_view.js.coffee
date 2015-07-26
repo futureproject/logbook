@@ -32,7 +32,7 @@ class ds.PeopleFormView extends Backbone.View
     $f.append "<option value></option>"
     ds.collections.schools.each (s) ->
       $f.append "<option value='#{s.get('id')}'>#{s.get('name')}</option>"
-    @$el.find('#person_school_id').html $f
+    @$el.find('#school_id').html $f
 
   reflectIdChange: ->
     @model.once 'change:id', =>

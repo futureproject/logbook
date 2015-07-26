@@ -5,6 +5,8 @@
 #= require backgrid.min
 #= require backgrid-paginator.min
 #= require backbone.syphon
+#= require moment
+#= require combodate
 #= require selectize
 #= require twitter/typeahead
 #= require s3_direct_upload

@@ -16,6 +16,7 @@ class ds.EngagementsFormView extends Backbone.View
   postRender: ->
     @setSchoolOptions()
     Backbone.Syphon.deserialize @, @model.toJSON()
+    $(".date-field input").combodate()
 
   onsubmit: (event) ->
     event.preventDefault()
@@ -32,7 +33,7 @@ class ds.EngagementsFormView extends Backbone.View
     $f.append "<option value></option>"
     ds.collections.schools.each (s) ->
       $f.append "<option value='#{s.get('id')}'>#{s.get('name')}</option>"
-    @$el.find('#person_school_id').html $f
+    @$el.find('#school_id').html $f
 
   reflectIdChange: ->
     @model.once 'change:id', =>

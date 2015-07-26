@@ -96,3 +96,10 @@ textarea {
     }
   }
 }
+.combodate {
+  display: block;
+  select {
+    display: inline-block;
+    width: auto;
+  }
+}

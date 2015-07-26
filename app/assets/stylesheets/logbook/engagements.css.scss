@@ -1,64 +1,15 @@
-.logbook_engagements {
-  a { color: $engagements-color; }
-  .labels, .page-header, #filters {
-    background: $engagements-color;
-    color: white;
-    a { color: white; }
-  }
+#engagements-table {
 }
-
-.engagement-labels, .table .engagement {
-  @extend %row;
-  .engagement-kind { @include span-columns(2); }
-  .engagement-school, .engagement-name { @include span-columns(3); }
+#engagement-form {
+  @include row;
+  .duration-field, .date-field {
+    @include span-columns(3);
+  }
+  .duration-field {
+    @include omega;
+  }
+  .kind-field, .school-field, .name-field {
+    @include span-columns(6);
+  }
+  .school-field { @include omega; }
 }
-
-.engagement-attendees {
-  .table.people {
-    padding: 0 !important;
-  }
-  a {
-    &:not(:last-child):after { content: ', '; }
-  }
-}
-
-.engagements-color { color: $engagements-color; }
-
-.engagement-show {
-  h1 { color: $engagements-color; }
-  .engagement-attendees {
-    a {
-      color: $people-color;
-      font-size: 1.25em;
-    }
-  }
-}
-
-form.new_engagement, form.edit_engagement {
-  .attendees label .alternate-label { display: none; }
-  .headcount { display: none; }
-  .selectize-input .item {
-    background: $engagements-color;
-    color: white;
-  }
-  &[data-kind=event] {
-    .headcount { display: block; }
-    .attendees label .alternate-label { display: inline-block; }
-    .attendees label .primary-label { display: none; }
-  }
-  &[data-kind=coaching-session] {
-    .attendees a { display: none; }
-    .selectize-control.multi .selectize-input {
-      .item {
-        font-size: 2em;
-        padding: 8px;
-        line-height: 1;
-      }
-      input {
-        font-size: 2em !important;
-        padding: 8px !important;
-      }
-    }
-  }
-}
-

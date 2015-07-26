@@ -1,31 +1,27 @@
-<form data-kind='<%= kind.toLowerCase().replace(' ','-') %>'>
-  <div class='attendance recessed-button'>
-    <span class='icon icon-group'></span>Take Attendance
-  </div>
-  <div class="field">
-    <label for="kind">Kind</label>
+<form data-kind='<%= engagement.kind %>'>
+  <div class="field kind-field">
     <select id="kind" name="kind">
       <option value="Coaching Session">Coaching Session</option>
       <option value="Event">Event</option>
       <option value="Meeting">Meeting</option>
       <option value="Workshop">Workshop</option>
     </select>
+    <label for="kind">Kind</label>
   </div>
   <div class="field school-field">
-    <select id="engagement_school_id" name="school_id">
+    <select id="school_id" name="school_id">
     </select>
     <label for="school_id">School</label>
   </div>
-  <div class="field">
-    <label for="name">Name</label>
+  <div class="field name-field">
     <input id="name" name="name" type="text">
+    <label for="name">Engagement Name</label>
   </div>
-  <div class="field">
+  <div class="field date-field">
+    <input name='date' type='text' data-format="YYYY-MM-DD" data-template="YYYY MMM D">
     <label for="date">Date</label>
-    <input name='date' type='date'>
   </div>
-  <div class="field">
-    <label for="duration">Duration</label>
+  <div class="field duration-field">
     <select id="engagement_duration" name="duration">
       <option value="0.1">5 Minutes</option>
       <option value="0.25">15 Minutes</option>
@@ -41,13 +37,14 @@
       <option value="7">7 Hours</option>
       <option value="8">8 Hours</option>
     </select>
+    <label for="duration">Duration</label>
   </div>
   <div class="field headcount-field">
-    <label for="headcount">Headcount</label>
     <input id="headcount" name="headcount" type="number" min="0">
+    <label for="headcount">How many people were there?</label>
   </div>
-  <div class="field">
-    <label for="recap">Recap</label>
+  <div class="field recap-field">
+    <label for="recap">What Happened?</label>
     <textarea name='recap'></textarea>
   </div>
   <input type="submit" value="Save" class='save people-link'>

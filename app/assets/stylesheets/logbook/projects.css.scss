@@ -1,51 +1,9 @@
-.logbook_projects {
-  a { color: $projects-color; }
-  .labels, .page-header, #filters {
-    background: $projects-color;
-    color: white;
-    a { color: white; }
-  }
+#projects-table {
 }
-
-.project-labels, .table .project {
-  @extend %row;
-  .project-name { @include span-columns(3); }
-  .project-description { display: none; }
-  .project-leaders, .project-supporters { @include span-columns(1); }
-  .project-school { @include span-columns(2); }
-  .project-updated-at { @include span-columns(1); }
-  &.complete, &.stalled {
-    &:before {
-      content: '';
-      display: block;
-      position: absolute;
-      top: 15px;
-      left: 8px;
-      height: 6px;
-      width: 6px;
-      border-radius: 6px;
-      border: 2px solid white;
-    }
+#project-form {
+  @include row;
+  .name-field, .status-field, .school-field {
+    @include span-columns(4);
   }
-  &.complete:before { background: $projects-color; }
-  &.stalled:before { background: $light-red; }
-}
-
-.project-leaders, .project-supporters {
-  a {
-    &:not(:last-child):after { content: ', '; }
-  }
-}
-
-.project-show {
-  h1 { color: $projects-color; }
-  .table.people {
-    padding: 0 !important;
-  }
-  .project-leaders, .project-supporters {
-    a {
-      color: $people-color;
-      font-size: 1.25em;
-    }
-  }
+  .school-field { @include omega; }
 }
