@@ -48,7 +48,13 @@
       #global-add-trigger.icon-add_circle_outline
       #user
 
-    #yield= yield
+    #yield
+      %noscript
+        .titlebar
+          .title Javascript:
+          .subtitle to the last, I will grapple with thee...
+      = yield
+
     #time-filter
       %select#time-filter-menu
         %option{value: 'this_school_year'}this school year

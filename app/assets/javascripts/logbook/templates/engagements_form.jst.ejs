@@ -1,58 +1,55 @@
-<form accept-charset="UTF-8">
-  <div class="field first-name-field">
-    <input id="first_name" name="first_name" required="required" type="text">
-    <label for="first_name">Person First Name</label>
+<form data-kind='<%= kind.toLowerCase().replace(' ','-') %>'>
+  <div class='attendance recessed-button'>
+    <span class='icon icon-group'></span>Take Attendance
   </div>
-  <div class="field last-name-field">
-    <input id="last_name" name="last_name" required="required" type="text">
-    <label for="last_name">Person Last Name</label>
+  <div class="field">
+    <label for="kind">Kind</label>
+    <select id="kind" name="kind">
+      <option value="Coaching Session">Coaching Session</option>
+      <option value="Event">Event</option>
+      <option value="Meeting">Meeting</option>
+      <option value="Workshop">Workshop</option>
+    </select>
   </div>
   <div class="field school-field">
-    <select id="person_school_id" name="school_id">
+    <select id="engagement_school_id" name="school_id">
     </select>
     <label for="school_id">School</label>
   </div>
-  <div class="field role-field">
-    <select id="role" name="role">
-      <option value=""></option>
-      <option value="student">student</option>
-      <option value="teacher">teacher</option>
-      <option value="staff">staff</option>
+  <div class="field">
+    <label for="name">Name</label>
+    <input id="name" name="name" type="text">
+  </div>
+  <div class="field">
+    <label for="date">Date</label>
+    <input name='date' type='date'>
+  </div>
+  <div class="field">
+    <label for="duration">Duration</label>
+    <select id="engagement_duration" name="duration">
+      <option value="0.1">5 Minutes</option>
+      <option value="0.25">15 Minutes</option>
+      <option value="0.5">30 Minutes</option>
+      <option value="0.75">45 Minutes</option>
+      <option selected value="1">1 Hour</option>
+      <option value="1.5">1.5 Hours</option>
+      <option value="2">2 Hours</option>
+      <option value="3">3 Hours</option>
+      <option value="4">4 Hours</option>
+      <option value="5">5 Hours</option>
+      <option value="6">6 Hours</option>
+      <option value="7">7 Hours</option>
+      <option value="8">8 Hours</option>
     </select>
-    <label for="role">Role</label>
   </div>
-  <div class="field grade-field">
-    <select id="grade" name="grade">
-      <option value=""></option>
-      <option value="6">6</option>
-      <option value="7">7</option>
-      <option value="8">8</option>
-      <option value="9">9</option>
-      <option value="10">10</option>
-      <option value="11">11</option>
-      <option value="12">12</option>
-    </select>
-    <label for="grade">Grade</label>
+  <div class="field headcount-field">
+    <label for="headcount">Headcount</label>
+    <input id="headcount" name="headcount" type="number" min="0">
   </div>
-  <div class="field sex-field">
-    <select id="sex" name="sex">
-      <option value=""></option>
-      <option value="M">M</option>
-      <option value="F">F</option>
-    </select>
-    <label for="sex">Sex</label>
-  </div>
-  <div class="field checkbox-field dream-team-field">
-    <input id="dream_team" type='checkbox' name="dream_team" />
-    <label for="dream_team">Dream Team</label>
-  </div>
-  <div class="field email-field">
-    <input id="email" name="email" type="text">
-    <label for="email">Email</label>
-  </div>
-  <div class="field phone-field">
-    <input id="phone" name="phone" type="text">
-    <label for="phone">Phone</label>
+  <div class="field">
+    <label for="recap">Recap</label>
+    <textarea name='recap'></textarea>
   </div>
   <input type="submit" value="Save" class='save people-link'>
 </form>
+

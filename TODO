@@ -1,22 +1,24 @@
 Port Engagements
-  INDEX
-  SHOW
-  NEW
   EDIT
+  NEW
+  DESTROY
 
 Port Projects
-  INDEX
-  SHOW
   EDIT
   NEW
+  DESTROY
 
-make leaderboards link to their records
-make graph events use the router, not just navigate
+Engagement Attendance....
+Project Leaders....
+Project Supporters....
+Restore Search...
+
 Closing add view should go back to relevant controller
 change project conditionallyJoined to respect sorting by size
 restyle people list
 restlye engagements list
 restyle projects list
+make leaderboards link to their records
 
 Detroit - DET
 Newark - NWK
@@ -32,7 +34,7 @@ add created_at and modified_at to project tables
 Add created_at to the people tables
 pressing ENTER on search with nothing highlighted should go to advanced search page
 Order not recently engaged students by: dream_team, engagements_count
-Revisit .section-header styling
+make graph events use the router, not just navigate
 infinitely scrolling lists
 Add GOAL to engagements
 
