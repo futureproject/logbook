@@ -19,9 +19,6 @@
     border: none;
     background: none;
     -webkit-transition: -webkit-transform .2s;
-    &:active {
-      @include transform(scale(.8));
-    }
   }
 }
 .titlebar-search-container {

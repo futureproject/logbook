@@ -37,6 +37,27 @@ Rails.application.routes.draw do
       end
       get '/:scope_type/:scope_id/graphs/:action', controller: 'graphs'
     end
+    namespace :v1 do
+      resources :users do
+        get 'stats', on: :member
+      end
+      resources :people do
+        member do
+          get 'stats'
+        end
+      end
+      resources :projects do
+        get 'stats', on: :member
+      end
+      resources :engagements do
+        get 'upload', on: :member
+        get 'attendees', on: :member
+      end
+      resources :engagement_attendees
+      resources :assets, only: [:create, :destroy]
+      resources :search_results, only: [:index]
+      resources :sites
+    end
   end
 
   namespace :logbook do

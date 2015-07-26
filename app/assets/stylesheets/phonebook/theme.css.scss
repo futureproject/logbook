@@ -51,7 +51,10 @@ body, .detail-content, .rows {
 }
 
 .tab-bar {
-  background: $dark-gray;
+  background: $retro-black;
+  .tab {
+    color: $retro-light-gray;
+  }
   .current {
     color: white;
     text-shadow: 0px 0px 6px;

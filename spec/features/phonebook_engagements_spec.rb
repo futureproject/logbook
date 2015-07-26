@@ -32,7 +32,7 @@ feature 'using the phonebook' do
     tap_element('#phonebook-engagements .detail-show .titlebar .edit')
     edit_view = find('#phonebook-engagements .detail-edit')
     within edit_view do
-      fill_in 'notes', with: 'Best meeting ever!'
+      fill_in 'recap', with: 'Best meeting ever!'
       fill_in 'name', with: "Uniquely named engagement"
     end
     tap_element '#phonebook-engagements .detail-edit .done'
