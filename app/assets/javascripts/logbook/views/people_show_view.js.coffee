@@ -10,7 +10,7 @@ class ds.PeopleShowView extends Backbone.View
         columns: [
           {name: 'name', cell: ds.LogbookLinkCell }
           {name: 'description', cell: 'string' }
-          {name: 'size', cell:'integer', label: 'Team Size'}
+          {name: 'people_count', cell:'integer', label: 'Team Size'}
           {name: 'leading', cell:'boolean'}
         ]
       engagement_bubbles_graph: new ds.GraphView

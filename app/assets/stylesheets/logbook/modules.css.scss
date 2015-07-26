@@ -68,6 +68,7 @@
 
 .table {
   min-height: 3em;
+  &:empty { display: none; }
 }
 .section .table {
   margin-left: -15px;
@@ -168,6 +169,7 @@ input.save {
   line-height: 50px;
   cursor: pointer;
   font-size: 18px;
+  font-weight: bold;
 }
 
 .footerbar {

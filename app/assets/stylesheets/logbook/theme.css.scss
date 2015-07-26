@@ -137,6 +137,9 @@ tbody {
   border-bottom: 1px solid $base-border-color;
   &:last-child { border-bottom: none; }
 }
+.section-header {
+  margin-bottom: 5px;
+}
 .section-header, .highcharts-title {
   font-weight: 700 !important;
 }
@@ -183,4 +186,14 @@ tbody {
   font-size: 10px;
   padding: 0 5px;
   @include user-select(none);
+}
+
+textarea {
+  white-space: pre-wrap;
+}
+pre {
+  white-space: pre-wrap;
+  font-family: $base-font-family;
+  line-height: 20px;
+  max-width: 80ch;
 }

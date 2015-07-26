@@ -78,17 +78,6 @@ class Engagement < ActiveRecord::Base
     end
   end
 
-  #def log_activity
-    #Activity.create(
-      #actor_id: self.user.try(:id),
-      #actor_type: self.user.class.try(:name),
-      #thing_id: id,
-      #thing_type: self.class.name,
-      #school_id: self.school_id,
-      #feed_date: self.date
-    #)
-  #end
-
   def custom_clone
     clone = self.dup
     clone.date = Date.today
@@ -96,10 +85,6 @@ class Engagement < ActiveRecord::Base
     clone
   end
 
-  #def self.as_bubbles(scope=self.all)
-    #scope.order(:kind).group_by(&:kind).map{|k,v| { name: k, data: v.map{|e| { x: e.date.to_datetime.to_i*1000, y: e.duration, z: e.headcount, title: e.name, id: e.id, notes: e.notes.try(:first, 44) } } } }
-  #end
-  #
   def self.person_hours(scope: self.all, kind: '%', times: StatCollector.default_range)
     scope.btw(times).where("kind like ?", kind).where('duration IS NOT NULL').where('headcount IS NOT NULL').map{|e| (e.headcount * e.duration).to_i}.inject(:+)
   end

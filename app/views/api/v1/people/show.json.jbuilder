@@ -15,7 +15,7 @@ json.projects @person.project_people.includes(:project).order('projects.name') d
   json.id pp.project.id
   json.name pp.project.name
   json.description pp.project.description
-  json.size pp.project.people.count
+  json.people_count pp.project.people.count
   json.leading pp.leading
 end
 json.engagements @person.engagements.order('date DESC').limit(20)

@@ -1,0 +1,38 @@
+<div class="titlebar">
+  <div class="title"><%= project.name || project.class_name %></div>
+  <nav class='titlebar-actions'>
+    <a href="/logbook/projects/<%= project.id %>/edit">Edit</a>
+  </nav>
+</div>
+<ul class="factbar">
+  <li class="fact">
+    <label>status</label>
+    <%= project.status %>
+  </li>
+  <li class="fact">
+    <label>created</label>
+    <%= project.created_at %>
+  </li>
+  <li class="fact">
+    <label>Updated</label>
+    <%= project.updated_at %>
+  </li>
+  <li class="fact">
+    <label>Duration</label>
+    <%= project.duration %> Hrs
+  </li>
+  <li class="fact">
+    <label>School</label>
+    <%= project.school_name %>
+  </li>
+</ul>
+<% if (project.description) { %>
+<div class="section">
+  <pre><%= project.description %></pre>
+</div>
+<% } %>
+</div>
+<div class="section">
+  <h2 class="section-header">Project Team - <%= project.people.length %> People</h2>
+  <div id="people-table" class="table"></div>
+</div>

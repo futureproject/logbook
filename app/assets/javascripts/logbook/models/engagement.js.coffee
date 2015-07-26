@@ -3,7 +3,7 @@ class ds.Engagement extends Backbone.Model
   urlRoot: ds.apiHelper.urlFor 'engagements'
   tplAttrs: ->
     attrs = _.extend(@toJSON(), { class_name: 'Engagement' })
-    {project: attrs }
+    {engagement: attrs }
 
 class ds.EngagementsCollection extends Backbone.PageableCollection
   model: ds.Engagement
