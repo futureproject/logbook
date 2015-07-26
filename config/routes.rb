@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get 'auth/failure' => 'sessions#failure'
 
   namespace :api do
-    namespace :v1 do
+    namespace :v2 do
       resources :users, only: [:index, :show, :update]
       resources :people do
         get 'leaderboard', on: :collection
