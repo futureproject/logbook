@@ -1,4 +1,4 @@
-json.extract! @project, :id, :name, :description, :leader_ids, :supporter_ids, :updated_at, :created_at, :status
+json.extract! @project, :id, :name, :description, :leader_ids, :supporter_ids, :updated_at, :created_at, :status, :school_id
 json.school_name @project.school.try(:name)
 json.people @project.project_people.includes(:person).joins(:person).order('project_people.leading DESC, people.first_name ASC') do |pp|
   json.id pp.person.id

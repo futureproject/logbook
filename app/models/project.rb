@@ -12,7 +12,7 @@ class Project < ActiveRecord::Base
 
   scope :q, -> (query) { where("lower(projects.name) like ?", "%#{query.downcase}%") }
 
-  scope :with_association, -> (table, dates) {
+  scope :with_association, -> (table) {
     joins(table.to_sym)
     .select("projects.*, COUNT(#{table}.id) AS #{table}_count")
     .group('projects.id')
@@ -21,6 +21,8 @@ class Project < ActiveRecord::Base
   scope :conditionally_joined, -> (params, stat_times) {
     if params[:sort_by] == "notes_count"
       with_association(:notes).merge(btw(stat_times))
+    elsif params[:sort_by] == "people_count"
+      with_association(:people).merge(btw(stat_times))
     else
       btw(stat_times)
     end

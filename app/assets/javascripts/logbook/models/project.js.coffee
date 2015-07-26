@@ -2,7 +2,10 @@ class ds.Project extends Backbone.Model
   namespace: 'projects'
   urlRoot: ds.apiHelper.urlFor 'projects'
   defaults: ->
+    status: 'underway'
+    school_id: ds.current_user.get('school_id')
     people: []
+
   tplAttrs: ->
     attrs = _.extend(@toJSON(), { class_name: 'Project' })
     {project: attrs }

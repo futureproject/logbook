@@ -20,7 +20,7 @@ class ds.EngagementsEditView extends Backbone.View
     @views.form.renderTo "#engagement-form"
 
   destroy: (event) ->
-    if (confirm('Are you sure?'))
+    if (confirm('Permanently delete this engagement?'))
       @model.destroy()
       return true
     else

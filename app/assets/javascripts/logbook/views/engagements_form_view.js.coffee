@@ -16,7 +16,6 @@ class ds.EngagementsFormView extends Backbone.View
   postRender: ->
     @setSchoolOptions()
     Backbone.Syphon.deserialize @, @model.toJSON()
-    $(".date-field input").combodate()
 
   onsubmit: (event) ->
     event.preventDefault()

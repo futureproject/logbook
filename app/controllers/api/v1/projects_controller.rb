@@ -1,5 +1,5 @@
 class Api::V1::ProjectsController < Api::V1::BaseController
-  wrap_parameters format: [:json], include: [:leader_ids, :supporter_ids, :name, :status, :descrption, :school_id]
+  wrap_parameters format: [:json], include: [:leader_ids, :supporter_ids, :name, :status, :description, :school_id]
   before_action :set_project, only: [:show, :edit, :update, :destroy, :stats]
 
   # GET /api/v1/projects
@@ -35,7 +35,7 @@ class Api::V1::ProjectsController < Api::V1::BaseController
   # POST /api/v1/projects
   # POST /api/v1/projects.json
   def create
-    @project = Project.new(project_params.merge(school_id: current_user.school_id))
+    @project = Project.new(project_params)
     if @project.save
       render :show, status: :created, location: api_v1_project_url(@project)
     else

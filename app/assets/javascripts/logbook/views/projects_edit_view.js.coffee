@@ -20,7 +20,7 @@ class ds.ProjectsEditView extends Backbone.View
     @views.form.renderTo "#project-form"
 
   destroy: (event) ->
-    if (confirm('Are you sure?'))
+    if (confirm('Permanently delete this project?'))
       @model.destroy()
       return true
     else

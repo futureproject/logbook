@@ -12,12 +12,12 @@ class StatCollector
     else
       year = today.year
     end
-    Date.new(year, start_month, start_day)
+    Date.new(year, start_month, start_day).beginning_of_day
   end
 
   # default stat range is from beginning_of_school_year to RIGHT NOW
   def self.default_range
-    self.beginning_of_school_year..Date.today
+    self.beginning_of_school_year..Date.today.end_of_day
   end
 
   # pie chart, formatted for the highcharts js library

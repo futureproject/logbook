@@ -1,24 +1,16 @@
-Port Engagements
-  EDIT
-  NEW
-  DESTROY
-
-Port Projects
-  EDIT
-  NEW
-  DESTROY
-
 Engagement Attendance....
 Project Leaders....
 Project Supporters....
-Restore Search...
 
-Closing add view should go back to relevant controller
-change project conditionallyJoined to respect sorting by size
 restyle people list
 restlye engagements list
 restyle projects list
+
+Restore Search...
+
 make leaderboards link to their records
+
+Trigger flash notices after C(R)UD
 
 Detroit - DET
 Newark - NWK
