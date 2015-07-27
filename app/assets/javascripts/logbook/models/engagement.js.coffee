@@ -15,6 +15,7 @@ class ds.Engagement extends Backbone.Model
   save: (key, val, options) ->
     # ensure this is a valid date
     @set 'date', Date.parse(@get('date')).toString('yyyy-MM-dd')
+    @set('attendee_ids', ['']) if !@get('attendee_ids')?
     super
 
 class ds.EngagementsCollection extends Backbone.PageableCollection

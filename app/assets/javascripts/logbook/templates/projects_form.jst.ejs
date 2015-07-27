@@ -17,8 +17,16 @@
     <label for="school_id">School</label>
   </div>
   <div class="field description-field">
-    <label for="description">Description</label>
     <textarea name='description'></textarea>
+    <label for="description">Description</label>
+  </div>
+  <div class="field selectize-field">
+    <select id="leader_ids" name="leader_ids" multiple></select>
+    <label for="leader_ids">Leaders</label>
+  </div>
+  <div class="field selectize-field">
+    <select id="supporter_ids" name="supporter_ids" multiple></select>
+    <label for="supporter_ids">Supporters</label>
   </div>
   <input type="submit" value="Save" class='save people-link'>
 </form>

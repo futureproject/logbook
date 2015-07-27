@@ -17,13 +17,13 @@ class ds.EngagementsFormView extends Backbone.View
   postRender: ->
     @setSchoolOptions()
     Backbone.Syphon.deserialize @, @model.toJSON()
-    @selectize
-      selector: "#attendee_ids"
-      items: @model.get 'attendees'
+    @selectize "#attendee_ids",
+      initialItems: @model.get 'attendees'
 
   onsubmit: (event) ->
     event.preventDefault()
     data = Backbone.Syphon.serialize @
+    console.log data
     @model.set data
     @reflectIdChange() if @model.isNew
     @model.save()
@@ -38,17 +38,17 @@ class ds.EngagementsFormView extends Backbone.View
       $f.append "<option value='#{s.get('id')}'>#{s.get('name')}</option>"
     @$el.find('#school_id').html $f
 
-  selectize: (args) ->
-    args ||= {}
-    $field = $(args.selector)
-    items = args.items
+  reflectIdChange: ->
+    @model.once 'change:id', =>
+      ds.router.navigate ds.urlsHelper.urlFor(@model), { trigger: true, replace: true }
+
+  selectize: (selector, options) ->
+    options ||= {}
+    $field = $(selector)
+    items = options.initialItems
     id = "#{$field.attr('id')}_#{_.size(@views)}"
     $frag = $(document.createDocumentFragment())
     _.each items, (item) ->
       $frag.append "<option selected value='#{item.id}'>#{item.first_name} #{item.last_name}</option>"
     $field.append $frag
     @views[id] = new ds.SelectizeView({ el: $field })
-
-  reflectIdChange: ->
-    @model.once 'change:id', =>
-      ds.router.navigate ds.urlsHelper.urlFor(@model), { trigger: true, replace: true }

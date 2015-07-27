@@ -16,4 +16,5 @@ class ds.ProjectsNewView extends Backbone.View
 
   postRender: ->
     @views.form.renderTo "#project-form"
+    @views.form.$el.find('input').first().focus()
 

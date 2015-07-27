@@ -1,4 +1,5 @@
 #projects-table {
+  a { color: $projects-color; }
 }
 #project-form {
   @include row;

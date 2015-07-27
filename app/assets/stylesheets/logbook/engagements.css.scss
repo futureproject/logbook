@@ -1,4 +1,5 @@
 #engagements-table {
+  a { color: $engagements-color; }
 }
 #engagement-form {
   @include row;

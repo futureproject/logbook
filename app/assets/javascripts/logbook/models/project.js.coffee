@@ -10,6 +10,11 @@ class ds.Project extends Backbone.Model
     attrs = _.extend(@toJSON(), { class_name: 'Project' })
     {project: attrs }
 
+  save: ->
+    @set('leader_ids', ['']) if !@get('leader_ids')?
+    @set('supporter_ids', ['']) if !@get('supporter_ids')?
+    super
+
 class ds.ProjectsCollection extends Backbone.PageableCollection
   model: ds.Project
   namespace: 'projects'

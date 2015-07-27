@@ -4,7 +4,6 @@ class ds.SelectizeView extends Backbone.View
 
   selectize: ->
     @$el.selectize
-      persist: false
       valueField: 'id'
       searchField: ['first_name', 'last_name']
       createFilter: (input) ->
@@ -15,22 +14,23 @@ class ds.SelectizeView extends Backbone.View
 
       create: (input, callback) =>
         name = input.split(' ')
-        item = {}
+        item =
+          id: parseInt(Math.random()*10e16)
+          last_name: name.pop()
+          first_name: name.join(' ')
+          school_id: $('select[name*=school_id]').val()
         $.ajax ds.apiHelper.urlFor('people'),
           type: "POST"
-          async: false
           data:
-            person:
-              last_name: name.pop()
-              first_name: name.join(' ')
-              school_id: $('select[name*=school_id]').val()
+            person: item
           complete: (response) =>
-            res = response.responseJSON
-            item =
-             id: res.id,
-             first_name: res.first_name,
-             last_name: res.last_name
-        return item
+            attrs = response.responseJSON
+            @el.selectize.updateOption item.id,
+              id: attrs.id
+              first_name: attrs.first_name
+              last_name: attrs.last_name
+            @el.selectize.refreshItems()
+        item
 
 
       load: (query, callback) ->
