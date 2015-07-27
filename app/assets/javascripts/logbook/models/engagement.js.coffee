@@ -32,6 +32,6 @@ class ds.EngagementsCollection extends Backbone.PageableCollection
     {name: 'date', cell: 'date' }
   ]
   parseRecords: (response) ->
-    response.engagements
+    response.data
   parseState: (response) ->
     { totalRecords: response.state.total_entries }

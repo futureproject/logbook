@@ -17,9 +17,13 @@ namespace :denoiser do
 
   task denoise: :environment do
     # delete students with zero projects & engagements (noisy)
-    noise = Person.noisy
+    noise = Person.includes(:project_people).includes(:engagement_attendees)
+    .where(engagement_attendees: { person_id: nil } )
+    .where( project_people: { person_id: nil })
+    .uniq
+
     puts "Deleting #{noise.size} people..."
-    Person.noisy.find_each do |person|
+    noise.find_each do |person|
       person.destroy
     end
     puts "... done."

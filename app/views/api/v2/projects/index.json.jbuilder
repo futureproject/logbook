@@ -2,7 +2,7 @@
   json.state do
     json.total_entries @total
   end
-  json.projects do
+  json.data do
     json.array!(@projects) do |project|
       #json.cache! ['v1', project] do
         json.extract! project, :id,

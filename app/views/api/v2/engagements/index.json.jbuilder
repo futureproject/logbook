@@ -2,7 +2,7 @@
   json.state do
     json.total_entries @total
   end
-  json.engagements do
+  json.data do
     json.array!(@engagements) do |engagement|
       #json.cache! ['v1', engagement] do
         json.extract! engagement, :id, :kind, :name,

@@ -43,9 +43,14 @@
     <input id="headcount" name="headcount" type="number" min="0">
     <label for="headcount">How many people were there?</label>
   </div>
+  <div class="field selectize-field">
+    <select id="attendee_ids" name="attendee_ids" multiple></select>
+    <label for="attendee_ids">Who was there?</label>
+    <label for="attendee_ids" class="alternate-label">Anyone in particular?</label>
+  </div>
   <div class="field recap-field">
-    <label for="recap">What Happened?</label>
     <textarea name='recap'></textarea>
+    <label for="recap">Engagement recap</label>
   </div>
   <input type="submit" value="Save" class='save people-link'>
 </form>

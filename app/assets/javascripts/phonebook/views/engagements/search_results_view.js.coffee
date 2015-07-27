@@ -56,7 +56,7 @@ class Phonebook.Views.Engagements.SearchResultsView extends Backbone.View
     Backbone.trigger 'engagement_attendees:updated', person
 
   onSearchStart: ->
-    loader = "<div class='loading'>Loading...</div>"
+    loader = "<div class='lb-loading'>Loading...</div>"
     return if @$el.text().match(/loading/i)
     @$el.html loader
 

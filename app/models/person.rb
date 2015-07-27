@@ -35,52 +35,27 @@ class Person < ActiveRecord::Base
       with_projects(stat_times)
     elsif params[:sort_by] == "engagements_count"
       with_engagements(stat_times)
+    elsif params[:q]
+      q(params[:q])
     else
       all
     end
   }
   scope :active, -> { where(graduated_in: nil) }
 
-  scope :search, lambda {|query, user=nil|
-    return if query.blank?
-    first = "%#{query.split(' ').first.downcase}%"
-    last = "%#{query.split(' ').last.downcase}%"
-    operator = first == last ? "or" : "and"
-    results = self.all.limit(200)
-    results = results.where("lower(first_name) like ? #{operator} lower(last_name) like ?", first, last).order('lower(first_name)').limit(10)
-    if user && user.site
-      school_results = user.school ? results.joins(:school).where('schools.id=?', user.school_id) : results.none
-      site_results = results.joins(:site).where('sites.id=?', user.site.id)
-      results = (school_results + site_results + results).flatten.uniq
-    end
-    results.first(10)
-  }
-
-  scope :user_sort, -> (column) {
-    order "#{column.to_s}"
-  }
-
   scope :q, -> (query) {
     first = "%#{query.split(' ').first.downcase}%"
     last = "%#{query.split(' ').last.downcase}%"
     operator = first == last ? "or" : "and"
     where("lower(first_name) like ? #{operator} lower(last_name) like ?", first, last)
+    .order("dream_team DESC, lower(first_name) ASC")
   }
-
 
   scope :with_hours, -> (kind="%") {
     joins(:engagements).where('engagements.kind like ?', kind).select("people.*, SUM(engagements.duration) AS engagement_hours").group('people.id')
   }
 
   scope :created_before, -> (date) { where(created_at: 100.years.ago..date.end_of_week) }
-  scope :in_grade, -> (grade) { where(grade: grade.to_i) }
-  scope :in_group, -> (group) {
-    if group.match /dream/i
-      where(dream_team: true)
-    else
-      where(role: group)
-    end
-  }
   scope :btw, -> (range) { where(created_at: range) }
   scope :leading_projects, -> {
     joins(:project_people).where(project_people: {leading: true}).uniq
@@ -88,13 +63,6 @@ class Person < ActiveRecord::Base
   scope :just_supporting_projects, -> {
     joins(:project_people).where(project_people: {leading: false})
     .where('people.id NOT IN (SELECT (person_id) FROM project_people WHERE project_people.leading IS true)')
-    .uniq
-  }
-  # people who have no engagements and no projects, i.e. safe to delete
-  scope :noisy, -> {
-    includes(:project_people).includes(:engagement_attendees)
-    .where(engagement_attendees: { person_id: nil } )
-    .where( project_people: { person_id: nil })
     .uniq
   }
 
@@ -137,26 +105,6 @@ class Person < ActiveRecord::Base
       self.site_id = self.user.try(:site).try(:id)
     end
     true
-  end
-
-  # takes a CSV from the public directory and a User object
-  # imports students into the system
-  def self.import_from_csv(filename, dream_director)
-    CSV.foreach("#{Rails.root.to_s}/public/#{filename}", headers: true) do |row|
-      data = row.to_hash
-      if dream_director.people.where(first_name: data['first_name'], last_name: data['last_name']).any?
-        puts "person #{data['first_name']} #{data['last_name']} already exists"
-      else
-        p = Person.create!(data.merge(school_id: dream_director.school_id))
-        puts "created #{p.name}"
-      end
-    end
-  end
-
-  def self.matches_by_name first, last
-    t = self.arel_table
-    self.where(t[:first_name].matches("%#{first}"))
-      .where(t[:last_name].matches("%#{last}"))
   end
 
   def self.find_by_auth_token(token)

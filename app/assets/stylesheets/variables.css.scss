@@ -15,12 +15,12 @@ $retro-slate: #6c8798;
 $retro-red: #db4549;
 $retro-orange: #e9a444;
 $retro-yellow: #fbe588;
-$retro-green: #a2cfc0;
+$retro-green: #658c83;
 $retro-teal: #b6dee3;
 $retro-ocean: #3d99a0;
 $retro-blue: #3182a2;
 $retro-indigo: #23485d;
-$retro-violet: #694a55;
+$retro-violet: #4b6385;
 $retro-pink: #a05e86;
 
 $blue: #3182a2;
@@ -38,10 +38,10 @@ $base-border-radius: em(3);
 //$engagements-color: #b363a3;
 //$schools-color: $retro-gray;
 $people-color: $retro-blue;
-$projects-color: #4b6385;
+$projects-color: $retro-violet;
 $engagements-color: $retro-pink;
 $schools-color: $retro-gray;
-$reports-color: $retro-slate;
+$reports-color: $retro-green;
 
 // Background Color
 $base-background-color: $retro-white;

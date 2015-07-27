@@ -1,5 +1,5 @@
 #nav {
-  background-color: $retro-light-gray;
+  background-color: $retro-slate;
   @include transition(background .5s);
   color: white;
   a { color: white; }
@@ -22,9 +22,6 @@
     @include linear-gradient(transparent, rgba(0,0,0,.5));
     z-index: 0;
   }
-}
-body.dashboard #nav {
-  background-color: $retro-light-gray;
 }
 body.people #nav {
   background-color: $people-color;

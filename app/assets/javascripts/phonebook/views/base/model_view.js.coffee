@@ -10,6 +10,6 @@ class Phonebook.Views.Base.ModelView extends Backbone.View
     try
       @$el.html(@template @model.tplAttrs())
     catch
-      @$el.html("<div class='loading'></div>")
+      @$el.html("<div class='lb-loading'></div>")
     @
 

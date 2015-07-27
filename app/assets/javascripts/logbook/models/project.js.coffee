@@ -25,6 +25,6 @@ class ds.ProjectsCollection extends Backbone.PageableCollection
     {name: 'created_at', cell:'date', label: 'created'}
   ]
   parseRecords: (response) ->
-    response.projects
+    response.data
   parseState: (response) ->
     { totalRecords: response.state.total_entries }

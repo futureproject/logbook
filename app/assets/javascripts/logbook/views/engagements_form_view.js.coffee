@@ -1,5 +1,6 @@
 class ds.EngagementsFormView extends Backbone.View
   initialize: ->
+    @views = {}
     @listenTo @model, 'change', @render
     @listenTo ds.collections.schools, 'reset', @postRender
 
@@ -16,6 +17,9 @@ class ds.EngagementsFormView extends Backbone.View
   postRender: ->
     @setSchoolOptions()
     Backbone.Syphon.deserialize @, @model.toJSON()
+    @selectize
+      selector: "#attendee_ids"
+      items: @model.get 'attendees'
 
   onsubmit: (event) ->
     event.preventDefault()
@@ -33,6 +37,17 @@ class ds.EngagementsFormView extends Backbone.View
     ds.collections.schools.each (s) ->
       $f.append "<option value='#{s.get('id')}'>#{s.get('name')}</option>"
     @$el.find('#school_id').html $f
+
+  selectize: (args) ->
+    args ||= {}
+    $field = $(args.selector)
+    items = args.items
+    id = "#{$field.attr('id')}_#{_.size(@views)}"
+    $frag = $(document.createDocumentFragment())
+    _.each items, (item) ->
+      $frag.append "<option selected value='#{item.id}'>#{item.first_name} #{item.last_name}</option>"
+    $field.append $frag
+    @views[id] = new ds.SelectizeView({ el: $field })
 
   reflectIdChange: ->
     @model.once 'change:id', =>

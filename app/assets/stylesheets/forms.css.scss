@@ -96,10 +96,9 @@ textarea {
     }
   }
 }
-.combodate {
-  display: block;
-  select {
-    display: inline-block;
-    width: auto;
-  }
+.selectize-dropdown {
+  width: 100% !important;
+}
+.selectize-input.items > div {
+  vertical-align: top;
 }

@@ -23,7 +23,6 @@ class Api::V2::EngagementsController < Api::V2::BaseController
   def show
   end
 
-
   def upload
     render partial: 'engagements/upload'
   end

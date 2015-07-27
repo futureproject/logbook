@@ -29,6 +29,6 @@ class ds.PeopleCollection extends Backbone.PageableCollection
     #{name: 'links', cell: ds.ActionCell}
   ]
   parseRecords: (response) ->
-    response.people
+    response.data
   parseState: (response) ->
     { totalRecords: response.state.total_entries }

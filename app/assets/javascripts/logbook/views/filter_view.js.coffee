@@ -12,7 +12,7 @@ class ds.FiltersView extends Backbone.View
     link = event.target.href
     return unless link?
     event.preventDefault()
-    $('#yield').html '<div class="loading">Loading...</div>'
+    $('#yield').html '<div class="lb-loading">Loading...</div>'
     @$el.slideUp 'fast', -> location.href = link
 
 

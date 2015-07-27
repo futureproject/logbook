@@ -190,6 +190,10 @@ input.save {
   }
 }
 
+.footerbar + .section {
+  padding-bottom: 60px;
+}
+
 @include media(1020px) {
   .two-col {
     @include row;

@@ -9,7 +9,7 @@ class ds.LeaderboardView extends Backbone.View
     'click a': 'linkToProfile'
 
   render: ->
-    @$el.html "<div class='loading'></div>"
+    @$el.html "<div class='lb-loading'></div>"
     $.getJSON @url, (res) =>
       @$el.empty()
       _.each res, (array, key) => @addList(array, key)

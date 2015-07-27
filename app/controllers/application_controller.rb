@@ -14,7 +14,8 @@ class ApplicationController < ActionController::Base
   def set_scope
     session[:scope_id] = params[:scope_id]
     session[:scope_type] = params[:scope_type].classify
-    redirect_to params[:redirect] || request.referrer
+    path = params[:redirect] ? params[:redirect] : (request.referrer || logbook_root_url)
+    redirect_to path
   end
 
   private

@@ -1,14 +1,26 @@
 Engagement Attendance....
+  Populate existing
+  Make sure can remove and add from people who exist already
+  Try adding brand new person
+
 Project Leaders....
 Project Supporters....
-
-restyle people list
-restlye engagements list
-restyle projects list
-
 Restore Search...
 
+restyle people list
+  Add created_at to the people tables
+restlye engagements list
+restyle projects list
+  add created_at and modified_at to project tables
 make leaderboards link to their records
+
+Install new auth
+Convert users to people
+Let people select schools after they register
+Let poeple create schools after they register
+
+Create NOTESSSSS
+WEEKLY REPORTSSSSSSS
 
 Trigger flash notices after C(R)UD
 
@@ -22,12 +34,10 @@ Washington DC - DC
 
 add Notables to school pages
 add activity feed to person profiles
-add created_at and modified_at to project tables
-Add created_at to the people tables
-pressing ENTER on search with nothing highlighted should go to advanced search page
 Order not recently engaged students by: dream_team, engagements_count
 make graph events use the router, not just navigate
 infinitely scrolling lists
+pressing ENTER on search with nothing highlighted should go to advanced search page
 Add GOAL to engagements
 
 

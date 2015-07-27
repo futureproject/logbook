@@ -2,7 +2,7 @@
   json.state do
     json.total_entries @total
   end
-  json.people do
+  json.data do
     json.array!(@people) do |person|
       #json.cache! ['v1', person] do
         json.extract! person, :id,
