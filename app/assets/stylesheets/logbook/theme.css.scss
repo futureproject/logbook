@@ -49,8 +49,14 @@ body.reports #nav {
 }
 
 #app-sections {
+  .nav-item .link-icon {
+    @include transition;
+  }
   .nav-item.active {
     font-weight: bold;
+  }
+  .nav-item:hover, .nav-item.active {
+    .link-icon { @include transform(scale(1.2)); }
   }
 }
 
