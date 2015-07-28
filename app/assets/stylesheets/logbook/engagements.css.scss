@@ -1,5 +1,14 @@
 #engagements-table {
   a { color: $engagements-color; }
+  th.headcount, th.date, th.duration {
+    text-align: right;
+  }
+  td:first-child {
+    width: 30%;
+  }
+  td:nth-child(2) {
+    width: 20%;
+  }
 }
 #engagement-form {
   @include row;

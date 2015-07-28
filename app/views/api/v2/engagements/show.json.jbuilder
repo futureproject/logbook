@@ -9,4 +9,5 @@ json.attendees @engagement.attendees.order(:first_name) do |person|
   json.dream_team person.dream_team
   json.project_count person.projects.count
   json.engagements_count person.engagements.count
+  json.created_at person.created_at
 end

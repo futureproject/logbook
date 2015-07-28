@@ -18,6 +18,12 @@ class ApplicationController < ActionController::Base
     redirect_to path
   end
 
+  def clear_scope
+    session[:scope_id] = session[:scope_type] = nil
+    redirect_to logbook_root_url
+  end
+
+
   private
 
     def beginning_of_school_year

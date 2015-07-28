@@ -38,9 +38,10 @@
 #app-sections {
   li {
     display: block;
-    height: 25px;
+    height: 30px;
     overflow: hidden;
-    margin-bottom: 5px;
+    margin: 5px -15px;
+    padding: 0 15px;
     position: relative;
   }
   .link-icon {

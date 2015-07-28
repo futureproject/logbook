@@ -54,6 +54,7 @@ body.reports #nav {
   }
   .nav-item.active {
     font-weight: bold;
+    background: rgba(0,0,0,.25);
   }
   .nav-item:hover, .nav-item.active {
     .link-icon { @include transform(scale(1.2)); }

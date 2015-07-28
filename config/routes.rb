@@ -62,20 +62,8 @@ Rails.application.routes.draw do
 
   namespace :logbook do
     root 'application#dashboard'
-    #resources :people
-    #resources :notes
-    #resources :projects do
-      #get 'toggle_dream_team', on: :member
-    #end
-    #resources :engagements do
-      #get 'duplicate', on: :member
-      #get 'toggle_dream_team', on: :member
-    #end
-    #resources :assets, only: [:show, :index, :destroy]
-    #resources :schools, only: [:index, :show]
-    #resources :sites, only: [:index, :show]
-    #resources :engagement_attendees, only: [:show]
     get 'set_scope', to: 'application#set_scope'
+    get 'clear_scope', to: 'application#clear_scope'
     get '/*whatever', to: 'application#dashboard'
   end
 

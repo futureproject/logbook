@@ -69,6 +69,13 @@
 .table {
   min-height: 3em;
   &:empty { display: none; }
+  .boolean-cell {
+    text-align: center;
+    input {
+      width: auto;
+      margin: 0 auto;
+    }
+  }
 }
 .section .table {
   margin-left: -15px;
