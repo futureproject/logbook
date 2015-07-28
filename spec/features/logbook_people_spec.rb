@@ -5,43 +5,42 @@ feature 'Logbook people' do
   end
 
   scenario 'CREATE' do
-    visit logbook_people_path
-    within '#global-add' do
-      find('a').click
+    visit "/logbook/people"
+    find("#global-add-trigger").click
+    within '#person-form' do
+      fill_in 'first_name', with: 'Terry'
+      fill_in 'last_name', with: 'McGuiness'
+      select '12', from: 'grade'
+      click_button 'Save'
     end
-    within '#new_person' do
-      fill_in 'person[first_name]', with: 'Terry'
-      fill_in 'person[last_name]', with: 'McGuiness'
-      select '12', from: 'person[grade]'
-      click_button 'Create Person'
-    end
-    expect(page).to have_content 'terry mcguiness'
+    should_see_created_person
   end
 
   scenario 'READ' do
-    visit logbook_people_path
-    click_link 'View', match: :first
-    expect(page).to have_content 'student at Gotham'
+    visit "/logbook/people"
+    click_link 'Tim'
+    should_see_student_named "Tim Drake"
   end
 
   scenario 'UPDATE' do
-    visit logbook_people_path
+    visit "/logbook/people"
+    click_link 'Dick'
     click_link 'Edit', match: :first
-    fill_in 'person[first_name]', with: 'Richard'
-    fill_in 'person[email]', with: 'drake@waynetech.com'
-    click_button 'Update Person'
-    expect(page).to have_content 'richard'
-    expect(page).to have_content 'drake@waynetech.com'
+    fill_in 'first_name', with: 'Richard'
+    click_button 'Save'
+    should_see_student_named "Richard"
   end
 
-  scenario 'DESTROY', js: true do
-    visit logbook_people_path
-    count = all('.person').count
-    page.accept_confirm do
-      first('a[data-method=delete]').click
-    end
-    sleep 1 #wait for the delete animation to finish
-    expect(all('.person').count).to eq (count - 1)
+  scenario 'DESTROY'
+  # create a new person, then destroy him
+
+  def should_see_created_person
+    expect(page).to have_content 'Terry McGuiness'
+  end
+
+  def should_see_student_named(name)
+    expect(page).to have_content name
+    expect(page).to have_content  "ROLE STUDENT GRADE DREAM TEAM TRUE SCHOOL GOTHAM CITY HIGH"
   end
 
 end

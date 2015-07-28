@@ -28,6 +28,7 @@ require 'capybara-webkit'
 #end
 Capybara.default_selector = :css
 Capybara.javascript_driver = :webkit
+Capybara.default_driver = :webkit
 
 RSpec.configure do |config|
   # ## Mock Framework
