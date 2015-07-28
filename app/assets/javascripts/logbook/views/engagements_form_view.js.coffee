@@ -4,13 +4,21 @@ class ds.EngagementsFormView extends Backbone.View
     @listenTo @model, 'change', @render
     @listenTo ds.collections.schools, 'reset', @postRender
 
+  tagName: 'form'
+  className: -> @model.get('kind').toLowerCase()
+
   events:
     'submit': 'onsubmit'
+    'change #kind': 'setCssClassFromKind'
+
+  setCssClassFromKind: (event) ->
+    @$el.attr('class', $(event.currentTarget).val().toLowerCase())
 
   template: JST['logbook/templates/engagements_form']
 
   render: ->
     @$el.html @template(@model.tplAttrs())
+    @delegateEvents()
     @postRender()
     @
 

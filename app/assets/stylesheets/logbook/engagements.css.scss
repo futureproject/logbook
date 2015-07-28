@@ -13,4 +13,12 @@
     @include span-columns(6);
   }
   .school-field { @include omega; }
+  .alternate-label, .headcount-field {
+    display: none;
+  }
+  .event {
+    .headcount-field { display: block; }
+    .alternate-label { display: block; }
+    .primary-label { display: none; }
+  }
 }

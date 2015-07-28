@@ -2,6 +2,12 @@ class ds.SelectizeView extends Backbone.View
   initialize: ->
     @selectize()
 
+  template: (item, escape) ->
+    if (item.first_name)
+      "<div>#{escape(item.first_name + ' ' + item.last_name)}</div>"
+    else
+      "<div>#{escape(item.text)}</div>"
+
   selectize: ->
     @$el.selectize
       valueField: 'id'
@@ -32,7 +38,6 @@ class ds.SelectizeView extends Backbone.View
             @el.selectize.refreshItems()
         item
 
-
       load: (query, callback) ->
         return callback() if (!query.length)
         $.ajax
@@ -44,13 +49,5 @@ class ds.SelectizeView extends Backbone.View
             callback(res.data.slice(0,10))
 
       render:
-        item: (item, escape) ->
-          if (item.first_name)
-            "<div>#{escape(item.first_name + ' ' + item.last_name)}</div>"
-          else
-            "<div>#{escape(item.text)}</div>"
-        option: (item, escape) ->
-          if (item.first_name)
-            "<div>#{escape(item.first_name + ' ' + item.last_name)}</div>"
-          else
-            "<div>#{escape(item.text)}</div>"
+        item: @template
+        option: @template

@@ -10,6 +10,9 @@
   user-select: none;
   overflow-x: hidden;
   overflow-y: auto;
+  &.searching {
+    overflow: visible;
+  }
   -webkit-overflow-scrolling: touch;
   * { position: relative; }
   li {
@@ -81,13 +84,13 @@
 
 #search {
   position: relative;
-  input {
+  input, .selectize-input {
     font-size: 12px;
-    border: none;
-    color: white;
     font-family: $base-font-family;
     padding: 0 5px 0 30px;
+    border: none;
     background: none;
+    color: white;
   }
   #search-trigger {
     position: absolute;
@@ -96,6 +99,7 @@
     font-size: 20px;
     pointer-events: none;
   }
+  .selectize-input.dropdown-active::before { display: none; }
 }
 
 

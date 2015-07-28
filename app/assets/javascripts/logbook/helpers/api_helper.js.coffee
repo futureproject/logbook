@@ -14,6 +14,7 @@ ds.apiHelper =
     project: (id) -> "/api/v2/projects/#{id}"
     schools: -> "/api/v2/schools"
     school: (id) -> "/api/v2/schools/#{id}"
+    search_results: -> "/api/v2/search_results"
     sites: -> "/api/v2/sites"
     site: (id) -> "/api/v2/sites/#{id}"
     national_graphs: (graph) -> "/api/v2/nationals/usa/graphs/#{graph}"

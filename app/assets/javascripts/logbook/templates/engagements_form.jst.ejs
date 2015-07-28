@@ -1,57 +1,54 @@
-<form data-kind='<%= engagement.kind %>'>
-  <div class="field kind-field">
-    <select id="kind" name="kind">
-      <option value="Coaching Session">Coaching Session</option>
-      <option value="Event">Event</option>
-      <option value="Meeting">Meeting</option>
-      <option value="Workshop">Workshop</option>
-    </select>
-    <label for="kind">Kind</label>
-  </div>
-  <div class="field school-field">
-    <select id="school_id" name="school_id">
-    </select>
-    <label for="school_id">School</label>
-  </div>
-  <div class="field name-field">
-    <input id="name" name="name" type="text">
-    <label for="name">Engagement Name</label>
-  </div>
-  <div class="field date-field">
-    <input name='date' type='text'>
-    <label for="date">Date</label>
-  </div>
-  <div class="field duration-field">
-    <select id="engagement_duration" name="duration">
-      <option value="0.1">5 Minutes</option>
-      <option value="0.25">15 Minutes</option>
-      <option value="0.5">30 Minutes</option>
-      <option value="0.75">45 Minutes</option>
-      <option selected value="1">1 Hour</option>
-      <option value="1.5">1.5 Hours</option>
-      <option value="2">2 Hours</option>
-      <option value="3">3 Hours</option>
-      <option value="4">4 Hours</option>
-      <option value="5">5 Hours</option>
-      <option value="6">6 Hours</option>
-      <option value="7">7 Hours</option>
-      <option value="8">8 Hours</option>
-    </select>
-    <label for="duration">Duration</label>
-  </div>
-  <div class="field recap-field">
-    <textarea name='recap'></textarea>
-    <label for="recap">Engagement recap</label>
-  </div>
-  <div class="field headcount-field">
-    <input id="headcount" name="headcount" type="number" min="0">
-    <label for="headcount">How many people were there?</label>
-  </div>
-  <div class="field selectize-field">
-    <select id="attendee_ids" name="attendee_ids" multiple></select>
-    <label for="attendee_ids">Who was there?</label>
-    <label for="attendee_ids" class="alternate-label">Anyone in particular?</label>
-  </div>
-  <input type="submit" value="Save" class='save people-link'>
-</form>
-
+<div class="field kind-field">
+  <select id="kind" name="kind">
+    <option value="Coaching Session">Coaching Session</option>
+    <option value="Event">Event</option>
+    <option value="Meeting">Meeting</option>
+    <option value="Workshop">Workshop</option>
+  </select>
+  <label for="kind">Kind</label>
+</div>
+<div class="field school-field">
+  <select id="school_id" name="school_id">
+  </select>
+  <label for="school_id">School</label>
+</div>
+<div class="field name-field">
+  <input id="name" name="name" type="text">
+  <label for="name">Engagement Name</label>
+</div>
+<div class="field date-field">
+  <input name='date' type='text'>
+  <label for="date">Date</label>
+</div>
+<div class="field duration-field">
+  <select id="engagement_duration" name="duration">
+    <option value="0.1">5 Minutes</option>
+    <option value="0.25">15 Minutes</option>
+    <option value="0.5">30 Minutes</option>
+    <option value="0.75">45 Minutes</option>
+    <option selected value="1">1 Hour</option>
+    <option value="1.5">1.5 Hours</option>
+    <option value="2">2 Hours</option>
+    <option value="3">3 Hours</option>
+    <option value="4">4 Hours</option>
+    <option value="5">5 Hours</option>
+    <option value="6">6 Hours</option>
+    <option value="7">7 Hours</option>
+    <option value="8">8 Hours</option>
+  </select>
+  <label for="duration">Duration</label>
+</div>
+<div class="field recap-field">
+  <textarea name='recap'></textarea>
+  <label for="recap">Engagement recap</label>
+</div>
+<div class="field headcount-field">
+  <input id="headcount" name="headcount" type="number" min="0">
+  <label for="headcount">How many people were there?</label>
+</div>
+<div class="field selectize-field">
+  <select id="attendee_ids" name="attendee_ids" multiple></select>
+  <label for="attendee_ids" class="primary-label">Who was there?</label>
+  <label for="attendee_ids" class="alternate-label">Anyone in particular?</label>
+</div>
+<input type="submit" value="Save" class='save people-link'>

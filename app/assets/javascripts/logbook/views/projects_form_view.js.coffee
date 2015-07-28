@@ -4,6 +4,7 @@ class ds.ProjectsFormView extends Backbone.View
     @listenTo @model, 'change', @render
     @listenTo ds.collections.schools, 'reset', @postRender
 
+  tagName: 'form'
   events:
     'submit': 'onsubmit'
 

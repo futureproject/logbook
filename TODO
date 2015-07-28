@@ -1,10 +1,3 @@
-Engagement Attendance....
-  Populate existing
-  Make sure can remove and add from people who exist already
-  Try adding brand new person
-
-Project Leaders....
-Project Supporters....
 Restore Search...
 
 restyle people list
@@ -16,11 +9,10 @@ make leaderboards link to their records
 
 Install new auth
 Convert users to people
-Let people select schools after they register
-Let poeple create schools after they register
-
-Create NOTESSSSS
 WEEKLY REPORTSSSSSSS
+Create NOTESSSSS
+
+Refactor leaderboard views to use json.set!, as in search_results#index
 
 Trigger flash notices after C(R)UD
 
