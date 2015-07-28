@@ -17,7 +17,8 @@ class ds.Router extends Backbone.Router
     "logbook/projects/new": "projects_new"
     "logbook/projects/:id": "projects_show"
     "logbook/projects/:id/edit": "projects_edit"
-    "logbook/reports": "reports_index"
+    "logbook/report_submissions": "report_submissions_index"
+    "logbook/report_submissions/:id": "report_submissions_show"
 
   #DASHBOARD
   dashboard: -> Backbone.trigger "dashboard:show"
@@ -41,4 +42,5 @@ class ds.Router extends Backbone.Router
   projects_edit: (id) -> Backbone.trigger "projects:edit", id
 
   #REPORTS
-  reports_index: -> Backbone.trigger "reports:index"
+  report_submissions_index: -> Backbone.trigger "report_submissions:index"
+  report_submissions_show: (id) -> Backbone.trigger "report_submissions:show", id

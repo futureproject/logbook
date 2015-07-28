@@ -266,3 +266,14 @@ input.save {
     }
   }
 }
+.text-editor {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  left: 210px;
+  bottom: 50px;
+  width: auto;
+  height: auto;
+  margin: 15px;
+  resize: none;
+}

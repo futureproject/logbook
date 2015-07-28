@@ -20,12 +20,9 @@ Rails.application.routes.draw do
       end
       resources :engagements do
         get 'leaderboard', on: :collection
-        get 'upload', on: :member
-        get 'attendees', on: :member
       end
       resources :engagement_attendees
-      resources :reports
-      resources :reflections
+      resources :report_submissions
       resources :assets, only: [:create, :destroy]
       resources :search_results, only: [:index]
       [:schools, :sites, :nationals].each do |endpoint|

@@ -13,10 +13,7 @@ class ds.LogbookLinkCell extends Backgrid.StringCell
 
 class ds.ActionCell extends Backgrid.Cell
   className: -> 'action-cell'
-  template: (model) -> "
-    <a class='btn' href='#{ds.urlsHelper.urlFor(model)}'>View</a>
-    <a class='btn' href='#{ds.urlsHelper.urlFor(model)}/edit'>Edit</a>
-  "
+  template: (model) -> "<a href='#{ds.urlsHelper.urlFor(model)}'>View</a>"
   render: ->
     @$el.html(@template(@model))
     @delegateEvents()

@@ -1,0 +1,6 @@
+from_bruce:
+  report: possibility_audit
+  user: bruce
+  name: "Possiblity Audit"
+  body: "What is possible?"
+  status: "New"
