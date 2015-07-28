@@ -1,5 +1,3 @@
-Restore Search...
-
 restyle people list
   Add created_at to the people tables
 restlye engagements list
@@ -25,6 +23,7 @@ San Francisco - SF
 Washington DC - DC
 
 add Notables to school pages
+Write custom render for selectize search, showing result school
 add activity feed to person profiles
 Order not recently engaged students by: dream_team, engagements_count
 make graph events use the router, not just navigate
