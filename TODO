@@ -11,6 +11,7 @@ Install new auth
 Convert users to people
 Add an EDIT PROFILE screen
 make leaderboards link to their records
+restore "Toggle Dream Team"
 
 Refactor leaderboard views to use json.set!, as in search_results#index
 

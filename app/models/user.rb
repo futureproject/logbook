@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   has_many :projects, through: :school
   has_many :engagements
   has_many :engagement_attendees, through: :engagements
+  has_many :report_submissions
   before_save :set_site
   validates_presence_of :role
 
