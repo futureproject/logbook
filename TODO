@@ -1,3 +1,9 @@
+# J/A create a FieldReportTemplate
+# J/A assign FieldReportTemplate to users, via field_report_assignments
+# field_report_assignments, on create, create new FieldReports for their assignees
+# User sees open field_report_assignments
+# Clicking a field_report_assignment edits its FieldReport
+
 WEEKLY REPORTSSSSSSS
 Create NOTESSSSS
 restore duplicate engagements
