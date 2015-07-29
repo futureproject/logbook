@@ -1,5 +1,5 @@
 <div class="titlebar">
-  <div class="title">People</div>
+  <a class="title" href="/logbook/people">People</a>
   <div class="subtitle">&rsaquo; <%= person.first_name %> <%= person.last_name %></div>
   <nav class='titlebar-actions'>
     <a href="/logbook/people/<%= person.id %>/edit">Edit</a>
@@ -23,6 +23,12 @@
     <%= person.school_name %>
   </li>
 </ul>
+<!--
+<div class="section notes">
+  <div class="note">I am a long-ish note, probably typed on a phone, possibly with a photo attached. If I have a photo attached, what should happen?</div>
+  <div class="note">I am a long-ish note, probably typed on a phone, possibly with a photo attached. If I have a photo attached, what should happen?</div>
+</div>
+-->
 <div class="section">
   <h2 class="section-header"><%= person.projects.length %> Projects</h2>
   <div id="projects-table" class="table"></div>

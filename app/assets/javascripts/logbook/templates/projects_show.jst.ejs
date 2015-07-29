@@ -1,5 +1,5 @@
 <div class="titlebar">
-  <div class="title">Projects</div>
+  <a class="title" href="/logbook/projects">Projects</a>
   <div class="subtitle">&rsaquo; <%= project.name || "Viewing Project" %></div>
   <nav class='titlebar-actions'>
     <a href="/logbook/projects/<%= project.id %>/edit">Edit</a>
@@ -12,11 +12,11 @@
   </li>
   <li class="fact">
     <label>created</label>
-    <%= project.created_at %>
+    <span class="datefact"><%= project.created_at %></span>
   </li>
   <li class="fact">
     <label>Updated</label>
-    <%= project.updated_at %>
+    <span class="datefact"><%= project.updated_at %></span>
   </li>
   <li class="fact">
     <label>School</label>

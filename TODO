@@ -1,13 +1,9 @@
-make the reports a local collection, like schools (controller, view)
+Add an EDIT USER PROFILE screen
 Create NOTESSSSS
 restore duplicate engagements
 Install new auth
 Convert users to people
-Add an EDIT USER PROFILE screen
-make leaderboards link to their records
 restore "Toggle Dream Team"
-
-Refactor leaderboard views to use json.set!, as in search_results#index
 
 Trigger flash notices after C(R)UD
 

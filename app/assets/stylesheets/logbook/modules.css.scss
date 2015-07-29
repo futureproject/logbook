@@ -59,7 +59,18 @@
     text-transform: uppercase;
     font-size: 10px;
   }
-  label:after { content: ':' }
+  font-family: menlo, consolas, 'lucida console', monospace;
+  label {
+    //font-family: $base-font-family;
+    &:after {
+      content: ':';
+    }
+  }
+  .datefact {
+    overflow: hidden;
+    width: 10ch;
+    display: inline-block;
+  }
 }
 
 .section {
@@ -276,4 +287,21 @@ input.save {
   height: auto;
   margin: 15px;
   resize: none;
+}
+
+.notes {
+  overflow-y: hidden;
+  overflow-x: auto;
+  white-space: nowrap;
+  @include clearfix;
+  word-spacing: -5px;
+  .note {
+    display: inline-block;
+    width: 210px;
+    height: 150px;
+    word-spacing: 0;
+    margin-right: 15px;
+    padding: 10px;
+    white-space: normal;
+  }
 }

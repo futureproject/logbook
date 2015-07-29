@@ -212,3 +212,14 @@ pre {
   line-height: 20px;
   max-width: 80ch;
 }
+
+.note {
+  background: $retro-yellow;
+  @include linear-gradient(10deg, $retro-yellow, lighten($retro-yellow, 10%));
+  font-size: 12px;
+  line-height: 15px;
+  font-family:  'chalkboard';
+  -webkit-font-smoothing: antialiased;
+  color: $retro-gray;
+  box-shadow: -2px 2px 5px rgba(0,0,0,.1);
+}
