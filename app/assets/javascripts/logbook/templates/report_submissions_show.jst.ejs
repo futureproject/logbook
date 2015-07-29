@@ -1,15 +1,9 @@
 <div class="titlebar">
   <div class="title">Completing Report</div>
   <div class="subtitle"><%= report_submission.name %></div>
-</div>
-<div class="footerbar">
-  <nav class='l'>
-    <a class='save' href="/logbook/report_submissions">Save Report</a>
-  </nav>
-  <nav class='r'>
-    <a class='submit' href="/logbook/report_submissions">Submit Report</a>
+  <nav class='titlebar-actions'>
+    <a class='save people-link' href="/logbook/report_submissions">Save</a>
+    <a class='submit' href="/logbook/report_submissions">Submit</a>
   </nav>
 </div>
-<textarea name="body" id="report-body" class="text-editor">
-  <%= report_submission.body %>
-</textarea>
+<textarea name="body" id="report-body" class="text-editor"><%= report_submission.body %></textarea>

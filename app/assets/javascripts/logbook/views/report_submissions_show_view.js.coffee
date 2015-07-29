@@ -18,10 +18,12 @@ class ds.ReportSubmissionsShowView extends Backbone.View
 
   postRender: ->
 
-  getBodyFromTextEditor: -> { body: @el.querySelector('textarea').value }
+  getBodyFromTextEditor: -> { body: @el.querySelector('textarea').value.trim() }
+
   save: (event) ->
     event.preventDefault()
     data = @getBodyFromTextEditor()
+    data = _.extend(data, {status: "In Progress"}) if @model.get('status') == "Unread"
     @model.save data, {silent: true}
     true
 

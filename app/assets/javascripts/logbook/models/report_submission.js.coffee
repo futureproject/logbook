@@ -13,9 +13,9 @@ class ds.ReportSubmissionsCollection extends Backbone.PageableCollection
     args ||= {}
     @mode = args.mode || 'server'
   backgrid_columns: [
-    { name: 'status', cell: ds.LogbookLinkCell }
+    { name: 'status', cell: 'string' }
     { name: 'name', cell: ds.LogbookLinkCell }
-    { name: 'body', cell: 'string', label: 'Questions' }
+    { name: 'excerpt', cell: 'string', label: 'Questions' }
     { name: 'created_at', cell: 'date', label: 'Date Assigned' }
   ]
   parseRecords: (response) ->

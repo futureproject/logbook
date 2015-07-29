@@ -15,7 +15,7 @@
     display: inline-block;
     padding-left: 5px;
     content: '/';
-    color: $base-font-color;
+    color: $base-border-color;
   }
 }
 
@@ -271,7 +271,7 @@ input.save {
   top: 50px;
   right: 0;
   left: 210px;
-  bottom: 50px;
+  bottom: 0;
   width: auto;
   height: auto;
   margin: 15px;
