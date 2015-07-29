@@ -1,22 +1,19 @@
+Convert users to people
+Install new auth
 Add an EDIT USER PROFILE screen
+restore "Toggle Dream Team"
+
 Create NOTESSSSS
 restore duplicate engagements
-Install new auth
-Convert users to people
-restore "Toggle Dream Team"
+0bis) Chiefs coaching DDs
 
 Trigger flash notices after C(R)UD
 
-Detroit - DET
-Newark - NWK
-New Haven - NH
-New York - NYC
-Philadelphia - PHI
-San Francisco - SF
-Washington DC - DC
+restructure Mobile App
 
-add Notables to school pages
+add Leaderboards to school pages
 Write custom render for selectize search, showing result school
+
 add activity feed to person profiles
 Order not recently engaged students by: dream_team, engagements_count
 make graph events use the router, not just navigate
@@ -26,11 +23,8 @@ Add GOAL to engagements
 
 
 # NEW FEATURES!
-0) Weekly Reports
-0bis) Chiefs coaching DDs
 1) Linking engagements to projects
 3) Make profile pictures awesome
-4) Make person profiles awesome
 
 # DESIGN
 _ make the Logged Hours Per Person graph a single series
