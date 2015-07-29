@@ -1,15 +1,9 @@
-# J/A create a FieldReportTemplate
-# J/A assign FieldReportTemplate to users, via field_report_assignments
-# field_report_assignments, on create, create new FieldReports for their assignees
-# User sees open field_report_assignments
-# Clicking a field_report_assignment edits its FieldReport
-
-WEEKLY REPORTSSSSSSS
+make the reports a local collection, like schools (controller, view)
 Create NOTESSSSS
 restore duplicate engagements
 Install new auth
 Convert users to people
-Add an EDIT PROFILE screen
+Add an EDIT USER PROFILE screen
 make leaderboards link to their records
 restore "Toggle Dream Team"
 
@@ -39,7 +33,6 @@ Add GOAL to engagements
 0) Weekly Reports
 0bis) Chiefs coaching DDs
 1) Linking engagements to projects
-2) Showing engagements on student profiles (maybe just coaching sessions)
 3) Make profile pictures awesome
 4) Make person profiles awesome
 

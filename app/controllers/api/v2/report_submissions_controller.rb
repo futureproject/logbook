@@ -8,8 +8,7 @@ class Api::V2::ReportSubmissionsController < Api::V2::BaseController
     @report_submissions = current_user.report_submissions
       .btw(@t)
       .order(sort_params)
-      .page(params[:page])
-    @total = @report_submissions.total_count
+      .limit(200)
   end
 
   # GET /api/v2/report_submissions/1
