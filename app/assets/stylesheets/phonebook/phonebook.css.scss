@@ -62,10 +62,11 @@ pre {
   right: 0;
   padding: 12%;
   background: $blue;
+  @include linear-gradient($retro-teal, $retro-blue);
   color: white;
   text-align: center;
-  .octicon {
-    font-size: 64px !important;
+  p {
+    line-height: 1.2;
   }
 }
 
