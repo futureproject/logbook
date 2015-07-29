@@ -6,3 +6,11 @@ body.report {
   }
   th.created_at { text-align: right; }
 }
+
+#report-submissions-table {
+  td:nth-child(3) {
+    a {
+      color: $base-font-color;
+    }
+  }
+}

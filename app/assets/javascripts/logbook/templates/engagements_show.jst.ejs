@@ -1,5 +1,6 @@
 <div class="titlebar">
-  <div class="title"><%= engagement.name || engagement.class_name %></div>
+  <div class="title">Engagements</div>
+  <div class="subtitle">&rsaquo; <%= engagement.name || engagement.kind %></div>
   <nav class='titlebar-actions'>
     <a href="/logbook/engagements/<%= engagement.id %>/edit">Edit</a>
   </nav>
