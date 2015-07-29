@@ -1,7 +1,0 @@
-body.report {
-  a { font-weight: normal; color: $reports-color; }
-  .footerbar .r a {
-    color: $retro-orange;
-  }
-  th.created_at { text-align: right; }
-}
