@@ -20,6 +20,8 @@ namespace :denoiser do
     noise = Person.includes(:project_people).includes(:engagement_attendees)
     .where(engagement_attendees: { person_id: nil } )
     .where( project_people: { person_id: nil })
+    .where('notes IS NULL').where('phone IS NULL')
+    .where('email IS NULL')
     .uniq
 
     puts "Deleting #{noise.size} people..."
