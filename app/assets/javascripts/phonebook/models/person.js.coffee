@@ -11,7 +11,7 @@ class Phonebook.Models.Person extends Backbone.Model
     grade: null
     dream_team: false
     attending: null
-    notes: null
+    legacy_notes: null
     email: null
     phone: null
 

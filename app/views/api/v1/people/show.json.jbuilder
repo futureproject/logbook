@@ -7,7 +7,7 @@ json.extract! @person, :id,
   :school_name,
   :grade,
   :role,
-  :notes,
+  :legacy_notes,
   :phone,
   :email
 json.projects @person.projects, :name, :id
