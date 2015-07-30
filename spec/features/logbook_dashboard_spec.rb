@@ -4,7 +4,7 @@ feature 'Logbook dashboard' do
     mock_sign_in
   end
 
-  scenario "for a Site" do
+  scenario "for a School" do
     visit "/logbook"
     expect(page).to have_content "DREAM DIRECTOR BRUCE WAYNE"
   end
