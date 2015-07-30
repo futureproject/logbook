@@ -4,9 +4,10 @@ class ds.Engagement extends Backbone.Model
   defaults: ->
     kind: 'Coaching Session'
     school_id: ds.current_user.get('school_id')
-    attendees: []
     duration: 0.1
     date: new Date().toString('yyyy-MM-dd')
+    notes: []
+    attendees: []
 
   tplAttrs: ->
     attrs = _.extend(@toJSON(), { class_name: 'Engagement' })

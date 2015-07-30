@@ -15,7 +15,7 @@ class ds.AppView extends Backbone.View
 
   internalLinkHandler: (e) ->
     path = e.currentTarget.getAttribute('href')
-    return true if !path? || path.match(/http/i)
+    return true if !path? || path.match(/http/i) || path == "#"
     if (!(e.which > 1 || e.shiftKey || e.altKey || e.metaKey || e.ctrlKey))
       e.preventDefault()
       ds.router.navigate path, { trigger: true }

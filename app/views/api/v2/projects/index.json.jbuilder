@@ -10,10 +10,9 @@
           :description,
           :status,
           :school_id,
-          :created_at,
-          :updated_at
+        json.created_at project.created_at.to_date
+        json.updated_at project.updated_at.to_date
         json.people_count (project.respond_to?(:people_count) ? project.people_count : project.people.count)
-
         json.notes_count (project.respond_to?(:notes_count) ? project.notes_count : project.notes.count)
       #end
     end

@@ -200,11 +200,6 @@ textarea {
 }
 .text-editor {
   background: white;
-  border: 1px solid $base-border-color;
-  &:focus {
-    outline: none;
-    border-color: $reports-color;
-  }
 }
 pre {
   white-space: pre-wrap;
@@ -214,12 +209,13 @@ pre {
 }
 
 .note {
-  background: $retro-yellow;
-  @include linear-gradient(10deg, $retro-yellow, lighten($retro-yellow, 10%));
+  background: white;
   font-size: 12px;
   line-height: 15px;
-  font-family:  'chalkboard';
-  -webkit-font-smoothing: antialiased;
-  color: $retro-gray;
-  box-shadow: -2px 2px 5px rgba(0,0,0,.1);
+  box-shadow: -3px 3px 5px rgba(0,0,0,.1);
 }
+.note-date, .note-user {
+  color: $retro-light-gray;
+}
+.note-date:after { content: ' //'; }
+.note-user { font-weight: bold; }

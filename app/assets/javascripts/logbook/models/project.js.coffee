@@ -5,6 +5,7 @@ class ds.Project extends Backbone.Model
     status: 'underway'
     school_id: ds.current_user.get('school_id')
     people: []
+    notes: []
 
   tplAttrs: ->
     attrs = _.extend(@toJSON(), { class_name: 'Project' })
@@ -25,8 +26,8 @@ class ds.ProjectsCollection extends Backbone.PageableCollection
   backgrid_columns: [
     {name: 'name', cell: ds.LogbookLinkCell }
     {name: 'description', cell: 'string' }
-    {name: 'people_count', cell:'integer', label: 'Team Size'}
     {name: 'status', cell:'string'}
+    {name: 'people_count', cell:'integer', label: 'Team Size'}
     {name: 'created_at', cell:'date', label: 'created'}
   ]
   parseRecords: (response) ->

@@ -1,5 +1,8 @@
 #projects-table {
   a { color: $projects-color; }
+  th.leading { text-align: center; }
+  th.people_count { text-align: right; }
+  th.created_at { text-align: right; }
 }
 #project-form {
   @include row;

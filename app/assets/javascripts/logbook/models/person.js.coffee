@@ -7,6 +7,7 @@ class ds.Person extends Backbone.Model
     school_id: ds.current_user.get('school_id')
     projects: []
     engagements: []
+    notes: []
   tplAttrs: ->
     attrs = _.extend(@toJSON(), { class_name: 'Person' })
     {person: attrs }
