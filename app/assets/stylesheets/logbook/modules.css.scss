@@ -59,9 +59,7 @@
     text-transform: uppercase;
     font-size: 10px;
   }
-  font-family: menlo, consolas, 'lucida console', monospace;
   label {
-    //font-family: $base-font-family;
     &:after {
       content: ':';
     }

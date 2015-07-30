@@ -12,7 +12,7 @@ class Phonebook.Models.Engagement extends Backbone.Model
     attendees: []
     duration: 0.1
     date: new Date().toString('yyyy-MM-dd')
-    notes: ''
+    description: ''
 
 # Backbone.DualStorage saves selected state, so ignore it
   parse: (response) -> _.omit response, ['selected']

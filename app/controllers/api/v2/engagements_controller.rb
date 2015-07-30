@@ -1,5 +1,5 @@
 class Api::V2::EngagementsController < Api::V2::BaseController
-  wrap_parameters format: [:json], include: [:attendee_ids, :name, :date, :kind, :school_id, :notes, :duration, :headcount]
+  wrap_parameters format: [:json], include: [:attendee_ids, :name, :date, :kind, :school_id, :description, :duration, :headcount]
   before_action :set_engagement, only: [:show, :edit, :update, :destroy, :upload, :attendees]
 
   # GET /api/v2/engagements
@@ -84,7 +84,7 @@ class Api::V2::EngagementsController < Api::V2::BaseController
         :date,
         :school_id,
         :duration,
-        :notes,
+        :description,
         :headcount,
         attendee_ids: []
       )
