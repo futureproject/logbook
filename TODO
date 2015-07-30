@@ -1,6 +1,12 @@
-Rename engagement recap to description
-restore duplicate engagements
+Rename people notes to legacy_notes
+  fix v1 api
+  fix mobile
 
+People have_many notes
+Show notes header on person template
+Allow creation of new notes
+
+restore duplicate engagements
 Create NOTESSSSS
 
 Convert users to people
