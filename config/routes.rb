@@ -25,6 +25,7 @@ Rails.application.routes.draw do
       resources :report_submissions
       resources :assets, only: [:create, :destroy]
       resources :search_results, only: [:index]
+      resources :notes
       [:schools, :sites, :nationals].each do |endpoint|
         resources endpoint, only: [:index, :show] do
           collection do

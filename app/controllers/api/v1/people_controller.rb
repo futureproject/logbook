@@ -93,7 +93,7 @@ class Api::V1::PeopleController < Api::V1::BaseController
         :dream_team,
         :email,
         :phone,
-        :notes
+        :legacy_notes
       )
     end
 

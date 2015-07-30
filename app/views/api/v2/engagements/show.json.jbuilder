@@ -11,3 +11,9 @@ json.attendees @engagement.attendees.order(:first_name) do |person|
   json.engagements_count person.engagements.count
   json.created_at person.created_at
 end
+json.notes @engagement.notes.order(:id).limit(100) do |note|
+  json.id note.id
+  json.created_at note.created_at.to_date
+  json.content note.content
+  json.author note.author.try(:name)
+end

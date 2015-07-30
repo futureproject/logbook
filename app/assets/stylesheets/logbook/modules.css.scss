@@ -296,22 +296,26 @@ input.save {
   }
 }
 
-.endless-row {
+.notes {
   overflow-y: hidden;
   overflow-x: auto;
   white-space: nowrap;
-  word-spacing: -5px;
+  padding: 0;
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 15px;
+  > * {
+    display: table-cell;
+    white-space: normal;
+    word-spacing: 0;
+    width: 210px;
+    padding: 10px;
+    margin: 15px;
+    vertical-align: top;
+  }
 }
-#notes { display: none; }
 .note {
-  display: inline-block;
-  width: 210px;
   height: 150px;
-  word-spacing: 0;
-  margin-right: 15px;
-  padding: 10px;
-  white-space: normal;
-  overflow: hidden;
 }
 .note-user, .note-date { display: inline-block; }
 .note-text {
@@ -319,4 +323,16 @@ input.save {
   height: 110px;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+#new-note {
+  textarea {
+    resize: none;
+    border: none;
+  }
+  input {
+    border-bottom: none;
+  }
+  textarea, input {
+    margin-bottom: 10px;
+  }
 }

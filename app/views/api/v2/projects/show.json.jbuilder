@@ -14,3 +14,9 @@ json.people @project.project_people.includes(:person).joins(:person).order('proj
   json.leading pp.leading
 end
 json.assets @project.assets, :thumbnail, :id, :data, :external_url, :caption
+json.notes @project.notes.order(:id).limit(100) do |note|
+  json.id note.id
+  json.created_at note.created_at.to_date
+  json.content note.content
+  json.author note.author.try(:name)
+end

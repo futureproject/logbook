@@ -187,11 +187,11 @@ tbody {
 .btn {
   display: inline-block;
   background: $retro-yellow;
+  border: none;
   color: white;
   text-transform: uppercase;
   font-weight: bold;
-  font-size: 10px;
-  padding: 0 5px;
+  cursor: pointer;
   @include user-select(none);
 }
 
@@ -214,6 +214,7 @@ pre {
   line-height: 15px;
   box-shadow: -3px 3px 5px rgba(0,0,0,.1);
 }
+
 .note-date, .note-user {
   color: $retro-light-gray;
 }
