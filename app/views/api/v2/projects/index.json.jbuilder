@@ -9,7 +9,7 @@
           :name,
           :description,
           :status,
-          :school_id,
+          :school_id
         json.created_at project.created_at.to_date
         json.updated_at project.updated_at.to_date
         json.people_count (project.respond_to?(:people_count) ? project.people_count : project.people.count)

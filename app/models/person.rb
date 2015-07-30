@@ -9,7 +9,7 @@ class Person < ActiveRecord::Base
   has_many :secondary_projects, -> { where(project_people: { leading: false }) }, through: :project_people, source: :project
   has_many :engagement_attendees, dependent: :destroy
   has_many :engagements, through: :engagement_attendees
-  has_many :notes, as: :notable, dependent: :destroy
+  #has_many :notes, as: :notable, dependent: :destroy
   has_many :assets, as: :attachable
   has_one :identity, dependent: :destroy
   before_save :set_site
