@@ -5,36 +5,36 @@ feature 'Logbook projects' do
   end
 
   scenario 'CREATE' do
-    visit logbook_projects_path
-    first('#global-add a').click
-    fill_in 'project[name]', with: 'Build New Batplane'
-    click_button 'Create Project'
-    expect(page).to have_content 'Editing Project'
+    visit "/logbook/projects"
+    find("#global-add-trigger").click
+    within '#project-form' do
+      fill_in 'name', with: 'Build New Batplane'
+      click_button 'Save'
+    end
+    should_see_project_named "Build New Batplane"
   end
 
   scenario 'READ' do
-    visit logbook_projects_path
-    expect(page).to have_selector '.project'
+    visit "/logbook/projects"
+    click_link "Design Better Costume"
+    should_see_project_named "Design Better Costume"
   end
 
   scenario 'UPDATE' do
-    visit logbook_projects_path
+    visit "/logbook/projects"
+    click_link 'Design Better Costume'
     click_link 'Edit', match: :first
-    fill_in 'project[name]', with: 'Repair Batplane'
-    select 'complete',  from: 'project[status]'
-    click_button 'Update Project'
-    expect(page).to have_content 'Repair Batplane'
-    expect(page).to have_content 'Status: complete'
+    fill_in 'description', with: "The Robin Costume WAS pretty lame. Now it's awsome."
+    click_button 'Save'
+    should_see_project_named "Design Better Costume"
   end
 
-  scenario 'DESTROY', js: true do
-    visit logbook_projects_path
-    count = all('.project').count
-    page.accept_confirm do
-      first('a[data-method=delete]').click
-    end
-    sleep 1 #wait for the delete animation to finish
-    expect(all('.project').count).to eq (count - 1)
+  scenario 'DESTROY'
+  # create a new project, then destroy him
+
+  def should_see_project_named(name)
+    expect(page).to have_content name
+    expect(page).to have_content "STATUS UNDERWAY"
   end
 
 end

@@ -13,13 +13,13 @@ feature 'Logbook people' do
       select '12', from: 'grade'
       click_button 'Save'
     end
-    should_see_created_person
+    should_see_person_named "Terry McGuiness"
   end
 
   scenario 'READ' do
     visit "/logbook/people"
     click_link 'Tim'
-    should_see_student_named "Tim Drake"
+    should_see_person_named "Tim Drake"
   end
 
   scenario 'UPDATE' do
@@ -28,19 +28,15 @@ feature 'Logbook people' do
     click_link 'Edit', match: :first
     fill_in 'first_name', with: 'Richard'
     click_button 'Save'
-    should_see_student_named "Richard"
+    should_see_person_named "Richard"
   end
 
   scenario 'DESTROY'
   # create a new person, then destroy him
 
-  def should_see_created_person
-    expect(page).to have_content 'Terry McGuiness'
-  end
-
-  def should_see_student_named(name)
+  def should_see_person_named(name)
     expect(page).to have_content name
-    expect(page).to have_content  "ROLE STUDENT GRADE DREAM TEAM TRUE SCHOOL GOTHAM CITY HIGH"
+    expect(page).to have_content  "ROLE STUDENT"
   end
 
 end

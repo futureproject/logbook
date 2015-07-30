@@ -11,5 +11,5 @@ json.cache! ["v2/engagement_bubbles_graph", @t.first, @t.last, @scope] do
   json.colors Engagement::COLOR_ENUM
   json.x_axis_type "datetime"
   json.header_format "{series.name}<br>"
-  json.point_format "<b>{point.title}</b><br>{point.y} Hrs, {point.z} Attendees<br>{point.notes}"
+  json.point_format "<b>{point.title}</b><br>{point.y} Hrs, {point.z} Attendees<br>{point.description}"
 end
