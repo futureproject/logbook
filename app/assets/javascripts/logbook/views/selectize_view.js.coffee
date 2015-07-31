@@ -21,7 +21,7 @@ class ds.SelectizeView extends Backbone.View
       create: (input, callback) =>
         name = input.split(' ')
         item =
-          id: parseInt(Math.random()*10e16)
+          id: "person_#{Math.floor(Math.random()*10e3)}"
           last_name: name.pop()
           first_name: name.join(' ')
           school_id: $('select[name*=school_id]').val()
