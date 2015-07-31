@@ -89,4 +89,7 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # block long requests, because Puma does not not about heroku timeouts
+  Rack::Timeout.timeout = 24  # seconds
 end

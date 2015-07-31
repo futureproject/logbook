@@ -58,7 +58,7 @@ gem 'sweet-alert'
 # enable heroku best-practices
 group :production do
   gem 'rails_12factor'
-  gem 'rack-timeout'
+  gem "rack-timeout-puma"
 end
 gem 'airbrake'
 
