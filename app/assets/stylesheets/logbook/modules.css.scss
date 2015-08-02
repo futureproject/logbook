@@ -296,28 +296,6 @@ input.save {
   }
 }
 
-.notes {
-  display: none;
-  overflow-y: hidden;
-  overflow-x: auto;
-  white-space: nowrap;
-  padding: 0;
-  table-layout: fixed;
-  border-collapse: separate;
-  border-spacing: 15px;
-  > * {
-    display: table-cell;
-    white-space: normal;
-    word-spacing: 0;
-    width: 210px;
-    padding: 10px;
-    margin: 15px;
-    vertical-align: top;
-  }
-}
-.note {
-  height: 150px;
-}
 .note-user, .note-date { display: inline-block; }
 .note-text {
   margin-top: 5px;
@@ -325,6 +303,7 @@ input.save {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
 #new-note {
   textarea {
     resize: none;

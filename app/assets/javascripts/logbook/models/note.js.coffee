@@ -11,6 +11,10 @@ class ds.Note extends Backbone.Model
     attrs = _.extend(@toJSON(), { class_name: 'Note' })
     {note: attrs }
 
+  initialize: ->
+    #enforce a Title Case, singular notable_type
+    @set 'notable_type', ds.nounsHelper.singularize(@get('notable_type')).toTitleCase()
+
 class ds.NotesCollection extends Backbone.Collection
   model: ds.Note
   namespace: 'notes'
