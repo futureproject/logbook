@@ -20,7 +20,7 @@ class ds.EngagementsController extends ds.BaseController
     @views.show.renderTo @targetEl
 
   new: (engagement) ->
-    engagement || = new ds.Engagement
+    engagement = new ds.Engagement
     @views.new = new ds.EngagementsNewView
       model: engagement
     @views.new.renderTo @targetEl

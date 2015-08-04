@@ -48,8 +48,5 @@ class ds.Router extends Backbone.Router
   report_submissions_show: (id) -> Backbone.trigger "report_submissions:show", id
 
   #NOTES
-  notes_new: (notable_type, notable_id) ->
-    Backbone.trigger "notes:new",
-      notable_type: notable_type
-      notable_id: notable_id
+  notes_new: (type, obj_id) -> Backbone.trigger "notes:new", type, obj_id
 

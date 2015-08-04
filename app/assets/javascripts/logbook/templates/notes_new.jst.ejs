@@ -1,5 +1,15 @@
-<textarea name="content" placeholder="..."></textarea>
-<input type="file" name="attachements" disabled>
-<input type="hidden" name="notable_type" value="<%= note.notable_type %>">
-<input type="hidden" name="notable_id" value="<%= note.notable_id %>">
-<input type="submit" value="Add Note" class="btn">
+<div class="titlebar">
+  <div class="subtitle">Making a</div>
+  <div class="title">Note</div>
+  <div class="subtitle">re:</div>
+  <div class="title"><%= note.notable_type %></div>
+  </div>
+</div>
+<div class="footerbar">
+  <nav class='l'>
+    <a href="/logbook/<%= ds.nounsHelper.pluralize(note.notable_type) %>/<%= note.notable_id %>">Cancel</a>
+  </nav>
+</div>
+<div class="section">
+  <div id="note-form"></div>
+</div>

@@ -20,7 +20,7 @@ class ds.ProjectsController extends ds.BaseController
     @views.show.renderTo @targetEl
 
   new: (project) ->
-    project || = new ds.Project
+    project = new ds.Project
     @views.new = new ds.ProjectsNewView
       model: project
     @views.new.renderTo @targetEl

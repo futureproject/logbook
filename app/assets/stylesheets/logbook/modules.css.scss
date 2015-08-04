@@ -72,7 +72,6 @@
 
 .section-header-action {
   float: right;
-  display: none;
 }
 
 .table {
@@ -296,23 +295,13 @@ input.save {
   }
 }
 
-.note-user, .note-date { display: inline-block; }
-.note-text {
-  margin-top: 5px;
-  height: 110px;
-  overflow: hidden;
-  text-overflow: ellipsis;
+.sticky-note {
+  .note-user, .note-date { display: inline-block; }
+  .note-text {
+    margin-top: 5px;
+    height: 110px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
 
-#new-note {
-  textarea {
-    resize: none;
-    border: none;
-  }
-  input {
-    border-bottom: none;
-  }
-  textarea, input {
-    margin-bottom: 10px;
-  }
-}

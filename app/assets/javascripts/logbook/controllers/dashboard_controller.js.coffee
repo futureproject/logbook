@@ -7,7 +7,7 @@ class ds.DashboardController extends ds.BaseController
 
   show: ->
     @activate()
-    ds.router.navigate '/logbook/dashboard'
+    ds.router.navigate '/logbook/dashboard', { replace: true }
     scope = ds.scopeHelper.getScope()
     @views.show = switch scope.get("namespace")
       when "sites" then new ds.SitesDashboardView({ model: scope })

@@ -1,4 +1,8 @@
-redirect to dashboard should be silent
+Try instantiating collections on Logbook Person model
+  (notes)
+  (engagements)
+  (projects)
+
 Allow creation of new notes
 omit associations from Model#toJSON
 restore duplicate engagements

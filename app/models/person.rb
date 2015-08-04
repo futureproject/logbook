@@ -45,6 +45,7 @@ class Person < ActiveRecord::Base
   scope :active, -> { where(graduated_in: nil) }
 
   scope :q, -> (query) {
+    return if query.blank?
     first = "%#{query.split(' ').first.downcase}%"
     last = "%#{query.split(' ').last.downcase}%"
     operator = first == last ? "or" : "and"

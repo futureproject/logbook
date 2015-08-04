@@ -1,14 +1,13 @@
 class ds.NotesController extends Backbone.View
   initialize: ->
-    @listenTo Backbone, "notes:new", @addNote
+    @views = {}
+    @listenTo Backbone, "notes:new", @new
 
-  addNote: (args) ->
-    throw "Needs a notable" unless args?.notable_type && args?.notable_id
+  new: (notable_type, notable_id) ->
     note = new ds.Note
-      notable_id: args.notable_id
-      notable_type: args.notable_type
-    #view = new ds.NotesNewView
-      #mode: note
-    #view.renderTo args.target
-    console.log note
+      notable_id: notable_id
+      notable_type: notable_type
+    @views.new = new ds.NotesNewView
+      model: note
+    @views.new.renderTo "#yield"
 

@@ -208,15 +208,15 @@ pre {
   max-width: 80ch;
 }
 
-.note {
+.sticky-note {
   background: white;
   font-size: 12px;
   line-height: 15px;
   box-shadow: -3px 3px 5px rgba(0,0,0,.1);
+  .note-date, .note-user {
+    color: $retro-light-gray;
+  }
+  .note-date:after { content: ' //'; }
+  .note-user { font-weight: bold; }
 }
 
-.note-date, .note-user {
-  color: $retro-light-gray;
-}
-.note-date:after { content: ' //'; }
-.note-user { font-weight: bold; }

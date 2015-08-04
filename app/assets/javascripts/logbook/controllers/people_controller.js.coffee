@@ -20,7 +20,7 @@ class ds.PeopleController extends ds.BaseController
     @views.show.renderTo @targetEl
 
   new: (person) ->
-    person || = new ds.Person
+    person = new ds.Person
     @views.new = new ds.PeopleNewView
       model: person
     @views.new.renderTo @targetEl

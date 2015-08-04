@@ -15,6 +15,12 @@ class ds.Note extends Backbone.Model
     #enforce a Title Case, singular notable_type
     @set 'notable_type', ds.nounsHelper.singularize(@get('notable_type')).toTitleCase()
 
+  getNotable: ->
+    n_type = @get "notable_type"
+    n_id = @get "notable_id"
+    model = new ds[n_type]({ id: n_id })
+    ds.collections[model.namespace].get(n_id) || model
+
 class ds.NotesCollection extends Backbone.Collection
   model: ds.Note
   namespace: 'notes'

@@ -1,6 +1,11 @@
 class ds.Person extends Backbone.Model
   namespace: 'people'
   urlRoot: ds.apiHelper.urlFor 'people'
+  initialize: ->
+    @collections =
+      projects: new ds.ProjectsCollection { mode: 'client' }
+      engagements: new ds.EngagementsCollection { mode: 'client' }
+      notes: new ds.NotesCollection
   defaults: ->
     role: 'student'
     grade: 9

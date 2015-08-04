@@ -1,32 +1,20 @@
 class ds.NotesNewView extends Backbone.View
-  initialize: (args) ->
-    @notable_id = args.notable_id
-    @notable_type = args.notable_type
-    @notable = args.notable
-    @setModel()
-
-  setModel: ->
-    @model = new ds.Note
-      notable_id: @notable_id
-      notable_type: @notable_type
-
-  render: ->
-    @$el.html @template(@model.tplAttrs())
-    @delegateEvents()
-    @
+  initialize: ->
+    @model ||= new ds.Note
+    @views =
+      form: new ds.NotesFormView
+        model: @model
 
   template: JST['logbook/templates/notes_new']
 
-  tagName: 'form'
+  className: 'note new'
 
-  events:
-    'submit': 'save'
+  render: ->
+    @$el.html @template(@model.tplAttrs())
+    @postRender()
+    @
 
-  save: (event) ->
-    event.preventDefault()
-    data = Backbone.Syphon.serialize @
-    @model.save data
-    @notable.set 'notes', @notable.get('notes').push @model
-    @notable.save()
-    @setModel()
+  postRender: ->
+    @views.form.renderTo "#note-form"
+    @views.form.$el.find('textarea').first().focus()
 
