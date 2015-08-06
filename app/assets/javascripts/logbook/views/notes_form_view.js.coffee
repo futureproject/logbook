@@ -19,8 +19,10 @@ class ds.NotesFormView extends Backbone.View
   onsubmit: (event) ->
     event.preventDefault()
     data = Backbone.Syphon.serialize @
-    @model.save data
     notable = @model.getNotable()
-    notable.collections?.notes?.add @model
-    ds.router.navigate ds.urlsHelper.urlFor(notable), {trigger: true}
+    @model.save data,
+      error: (msg) ->
+        console.log msg
+      complete: ->
+        ds.router.navigate ds.urlsHelper.urlFor(notable), {trigger: true}
 

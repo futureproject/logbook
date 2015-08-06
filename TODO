@@ -4,6 +4,9 @@ Try instantiating collections on Logbook Person model
   (projects)
 
 Allow creation of new notes
+MOBILE APP HAS NO PLUS BUTTONS
+Forms do not validate
+use project.parse to get created_at, not on the server
 omit associations from Model#toJSON
 restore duplicate engagements
 Add an EDIT USER PROFILE screen

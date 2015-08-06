@@ -1,14 +1,7 @@
 <div class="titlebar">
-  <div class="subtitle">Making a</div>
-  <div class="title">Note</div>
-  <div class="subtitle">re:</div>
-  <div class="title"><%= note.notable_type %></div>
+  <a class="title" href="/logbook/<%= ds.nounsHelper.pluralize(note.notable_type) %>/<%= note.notable_id %>">Person</a>
+  <div class="subtitle">&rsaquo; New Note</div>
   </div>
-</div>
-<div class="footerbar">
-  <nav class='l'>
-    <a href="/logbook/<%= ds.nounsHelper.pluralize(note.notable_type) %>/<%= note.notable_id %>">Cancel</a>
-  </nav>
 </div>
 <div class="section">
   <div id="note-form"></div>
