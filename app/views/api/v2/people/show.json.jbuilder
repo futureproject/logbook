@@ -18,9 +18,4 @@ json.projects @person.project_people.includes(:project).order('projects.name') d
   json.leading pp.leading
 end
 json.engagements @person.engagements.order('date DESC').limit(20)
-json.notes @person.notes.order(:id).limit(100) do |note|
-  json.id note.id
-  json.created_at note.created_at.to_date
-  json.content note.content
-  json.author note.author.try(:name)
-end
+json.partial! 'api/v2/notes/notes', notes: @person.notes

@@ -1,5 +1,5 @@
 class ds.NoteView extends Backbone.View
-  className: 'note'
+  className: 'sticky'
 
   template: JST["logbook/templates/note"]
 

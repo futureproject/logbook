@@ -295,7 +295,22 @@ input.save {
   }
 }
 
-.sticky-note {
+.stickies {
+  overflow: hidden;
+  overflow-x: auto;
+  padding: 15px;
+  margin: 0 -15px;
+  > div {
+    white-space: nowrap;
+  }
+}
+.sticky {
+  display: inline-block;
+  width: 240px;
+  height: 180px;
+  padding: 10px;
+  margin: 0 15px 0 0;
+  white-space: normal;
   .note-user, .note-date { display: inline-block; }
   .note-text {
     margin-top: 5px;

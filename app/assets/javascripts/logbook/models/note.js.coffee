@@ -13,7 +13,7 @@ class ds.Note extends Backbone.Model
 
   initialize: ->
     #enforce a Title Case, singular notable_type
-    @set 'notable_type', ds.nounsHelper.singularize(@get('notable_type')).toTitleCase()
+    @set 'notable_type', ds.nounsHelper.contantize(@get('notable_type'))
 
   getNotable: ->
     n_type = @get "notable_type"
