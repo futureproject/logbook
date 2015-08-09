@@ -9,5 +9,5 @@ class ds.NotesController extends Backbone.View
       notable_type: notable_type
     @views.new = new ds.NotesNewView
       model: note
-    @views.new.renderTo "#yield"
+    @views.new.render()
 

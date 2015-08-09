@@ -3,9 +3,9 @@ Try instantiating collections on Logbook Person model
   (engagements)
   (projects)
 
-Notes are beings stored with "Perso" notable type
 Allow creation of new notes
 MOBILE APP HAS NO PLUS BUTTONS
+Name order in tables seems case sensitive
 Forms do not validate
 use project.parse to get created_at, not on the server
 omit associations from Model#toJSON

@@ -5,6 +5,7 @@
 #= require backgrid.min
 #= require backgrid-paginator.min
 #= require backbone.syphon
+#= require jquery.animate-enhanced
 #= require date
 #= require selectize
 #= require twitter/typeahead

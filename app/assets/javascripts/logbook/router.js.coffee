@@ -20,7 +20,7 @@ class ds.Router extends Backbone.Router
     "logbook/report_submissions": "report_submissions_index"
     "logbook/report_submissions/:id": "report_submissions_show"
     # ASSOCIATIONS
-    "logbook/:notable_type/:notable_id/notes/new": "notes_new"
+    "logbook/:notable_type/:notable_id/notes/add": "notes_new"
 
   #DASHBOARD
   dashboard: -> Backbone.trigger "dashboard:show"

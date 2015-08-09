@@ -21,6 +21,7 @@ class ds.AppView extends Backbone.View
       ds.router.navigate path, { trigger: true }
 
   routeChangeHandler: (route) ->
+    return if !!route.match(/notes/i)
     css_class = route.replace(/\_/g, ' ')
     @el.setAttribute 'class', css_class
 

@@ -320,3 +320,21 @@ input.save {
   }
 }
 
+.modal-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  padding: 60px 60px 60px 270px;
+  display: none;
+}
+.modal-content {
+  position: relative;
+  max-width: 640px;
+  margin: 0 auto;
+  .cancel .icon-add_circle_outline {
+    display: inline-block;
+    @include transform(rotate(45deg));
+  }
+}
