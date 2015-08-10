@@ -32,7 +32,7 @@ class ds.PeopleShowView extends Backbone.View
   postRender: ->
     @collections.projects.reset @model.get('projects')
     @collections.engagements.reset @model.get('engagements')
-    @views.stickies.collection.add @model.get('notes')
+    @views.stickies.collection.reset @model.get('notes')
     @views.projects_table.renderTo "#projects-table" if @collections.projects.length > 0
     @views.stickies.renderTo "#stickies"
     @views.engagement_bubbles_graph.renderTo '#engagement_bubbles_graph'

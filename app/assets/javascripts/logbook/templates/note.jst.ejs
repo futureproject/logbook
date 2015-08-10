@@ -1,3 +1,6 @@
 <div class="note-date"><%= Date.parse(note.created_at).toString('yyyy-MM-dd') %></div>
 <div class="note-user"><%= note.author %></div>
-<div class="note-text"><%= note.content %></div>
+<pre class="note-text"><%= note.content %></pre>
+<div class="action delete icon-delete"></div>
+<div class="action edit icon-edit"></div>
+<div class="done">Done</div>

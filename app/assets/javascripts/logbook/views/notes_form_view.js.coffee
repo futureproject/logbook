@@ -18,11 +18,14 @@ class ds.NotesFormView extends Backbone.View
 
   onsubmit: (event) ->
     event.preventDefault()
+    spinner = new ds.SpinnerView
+    @$el.append spinner.el
     data = Backbone.Syphon.serialize @
     notable = @model.getNotable()
     @model.save data,
       error: (msg) ->
         console.log msg
       complete: ->
+        spinner.remove()
         ds.router.navigate ds.urlsHelper.urlFor(notable), {trigger: true}
 
