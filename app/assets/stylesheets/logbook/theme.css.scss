@@ -3,7 +3,7 @@
   @include transition(background .5s);
   color: white;
   a { color: white; }
-  box-shadow: inset -5px 0 5px rgba(0,0,0,.1);
+  box-shadow: inset -5px 5px 8px rgba(0,0,0,.1);
   -webkit-font-smoothing: antialiased;
   header {
     color: rgba(255,255,255,.5);
@@ -38,7 +38,7 @@ body.report #nav {
 
 #app-name {
   border-bottom: 1px solid rgba(0,0,0,.1);
-  @include linear-gradient(transparent, rgba(0,0,0,.05));
+  //@include linear-gradient(transparent, rgba(0,0,0,.05));
   h1 {
     font-size: 20px;
     font-weight: bold;
