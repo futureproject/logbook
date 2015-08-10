@@ -16,6 +16,7 @@ class ds.ProjectsShowView extends Backbone.View
           {name: 'engagements_count', cell:'integer', label: 'Engagements'}
           {name: 'leading', cell:'boolean'}
         ]
+      stickies: new ds.StickiesView { model: @model }
 
   template: JST['logbook/templates/projects_show']
 
@@ -29,4 +30,6 @@ class ds.ProjectsShowView extends Backbone.View
   postRender: ->
     @collections.people.reset @model.get('people')
     @views.people_table.renderTo "#people-table" if @collections.people.length > 0
+    @views.stickies.collection.add @model.get('notes')
+    @views.stickies.renderTo "#stickies"
 

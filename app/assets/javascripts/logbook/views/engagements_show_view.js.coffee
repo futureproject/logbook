@@ -7,6 +7,7 @@ class ds.EngagementsShowView extends Backbone.View
       attendees_table: new ds.IndexTableView
         collection: @collections.attendees
         columns: ds.collections.people.backgrid_columns
+      stickies: new ds.StickiesView { model: @model }
 
   template: JST['logbook/templates/engagements_show']
 
@@ -20,4 +21,6 @@ class ds.EngagementsShowView extends Backbone.View
   postRender: ->
     @collections.attendees.reset @model.get('attendees')
     @views.attendees_table.renderTo "#attendees-table" if @collections.attendees.length > 0
+    @views.stickies.collection.add @model.get('notes')
+    @views.stickies.renderTo "#stickies"
 

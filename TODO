@@ -1,10 +1,5 @@
-Try instantiating collections on Logbook Person model
-  (notes)
-  (engagements)
-  (projects)
-
-Allow creation of new notes
-MOBILE APP HAS NO PLUS BUTTONS
+Make notes editable and deletable
+Add attachments to notes
 Name order in tables seems case sensitive
 Forms do not validate
 use project.parse to get created_at, not on the server

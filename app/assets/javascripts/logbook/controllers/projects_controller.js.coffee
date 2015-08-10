@@ -37,5 +37,6 @@ class ds.ProjectsController extends ds.BaseController
     uid = if !!parseInt(id) then id else {cid: id}
     project = ds.collections.projects.get(uid)
     project = new ds.Project({id: id}) unless project?
+    ds.collections.projects.add project
     project.fetch()
     project

@@ -34,8 +34,11 @@
 <% } %>
 </div>
 <div class="section notes" id="notes">
-  <div class="note" id="new-note">
-  </div>
+  <h2 class="section-header">
+    <%= engagement.notes.length %> Notes
+    <a class='section-header-action' href="/logbook/engagements/<%= engagement.id %>/notes/add" title="Add a note">Add Note <span class='icon-add_circle_outline'></span></a>
+  </h2>
+  <div id="stickies" class="stickies"></div>
 </div>
 <div class="section">
   <h2 class="section-header"><%= engagement.headcount %> Attendees</h2>

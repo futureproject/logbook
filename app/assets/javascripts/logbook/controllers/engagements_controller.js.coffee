@@ -37,5 +37,6 @@ class ds.EngagementsController extends ds.BaseController
     uid = if !!parseInt(id) then id else {cid: id}
     engagement = ds.collections.engagements.get(uid)
     engagement = new ds.Engagement({id: id}) unless engagement?
+    ds.collections.engagements.add engagement
     engagement.fetch()
     engagement

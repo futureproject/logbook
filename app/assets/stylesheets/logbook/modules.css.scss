@@ -298,7 +298,7 @@ input.save {
 .stickies {
   overflow: hidden;
   overflow-x: auto;
-  padding: 15px;
+  padding: 0 15px;
   margin: 0 -15px;
   > div {
     white-space: nowrap;
@@ -309,7 +309,7 @@ input.save {
   width: 240px;
   height: 180px;
   padding: 10px;
-  margin: 0 15px 0 0;
+  margin: 0 15px 10px 0;
   white-space: normal;
   .note-user, .note-date { display: inline-block; }
   .note-text {
