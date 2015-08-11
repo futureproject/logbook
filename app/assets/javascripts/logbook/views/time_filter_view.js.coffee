@@ -12,7 +12,7 @@ class ds.TimeFilterView extends Backbone.View
 
     @dates = {}
     $.ajaxPrefilter (options, originalOptions, jqXHR) =>
-      options.data = @addDatesToParams(options.data)
+      options.data = @addDatesToParams(originalOptions.data)
       true
 
   el: "#time-filter-menu"
@@ -23,16 +23,16 @@ class ds.TimeFilterView extends Backbone.View
     range = @$el.val()
     dates = @options[range]
     @dates =
-      t_start: dates[0].toJSON()
-      t_end: dates[1].toJSON()
+      t_start: Date.parse(dates[0]).toString('yyyy-MM-dd')
+      t_end: Date.parse(dates[1]).toString('yyyy-MM-dd')
     Backbone.trigger 'dates:changed'
 
   addDatesToParams: (data_params) ->
     switch typeof(data_params)
       when "string"
-        _.each @dates, (value, key) -> data_params += "&#{key}=#{value}"
+        $.extend JSON.parse(data_params), @dates
       when "object", "array"
-        data_params = _.extend data_params, @dates
+        data_params = $.extend data_params, @dates
       else
         data_params = $.param(@dates)
     data_params

@@ -42,6 +42,7 @@ body.report #nav {
   h1 {
     font-size: 20px;
     font-weight: bold;
+    line-height: 20px;
   }
 }
 #app-sections, #search {
@@ -174,6 +175,7 @@ tbody {
 .titlebar {
   border-bottom: 1px solid $base-border-color;
   font-size: 18px;
+  line-height: 20px;
   .title {
     font-weight: 700;
   }
