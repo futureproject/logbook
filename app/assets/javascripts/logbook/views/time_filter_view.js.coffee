@@ -11,7 +11,9 @@ class ds.TimeFilterView extends Backbone.View
       'dawn_of_time': [new Date(2014,7,24), @now]
 
     @dates = {}
+    # add date params to all AJAX GET requests
     $.ajaxPrefilter (options, originalOptions, jqXHR) =>
+      return true unless options.type.match(/get/i)
       options.data = @addDatesToParams(originalOptions.data)
       true
 
@@ -30,12 +32,12 @@ class ds.TimeFilterView extends Backbone.View
   addDatesToParams: (data_params) ->
     switch typeof(data_params)
       when "string"
-        $.extend JSON.parse(data_params), @dates
+        data_params = $.extend JSON.parse(data_params), @dates
       when "object", "array"
         data_params = $.extend data_params, @dates
       else
-        data_params = $.param(@dates)
-    data_params
+        data_params = @dates
+    $.param data_params
 
   subtractDays: (date, numDays) ->
     d = new Date()
