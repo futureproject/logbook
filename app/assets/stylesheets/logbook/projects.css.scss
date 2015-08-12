@@ -11,3 +11,8 @@
   }
   .school-field { @include omega; }
 }
+body.projects {
+  .titlebar a, .leaderboard a {
+    color: $projects-color;
+  }
+}
