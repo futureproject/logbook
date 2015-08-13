@@ -9,7 +9,7 @@
 #= require date
 #= require selectize
 #= require twitter/typeahead
-#= require s3_direct_upload
+#= require s3_cors_upload
 #= require highcharts
 #= require highcharts-more
 #= require logbook/highcharts.theme

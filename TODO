@@ -1,4 +1,6 @@
-Add attachments to notes
+Make uploader show upload progress
+Download assets and process them once they are finished
+Why don't svgs work?
 Name order in tables seems case sensitive
 Forms do not validate
 use project.parse to get created_at, not on the server

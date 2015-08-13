@@ -1,6 +1,7 @@
 class ds.NotesFormView extends Backbone.View
   initialize: ->
-    @views = {}
+    @views =
+      uploader: new ds.UploaderView
 
   tagName: 'form'
   events:
@@ -14,6 +15,7 @@ class ds.NotesFormView extends Backbone.View
     @
 
   postRender: ->
+    @views.uploader.setElement "#assets"
     Backbone.Syphon.deserialize @, @model.toJSON()
 
   onsubmit: (event) ->

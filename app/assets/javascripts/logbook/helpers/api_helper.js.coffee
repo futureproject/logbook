@@ -2,6 +2,7 @@ ds.apiHelper =
   urls:
     assets: -> "/api/v2/assets"
     asset: (id) -> "/api/v2/assets/#{id}"
+    assets_s3_path: -> "/api/v2/assets/signed_s3_path"
     engagements: -> "/api/v2/engagements"
     engagements_leaderboard:  -> "/api/v2/engagements/leaderboard"
     engagement: (id) -> "/api/v2/engagements/#{id}"

@@ -23,6 +23,7 @@ Rails.application.routes.draw do
       end
       resources :engagement_attendees
       resources :report_submissions
+      get '/assets/signed_s3_path' => 'assets#signed_s3_path'
       resources :assets, only: [:create, :destroy]
       resources :search_results, only: [:index]
       resources :notes
