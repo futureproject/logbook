@@ -6,9 +6,6 @@
 # https://github.com/carsonmcdonald/direct-browser-s3-upload-example
 
 class window.S3Upload
-  #s3_object_name: 'default_name' # setting an object name is not recommended on the client side, override or namespace on server side
-  #s3_sign_put_url: '/signS3put'
-  #file_dom_selector: 'file_upload'
   with_credentials: false
 
   onFinishS3Put: (public_url) ->
@@ -24,12 +21,11 @@ class window.S3Upload
 
   constructor: (options = {}) ->
     @[option] = options[option] for option of options
-    @handleFileSelect()
+    @handleFileSelect(@file)
 
-  handleFileSelect: (file_element) ->
+  handleFileSelect: (file) ->
     @onProgress 0, 'Upload started.'
-    for f in @el.files
-      @uploadFile(f)
+    @uploadFile(file)
 
   createCORSRequest: (method, url) ->
     xhr = new XMLHttpRequest()
@@ -48,7 +44,7 @@ class window.S3Upload
 
     xhr = new XMLHttpRequest()
     xhr.withCredentials = @with_credentials
-    xhr.open 'GET', @s3_sign_put_url + '?s3_object_type=' + file.type + '&s3_object_name=' + object_name, true
+    xhr.open 'GET', @s3_sign_put_url + '?s3_object_type=' + @getFileType(file) + '&s3_object_name=' + object_name, true
 
     # Hack to pass bytes through unprocessed.
     xhr.overrideMimeType 'text/plain; charset=x-user-defined'
@@ -89,7 +85,8 @@ class window.S3Upload
           percentLoaded = Math.round (e.loaded / e.total) * 100
           this_s3upload.onProgress percentLoaded, if percentLoaded == 100 then 'Finalizing.' else 'Uploading.'
 
-    xhr.setRequestHeader 'Content-Type', file.type
+    file_type = @getFileType(file)
+    xhr.setRequestHeader 'Content-Type', file_type
     xhr.setRequestHeader 'x-amz-acl', 'public-read'
 
     xhr.send file
@@ -98,3 +95,6 @@ class window.S3Upload
     this_s3upload = this
     @executeOnSignedUrl file, (signedURL, publicURL) ->
       this_s3upload.uploadToS3 file, signedURL, publicURL
+
+  getFileType: (file) ->
+    file.type || "application/octet-stream"
