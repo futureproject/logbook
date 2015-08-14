@@ -1,12 +1,10 @@
-Make uploader show upload progress
-Download assets and process them once they are finished
-Why don't svgs work?
 Name order in tables seems case sensitive
 Forms do not validate
 use project.parse to get created_at, not on the server
 omit associations from Model#toJSON
 restore duplicate engagements
 Add an EDIT USER PROFILE screen
+Clicking a note poster should open a gallery modal
 Make FACTBAR SCHOOL open school info popover, with cursor: help
 
 Convert users to people

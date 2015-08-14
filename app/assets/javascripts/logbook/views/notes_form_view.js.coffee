@@ -2,6 +2,7 @@ class ds.NotesFormView extends Backbone.View
   initialize: ->
     @views =
       uploader: new ds.UploaderView
+    @listenTo Backbone, 'upload:finished', @addAsset
 
   tagName: 'form'
   events:
@@ -31,3 +32,7 @@ class ds.NotesFormView extends Backbone.View
         spinner.remove()
         ds.router.navigate ds.urlsHelper.urlFor(notable), {trigger: true}
 
+  addAsset: (asset_url) ->
+    assets = @model.get('assets')
+    assets.push { attachable_type: "Note", external_url: asset_url }
+    @model.set 'assets', assets

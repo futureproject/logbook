@@ -6,9 +6,10 @@ class ds.StickiesView extends Backbone.View
   render: ->
     fragment = $(document.createDocumentFragment())
     @collection.each (note) =>
-      noteView = new ds.NoteView({model: note})
+      noteView = new ds.StickyView({model: note})
       @views.push noteView
       fragment.append noteView.render().el
+      assets = note.get('assets')
     @$el.html fragment
     @
 

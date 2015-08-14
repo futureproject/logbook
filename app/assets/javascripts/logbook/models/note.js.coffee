@@ -2,10 +2,10 @@ class ds.Note extends Backbone.Model
   namespace: 'notes'
   urlRoot: ds.apiHelper.urlFor 'notes'
   defaults: ->
-    user_id: ds.current_user.get('school_id')
     notable_id: null
     notable_type: null
     author: ds.current_user.get('first_name')
+    assets: []
 
   tplAttrs: ->
     attrs = _.extend(@toJSON(), { class_name: 'Note' })
@@ -20,6 +20,14 @@ class ds.Note extends Backbone.Model
     n_id = @get "notable_id"
     model = new ds[n_type]({ id: n_id })
     ds.collections[model.namespace].get(n_id) || model
+
+  toJSON: ->
+    attrs = _.clone @attributes
+    newAttrs = _.extend(attrs, { assets_attributes: @get('assets'), poster: _.first(@get('assets')) })
+    newAttrs
+
+  getKind: ->
+    if (@get('assets').length > 0) then "media" else "text"
 
 
 class ds.NotesCollection extends Backbone.Collection

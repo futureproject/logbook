@@ -217,6 +217,9 @@ pre {
   font-size: 12px;
   line-height: 15px;
   box-shadow: -3px 3px 5px rgba(0,0,0,.1);
+  .note-text {
+    line-height: 15px;
+  }
   .note-date, .note-user {
     color: $retro-light-gray;
   }

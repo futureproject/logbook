@@ -15,13 +15,13 @@ class ds.UploaderView extends Backbone.View
       onProgress: (percent, message) =>
         $meter.css("width", "#{percent}%")
       onFinishS3Put: (public_url) =>
-        console.log "Uploaded #{public_url}"
-        $meter.remove()
+        $meter.replaceWith("<div class='upload'>#{file.type} - #{file.name}</div>")
+        Backbone.trigger 'upload:finished', public_url
       onError: (status) ->
         console.log 'Upload error: ', status
 
   initMeters: ->
     return if @$meters
     @$meters = $("<div class='progress-meters' />")
-    @$el.after @$meters
+    @$el.parent().append @$meters
 

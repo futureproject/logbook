@@ -2,7 +2,7 @@ class Asset < ActiveRecord::Base
   belongs_to :attachable, polymorphic: true, touch: true
   validates_presence_of :external_url
   default_scope -> { order(id: :desc) }
-  has_attached_file :data
+  has_attached_file :data, default_url: ':placeholder'
   do_not_validate_attachment_file_type :data
   before_post_process :skip_non_images
   after_create :download_data_later
@@ -23,11 +23,17 @@ class Asset < ActiveRecord::Base
   end
 
   def thumbnail
-    if data_content_type.nil? || !data_content_type.match(/image/i)
-      Paperclip::Attachment.default_options[:default_url]
+    if data_content_type.nil?
+      external_url
+    elsif !data_content_type.match(/image/)
+      ActionController::Base.helpers.asset_path("document.png")
     else
       data(:thumb)
     end
+  end
+
+  def original
+    data_content_type.nil? ? external_url : data(:original)
   end
 
   def log_action

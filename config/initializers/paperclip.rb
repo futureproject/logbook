@@ -1,5 +1,3 @@
-Paperclip::Attachment.default_options[:default_url] = '//dream-os-production.s3.amazonaws.com/static-assets/document.png'
-
 Paperclip::Attachment.default_options[:url] = ':s3_domain_url'
 Paperclip::Attachment.default_options[:path] = '/:class/:attachment/:id_partition/:style.:extension'
 Paperclip::Attachment.default_options[:styles] = {
