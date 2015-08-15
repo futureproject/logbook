@@ -31,7 +31,7 @@ class Engagement < ActiveRecord::Base
 
   COLOR_ENUM = %w(#b363a4 #56304f #f1c7e9 #8457b3)
 
-  scope :q, -> (query) { where("lower(engagements.name) like ?", "%#{query.downcase}%") }
+  scope :q, -> (query) { where("engagements.name like ?", "%#{query.downcase}%") }
   scope :week_of, -> (date) { where(date: date.beginning_of_week..date.end_of_week) }
   scope :since, -> (date) { where('date >= ?', date) }
   scope :btw, -> (range) { where(date: range) }

@@ -11,10 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150730122751) do
+ActiveRecord::Schema.define(version: 20150815141641) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "citext"
 
   create_table "assets", force: true do |t|
     t.integer  "attachable_id"
@@ -66,7 +67,7 @@ ActiveRecord::Schema.define(version: 20150730122751) do
     t.string   "kind"
     t.float    "duration"
     t.text     "description"
-    t.string   "name"
+    t.text     "name"
     t.integer  "user_id"
     t.integer  "site_id"
     t.integer  "headcount"
@@ -105,8 +106,8 @@ ActiveRecord::Schema.define(version: 20150730122751) do
   add_index "notes", ["notable_id", "notable_type"], name: "index_notes_on_notable_id_and_notable_type", using: :btree
 
   create_table "people", force: true do |t|
-    t.string   "first_name"
-    t.string   "last_name"
+    t.text     "first_name"
+    t.text     "last_name"
     t.string   "role",            default: "student"
     t.integer  "school_id"
     t.integer  "grade"
@@ -164,7 +165,7 @@ ActiveRecord::Schema.define(version: 20150730122751) do
   end
 
   create_table "projects", force: true do |t|
-    t.string   "name"
+    t.text     "name"
     t.integer  "school_id"
     t.text     "description"
     t.datetime "created_at"

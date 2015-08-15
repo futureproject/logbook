@@ -49,8 +49,8 @@ class Person < ActiveRecord::Base
     first = "%#{query.split(' ').first.downcase}%"
     last = "%#{query.split(' ').last.downcase}%"
     operator = first == last ? "or" : "and"
-    where("lower(first_name) like ? #{operator} lower(last_name) like ?", first, last)
-    .order("dream_team DESC, lower(first_name) ASC")
+    where("first_name like ? #{operator} last_name like ?", first, last)
+    .order("dream_team DESC, first_name ASC")
   }
 
   scope :with_hours, -> (kind="%") {

@@ -10,7 +10,7 @@ class Project < ActiveRecord::Base
   COLOR_ENUM = %w(#419AD3 #568099 #064974 #FFAC43 #B66500 #FFEDD6)
   STATUS_ENUM = %w(underway stalled complete)
 
-  scope :q, -> (query) { where("lower(projects.name) like ?", "%#{query.downcase}%") }
+  scope :q, -> (query) { where("projects.name like ?", "%#{query.downcase}%") }
 
   scope :with_association, -> (table) {
     joins(table.to_sym)

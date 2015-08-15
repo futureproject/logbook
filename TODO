@@ -5,27 +5,24 @@ omit associations from Model#toJSON
 restore duplicate engagements
 Add an EDIT USER PROFILE screen
 Clicking a note poster should open a gallery modal
-Make FACTBAR SCHOOL open school info popover, with cursor: help
 
-Convert users to people
 Install new auth
+Convert users to people
 restore "Toggle Dream Team"
-Add actual duration
 0bis) Chiefs coaching DDs
+Add actual duration
+Make FACTBAR SCHOOL open school info popover, with cursor: help
 Trigger flash notices after C(R)UD
 Cache STATS
 
 restructure Mobile App
 
-add Leaderboards to school pages
-Write custom render for selectize search, showing result school
 
+make graph click events use the router, not just navigate
 add activity feed to person profiles
 Order not recently engaged students by: dream_team, engagements_count
-make graph events use the router, not just navigate
-infinitely scrolling lists
 pressing ENTER on search with nothing highlighted should go to advanced search page
-Add GOAL to engagements
+Write custom render for selectize search, showing result school
 
 
 # NEW FEATURES!
@@ -34,24 +31,7 @@ Add GOAL to engagements
 
 # DESIGN
 _ make the Logged Hours Per Person graph a single series
-
-
-ERRORS
-- Auth is slow. Replace with auth from tfp-redirects
-- simplify user model
-- api/v1/engagements is timing out
-
-
-PHONEBOOK
-_ create actual tab views, are you seriously reading data-attrs??
-_ stop views from rendering when their controller is not active
-_ make controllers inherit
-_ Deleting a person association does not touch said person
-
-
-_ Rework filters to be independent of scope_params
-
-remove user site_id
-make user school_id polymorphic
+infinitely scrolling lists
+Add GOAL to engagements
 
 

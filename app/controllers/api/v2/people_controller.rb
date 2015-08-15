@@ -94,9 +94,9 @@ class Api::V2::PeopleController < Api::V2::BaseController
 
     def sort_params
       if params[:sort_by] && params[:order]
-        "#{params[:sort_by]} #{params[:order]}, lower(first_name) ASC"
+        "#{params[:sort_by]} #{params[:order]}, first_name ASC"
       else
-        "dream_team DESC, lower(first_name) ASC"
+        "dream_team DESC, first_name ASC"
       end
     end
 end
