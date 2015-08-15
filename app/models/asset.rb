@@ -6,7 +6,6 @@ class Asset < ActiveRecord::Base
   do_not_validate_attachment_file_type :data
   before_post_process :skip_non_images
   after_create :download_data_later
-  #validates_attachment_content_type :data, :content_type => /\Aimage/
   #
   def skip_non_images
     !!(data_content_type.match(/image/i))
@@ -23,10 +22,11 @@ class Asset < ActiveRecord::Base
   end
 
   def thumbnail
+    generic = ActionController::Base.helpers.asset_path("document.png")
     if data_content_type.nil?
-      external_url
+      external_url.match(/jpg|png|gif|svg/i) ? external_url : generic
     elsif !data_content_type.match(/image/)
-      ActionController::Base.helpers.asset_path("document.png")
+      generic
     else
       data(:thumb)
     end

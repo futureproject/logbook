@@ -22,7 +22,7 @@ class ds.PeopleFormView extends Backbone.View
     event.preventDefault()
     data = Backbone.Syphon.serialize @
     if @model.save data
-      @reflectIdChange() if @model.isNew
+      @reflectIdChange() if @model.isNew()
       ds.collections.people.add @model, { merge: true }
       ds.router.navigate ds.urlsHelper.urlFor(@model), {trigger: true}
     else

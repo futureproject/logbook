@@ -28,6 +28,14 @@ feature 'Logbook engagements' do
     should_see_engagement_named "We trained."
   end
 
+  scenario 'DUPLICATE' do
+    visit "/logbook/engagements"
+    click_link "Combat Training"
+    click_link 'Duplicate'
+    expect(page).to have_content "Combat Training"
+    #expect(page).to have_content 'Engagement was successfully duplicated'
+  end
+
   scenario 'DESTROY'
   # create a new engagement, then destroy him
 

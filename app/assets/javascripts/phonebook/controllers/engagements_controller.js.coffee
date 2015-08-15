@@ -96,13 +96,13 @@ class Phonebook.Controllers.EngagementsController extends Backbone.View
     @collection.trigger 'reset'
 
   duplicate: (model) ->
-      data = _.omit(_.clone(model.attributes), 'id', 'date')
-      engagement = new Phonebook.Models.Engagement
-        selected: true
-      engagement.save data,
-        success: (model) ->
-          Backbone.trigger 'engagements:saved', model
-          Backbone.trigger 'engagements:show', model, 'fade-in'
-        error: (e) ->
-          console.log errror
+    data = _.omit(_.clone(model.attributes), 'id', 'date')
+    engagement = new Phonebook.Models.Engagement
+      selected: true
+    engagement.save data,
+      success: (model) ->
+        Backbone.trigger 'engagements:saved', model
+        Backbone.trigger 'engagements:show', model, 'fade-in'
+      error: (e) ->
+        console.log errror
 

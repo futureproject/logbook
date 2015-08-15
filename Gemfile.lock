@@ -41,12 +41,11 @@ GEM
       builder
       multi_json
     arel (6.0.3)
-    aws-sdk (2.1.14)
-      aws-sdk-resources (= 2.1.14)
-    aws-sdk-core (2.1.14)
-      jmespath (~> 1.0)
-    aws-sdk-resources (2.1.14)
-      aws-sdk-core (= 2.1.14)
+    aws-sdk (1.64.0)
+      aws-sdk-v1 (= 1.64.0)
+    aws-sdk-v1 (1.64.0)
+      json (~> 1.4)
+      nokogiri (>= 1.4.4)
     bcrypt (3.1.10)
     bitters (1.0.0)
       bourbon (>= 3.2)
@@ -125,8 +124,6 @@ GEM
     jbuilder (2.3.1)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
-    jmespath (1.0.2)
-      multi_json (~> 1.0)
     jquery-fileupload-rails (0.4.5)
       actionpack (>= 3.1)
       railties (>= 3.1)
@@ -326,7 +323,7 @@ PLATFORMS
 
 DEPENDENCIES
   airbrake
-  aws-sdk
+  aws-sdk (< 2.0)
   bcrypt (~> 3.1.7)
   bitters
   bourbon

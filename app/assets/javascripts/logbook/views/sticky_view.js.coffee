@@ -1,7 +1,6 @@
 class ds.StickyView extends Backbone.View
   initialize: ->
     @listenTo @model, 'destroy', @animateOut
-    console.log @model.toJSON()
     @template = JST["logbook/templates/sticky_#{@model.getKind()}"]
 
   className: -> "sticky #{@model.getKind()}"

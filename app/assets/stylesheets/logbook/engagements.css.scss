@@ -1,5 +1,6 @@
 .engagements {
   a { color: $engagements-color; }
+  a.duplicate { color: $retro-orange; }
 }
 #engagements-table {
   a { color: $engagements-color; }

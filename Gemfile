@@ -39,7 +39,7 @@ gem 'foreman'
 gem 'puma', '2.12.0'
 
 #Amazon Web Services
-gem 'aws-sdk'
+gem 'aws-sdk', '< 2.0'
 
 # Simple file attatchments
 gem "paperclip", "~> 4.2"

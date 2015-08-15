@@ -180,6 +180,11 @@ tbody {
     font-weight: 700;
   }
   .cancel { cursor: pointer; }
+  .titlebar-actions {
+    /*[class^="icon-"], [class*=" icon-"] {*/
+      /*color: $retro-gray;*/
+    /*}*/
+  }
 }
 .footerbar {
   background: white;

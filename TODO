@@ -1,6 +1,3 @@
-restore duplicate engagements
-Add an EDIT USER PROFILE screen
-
 Install new auth
 Convert users to people
 restore "Toggle Dream Team"
@@ -12,8 +9,8 @@ Add actual duration
 Make FACTBAR SCHOOL open school info popover, with cursor: help
 Trigger flash notices after C(R)UD
 Cache STATS
-
 Clicking a note poster should open a gallery modal
+Add an EDIT USER PROFILE screen
 
 
 make graph click events use the router, not just navigate

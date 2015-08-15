@@ -11,6 +11,9 @@ class ds.EngagementsShowView extends Backbone.View
 
   template: JST['logbook/templates/engagements_show']
 
+  events:
+    'click .duplicate': 'duplicate'
+
   className: 'engagement profile'
 
   render: ->
@@ -24,4 +27,14 @@ class ds.EngagementsShowView extends Backbone.View
     @views.attendees_table.renderTo "#attendees-table" if @collections.attendees.length > 0
     @views.stickies.collection.add @model.get('notes')
     @views.stickies.renderTo "#stickies"
+
+  duplicate: (click_event) ->
+    click_event.preventDefault()
+    data = _.omit(_.clone(@model.attributes), 'id', 'date')
+    dup = new ds.Engagement
+    if dup.save data
+      ds.collections.engagements.add dup, { merge: true }
+      ds.router.navigate ds.urlsHelper.urlFor(dup), {trigger: true}
+      dup.once 'change:id', =>
+        ds.router.navigate ds.urlsHelper.urlFor(dup), { trigger: true, replace: true }
 
