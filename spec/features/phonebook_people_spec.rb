@@ -15,7 +15,7 @@ feature 'using the phonebook' do
     name = find('.row-title', match: :first).text
     find(".titlebar .icon-search").click()
     fill_in 'q', with: name
-    resulting_name = find('.row-title').text
+    resulting_name = first('.row-title').text
     expect(name).to eq resulting_name
   end
 
