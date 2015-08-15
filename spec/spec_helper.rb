@@ -30,6 +30,10 @@ Capybara.default_selector = :css
 Capybara.javascript_driver = :webkit
 Capybara.default_driver = :webkit
 
+Capybara::Webkit.configure do |config|
+  config.block_unknown_urls
+end
+
 RSpec.configure do |config|
   # ## Mock Framework
   #
@@ -59,11 +63,6 @@ RSpec.configure do |config|
   config.include JsonHelper, :type => :controller
   config.global_fixtures = :all
   config.formatter = :documentation
-
-  config.before type: :feature do
-    page.driver.block_unknown_urls if Capybara.current_driver == :webkit
-  end
-
 
 end
 
