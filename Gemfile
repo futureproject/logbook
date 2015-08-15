@@ -36,7 +36,7 @@ gem 'bitters'
 gem 'foreman'
 
 # serve with Puma, because I like it
-gem 'puma'
+gem 'puma', '2.12.0'
 
 #Amazon Web Services
 gem 'aws-sdk'
