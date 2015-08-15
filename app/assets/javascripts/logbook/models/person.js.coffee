@@ -12,6 +12,12 @@ class ds.Person extends Backbone.Model
     attrs = _.extend(@toJSON(), { class_name: 'Person' })
     {person: attrs }
 
+  validate: (attrs, options) ->
+    if !attrs.first_name
+      "This person needs a first name."
+    else if !attrs.last_name
+      "This person needs a last name."
+
 class ds.PeopleCollection extends Backbone.PageableCollection
   model: ds.Person
   namespace: 'people'

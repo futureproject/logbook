@@ -34,12 +34,12 @@ class ds.EngagementsController extends ds.BaseController
 
   setEngagementFromId: (id) ->
     @activate()
-    # check if this is an id or a cid
-    uid = if !!parseInt(id) then id else {cid: id}
-    engagement = ds.collections.engagements.get(uid)
-    engagement = new ds.Engagement({id: id}) unless engagement?
-    ds.collections.engagements.add engagement
-    engagement.fetch()
+    # if this is an actual id, not a cid
+    if parseInt(id)
+      engagement = ds.collections.engagements.get(id) || new ds.Engagement({ id: id })
+      engagement.fetch()
+    else
+      engagement = ds.collections.engagements.get({cid: id}) || new ds.Engagement({ cid: id })
     engagement
 
   onDateChange: ->

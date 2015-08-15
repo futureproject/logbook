@@ -33,11 +33,10 @@ class ds.PeopleController extends ds.BaseController
 
   setPersonFromId: (id) ->
     @activate()
-    # check if this is an id or a cid
-    uid = if !!parseInt(id) then id else {cid: id}
-    # check main collection for model
-    person = ds.collections.people.get(uid)
-    person = new ds.Person({id: id}) unless person?
-    ds.collections.people.add person
-    person.fetch()
+    # if this is an actual id, not a cid
+    if parseInt(id)
+      person = ds.collections.people.get(id) || new ds.Person({ id: id })
+      person.fetch()
+    else
+      person = ds.collections.people.get({cid: id}) || new ds.Person({ cid: id })
     person

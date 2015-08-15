@@ -30,6 +30,7 @@ class ds.PeopleShowView extends Backbone.View
     @
 
   postRender: ->
+    return if @model.isNew()
     @collections.projects.reset @model.get('projects')
     @collections.engagements.reset @model.get('engagements')
     @views.stickies.collection.reset @model.get('notes')

@@ -19,6 +19,7 @@ class ds.EngagementsShowView extends Backbone.View
     @
 
   postRender: ->
+    return if @model.isNew()
     @collections.attendees.reset @model.get('attendees')
     @views.attendees_table.renderTo "#attendees-table" if @collections.attendees.length > 0
     @views.stickies.collection.add @model.get('notes')

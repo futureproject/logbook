@@ -33,10 +33,10 @@ class ds.ProjectsController extends ds.BaseController
 
   setProjectFromId: (id) ->
     @activate()
-    # check if this is an id or a cid
-    uid = if !!parseInt(id) then id else {cid: id}
-    project = ds.collections.projects.get(uid)
-    project = new ds.Project({id: id}) unless project?
-    ds.collections.projects.add project
-    project.fetch()
+    # if this is an actual id, not a cid
+    if parseInt(id)
+      project = ds.collections.projects.get(id) || new ds.Project({ id: id })
+      project.fetch()
+    else
+      project = ds.collections.projects.get({cid: id}) || new ds.Project({ cid: id })
     project

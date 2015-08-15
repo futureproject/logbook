@@ -26,11 +26,11 @@ class ds.ProjectsFormView extends Backbone.View
   onsubmit: (event) ->
     event.preventDefault()
     data = Backbone.Syphon.serialize @
-    @model.set data
-    @reflectIdChange() if @model.isNew
-    @model.save()
-    ds.collections.projects.add @model, { merge: true }
-    ds.router.navigate ds.urlsHelper.urlFor(@model), {trigger: true}
+    if @model.save data
+      @reflectIdChange() if @model.isNew
+      ds.router.navigate ds.urlsHelper.urlFor(@model), {trigger: true}
+    else
+      alert @model.validationError
 
   setSchoolOptions: ->
     fragment = document.createDocumentFragment()
@@ -42,6 +42,7 @@ class ds.ProjectsFormView extends Backbone.View
 
   reflectIdChange: ->
     @model.once 'change:id', =>
+      ds.collections.projects.add @model, { merge: true }
       ds.router.navigate ds.urlsHelper.urlFor(@model), { trigger: true, replace: true }
 
   selectize: (selector, options) ->

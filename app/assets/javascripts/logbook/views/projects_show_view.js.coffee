@@ -28,6 +28,7 @@ class ds.ProjectsShowView extends Backbone.View
     @
 
   postRender: ->
+    return if @model.isNew()
     @collections.people.reset @model.get('people')
     @views.people_table.renderTo "#people-table" if @collections.people.length > 0
     @views.stickies.collection.add @model.get('notes')

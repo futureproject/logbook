@@ -16,6 +16,12 @@ class ds.Project extends Backbone.Model
     @set('supporter_ids', ['']) if !@get('supporter_ids')?
     super
 
+  validate: (attrs, options) ->
+    if !attrs.name
+      "This project needs a name."
+    else if !attrs.school_id
+      "This project needs a school."
+
 class ds.ProjectsCollection extends Backbone.PageableCollection
   model: ds.Project
   namespace: 'projects'
