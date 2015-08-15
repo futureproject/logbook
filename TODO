@@ -1,19 +1,19 @@
-use project.parse to get created_at, not on the server
-omit associations from Model#toJSON
 restore duplicate engagements
 Add an EDIT USER PROFILE screen
-Clicking a note poster should open a gallery modal
 
 Install new auth
 Convert users to people
 restore "Toggle Dream Team"
 0bis) Chiefs coaching DDs
+
+restructure Mobile App
+
 Add actual duration
 Make FACTBAR SCHOOL open school info popover, with cursor: help
 Trigger flash notices after C(R)UD
 Cache STATS
 
-restructure Mobile App
+Clicking a note poster should open a gallery modal
 
 
 make graph click events use the router, not just navigate
