@@ -23,6 +23,7 @@ class ds.PeopleFormView extends Backbone.View
     data = Backbone.Syphon.serialize @
     if @model.save data
       @reflectIdChange() if @model.isNew
+      ds.collections.people.add @model, { merge: true }
       ds.router.navigate ds.urlsHelper.urlFor(@model), {trigger: true}
     else
       alert @model.validationError
@@ -37,5 +38,4 @@ class ds.PeopleFormView extends Backbone.View
 
   reflectIdChange: ->
     @model.once 'change:id', =>
-      ds.collections.people.add @model, { merge: true }
       ds.router.navigate ds.urlsHelper.urlFor(@model), { trigger: true, replace: true }

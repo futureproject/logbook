@@ -28,6 +28,7 @@ class ds.ProjectsFormView extends Backbone.View
     data = Backbone.Syphon.serialize @
     if @model.save data
       @reflectIdChange() if @model.isNew
+      ds.collections.projects.add @model, { merge: true }
       ds.router.navigate ds.urlsHelper.urlFor(@model), {trigger: true}
     else
       alert @model.validationError
@@ -42,7 +43,6 @@ class ds.ProjectsFormView extends Backbone.View
 
   reflectIdChange: ->
     @model.once 'change:id', =>
-      ds.collections.projects.add @model, { merge: true }
       ds.router.navigate ds.urlsHelper.urlFor(@model), { trigger: true, replace: true }
 
   selectize: (selector, options) ->

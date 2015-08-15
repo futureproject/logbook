@@ -8,8 +8,12 @@ class ds.Person extends Backbone.Model
     projects: []
     engagements: []
     notes: []
+
+  toJSON: ->
+    _.omit _.clone(@attributes), ['engagements', 'projects', 'notes']
+
   tplAttrs: ->
-    attrs = _.extend(@toJSON(), { class_name: 'Person' })
+    attrs = _.extend(_.clone(@attributes), { class_name: 'Person' })
     {person: attrs }
 
   validate: (attrs, options) ->

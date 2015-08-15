@@ -9,8 +9,11 @@ class ds.Engagement extends Backbone.Model
     notes: []
     attendees: []
 
+  toJSON: ->
+    _.omit _.clone(@attributes), ['attendees', 'notes']
+
   tplAttrs: ->
-    attrs = _.extend(@toJSON(), { class_name: 'Engagement' })
+    attrs = _.extend(_.clone(@attributes), { class_name: 'Engagement' })
     {engagement: attrs }
 
   save: (key, val, options) ->

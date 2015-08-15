@@ -1,4 +1,3 @@
-Forms do not validate
 use project.parse to get created_at, not on the server
 omit associations from Model#toJSON
 restore duplicate engagements

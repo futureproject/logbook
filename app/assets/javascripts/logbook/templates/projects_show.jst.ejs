@@ -12,11 +12,11 @@
   </li>
   <li class="fact">
     <label>created</label>
-    <span class="datefact"><%= project.created_at %></span>
+    <span class="datefact"><%= ds.datesHelper.format(project.created_at) %></span>
   </li>
   <li class="fact">
     <label>Updated</label>
-    <span class="datefact"><%= project.updated_at %></span>
+    <span class="datefact"><%= ds.datesHelper.format(project.updated_at) %></span>
   </li>
   <li class="fact">
     <label>School</label>

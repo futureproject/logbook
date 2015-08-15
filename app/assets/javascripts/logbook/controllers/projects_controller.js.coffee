@@ -6,6 +6,7 @@ class ds.ProjectsController extends ds.BaseController
     @listenTo Backbone, "projects:show", @show
     @listenTo Backbone, "projects:new", @new
     @listenTo Backbone, "projects:edit", @edit
+    @listenTo Backbone, 'dates:changed', @onDateChange
 
   index: ->
     ds.collectionHelper.bootstrap ds.collections.projects
@@ -40,3 +41,6 @@ class ds.ProjectsController extends ds.BaseController
     else
       project = ds.collections.projects.get({cid: id}) || new ds.Project({ cid: id })
     project
+
+  onDateChange: ->
+    ds.collections.projects.fetch({ reset: true })
