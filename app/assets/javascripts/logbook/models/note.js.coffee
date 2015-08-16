@@ -27,7 +27,12 @@ class ds.Note extends Backbone.Model
     newAttrs
 
   getKind: ->
-    if (@get('assets').length > 0) then "media" else "text"
+    assets = @get('assets')
+    if assets.length == 1 && assets[0].original.match(/jpg|png|gif|svg/i)
+      "media"
+    else
+      "text"
+
 
 
 class ds.NotesCollection extends Backbone.Collection

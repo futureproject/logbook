@@ -1,6 +1,18 @@
 <div class="note-date"><%= Date.parse(note.created_at).toString('yyyy-MM-dd') %></div>
 <div class="note-user"><%= note.author %></div>
-<pre class="note-text"><%= note.content %></pre>
+<div class="note-content">
+  <label>Attachments: <%= note.assets.length %></label>
+  <ul class="note-attachments">
+    <% for (var i=0; i < note.assets.length; i++) { %>
+      <li class='note-attachment'>
+        <a href="<%= note.assets[i].original %>">
+          <%= ds.nounsHelper.depapify(note.assets[i].original) %>
+        </a>
+      </li>
+    <% } %>
+  </ul>
+  <pre class="note-text"><%= note.content %></pre>
+</div>
 <div class="action delete icon-delete"></div>
 <div class="action edit icon-edit"></div>
 <div class="done">Done</div>

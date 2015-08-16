@@ -14,9 +14,10 @@ class Api::V2::NotesController < Api::V2::BaseController
   # PATCH/PUT /api/v2/notes/1.json
   def update
     @note = Note.find(params[:id])
-    if @note.update(note_params)
+    if @note.update(note_params.except(:assets_attributes))
       render json: @note, status: :ok, location: api_v2_note_url(@note)
     else
+      puts @note.errors.to_json
       render json: @note.errors, status: :unprocessable_entity
     end
   end

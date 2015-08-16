@@ -308,13 +308,16 @@ input.save {
   white-space: normal;
   position: relative;
   .note-user, .note-date { display: inline-block; }
-  .note-text {
+  .note-content {
     top: 30px;
     left: 10px;
     right: 10px;
     height: 120px;
     overflow: auto;
     position: absolute;
+  }
+  .note-attachments {
+    margin: 0 0 10px;
   }
   .action {
     @include user-select(none);

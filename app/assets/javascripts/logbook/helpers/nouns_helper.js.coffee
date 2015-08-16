@@ -18,3 +18,14 @@ ds.nounsHelper =
       when noun.match(/engagement/i) then "Engagement"
       when noun.match(/project/i) then "Project"
       else noun.toTitleCase()
+
+  # translate a paperclip asset url into english
+  depapify: (noun) ->
+    noun ||= ""
+    noun = noun.split('/').pop()
+    noun = noun.match(/([A-Z])\w+/ig)
+    if noun?
+      noun.join('.')
+    else
+      "File"
+
