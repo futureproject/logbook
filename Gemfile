@@ -45,15 +45,11 @@ gem 'aws-sdk', '< 2.0'
 gem "paperclip", "~> 4.2"
 
 # Oauth stuff, e.g. Google Apps and Facebook
-gem 'oauth'
-gem 'omniauth-openid'
+gem 'omniauth'
 gem 'omniauth-google-oauth2'
-gem 'omniauth-facebook'
 
 # haml for views
 gem "haml-rails"
-
-gem 'sweet-alert'
 
 # enable heroku best-practices
 group :production do
