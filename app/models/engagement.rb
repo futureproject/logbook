@@ -1,6 +1,7 @@
 class Engagement < ActiveRecord::Base
   belongs_to :school, touch: true
   belongs_to :site, touch: true
+  belongs_to :creator, class_name: "Person", foreign_key: "creator_id"
   has_many :engagement_attendees, dependent: :destroy
   has_many :attendees, through: :engagement_attendees, source: :person
   has_many :assets, as: :attachable, dependent: :destroy
@@ -66,7 +67,7 @@ class Engagement < ActiveRecord::Base
     if self.school
       self.site_id = self.school.try(:site).try(:id)
     else
-      self.site_id = self.user.try(:site).try(:id)
+      self.site_id = self.creator.try(:site).try(:id)
     end
     true
   end

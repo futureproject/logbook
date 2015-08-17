@@ -4,22 +4,13 @@ class Site < ActiveRecord::Base
   after_validation :geocode, :if => lambda{ |obj| obj.name_changed? }
   before_create :set_shortname
 
-  belongs_to :captain, foreign_key: 'captain_id', class_name: 'User'
+  belongs_to :captain, foreign_key: 'captain_id', class_name: 'Person'
   has_many :schools
-  has_many :users
   has_many :people
   has_many :projects, through: :schools
   has_many :engagements
   has_many :engagement_attendees, through: :engagements
-  include Sortable
-  scope :user_sort, -> (column) { order column.to_s }
 
-  scope :by_count, -> (column) {
-    select("sites.id, sites.*, count(#{column}.id) AS #{column}_count").
-        joins(column.to_sym).
-        group("sites.id").
-        order("#{column}_count DESC")
-  }
 
   def average association, column=nil
     begin
@@ -35,7 +26,7 @@ class Site < ActiveRecord::Base
   end
 
   def staff
-    ([captain] + users).flatten
+    people.with_accounts
   end
 
   def dream_team

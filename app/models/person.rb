@@ -3,6 +3,7 @@ class Person < ActiveRecord::Base
   validates_uniqueness_of :email, allow_nil: true
   belongs_to :school, touch: true
   belongs_to :site, touch: true
+  belongs_to :creator, class_name: "Person", foreign_key: "creator_id"
   has_many :project_people, dependent: :destroy
   has_many :projects, through: :project_people
   has_many :primary_projects, -> { where(project_people: { leading: true }) }, through: :project_people, source: :project
@@ -171,15 +172,6 @@ class Person < ActiveRecord::Base
   # make an auth_token to remember this user for later logins
   def generate_auth_token
     self.auth_token = SecureRandom.uuid if self.auth_token.blank?
-  end
-
-  # store an oauth identity for this user
-  def add_identity(provider, uid, options={})
-    attrs = {
-      provider: provider,
-      uid: uid
-    }
-    self.identities.first_or_create attrs.merge(options)
   end
 
 end

@@ -4,7 +4,7 @@ ethics:
   kind: 'Workshop'
   name: 'Ethics Class'
   duration: 2.0
-  user: bruce
+  creator: bruce
 
 combat_training:
   date: <%= Date.today %>
@@ -12,4 +12,4 @@ combat_training:
   name: "Combat Training"
   kind: 'Coaching Session'
   duration: 2.0
-  user: bruce
+  creator: bruce

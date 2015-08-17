@@ -32,7 +32,7 @@ feature 'Logbook engagements' do
     visit "/logbook/engagements"
     click_link "Combat Training"
     click_link 'Duplicate'
-    expect(page).to have_content "Combat Training"
+    expect(page).to have_content "Combat Training (Remix)"
     #expect(page).to have_content 'Engagement was successfully duplicated'
   end
 

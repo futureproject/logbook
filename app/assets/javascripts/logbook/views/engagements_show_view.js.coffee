@@ -31,6 +31,7 @@ class ds.EngagementsShowView extends Backbone.View
   duplicate: (click_event) ->
     click_event.preventDefault()
     data = _.omit(_.clone(@model.attributes), 'id', 'date')
+    data.name += " (Remix)" unless data.name.match(/remix/i)
     dup = new ds.Engagement
     if dup.save data
       ds.collections.engagements.add dup, { merge: true }

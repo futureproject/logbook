@@ -5,7 +5,6 @@ bruce:
   auth_token: batman
   role: 'DD'
   school: gotham_city_high
-  clearance_level: 2
 
 dick:
   first_name: Dick

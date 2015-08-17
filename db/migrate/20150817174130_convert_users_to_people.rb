@@ -9,8 +9,8 @@ class ConvertUsersToPeople < ActiveRecord::Migration
     remove_column :people, :media_consent, :boolean
     remove_column :people, :gpa, :float
     remove_column :people, :passions, :text
-    remove_column :people, :user_id, :integer
-    remove_column :engagements, :user_id, :integer
+    rename_column :people, :user_id, :creator_id
+    rename_column :engagements, :user_id, :creator_id
     rename_column :report_submissions, :user_id, :person_id
   end
 end

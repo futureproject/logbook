@@ -4,8 +4,6 @@ class School < ActiveRecord::Base
   after_validation :geocode, :if => lambda{ |obj| obj.address_changed? }
   before_create :set_shortname
 
-  #belongs_to :dream_director, class_name: 'User', foreign_key: 'dream_director_id'
-  has_many :users
   belongs_to :site, touch: true
 
   has_many :people
@@ -41,7 +39,7 @@ class School < ActiveRecord::Base
   end
 
   def dream_director
-    users.find_by(role: 'DD')
+    people.find_by(role: 'DD')
   end
 
   def dream_team

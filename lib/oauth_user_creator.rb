@@ -8,7 +8,7 @@ class OauthUserCreator
   class GoogleOauth2
     def self.find_or_create_from_auth(auth_hash)
       email = auth_hash[:info][:email].downcase
-      user = User.where(email: email).first_or_create
+      user = Person.where(email: email).first_or_create
       user.update(
         first_name: auth_hash[:info][:first_name],
         last_name: auth_hash[:info][:last_name],
