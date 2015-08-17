@@ -4,7 +4,7 @@ class ReportAssignment < ActiveRecord::Base
   after_create :seed_submissions
 
   def seed_submissions
-    self.site.users.find_each do |user|
+    self.site.people.with_accounts.find_each do |user|
       user.report_submissions.create!(
         name: self.report.try(:name),
         body: self.report.try(:body),

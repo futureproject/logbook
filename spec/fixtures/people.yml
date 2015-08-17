@@ -1,20 +1,26 @@
+bruce:
+  first_name: Bruce
+  last_name: Wayne
+  email: bruce.wayne@thefutureproject.org
+  auth_token: batman
+  role: 'DD'
+  school: gotham_city_high
+  clearance_level: 2
+
 dick:
   first_name: Dick
   last_name: Grayson
   school: gotham_city_high
-  user: bruce
   dream_team: true
 
 tim:
   first_name: Tim
   last_name: Drake
   school: gotham_city_high
-  user: bruce
   dream_team: true
 
 alfred:
   first_name: Alfred
   last_name: Pennyworth
   school: gotham_city_high
-  user: bruce
   dream_team: true

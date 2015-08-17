@@ -1,7 +1,7 @@
 class Person < ActiveRecord::Base
-  validates_presence_of :first_name, :last_name
+  validates_presence_of :first_name, :last_name, :role
+  validates_uniqueness_of :email, allow_nil: true
   belongs_to :school, touch: true
-  belongs_to :user, touch: true
   belongs_to :site, touch: true
   has_many :project_people, dependent: :destroy
   has_many :projects, through: :project_people
@@ -12,6 +12,7 @@ class Person < ActiveRecord::Base
   has_many :notes, as: :notable, dependent: :destroy
   has_many :assets, as: :attachable
   has_one :identity, dependent: :destroy
+  before_create :generate_auth_token
   before_save :set_site
   ROLE_ENUM = %w(student teacher staff)
   GRADE_ENUM = [6, 7, 8, 9, 10, 11, 12]
@@ -67,6 +68,10 @@ class Person < ActiveRecord::Base
     .where('people.id NOT IN (SELECT (person_id) FROM project_people WHERE project_people.leading IS true)')
     .uniq
   }
+  
+  scope :with_accounts, -> {
+    where('auth_token IS NOT NULL')
+  }
 
   def name
     "#{first_name} #{last_name}"
@@ -88,29 +93,13 @@ class Person < ActiveRecord::Base
     project.leaders.include? self
   end
 
-  def auth_token
-    identity.token
-  end
-
   def school_name
     school.try(:name)
   end
 
-  def works_at_tfp
-    false
-  end
-
   def set_site
-    if self.school
-      self.site_id = self.school.try(:site).try(:id)
-    else
-      self.site_id = self.user.try(:site).try(:id)
-    end
+    self.site_id = self.school.try(:site).try(:id) if self.school
     true
-  end
-
-  def self.find_by_auth_token(token)
-    Identity.find_by(token: token).try(:person)
   end
 
   def self.dedup ids
@@ -141,6 +130,56 @@ class Person < ActiveRecord::Base
   # rewrite in SQL
   def self.meaningfully_engaged(scope=self.all)
     (scope.joins(:engagements) + scope.joins(:projects)).flatten.uniq
+  end
+
+
+  # user methods
+  def default_logbook_scope
+    if school
+      school
+    elsif site
+      site
+    else
+      National.new
+    end
+  end
+
+  def sites
+    if site
+      Site.where(id: site.id)
+    else
+      Site.order(:name)
+    end
+  end
+
+  def schools
+    if site
+      site.schools.order(:name)
+    else
+      School.order(:name)
+    end
+  end
+
+  def avatar
+    if avatar_url.present?
+      avatar_url.gsub('sz=50','sz=100')
+    else
+     "http://www.thefutureproject.org/assets/logo.png"
+    end
+  end
+
+  # make an auth_token to remember this user for later logins
+  def generate_auth_token
+    self.auth_token = SecureRandom.uuid if self.auth_token.blank?
+  end
+
+  # store an oauth identity for this user
+  def add_identity(provider, uid, options={})
+    attrs = {
+      provider: provider,
+      uid: uid
+    }
+    self.identities.first_or_create attrs.merge(options)
   end
 
 end

@@ -11,45 +11,45 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150815141641) do
+ActiveRecord::Schema.define(version: 20150817174130) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "citext"
 
-  create_table "assets", force: true do |t|
+  create_table "assets", force: :cascade do |t|
     t.integer  "attachable_id"
-    t.string   "attachable_type"
-    t.string   "external_url"
+    t.string   "attachable_type",   limit: 255
+    t.string   "external_url",      limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "data_file_name"
-    t.string   "data_content_type"
+    t.string   "data_file_name",    limit: 255
+    t.string   "data_content_type", limit: 255
     t.integer  "data_file_size"
     t.datetime "data_updated_at"
-    t.boolean  "public",            default: true
+    t.boolean  "public",                        default: true
     t.text     "caption"
   end
 
   add_index "assets", ["attachable_id", "attachable_type"], name: "index_assets_on_attachable_id_and_attachable_type", using: :btree
 
-  create_table "delayed_jobs", force: true do |t|
-    t.integer  "priority",   default: 0, null: false
-    t.integer  "attempts",   default: 0, null: false
-    t.text     "handler",                null: false
+  create_table "delayed_jobs", force: :cascade do |t|
+    t.integer  "priority",               default: 0, null: false
+    t.integer  "attempts",               default: 0, null: false
+    t.text     "handler",                            null: false
     t.text     "last_error"
     t.datetime "run_at"
     t.datetime "locked_at"
     t.datetime "failed_at"
-    t.string   "locked_by"
-    t.string   "queue"
+    t.string   "locked_by",  limit: 255
+    t.string   "queue",      limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
-  create_table "engagement_attendees", force: true do |t|
+  create_table "engagement_attendees", force: :cascade do |t|
     t.integer  "engagement_id"
     t.integer  "person_id"
     t.datetime "created_at"
@@ -59,16 +59,15 @@ ActiveRecord::Schema.define(version: 20150815141641) do
   add_index "engagement_attendees", ["engagement_id"], name: "index_engagement_attendees_on_engagement_id", using: :btree
   add_index "engagement_attendees", ["person_id"], name: "index_engagement_attendees_on_person_id", using: :btree
 
-  create_table "engagements", force: true do |t|
+  create_table "engagements", force: :cascade do |t|
     t.date     "date"
     t.integer  "school_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "kind"
+    t.string   "kind",        limit: 255
     t.float    "duration"
     t.text     "description"
-    t.text     "name"
-    t.integer  "user_id"
+    t.citext   "name"
     t.integer  "site_id"
     t.integer  "headcount"
   end
@@ -78,55 +77,49 @@ ActiveRecord::Schema.define(version: 20150815141641) do
   add_index "engagements", ["school_id"], name: "index_engagements_on_school_id", using: :btree
   add_index "engagements", ["site_id"], name: "index_engagements_on_site_id", using: :btree
 
-  create_table "identities", force: true do |t|
+  create_table "identities", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "provider"
-    t.string   "uid"
-    t.string   "token"
-    t.string   "token_expires_at"
-    t.string   "url"
+    t.string   "provider",         limit: 255
+    t.string   "uid",              limit: 255
+    t.string   "token",            limit: 255
+    t.string   "token_expires_at", limit: 255
+    t.string   "url",              limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "person_id"
-    t.string   "email"
-    t.string   "password_digest"
+    t.string   "email",            limit: 255
+    t.string   "password_digest",  limit: 255
   end
 
   add_index "identities", ["token"], name: "index_identities_on_token", using: :btree
 
-  create_table "notes", force: true do |t|
+  create_table "notes", force: :cascade do |t|
     t.text     "content"
     t.integer  "user_id"
     t.integer  "notable_id"
-    t.string   "notable_type"
+    t.string   "notable_type", limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "notes", ["notable_id", "notable_type"], name: "index_notes_on_notable_id_and_notable_type", using: :btree
 
-  create_table "people", force: true do |t|
-    t.text     "first_name"
-    t.text     "last_name"
-    t.string   "role",            default: "student"
+  create_table "people", force: :cascade do |t|
+    t.citext   "first_name"
+    t.citext   "last_name"
+    t.string   "role",         limit: 255, default: "student"
     t.integer  "school_id"
     t.integer  "grade"
-    t.boolean  "dream_team",      default: false
+    t.boolean  "dream_team",               default: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "score"
-    t.text     "legacy_notes"
-    t.text     "about"
-    t.string   "email"
-    t.string   "password_digest"
-    t.string   "phone"
-    t.string   "sex"
-    t.boolean  "media_consent",   default: false
-    t.float    "gpa"
-    t.text     "passions"
+    t.string   "email",        limit: 255
+    t.string   "phone",        limit: 255
+    t.string   "sex",          limit: 255
     t.integer  "site_id"
-    t.integer  "user_id"
     t.integer  "graduated_in"
+    t.string   "auth_token"
+    t.string   "avatar_url"
   end
 
   add_index "people", ["dream_team"], name: "index_people_on_dream_team", using: :btree
@@ -136,7 +129,7 @@ ActiveRecord::Schema.define(version: 20150815141641) do
   add_index "people", ["school_id"], name: "index_people_on_school_id", using: :btree
   add_index "people", ["site_id"], name: "index_people_on_site_id", using: :btree
 
-  create_table "project_leaders", force: true do |t|
+  create_table "project_leaders", force: :cascade do |t|
     t.integer  "project_id"
     t.integer  "person_id"
     t.datetime "created_at"
@@ -146,7 +139,7 @@ ActiveRecord::Schema.define(version: 20150815141641) do
   add_index "project_leaders", ["person_id"], name: "index_project_leaders_on_person_id", using: :btree
   add_index "project_leaders", ["project_id"], name: "index_project_leaders_on_project_id", using: :btree
 
-  create_table "project_participants", force: true do |t|
+  create_table "project_participants", force: :cascade do |t|
     t.integer  "project_id"
     t.integer  "person_id"
     t.datetime "created_at"
@@ -156,7 +149,7 @@ ActiveRecord::Schema.define(version: 20150815141641) do
   add_index "project_participants", ["person_id"], name: "index_project_participants_on_person_id", using: :btree
   add_index "project_participants", ["project_id"], name: "index_project_participants_on_project_id", using: :btree
 
-  create_table "project_people", force: true do |t|
+  create_table "project_people", force: :cascade do |t|
     t.integer  "project_id"
     t.integer  "person_id"
     t.boolean  "leading",    default: true
@@ -164,13 +157,13 @@ ActiveRecord::Schema.define(version: 20150815141641) do
     t.datetime "updated_at"
   end
 
-  create_table "projects", force: true do |t|
-    t.text     "name"
+  create_table "projects", force: :cascade do |t|
+    t.citext   "name"
     t.integer  "school_id"
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "status"
+    t.string   "status",      limit: 255
   end
 
   add_index "projects", ["created_at"], name: "index_projects_on_created_at", using: :btree
@@ -179,64 +172,64 @@ ActiveRecord::Schema.define(version: 20150815141641) do
   add_index "projects", ["status"], name: "index_projects_on_status", using: :btree
   add_index "projects", ["updated_at"], name: "index_projects_on_updated_at", using: :btree
 
-  create_table "report_assignments", force: true do |t|
+  create_table "report_assignments", force: :cascade do |t|
     t.integer  "report_id"
     t.integer  "site_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "report_submissions", force: true do |t|
-    t.string   "name"
+  create_table "report_submissions", force: :cascade do |t|
+    t.string   "name",       limit: 255
     t.text     "body"
     t.integer  "report_id"
-    t.integer  "user_id"
-    t.string   "status"
+    t.integer  "person_id"
+    t.string   "status",     limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "reports", force: true do |t|
-    t.string   "name"
+  create_table "reports", force: :cascade do |t|
+    t.string   "name",       limit: 255
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "schools", force: true do |t|
-    t.string   "name"
-    t.string   "shortname"
-    t.string   "address"
+  create_table "schools", force: :cascade do |t|
+    t.string   "name",              limit: 255
+    t.string   "shortname",         limit: 255
+    t.string   "address",           limit: 255
     t.integer  "dream_director_id"
     t.integer  "site_id"
     t.float    "latitude"
     t.float    "longitude"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "enrollment",        default: 607
+    t.integer  "enrollment",                    default: 607
   end
 
-  create_table "sites", force: true do |t|
-    t.string   "name"
+  create_table "sites", force: :cascade do |t|
+    t.string   "name",       limit: 255
     t.integer  "captain_id"
     t.float    "latitude"
     t.float    "longitude"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "shortname"
+    t.string   "shortname",  limit: 255
   end
 
-  create_table "users", force: true do |t|
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "email"
-    t.string   "auth_token"
-    t.string   "avatar_url"
-    t.string   "role"
+  create_table "users", force: :cascade do |t|
+    t.string   "first_name",      limit: 255
+    t.string   "last_name",       limit: 255
+    t.string   "email",           limit: 255
+    t.string   "auth_token",      limit: 255
+    t.string   "avatar_url",      limit: 255
+    t.string   "role",            limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "school_id"
-    t.integer  "clearance_level", default: 1
+    t.integer  "clearance_level",             default: 1
     t.integer  "site_id"
     t.boolean  "banned"
   end

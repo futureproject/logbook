@@ -38,7 +38,7 @@ class Api::V2::PeopleController < Api::V2::BaseController
   # POST /api/v2/people
   # POST /api/v2/people.json
   def create
-    @person = current_user.people.new(person_params_with_school)
+    @person = Person.new(person_params_with_school)
     if @person.save
       render :show, status: :created, location: api_v2_person_url(@person)
     else

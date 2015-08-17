@@ -35,19 +35,11 @@ class SessionsController < ApplicationController
 
     def create_via_oauth
       u = OauthUserCreator.find_or_create_from_auth(auth_hash)
-      if u.is_a? User
+      if u
         sign_in u
         redirect_to session[:redirect] || root_url
-      elsif u.is_a? Identity
-        if u.person
-          sign_in u.person
-          redirect_to session[:redirect] || root_url
-        else
-          session[:auth_hash] = auth_hash
-          redirect_to register_identity_path(u)
-        end
       else
-        render status: :unauthorized, text: "Access Denied"
+        redirect_to new_session_path, notice: "Access denied."
       end
     end
 
