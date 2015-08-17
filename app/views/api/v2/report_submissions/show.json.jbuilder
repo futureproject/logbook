@@ -4,4 +4,4 @@ json.extract! @report_submission, :id,
   :name,
   :body,
   :status,
-  :user_id
+  :person_id

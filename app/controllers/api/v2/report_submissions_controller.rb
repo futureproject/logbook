@@ -61,7 +61,7 @@ class Api::V2::ReportSubmissionsController < Api::V2::BaseController
         :name,
         :body,
         :status,
-        :user_id,
+        :person_id,
       )
     end
 

@@ -12,7 +12,8 @@ class Person < ActiveRecord::Base
   has_many :engagements, through: :engagement_attendees
   has_many :notes, as: :notable, dependent: :destroy
   has_many :assets, as: :attachable
-  has_one :identity, dependent: :destroy
+  has_many :report_submissions
+  has_many :notes
   before_create :generate_auth_token
   before_save :set_site
   ROLE_ENUM = %w(student teacher staff)
@@ -69,7 +70,7 @@ class Person < ActiveRecord::Base
     .where('people.id NOT IN (SELECT (person_id) FROM project_people WHERE project_people.leading IS true)')
     .uniq
   }
-  
+
   scope :with_accounts, -> {
     where('auth_token IS NOT NULL')
   }
