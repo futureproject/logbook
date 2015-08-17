@@ -6,6 +6,11 @@ module RailsAdmin
         RailsAdmin::Config::Actions.register self
       end
     end
+    module Fields::Types
+      class Citext < RailsAdmin::Config::Fields::Types::String
+        RailsAdmin::Config::Fields::Types::register(:citext, self)
+      end
+    end
   end
 end
 RailsAdmin.config do |config|
