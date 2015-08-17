@@ -1,7 +1,7 @@
 class Api::V2::NotesController < Api::V2::BaseController
   wrap_parameters format: [:json], include: [:notable_type, :notable_id, :content, :assets_attributes]
   def create
-    @note = current_user.notes.new(note_params)
+    @note = current_user.authored_notes.new(note_params)
     if @note.save
       render json: @note
     else

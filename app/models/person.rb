@@ -13,7 +13,7 @@ class Person < ActiveRecord::Base
   has_many :notes, as: :notable, dependent: :destroy
   has_many :assets, as: :attachable
   has_many :report_submissions
-  has_many :notes
+  has_many :authored_notes, class_name: 'Note', foreign_key: 'author_id'
   before_create :generate_auth_token
   before_save :set_site
   ROLE_ENUM = %w(student teacher staff)
