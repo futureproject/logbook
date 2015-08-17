@@ -80,6 +80,7 @@ class Api::V2::PeopleController < Api::V2::BaseController
         :dream_team,
         :email,
         :phone,
+        :sex,
         :legacy_notes
       )
     end

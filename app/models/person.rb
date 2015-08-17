@@ -1,6 +1,6 @@
 class Person < ActiveRecord::Base
   validates_presence_of :first_name, :last_name, :role
-  validates_uniqueness_of :email, allow_nil: true
+  validates_uniqueness_of :email, allow_blank: true
   belongs_to :school, touch: true
   belongs_to :site, touch: true
   belongs_to :creator, class_name: "Person", foreign_key: "creator_id"
