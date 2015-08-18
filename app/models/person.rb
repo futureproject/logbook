@@ -108,7 +108,7 @@ class Person < ActiveRecord::Base
 
   def self.dedup ids
     duplicates = self.where(id: ids).order(:id)
-    primary = duplicates.select{|p| p.identity.present? || p.dream_team }.first || duplicates.first
+    primary = duplicates.select{|p| p.auth_token.present? || p.dream_team }.first || duplicates.first
     primary.notes ||= ""
     count = duplicates.count
     duplicates = duplicates.where.not(id: primary.id).order(:id)
@@ -120,10 +120,9 @@ class Person < ActiveRecord::Base
       p.project_people.each do |r|
         r.update_attributes person_id: primary.id
       end
-      p.activities.each do |r|
-        r.update_attributes actor_id: primary.id
+      p.notes.each do |r|
+        r.update_attributes notable_id: primary.id
       end
-      primary.notes += p.notes.to_s
       p.delete
     end
     puts "merged #{count} people into #{primary.name}, id #{primary.id}"
