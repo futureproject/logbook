@@ -106,7 +106,7 @@ RailsAdmin.config do |config|
       field :email
       field :role, :enum do
         enum do
-          Person::ROLE_ENUM
+          (Person::ROLE_ENUM + %w(DD CHIEF ADMIN LAB APR)).flatten
         end
       end
       field :school
@@ -118,9 +118,6 @@ RailsAdmin.config do |config|
         end
       end
       field :phone
-      field :gpa
-      field :notes
-      field :media_consent
     end
   end
 
