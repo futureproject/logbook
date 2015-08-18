@@ -2,6 +2,7 @@ Convert users to people
 Restore site captains
 restore "Toggle Dream Team"
 get external assets on a CDN
+Hours per person graph goes away when it is blank. Do other graphs do that too?
 
 Add 'volunteer' to people roles
 Collect info on people
@@ -10,6 +11,7 @@ Collect info on people
 
 
 restructure Mobile App
+reduce memory footprint
 
 Add actual duration
 Make FACTBAR SCHOOL open school info popover, with cursor: help

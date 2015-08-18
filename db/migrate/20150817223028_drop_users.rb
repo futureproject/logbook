@@ -13,6 +13,7 @@ class DropUsers < ActiveRecord::Migration
         school_id: user.school_id,
         site_id: user.site_id,
       )
+      p.update_column :id, user.id
     end
     drop_table :users
   end

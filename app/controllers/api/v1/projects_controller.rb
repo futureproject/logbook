@@ -6,13 +6,13 @@ class Api::V1::ProjectsController < Api::V1::BaseController
   # GET /api/v1/projects.json
   def index
     if current_user.school
-      @projects = current_user.projects
+      @projects = current_user.school.projects
     elsif current_user.site
       @projects = current_user.site.projects
     else
       @projects = Project.all
     end
-    @projects = @projects.order('updated_at DESC', 'id DESC')
+    @projects = @projects.order('updated_at DESC', 'id DESC').limit(400)
   end
 
   # GET /api/v1/projects/1

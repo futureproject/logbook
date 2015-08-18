@@ -10,12 +10,12 @@ feature 'using the phonebook' do
     should_see_projects_list
   end
 
-  scenario 'to search for people', js: true do
+  scenario 'to search for projects', js: true do
     visit '/phonebook/projects'
     name = find('.row-title', match: :first).text
     find(".titlebar .icon-search").click()
     fill_in 'q', with: name
-    resulting_name = find('.row-title').text
+    resulting_name = find('.row-title', match: :first).text
     expect(name).to eq resulting_name
   end
 

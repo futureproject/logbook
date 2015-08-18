@@ -4,12 +4,14 @@ class Person < ActiveRecord::Base
   belongs_to :school, touch: true
   belongs_to :site, touch: true
   belongs_to :creator, class_name: "Person", foreign_key: "creator_id"
+  has_many :created_people, class_name: "Person", foreign_key: "creator_id"
   has_many :project_people, dependent: :destroy
   has_many :projects, through: :project_people
   has_many :primary_projects, -> { where(project_people: { leading: true }) }, through: :project_people, source: :project
   has_many :secondary_projects, -> { where(project_people: { leading: false }) }, through: :project_people, source: :project
   has_many :engagement_attendees, dependent: :destroy
   has_many :engagements, through: :engagement_attendees
+  has_many :created_engagements, class_name: "Engagement", foreign_key: "creator_id"
   has_many :notes, as: :notable, dependent: :destroy
   has_many :assets, as: :attachable
   has_many :report_submissions

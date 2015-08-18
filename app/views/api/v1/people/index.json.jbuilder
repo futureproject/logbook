@@ -7,7 +7,6 @@ json.array!(@people) do |person|
     :school_name,
     :role,
     :dream_team,
-    :legacy_notes,
     :email,
     :phone,
     :grade

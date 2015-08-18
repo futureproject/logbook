@@ -42,9 +42,9 @@ feature 'using the phonebook' do
     tap_element('#people-tab')
     tap_element('#phonebook-people .table .row:first-child')
     tap_element('#phonebook-people .detail-show .edit')
-    fill_in('legacy_notes', with: "Alfred is a great butler.")
+    fill_in('last_name', with: "Penyworth III")
     tap_element '#phonebook-people .detail-edit .done'
-    expect(page).to have_content 'Alfred is a great butler.'
+    expect(page).to have_content 'Penyworth III'
   end
 
   scenario 'deleting', js: true

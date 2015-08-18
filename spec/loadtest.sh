@@ -1,4 +1,4 @@
-SITE="http://logbook.dream.org/api/v2/people/leaderboard"
+SITE="http://logbook.dream.org/api/v2/people"
 #SITE="http://logbook.dream.org/logbook/dashboard"
 TRIALS=1000
 CONCURRENCY=50

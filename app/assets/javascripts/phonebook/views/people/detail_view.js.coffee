@@ -6,10 +6,10 @@ class Phonebook.Views.People.DetailView extends Phonebook.Views.Base.DetailView
 
   initSubViews: ->
     @subViews =
-      notes: new Phonebook.Views.Base.ModelView
-        model: @model
-        el: @el.querySelector('.person-notes')
-        template: JST["phonebook/templates/people/notes"]
+      #notes: new Phonebook.Views.Base.ModelView
+        #model: @model
+        #el: @el.querySelector('.person-notes')
+        #template: JST["phonebook/templates/people/notes"]
       contact: new Phonebook.Views.Base.ModelView
         model: @model
         el: @el.querySelector('.person-contact')

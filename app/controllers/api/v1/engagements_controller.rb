@@ -39,7 +39,7 @@ class Api::V1::EngagementsController < Api::V1::BaseController
   # POST /api/v1/engagements
   # POST /api/v1/engagements.json
   def create
-    @engagement = current_user.engagements.new(engagement_params_with_school)
+    @engagement = current_user.created_engagements.new(engagement_params_with_school)
     if @engagement.save
       render :show, status: :created, location: api_v1_engagement_url(@engagement)
     else
