@@ -1,7 +1,7 @@
 restore "Toggle Dream Team"
-
 Hours per person graph goes away when it is blank. Do other graphs do that too?
-get external assets on a CDN
+
+get styles and scripts on a CDN
 Add actual duration to engagement form
 
 restructure Mobile App, as per Gemar's request
@@ -9,7 +9,6 @@ Add 'volunteer' to people roles
 Collect info on people
   job
   hours available/wk
-
 
 New Report interface for per-user assignment
 
