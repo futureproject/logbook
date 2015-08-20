@@ -13,22 +13,28 @@ Collect info on people
 
 New Report interface for per-user assignment
 
-reduce memory footprint
-
+FILTERS ON LISTS
+EMAIL NOTIFICATIONS
+Welcome animation
+SCAN HASHTAGS
+MAKE HASHTAGS LINKABLE
+Data Export
+Advanced Search
+Student Groups beyond dream team
+Notifications of dormant students and project
 
 Make FACTBAR SCHOOL open school info popover, with cursor: help
-Trigger flash notices after C(R)UD
+Trigger flash notices after any edit actions
 Cache STATS
 Clicking a note poster should open a gallery modal
-Add an EDIT USER PROFILE screen
 
+Add an EDIT USER PROFILE screen
 Add updated_at to projects table
 Change Project.btw to use created_at
 
 Link engagements to projects
-Hashtags
-Make profile pictures awesome
-
+Person Profile Pictures
+Ask research team about Sex/Gender
 
 make graph click events use the router, not just navigate
 add activity feed to person profiles
@@ -41,5 +47,3 @@ Write custom render for selectize search, showing result school
 _ make the Logged Hours Per Person graph a single series
 infinitely scrolling lists
 Add GOAL to engagements
-
-
