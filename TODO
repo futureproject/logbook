@@ -1,39 +1,47 @@
+LOW HANGING FRUIT
+--------------------
 restore "Toggle Dream Team"
-Hours per person graph goes away when it is blank. Do other graphs do that too?
-
-get styles and scripts on a CDN
+Make current_user view link to profile page
 Add actual duration to engagement form
+Hours per person graph goes away when it is blank. Do other graphs do that too?
+Welcome animation
+Add projects and engagements just like you add notes
+Make FACTBAR SCHOOL open school info popover, with cursor: help
 
+Performance
+----------------------------------
+get styles and scripts on a CDN
+
+
+HEAVY LIFTS
+------------
 restructure Mobile App, as per Gemar's request
 Add 'volunteer' to people roles
 Collect info on people
   job
   hours available/wk
-
 New Report interface for per-user assignment
-
 FILTERS ON LISTS
 EMAIL NOTIFICATIONS
-Welcome animation
 SCAN HASHTAGS
 MAKE HASHTAGS LINKABLE
+Notifications of dormant students and project
 Data Export
 Advanced Search
 Student Groups beyond dream team
-Notifications of dormant students and project
+View all notes as timeline, toggleable by source (person, project, engagement)
 
-Make FACTBAR SCHOOL open school info popover, with cursor: help
 Trigger flash notices after any edit actions
 Cache STATS
 Clicking a note poster should open a gallery modal
 
+Link engagements to projects
 Add an EDIT USER PROFILE screen
 Add updated_at to projects table
 Change Project.btw to use created_at
 
-Link engagements to projects
 Person Profile Pictures
-Ask research team about Sex/Gender
+Ask research team about Sex/Gender/Demographics
 
 make graph click events use the router, not just navigate
 add activity feed to person profiles
