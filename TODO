@@ -1,17 +1,20 @@
 restore "Toggle Dream Team"
-get external assets on a CDN
-Hours per person graph goes away when it is blank. Do other graphs do that too?
 
-Add 'volunteer' to people roles
+Hours per person graph goes away when it is blank. Do other graphs do that too?
+get external assets on a CDN
+Add actual duration to engagement form
+
 restructure Mobile App, as per Gemar's request
+Add 'volunteer' to people roles
 Collect info on people
   job
   hours available/wk
 
 
+New Report interface for per-user assignment
+
 reduce memory footprint
 
-Add actual duration to engagement form
 
 Make FACTBAR SCHOOL open school info popover, with cursor: help
 Trigger flash notices after C(R)UD
