@@ -3,20 +3,28 @@ get external assets on a CDN
 Hours per person graph goes away when it is blank. Do other graphs do that too?
 
 Add 'volunteer' to people roles
+restructure Mobile App, as per Gemar's request
 Collect info on people
   job
   hours available/wk
 
 
-restructure Mobile App
 reduce memory footprint
 
-Add actual duration
+Add actual duration to engagement form
+
 Make FACTBAR SCHOOL open school info popover, with cursor: help
 Trigger flash notices after C(R)UD
 Cache STATS
 Clicking a note poster should open a gallery modal
 Add an EDIT USER PROFILE screen
+
+Add updated_at to projects table
+Change Project.btw to use created_at
+
+Link engagements to projects
+Hashtags
+Make profile pictures awesome
 
 
 make graph click events use the router, not just navigate
@@ -25,10 +33,6 @@ Order not recently engaged students by: dream_team, engagements_count
 pressing ENTER on search with nothing highlighted should go to advanced search page
 Write custom render for selectize search, showing result school
 
-
-# NEW FEATURES!
-1) Linking engagements to projects
-3) Make profile pictures awesome
 
 # DESIGN
 _ make the Logged Hours Per Person graph a single series
