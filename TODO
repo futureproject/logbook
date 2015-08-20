@@ -1,7 +1,10 @@
 LOW HANGING FRUIT
 --------------------
+Add updated_at to projects table
+Change Project.btw to use created_at
 restore "Toggle Dream Team"
 Make current_user view link to profile page
+Trigger flash notices after any edit actions
 Add actual duration to engagement form
 Hours per person graph goes away when it is blank. Do other graphs do that too?
 Welcome animation
@@ -11,16 +14,20 @@ Make FACTBAR SCHOOL open school info popover, with cursor: help
 Performance
 ----------------------------------
 get styles and scripts on a CDN
-
+Cache stats api endpoints
+Cache all API endpoints
+make graph click events use the router, not just navigate
 
 HEAVY LIFTS
 ------------
-restructure Mobile App, as per Gemar's request
-Add 'volunteer' to people roles
-Collect info on people
-  job
-  hours available/wk
 New Report interface for per-user assignment
+
+MAKE PERMISSIONS-LIMITED MOBILE APP
+  Add 'volunteer' to people roles
+  Collect info on people
+    job
+    hours available/wk
+
 FILTERS ON LISTS
 EMAIL NOTIFICATIONS
 SCAN HASHTAGS
@@ -30,27 +37,9 @@ Data Export
 Advanced Search
 Student Groups beyond dream team
 View all notes as timeline, toggleable by source (person, project, engagement)
-
-Trigger flash notices after any edit actions
-Cache STATS
 Clicking a note poster should open a gallery modal
-
+_ make the Logged Hours Per Person graph a single series
 Link engagements to projects
-Add an EDIT USER PROFILE screen
-Add updated_at to projects table
-Change Project.btw to use created_at
-
 Person Profile Pictures
 Ask research team about Sex/Gender/Demographics
-
-make graph click events use the router, not just navigate
-add activity feed to person profiles
-Order not recently engaged students by: dream_team, engagements_count
-pressing ENTER on search with nothing highlighted should go to advanced search page
-Write custom render for selectize search, showing result school
-
-
-# DESIGN
-_ make the Logged Hours Per Person graph a single series
-infinitely scrolling lists
 Add GOAL to engagements
