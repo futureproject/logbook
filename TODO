@@ -1,7 +1,5 @@
 LOW HANGING FRUIT
 --------------------
-Add updated_at to projects table
-Change Project.btw to use created_at
 restore "Toggle Dream Team"
 Make current_user view link to profile page
 Trigger flash notices after any edit actions
