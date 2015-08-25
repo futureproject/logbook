@@ -28,5 +28,5 @@ class Project < ActiveRecord::Base
     end
   }
 
-  scope :btw, -> (range) { where(updated_at: range) }
+  scope :btw, -> (range) { where(created_at: range) }
 end

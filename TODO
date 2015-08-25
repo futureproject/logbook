@@ -21,6 +21,7 @@ make graph click events use the router, not just navigate
 HEAVY LIFTS
 ------------
 New Report interface for per-user assignment
+Make reports export to GDrive
 
 MAKE PERMISSIONS-LIMITED MOBILE APP
   Add 'volunteer' to people roles

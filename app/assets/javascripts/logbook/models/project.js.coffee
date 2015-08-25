@@ -38,6 +38,7 @@ class ds.ProjectsCollection extends Backbone.PageableCollection
     {name: 'status', cell:'string'}
     {name: 'people_count', cell:'integer', label: 'Team Size'}
     {name: 'created_at', cell:'date', label: 'created'}
+    {name: 'updated_at', cell:'date', label: 'updated'}
   ]
   parseRecords: (response) ->
     response.data

@@ -3,6 +3,7 @@
   th.leading { text-align: center; }
   th.people_count { text-align: right; }
   th.created_at { text-align: right; }
+  th.updated_at { text-align: right; }
 }
 #project-form {
   @include row;
