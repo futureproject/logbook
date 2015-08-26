@@ -8,7 +8,7 @@ feature "Managing reports" do
     visit "/admin/report/new"
     fill_in "report[name]", with: "Dispatch"
     fill_in "report[body]", with: "What happened??"
-    within "#report_site_ids_field" do
+    within "#report_person_ids_field" do
       find(".ra-multiselect-item-add-all").click
     end
     click_button "Save"

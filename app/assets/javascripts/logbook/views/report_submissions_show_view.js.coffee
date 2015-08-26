@@ -23,7 +23,6 @@ class ds.ReportSubmissionsShowView extends Backbone.View
   save: (event) ->
     event.preventDefault()
     data = @getBodyFromTextEditor()
-    data = _.extend(data, {status: "In Progress"}) if @model.get('status') == "Unread"
     @model.save data, {silent: true}
     true
 

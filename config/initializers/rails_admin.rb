@@ -99,26 +99,5 @@ RailsAdmin.config do |config|
       #field :role
     #end
   #end
-  config.model 'Person' do
-    edit do
-      field :first_name
-      field :last_name
-      field :email
-      field :role, :enum do
-        enum do
-          (Person::ROLE_ENUM + %w(DD CHIEF ADMIN LAB APR)).flatten
-        end
-      end
-      field :school
-      field :grade
-      field :dream_team
-      field :sex, :enum do
-        enum do
-          Person::SEX_ENUM
-        end
-      end
-      field :phone
-    end
-  end
 
 end

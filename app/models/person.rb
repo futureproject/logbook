@@ -77,6 +77,10 @@ class Person < ActiveRecord::Base
     where('auth_token IS NOT NULL')
   }
 
+  scope :field_staff, -> {
+    where("role=? OR role=?", "DD", "CHIEF").order(:site_id, :first_name)
+  }
+
   def name
     "#{first_name} #{last_name}"
   end
@@ -174,6 +178,31 @@ class Person < ActiveRecord::Base
   # make an auth_token to remember this user for later logins
   def generate_auth_token
     self.auth_token = SecureRandom.uuid if self.auth_token.blank?
+  end
+
+  rails_admin do
+    list do
+      sort_by :first_name
+    end
+    edit do
+      field :first_name
+      field :last_name
+      field :email
+      field :role, :enum do
+        enum do
+          (Person::ROLE_ENUM + %w(DD CHIEF ADMIN LAB APR)).flatten
+        end
+      end
+      field :school
+      field :grade
+      field :dream_team
+      field :sex, :enum do
+        enum do
+          Person::SEX_ENUM
+        end
+      end
+      field :phone
+    end
   end
 
 end

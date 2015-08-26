@@ -5,10 +5,12 @@ class Api::V2::ReportSubmissionsController < Api::V2::BaseController
   # GET /api/v2/report_submissions.json
   def index
     @t = stat_times
+    #@report_submissions = ReportSubmission.for_user(current_user)
     @report_submissions = current_user.report_submissions
       .btw(@t)
       .order(sort_params)
-      .limit(200)
+      .page(params[:page])
+    @total = @report_submissions.total_count
   end
 
   # GET /api/v2/report_submissions/1
@@ -69,7 +71,7 @@ class Api::V2::ReportSubmissionsController < Api::V2::BaseController
       if params[:sort_by] && params[:order]
         "#{params[:sort_by]} #{params[:order]}"
       else
-        "created_at DESC"
+        "created_at DESC, status DESC"
       end
     end
 end
