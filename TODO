@@ -5,6 +5,7 @@ Make current_user view link to profile page
 Trigger flash notices after any edit actions
 Add actual duration to engagement form
 Hours per person graph goes away when it is blank. Do other graphs do that too?
+Person profile engagement bubbles should ignore the time filter
 Welcome animation
 Add projects and engagements just like you add notes
 Make FACTBAR SCHOOL open school info popover, with cursor: help
@@ -18,7 +19,6 @@ make graph click events use the router, not just navigate
 
 HEAVY LIFTS
 ------------
-New Report interface for per-user assignment
 Make reports export to GDrive
 
 MAKE PERMISSIONS-LIMITED MOBILE APP
@@ -40,5 +40,4 @@ Clicking a note poster should open a gallery modal
 _ make the Logged Hours Per Person graph a single series
 Link engagements to projects
 Person Profile Pictures
-Ask research team about Sex/Gender/Demographics
 Add GOAL to engagements
