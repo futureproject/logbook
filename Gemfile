@@ -17,8 +17,6 @@ gem 'coffee-rails', '~> 4.0.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
@@ -55,11 +53,16 @@ gem "haml-rails"
 group :production do
   gem 'rails_12factor'
   gem "rack-timeout-puma"
+  gem 'newrelic_rpm'
 end
+
+#error monitoring
 gem 'airbrake'
 
 # rails_admin for CRMish stuff
 gem 'rails_admin'
+
+gem 'groupdate'
 
 # Geocode locations!
 gem 'geocoder'
@@ -67,9 +70,6 @@ gem 'geocoder'
 #caching on heroku
 gem 'dalli'
 gem 'memcachier'
-
-# performance monitoring
-gem 'newrelic_rpm'
 
 # ejs javascript templates
 gem 'ejs'
@@ -89,12 +89,6 @@ gem 's3_direct_upload'
 # process things in the background
 gem 'delayed_job_active_record'
 
-# Twitter typeahead
-gem 'twitter-typeahead-rails'
-
-# group records for fancy graphing
-gem 'groupdate'
-
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
   gem 'dotenv-rails'
@@ -109,9 +103,6 @@ group :test do
   #gem 'chromedriver-helper'
   gem 'launchy'
 end
-
-# Use ActiveModel has_secure_password
-gem 'bcrypt', '~> 3.1.7'
 
 # Use unicorn as the app server
 # gem 'unicorn'

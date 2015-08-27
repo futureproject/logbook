@@ -8,7 +8,6 @@
 #= require jquery.animate-enhanced
 #= require date
 #= require selectize
-#= require twitter/typeahead
 #= require s3_cors_upload
 #= require highcharts
 #= require highcharts-more

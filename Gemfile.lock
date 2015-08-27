@@ -46,7 +46,6 @@ GEM
     aws-sdk-v1 (1.64.0)
       json (~> 1.4)
       nokogiri (>= 1.4.4)
-    bcrypt (3.1.10)
     bitters (1.0.0)
       bourbon (>= 3.2)
       sass (>= 3.2)
@@ -292,12 +291,6 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (1.4.1)
-    turbolinks (2.5.3)
-      coffee-rails
-    twitter-typeahead-rails (0.11.1)
-      actionpack (>= 3.1)
-      jquery-rails
-      railties (>= 3.1)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (2.7.1)
@@ -313,7 +306,6 @@ PLATFORMS
 DEPENDENCIES
   airbrake
   aws-sdk (< 2.0)
-  bcrypt (~> 3.1.7)
   bitters
   bourbon
   bullet
@@ -352,8 +344,6 @@ DEPENDENCIES
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
   spring
-  turbolinks
-  twitter-typeahead-rails
   uglifier (>= 1.3.0)
 
 BUNDLED WITH

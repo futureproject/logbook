@@ -5,12 +5,10 @@ class Api::V2::ReportSubmissionsController < Api::V2::BaseController
   # GET /api/v2/report_submissions.json
   def index
     @t = stat_times
-    #@report_submissions = ReportSubmission.for_user(current_user)
     @report_submissions = current_user.report_submissions
       .btw(@t)
       .order(sort_params)
-      .page(params[:page])
-    @total = @report_submissions.total_count
+      .page(params[:page]).per(200)
   end
 
   # GET /api/v2/report_submissions/1

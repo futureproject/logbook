@@ -3,7 +3,7 @@ class Identity < ActiveRecord::Base
   belongs_to :person
   accepts_nested_attributes_for :person
   validates_uniqueness_of :uid, scope: :provider
-  has_secure_password validations: false
+  #has_secure_password validations: false
   before_create :generate_token
   attr_accessor :first_name, :last_name
 

@@ -5,7 +5,7 @@ class ds.ReportSubmission extends Backbone.Model
     attrs = _.extend(@toJSON(), { class_name: 'ReportSubmission' })
     {report_submission: attrs }
 
-class ds.ReportSubmissionsCollection extends Backbone.PageableCollection
+class ds.ReportSubmissionsCollection extends Backbone.Collection
   model: ds.ReportSubmission
   namespace: 'report_submissions'
   url: -> ds.apiHelper.urlFor @namespace
@@ -15,7 +15,3 @@ class ds.ReportSubmissionsCollection extends Backbone.PageableCollection
     { name: 'excerpt', cell: ds.LogbookLinkCell, label: 'Questions', sortable: false }
     { name: 'created_at', cell: 'date', label: 'Date Assigned' }
   ]
-  parseRecords: (response) ->
-    response.data
-  parseState: (response) ->
-    { totalRecords: response.state.total_entries }
