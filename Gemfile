@@ -89,6 +89,8 @@ gem 's3_direct_upload'
 # process things in the background
 gem 'delayed_job_active_record'
 
+#gem "google_drive"
+
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
   gem 'dotenv-rails'
