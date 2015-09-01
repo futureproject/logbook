@@ -12,7 +12,7 @@ class Engagement < ActiveRecord::Base
   before_save :set_site
   before_save :set_headcount
   validates_presence_of :date
-  KIND_ENUM = ['Coaching Session', 'Event', 'Meeting', 'Workshop']
+  KIND_ENUM = ['Coaching Session', 'Event', 'Course', 'Meeting']
   DURATION_ENUM = [
     ['5 Minutes', 0.1],
     ['15 Minutes', 0.25],

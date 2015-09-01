@@ -1,6 +1,5 @@
 LOW HANGING FRUIT
 --------------------
-Change "COURSES" to "PROJECTS"
 restore "Toggle Dream Team"
 Make current_user view link to profile page
 Trigger flash notices after any edit actions

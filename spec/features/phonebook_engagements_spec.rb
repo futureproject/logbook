@@ -80,7 +80,7 @@ feature 'using the phonebook' do
 
   def fill_in_form(args)
     fill_in 'name', with: args[:name]
-    select 'Workshop', from: 'kind'
+    select 'Course', from: 'kind'
   end
 
 end
