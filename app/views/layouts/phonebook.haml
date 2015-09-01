@@ -23,12 +23,9 @@
     %link{:href => asset_path("phonebook-startup-640x920.png"), :media => "(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)", :rel => "apple-touch-startup-image"}
 
   %body
-    #form-to-s3.hidden
-      = s3_uploader_form callback_url: '/api/v1/assets', callback_param: "asset[external_url]", class: 's3-uploader' do
-        /= file_field_tag :file, multiple: true, accept: "image/*", capture: 'camera'
-        = file_field_tag :file, accept: "image/*,video/*", capture: 'camera'
-        = render partial: 'application/s3_direct_upload_progress_bars.html'
-    = javascript_include_tag 'phonebook/phonebook'
     #phonebook
+      #titlebar
+      #content
+    = javascript_include_tag 'phonebook/phonebook'
     :javascript
-      Phonebook.initialize(#{JSON.dump( @js_data || {} )})
+      ds.run()

@@ -36,6 +36,11 @@ Rails.application.routes.draw do
       end
       get '/:scope_type/:scope_id/graphs/:action', controller: 'graphs'
     end
+    namespace :insecure do
+      resources :people
+      resources :engagements
+      resources :projects
+    end
     namespace :v1 do
       resources :users do
         get 'stats', on: :member
@@ -67,6 +72,7 @@ Rails.application.routes.draw do
   end
 
   get '/logbookapp' => 'phonebook/application#home', as: 'logbook_app'
+  get '/mobile' => 'phonebook/application#home'
   namespace :phonebook do
     root 'application#home'
     get 'manifest.appcache', to: 'application#manifest'
