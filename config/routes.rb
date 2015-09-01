@@ -40,6 +40,7 @@ Rails.application.routes.draw do
       resources :people
       resources :engagements
       resources :projects
+      resources :sessions, only: [:new]
     end
     namespace :v1 do
       resources :users do

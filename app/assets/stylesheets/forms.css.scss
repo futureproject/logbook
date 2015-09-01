@@ -8,6 +8,9 @@ input, select, textarea {
   padding: 5px;
   border-radius: 0;
   font-family: $base-font-family;
+  &[disabled] {
+    opacity: 0.25;
+  }
 }
 
 #{$all-text-inputs}, select {
@@ -43,9 +46,9 @@ textarea {
     font-weight: 700;
     line-height: 25px;
     text-transform: uppercase;
-    border-radius: 5px;
     font-family: $base-font-family;
     cursor: pointer;
+    @include appearance(none);
   }
 }
 .checkbox-field {

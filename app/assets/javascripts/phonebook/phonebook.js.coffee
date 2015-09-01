@@ -19,12 +19,16 @@ ds.views = {}
 ds.controllers ={}
 ds.collections ={}
 
-ds.run = ->
+ds.init = ->
+  document.body.classList.add("standalone") if navigator.standalone
   ds.views.session = new ds.SessionView
   ds.user = new ds.UserCollection
   ds.router = new ds.Router
   if ds.user.current()?
-    Backbone.history.start({ pushState: true })
+    ds.run()
   else
     Backbone.trigger 'sessions:new'
+
+ds.run = ->
+  Backbone.history.start({ pushState: true })
 

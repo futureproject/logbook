@@ -1,8 +1,9 @@
 class ds.User extends Backbone.Model
 
 class ds.UserCollection extends Backbone.Collection
+  url: 'sessions'
   local: true
   current: ->
-    @first()
+    @last()
   initialize: ->
-    @fetch({ reset: true })
+    @fetch()
