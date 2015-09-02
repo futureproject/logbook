@@ -1,5 +1,5 @@
 class Project < ActiveRecord::Base
-  validates_presence_of :name, :school_id
+  validates_presence_of :name
   belongs_to :school, touch: true
   has_many :project_people, dependent: :destroy
   has_many :people, through: :project_people
