@@ -4,6 +4,7 @@
 #= require backbone.dualstorage
 #= require backbone.syphon
 #= require backbone.paginator.min
+#= require jquery.animate-enhanced
 #= require date
 #= require_self
 #= require_tree ./helpers
@@ -21,13 +22,16 @@ ds.collections ={}
 
 ds.init = ->
   document.body.classList.add("standalone") if navigator.standalone
-  ds.views.session = new ds.SessionView
+  ds.controllers.sessions = new ds.SessionsController
+  ds.controllers.notifications = new ds.NotificationsController
+  ds.controllers.people = new ds.PeopleController
   ds.user = new ds.UserCollection
   ds.router = new ds.Router
+  ds.views.app_view = new ds.AppView
   if ds.user.current()?
     ds.run()
   else
-    Backbone.trigger 'sessions:new'
+    Backbone.trigger "sessions:do", "new"
 
 ds.run = ->
   Backbone.history.start({ pushState: true })

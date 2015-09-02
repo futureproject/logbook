@@ -18,7 +18,7 @@ class Person < ActiveRecord::Base
   has_many :authored_notes, class_name: 'Note', foreign_key: 'author_id'
   before_create :generate_auth_token
   before_save :set_site
-  ROLE_ENUM = %w(student teacher staff)
+  ROLE_ENUM = %w(student teacher volunteer staff)
   GRADE_ENUM = [6, 7, 8, 9, 10, 11, 12]
   SEX_ENUM = %w(M F)
   DREAM_TEAM_ENUM = [["Yep", true],["Nope", false]]

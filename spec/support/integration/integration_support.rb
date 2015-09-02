@@ -12,6 +12,12 @@ module IntegrationSupport
     click_button 'Register'
   end
 
+  def mock_mobile_sign_in email="bruce.wayne@thefutureproject.org"
+    visit "/phonebook"
+    fill_in "email", with: email
+    click_button "Next"
+  end
+
 end
 
 RSpec.configure do |config|

@@ -1,26 +1,20 @@
-class ds.SessionView extends Backbone.View
+class ds.SessionsNewView extends Backbone.View
+  template: JST["phonebook/templates/sessions/new"]
   className: "panel"
   initialize: ->
     @views =
       spinner: new ds.SpinnerView
     @model = new ds.User
-    @step = 1
-    @listenTo Backbone, 'sessions:new', @show
 
   events:
     'submit': 'processForm'
-  template: JST["phonebook/templates/sessions_new"]
 
   render: ->
     @$el.html @template()
     @
 
-  show: ->
-    @renderTo "#phonebook"
-
   processForm: (event) ->
     event.preventDefault()
-
     email_filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/
     data = Backbone.Syphon.serialize @
     if !email_filter.test(data.email)
@@ -37,18 +31,13 @@ class ds.SessionView extends Backbone.View
           ds.user.create response
           ds.run()
         error: (response) =>
-          # if this is a 404 error, move to registration step
+          # if this is a 404 error, move to registration
           if response.status == 404
-            Backbone.trigger "sessions:register", data.email
+            Backbone.trigger "sessions:do", "register", {email: data.email}
           # if it's another error, alert the message
           else
             alert "Error #{response.status}: #{response.statusText}"
         complete: =>
           $('input').removeAttr('disabled')
           @views.spinner.remove()
-
-  showRegistration: ->
-    @step = 2
-    @render()
-
 

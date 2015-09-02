@@ -11,28 +11,9 @@ class Api::Insecure::PeopleController < Api::Insecure::BaseController
     @total = @people.total_count
   end
 
-  # GET /api/v2/people/leaderboard
-  def leaderboard
-    @t = stat_times
-    @scope = current_scope
-  end
-
   # GET /api/v2/people/1
   # GET /api/v2/people/1.json
   def show
-  end
-
-  def stats
-    render partial: 'people/stats'
-  end
-
-  # GET /api/v2/people/new
-  def new
-    @person = Person.new
-  end
-
-  # GET /api/v2/people/1/edit
-  def edit
   end
 
   # POST /api/v2/people
@@ -40,7 +21,7 @@ class Api::Insecure::PeopleController < Api::Insecure::BaseController
   def create
     @person = Person.new(person_params_with_school)
     if @person.save
-      render :show, status: :created, location: api_v2_person_url(@person)
+      render :show, status: :created, location: api_insecure_person_url(@person)
     else
       render json: @person.errors, status: :unprocessable_entity
     end
@@ -50,7 +31,7 @@ class Api::Insecure::PeopleController < Api::Insecure::BaseController
   # PATCH/PUT /api/v2/people/1.json
   def update
     if @person.update(person_params)
-      render :show, status: :ok, location: api_v2_person_url(@person)
+      render :show, status: :ok, location: api_insecure_person_url(@person)
     else
       render json: @person.errors, status: :unprocessable_entity
     end
@@ -80,8 +61,6 @@ class Api::Insecure::PeopleController < Api::Insecure::BaseController
         :dream_team,
         :email,
         :phone,
-        :sex,
-        :legacy_notes
       )
     end
 

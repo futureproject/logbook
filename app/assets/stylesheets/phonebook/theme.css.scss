@@ -36,5 +36,12 @@ h1, h2, h3, h4, h5, h6, strong {
 
 .actions-field input {
   background: $retro-blue;
+  &.warning {
+    background: $retro-yellow;
+  }
+}
+
+header + form {
+  margin-top: 15px;
 }
 

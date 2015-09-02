@@ -23,18 +23,14 @@ class ds.Router extends Backbone.Router
     # ASSOCIATIONS
     "logbook/:notable_type/:notable_id/notes/add": "notes_new"
 
-  #HOME
-  home: ->
-    Backbone.trigger('people:index')
-
   #PEOPLE
   people_index: ->
-    console.log 'ppL!'
     @navigate "/phonebook/people"
-    Backbone.trigger "people:index"
-  people_show: (id) -> Backbone.trigger "people:show", id
-  people_new: (model) -> Backbone.trigger "people:new", model
-  people_edit: (id) -> Backbone.trigger "people:edit", id
+    Backbone.trigger "people:do", "index"
+
+  people_show: (id) -> Backbone.trigger "people:do", "show", id
+  people_new: (model) -> Backbone.trigger "people:do", "new",  model
+  people_edit: (id) -> Backbone.trigger "people:do", "edit", id
 
   #ENGAGEMENTS
   engagements_index: -> Backbone.trigger "engagements:index"

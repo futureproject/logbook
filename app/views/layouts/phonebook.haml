@@ -22,10 +22,7 @@
     / iOS 6 & 7 iPhone (retina)
     %link{:href => asset_path("phonebook-startup-640x920.png"), :media => "(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)", :rel => "apple-touch-startup-image"}
 
-  %body
-    #phonebook
-      #titlebar
-      #content
+  %body#phonebook
     = javascript_include_tag 'phonebook/phonebook'
     :javascript
       ds.init()

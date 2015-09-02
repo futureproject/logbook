@@ -9,7 +9,9 @@ ds.apiHelper =
     person: (id) -> "/api/insecure/people/#{id}"
     projects:  -> "/api/insecure/projects"
     project: (id) -> "/api/insecure/projects/#{id}"
+    schools: -> "/api/insecure/schools"
     sessions: -> "/api/insecure/sessions/new"
+    sites: -> "/api/insecure/sites"
 
   urlFor: (path, args) ->
     @urls[path]? args
