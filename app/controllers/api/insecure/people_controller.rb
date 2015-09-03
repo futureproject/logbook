@@ -1,23 +1,22 @@
 class Api::Insecure::PeopleController < Api::Insecure::BaseController
   before_action :set_person, only: [:show, :edit, :update, :destroy, :stats, :engagements_bubble_graph]
+  helper_method :people_times
 
-  # GET /api/v2/people
-  # GET /api/v2/people.json
+  # GET /api/insecure/people
+  # GET /api/insecure/people.json
   def index
     @people = current_scope.people.active
-      .conditionally_joined(params, stat_times)
-      .order(sort_params)
-      .page(params[:page])
-    @total = @people.total_count
+      .conditionally_timed(people_times)
+      .order(sort_params).limit(5000)
   end
 
-  # GET /api/v2/people/1
-  # GET /api/v2/people/1.json
+  # GET /api/insecure/people/1
+  # GET /api/insecure/people/1.json
   def show
   end
 
-  # POST /api/v2/people
-  # POST /api/v2/people.json
+  # POST /api/insecure/people
+  # POST /api/insecure/people.json
   def create
     @person = Person.new(person_params_with_school)
     if @person.save
@@ -27,8 +26,8 @@ class Api::Insecure::PeopleController < Api::Insecure::BaseController
     end
   end
 
-  # PATCH/PUT /api/v2/people/1
-  # PATCH/PUT /api/v2/people/1.json
+  # PATCH/PUT /api/insecure/people/1
+  # PATCH/PUT /api/insecure/people/1.json
   def update
     if @person.update(person_params)
       render :show, status: :ok, location: api_insecure_person_url(@person)
@@ -37,8 +36,8 @@ class Api::Insecure::PeopleController < Api::Insecure::BaseController
     end
   end
 
-  # DELETE /api/v2/people/1
-  # DELETE /api/v2/people/1.json
+  # DELETE /api/insecure/people/1
+  # DELETE /api/insecure/people/1.json
   def destroy
     @person.destroy
     head :no_content
@@ -77,6 +76,16 @@ class Api::Insecure::PeopleController < Api::Insecure::BaseController
         "#{params[:sort_by]} #{params[:order]}, first_name ASC"
       else
         "dream_team DESC, first_name ASC"
+      end
+    end
+
+    def people_times
+      if params[:t_start] && params[:t_end]
+        t_start = DateTime.parse(params[:t_start])+1.second
+        t_end = DateTime.parse(params[:t_end])
+        t_start..t_end
+      else
+        nil
       end
     end
 end

@@ -12,4 +12,5 @@ class ds.PeopleController extends Backbone.View
 
   index: ->
     @views.index = new ds.PeopleIndexView
+      collection: new ds.PeopleCollection
     @views.index.renderTo "#phonebook"
