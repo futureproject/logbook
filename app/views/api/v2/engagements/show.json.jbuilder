@@ -5,6 +5,7 @@ json.attendees @engagement.attendees.order(:first_name) do |person|
   json.id person.id
   json.first_name person.first_name
   json.last_name person.last_name
+  json.role person.role
   json.grade person.grade
   json.dream_team person.dream_team
   json.project_count person.projects.count
