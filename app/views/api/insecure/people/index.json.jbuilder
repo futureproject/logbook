@@ -1,3 +1,4 @@
+#json.cache! ['people/v4', people_times, current_scope, @people.maximum(:updated_at)] do
   json.array!(@people) do |person|
     json.extract! person, :id,
       :first_name,
@@ -9,3 +10,4 @@
       :school_id,
       :created_at
   end
+#end
