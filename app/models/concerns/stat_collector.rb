@@ -229,38 +229,17 @@ class StatCollector
     scope = args[:scope] || National.new
     dates = args[:dates] ? args[:dates] : self.default_range
     {
-      most_hours_coached: scope.people.where(role: "Student")
+      most_hours_coached: scope.people.where(people: { role: "student" } )
         .joins(:engagements).where(engagements: { kind: 'Coaching Session' })
         .merge(scope.engagements.btw(dates))
         .select("people.*, SUM(engagements.duration) AS engagement_hours")
         .group('people.id').order('engagement_hours DESC').limit(5),
-      most_hours_logged: scope.people.where(role: "Student")
+      most_hours_logged: scope.people.where(role: "student")
         .joins(:engagements).merge(scope.engagements.btw(dates))
         .select("people.*, SUM(engagements.duration) AS engagement_hours")
         .group('people.id').order('engagement_hours DESC').limit(5),
-      most_engagements: scope.people.where(role: 'Student')
+      most_engagements: scope.people.where(role: 'student')
         .joins(:engagements).merge(scope.engagements.btw(dates))
-        .select("people.*, COUNT(engagements.id) AS engagements_count")
-        .group('people.id').order('engagements_count DESC').limit(5)
-    }
-  end
-
-  # a hash of top-ranked projects in a scope
-  def self.people_leaderboard_data(args)
-    scope = args[:scope] || National.new
-    dates = args[:dates] ? args[:dates] : self.default_range
-    {
-      most_hours_coached: scope.people.joins(:engagements)
-        .where(engagements: { kind: 'Coaching Session' })
-        .merge(scope.engagements.btw(dates))
-        .select("people.*, SUM(engagements.duration) AS engagement_hours")
-        .group('people.id').order('engagement_hours DESC').limit(5),
-      most_hours_logged: scope.people.joins(:engagements)
-        .merge(scope.engagements.btw(dates))
-        .select("people.*, SUM(engagements.duration) AS engagement_hours")
-        .group('people.id').order('engagement_hours DESC').limit(5),
-      most_engagements: scope.people.joins(:engagements)
-        .merge(scope.engagements.btw(dates))
         .select("people.*, COUNT(engagements.id) AS engagements_count")
         .group('people.id').order('engagements_count DESC').limit(5)
     }
