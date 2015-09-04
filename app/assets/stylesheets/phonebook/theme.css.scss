@@ -21,6 +21,11 @@ body {
   color: white;
 }
 
+a {
+  text-decoration: none;
+  color: white;
+}
+
 h1, h2, h3, h4, h5, h6, strong {
   font-weight: bold;
 }
@@ -36,18 +41,58 @@ input, select, textarea {
   }
 }
 
-header + form {
-  margin-top: 15px;
-}
-
 .titlebar {
   font-weight: bold;
   line-height: 45px;
   text-align: center;
   border-top: 1px solid $base-border-color;
   border-bottom: 1px solid $base-border-color;
+  background: rgba(0,0,0,.9);
+  color: $people-color;
 }
 
 .centered {
   text-align: center;
+}
+
+.list-item {
+  font-weight: 500;
+  border-top: 1px solid $base-border-color;
+
+}
+
+.search {
+  position: relative;
+  padding: 7px 10px;
+  input {
+    border: none;
+    border-radius: 5px;
+    background: $retro-black;
+    padding: 5px;
+    font-size: 12px;
+    @include transition;
+  }
+  .reset {
+    position: absolute;
+    top: 0;
+    right: 65px;
+    padding: 15px;
+    opacity: 0;
+    @include transition;
+  }
+  .cancel {
+    position: absolute;
+    top: 0;
+    right: 0;
+    line-height: 45px;
+    padding: 0 15px;
+    opacity: 0;
+    @include transition;
+  }
+  &.focused {
+    input {
+      width: calc(100% - 65px);
+    }
+    .cancel, .reset { opacity: 1; }
+  }
 }

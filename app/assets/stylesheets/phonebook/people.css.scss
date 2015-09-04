@@ -1,26 +1,3 @@
-#people-tab.current {
-  color: $people-color;
-}
-#phonebook-people {
-  .titlebar, .row-timestamp, .card h4 { color: $people-color; }
-  .recessed-button {
-    background: $people-color;
-  }
-  .row-timestamp {
-    font-size: 10px;
-  }
-}
-.person-name, .person-role, input#first_name, input#last_name {
-  text-transform: capitalize;
-}
-
-.person-contact {
-  a {
-    text-decoration: none;
-    color: $base-font-color;
-  }
-  .icon {
-    font-size: 2em;
-    margin-top: 15px;
-  }
+.person.list-item {
+  background: $people-color;
 }

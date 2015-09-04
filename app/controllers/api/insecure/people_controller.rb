@@ -7,7 +7,7 @@ class Api::Insecure::PeopleController < Api::Insecure::BaseController
   def index
     @people = current_scope.people.active
       .conditionally_timed(people_times)
-      .order(sort_params).limit(5000)
+      .order(sort_params)
   end
 
   # GET /api/insecure/people/1

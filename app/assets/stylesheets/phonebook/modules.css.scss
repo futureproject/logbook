@@ -15,3 +15,22 @@
   }
 }
 
+.titlebar {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  height: 45px;
+}
+
+.list-item {
+  line-height: 45px;
+  height: 45px;
+  a {
+    display: block;
+    padding: 0 1em;
+  }
+}
+.search {
+  height: 45px;
+}
+
