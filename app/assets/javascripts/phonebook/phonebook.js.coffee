@@ -5,6 +5,7 @@
 #= require backbone.syphon
 #= require backbone.paginator.min
 #= require jquery.animate-enhanced
+#= require tappy
 #= require date
 #= require_self
 #= require_tree ./helpers

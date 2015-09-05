@@ -1,5 +1,6 @@
 class ds.AppView extends Backbone.View
   el: '#phonebook'
+
   initialize: ->
     # add session credentials to each ajax request
     $(document).on 'ajaxSend', (event, xhr, options) ->

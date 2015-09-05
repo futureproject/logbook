@@ -1,4 +1,3 @@
-
 /*! Tappy! - a lightweight normalized tap event. Copyright 2013 @scottjehl, Filament Group, Inc. Licensed MIT */
 (function( w, $, undefined ){
 
@@ -120,4 +119,3 @@
 	}
 
 }( this, jQuery ));
-
