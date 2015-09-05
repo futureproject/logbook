@@ -7,7 +7,6 @@
 #= require jquery.animate-enhanced
 #= require tappy
 #= require date
-#= require sifter.min
 #= require_self
 #= require_tree ./helpers
 #= require_tree ./templates
