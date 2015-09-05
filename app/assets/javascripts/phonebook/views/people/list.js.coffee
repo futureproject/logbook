@@ -27,6 +27,7 @@ class ds.PeopleListView extends Backbone.View
 
   itemClick: (event) ->
     el = event.currentTarget
+    id = el.getAttribute('data-id')
     $(el).addClass('active').siblings().removeClass('active')
-    event.currentTarget.innerHTML += "!"
+    Backbone.trigger "people:do", "show", id
 

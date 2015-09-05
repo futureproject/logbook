@@ -7,26 +7,24 @@ class ds.Router extends Backbone.Router
     "mobile": "people_index"
     "logbookapp": "people_index"
     "phonebook/people": "people_index"
-    "logbook/people/new": "people_new"
-    "logbook/people/:id": "people_show"
-    "logbook/people/:id/edit": "people_edit"
-    "logbook/engagements": "engagements_index"
-    "logbook/engagements/new": "engagements_new"
-    "logbook/engagements/:id": "engagements_show"
-    "logbook/engagements/:id/edit": "engagements_edit"
-    "logbook/projects": "projects_index"
-    "logbook/projects/new": "projects_new"
-    "logbook/projects/:id": "projects_show"
-    "logbook/projects/:id/edit": "projects_edit"
-    "logbook/report_submissions": "report_submissions_index"
-    "logbook/report_submissions/:id": "report_submissions_show"
+    "phonebook/people/new": "people_new"
+    "phonebook/people/:id": "people_show"
+    "phonebook/people/:id/edit": "people_edit"
+    "phonebook/engagements": "engagements_index"
+    "phonebook/engagements/new": "engagements_new"
+    "phonebook/engagements/:id": "engagements_show"
+    "phonebook/engagements/:id/edit": "engagements_edit"
+    "phonebook/projects": "projects_index"
+    "phonebook/projects/new": "projects_new"
+    "phonebook/projects/:id": "projects_show"
+    "phonebook/projects/:id/edit": "projects_edit"
+    "phonebook/report_submissions": "report_submissions_index"
+    "phonebook/report_submissions/:id": "report_submissions_show"
     # ASSOCIATIONS
     "logbook/:notable_type/:notable_id/notes/add": "notes_new"
 
   #PEOPLE
-  people_index: ->
-    @navigate "/phonebook/people"
-    Backbone.trigger "people:do", "index"
+  people_index: -> Backbone.trigger "people:do", "index"
 
   people_show: (id) -> Backbone.trigger "people:do", "show", id
   people_new: (model) -> Backbone.trigger "people:do", "new",  model

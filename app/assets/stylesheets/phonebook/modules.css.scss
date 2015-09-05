@@ -20,6 +20,20 @@
   position: sticky;
   top: 0;
   height: 45px;
+  z-index: 10000;
+  .l-menu, .r-menu {
+    position: absolute;
+    top: 0;
+  }
+  .button {
+    padding: 0 15px;
+  }
+  .l-menu {
+    left: 0;
+  }
+  .r-menu {
+    right: 0;
+  }
 }
 
 .list-item {
@@ -29,5 +43,12 @@
 }
 .search {
   height: 45px;
+  position: relative;
+  z-index: 1;
+}
+.index {
+  &.hidden {
+    display: none;
+  }
 }
 

@@ -19,3 +19,11 @@ class ds.PeopleIndexView extends Backbone.View
     @views.list.renderTo "#people-list"
     @views.search.renderTo "#people-search"
 
+  animateIn: ->
+    @$el.animate({
+      left: '0'
+    }, 300, () =>
+      @$el.removeClass("hidden")
+    )
+  hide: ->
+    @$el.addClass('hidden')

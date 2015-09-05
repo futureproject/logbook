@@ -1,5 +1,8 @@
 class ds.AppView extends Backbone.View
   el: '#phonebook'
+  template: _.template '<div id="phonebook-people"></div>'
+  render: ->
+    @$el.html @template()
 
   initialize: ->
     # add session credentials to each ajax request

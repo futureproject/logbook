@@ -25,15 +25,16 @@ ds.init = ->
   document.body.classList.add("standalone") if navigator.standalone
   ds.controllers.sessions = new ds.SessionsController
   ds.controllers.notifications = new ds.NotificationsController
-  ds.controllers.people = new ds.PeopleController
   ds.user = new ds.UserCollection
   ds.router = new ds.Router
-  ds.views.app_view = new ds.AppView
+  ds.views.app = new ds.AppView
   if ds.user.current()?
     ds.run()
   else
     Backbone.trigger "sessions:do", "new"
 
 ds.run = ->
+  ds.views.app.render()
+  ds.controllers.people = new ds.PeopleController
   Backbone.history.start({ pushState: true })
 

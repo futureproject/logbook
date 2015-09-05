@@ -53,6 +53,10 @@ input, select, textarea {
   border-bottom: 1px solid $base-border-color;
   background: rgba(0,0,0,.9);
   color: $people-color;
+  .button {
+    color: $base-border-color;
+    font-weight: 400;
+  }
 }
 
 .centered {
@@ -62,8 +66,9 @@ input, select, textarea {
 .list-item {
   font-weight: 500;
   border-top: 1px solid $base-border-color;
+  background-color: $retro-blue;
   &.active {
-    background: black;
+    @include filter(saturate(50%));
   }
 }
 
