@@ -18,8 +18,8 @@ Backbone.Collection.prototype.bootstrap = ->
         $.ajax
           url: @url()
           data: params
-          # if there are new records, re-sync the whole set
           success: (response) =>
+            # if there are new records, re-sync the whole set
             console.log response
             if response.length > 0
               console.log "syncing new records..."

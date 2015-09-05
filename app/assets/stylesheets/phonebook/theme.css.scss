@@ -107,3 +107,23 @@ input, select, textarea {
     .cancel, .reset { opacity: 1; }
   }
 }
+
+.factbar {
+  line-height: 20px;
+  background: $retro-blue;
+  padding: 15px;
+  h1 { margin-bottom: 5px; }
+  .fact {
+    font-size: 12px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  label {
+    color: $retro-black;
+    &:after {
+      content: ':';
+    }
+  }
+}

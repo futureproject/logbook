@@ -60,7 +60,7 @@ class Person < ActiveRecord::Base
   end
 
   def dream_director
-    school.dream_director
+    school.try(:dream_director)
   end
 
   def logged_hours

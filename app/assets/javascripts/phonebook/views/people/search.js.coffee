@@ -1,7 +1,7 @@
 class ds.PeopleSearchView extends Backbone.View
   initialize: (options = {}) ->
     @[option] = options[option] for option of options
-    @$input = $("<input type='text' name='q' placeholder='Search' />")
+    @$input = $("<input type='text' placeholder='Search' autocorrect='off' autocapitalize='off' name='q'>")
     @$canceller = $("<div class='cancel'>Cancel</div>")
     @$resetter = $("<div class='reset icon-cancel' />")
 
@@ -27,13 +27,19 @@ class ds.PeopleSearchView extends Backbone.View
 
   throttledSearch: _.debounce((e) ->
     return if e.keyCode? && e.keyCode == 13 #don't listen to the enter key!
-    @search @$el.val()
+    @search @$input.val()
   , 200)
 
   search: (query) ->
     return unless query.length > 1
-    console.log 'searching!!'
-    console.log @$input.val()
+    query = query.toLowerCase()
+    results = @collection.fullCollection.filter (person) ->
+      first = person.get('first_name')
+      last = person.get('last_name')
+      searchString = (first + " " + last).toLowerCase().trim()
+      searchString.match(query.toLowerCase())
+
+    Backbone.trigger "people:search:results", results
 
   onfocus: (event) ->
     # show cancel button

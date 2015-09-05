@@ -1,5 +1,4 @@
 class Api::Insecure::PeopleController < Api::Insecure::BaseController
-  before_action :set_person, only: [:show, :edit, :update, :destroy, :stats, :engagements_bubble_graph]
   helper_method :people_times
 
   # GET /api/insecure/people
@@ -13,12 +12,15 @@ class Api::Insecure::PeopleController < Api::Insecure::BaseController
   # GET /api/insecure/people/1
   # GET /api/insecure/people/1.json
   def show
+    @person = Person.find(params[:id])
+    @engagements = @person.engagements.where(creator_id: current_user.id)
+      .order('date DESC').limit(20)
   end
 
   # POST /api/insecure/people
   # POST /api/insecure/people.json
   def create
-    @person = Person.new(person_params_with_school)
+    @person = current_user.created_people.new(person_params_with_school)
     if @person.save
       render :show, status: :created, location: api_insecure_person_url(@person)
     else
@@ -29,6 +31,7 @@ class Api::Insecure::PeopleController < Api::Insecure::BaseController
   # PATCH/PUT /api/insecure/people/1
   # PATCH/PUT /api/insecure/people/1.json
   def update
+    @person = Person.find(params[:id])
     if @person.update(person_params)
       render :show, status: :ok, location: api_insecure_person_url(@person)
     else
@@ -39,7 +42,7 @@ class Api::Insecure::PeopleController < Api::Insecure::BaseController
   # DELETE /api/insecure/people/1
   # DELETE /api/insecure/people/1.json
   def destroy
-    @person.destroy
+    current_user.created_people.find(params[:id]).destroy
     head :no_content
   end
 

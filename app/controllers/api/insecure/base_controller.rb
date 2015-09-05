@@ -16,6 +16,8 @@ class Api::Insecure::BaseController < Api::BaseController
     def current_scope
       if request.headers["X-DS-SCOPE-TYPE"] && request.headers["X-DS-SCOPE-ID"]
         request.headers["X-DS-SCOPE-TYPE"].classify.constantize.find(request.headers["X-DS-SCOPE-ID"])
+      elsif params[:scope_type] && params[:scope_id]
+        params[:scope_type].classify.constantize.find(params[:scope_id])
       else
         current_user.default_logbook_scope
       end
