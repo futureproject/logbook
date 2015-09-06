@@ -33,7 +33,7 @@ class ds.PeopleSearchView extends Backbone.View
   search: (query) ->
     return unless query.length > 1
     q = query.toLowerCase()
-    results = @collection.fullCollection.filter (person) ->
+    results = @collection.fullCollection.clone().filter (person) ->
       first = person.get('first_name')
       last = person.get('last_name')
       searchString = (first + " " + last).toLowerCase().trim()

@@ -23,6 +23,6 @@ class ds.PeopleIndexView extends Backbone.View
 
   listen: ->
     @listenTo Backbone, 'people:search:in', =>
-      @$el.find('.titlebar').hide()
+      @$el.find('.titlebar').animate({height:0},'fast').addClass('hidden')
     @listenTo Backbone, 'people:search:out', =>
-      @$el.find('.titlebar').show()
+      @$el.find('.titlebar').animate({height: 45},'fast').removeClass('hidden')

@@ -33,3 +33,4 @@ class ds.PeopleCollection extends Backbone.PageableCollection
     @on "add", -> console.log "added"
     @on "remove", -> console.log "removed"
     @on "reset", => console.log "reset to #{@length}"
+

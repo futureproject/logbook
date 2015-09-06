@@ -38,6 +38,7 @@
   .r-menu {
     right: 0;
   }
+  &.hidden { border: none; }
 }
 
 .list-item {
