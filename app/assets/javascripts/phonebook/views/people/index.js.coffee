@@ -8,6 +8,7 @@ class ds.PeopleIndexView extends Backbone.View
         collection: @collection
       search: new ds.PeopleSearchView
         collection: @collection
+    @listen()
 
   render: ->
     @$el.html @template()
@@ -19,3 +20,9 @@ class ds.PeopleIndexView extends Backbone.View
     @views.list.renderTo "#people-list"
     @views.search.renderTo "#people-search"
 
+
+  listen: ->
+    @listenTo Backbone, 'people:search:in', =>
+      @$el.find('.titlebar').hide()
+    @listenTo Backbone, 'people:search:out', =>
+      @$el.find('.titlebar').show()

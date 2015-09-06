@@ -1,7 +1,7 @@
 class ds.PeopleSearchView extends Backbone.View
   initialize: (options = {}) ->
     @[option] = options[option] for option of options
-    @$input = $("<input type='text' placeholder='Search' autocorrect='off' autocapitalize='off' name='q'>")
+    @$input = $("<input type='text' placeholder='Find or add person' autocomplete='off' autocorrect='off' autocapitalize='off' name='q'>")
     @$canceller = $("<div class='cancel'>Cancel</div>")
     @$resetter = $("<div class='reset icon-cancel' />")
 
@@ -32,25 +32,25 @@ class ds.PeopleSearchView extends Backbone.View
 
   search: (query) ->
     return unless query.length > 1
-    query = query.toLowerCase()
+    q = query.toLowerCase()
     results = @collection.fullCollection.filter (person) ->
       first = person.get('first_name')
       last = person.get('last_name')
       searchString = (first + " " + last).toLowerCase().trim()
-      searchString.match(query.toLowerCase())
+      searchString.match(q)
 
-    Backbone.trigger "people:search:results", results
+    Backbone.trigger "people:search:results", query, results
 
   onfocus: (event) ->
     # show cancel button
     @$el.addClass('focused')
-    console.log 'focused!'
+    Backbone.trigger 'people:search:in'
 
   onblur: (event) ->
     # hide cancel button
     @$el.removeClass('focused')
+    Backbone.trigger 'people:search:out'
     @$input.val('')
-    console.log 'blurred!'
 
   cancel: (event) ->
     event.stopPropagation()

@@ -70,6 +70,9 @@ input, select, textarea {
   &.active {
     @include filter(saturate(50%));
   }
+  &.createable {
+    background-color: $retro-green;
+  }
 }
 
 .search {
