@@ -13,8 +13,7 @@ class Api::Insecure::PeopleController < Api::Insecure::BaseController
   # GET /api/insecure/people/1.json
   def show
     @person = Person.find(params[:id])
-    @engagements = @person.engagements.where(creator_id: current_user.id)
-      .order('date DESC').limit(20)
+    @engagements = @person.engagements.order('date DESC').limit(20)
   end
 
   # POST /api/insecure/people

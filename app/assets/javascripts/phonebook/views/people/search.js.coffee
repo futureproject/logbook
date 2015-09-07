@@ -5,8 +5,6 @@ class ds.PeopleSearchView extends Backbone.View
     @$canceller = $("<div class='cancel'>Cancel</div>")
     @$resetter = $("<div class='reset icon-cancel' />")
 
-  className: 'search'
-
   events:
     'click .cancel': 'cancel'
     'click .reset': 'reset'

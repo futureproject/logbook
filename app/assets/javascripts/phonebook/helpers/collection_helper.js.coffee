@@ -4,6 +4,7 @@ Backbone.Collection.prototype.bootstrap = ->
     remote: false
     reset: true
     success: =>
+      @syncDirtyAndDestroyed()
       # get the newest record
       c = @fullCollection || @
       sorted = c.sortBy('id')

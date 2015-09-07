@@ -1,0 +1,29 @@
+#person-facts {
+  background: $people-color;
+}
+#person-projects {
+  background: $projects-color;
+  .toggle {
+    margin: -15px;
+    padding: 15px;
+  }
+  #projects-list {
+    display: none;
+  }
+  .expanded {
+    #projects-list {
+      display: block;
+    }
+  }
+}
+#person-engagements {
+  background: $engagements-color;
+  .btn {
+    background: rgba(0,0,0,.25);
+    margin: 0 auto 30px;
+    &:active {
+      background: rgba(255,255,255,.1);
+      color: white;
+    }
+  }
+}

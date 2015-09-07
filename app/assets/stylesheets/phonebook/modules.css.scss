@@ -46,10 +46,22 @@
   height: 45px;
   padding: 0 1em;
 }
+
+.borderless-list {
+  li {
+    margin: 15px auto 30px;
+  }
+  li:last-child {
+    margin-bottom: 15px;
+  }
+}
+
 .search {
+  z-index: 1;
+  top: 0;
   height: 45px;
   position: relative;
-  z-index: 1;
+  top: 0;
 }
 .index {
   &.hidden {

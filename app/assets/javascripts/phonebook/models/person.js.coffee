@@ -27,8 +27,7 @@ class ds.PeopleCollection extends Backbone.PageableCollection
   namespace: 'people'
   url: -> ds.apiHelper.urlFor @namespace
   mode: 'client'
-  state:
-    pageSize: 50
+  state: pageSize: 50
   initialize: ->
     @on "add", -> console.log "added"
     @on "remove", -> console.log "removed"
