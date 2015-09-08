@@ -1,4 +1,4 @@
-json.cache! ['sites/v1', @sites.maximum(:updated_at)] do
+json.cache! ['sites/v2', @sites.maximum(:updated_at)] do
   json.array!(@sites) do |site|
     json.extract! site, :id,
       :name

@@ -1,4 +1,4 @@
-json.cache! ['schools/v1', current_scope.id, @schools.maximum(:updated_at), @t.first, @t.last] do
+json.cache! ['schools/v2', current_scope.class.name, current_scope.id, @schools.maximum(:updated_at), @t.first, @t.last] do
   json.array!(@schools) do |school|
     json.extract! school, :id,
       :name, :enrollment
