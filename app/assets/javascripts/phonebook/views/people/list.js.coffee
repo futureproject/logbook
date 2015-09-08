@@ -1,8 +1,8 @@
 class ds.PeopleListView extends Backbone.View
   className: 'list people-list'
   events:
-    'tap .person': 'itemClick'
-    'tap .createable': 'addPerson'
+    'click .person': 'itemClick'
+    'click .createable': 'addPerson'
 
   initialize: (options = {}) ->
     @[option] = options[option] for option of options

@@ -1,12 +1,5 @@
-#person-facts {
-  background: $people-color;
-}
 #person-projects {
-  background: $projects-color;
-  .toggle {
-    margin: -15px;
-    padding: 15px;
-  }
+  border-top: 0.5px solid $base-border-color;
   #projects-list {
     display: none;
   }
@@ -17,10 +10,9 @@
   }
 }
 #person-engagements {
-  background: $engagements-color;
+  border-top: 0.5px solid $base-border-color;
   .btn {
-    background: rgba(0,0,0,.25);
-    margin: 0 auto 30px;
+    background: $base-border-color;
     &:active {
       background: rgba(255,255,255,.1);
       color: white;

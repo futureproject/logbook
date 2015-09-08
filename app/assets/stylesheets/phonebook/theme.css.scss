@@ -1,16 +1,36 @@
+$base-border-color: rgba(0,0,0,.25);
+$base-font-color: rgba(0,0,0,.5);
+$retro-blue: lighten($retro-blue, 10%);
 body {
   -webkit-tap-highlight-color: transparent;
   margin: 0;
   padding: 0;
   font-weight: 400;
   font-family: $base-font-family;
-  background-color: black;
-  color: white;
+  background-color: $retro-blue;
+  color: $base-font-color;
+  &.standalone {
+    padding-top: 20px;
+    &:before {
+      content: '';
+      display: block;
+      position: fixed;
+      background: $retro-blue;
+      top: 0;
+      left: 0;
+      height: 20px;
+      z-index: 100;
+      width: 100%;
+    }
+    .titlebar {
+      top: 20px;
+    }
+  }
 }
 
 a {
   text-decoration: none;
-  color: white;
+  color: $retro-white;
 }
 
 h1, h2, h3, h4, h5, h6, strong {
@@ -31,10 +51,9 @@ input, select, textarea {
 .btn {
   font-weight: bold;
   color: white;
-  border: 2px solid;
   text-align: center;
   height: 45px;
-  line-height: 41px;
+  line-height: 45px;
   margin: 15px auto;
   &:active {
     color: $base-font-color;
@@ -47,11 +66,11 @@ input, select, textarea {
   font-weight: bold;
   line-height: 45px;
   text-align: center;
-  background: rgba(0,0,0,.92);
-  color: $people-color;
+  border-bottom: 0.5px solid $base-border-color;
+  background: $retro-blue;
   .button {
-    color: $base-border-color;
     font-weight: 400;
+    color: $retro-white;
   }
 }
 
@@ -61,9 +80,8 @@ input, select, textarea {
 
 .list-item {
   font-weight: 500;
-  background-color: $retro-blue;
-  border-bottom: 0.5px solid rgba(0,0,0,.15);
-  border-top: 0.5px solid rgba(255,255,255,.15);
+  border-top: 0.5px solid $base-border-color;
+  color: $retro-white;
   &.active {
     @include filter(saturate(50%));
   }
@@ -74,11 +92,10 @@ input, select, textarea {
 
 .search {
   padding: 7px 10px;
-  background: $retro-black;
   input {
     border: none;
     border-radius: 5px;
-    background: $retro-gray;
+    background: $base-border-color;
     padding: 5px;
     font-size: 12px;
     @include transition;
@@ -117,9 +134,10 @@ input, select, textarea {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    color: $retro-black;
   }
   label {
-    color: $retro-black;
+    color: $retro-white;
     &:after {
       content: ':';
     }

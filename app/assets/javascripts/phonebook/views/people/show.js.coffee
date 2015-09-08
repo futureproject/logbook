@@ -23,7 +23,7 @@ class ds.PeopleShowView extends Backbone.View
     @views.engagements.renderTo "#person-engagements"
 
   events:
-    'tap .back': 'back'
+    'click .back': 'back'
 
   back: -> Backbone.trigger "people:do", "index"
 
