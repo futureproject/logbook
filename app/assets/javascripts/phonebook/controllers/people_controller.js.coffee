@@ -9,6 +9,7 @@ class ds.PeopleController extends Backbone.View
   template: _.template "
     <div id='phonebook-people-index' class='index'></div>
     <div id='phonebook-people-show'></div>
+    <div id='phonebook-people-add-engagement'></div>
   "
   render: ->
     @$el.html @template()
@@ -32,6 +33,13 @@ class ds.PeopleController extends Backbone.View
     @views.show = new ds.PeopleShowView
       model: person
     @views.show.renderTo "#phonebook-people-show"
+
+  add_engagement: (id) ->
+    ds.router.navigate "phonebook/people/#{id}/add/engagement"
+    person = @getModelFromId(id)
+    @views.add_engagement = new ds.PeopleAddEngagementView
+      model: person
+    @views.show.renderTo "#phonebook-people-add-engagement"
 
   getModelFromId: (id) ->
     # if this is an actual id, not a cid

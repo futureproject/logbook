@@ -5,8 +5,7 @@ class ds.People_EngagementsView extends Backbone.View
   template: JST["phonebook/templates/people/_engagements"]
 
   events:
-    'click .add': 'add'
-    'click .new-engagement-form': 'finishAdding'
+    'click .add': 'goToAdd'
 
   render: ->
     @$el.html @template(@model.tplAttrs())
@@ -26,11 +25,4 @@ class ds.People_EngagementsView extends Backbone.View
       fragment.append @item_template(e)
     @$el.find('#engagements-list').html(fragment.get(0))
 
-  add: (event) ->
-    console.log "!"
-    @$btn = $(event.currentTarget)
-    @$btn.replaceWith("<div class='new-engagement-form'>I am a new engagement form</div>")
-
-  finishAdding: (event) ->
-    @$el.find('.new-engagement-form').replaceWith @$btn
-
+  goToAdd: -> Backbone.trigger "engagements:do", "new", @model.get('id')

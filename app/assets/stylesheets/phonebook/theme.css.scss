@@ -92,6 +92,15 @@ input, select, textarea {
 
 .search {
   padding: 7px 10px;
+  ::-webkit-input-placeholder {
+   color: rgba(255,255,255,.5);
+  }
+  ::-moz-placeholder {  /* Firefox 19+ */
+   color: rgba(255,255,255,.5);
+  }
+  :-ms-input-placeholder {
+   color: rgba(255,255,255,.5);
+  }
   input {
     border: none;
     border-radius: 5px;
