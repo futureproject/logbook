@@ -70,7 +70,7 @@ textarea {
   font-weight: bold;
   line-height: 45px;
   text-align: center;
-  border-bottom: 0.5px solid $base-border-color;
+  border-bottom: 1px solid $base-border-color;
   background: $retro-blue;
   .button {
     font-weight: 400;
@@ -84,7 +84,7 @@ textarea {
 
 .list-item {
   font-weight: 500;
-  border-top: 0.5px solid $base-border-color;
+  border-top: 1px solid $base-border-color;
   color: $retro-white;
   @include transition(background .3s);
   &:active {
@@ -156,12 +156,7 @@ textarea {
  color: rgba(255,255,255,.5);
 }
 
-@media (-webkit-max-device-pixel-ratio: 1), /* Webkit-based browsers */
-       (max--moz-device-pixel-ratio: 1),    /* Older Firefox browsers (prior to Firefox 16) */
-       (max-resolution: 1dppx),             /* The standard way */
-       (max-resolution: 92dpi)             /* dppx fallback */ {
-         * {
-           border-top-width: 1px !important;
-           border-bottom-width: 1px !important;
-         }
-       }
+.hairlines * {
+ border-top-width: 0.5px !important;
+ border-bottom-width: 0.5px !important;
+}

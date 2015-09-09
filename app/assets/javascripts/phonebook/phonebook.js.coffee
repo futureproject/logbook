@@ -22,6 +22,7 @@ ds.controllers ={}
 ds.collections ={}
 
 ds.init = ->
+  ds.cssHelper.init()
   document.body.classList.add("standalone") if navigator.standalone
   ds.controllers.sessions = new ds.SessionsController
   ds.controllers.notifications = new ds.NotificationsController

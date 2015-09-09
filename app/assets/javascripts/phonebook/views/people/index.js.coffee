@@ -1,5 +1,5 @@
 class ds.PeopleIndexView extends Backbone.View
-  className: 'index people-index screen fallin'
+  className: 'index people-index screen animation-fallin'
   template: JST["phonebook/templates/people/index"]
   initialize: (options = {}) ->
     @[option] = options[option] for option of options
@@ -42,7 +42,7 @@ class ds.PeopleIndexView extends Backbone.View
     @$el.find('.search').after @spinner.render().el
 
   despin: ->
-    @spinner.remove()
+    @spinner?.remove()
 
 
   #hide: ->

@@ -1,5 +1,5 @@
 class ds.PeopleShowView extends Backbone.View
-  className: 'screen fallin'
+  className: 'screen animation-fallin'
   initialize: ->
     @views =
       facts: new ds.ModelView

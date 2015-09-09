@@ -97,12 +97,12 @@
   @include transition-timing-function(cubic-bezier(0.23,1,0.32,1));
 }
 
-.fallout {
+.animation-fallout {
   @include transform-origin(center top);
   @include animation(fallout .4s);
   @include animation-timing-function(cubic-bezier(0.23,1,0.32,1));
 }
-.fallin {
+.animation-fallin {
   @include transform-origin(center top);
   @include animation(fallin .4s);
   @include animation-timing-function(cubic-bezier(0.23,1,0.32,1));

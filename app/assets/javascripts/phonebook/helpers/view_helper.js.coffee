@@ -8,9 +8,10 @@ Backbone.View.prototype.renderTo = (target, args) ->
 
 Backbone.View.prototype.hide = ->
   endEvent = ds.animationHelper.endEvent()
-  @$el.removeClass("fallin").one(endEvent, =>
-    console.log 'ended!'
+  @$el.removeClass (index, css) ->
+    css.match((/(^|\s)animation-\S+/g) || [])?.join(' ')
+  @$el.one(endEvent, =>
     _.each(@views, (view) -> view.remove() )
     @remove()
-  ).addClass('fallout')
+  ).addClass('animation-fallout')
 
