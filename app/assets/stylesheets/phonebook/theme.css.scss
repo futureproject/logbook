@@ -41,6 +41,9 @@ input, select, textarea {
   color: white;
 }
 label { color: $base-font-color; }
+textarea {
+  -webkit-appearance: none;
+}
 
 .actions-field input {
   background: $base-border-color;
@@ -83,11 +86,12 @@ label { color: $base-font-color; }
   font-weight: 500;
   border-top: 0.5px solid $base-border-color;
   color: $retro-white;
-  &.active {
-    @include filter(saturate(50%));
+  @include transition(background .3s);
+  &:active {
+    background: saturate($retro-blue, 40%);
   }
   &.createable {
-    background-color: $retro-green;
+    background-color: rgba(255,255,255,.25);
   }
 }
 

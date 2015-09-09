@@ -37,7 +37,9 @@ Rails.application.routes.draw do
       get '/:scope_type/:scope_id/graphs/:action', controller: 'graphs'
     end
     namespace :insecure do
-      resources :people
+      resources :people do
+        get 'sync', on: :collection
+      end
       resources :engagements
       resources :projects
       resources :schools, only: [:index]

@@ -1,5 +1,5 @@
 class ds.PeopleIndexView extends Backbone.View
-  className: 'index people-index'
+  className: 'index people-index screen fallin'
   template: JST["phonebook/templates/people/index"]
   initialize: (options = {}) ->
     @[option] = options[option] for option of options
@@ -10,12 +10,12 @@ class ds.PeopleIndexView extends Backbone.View
         collection: @collection
     @listen()
 
-  renderTo: ->
+  #renderTo: ->
     #override renderTo to make sure this view only renders once
-    @show()
-    return if @rendered
-    @rendered = true
-    super
+    #@show()
+    #return if @rendered
+    #@rendered = true
+    #super
 
   render: ->
     @$el.html @template()
@@ -34,17 +34,25 @@ class ds.PeopleIndexView extends Backbone.View
       @$el.find('.titlebar').animate({height:0},'fast').addClass('hidden')
     @listenTo Backbone, 'people:search:out', =>
       @$el.find('.titlebar').animate({height: 45},'fast').removeClass('hidden')
+    @listenTo @collection, "sync:started", @spin
+    @listenTo @collection, "sync:ended", @despin
 
-  hide: -> @$el.hide()
-  show: -> @$el.show()
+  spin: ->
+    @spinner = new ds.SpinnerView
+    @$el.find('.search').after @spinner.render().el
+
+  despin: ->
+    @spinner.remove()
+
+
   #hide: ->
     #return unless @$el.is(':visible')
-    #@$el.addClass('absolute exit-stage-left').one('webkitAnimationEnd', =>
-      #@$el.hide().removeClass('exit-stage-left')
+    #@$el.addClass('fallout').one(ds.animationHelper.endEvent(), =>
+      #@$el.hide().removeClass('fallout')
     #)
 
   #show: ->
-    #return unless @$el.is(':visible')
-    #@$el.show().addClass('enter-stage-left').one('webkitAnimationEnd', =>
-      #@$el.removeClass('absolute enter-stage-left')
+    #return if @$el.is(':visible')
+    #@$el.show().addClass('fallin').one(ds.animationHelper.endEvent(), =>
+      #@$el.removeClass('fallin')
     #)

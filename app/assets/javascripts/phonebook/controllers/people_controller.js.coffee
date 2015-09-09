@@ -14,7 +14,7 @@ class ds.PeopleController extends Backbone.View
 
   index: ->
     ds.router.navigate "phonebook/people"
-    @views.index ||= new ds.PeopleIndexView
+    @views.index = new ds.PeopleIndexView
       collection: @collection
     @views.index.renderTo @el
 

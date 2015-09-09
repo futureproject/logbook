@@ -1,5 +1,5 @@
 class ds.PeopleAddEngagementView extends Backbone.View
-  className: 'screen'
+  className: 'screen fallin'
   template: JST["phonebook/templates/people/add_engagement"]
   initialize: (options = {}) ->
     @[option] = options[option] for option of options

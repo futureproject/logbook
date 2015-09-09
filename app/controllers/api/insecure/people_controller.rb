@@ -4,9 +4,12 @@ class Api::Insecure::PeopleController < Api::Insecure::BaseController
   # GET /api/insecure/people
   # GET /api/insecure/people.json
   def index
-    @people = current_scope.people.active
-      .conditionally_timed(people_times)
-      .order(sort_params)
+    @people = current_scope.people.active.order(sort_params)
+  end
+
+  def sync
+    @people = current_scope.people.btw(people_times).count
+    @people > 0 ? head(302) : head(304)
   end
 
   # GET /api/insecure/people/1

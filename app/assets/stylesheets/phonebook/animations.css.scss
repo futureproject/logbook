@@ -30,6 +30,26 @@
     @include transform(translate3d(-100%,0,0));
   }
 }
+@include keyframes(fallin) {
+  from {
+    @include transform(translate3d(0,10%,0) scale(0.9));
+    opacity: 0;
+  }
+  to {
+    @include transform(translate3d(0,0,0) scale(1));
+    opacity: 1;
+  }
+}
+@include keyframes(fallout) {
+  from {
+    @include transform(translate3d(0,0,0) scale(1));
+    opacity: 1;
+  }
+  to {
+    @include transform(translate3d(0,10%,0) scale(0.9));
+    opacity: 0;
+  }
+}
 @include keyframes(slideInVertical) {
   from {
     @include transform(translate3d(0,102%,0));
@@ -77,6 +97,16 @@
   @include transition-timing-function(cubic-bezier(0.23,1,0.32,1));
 }
 
+.fallout {
+  @include transform-origin(center top);
+  @include animation(fallout .4s);
+  @include animation-timing-function(cubic-bezier(0.23,1,0.32,1));
+}
+.fallin {
+  @include transform-origin(center top);
+  @include animation(fallin .4s);
+  @include animation-timing-function(cubic-bezier(0.23,1,0.32,1));
+}
 .enter-stage-right {
   @include animation(enterStageRight .6s);
   @include animation-timing-function(cubic-bezier(0.23,1,0.32,1));

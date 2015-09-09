@@ -2,6 +2,7 @@ class ds.SessionsController extends Backbone.View
   initialize: ->
     @views = {}
     @listenTo Backbone, "sessions:do", @do
+    @listenTo Backbone, "people:do", @do
 
   do: (fn, args) ->
     _.each @views, (view) -> view.hide()

@@ -1,16 +1,13 @@
 class ds.PeopleListView extends Backbone.View
   className: 'list people-list'
   events:
+    'touchstart .list-item': 'ontouchstart'
     'click .person': 'itemClick'
     'click .createable': 'addPerson'
 
   initialize: (options = {}) ->
     @[option] = options[option] for option of options
     @listen()
-
-  spin: ->
-    spinner = new ds.SpinnerView
-    @$el.html spinner.render().el
 
   render: (collection) ->
     collection ||= @collection
@@ -64,3 +61,5 @@ class ds.PeopleListView extends Backbone.View
       # set course for the Person Show page and engage at maximum warp
     Backbone.trigger "people:do", "show", person.cid
 
+
+  ontouchstart: ->

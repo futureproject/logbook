@@ -1,5 +1,5 @@
 class ds.PeopleShowView extends Backbone.View
-  className: 'screen'
+  className: 'screen fallin'
   initialize: ->
     @views =
       facts: new ds.ModelView
@@ -28,12 +28,3 @@ class ds.PeopleShowView extends Backbone.View
 
   back: -> Backbone.trigger "people:do", "index"
 
-  #hide: ->
-    #@$el.addClass('absolute exit-stage-right').one('webkitAnimationEnd', =>
-      #super
-    #)
-
-  #show: ->
-    #@$el.show().addClass('absolute enter-stage-right').one('webkitAnimationEnd', =>
-      #@$el.removeClass('absolute enter-stage-right')
-    #)

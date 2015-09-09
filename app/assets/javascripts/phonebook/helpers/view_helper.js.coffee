@@ -7,6 +7,10 @@ Backbone.View.prototype.renderTo = (target, args) ->
   this.render()
 
 Backbone.View.prototype.hide = ->
-  _.each(@views, (view) -> view.remove() )
-  @remove()
+  endEvent = ds.animationHelper.endEvent()
+  @$el.removeClass("fallin").one(endEvent, =>
+    console.log 'ended!'
+    _.each(@views, (view) -> view.remove() )
+    @remove()
+  ).addClass('fallout')
 
