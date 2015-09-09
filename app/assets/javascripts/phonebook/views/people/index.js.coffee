@@ -10,6 +10,13 @@ class ds.PeopleIndexView extends Backbone.View
         collection: @collection
     @listen()
 
+  renderTo: ->
+    #override renderTo to make sure this view only renders once
+    @show()
+    return if @rendered
+    @rendered = true
+    super
+
   render: ->
     @$el.html @template()
     @postRender()
@@ -27,3 +34,17 @@ class ds.PeopleIndexView extends Backbone.View
       @$el.find('.titlebar').animate({height:0},'fast').addClass('hidden')
     @listenTo Backbone, 'people:search:out', =>
       @$el.find('.titlebar').animate({height: 45},'fast').removeClass('hidden')
+
+  hide: -> @$el.hide()
+  show: -> @$el.show()
+  #hide: ->
+    #return unless @$el.is(':visible')
+    #@$el.addClass('absolute exit-stage-left').one('webkitAnimationEnd', =>
+      #@$el.hide().removeClass('exit-stage-left')
+    #)
+
+  #show: ->
+    #return unless @$el.is(':visible')
+    #@$el.show().addClass('enter-stage-left').one('webkitAnimationEnd', =>
+      #@$el.removeClass('absolute enter-stage-left')
+    #)
