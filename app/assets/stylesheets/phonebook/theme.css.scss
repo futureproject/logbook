@@ -40,9 +40,10 @@ h1, h2, h3, h4, h5, h6, strong {
 input, select, textarea {
   color: white;
 }
+label { color: $base-font-color; }
 
 .actions-field input {
-  background: $retro-blue;
+  background: $base-border-color;
   &.warning {
     background: $retro-yellow;
   }
@@ -92,15 +93,6 @@ input, select, textarea {
 
 .search {
   padding: 7px 10px;
-  ::-webkit-input-placeholder {
-   color: rgba(255,255,255,.5);
-  }
-  ::-moz-placeholder {  /* Firefox 19+ */
-   color: rgba(255,255,255,.5);
-  }
-  :-ms-input-placeholder {
-   color: rgba(255,255,255,.5);
-  }
   input {
     border: none;
     border-radius: 5px;
@@ -137,6 +129,10 @@ input, select, textarea {
 .facts {
   line-height: 20px;
   h1 { margin-bottom: 5px; }
+  label {
+    color: $retro-white;
+    &:after { content: ':'; }
+  }
   .fact {
     font-size: 12px;
     text-transform: uppercase;
@@ -145,10 +141,23 @@ input, select, textarea {
     text-overflow: ellipsis;
     color: $retro-black;
   }
-  label {
-    color: $retro-white;
-    &:after {
-      content: ':';
-    }
-  }
 }
+::-webkit-input-placeholder {
+ color: rgba(255,255,255,.5);
+}
+::-moz-placeholder {  /* Firefox 19+ */
+ color: rgba(255,255,255,.5);
+}
+:-ms-input-placeholder {
+ color: rgba(255,255,255,.5);
+}
+
+@media (-webkit-max-device-pixel-ratio: 1), /* Webkit-based browsers */
+       (max--moz-device-pixel-ratio: 1),    /* Older Firefox browsers (prior to Firefox 16) */
+       (max-resolution: 1dppx),             /* The standard way */
+       (max-resolution: 92dpi)             /* dppx fallback */ {
+         * {
+           border-top-width: 1px !important;
+           border-bottom-width: 1px !important;
+         }
+       }

@@ -6,7 +6,7 @@
   margin-bottom: 30px;
 }
 .field {
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 .dual-action {
@@ -51,10 +51,21 @@
 
 .borderless-list {
   li {
-    margin: 15px auto 30px;
+    padding: 15px;
+    margin: 0 -15px 15px;
+    position: relative;
   }
-  li:last-child {
-    margin-bottom: 15px;
+  .deletable {
+    background: $retro-red;
+    &:after {
+      content: 'Delete';
+      color: white;
+      display: block;
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      text-align: right;
+    }
   }
 }
 

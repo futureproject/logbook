@@ -34,7 +34,8 @@ ds.init = ->
     Backbone.trigger "sessions:do", "new"
 
 ds.run = ->
-  ds.views.app.render()
   ds.controllers.people = new ds.PeopleController
+  ds.collections.engagements = new ds.EngagementsCollection
+  ds.collections.schools = new ds.SchoolsCollection
   Backbone.history.start({ pushState: true })
 

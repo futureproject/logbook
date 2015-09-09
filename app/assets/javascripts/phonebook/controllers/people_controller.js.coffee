@@ -1,18 +1,9 @@
 class ds.PeopleController extends Backbone.View
-  el: "#phonebook-people"
+  el: "#phonebook"
   initialize: ->
-    @render()
     @views = {}
     @collection = new ds.PeopleCollection
     @listenTo Backbone, "people:do", @do
-
-  template: _.template "
-    <div id='phonebook-people-index' class='index'></div>
-    <div id='phonebook-people-show'></div>
-    <div id='phonebook-people-add-engagement'></div>
-  "
-  render: ->
-    @$el.html @template()
 
   do: (fn, args) ->
     # hide all open views
@@ -25,28 +16,43 @@ class ds.PeopleController extends Backbone.View
     ds.router.navigate "phonebook/people"
     @views.index = new ds.PeopleIndexView
       collection: @collection
-    @views.index.renderTo("#phonebook-people-index")
+    @views.index.renderTo @el
 
   show: (id) ->
     ds.router.navigate "phonebook/people/#{id}"
     person = @getModelFromId(id)
     @views.show = new ds.PeopleShowView
       model: person
-    @views.show.renderTo "#phonebook-people-show"
+    @views.show.renderTo @el
 
   add_engagement: (id) ->
     ds.router.navigate "phonebook/people/#{id}/add/engagement"
     person = @getModelFromId(id)
+    engagement = new ds.Engagement
+      attendee_ids: @getAttendeeIdsFromRole(id, ds.user.current())
+      school_id: person.get('school_id')
     @views.add_engagement = new ds.PeopleAddEngagementView
-      model: person
-    @views.show.renderTo "#phonebook-people-add-engagement"
+      model: engagement
+      person: person
+    @views.add_engagement.renderTo @el
 
   getModelFromId: (id) ->
     # if this is an actual id, not a cid
     collection = @collection.fullCollection || @collection
     if parseInt(id)
       person = collection.get(id) || new ds.Person({ id: id })
-      person.fetch()
+      person.fetch
+        success: -> collection.add person
     else
       person = collection.get({cid: id}) || new ds.Person({ cid: id })
     person
+
+  getAttendeeIdsFromRole: (person_id, user) ->
+    if user.get('role').match(/volunteer|student|APR/i)
+      [person_id, user.id]
+    else
+      [person_id]
+
+
+  hideAll: ->
+    _.each @views, (view) -> view.hide()

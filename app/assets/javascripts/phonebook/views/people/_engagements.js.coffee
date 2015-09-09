@@ -1,6 +1,7 @@
 class ds.People_EngagementsView extends Backbone.View
   initialize: ->
     @listenTo @model, 'change:engagements', @render
+    @views = []
 
   template: JST["phonebook/templates/people/_engagements"]
 
@@ -12,17 +13,38 @@ class ds.People_EngagementsView extends Backbone.View
     @postRender()
     @
 
-  item_template: _.template "
-    <li class='engagement'>
-      <h2><%= Date.parse(date).toString('MM/dd/yy') %> - <%= kind %></h2>
-      <div class='engagement-name'><%= name %></div>
-      <pre class='engagement-description'><%= description %></pre>
-    </li>
-    "
   postRender: ->
-    fragment = $(document.createDocumentFragment())
+    fragment = document.createDocumentFragment()
     for e in @model.get('engagements')
-      fragment.append @item_template(e)
-    @$el.find('#engagements-list').html(fragment.get(0))
+      view = new ds.EngagementView
+        model: new ds.Engagement(e)
+      fragment.appendChild view.render().el
+      @views.push view
+    @$el.find('#engagements-list').html(fragment)
 
-  goToAdd: -> Backbone.trigger "engagements:do", "new", @model.get('id')
+  goToAdd: -> Backbone.trigger "people:do", "add_engagement", @model.get('id')
+
+class ds.EngagementView extends Backbone.View
+  events:
+    'click': 'toggleDelete'
+
+  tagName: 'li'
+  template: _.template "
+      <h2><%= Date.parse(engagement.date).toString('MM/dd/yy') %> - <%= engagement.kind %></h2>
+      <pre class='engagement-description'><%= engagement.description %></pre>
+    "
+  render: ->
+    @$el.html @template(@model.tplAttrs())
+    @
+
+  toggleDelete: (event) ->
+    @delete() if @$el.hasClass('deletable')
+    @$el.toggleClass('deletable')
+
+  delete: ->
+    e = ds.collections.engagements.get(@model.id)
+    if e && confirm("Are you sure you want to delete this engagement?")
+      e.destroy()
+      @$el.animate({ height: 0, left: -window.innerWidth}, 'fast', () -> $(this).remove() )
+    else
+      Backbone.trigger "notify", "You can only delete engagements you've created this session."

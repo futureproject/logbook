@@ -1,11 +1,8 @@
 class ds.AppView extends Backbone.View
-  el: '#phonebook'
-  template: _.template '<div id="phonebook-people"></div>'
-  render: ->
-    @$el.html @template()
   initialize: ->
     # add session credentials to each ajax request
     $(document).on 'ajaxSend', (event, xhr, options) ->
+      console.log "AJAX request to #{options.url}"
       user = ds.user.current()
       return unless user
       xhr.setRequestHeader "X-DS-USER", user.get('email')
@@ -16,4 +13,4 @@ class ds.AppView extends Backbone.View
 
   resetScrollPosition: (pos) ->
     pos ||= 0
-    @$el.scrollTop(pos)
+    $('body').scrollTop(pos)

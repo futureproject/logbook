@@ -1,16 +1,30 @@
 #person-projects {
   border-top: 0.5px solid $base-border-color;
+  .toggle {
+    margin: -15px;
+    padding: 15px;
+  }
   #projects-list {
     display: none;
+  }
+  .icon-keyboard_arrow_down {
+    display: inline-block;
+    @include transition;
   }
   .expanded {
     #projects-list {
       display: block;
     }
+    .icon-keyboard_arrow_down {
+      @include transform(rotateX(-180deg));
+    }
   }
 }
 #person-engagements {
   border-top: 0.5px solid $base-border-color;
+  .engagement {
+    @include transition(background .3s);
+  }
   .btn {
     background: $base-border-color;
     &:active {
