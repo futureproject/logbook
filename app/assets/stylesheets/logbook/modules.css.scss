@@ -11,7 +11,9 @@
 }
 
 .titlebar-actions {
-  float: right;
+  position: absolute;
+  top: 15px;
+  right: 15px;
   a { display: inline-block; }
   a:not(:first-child) {
     margin-left: 10px;
