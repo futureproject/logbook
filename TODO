@@ -1,12 +1,15 @@
 LOW HANGING FRUIT
 --------------------
+add notes_count to projects
+add notes_count to engagements
+add notes_count to people
 Add better date field to engagement form
 Add actual duration to engagement form
 restore "Toggle Dream Team"
 Trigger flash notices after any edit actions
 Hours per person graph goes away when it is blank. Do other graphs do that too?
-aerson profile engagement bubbles should ignore the time filter
-Welcome animation
+person profile engagement bubbles should ignore the time filter
+Welcome users with an animation
 Add projects and engagements just like you add notes
 Make FACTBAR SCHOOL open school info popover, with cursor: help
 
