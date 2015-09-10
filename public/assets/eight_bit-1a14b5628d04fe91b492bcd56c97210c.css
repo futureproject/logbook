@@ -1,0 +1,148 @@
+/* line 2, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/eight_bit.css.scss.erb */
+html, body {
+  margin: 0;
+  padding: 0;
+  color: #fff;
+  background: #88d5f0;
+  font-family: 'avenir next', avenir, sans-serif;
+  font-size: 12px;
+}
+
+/* line 11, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/eight_bit.css.scss.erb */
+body {
+  padding: 30px 0;
+}
+
+/* line 15, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/eight_bit.css.scss.erb */
+#new-session {
+  height: 132px;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 46%;
+  margin-top: -66px;
+}
+/* line 22, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/eight_bit.css.scss.erb */
+#new-session img {
+  display: block;
+  margin: 0 auto 10px;
+  width: 8em;
+  height: 8em;
+}
+/* line 28, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/eight_bit.css.scss.erb */
+#new-session form {
+  margin: 0 auto;
+  text-align: center;
+}
+/* line 32, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/eight_bit.css.scss.erb */
+#new-session input {
+  margin: 0 auto;
+  color: white;
+  background: none;
+  border-color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
+/* line 39, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/eight_bit.css.scss.erb */
+#new-session input:focus {
+  outline: none;
+}
+/* line 42, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/eight_bit.css.scss.erb */
+#new-session input:active {
+  outline: none;
+  position: relative;
+  top: 1px;
+}
+
+/* line 50, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/eight_bit.css.scss.erb */
+.kanya, .andrew {
+  position: absolute;
+  left: 50%;
+  background-size: cover;
+  background-position: center center;
+}
+
+/* line 57, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/eight_bit.css.scss.erb */
+.kanya {
+  width: 270px;
+  height: 214px;
+  top: 70px;
+  margin-left: -410px;
+}
+
+/* line 64, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/eight_bit.css.scss.erb */
+.andrew {
+  width: 237px;
+  height: 214px;
+  top: 220px;
+  margin-left: 140px;
+}
+
+/* line 71, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/eight_bit.css.scss.erb */
+.go-redirects {
+  padding: 40px;
+  color: #1e2427;
+}
+
+/* line 76, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/eight_bit.css.scss.erb */
+a {
+  color: white;
+  text-decoration: none;
+}
+
+/* line 81, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/eight_bit.css.scss.erb */
+th {
+  text-align: left;
+}
+
+/* line 83, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/eight_bit.css.scss.erb */
+.redirects {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  line-height: 2;
+  overflow: auto;
+}
+/* line 89, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/eight_bit.css.scss.erb */
+.redirects li {
+  display: block;
+  overflow: auto;
+  margin-bottom: 12px;
+}
+/* line 94, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/eight_bit.css.scss.erb */
+.redirects .redirect-shortcut, .redirects .redirect-url, .redirects .redirect-actions {
+  float: left;
+  padding-right: 1%;
+  box-sizing: border-box;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* line 102, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/eight_bit.css.scss.erb */
+.redirects .redirect-shortcut {
+  width: 25%;
+}
+/* line 105, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/eight_bit.css.scss.erb */
+.redirects .redirect-url {
+  width: 75%;
+}
+
+/* line 110, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/eight_bit.css.scss.erb */
+.logo img {
+  width: 160px;
+  height: 160px;
+}
+
+/* line 117, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/eight_bit.css.scss.erb */
+input[type=submit] {
+  -webkit-appearance: none;
+  background: white;
+  border: none;
+  font-size: 1.5em;
+  font-family: 'avenir next', avenir, sans-serif;
+}
+
+/* line 126, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/eight_bit.css.scss.erb */
+a.edit, a.destroy {
+  opacity: .5;
+}

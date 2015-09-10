@@ -1,0 +1,2723 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+/* line 19, /Users/chrisfrank/Code/logbook/vendor/assets/stylesheets/reset.css */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+/* line 29, /Users/chrisfrank/Code/logbook/vendor/assets/stylesheets/reset.css */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+/* line 32, /Users/chrisfrank/Code/logbook/vendor/assets/stylesheets/reset.css */
+body {
+  line-height: 1;
+}
+
+/* line 35, /Users/chrisfrank/Code/logbook/vendor/assets/stylesheets/reset.css */
+ol, ul {
+  list-style: none;
+}
+
+/* line 38, /Users/chrisfrank/Code/logbook/vendor/assets/stylesheets/reset.css */
+blockquote, q {
+  quotes: none;
+}
+
+/* line 42, /Users/chrisfrank/Code/logbook/vendor/assets/stylesheets/reset.css */
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+/* line 46, /Users/chrisfrank/Code/logbook/vendor/assets/stylesheets/reset.css */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+@font-face {
+  font-family: 'icons';
+  src: url(/assets/logbook-icons.woff);
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* line 8, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/icons.css.erb */
+[class^="icon-"], [class*=" icon-"] {
+  font-family: 'icons';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* line 21, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/icons.css.erb */
+.icon-add_circle_outline:before {
+  content: "\e06c";
+}
+
+/* line 24, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/icons.css.erb */
+.icon-clipboard:before {
+  content: "\e073";
+}
+
+/* line 27, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/icons.css.erb */
+.icon-keyboard_arrow_down:before {
+  content: "\e10f";
+}
+
+/* line 30, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/icons.css.erb */
+.icon-keyboard_arrow_left:before {
+  content: "\e110";
+}
+
+/* line 33, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/icons.css.erb */
+.icon-keyboard_arrow_right:before {
+  content: "\e111";
+}
+
+/* line 36, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/icons.css.erb */
+.icon-keyboard_arrow_up:before {
+  content: "\e112";
+}
+
+/* line 39, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/icons.css.erb */
+.icon-control_point_duplicate:before {
+  content: "\e150";
+}
+
+/* line 42, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/icons.css.erb */
+.icon-edit:before {
+  content: "\e15e";
+}
+
+/* line 45, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/icons.css.erb */
+.icon-cancel:before {
+  content: "\e205";
+}
+
+/* line 48, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/icons.css.erb */
+.icon-delete:before {
+  content: "\e287";
+}
+
+/* line 51, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/icons.css.erb */
+.icon-event:before {
+  content: "\e28c";
+}
+
+/* line 54, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/icons.css.erb */
+.icon-search:before {
+  content: "\e2ca";
+}
+
+/* line 57, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/icons.css.erb */
+.icon-camera_enhance:before {
+  content: "\e30e";
+}
+
+/* line 60, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/icons.css.erb */
+.icon-logbook_dashboard:before {
+  content: "\e600";
+}
+
+/* line 63, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/icons.css.erb */
+.icon-logbook_engagements:before {
+  content: "\e601";
+}
+
+/* line 66, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/icons.css.erb */
+.icon-logbook_people:before {
+  content: "\e602";
+}
+
+/* line 69, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/icons.css.erb */
+.icon-logbook_projects:before {
+  content: "\e603";
+}
+
+/* line 1, /Users/chrisfrank/Code/logbook/vendor/assets/javascripts/backgrid.min.css */
+.backgrid-container {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 465px;
+  padding: 0;
+  overflow: auto;
+  border: 0;
+}
+
+/* line 1, /Users/chrisfrank/Code/logbook/vendor/assets/javascripts/backgrid.min.css */
+.backgrid {
+  width: 100%;
+  max-width: 100%;
+  background-color: transparent;
+  border-collapse: collapse;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+
+/* line 1, /Users/chrisfrank/Code/logbook/vendor/assets/javascripts/backgrid.min.css */
+.backgrid th, .backgrid td {
+  display: none;
+  height: 20px;
+  max-width: 250px;
+  padding: 4px 5px;
+  overflow: hidden;
+  line-height: 20px;
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align: middle;
+  border-bottom: 1px solid #DDD;
+}
+
+/* line 1, /Users/chrisfrank/Code/logbook/vendor/assets/javascripts/backgrid.min.css */
+.backgrid th.renderable, .backgrid td.renderable {
+  display: table-cell;
+}
+
+/* line 1, /Users/chrisfrank/Code/logbook/vendor/assets/javascripts/backgrid.min.css */
+.backgrid th {
+  font-weight: bold;
+  text-align: center;
+}
+
+/* line 1, /Users/chrisfrank/Code/logbook/vendor/assets/javascripts/backgrid.min.css */
+.backgrid th.sortable a {
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+/* line 1, /Users/chrisfrank/Code/logbook/vendor/assets/javascripts/backgrid.min.css */
+.backgrid thead th {
+  vertical-align: bottom;
+  background-color: #f9f9f9;
+}
+
+/* line 1, /Users/chrisfrank/Code/logbook/vendor/assets/javascripts/backgrid.min.css */
+.backgrid thead th a {
+  display: block;
+}
+
+/* line 1, /Users/chrisfrank/Code/logbook/vendor/assets/javascripts/backgrid.min.css */
+.backgrid.backgrid-striped tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* line 1, /Users/chrisfrank/Code/logbook/vendor/assets/javascripts/backgrid.min.css */
+.backgrid tbody tr.empty {
+  font-style: italic;
+  color: gray;
+}
+
+/* line 1, /Users/chrisfrank/Code/logbook/vendor/assets/javascripts/backgrid.min.css */
+.backgrid tbody tr.empty td {
+  display: inherit;
+  text-align: center;
+}
+
+/* line 1, /Users/chrisfrank/Code/logbook/vendor/assets/javascripts/backgrid.min.css */
+.backgrid td.editor {
+  padding: 0;
+}
+
+/* line 1, /Users/chrisfrank/Code/logbook/vendor/assets/javascripts/backgrid.min.css */
+.backgrid td.editor, .backgrid tbody tr:nth-child(odd) td.editor {
+  background-color: rgba(82, 168, 236, 0.1);
+  outline: 1px solid rgba(82, 168, 236, 0.8);
+  outline-offset: -1px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition-duration: 200ms;
+  -moz-transition-duration: 200ms;
+  -o-transition-duration: 200ms;
+  transition-duration: 200ms;
+  -webkit-transition-property: width,outline,background-color;
+  -moz-transition-property: width,outline,background-color;
+  -o-transition-property: width,outline,background-color;
+  transition-property: width,outline,background-color;
+  -webkit-transition-timing-function: ease-in-out;
+  -moz-transition-timing-function: ease-in-out;
+  -o-transition-timing-function: ease-in-out;
+  transition-timing-function: ease-in-out;
+}
+
+/* line 1, /Users/chrisfrank/Code/logbook/vendor/assets/javascripts/backgrid.min.css */
+.backgrid td.editor input[type=text] {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0 5px;
+  margin: 0;
+  background-color: transparent;
+  border: 0;
+  outline: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+/* line 1, /Users/chrisfrank/Code/logbook/vendor/assets/javascripts/backgrid.min.css */
+.backgrid td.editor input[type=text]::-ms-clear {
+  display: none;
+}
+
+/* line 1, /Users/chrisfrank/Code/logbook/vendor/assets/javascripts/backgrid.min.css */
+.backgrid td.error, .backgrid tbody tr:nth-child(odd) td.error {
+  background-color: rgba(255, 210, 77, 0.1);
+  outline: 1px solid #ffd24d;
+}
+
+/* line 1, /Users/chrisfrank/Code/logbook/vendor/assets/javascripts/backgrid.min.css */
+.backgrid td.editor :focus, .backgrid th.editor:focus {
+  outline: 0;
+}
+
+/* line 1, /Users/chrisfrank/Code/logbook/vendor/assets/javascripts/backgrid.min.css */
+.backgrid .sort-caret {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: .3em;
+  border: 0;
+  content: "";
+}
+
+/* line 1, /Users/chrisfrank/Code/logbook/vendor/assets/javascripts/backgrid.min.css */
+.backgrid .ascending .sort-caret {
+  vertical-align: baseline;
+  border-top: 0;
+  border-right: 4px solid transparent;
+  border-bottom: 4px solid #000;
+  border-left: 4px solid transparent;
+}
+
+/* line 1, /Users/chrisfrank/Code/logbook/vendor/assets/javascripts/backgrid.min.css */
+.backgrid .descending .sort-caret {
+  vertical-align: super;
+  border-top: 4px solid #000;
+  border-right: 4px solid transparent;
+  border-bottom: 0;
+  border-left: 4px solid transparent;
+}
+
+/* line 1, /Users/chrisfrank/Code/logbook/vendor/assets/javascripts/backgrid.min.css */
+.backgrid .string-cell, .backgrid .uri-cell, .backgrid .email-cell, .backgrid .string-cell.editor input[type=text], .backgrid .uri-cell.editor input[type=text], .backgrid .email-cell.editor input[type=text] {
+  text-align: left;
+}
+
+/* line 1, /Users/chrisfrank/Code/logbook/vendor/assets/javascripts/backgrid.min.css */
+.backgrid .date-cell, .backgrid .time-cell, .backgrid .datetime-cell, .backgrid .number-cell, .backgrid .integer-cell, .backgrid .percent-cell, .backgrid .date-cell.editor input[type=text], .backgrid .time-cell.editor input[type=text], .backgrid .datetime-cell.editor input[type=text], .backgrid .number-cell.editor input[type=text], .backgrid .integer-cell.editor input[type=text], .backgrid .percent-cell.editor input[type=text] {
+  text-align: right;
+}
+
+/* line 1, /Users/chrisfrank/Code/logbook/vendor/assets/javascripts/backgrid.min.css */
+.backgrid .boolean-cell, .backgrid .boolean-cell.editor input[type=checkbox] {
+  text-align: center;
+}
+
+/* line 1, /Users/chrisfrank/Code/logbook/vendor/assets/javascripts/backgrid.min.css */
+.backgrid .select-cell {
+  text-align: center;
+}
+
+/* line 1, /Users/chrisfrank/Code/logbook/vendor/assets/javascripts/backgrid.min.css */
+.backgrid .select-cell.editor {
+  padding: 0;
+}
+
+/* line 1, /Users/chrisfrank/Code/logbook/vendor/assets/javascripts/backgrid.min.css */
+.backgrid .select-cell.editor select {
+  display: block;
+  width: 100%;
+  height: 28px;
+  padding: 4px 5px;
+  margin: 0;
+  line-height: 28px;
+  vertical-align: middle;
+  background-color: white;
+  border: 0;
+  outline: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* line 1, /Users/chrisfrank/Code/logbook/vendor/assets/javascripts/backgrid.min.css */
+.backgrid .select-cell.editor select[multiple] {
+  height: auto;
+}
+
+/* line 1, /Users/chrisfrank/Code/logbook/vendor/assets/javascripts/backgrid.min.css */
+.backgrid .select-cell.editor :focus {
+  border: 0;
+  outline: 0;
+}
+
+/* line 1, /Users/chrisfrank/Code/logbook/vendor/assets/javascripts/backgrid.min.css */
+.backgrid .select-cell.editor select::-moz-focus-inner, .backgrid .select-cell.editor optgroup::-moz-focus-inner, .backgrid .select-cell.editor option::-moz-focus-inner, .backgrid .select-cell.editor select::-o-focus-inner, .backgrid .select-cell.editor optgroup::-o-focus-inner, .backgrid .select-cell.editor option::-o-focus-inner {
+  border: 0;
+}
+
+/* line 1, /Users/chrisfrank/Code/logbook/vendor/assets/stylesheets/backgrid-paginator.min.css */
+.backgrid-paginator {
+  text-align: center;
+  border-top: 0;
+  -webkit-border-radius: 0 0 4px 4px;
+  -moz-border-radius: 0 0 4px 4px;
+  border-radius: 0 0 4px 4px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* line 1, /Users/chrisfrank/Code/logbook/vendor/assets/stylesheets/backgrid-paginator.min.css */
+.backgrid-paginator ul {
+  display: inline-block;
+  *display: inline;
+  margin: 5px 0;
+  *zoom: 1;
+}
+
+/* line 1, /Users/chrisfrank/Code/logbook/vendor/assets/stylesheets/backgrid-paginator.min.css */
+.backgrid-paginator ul > li {
+  display: inline;
+}
+
+/* line 1, /Users/chrisfrank/Code/logbook/vendor/assets/stylesheets/backgrid-paginator.min.css */
+.backgrid-paginator ul > li > a, .backgrid-paginator ul > li > span {
+  float: left;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  line-height: 30px;
+  text-decoration: none;
+}
+
+/* line 1, /Users/chrisfrank/Code/logbook/vendor/assets/stylesheets/backgrid-paginator.min.css */
+.backgrid-paginator ul > li > a:hover, .backgrid-paginator ul > .active > a, .backgrid-paginator ul > .active > span {
+  background-color: #f5f5f5;
+}
+
+/* line 1, /Users/chrisfrank/Code/logbook/vendor/assets/stylesheets/backgrid-paginator.min.css */
+.backgrid-paginator ul > .active > a, .backgrid-paginator ul > .active > span {
+  color: #999;
+  cursor: default;
+}
+
+/* line 1, /Users/chrisfrank/Code/logbook/vendor/assets/stylesheets/backgrid-paginator.min.css */
+.backgrid-paginator ul > .disabled > span, .backgrid-paginator ul > .disabled > a, .backgrid-paginator ul > .disabled > a:hover {
+  color: #999;
+  cursor: default;
+}
+
+/* line 2, /Users/chrisfrank/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/neat-1.5.1/app/assets/stylesheets/grid/_grid.scss */
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/**
+ * selectize.css (v0.10.1)
+ * Copyright (c) 2013 Brian Reavis & contributors
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this
+ * file except in compliance with the License. You may obtain a copy of the License at:
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software distributed under
+ * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
+ * ANY KIND, either express or implied. See the License for the specific language
+ * governing permissions and limitations under the License.
+ *
+ * @author Brian Reavis <brian@thirdroute.com>
+ */
+/* line 19, /Users/chrisfrank/Code/logbook/vendor/assets/stylesheets/selectize.scss */
+.selectize-control.plugin-drag_drop.multi > .selectize-input > div.ui-sortable-placeholder {
+  visibility: visible !important;
+  background: #f2f2f2 !important;
+  background: rgba(0, 0, 0, 0.06) !important;
+  border: 0 none !important;
+}
+
+/* line 25, /Users/chrisfrank/Code/logbook/vendor/assets/stylesheets/selectize.scss */
+.selectize-control.plugin-drag_drop .ui-sortable-placeholder::after {
+  content: '!';
+  visibility: hidden;
+}
+
+/* line 29, /Users/chrisfrank/Code/logbook/vendor/assets/stylesheets/selectize.scss */
+.selectize-control.plugin-drag_drop .ui-sortable-helper {
+  -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* line 33, /Users/chrisfrank/Code/logbook/vendor/assets/stylesheets/selectize.scss */
+.selectize-dropdown-header {
+  position: relative;
+  padding: 5px 8px;
+  border-bottom: 1px solid #d0d0d0;
+  background: #f8f8f8;
+  -webkit-border-radius: 3px 3px 0 0;
+  -moz-border-radius: 3px 3px 0 0;
+  border-radius: 3px 3px 0 0;
+}
+
+/* line 42, /Users/chrisfrank/Code/logbook/vendor/assets/stylesheets/selectize.scss */
+.selectize-dropdown-header-close {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  color: #303030;
+  opacity: 0.4;
+  margin-top: -12px;
+  line-height: 20px;
+  font-size: 20px !important;
+}
+
+/* line 52, /Users/chrisfrank/Code/logbook/vendor/assets/stylesheets/selectize.scss */
+.selectize-dropdown-header-close:hover {
+  color: #000000;
+}
+
+/* line 55, /Users/chrisfrank/Code/logbook/vendor/assets/stylesheets/selectize.scss */
+.selectize-dropdown.plugin-optgroup_columns .optgroup {
+  border-right: 1px solid #f2f2f2;
+  border-top: 0 none;
+  float: left;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* line 63, /Users/chrisfrank/Code/logbook/vendor/assets/stylesheets/selectize.scss */
+.selectize-dropdown.plugin-optgroup_columns .optgroup:last-child {
+  border-right: 0 none;
+}
+
+/* line 66, /Users/chrisfrank/Code/logbook/vendor/assets/stylesheets/selectize.scss */
+.selectize-dropdown.plugin-optgroup_columns .optgroup:before {
+  display: none;
+}
+
+/* line 69, /Users/chrisfrank/Code/logbook/vendor/assets/stylesheets/selectize.scss */
+.selectize-dropdown.plugin-optgroup_columns .optgroup-header {
+  border-top: 0 none;
+}
+
+/* line 72, /Users/chrisfrank/Code/logbook/vendor/assets/stylesheets/selectize.scss */
+.selectize-control.plugin-remove_button [data-value] {
+  position: relative;
+  padding-right: 24px !important;
+}
+
+/* line 76, /Users/chrisfrank/Code/logbook/vendor/assets/stylesheets/selectize.scss */
+.selectize-control.plugin-remove_button [data-value] .remove {
+  z-index: 1;
+  /* fixes ie bug (see #392) */
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 17px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 12px;
+  color: inherit;
+  text-decoration: none;
+  vertical-align: middle;
+  display: inline-block;
+  padding: 2px 0 0 0;
+  border-left: 1px solid #d0d0d0;
+  -webkit-border-radius: 0 2px 2px 0;
+  -moz-border-radius: 0 2px 2px 0;
+  border-radius: 0 2px 2px 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* line 100, /Users/chrisfrank/Code/logbook/vendor/assets/stylesheets/selectize.scss */
+.selectize-control.plugin-remove_button [data-value] .remove:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* line 103, /Users/chrisfrank/Code/logbook/vendor/assets/stylesheets/selectize.scss */
+.selectize-control.plugin-remove_button [data-value].active .remove {
+  border-left-color: #cacaca;
+}
+
+/* line 106, /Users/chrisfrank/Code/logbook/vendor/assets/stylesheets/selectize.scss */
+.selectize-control.plugin-remove_button .disabled [data-value] .remove:hover {
+  background: none;
+}
+
+/* line 109, /Users/chrisfrank/Code/logbook/vendor/assets/stylesheets/selectize.scss */
+.selectize-control.plugin-remove_button .disabled [data-value] .remove {
+  border-left-color: #ffffff;
+}
+
+/* line 112, /Users/chrisfrank/Code/logbook/vendor/assets/stylesheets/selectize.scss */
+.selectize-control {
+  position: relative;
+}
+
+/* line 117, /Users/chrisfrank/Code/logbook/vendor/assets/stylesheets/selectize.scss */
+.selectize-dropdown,
+.selectize-input,
+.selectize-input input {
+  color: #303030;
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 18px;
+  -webkit-font-smoothing: inherit;
+}
+
+/* line 125, /Users/chrisfrank/Code/logbook/vendor/assets/stylesheets/selectize.scss */
+.selectize-input,
+.selectize-control.single .selectize-input.input-active {
+  background: #ffffff;
+  cursor: text;
+  display: inline-block;
+}
+
+/* line 130, /Users/chrisfrank/Code/logbook/vendor/assets/stylesheets/selectize.scss */
+.selectize-input {
+  border: 1px solid #d0d0d0;
+  padding: 8px 8px;
+  display: inline-block;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+
+/* line 145, /Users/chrisfrank/Code/logbook/vendor/assets/stylesheets/selectize.scss */
+.selectize-control.multi .selectize-input.has-items {
+  padding: 6px 8px 3px;
+}
+
+/* line 148, /Users/chrisfrank/Code/logbook/vendor/assets/stylesheets/selectize.scss */
+.selectize-input.full {
+  background-color: #ffffff;
+}
+
+/* line 152, /Users/chrisfrank/Code/logbook/vendor/assets/stylesheets/selectize.scss */
+.selectize-input.disabled,
+.selectize-input.disabled * {
+  cursor: default !important;
+}
+
+/* line 155, /Users/chrisfrank/Code/logbook/vendor/assets/stylesheets/selectize.scss */
+.selectize-input.focus {
+  border-color: #3182a2;
+}
+
+/* line 158, /Users/chrisfrank/Code/logbook/vendor/assets/stylesheets/selectize.scss */
+.selectize-input.dropdown-active {
+  -webkit-border-radius: 3px 3px 0 0;
+  -moz-border-radius: 3px 3px 0 0;
+  border-radius: 3px 3px 0 0;
+}
+
+/* line 163, /Users/chrisfrank/Code/logbook/vendor/assets/stylesheets/selectize.scss */
+.selectize-input > * {
+  vertical-align: baseline;
+  display: -moz-inline-stack;
+  display: inline-block;
+  zoom: 1;
+}
+
+/* line 169, /Users/chrisfrank/Code/logbook/vendor/assets/stylesheets/selectize.scss */
+.selectize-control.multi .selectize-input > div {
+  cursor: pointer;
+  margin: 0 3px 3px 0;
+  padding: 2px 6px;
+  background: #f2f2f2;
+  color: #303030;
+  border: 0 solid #d0d0d0;
+}
+
+/* line 177, /Users/chrisfrank/Code/logbook/vendor/assets/stylesheets/selectize.scss */
+.selectize-control.multi .selectize-input > div.active {
+  background: #e8e8e8;
+  color: #303030;
+  border: 0 solid #cacaca;
+}
+
+/* line 183, /Users/chrisfrank/Code/logbook/vendor/assets/stylesheets/selectize.scss */
+.selectize-control.multi .selectize-input.disabled > div,
+.selectize-control.multi .selectize-input.disabled > div.active {
+  color: #7d7d7d;
+  background: #ffffff;
+  border: 0 solid #ffffff;
+}
+
+/* line 188, /Users/chrisfrank/Code/logbook/vendor/assets/stylesheets/selectize.scss */
+.selectize-input > input {
+  padding: 0 !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  max-width: 100% !important;
+  margin: 0 2px 0 0 !important;
+  text-indent: 0 !important;
+  border: 0 none !important;
+  background: none !important;
+  line-height: inherit !important;
+  -webkit-user-select: auto !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+}
+
+/* line 202, /Users/chrisfrank/Code/logbook/vendor/assets/stylesheets/selectize.scss */
+.selectize-input > input::-ms-clear {
+  display: none;
+}
+
+/* line 205, /Users/chrisfrank/Code/logbook/vendor/assets/stylesheets/selectize.scss */
+.selectize-input > input:focus {
+  outline: none !important;
+}
+
+/* line 208, /Users/chrisfrank/Code/logbook/vendor/assets/stylesheets/selectize.scss */
+.selectize-input::after {
+  content: ' ';
+  display: block;
+  clear: left;
+}
+
+/* line 213, /Users/chrisfrank/Code/logbook/vendor/assets/stylesheets/selectize.scss */
+.selectize-input.dropdown-active::before {
+  content: ' ';
+  display: block;
+  position: absolute;
+  background: #f0f0f0;
+  height: 1px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+/* line 223, /Users/chrisfrank/Code/logbook/vendor/assets/stylesheets/selectize.scss */
+.selectize-dropdown {
+  position: absolute;
+  z-index: 10;
+  border: 1px solid #d0d0d0;
+  background: #ffffff;
+  margin: -1px 0 0 0;
+  border-top: 0 none;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  -webkit-border-radius: 0 0 3px 3px;
+  -moz-border-radius: 0 0 3px 3px;
+  border-radius: 0 0 3px 3px;
+}
+
+/* line 239, /Users/chrisfrank/Code/logbook/vendor/assets/stylesheets/selectize.scss */
+.selectize-dropdown [data-selectable] {
+  cursor: pointer;
+  overflow: hidden;
+}
+
+/* line 243, /Users/chrisfrank/Code/logbook/vendor/assets/stylesheets/selectize.scss */
+.selectize-dropdown [data-selectable] .highlight {
+  background: rgba(125, 168, 208, 0.2);
+  -webkit-border-radius: 1px;
+  -moz-border-radius: 1px;
+  border-radius: 1px;
+}
+
+/* line 250, /Users/chrisfrank/Code/logbook/vendor/assets/stylesheets/selectize.scss */
+.selectize-dropdown [data-selectable],
+.selectize-dropdown .optgroup-header {
+  padding: 5px 8px;
+}
+
+/* line 253, /Users/chrisfrank/Code/logbook/vendor/assets/stylesheets/selectize.scss */
+.selectize-dropdown .optgroup:first-child .optgroup-header {
+  border-top: 0 none;
+}
+
+/* line 256, /Users/chrisfrank/Code/logbook/vendor/assets/stylesheets/selectize.scss */
+.selectize-dropdown .optgroup-header {
+  color: #303030;
+  background: #ffffff;
+  cursor: default;
+}
+
+/* line 261, /Users/chrisfrank/Code/logbook/vendor/assets/stylesheets/selectize.scss */
+.selectize-dropdown .active {
+  background-color: #f5fafd;
+  color: #495c68;
+}
+
+/* line 265, /Users/chrisfrank/Code/logbook/vendor/assets/stylesheets/selectize.scss */
+.selectize-dropdown .active.create {
+  color: #495c68;
+}
+
+/* line 268, /Users/chrisfrank/Code/logbook/vendor/assets/stylesheets/selectize.scss */
+.selectize-dropdown .create {
+  color: rgba(48, 48, 48, 0.5);
+}
+
+/* line 271, /Users/chrisfrank/Code/logbook/vendor/assets/stylesheets/selectize.scss */
+.selectize-dropdown-content {
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 200px;
+}
+
+/* line 277, /Users/chrisfrank/Code/logbook/vendor/assets/stylesheets/selectize.scss */
+.selectize-control.single .selectize-input,
+.selectize-control.single .selectize-input input {
+  cursor: pointer;
+}
+
+/* line 281, /Users/chrisfrank/Code/logbook/vendor/assets/stylesheets/selectize.scss */
+.selectize-control.single .selectize-input.input-active,
+.selectize-control.single .selectize-input.input-active input {
+  cursor: text;
+}
+
+/* line 284, /Users/chrisfrank/Code/logbook/vendor/assets/stylesheets/selectize.scss */
+.selectize-control.single .selectize-input:after {
+  content: ' ';
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  margin-top: -3px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 5px 5px 0 5px;
+  border-color: #808080 transparent transparent transparent;
+}
+
+/* line 297, /Users/chrisfrank/Code/logbook/vendor/assets/stylesheets/selectize.scss */
+.selectize-control.single .selectize-input.dropdown-active:after {
+  margin-top: -4px;
+  border-width: 0 5px 5px 5px;
+  border-color: transparent transparent #808080 transparent;
+}
+
+/* line 302, /Users/chrisfrank/Code/logbook/vendor/assets/stylesheets/selectize.scss */
+.selectize-control.rtl.single .selectize-input:after {
+  left: 15px;
+  right: auto;
+}
+
+/* line 306, /Users/chrisfrank/Code/logbook/vendor/assets/stylesheets/selectize.scss */
+.selectize-control.rtl .selectize-input > input {
+  margin: 0 4px 0 -2px !important;
+}
+
+/* line 309, /Users/chrisfrank/Code/logbook/vendor/assets/stylesheets/selectize.scss */
+.selectize-control .selectize-input.disabled {
+  opacity: 0.5;
+  background-color: #fafafa;
+}
+
+/* line 1, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/forms.css.scss */
+input, select, textarea {
+  display: block;
+  width: 100%;
+  background: none;
+  font-size: 1em;
+  border: none;
+  border-bottom: 1px solid #d0d7da;
+  padding: 5px 0;
+  border-radius: 0;
+  font-family: "avenir next", avenir, "helvetica neue", helvetica;
+}
+/* line 11, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/forms.css.scss */
+input[disabled], select[disabled], textarea[disabled] {
+  opacity: 0.25;
+}
+
+/* line 16, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/forms.css.scss */
+input[type="email"], input[type="number"], input[type="password"], input[type="search"], input[type="tel"], input[type="text"], input[type="url"], input[type="color"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="time"], input[type="week"], select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+}
+/* line 18, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/forms.css.scss */
+input[type="email"]:focus, input[type="number"]:focus, input[type="password"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="text"]:focus, input[type="url"]:focus, input[type="color"]:focus, input[type="date"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="month"]:focus, input[type="time"]:focus, input[type="week"]:focus, select:focus {
+  border-bottom-color: #3182a2;
+  outline: none;
+}
+/* line 22, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/forms.css.scss */
+input[type="email"][type=file], input[type="number"][type=file], input[type="password"][type=file], input[type="search"][type=file], input[type="tel"][type=file], input[type="text"][type=file], input[type="url"][type=file], input[type="color"][type=file], input[type="date"][type=file], input[type="datetime"][type=file], input[type="datetime-local"][type=file], input[type="month"][type=file], input[type="time"][type=file], input[type="week"][type=file], select[type=file] {
+  border-bottom: none;
+}
+
+/* line 25, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/forms.css.scss */
+label {
+  color: #96a6ae;
+}
+
+/* line 29, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/forms.css.scss */
+select {
+  text-transform: capitalize;
+}
+
+/* line 33, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/forms.css.scss */
+textarea {
+  border: 1px solid #d0d7da;
+  padding: 5px;
+}
+
+/* line 38, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/forms.css.scss */
+.actions-field {
+  clear: both;
+}
+/* line 15, /Users/chrisfrank/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bourbon-3.2.4/app/assets/stylesheets/addons/_clearfix.scss */
+.actions-field:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+/* line 41, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/forms.css.scss */
+.actions-field input {
+  background: #6a8d90;
+  color: white;
+  font-size: 1em;
+  clear: both;
+  border: none;
+  font-weight: 700;
+  line-height: 25px;
+  text-transform: uppercase;
+  font-family: "avenir next", avenir, "helvetica neue", helvetica;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+}
+
+/* line 55, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/forms.css.scss */
+.checkbox-field {
+  line-height: 50px;
+}
+/* line 57, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/forms.css.scss */
+.checkbox-field input {
+  display: inline-block;
+  width: auto;
+}
+
+/* line 63, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/forms.css.scss */
+.selectize-control.multi .selectize-input {
+  border-radius: 0;
+  display: block;
+}
+/* line 65, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/forms.css.scss */
+.selectize-control.multi .selectize-input.input-active {
+  border-radius: 0;
+}
+/* line 15, /Users/chrisfrank/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bourbon-3.2.4/app/assets/stylesheets/addons/_clearfix.scss */
+.selectize-control.multi .selectize-input:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+/* line 67, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/forms.css.scss */
+.selectize-control.multi .selectize-input .item {
+  white-space: nowrap;
+  text-transform: capitalize;
+}
+
+/* line 72, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/forms.css.scss */
+.selectize-dropdown-content .option {
+  text-transform: capitalize;
+}
+
+/* line 76, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/forms.css.scss */
+.inline-form {
+  position: relative;
+  height: 3em;
+}
+/* line 79, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/forms.css.scss */
+.inline-form input {
+  position: absolute;
+  height: 100%;
+  top: 0;
+}
+/* line 83, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/forms.css.scss */
+.inline-form input[type=submit] {
+  font-size: 1em;
+  width: 15%;
+  right: 0;
+  border-radius: 0;
+  z-index: 1;
+}
+/* line 90, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/forms.css.scss */
+.inline-form input[type=text] {
+  border: 1px solid #d0d7da;
+  border-right: 0;
+  background: white;
+  width: 85%;
+  left: 0;
+  z-index: 2;
+}
+
+/* line 100, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/forms.css.scss */
+.selectize-dropdown {
+  width: 100% !important;
+}
+
+/* line 103, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/forms.css.scss */
+.selectize-input.items > div {
+  vertical-align: top;
+}
+
+/* line 1, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/layout.css.scss */
+#nav {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 210px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+/* line 13, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/layout.css.scss */
+#nav.searching {
+  overflow: visible;
+}
+/* line 17, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/layout.css.scss */
+#nav * {
+  position: relative;
+}
+/* line 18, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/layout.css.scss */
+#nav li {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* line 23, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/layout.css.scss */
+#nav section {
+  padding: 15px;
+}
+/* line 26, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/layout.css.scss */
+#nav #scope-menu {
+  display: none;
+  font-size: 12px;
+  line-height: 20px;
+  font-weight: 500;
+  padding: 0 15px;
+}
+/* line 32, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/layout.css.scss */
+#nav #scope-menu ul {
+  margin-bottom: 15px;
+}
+
+/* line 39, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/layout.css.scss */
+#app-sections li {
+  display: block;
+  height: 30px;
+  overflow: hidden;
+  margin: 5px -15px;
+  padding: 0 15px;
+  position: relative;
+}
+/* line 47, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/layout.css.scss */
+#app-sections .link-icon {
+  font-size: 20px;
+  display: block;
+  height: 30px;
+  width: 30px;
+  line-height: 28px;
+  float: left;
+}
+/* line 55, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/layout.css.scss */
+#app-sections li, #app-sections a {
+  display: block;
+}
+/* line 56, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/layout.css.scss */
+#app-sections .link-label {
+  line-height: 30px;
+}
+/* line 60, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/layout.css.scss */
+#app-sections .nav-item.reports .link-icon {
+  font-size: 16px;
+  padding-left: 3px;
+}
+
+/* line 66, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/layout.css.scss */
+#app-name {
+  box-sizing: border-box;
+  height: 50px;
+}
+
+/* line 71, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/layout.css.scss */
+#scope-toggle {
+  cursor: pointer;
+}
+/* line 73, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/layout.css.scss */
+#scope-toggle header:after {
+  content: '';
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 6px 5px 0 5px;
+  border-color: rgba(255, 255, 255, 0.8) transparent transparent transparent;
+  position: relative;
+  top: -1px;
+  -webkit-transition: -webkit-transform 0.3s;
+  -moz-transition: -moz-transform 0.3s;
+  transition: transform 0.3s;
+}
+/* line 85, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/layout.css.scss */
+#scope-toggle.open header:after {
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
+/* line 90, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/layout.css.scss */
+#search {
+  position: relative;
+}
+/* line 92, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/layout.css.scss */
+#search input, #search .selectize-input {
+  font-size: 12px;
+  font-family: "avenir next", avenir, "helvetica neue", helvetica;
+  padding: 0 5px 0 30px;
+  border: none;
+  background: none;
+  color: white;
+}
+/* line 100, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/layout.css.scss */
+#search #search-trigger {
+  position: absolute;
+  left: 15px;
+  top: 30px;
+  font-size: 20px;
+  pointer-events: none;
+}
+/* line 107, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/layout.css.scss */
+#search .selectize-input.dropdown-active::before {
+  display: none;
+}
+
+/* line 111, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/layout.css.scss */
+#user {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 210px;
+  padding: 15px;
+  font-weight: 500;
+  height: 60px;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  transition: all 0.5s;
+  -webkit-font-smoothing: antialiased;
+  font-size: 12px;
+  line-height: 15px;
+}
+/* line 123, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/layout.css.scss */
+#user img {
+  height: 30px;
+  width: 30px;
+  float: left;
+  margin-right: 15px;
+  border-radius: 100%;
+  border: 1px solid;
+}
+/* line 131, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/layout.css.scss */
+#user .current-user-name {
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* line 137, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/layout.css.scss */
+#user.hidden {
+  opacity: 0;
+  -webkit-transform: translate3d(0, 75px, 0);
+  -moz-transform: translate3d(0, 75px, 0);
+  -ms-transform: translate3d(0, 75px, 0);
+  -o-transform: translate3d(0, 75px, 0);
+  transform: translate3d(0, 75px, 0);
+  pointer-events: none;
+}
+
+/* line 144, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/layout.css.scss */
+#yield {
+  margin-left: 210px;
+}
+
+/* line 148, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/layout.css.scss */
+#global-add-trigger {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: block;
+  height: 50px;
+  width: 50px;
+  line-height: 50px;
+  font-size: 24px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  text-align: center;
+  cursor: pointer;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+}
+/* line 161, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/layout.css.scss */
+#global-add-trigger.open {
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+/* line 166, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/layout.css.scss */
+#time-filter {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 50px;
+  line-height: 50px;
+  padding-right: 15px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+/* line 175, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/layout.css.scss */
+#time-filter > * {
+  display: inline-block;
+}
+/* line 178, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/layout.css.scss */
+#time-filter #time-filter-trigger {
+  font-size: 20px;
+  position: relative;
+  top: 3px;
+}
+/* line 183, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/layout.css.scss */
+#time-filter #time-filter-menu {
+  margin: 0;
+  width: auto;
+  direction: rtl;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+}
+
+/* line 192, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/layout.css.scss */
+body.dashboard #time-filter, body.index #time-filter {
+  display: block;
+}
+
+/* line 1, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.titlebar {
+  position: relative;
+  padding-bottom: 15px;
+  padding: 15px;
+  background: white;
+  height: 50px;
+  white-space: nowrap;
+}
+/* line 8, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.titlebar .title, .titlebar .subtitle {
+  display: inline;
+}
+
+/* line 13, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.titlebar-actions {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+/* line 17, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.titlebar-actions a {
+  display: inline-block;
+}
+/* line 18, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.titlebar-actions a:not(:first-child) {
+  margin-left: 10px;
+}
+
+/* line 23, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.titlebar-nav {
+  display: table;
+  margin: -7px auto 0;
+  table-layout: fixed;
+  font-size: 15px;
+}
+/* line 28, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.titlebar-nav > * {
+  vertical-align: middle;
+  display: table-cell;
+  padding: 5px;
+  border: 1px solid #3182a2;
+  border-left: none;
+}
+/* line 35, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.titlebar-nav > *:first-child {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-left: 1px solid #3182a2;
+}
+/* line 40, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.titlebar-nav > *:last-child {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+/* line 44, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.titlebar-nav > .active {
+  background: #3182a2;
+  color: white;
+}
+
+/* line 50, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.factbar {
+  white-space: nowrap;
+  overflow: auto;
+  background: white;
+  border-bottom: 1px solid #d0d7da;
+}
+/* line 55, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.factbar .fact {
+  display: inline-block;
+  padding: 5px 15px;
+  border-left: 1px solid #d0d7da;
+  text-transform: uppercase;
+  font-size: 10px;
+}
+/* line 59, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.factbar .fact:first-child {
+  border-left: none;
+}
+/* line 64, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.factbar label:after {
+  content: ':';
+}
+
+/* line 70, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.section {
+  padding: 15px;
+}
+
+/* line 74, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.section-header-action {
+  float: right;
+}
+
+/* line 78, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.table {
+  min-height: 3em;
+}
+/* line 80, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.table:empty {
+  display: none;
+}
+/* line 81, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.table .boolean-cell {
+  text-align: center;
+}
+/* line 83, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.table .boolean-cell input {
+  width: auto;
+  margin: 0 auto;
+}
+
+/* line 89, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.section .table {
+  margin-left: -15px;
+  margin-right: -15px;
+}
+/* line 92, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.section .table th:first-child, .section .table td:first-child {
+  padding-left: 15px;
+}
+/* line 95, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.section .table th:last-child, .section .table td:last-child {
+  padding-right: 15px;
+}
+
+/* line 100, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.index-table {
+  min-height: 20em;
+  margin-bottom: 60px;
+}
+
+/* line 105, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.graph {
+  min-height: 20em;
+}
+
+/* line 110, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.backgrid th {
+  position: relative;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  padding: 5px 5px 4px 5px;
+  text-align: left;
+}
+/* line 115, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.backgrid th .sort-caret {
+  display: none;
+}
+/* line 117, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.backgrid th.ascending a, .backgrid th.descending a {
+  color: #1e2427;
+}
+/* line 121, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.backgrid th:last-child {
+  border-right: none;
+}
+/* line 123, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.backgrid td a {
+  display: block;
+}
+/* line 126, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.backgrid .action-cell {
+  white-space: nowrap;
+  word-spacing: 5px;
+  text-align: right;
+}
+/* line 130, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.backgrid .action-cell a {
+  display: inline-block;
+  visibility: hidden;
+  text-transform: uppercase;
+  font-size: 10px;
+  line-height: 15px;
+}
+/* line 138, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.backgrid tr:hover .action-cell a {
+  visibility: visible;
+}
+
+/* line 142, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.dashboard .backgrid th {
+  text-align: right;
+}
+/* line 144, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.dashboard .backgrid th.name {
+  text-align: left;
+}
+
+/* line 146, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.backgrid-paginator {
+  position: fixed;
+  bottom: 0;
+  left: 210px;
+  right: 0;
+  background: white;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: none;
+  border-top: 1px solid #d0d7da;
+  text-align: left;
+  line-height: 1;
+}
+/* line 157, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.backgrid-paginator li {
+  text-align: center;
+}
+
+/* line 160, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.leaderboard {
+  min-height: 10em;
+  padding-bottom: 0;
+  margin-bottom: -15px;
+}
+/* line 164, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.leaderboard li {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* line 171, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+form .field {
+  padding: 15px 0;
+}
+
+/* line 175, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+input.save {
+  border: none;
+  font-family: "avenir next", avenir, "helvetica neue", helvetica;
+  display: inline-block;
+  width: auto;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 50px;
+  padding: 0 15px;
+  line-height: 50px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* line 191, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.footerbar {
+  position: fixed;
+  bottom: 0;
+  left: 210px;
+  right: 0;
+  padding: 15px;
+  line-height: 15px;
+}
+/* line 198, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.footerbar nav {
+  display: inline-block;
+}
+/* line 199, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.footerbar .l {
+  float: left;
+}
+/* line 200, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.footerbar .r {
+  float: right;
+}
+/* line 201, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.footerbar a:not(:last-child):after {
+  display: inline-block;
+  padding-left: 5px;
+  content: '/';
+  color: #1e2427;
+}
+
+/* line 209, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.footerbar + .section {
+  padding-bottom: 60px;
+}
+
+@media screen and (min-width: 1020px) {
+  /* line 214, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+  .two-col {
+    display: block;
+  }
+  /* line 15, /Users/chrisfrank/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bourbon-3.2.4/app/assets/stylesheets/addons/_clearfix.scss */
+  .two-col:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  /* line 216, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+  .two-col > * {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 48.82117%;
+  }
+  /* line 38, /Users/chrisfrank/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/neat-1.5.1/app/assets/stylesheets/grid/_span-columns.scss */
+  .two-col > *:last-child {
+    margin-right: 0;
+  }
+
+  /* line 220, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+  .three-col {
+    display: block;
+  }
+  /* line 15, /Users/chrisfrank/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bourbon-3.2.4/app/assets/stylesheets/addons/_clearfix.scss */
+  .three-col:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  /* line 221, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+  .three-col > * {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 31.76157%;
+  }
+  /* line 38, /Users/chrisfrank/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/neat-1.5.1/app/assets/stylesheets/grid/_span-columns.scss */
+  .three-col > *:last-child {
+    margin-right: 0;
+  }
+
+  /* line 225, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+  .four-col {
+    display: block;
+  }
+  /* line 15, /Users/chrisfrank/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bourbon-3.2.4/app/assets/stylesheets/addons/_clearfix.scss */
+  .four-col:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  /* line 226, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+  .four-col > * {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 23.23176%;
+  }
+  /* line 38, /Users/chrisfrank/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/neat-1.5.1/app/assets/stylesheets/grid/_span-columns.scss */
+  .four-col > *:last-child {
+    margin-right: 0;
+  }
+}
+/* line 232, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.selectize-dropdown.plugin-optgroup_columns {
+  position: fixed;
+  left: 210px !important;
+  top: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: auto !important;
+  height: auto !important;
+  z-index: 100 !important;
+  border: none;
+  border-radius: none;
+  margin: 0;
+  box-shadow: none;
+  background: rgba(255, 255, 255, 0.97);
+  font-size: 15px;
+}
+/* line 247, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.selectize-dropdown.plugin-optgroup_columns .selectize-dropdown-content {
+  max-height: 100%;
+}
+/* line 250, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.selectize-dropdown.plugin-optgroup_columns .optgroup-header {
+  background: none;
+  font-weight: bold;
+  border-bottom: 1px solid #d0d7da;
+  font-size: 18px;
+  height: 50px;
+  line-height: 50px;
+  padding: 0 15px;
+}
+/* line 259, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.selectize-dropdown.plugin-optgroup_columns .option {
+  padding: 5px 15px;
+}
+/* line 263, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.selectize-dropdown.plugin-optgroup_columns .optgroup[data-group=Person] .optgroup-header {
+  color: #3182a2;
+}
+/* line 268, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.selectize-dropdown.plugin-optgroup_columns .optgroup[data-group=Project] .optgroup-header {
+  color: #4b6385;
+}
+/* line 273, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.selectize-dropdown.plugin-optgroup_columns .optgroup[data-group=Engagement] .optgroup-header {
+  color: #a05e86;
+}
+
+/* line 278, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.text-editor {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  left: 210px;
+  bottom: 0;
+  width: auto;
+  height: auto;
+  margin: 15px;
+}
+/* line 287, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.text-editor textarea {
+  resize: none;
+  width: 100%;
+  height: 100%;
+  border: 1px solid #d0d7da;
+}
+/* line 292, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.text-editor textarea:focus {
+  outline: none;
+  border-color: #6a8d90;
+}
+
+/* line 299, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.stickies {
+  padding: 0 15px;
+  margin: 0 -15px;
+}
+/* line 15, /Users/chrisfrank/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bourbon-3.2.4/app/assets/stylesheets/addons/_clearfix.scss */
+.stickies:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* line 304, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.sticky {
+  float: left;
+  width: calc(25% - 15px);
+  height: 180px;
+  padding: 10px;
+  margin: 0 15px 10px 0;
+  white-space: normal;
+  position: relative;
+}
+/* line 312, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.sticky .note-user, .sticky .note-date {
+  display: inline-block;
+}
+/* line 313, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.sticky .note-content {
+  top: 30px;
+  left: 10px;
+  right: 10px;
+  height: 120px;
+  overflow: auto;
+  position: absolute;
+}
+/* line 321, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.sticky .note-attachments {
+  margin: 0 0 10px;
+}
+/* line 324, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.sticky .action {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  position: absolute;
+  bottom: 0;
+  display: none;
+  cursor: pointer;
+  padding: 0 10px 10px;
+  line-height: 15px;
+}
+/* line 333, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.sticky .action.delete {
+  right: 0;
+  text-align: right;
+}
+/* line 334, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.sticky .action.edit {
+  left: 0;
+}
+/* line 335, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.sticky:hover .action {
+  display: block;
+}
+/* line 338, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.sticky .done {
+  display: none;
+  cursor: pointer;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 0 10px 10px;
+  line-height: 15px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+/* line 349, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.sticky.editing .action.edit {
+  display: none;
+}
+/* line 350, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.sticky.editing .done {
+  display: block;
+}
+/* line 352, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.sticky .thumbnail {
+  display: block;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  bottom: 10px;
+  right: 10px;
+  background-size: cover;
+  padding: 10px;
+}
+/* line 363, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.sticky.media .action.delete {
+  padding: 20px 0 0 20px;
+}
+
+/* line 369, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.modal-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  padding: 60px 60px 60px 270px;
+  display: none;
+}
+
+/* line 378, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.modal-content {
+  position: relative;
+  max-width: 640px;
+  margin: 0 auto;
+}
+/* line 382, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.modal-content .cancel .icon-add_circle_outline {
+  display: inline-block;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+/* line 388, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/modules.css.scss */
+.progress-meter {
+  height: 15px;
+  background: #343f44;
+  width: 0;
+  margin: 5px 0;
+}
+
+/* line 1, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/state.css.scss */
+.logbook_stats #tabs .overview, .logbook_people #tabs .people, .logbook_projects #tabs .projects, .logbook_engagements #tabs .engagements, .logbook_schools #tabs .schools {
+  background: #131719;
+  border-top: 1px solid #08090a;
+}
+/* line 4, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/state.css.scss */
+.logbook_stats #tabs .overview a, .logbook_people #tabs .people a, .logbook_projects #tabs .projects a, .logbook_engagements #tabs .engagements a, .logbook_schools #tabs .schools a {
+  color: white;
+  text-shadow: 0px 0px 6px;
+}
+
+/* line 10, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/state.css.scss */
+.logbook_stats #tabs .overview a {
+  color: white;
+}
+
+/* line 11, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/state.css.scss */
+.logbook_people #tabs .people a {
+  color: #3182a2;
+}
+
+/* line 12, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/state.css.scss */
+.logbook_projects #tabs .projects a {
+  color: #4b6385;
+}
+
+/* line 13, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/state.css.scss */
+.logbook_engagements #tabs .engagements a {
+  color: #a05e86;
+}
+
+/* line 14, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/state.css.scss */
+.logbook_schools #tabs .schools a {
+  color: #343f44;
+}
+
+/* line 16, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/state.css.scss */
+.person.previewing {
+  background: white;
+  font-weight: bold;
+}
+/* line 19, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/state.css.scss */
+.person.previewing .row-link {
+  display: none;
+}
+
+/* line 1, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/theme.css.scss */
+#nav {
+  background-color: #6c8798;
+  -webkit-transition: background 0.5s;
+  -moz-transition: background 0.5s;
+  transition: background 0.5s;
+  color: white;
+  box-shadow: inset -3px 3px 5px rgba(0, 0, 0, 0.1);
+  -webkit-font-smoothing: antialiased;
+}
+/* line 5, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/theme.css.scss */
+#nav a {
+  color: white;
+}
+/* line 8, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/theme.css.scss */
+#nav header {
+  color: rgba(255, 255, 255, 0.5);
+}
+/* line 11, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/theme.css.scss */
+#nav * {
+  z-index: 1;
+}
+/* line 14, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/theme.css.scss */
+#nav:after {
+  content: '';
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 210px;
+  bottom: 0;
+  background-color: transparent;
+  background-image: -webkit-linear-gradient(-460deg, transparent, rgba(0, 0, 0, 0.5));
+  background-image: linear-gradient(190deg,transparent, rgba(0, 0, 0, 0.5));
+  z-index: 0;
+}
+
+/* line 26, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/theme.css.scss */
+body.people #nav {
+  background-color: #3182a2;
+}
+
+/* line 29, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/theme.css.scss */
+body.engagements #nav {
+  background-color: #a05e86;
+}
+
+/* line 32, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/theme.css.scss */
+body.projects #nav {
+  background-color: #4b6385;
+}
+
+/* line 35, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/theme.css.scss */
+body.report #nav {
+  background-color: #6a8d90;
+}
+
+/* line 39, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/theme.css.scss */
+#app-name {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+/* line 42, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/theme.css.scss */
+#app-name h1 {
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 20px;
+}
+
+/* line 48, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/theme.css.scss */
+#app-sections, #search {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  font-size: 12px;
+}
+
+/* line 53, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/theme.css.scss */
+#app-sections {
+  font-weight: 500;
+}
+/* line 55, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/theme.css.scss */
+#app-sections .nav-item .link-icon {
+  -webkit-transition: all 0.15s ease-out 0s;
+  -moz-transition: all 0.15s ease-out 0s;
+  transition: all 0.15s ease-out 0s;
+}
+/* line 58, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/theme.css.scss */
+#app-sections .nav-item.active {
+  font-weight: bold;
+  background: rgba(0, 0, 0, 0.25);
+}
+/* line 63, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/theme.css.scss */
+#app-sections .nav-item:hover .link-icon, #app-sections .nav-item.active .link-icon {
+  -webkit-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  -o-transform: scale(1.2);
+  transform: scale(1.2);
+}
+
+/* line 67, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/theme.css.scss */
+#time-filter-menu {
+  font-size: 12px;
+  border: none;
+  font-family: "avenir next", avenir, "helvetica neue", helvetica;
+  color: #343f44 !important;
+  webkit-font-smoothing: antialiased;
+}
+
+/* line 75, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/theme.css.scss */
+a {
+  text-decoration: none;
+  color: #3182a2;
+}
+
+/* line 79, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/theme.css.scss */
+.destroy {
+  color: #db4549 !important;
+  cursor: pointer;
+}
+
+/* line 83, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/theme.css.scss */
+.people-link {
+  color: #3182a2 !important;
+}
+
+/* line 86, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/theme.css.scss */
+.engagements-link {
+  color: #a05e86 !important;
+}
+
+/* line 89, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/theme.css.scss */
+.projects-link {
+  color: #4b6385 !important;
+}
+
+/* line 94, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/theme.css.scss */
+header, label, th {
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 1.5;
+  color: #61747d;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+/* line 101, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/theme.css.scss */
+header a, label a, th a {
+  color: #61747d;
+}
+
+/* line 104, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/theme.css.scss */
+table {
+  width: 100%;
+}
+
+/* line 108, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/theme.css.scss */
+td {
+  text-align: center;
+}
+
+/* line 112, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/theme.css.scss */
+thead {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* line 117, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/theme.css.scss */
+tbody tr:nth-child(even) {
+  background: rgba(0, 0, 0, 0.03);
+}
+
+/* line 122, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/theme.css.scss */
+.backgrid tbody td {
+  border-bottom: none;
+  text-transform: capitalize;
+}
+/* line 126, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/theme.css.scss */
+.backgrid thead th {
+  background: rgba(0, 0, 0, 0.03);
+  border-right: 1px solid #d0d7da;
+}
+
+/* line 132, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/theme.css.scss */
+.index-row {
+  cursor: pointer;
+}
+/* line 135, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/theme.css.scss */
+.index-row:hover a {
+  color: #1e2427;
+}
+
+/* line 139, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/theme.css.scss */
+.stats-row-current {
+  color: #3d99a0;
+  font-weight: 700;
+}
+
+/* line 144, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/theme.css.scss */
+.section {
+  border-bottom: 1px solid #d0d7da;
+}
+/* line 146, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/theme.css.scss */
+.section:last-child {
+  border-bottom: none;
+}
+
+/* line 148, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/theme.css.scss */
+.section-header {
+  margin-bottom: 5px;
+}
+
+/* line 151, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/theme.css.scss */
+.section-header, .highcharts-title {
+  font-weight: 700 !important;
+}
+
+/* line 157, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/theme.css.scss */
+.highcharts-container .highcharts-title {
+  width: 100% !important;
+  white-space: nowrap !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* line 164, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/theme.css.scss */
+.leaderboard {
+  text-transform: capitalize;
+  border: none;
+  background: white;
+}
+/* line 168, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/theme.css.scss */
+.leaderboard label {
+  background: #f9d272;
+  padding: 0 5px;
+  color: #1e2427;
+}
+
+/* line 175, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/theme.css.scss */
+.titlebar {
+  border-bottom: 1px solid #d0d7da;
+  font-size: 18px;
+  line-height: 20px;
+}
+/* line 179, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/theme.css.scss */
+.titlebar .title {
+  font-weight: 700;
+}
+/* line 182, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/theme.css.scss */
+.titlebar .cancel {
+  cursor: pointer;
+}
+/* line 183, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/theme.css.scss */
+.titlebar .titlebar-actions {
+  /*[class^="icon-"], [class*=" icon-"] {*/
+  /*color: $retro-gray;*/
+  /*}*/
+}
+
+/* line 189, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/theme.css.scss */
+.footerbar {
+  background: white;
+  background: rgba(255, 255, 255, 0.95);
+  border-top: 1px solid #d0d7da;
+  font-weight: bold;
+}
+
+/* line 196, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/theme.css.scss */
+.btn {
+  display: inline-block;
+  background: #f9d272;
+  border: none;
+  color: white;
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* line 207, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/theme.css.scss */
+textarea {
+  white-space: pre-wrap;
+}
+
+/* line 210, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/theme.css.scss */
+.text-editor {
+  background: white;
+}
+
+/* line 213, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/theme.css.scss */
+pre {
+  white-space: pre-wrap;
+  font-family: "avenir next", avenir, "helvetica neue", helvetica;
+  line-height: 20px;
+  max-width: 80ch;
+}
+
+/* line 220, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/theme.css.scss */
+.sticky {
+  background: white;
+  font-size: 12px;
+  line-height: 15px;
+  box-shadow: -3px 3px 5px rgba(0, 0, 0, 0.1);
+}
+/* line 225, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/theme.css.scss */
+.sticky .note-text {
+  line-height: 15px;
+}
+/* line 228, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/theme.css.scss */
+.sticky .note-date, .sticky .note-user {
+  color: #61747d;
+}
+/* line 231, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/theme.css.scss */
+.sticky .note-date:after {
+  content: ' //';
+}
+/* line 232, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/theme.css.scss */
+.sticky .note-user {
+  font-weight: bold;
+}
+/* line 233, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/theme.css.scss */
+.sticky .note-user:after {
+  content: ':';
+}
+/* line 236, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/theme.css.scss */
+.sticky .done {
+  font-weight: bold;
+}
+/* line 237, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/theme.css.scss */
+.sticky.editing {
+  box-shadow: -3px 3px 5px #f9d272;
+}
+
+/* line 241, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/theme.css.scss */
+.modal-container {
+  background: rgba(255, 255, 255, 0.95);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* line 245, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/theme.css.scss */
+.modal-content {
+  box-shadow: -3px 5px 10px rgba(0, 0, 0, 0.1);
+  background: white;
+  border: 1px solid #d0d7da;
+}
+
+/* line 1, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/twitter-typeahead.css.scss */
+.twitter-typeahead {
+  width: 100%;
+  color: #1e2427;
+  line-height: 2;
+}
+/* line 5, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/twitter-typeahead.css.scss */
+.twitter-typeahead input {
+  font-size: 1em;
+}
+/* line 6, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/twitter-typeahead.css.scss */
+.twitter-typeahead p {
+  margin: 0;
+}
+/* line 7, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/twitter-typeahead.css.scss */
+.twitter-typeahead h3 {
+  padding: 0 12px;
+  font-size: 1em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+/* line 14, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/twitter-typeahead.css.scss */
+.tt-query {
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+/* line 20, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/twitter-typeahead.css.scss */
+.tt-hint {
+  color: #999999;
+}
+
+/* line 24, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/twitter-typeahead.css.scss */
+.tt-dropdown-menu {
+  width: 100%;
+  margin-top: 4px;
+  padding: 4px 0;
+  background-color: #fff;
+  border-radius: em(3);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+/* line 31, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/twitter-typeahead.css.scss */
+.tt-dropdown-menu > *:not(:empty) {
+  border-top: 1px solid #d0d7da;
+}
+/* line 34, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/twitter-typeahead.css.scss */
+.tt-dropdown-menu .tt-dataset-people {
+  border-top: none;
+}
+
+/* line 37, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/twitter-typeahead.css.scss */
+.tt-suggestion {
+  padding: 0 12px;
+  margin: 0;
+}
+
+/* line 42, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/twitter-typeahead.css.scss */
+.tt-suggestion.tt-cursor {
+  color: #fff;
+  background-color: #18506e;
+}
+
+/* line 1, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/loading.css.scss */
+.lb-loading {
+  font-size: 16px;
+  height: 1em;
+  width: 1em;
+  margin: 15px auto;
+  position: relative;
+  -webkit-animation: rotation .8s infinite ease-in-out;
+  -moz-animation: rotation .8s infinite ease-in-out;
+  -o-animation: rotation .8s infinite ease-in-out;
+  animation: rotation .8s infinite ease-in-out;
+  border-left: 3px solid #18506e;
+  border-right: 3px solid #18506e;
+  border-bottom: 3px solid #18506e;
+  border-top: 3px solid #3182a2;
+  border-radius: 100%;
+  text-indent: -99999em;
+  overflow: hidden;
+}
+
+@-webkit-keyframes rotation {
+  /* line 21, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/loading.css.scss */
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+
+  /* line 22, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/loading.css.scss */
+  to {
+    -webkit-transform: rotate(359deg);
+  }
+}
+
+@-moz-keyframes rotation {
+  /* line 26, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/loading.css.scss */
+  from {
+    -moz-transform: rotate(0deg);
+  }
+
+  /* line 27, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/loading.css.scss */
+  to {
+    -moz-transform: rotate(359deg);
+  }
+}
+
+@-o-keyframes rotation {
+  /* line 31, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/loading.css.scss */
+  from {
+    -o-transform: rotate(0deg);
+  }
+
+  /* line 32, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/loading.css.scss */
+  to {
+    -o-transform: rotate(359deg);
+  }
+}
+
+@keyframes rotation {
+  /* line 36, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/loading.css.scss */
+  from {
+    transform: rotate(0deg);
+  }
+
+  /* line 37, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/loading.css.scss */
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+/* line 2, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/people.css.scss */
+body.people a {
+  color: #3182a2;
+}
+
+/* line 6, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/people.css.scss */
+.people-table th.grade, .people-table th.projects_count, .people-table th.engagements_count,
+.people-table th.created_at {
+  text-align: right;
+}
+/* line 7, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/people.css.scss */
+.people-table th.dream_team {
+  text-align: center;
+}
+/* line 8, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/people.css.scss */
+.people-table td:first-child, .people-table td:nth-child(2) {
+  width: 20%;
+}
+/* line 11, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/people.css.scss */
+.people-table td a, .people-table th a {
+  color: #3182a2;
+}
+
+/* line 15, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/people.css.scss */
+#person-form {
+  display: block;
+}
+/* line 15, /Users/chrisfrank/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bourbon-3.2.4/app/assets/stylesheets/addons/_clearfix.scss */
+#person-form:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+/* line 18, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/people.css.scss */
+#person-form .first-name-field, #person-form .last-name-field, #person-form .role-field, #person-form .sex-field,
+#person-form .grade-field, #person-form .sex-field, #person-form .dream-team-field {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 23.23176%;
+}
+/* line 38, /Users/chrisfrank/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/neat-1.5.1/app/assets/stylesheets/grid/_span-columns.scss */
+#person-form .first-name-field:last-child, #person-form .last-name-field:last-child, #person-form .role-field:last-child, #person-form .sex-field:last-child,
+#person-form .grade-field:last-child, #person-form .sex-field:last-child, #person-form .dream-team-field:last-child {
+  margin-right: 0;
+}
+/* line 21, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/people.css.scss */
+#person-form .dream-team-field {
+  margin-right: 0;
+}
+/* line 24, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/people.css.scss */
+#person-form .school-field {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 48.82117%;
+  margin-right: 0;
+}
+/* line 38, /Users/chrisfrank/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/neat-1.5.1/app/assets/stylesheets/grid/_span-columns.scss */
+#person-form .school-field:last-child {
+  margin-right: 0;
+}
+/* line 28, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/people.css.scss */
+#person-form .role-field {
+  clear: both;
+}
+/* line 31, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/people.css.scss */
+#person-form .email-field, #person-form .phone-field {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 48.82117%;
+}
+/* line 38, /Users/chrisfrank/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/neat-1.5.1/app/assets/stylesheets/grid/_span-columns.scss */
+#person-form .email-field:last-child, #person-form .phone-field:last-child {
+  margin-right: 0;
+}
+/* line 34, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/people.css.scss */
+#person-form .phone-field {
+  margin-right: 0;
+}
+
+/* line 2, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/engagements.css.scss */
+.engagements a {
+  color: #a05e86;
+}
+/* line 3, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/engagements.css.scss */
+.engagements a.duplicate {
+  color: #e9a444;
+}
+
+/* line 6, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/engagements.css.scss */
+#engagements-table a {
+  color: #a05e86;
+}
+/* line 7, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/engagements.css.scss */
+#engagements-table th.headcount, #engagements-table th.date, #engagements-table th.duration {
+  text-align: right;
+}
+/* line 10, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/engagements.css.scss */
+#engagements-table td:first-child {
+  width: 30%;
+}
+/* line 13, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/engagements.css.scss */
+#engagements-table td:nth-child(2) {
+  width: 20%;
+}
+
+/* line 17, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/engagements.css.scss */
+#engagement-form {
+  display: block;
+}
+/* line 15, /Users/chrisfrank/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bourbon-3.2.4/app/assets/stylesheets/addons/_clearfix.scss */
+#engagement-form:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+/* line 19, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/engagements.css.scss */
+#engagement-form .duration-field, #engagement-form .date-field {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 23.23176%;
+}
+/* line 38, /Users/chrisfrank/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/neat-1.5.1/app/assets/stylesheets/grid/_span-columns.scss */
+#engagement-form .duration-field:last-child, #engagement-form .date-field:last-child {
+  margin-right: 0;
+}
+/* line 22, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/engagements.css.scss */
+#engagement-form .duration-field {
+  margin-right: 0;
+}
+/* line 25, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/engagements.css.scss */
+#engagement-form .kind-field, #engagement-form .school-field, #engagement-form .name-field {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 48.82117%;
+}
+/* line 38, /Users/chrisfrank/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/neat-1.5.1/app/assets/stylesheets/grid/_span-columns.scss */
+#engagement-form .kind-field:last-child, #engagement-form .school-field:last-child, #engagement-form .name-field:last-child {
+  margin-right: 0;
+}
+/* line 28, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/engagements.css.scss */
+#engagement-form .school-field {
+  margin-right: 0;
+}
+/* line 29, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/engagements.css.scss */
+#engagement-form .alternate-label, #engagement-form .headcount-field {
+  display: none;
+}
+/* line 33, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/engagements.css.scss */
+#engagement-form .event .headcount-field {
+  display: block;
+}
+/* line 34, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/engagements.css.scss */
+#engagement-form .event .alternate-label {
+  display: block;
+}
+/* line 35, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/engagements.css.scss */
+#engagement-form .event .primary-label {
+  display: none;
+}
+
+/* line 2, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/projects.css.scss */
+#projects-table a {
+  color: #4b6385;
+}
+/* line 3, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/projects.css.scss */
+#projects-table th.leading {
+  text-align: center;
+}
+/* line 4, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/projects.css.scss */
+#projects-table th.people_count {
+  text-align: right;
+}
+/* line 5, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/projects.css.scss */
+#projects-table th.created_at {
+  text-align: right;
+}
+/* line 6, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/projects.css.scss */
+#projects-table th.updated_at {
+  text-align: right;
+}
+
+/* line 8, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/projects.css.scss */
+#project-form {
+  display: block;
+}
+/* line 15, /Users/chrisfrank/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bourbon-3.2.4/app/assets/stylesheets/addons/_clearfix.scss */
+#project-form:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+/* line 10, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/projects.css.scss */
+#project-form .name-field, #project-form .status-field, #project-form .school-field {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 31.76157%;
+}
+/* line 38, /Users/chrisfrank/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/neat-1.5.1/app/assets/stylesheets/grid/_span-columns.scss */
+#project-form .name-field:last-child, #project-form .status-field:last-child, #project-form .school-field:last-child {
+  margin-right: 0;
+}
+/* line 13, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/projects.css.scss */
+#project-form .school-field {
+  margin-right: 0;
+}
+
+/* line 16, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/projects.css.scss */
+body.projects .titlebar a, body.projects .leaderboard a {
+  color: #4b6385;
+}
+
+/* line 2, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/report-submissions.css.scss */
+body.report a {
+  color: #6a8d90;
+}
+/* line 3, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/report-submissions.css.scss */
+body.report a.submit {
+  color: #f9d272;
+  font-weight: bold;
+}
+/* line 7, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/report-submissions.css.scss */
+body.report th.created_at {
+  text-align: right;
+}
+
+/* line 12, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/report-submissions.css.scss */
+#report-submissions-table td:nth-child(3) a {
+  color: #1e2427;
+}
+
+/* line 17, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/report-submissions.css.scss */
+#report-submissions-table-wrapper {
+  margin-top: -16px;
+}
+
+@media print {
+  @page {
+    margin: .25in;
+}
+
+  /* line 5, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/print.css.scss */
+  #header, #tabs, #global-add {
+    display: none;
+  }
+
+  /* line 8, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/print.css.scss */
+  body {
+    margin-top: 0;
+    border-left: none;
+    font-size: 10px;
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  /* line 15, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/print.css.scss */
+  #yield {
+    margin-top: -66px;
+  }
+
+  /* line 18, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/print.css.scss */
+  #yield > article {
+    page-break-before: always;
+  }
+
+  /* line 21, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/print.css.scss */
+  #yield > * {
+    margin-top: 0;
+    padding: 0;
+  }
+
+  /* line 25, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/print.css.scss */
+  .school-header {
+    margin-top: -66px;
+    margin-bottom: 66px;
+  }
+
+  /* line 30, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/print.css.scss */
+  .person-show .button-actions, .person-show .person-email, .person-show .person-phone {
+    display: none;
+  }
+  /* line 33, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/print.css.scss */
+  .person-show .highcharts-container {
+    box-shadow: none;
+    -webkit-transform-origin: left top;
+    -moz-transform-origin: left top;
+    -ms-transform-origin: left top;
+    -o-transform-origin: left top;
+    transform-origin: left top;
+    -webkit-transform: scale(0.5);
+    -moz-transform: scale(0.5);
+    -ms-transform: scale(0.5);
+    -o-transform: scale(0.5);
+    transform: scale(0.5);
+  }
+
+  /* line 15, /Users/chrisfrank/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/bourbon-3.2.4/app/assets/stylesheets/addons/_clearfix.scss */
+  .person-projects:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  /* line 41, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/print.css.scss */
+  .person-projects .project {
+    box-shadow: none;
+    padding: 0;
+  }
+  /* line 45, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/print.css.scss */
+  .person-projects .project-updated-at {
+    display: none;
+  }
+
+  /* line 47, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/print.css.scss */
+  .school-labels {
+    display: none;
+  }
+
+  /* line 50, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/print.css.scss */
+  .graph {
+    margin: 0 auto;
+    overflow: hidden;
+  }
+
+  /* line 54, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/print.css.scss */
+  .bubble-graph {
+    height: 30em;
+  }
+
+  /* line 57, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/print.css.scss */
+  .print-row {
+    float: none;
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+/* line 22, /Users/chrisfrank/Code/logbook/app/assets/stylesheets/logbook/logbook.css.scss */
+html, body {
+  font-size: 15px;
+  margin: 0;
+  padding: 0;
+  font-weight: 400;
+  font-family: avenir, "avenir next", avenir, "helvetica neue", helvetica;
+  background-color: #fafafa;
+  color: #1e2427;
+  line-height: 20px;
+}
