@@ -12,7 +12,8 @@ class OauthUserCreator
       user.update(
         first_name: auth_hash[:info][:first_name],
         last_name: auth_hash[:info][:last_name],
-        avatar_url: auth_hash[:info][:image]
+        avatar_url: auth_hash[:info][:image],
+        role: 'DD'
       )
       user
     end
