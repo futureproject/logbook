@@ -5,7 +5,7 @@ Add actual duration to engagement form
 restore "Toggle Dream Team"
 Trigger flash notices after any edit actions
 Hours per person graph goes away when it is blank. Do other graphs do that too?
-Person profile engagement bubbles should ignore the time filter
+aerson profile engagement bubbles should ignore the time filter
 Welcome animation
 Add projects and engagements just like you add notes
 Make FACTBAR SCHOOL open school info popover, with cursor: help
@@ -19,7 +19,6 @@ make graph click events use the router, not just navigate
 
 HEAVY LIFTS
 ------------
-Make reports export to GDrive
 
 MAKE PERMISSIONS-LIMITED MOBILE APP
   Add 'volunteer' to people roles
@@ -28,16 +27,16 @@ MAKE PERMISSIONS-LIMITED MOBILE APP
     hours available/wk
 
 FILTERS ON LISTS
+Person Profile Pictures
 EMAIL NOTIFICATIONS
 SCAN HASHTAGS
 MAKE HASHTAGS LINKABLE
 Notifications of dormant students and project
 Data Export
-Advanced Search
 Student Groups beyond dream team
 View all notes as timeline, toggleable by source (person, project, engagement)
 Clicking a note poster should open a gallery modal
 _ make the Logged Hours Per Person graph a single series
 Link engagements to projects
-Person Profile Pictures
+Advanced Search
 Add GOAL to engagements
