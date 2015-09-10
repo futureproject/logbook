@@ -1,9 +1,9 @@
 LOW HANGING FRUIT
 --------------------
-restore "Toggle Dream Team"
-Make current_user view link to profile page
-Trigger flash notices after any edit actions
+Add better date field to engagement form
 Add actual duration to engagement form
+restore "Toggle Dream Team"
+Trigger flash notices after any edit actions
 Hours per person graph goes away when it is blank. Do other graphs do that too?
 Person profile engagement bubbles should ignore the time filter
 Welcome animation

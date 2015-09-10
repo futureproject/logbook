@@ -1,3 +1,5 @@
-<img src="<%= avatar_url %>">
-<div class='current-user-name'><%= first_name %> <%= last_name %></div>
-<a href="/auth/logout">Log Out</a>
+<a title="View Profile" class="to-profile" href="/logbook/people/<%= user.id %>">
+  <img src="<%= user.avatar_url %>" alt="View Profile">
+</a>
+<div class='current-user-name'><%= user.first_name %> <%= user.last_name %></div>
+<a href="/auth/logout" title="Log Out">Log Out</a>

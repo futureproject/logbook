@@ -7,6 +7,9 @@ class ds.UserView extends Backbone.View
 
   el: '#user'
 
+  events:
+    'click .to-profile': 'to_profile'
+
   toggle: ->
     if @visible then @hide() else @show()
 
@@ -21,6 +24,12 @@ class ds.UserView extends Backbone.View
   template: JST['logbook/templates/user']
 
   render: ->
-    @$el.html @template(@model.toJSON())
+    @$el.html @template(@model.tplAttrs())
     @
+
+  to_profile: (event) ->
+    event.preventDefault()
+    path = event.currentTarget.pathname
+    console.log path
+    ds.router.navigate path, { trigger: true }
 
