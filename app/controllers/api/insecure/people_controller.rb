@@ -8,8 +8,8 @@ class Api::Insecure::PeopleController < Api::Insecure::BaseController
   end
 
   def sync
-    @people = current_scope.people.btw(people_times).count
-    @people > 0 ? head(302) : head(304)
+    @count = current_scope.people.btw(people_times).count
+    @count > 0 ? head(302) : head(304)
   end
 
   # GET /api/insecure/people/1
