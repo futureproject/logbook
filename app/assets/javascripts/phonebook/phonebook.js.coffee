@@ -13,9 +13,7 @@
 #= require_tree ./views
 #= require_tree ./controllers
 #= require ./router
-#= require_self
 
-window.ds ||= {}
 ds.models = {}
 ds.views = {}
 ds.controllers ={}

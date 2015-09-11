@@ -2,9 +2,6 @@
 %html{manifest_path('/phonebook/manifest.appcache')}
   %head
     %title Phonebook
-    %style
-      :css
-        html, body { background: black; }
 
     = stylesheet_link_tag    'phonebook/phonebook', media: 'all'
     = csrf_meta_tags
@@ -25,6 +22,8 @@
     %link{:href => asset_path("phonebook-startup-640x1096.png"), :media => "(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)", :rel => "apple-touch-startup-image"}
     / iOS 6 & 7 iPhone (retina)
     %link{:href => asset_path("phonebook-startup-640x920.png"), :media => "(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)", :rel => "apple-touch-startup-image"}
+    :javascript
+      window.ds = window.ds || {}
 
   %body#phonebook
     = javascript_include_tag 'phonebook/phonebook'
