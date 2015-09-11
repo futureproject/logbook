@@ -5,32 +5,10 @@ class School < ActiveRecord::Base
   before_create :set_shortname
 
   belongs_to :site, touch: true
-
   has_many :people
   has_many :projects
   has_many :engagements
   has_many :engagement_attendees, through: :engagements
-
-  include Sortable
-
-  scope :user_sort, -> (column) { order column.to_s }
-
-  scope :by_count, -> (column) {
-    select("schools.id, schools.*, count(#{column}.id) AS #{column}_count").
-        joins(column.to_sym).
-        group("schools.id").
-        order("#{column}_count DESC")
-  }
-
-  scope :dream_team, -> (order='DESC') {
-    select("schools.id, schools.*, count(people.id) AS people_count").
-        joins(:people).where('people.dream_team = ?', true).
-        group("schools.id").
-        order("people_count #{order}")
-  }
-  scope :by_hours, -> (order='DESC') {
-    joins(:engagements).select("schools.*, SUM(engagements.duration) AS engagement_hours").group('schools.id')
-  }
 
   def set_shortname
     if self.shortname.blank?

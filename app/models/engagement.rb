@@ -31,23 +31,12 @@ class Engagement < ActiveRecord::Base
 
   COLOR_ENUM = %w(#b363a4 #56304f #f1c7e9 #8457b3)
 
-  scope :q, -> (query) { where("engagements.name like ?", "%#{query.downcase}%") }
+  include Joinable
+  scope :btw, -> (range) { where(date: range) }
   scope :week_of, -> (date) { where(date: date.beginning_of_week..date.end_of_week) }
   scope :since, -> (date) { where('date >= ?', date) }
-  scope :btw, -> (range) { where(date: range) }
   scope :with_attendees, -> (table) {
     joins(:attendees).select("engagements.*, COUNT(#{table}.id) AS #{table}_count").group("engagements.id")
-  }
-  scope :with_association, -> (table) {
-    joins(table.to_sym).select("engagements.*, COUNT(#{table}.id) AS #{table}_count").group('engagements.id')
-  }
-
-  scope :conditionally_joined, -> (params, stat_times) {
-    if params[:sort_by] == "notes_count"
-      with_association(:notes).merge(btw(stat_times))
-    else
-      btw(stat_times)
-    end
   }
 
   def autoname

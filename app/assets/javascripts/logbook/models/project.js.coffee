@@ -37,6 +37,7 @@ class ds.ProjectsCollection extends Backbone.PageableCollection
     {name: 'description', cell: 'string' }
     {name: 'status', cell:'string'}
     {name: 'people_count', cell:'integer', label: 'Team Size'}
+    {name: 'notes_count', cell:'integer', label: "Notes"}
     {name: 'created_at', cell:'date', label: 'created'}
     {name: 'updated_at', cell:'date', label: 'updated'}
   ]

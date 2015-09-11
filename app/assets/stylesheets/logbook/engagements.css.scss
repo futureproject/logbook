@@ -4,7 +4,7 @@
 }
 #engagements-table {
   a { color: $engagements-color; }
-  th.headcount, th.date, th.duration {
+  th.headcount, th.date, th.duration, th.notes_count {
     text-align: right;
   }
   td:first-child {

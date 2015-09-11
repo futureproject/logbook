@@ -3,7 +3,7 @@ body.people {
 }
 .people-table {
   th.grade, th.projects_count, th.engagements_count,
-  th.created_at { text-align: right; }
+  th.notes_count, th.created_at { text-align: right; }
   th.dream_team { text-align: center; }
   td:first-child, td:nth-child(2) {
     width: 20%;

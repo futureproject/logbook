@@ -10,23 +10,6 @@ class Project < ActiveRecord::Base
   COLOR_ENUM = %w(#419AD3 #568099 #064974 #FFAC43 #B66500 #FFEDD6)
   STATUS_ENUM = %w(underway stalled complete)
 
-  scope :q, -> (query) { where("projects.name like ?", "%#{query.downcase}%") }
+  include Joinable
 
-  scope :with_association, -> (table) {
-    joins(table.to_sym)
-    .select("projects.*, COUNT(#{table}.id) AS #{table}_count")
-    .group('projects.id')
-  }
-
-  scope :conditionally_joined, -> (params, stat_times) {
-    if params[:sort_by] == "notes_count"
-      with_association(:notes).merge(btw(stat_times))
-    elsif params[:sort_by] == "people_count"
-      with_association(:people).merge(btw(stat_times))
-    else
-      btw(stat_times)
-    end
-  }
-
-  scope :btw, -> (range) { where(created_at: range) }
 end

@@ -4,4 +4,5 @@ class Note < ActiveRecord::Base
   belongs_to :author, foreign_key: 'author_id', class_name: 'Person'
   has_many :assets, as: :attachable, dependent: :destroy
   accepts_nested_attributes_for :assets
+  scope :btw, -> (range) { where(created_at: range) }
 end

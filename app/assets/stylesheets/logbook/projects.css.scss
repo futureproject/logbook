@@ -1,7 +1,7 @@
 #projects-table {
   a { color: $projects-color; }
   th.leading { text-align: center; }
-  th.people_count { text-align: right; }
+  th.people_count, th.notes_count { text-align: right; }
   th.created_at { text-align: right; }
   th.updated_at { text-align: right; }
 }

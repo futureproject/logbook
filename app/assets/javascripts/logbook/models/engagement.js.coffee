@@ -34,6 +34,7 @@ class ds.EngagementsCollection extends Backbone.PageableCollection
     {name: 'kind', cell: 'string' }
     {name: 'headcount', cell:'integer'}
     {name: 'duration', cell:'integer', label: "Duration (Hrs)"}
+    {name: 'notes_count', cell:'integer', label: "Notes"}
     {name: 'date', cell: 'date' }
   ]
   parseRecords: (response) ->
