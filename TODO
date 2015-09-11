@@ -1,8 +1,5 @@
 LOW HANGING FRUIT
 --------------------
-add notes_count to projects
-add notes_count to engagements
-add notes_count to people
 Add better date field to engagement form
 Add actual duration to engagement form
 restore "Toggle Dream Team"
