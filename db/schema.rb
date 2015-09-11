@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150901160846) do
+ActiveRecord::Schema.define(version: 20150911191228) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -108,20 +108,22 @@ ActiveRecord::Schema.define(version: 20150901160846) do
   create_table "people", force: :cascade do |t|
     t.citext   "first_name"
     t.citext   "last_name"
-    t.string   "role",         limit: 255, default: "student"
+    t.string   "role",          limit: 255, default: "student"
     t.integer  "school_id"
     t.integer  "grade"
-    t.boolean  "dream_team",               default: false
+    t.boolean  "dream_team",                default: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "email",        limit: 255
-    t.string   "phone",        limit: 255
-    t.string   "sex",          limit: 255
+    t.string   "email",         limit: 255
+    t.string   "phone",         limit: 255
+    t.string   "sex",           limit: 255
     t.integer  "site_id"
     t.integer  "creator_id"
     t.integer  "graduated_in"
     t.string   "auth_token"
     t.string   "avatar_url"
+    t.boolean  "media_release"
+    t.text     "bio"
   end
 
   add_index "people", ["dream_team"], name: "index_people_on_dream_team", using: :btree

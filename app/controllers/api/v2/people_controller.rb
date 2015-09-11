@@ -81,7 +81,8 @@ class Api::V2::PeopleController < Api::V2::BaseController
         :email,
         :phone,
         :sex,
-        :legacy_notes
+        :bio,
+        :media_release
       )
     end
 

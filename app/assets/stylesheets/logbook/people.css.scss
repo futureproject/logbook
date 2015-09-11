@@ -28,8 +28,11 @@ body.people {
   .role-field {
     clear: both;
   }
-  .email-field, .phone-field {
+  .email-field {
     @include span-columns(6);
   }
-  .phone-field { @include omega; }
+  .phone-field, .media-release-field {
+    @include span-columns(3);
+  }
+  .media-release-field { @include omega; }
 }
