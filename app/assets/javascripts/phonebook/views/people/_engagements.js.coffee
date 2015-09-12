@@ -9,7 +9,9 @@ class ds.People_EngagementsView extends Backbone.View
     'click .add': 'goToAdd'
 
   render: ->
-    @$el.html @template(@model.tplAttrs())
+    attrs = @model.tplAttrs()
+    return @ unless attrs.person.engagements
+    @$el.html @template(attrs)
     @postRender()
     @
 
@@ -47,4 +49,4 @@ class ds.EngagementView extends Backbone.View
       e.destroy()
       @$el.animate({ height: 0, left: -window.innerWidth}, 'fast', () -> $(this).remove() )
     else
-      Backbone.trigger "notify", "You can only delete engagements you've created this session."
+      Backbone.trigger "notification", "You can only delete engagements you've created this session."

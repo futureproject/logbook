@@ -24,7 +24,10 @@ class ds.PeopleShowView extends Backbone.View
     @views.engagements.renderTo "#person-engagements"
 
   events:
+    'touchstart .button': (e) ->
     'click .back': 'back'
+    'click .edit': 'edit'
 
   back: -> Backbone.trigger "people:do", "index"
+  edit: -> Backbone.trigger "people:do", "edit", @model.id
 

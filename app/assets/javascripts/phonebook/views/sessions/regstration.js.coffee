@@ -48,8 +48,8 @@ class ds.SessionsRegistrationView extends Backbone.View
         data: person: data
         url: ds.apiHelper.urlFor("people")
         success: (response) ->
-          msg = "All set, #{data.first_name}. Tap a person's name to log an engagement with them."
-          Backbone.trigger "notify", msg
+          msg = "All set, #{data.first_name}. Your people are downloading. If you don't see who you're looking for, use the search field to find or add someone."
+          Backbone.trigger "notification", msg, 10000
           ds.user.create data
           ds.run()
         error: (error) ->

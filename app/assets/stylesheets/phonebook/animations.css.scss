@@ -50,20 +50,20 @@
     opacity: 0;
   }
 }
-@include keyframes(slideInVertical) {
+@include keyframes(dropIn) {
   from {
-    @include transform(translate3d(0,102%,0));
+    @include transform(translate3d(0,-100%,0));
   }
   to {
     @include transform(translate3d(0,0,0));
   }
 }
-@include keyframes(slideOutVertical) {
+@include keyframes(dropOut) {
   from {
     @include transform(translate3d(0,0,0));
   }
   to {
-    @include transform(translate3d(0,102%,0));
+    @include transform(translate3d(0,100%,0));
   }
 }
 @include keyframes(fadeIn) {
@@ -105,6 +105,14 @@
 .animation-fallin {
   @include transform-origin(center top);
   @include animation(fallin .4s);
+  @include animation-timing-function(cubic-bezier(0.23,1,0.32,1));
+}
+.animation-dropin {
+  @include animation(dropIn .4s);
+  @include animation-timing-function(cubic-bezier(0.23,1,0.32,1));
+}
+.animation-dropout {
+  @include animation(dropOut .4s);
   @include animation-timing-function(cubic-bezier(0.23,1,0.32,1));
 }
 .enter-stage-right {

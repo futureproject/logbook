@@ -30,6 +30,8 @@ class ds.SessionsNewView extends Backbone.View
           # this user already exists, so sign her in
           ds.user.create response
           ds.run()
+          msg = "Welcome, #{response.first_name}. Your people are downloading."
+          Backbone.trigger 'notification', msg
         error: (response) =>
           # if this is a 404 error, move to registration
           if response.status == 404

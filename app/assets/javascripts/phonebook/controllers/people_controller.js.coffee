@@ -25,6 +25,13 @@ class ds.PeopleController extends Backbone.View
       model: person
     @views.show.renderTo @el
 
+  edit: (id) ->
+    ds.router.navigate "phonebook/people/#{id}/edit"
+    person = @getModelFromId(id)
+    @views.edit = new ds.PeopleEditView
+      model: person
+    @views.edit.renderTo @el
+
   add_engagement: (id) ->
     ds.router.navigate "phonebook/people/#{id}/add/engagement"
     person = @getModelFromId(id)
@@ -53,6 +60,3 @@ class ds.PeopleController extends Backbone.View
     else
       [person_id]
 
-
-  hideAll: ->
-    _.each @views, (view) -> view.hide()

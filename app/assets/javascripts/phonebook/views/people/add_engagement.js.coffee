@@ -6,6 +6,7 @@ class ds.PeopleAddEngagementView extends Backbone.View
     @listen()
 
   events:
+    'touchstart .button': (e) ->
     'submit': 'onsubmit'
     'click .cancel': 'cancel'
     'click .done': (e) -> @$el.find('form').submit()
@@ -30,7 +31,7 @@ class ds.PeopleAddEngagementView extends Backbone.View
     if @model.save data
       ds.collections.engagements.add @model
       Backbone.trigger "people:do", "show", @person.id
-      Backbone.trigger "notify", "Engagement Added!"
+      Backbone.trigger "notification", "Engagement Added!"
     else
       alert @model.validationError
 

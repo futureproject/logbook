@@ -16,6 +16,10 @@
 }
 .field {
   margin-bottom: 15px;
+  input[type=checkbox] {
+    display: inline-block;
+    width: auto;
+  }
 }
 
 .dual-action {
@@ -98,4 +102,13 @@
 }
 .standalone .absolute {
   top: 20px;
+}
+
+.notification {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 15px;
+  z-index: 1000000;
 }

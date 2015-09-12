@@ -12,19 +12,10 @@ class Api::Insecure::EngagementsController < Api::Insecure::BaseController
     @total = @engagements.total_count
   end
 
-  # GET /api/v2/engagements/leaderboard
-  def leaderboard
-    @t = stat_times
-    @scope = current_scope
-  end
-
   # GET /api/v2/engagements/1
   # GET /api/v2/engagements/1.json
   def show
-  end
-
-  def upload
-    render partial: 'engagements/upload'
+    @engagement = Engagement.find(params[:id])
   end
 
   # GET /api/v2/engagements/new
@@ -34,11 +25,7 @@ class Api::Insecure::EngagementsController < Api::Insecure::BaseController
 
   # GET /api/v2/engagements/1/edit
   def edit
-  end
-
-  def attendees
-    @people = @engagement.attendees.order('updated_at DESC')
-    render template: 'api/v2/people/index'
+    @engagement = Engagement.find(params[:id])
   end
 
   # POST /api/v2/engagements
@@ -55,27 +42,29 @@ class Api::Insecure::EngagementsController < Api::Insecure::BaseController
 
   # PATCH/PUT /api/v2/engagements/1
   # PATCH/PUT /api/v2/engagements/1.json
-  def update
-    if @engagement.update(engagement_params)
-      render :show, status: :ok, location: api_v2_engagement_url(@engagement)
-    else
-      render json: @engagement.errors, status: :unprocessable_entity
-    end
-  end
+  #def update
+    #@engagement = current_user.created_engagements.find(params[:id])
+    #if @engagement.update(engagement_params)
+      #render :show, status: :ok, location: api_v2_engagement_url(@engagement)
+    #else
+      #render json: @engagement.errors, status: :unprocessable_entity
+    #end
+  #end
 
   # DELETE /api/v2/engagements/1
   # DELETE /api/v2/engagements/1.json
   def destroy
-    @engagement.destroy
-    head :no_content
+    @engagement = Engagement.find(params[:id])
+    if @engagement.created_at > 1.hour.ago
+      @engagement.destroy
+      head :no_content
+    else
+      head 406
+    end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_engagement
-      @engagement = Engagement.find(params[:id])
-    end
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def engagement_params
       params.require(:engagement).permit(
