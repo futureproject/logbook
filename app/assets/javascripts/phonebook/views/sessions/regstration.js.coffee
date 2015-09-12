@@ -1,6 +1,6 @@
 class ds.SessionsRegistrationView extends Backbone.View
   template: JST["phonebook/templates/sessions/registration"]
-  className: "panel"
+  className: "panel screen"
   events:
     'change #site_id': 'loadSchoolOptions'
     'submit': 'processRegistration'
@@ -43,12 +43,14 @@ class ds.SessionsRegistrationView extends Backbone.View
     data = Backbone.Syphon.serialize @
     valid = (!!data.first_name && !!data.last_name && !!data.site_id)
     if valid
-      person = new ds.Person(data)
-      person.save data,
-        success: (res) ->
-          msg = "All set, #{person.get('first_name')}. Tap a person's name to log an engagement with them."
+      $.ajax
+        method: "POST"
+        data: person: data
+        url: ds.apiHelper.urlFor("people")
+        success: (response) ->
+          msg = "All set, #{data.first_name}. Tap a person's name to log an engagement with them."
           Backbone.trigger "notify", msg
-          ds.user.create person.toJSON()
+          ds.user.create data
           ds.run()
         error: (error) ->
           console.log error

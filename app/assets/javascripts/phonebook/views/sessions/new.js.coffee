@@ -1,6 +1,6 @@
 class ds.SessionsNewView extends Backbone.View
   template: JST["phonebook/templates/sessions/new"]
-  className: "panel"
+  className: "panel screen"
   initialize: ->
     @views =
       spinner: new ds.SpinnerView

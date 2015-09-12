@@ -22,7 +22,11 @@ class Api::Insecure::PeopleController < Api::Insecure::BaseController
   # POST /api/insecure/people
   # POST /api/insecure/people.json
   def create
-    @person = current_user.created_people.new(person_params_with_school)
+    if current_user
+      @person = current_user.created_people.new(person_params_with_school)
+    else
+      @person = Person.new(person_params_with_school)
+    end
     if @person.save
       render :show, status: :created, location: api_insecure_person_url(@person)
     else
@@ -61,6 +65,7 @@ class Api::Insecure::PeopleController < Api::Insecure::BaseController
         :last_name,
         :role,
         :school_id,
+        :site_id,
         :grade,
         :dream_team,
         :email,

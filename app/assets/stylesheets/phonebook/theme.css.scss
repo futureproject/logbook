@@ -156,7 +156,13 @@ textarea {
  color: rgba(255,255,255,.5);
 }
 
-.hairlines * {
- border-top-width: 0.5px !important;
- border-bottom-width: 0.5px !important;
+.hairlines {
+  * {
+   border-top-width: 0.5px !important;
+   border-bottom-width: 0.5px !important;
+ }
+ .lb-loading {
+   border-top-width: 3px !important;
+   border-bottom-width: 3px !important;
+ }
 }
