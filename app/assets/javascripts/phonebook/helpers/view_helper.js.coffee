@@ -7,11 +7,17 @@ Backbone.View.prototype.renderTo = (target, args) ->
   this.render()
 
 Backbone.View.prototype.hide = ->
-  endEvent = ds.animationHelper.endEvent()
-  @$el.removeClass (index, css) ->
-    css.match((/(^|\s)animation-\S+/g) || [])?.join(' ')
-  @$el.one(endEvent, =>
+  endEvent = ds.ANIMATION_END_EVENT
+  if endEvent?
+    prefix = "animation"
+    classes = @el.className.split(" ")
+    classes = classes.filter (css_class) ->
+      css_class.lastIndexOf(prefix, 0) != 0
+    @el.className = $.trim(classes.join(" "))
+    @$el.one(endEvent, =>
+      _.each(@views, (view) -> view.remove() )
+      @remove()
+    ).addClass('animation-fallout')
+  else
     _.each(@views, (view) -> view.remove() )
     @remove()
-  ).addClass('animation-fallout')
-

@@ -8,7 +8,6 @@ class ds.AppView extends Backbone.View
       xhr.setRequestHeader "X-DS-USER", user.get('email')
       #xhr.setRequestHeader "X-DS-SCOPE-TYPE", user.get('scope_type')
       #xhr.setRequestHeader "X-DS-SCOPE-ID", user.get('scope_id')
-
     @listenTo Backbone, 'scroll:reset', @resetScrollPosition
 
   resetScrollPosition: (pos) ->

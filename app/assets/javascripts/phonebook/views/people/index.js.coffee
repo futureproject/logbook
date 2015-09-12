@@ -44,15 +44,3 @@ class ds.PeopleIndexView extends Backbone.View
   despin: ->
     @spinner?.remove()
 
-
-  #hide: ->
-    #return unless @$el.is(':visible')
-    #@$el.addClass('fallout').one(ds.animationHelper.endEvent(), =>
-      #@$el.hide().removeClass('fallout')
-    #)
-
-  #show: ->
-    #return if @$el.is(':visible')
-    #@$el.show().addClass('fallin').one(ds.animationHelper.endEvent(), =>
-      #@$el.removeClass('fallin')
-    #)
