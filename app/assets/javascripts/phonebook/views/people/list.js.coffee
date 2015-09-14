@@ -57,7 +57,8 @@ class ds.PeopleListView extends Backbone.View
     person = new ds.Person
       first_name: first,
       last_name: last
-    @collection.create person
+    @collection.create person,
+      at: 0
       # set course for the Person Show page and engage at maximum warp
     Backbone.trigger "people:do", "show", person.cid
 

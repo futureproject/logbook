@@ -25,11 +25,4 @@
   .engagement {
     @include transition(background .3s);
   }
-  .btn {
-    background: $base-border-color;
-    &:active {
-      background: rgba(255,255,255,.1);
-      color: white;
-    }
-  }
 }

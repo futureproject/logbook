@@ -22,8 +22,18 @@ class ds.Engagement extends Backbone.Model
     @set('attendee_ids', ['']) if !@get('attendee_ids')?
     super
 
+  canBeDeleted: ->
+    # only allow models created within the last hour to be deleted
+    timestamp = Date.parse(@get('created_at')).getTime()
+    now = new Date().getTime()
+    (now-timestamp)/1000 < 3600
+
 class ds.EngagementsCollection extends Backbone.PageableCollection
   model: ds.Engagement
   namespace: 'engagements'
   url: -> ds.apiHelper.urlFor @namespace
   mode: 'client'
+  initialize: ->
+    @reset
+      remote: false
+      success: => @syncDirtyAndDestroyed()

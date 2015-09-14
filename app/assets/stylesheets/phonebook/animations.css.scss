@@ -66,6 +66,14 @@
     @include transform(translate3d(0,100%,0));
   }
 }
+@include keyframes(floatIn) {
+  from {
+    @include transform(translate3d(0,-100%,0));
+  }
+  to {
+    @include transform(translate3d(0,0,0));
+  }
+}
 @include keyframes(fadeIn) {
   from {
     opacity: 0;
@@ -115,6 +123,14 @@
   @include animation(dropOut .4s);
   @include animation-timing-function(cubic-bezier(0.23,1,0.32,1));
 }
+.animation-riseout {
+  @include animation(riseOut .4s);
+  @include animation-timing-function(cubic-bezier(0.23,1,0.32,1));
+}
+.animation-floatin {
+  @include animation(floatIn .4s);
+  @include animation-timing-function(cubic-bezier(0.23,1,0.32,1));
+}
 .enter-stage-right {
   @include animation(enterStageRight .6s);
   @include animation-timing-function(cubic-bezier(0.23,1,0.32,1));
@@ -131,14 +147,6 @@
   @include animation(exitStageLeft .6s);
   @include animation-timing-function(cubic-bezier(0.23,1,0.32,1));
 }
-.slide-in-vertical {
-  @include animation(slideInVertical .6s);
-  @include animation-timing-function(cubic-bezier(0.23,1,0.32,1));
-}
-.slide-out-vertical {
-  @include animation(slideOutVertical .6s);
-  @include animation-timing-function(cubic-bezier(0.23,1,0.32,1));
-}
 .fade-in {
   @include animation(fadeIn .6s);
   @include animation-timing-function(cubic-bezier(0.23,1,0.32,1));
@@ -150,7 +158,7 @@
 .fade-in-fast {
   @include animation(fadeIn .01s);
 }
-.collapse {
+.animation-collapse {
   @include animation(collapse .5s);
 }
 

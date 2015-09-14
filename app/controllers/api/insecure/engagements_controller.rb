@@ -1,9 +1,8 @@
 class Api::Insecure::EngagementsController < Api::Insecure::BaseController
   wrap_parameters format: [:json], include: [:attendee_ids, :name, :date, :kind, :school_id, :description, :duration, :headcount]
-  before_action :set_engagement, only: [:show, :edit, :update, :destroy, :upload, :attendees]
 
-  # GET /api/v2/engagements
-  # GET /api/v2/engagements.json
+  # GET /api/insecure/engagements
+  # GET /api/insecure/engagements.json
   def index
     @engagements = current_scope.engagements
       .conditionally_joined(params, stat_times)
@@ -12,47 +11,47 @@ class Api::Insecure::EngagementsController < Api::Insecure::BaseController
     @total = @engagements.total_count
   end
 
-  # GET /api/v2/engagements/1
-  # GET /api/v2/engagements/1.json
+  # GET /api/insecure/engagements/1
+  # GET /api/insecure/engagements/1.json
   def show
     @engagement = Engagement.find(params[:id])
   end
 
-  # GET /api/v2/engagements/new
+  # GET /api/insecure/engagements/new
   def new
     @engagement = Engagement.new
   end
 
-  # GET /api/v2/engagements/1/edit
+  # GET /api/insecure/engagements/1/edit
   def edit
     @engagement = Engagement.find(params[:id])
   end
 
-  # POST /api/v2/engagements
-  # POST /api/v2/engagements.json
+  # POST /api/insecure/engagements
+  # POST /api/insecure/engagements.json
   def create
-    @engagement = current_user.engagements.new(engagement_params_with_school)
+    @engagement = current_user.created_engagements.new(engagement_params_with_school)
     if @engagement.save
-      render :show, status: :created, location: api_v2_engagement_url(@engagement)
+      render :show, status: :created, location: api_insecure_engagement_url(@engagement)
     else
       puts @engagement.errors.full_messages
       render json: @engagement.errors, status: :unprocessable_entity
     end
   end
 
-  # PATCH/PUT /api/v2/engagements/1
-  # PATCH/PUT /api/v2/engagements/1.json
+  # PATCH/PUT /api/insecure/engagements/1
+  # PATCH/PUT /api/insecure/engagements/1.json
   #def update
     #@engagement = current_user.created_engagements.find(params[:id])
     #if @engagement.update(engagement_params)
-      #render :show, status: :ok, location: api_v2_engagement_url(@engagement)
+      #render :show, status: :ok, location: api_insecure_engagement_url(@engagement)
     #else
       #render json: @engagement.errors, status: :unprocessable_entity
     #end
   #end
 
-  # DELETE /api/v2/engagements/1
-  # DELETE /api/v2/engagements/1.json
+  # DELETE /api/insecure/engagements/1
+  # DELETE /api/insecure/engagements/1.json
   def destroy
     @engagement = Engagement.find(params[:id])
     if @engagement.created_at > 1.hour.ago

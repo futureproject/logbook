@@ -155,7 +155,7 @@ class Person < ActiveRecord::Base
   end
 
   # make an auth_token to remember this user for later logins
-  def generate_auth_token
+  def generate_auth_token_and_set_last_engaged
     self.auth_token = SecureRandom.uuid if self.auth_token.blank?
     self.last_engaged = Date.today
   end

@@ -4,7 +4,8 @@ class ds.EngagementsController extends Backbone.View
     @views = {}
     @collection = new ds.EngagementsCollection
     @listenTo Backbone, "engagements:do", @do
-    @listenTo Backbone, "people:do", @hideAll
+    @listenTo Backbone, "engagements:persist", @saveEngagement
+    @listenTo @collection, "add", @updateAttendees
 
   do: (fn, args) ->
     # hide all open views
@@ -13,16 +14,10 @@ class ds.EngagementsController extends Backbone.View
     # If the function specified in the 'fn' argument exists, call it.
     @[fn]?(args)
 
-  new: (id) ->
-    ds.router.navigate "phonebook/engagements/new/#{id}"
-    ids = [id]
-    if ds.user.current()?.get('role').match(/volunteer|student|APR/i)
-      ids.push ds.user.current().id
-    engagement = new ds.Engagement
-      attendee_ids: [ids]
-    @views.new = new ds.EngagementsNewView
-      model: engagement
-    @views.new.renderTo @el
+  saveEngagement: (model) ->
+    @collection.add model,
+      at: 0
 
-  hideAll: ->
-    _.each @views, (view) -> view.hide()
+  updateAttendees: (model) ->
+    Backbone.trigger "people:move_up", model.get('attendee_ids')
+

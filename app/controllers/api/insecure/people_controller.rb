@@ -4,7 +4,7 @@ class Api::Insecure::PeopleController < Api::Insecure::BaseController
   # GET /api/insecure/people
   # GET /api/insecure/people.json
   def index
-    @people = current_scope.people.active.order(sort_params)
+    @people = current_scope.people.active.where.not(id: current_user.id).order(sort_params)
   end
 
   def sync
@@ -85,7 +85,7 @@ class Api::Insecure::PeopleController < Api::Insecure::BaseController
       if params[:sort_by] && params[:order]
         "#{params[:sort_by]} #{params[:order]}, first_name ASC"
       else
-        "dream_team DESC, first_name ASC"
+        "last_engaged DESC, updated_at DESC"
       end
     end
 

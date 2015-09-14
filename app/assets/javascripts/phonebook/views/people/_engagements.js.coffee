@@ -28,7 +28,7 @@ class ds.People_EngagementsView extends Backbone.View
 
 class ds.EngagementView extends Backbone.View
   events:
-    'click': 'toggleDelete'
+    'click .delete': 'delete'
 
   tagName: 'li'
   template: _.template "
@@ -37,6 +37,8 @@ class ds.EngagementView extends Backbone.View
     "
   render: ->
     @$el.html @template(@model.tplAttrs())
+    if @model.canBeDeleted()
+      @$el.append "<div class='delete'>Delete</div>"
     @
 
   toggleDelete: (event) ->
@@ -44,9 +46,8 @@ class ds.EngagementView extends Backbone.View
     @$el.toggleClass('deletable')
 
   delete: ->
-    e = ds.collections.engagements.get(@model.id)
-    if e && confirm("Are you sure you want to delete this engagement?")
-      e.destroy()
+    if @model.canBeDeleted() && confirm("Are you sure you want to delete this engagement?")
+      @model.destroy()
       @$el.animate({ height: 0, left: -window.innerWidth}, 'fast', () -> $(this).remove() )
     else
-      Backbone.trigger "notification", "You can only delete engagements you've created this session."
+      Backbone.trigger "notification", "You can only delete engagements created this hour."

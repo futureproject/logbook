@@ -8,6 +8,7 @@
       :dream_team,
       :grade,
       :school_id,
-      :created_at
+      :created_at,
+      :last_engaged
   end
 #end

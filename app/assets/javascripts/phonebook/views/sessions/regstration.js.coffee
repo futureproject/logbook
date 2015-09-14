@@ -48,9 +48,10 @@ class ds.SessionsRegistrationView extends Backbone.View
         data: person: data
         url: ds.apiHelper.urlFor("people")
         success: (response) ->
+          attrs = _.extend data, { id: response.id, last_engaged: response.last_engaged }
           msg = "All set, #{data.first_name}. Your people are downloading. If you don't see who you're looking for, use the search field to find or add someone."
           Backbone.trigger "notification", msg, 10000
-          ds.user.create data
+          ds.user.create attrs
           ds.run()
         error: (error) ->
           console.log error

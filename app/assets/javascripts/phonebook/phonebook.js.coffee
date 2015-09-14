@@ -34,7 +34,7 @@ ds.init = ->
 
 ds.run = ->
   ds.controllers.people = new ds.PeopleController
-  ds.collections.engagements = new ds.EngagementsCollection
+  ds.controllers.engagements = new ds.EngagementsController
   ds.collections.schools = new ds.SchoolsCollection
   Backbone.history.start({ pushState: true })
 

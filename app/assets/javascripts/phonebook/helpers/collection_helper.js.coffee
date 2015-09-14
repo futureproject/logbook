@@ -22,6 +22,7 @@ Backbone.Collection.prototype.bootstrap = ->
           complete: (response) =>
             # if there are new records, re-sync the whole set
             if response.status == 302
+              localStorage.removeItem(@url())
               @trigger "sync:started"
               @fetch
                 remote: true,

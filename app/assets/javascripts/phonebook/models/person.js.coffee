@@ -27,7 +27,11 @@ class ds.PeopleCollection extends Backbone.PageableCollection
   mode: 'client'
   state: pageSize: 50
   initialize: ->
-    @on "add", -> console.log "added"
-    @on "remove", -> console.log "removed"
-    @on "reset", => console.log "reset to #{@length}"
+    @listenTo Backbone, "#{@namespace}:sync", =>
+      @trigger "sync:started"
+      localStorage.removeItem @url()
+      @fetch
+        reset: true,
+        remote: true
+        complete: => @trigger("sync:ended")
 

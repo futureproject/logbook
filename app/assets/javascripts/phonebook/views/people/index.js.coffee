@@ -10,12 +10,9 @@ class ds.PeopleIndexView extends Backbone.View
         collection: @collection
     @listen()
 
-  #renderTo: ->
-    #override renderTo to make sure this view only renders once
-    #@show()
-    #return if @rendered
-    #@rendered = true
-    #super
+  events:
+    'click .hamburger': 'showNav'
+    'touchstart .titlebar': (e) ->
 
   render: ->
     @$el.html @template()
@@ -44,3 +41,4 @@ class ds.PeopleIndexView extends Backbone.View
   despin: ->
     @spinner?.remove()
 
+  showNav: (event) -> Backbone.trigger "app:nav"
