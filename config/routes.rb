@@ -76,9 +76,14 @@ Rails.application.routes.draw do
     get '/*whatever', to: 'application#dashboard'
   end
 
-  get '/logbookapp' => 'phonebook/application#home', as: 'logbook_app'
+  get '/logbookapp' => 'oldbook/application#home', as: 'logbook_app'
   get '/mobile' => 'phonebook/application#home'
   namespace :phonebook do
+    root 'application#home'
+    get 'manifest.appcache', to: 'application#manifest'
+    get '*anywhere', to: 'application#home'
+  end
+  namespace :oldbook do
     root 'application#home'
     get 'manifest.appcache', to: 'application#manifest'
     get '*anywhere', to: 'application#home'
