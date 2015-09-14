@@ -1,0 +1,28 @@
+<div class='links-table'>
+  <% if (phone) { %>
+    <a href="tel:<%= phone %>">
+      <div class='icon icon-call'></div>
+      Call
+    </a>
+    <a href="sms:<%= phone %>">
+      <div class='icon icon-message'></div>
+      Text
+    </a>
+  <% } else { %>
+    <div class='trigger-edit'>
+      <div class='icon icon-call'></div>
+      Add Phone
+    </div>
+  <% } %>
+  <% if (email) { %>
+    <a href="mailto:<%= email %>">
+      <div class='icon icon-email'></div>
+      Email
+    </a>
+  <% } else { %>
+    <div class='trigger-edit'>
+      <div class='icon icon-email'></div>
+      Add Email
+    </div>
+  <% } %>
+</div>

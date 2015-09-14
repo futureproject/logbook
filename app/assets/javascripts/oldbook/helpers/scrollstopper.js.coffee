@@ -1,0 +1,2 @@
+ds.scrollstopper =
+  stop: () ->
