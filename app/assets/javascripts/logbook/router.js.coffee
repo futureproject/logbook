@@ -17,8 +17,9 @@ class ds.Router extends Backbone.Router
     "logbook/projects/new": "projects_new"
     "logbook/projects/:id": "projects_show"
     "logbook/projects/:id/edit": "projects_edit"
-    "logbook/report_submissions": "report_submissions_index"
-    "logbook/report_submissions/:id": "report_submissions_show"
+    "logbook/reports": "reports_assigned"
+    "logbook/reports/submitted": "reports_submitted"
+    "logbook/reports/:id": "reports_view"
     # ASSOCIATIONS
     "logbook/:notable_type/:notable_id/notes/add": "notes_new"
 
@@ -44,8 +45,9 @@ class ds.Router extends Backbone.Router
   projects_edit: (id) -> Backbone.trigger "projects:edit", id
 
   #REPORTS
-  report_submissions_index: -> Backbone.trigger "report_submissions:index"
-  report_submissions_show: (id) -> Backbone.trigger "report_submissions:show", id
+  reports_assigned: -> Backbone.trigger "reports:assigned"
+  reports_submitted: -> Backbone.trigger "reports:submitted"
+  reports_view: (id) -> Backbone.trigger "reports:view", id
 
   #NOTES
   notes_new: (type, obj_id) -> Backbone.trigger "notes:new", type, obj_id

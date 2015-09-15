@@ -1,4 +1,4 @@
-class ds.ReportSubmissionsIndexView extends Backbone.View
+class ds.ReportsAssignedView extends Backbone.View
   initialize: ->
     @views =
       table: new ds.IndexTableView
@@ -7,7 +7,7 @@ class ds.ReportSubmissionsIndexView extends Backbone.View
       #pagination: new Backgrid.Extension.Paginator
         #collection: ds.collections.report_submissions
 
-  template: JST['logbook/templates/report_submissions_index']
+  template: JST['logbook/templates/reports_assigned']
 
   className: 'reports'
 
@@ -21,11 +21,10 @@ class ds.ReportSubmissionsIndexView extends Backbone.View
     @renderSubmissionsLink() if ds.current_user.get('role').match(/admin|chief/i)
 
   renderSubmissionsLink: ->
-    console.log "!!"
     @$el.find('#reports-submitted-link-container').html "
       <div class='footerbar'>
         <nav class='r'>
-          <a href='http://go.dream.org/reports'>View Submitted Reports</a>
+          <a href='/logbook/reports/submitted'>View Submitted Reports</a>
         </nav>
       </div>
     "

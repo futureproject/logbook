@@ -1,0 +1,19 @@
+<div class="titlebar">
+  <a class="title" href="/logbook/reports">Reports</a>
+  <div class="subtitle">&rsaquo; <%= report_submission.name %></div>
+</div>
+<ul class="factbar">
+  <li class="fact">
+    <label>Date Assigned</label>
+    <%= report_submission.created_at %>
+  </li>
+  <li class="fact">
+    <label>Assignee</label>
+    <%= report_submission.person.name %>
+  </li>
+</ul>
+<div class="section">
+  <pre class="report-submission-body">
+    <%= report_submission.body %>
+  </pre>
+</div>

@@ -22,7 +22,9 @@ Rails.application.routes.draw do
         get 'leaderboard', on: :collection
       end
       resources :engagement_attendees
-      resources :report_submissions
+      resources :report_submissions do
+        get 'submitted', on: :collection
+      end
       get '/assets/signed_s3_path' => 'assets#signed_s3_path'
       resources :assets, only: [:create, :destroy]
       resources :search_results, only: [:index]

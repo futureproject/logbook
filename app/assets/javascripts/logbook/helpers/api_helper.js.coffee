@@ -17,6 +17,7 @@ ds.apiHelper =
     projects_leaderboard:  -> "/api/v2/projects/leaderboard"
     project: (id) -> "/api/v2/projects/#{id}"
     report_submissions: -> "/api/v2/report_submissions"
+    reports_submitted: -> "/api/v2/report_submissions/submitted"
     schools: -> "/api/v2/schools"
     school: (id) -> "/api/v2/schools/#{id}"
     school_graphs: (args) -> "/api/v2/schools/#{args.id}/graphs/#{args.graph}"

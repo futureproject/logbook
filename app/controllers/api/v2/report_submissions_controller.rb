@@ -11,6 +11,14 @@ class Api::V2::ReportSubmissionsController < Api::V2::BaseController
       .page(params[:page]).per(200)
   end
 
+  def submitted
+    @t = stat_times
+    @report_submissions = ReportSubmission.to_be_read_for(current_user)
+      .btw(@t)
+      .page(params[:page])
+    @total = @report_submissions.total_count
+  end
+
   # GET /api/v2/report_submissions/1
   def show
   end

@@ -1,4 +1,4 @@
-class ds.ReportSubmissionsShowView extends Backbone.View
+class ds.ReportSubmissionsEditView extends Backbone.View
   initialize: ->
     @listenTo @model, 'change', @render
     @views = {}
@@ -7,7 +7,7 @@ class ds.ReportSubmissionsShowView extends Backbone.View
     'click .save': 'save'
     'click .submit': 'submit'
 
-  template: JST['logbook/templates/report_submissions_show']
+  template: JST['logbook/templates/report_submissions_edit']
 
   className: 'report-submissions show'
 

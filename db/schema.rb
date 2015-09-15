@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150913172849) do
+ActiveRecord::Schema.define(version: 20150915200325) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -186,13 +186,14 @@ ActiveRecord::Schema.define(version: 20150913172849) do
   end
 
   create_table "report_submissions", force: :cascade do |t|
-    t.string   "name",       limit: 255
+    t.string   "name",           limit: 255
     t.text     "body"
     t.integer  "report_id"
     t.integer  "person_id"
-    t.string   "status",     limit: 255
+    t.string   "status",         limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.date     "date_submitted"
   end
 
   create_table "reports", force: :cascade do |t|
