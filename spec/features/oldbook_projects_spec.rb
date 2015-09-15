@@ -1,5 +1,5 @@
 require 'spec_helper'
-feature 'using the phonebook' do
+feature 'using Oldbook' do
   before do
     mock_sign_in
   end
