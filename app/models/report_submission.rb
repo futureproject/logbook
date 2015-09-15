@@ -13,7 +13,7 @@ class ReportSubmission < ActiveRecord::Base
   def self.to_be_read_for(user)
     if user.site
       self.where(status: "Submitted")
-        .joins(:person).where(person: { site_id: user.site_id })
+        .joins(:person).where("people.site_id = ?", user.site_id)
         .order("report_submissions.date_submitted DESC, people.site_id")
     else
       self.where(status: "Submitted").joins(:person)
