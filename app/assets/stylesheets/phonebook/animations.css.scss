@@ -1,33 +1,77 @@
-@include keyframes(slideInHorizontal) {
+@include keyframes(enterStageRight) {
   from {
-    @include transform(translate3d(102%,0,0));
+    @include transform(translate3d(100%,0,0));
   }
   to {
     @include transform(translate3d(0,0,0));
   }
 }
-@include keyframes(slideOutHorizontal) {
+@include keyframes(exitStageRight) {
   from {
     @include transform(translate3d(0,0,0));
   }
   to {
-    @include transform(translate3d(102%,0,0));
+    @include transform(translate3d(100%,0,0));
   }
 }
-@include keyframes(slideInVertical) {
+@include keyframes(enterStageLeft) {
   from {
-    @include transform(translate3d(0,102%,0));
+    @include transform(translate3d(-100%,0,0));
   }
   to {
     @include transform(translate3d(0,0,0));
   }
 }
-@include keyframes(slideOutVertical) {
+@include keyframes(exitStageLeft) {
   from {
     @include transform(translate3d(0,0,0));
   }
   to {
-    @include transform(translate3d(0,102%,0));
+    @include transform(translate3d(-100%,0,0));
+  }
+}
+@include keyframes(fallin) {
+  from {
+    @include transform(translate3d(0,10%,0) scale(0.9));
+    opacity: 0;
+  }
+  to {
+    @include transform(translate3d(0,0,0) scale(1));
+    opacity: 1;
+  }
+}
+@include keyframes(fallout) {
+  from {
+    @include transform(translate3d(0,0,0) scale(1));
+    opacity: 1;
+  }
+  to {
+    @include transform(translate3d(0,10%,0) scale(0.9));
+    opacity: 0;
+  }
+}
+@include keyframes(dropIn) {
+  from {
+    @include transform(translate3d(0,-100%,0));
+  }
+  to {
+    @include transform(translate3d(0,0,0));
+  }
+}
+@include keyframes(dropOut) {
+  from {
+    @include transform(translate3d(0,0,0));
+  }
+  to {
+    @include transform(translate3d(0,100%,0));
+  }
+}
+@include keyframes(floatIn) {
+  from {
+    @include transform(translate3d(0,-100%,0));
+  }
+  to {
+    @include transform(translate3d(0,0,0));
   }
 }
 @include keyframes(fadeIn) {
@@ -61,20 +105,46 @@
   @include transition-timing-function(cubic-bezier(0.23,1,0.32,1));
 }
 
-.slide-in-horizontal {
-  @include animation(slideInHorizontal .6s);
+.animation-fallout {
+  @include transform-origin(center top);
+  @include animation(fallout .4s);
   @include animation-timing-function(cubic-bezier(0.23,1,0.32,1));
 }
-.slide-out-horizontal {
-  @include animation(slideOutHorizontal .6s);
+.animation-fallin {
+  @include transform-origin(center top);
+  @include animation(fallin .4s);
   @include animation-timing-function(cubic-bezier(0.23,1,0.32,1));
 }
-.slide-in-vertical {
-  @include animation(slideInVertical .6s);
+.animation-dropin {
+  @include animation(dropIn .4s);
   @include animation-timing-function(cubic-bezier(0.23,1,0.32,1));
 }
-.slide-out-vertical {
-  @include animation(slideOutVertical .6s);
+.animation-dropout {
+  @include animation(dropOut .4s);
+  @include animation-timing-function(cubic-bezier(0.23,1,0.32,1));
+}
+.animation-riseout {
+  @include animation(riseOut .4s);
+  @include animation-timing-function(cubic-bezier(0.23,1,0.32,1));
+}
+.animation-floatin {
+  @include animation(floatIn .4s);
+  @include animation-timing-function(cubic-bezier(0.23,1,0.32,1));
+}
+.enter-stage-right {
+  @include animation(enterStageRight .6s);
+  @include animation-timing-function(cubic-bezier(0.23,1,0.32,1));
+}
+.exit-stage-right {
+  @include animation(exitStageRight .6s);
+  @include animation-timing-function(cubic-bezier(0.23,1,0.32,1));
+}
+.enter-stage-left {
+  @include animation(enterStageLeft .6s);
+  @include animation-timing-function(cubic-bezier(0.23,1,0.32,1));
+}
+.exit-stage-left {
+  @include animation(exitStageLeft .6s);
   @include animation-timing-function(cubic-bezier(0.23,1,0.32,1));
 }
 .fade-in {
@@ -88,35 +158,9 @@
 .fade-in-fast {
   @include animation(fadeIn .01s);
 }
-.collapse {
+.animation-collapse {
   @include animation(collapse .5s);
 }
 
-.table {
-  @extend .transitions;
-}
-
-.shifted {
-  @include transform(translate3d(-50%,0,0));
-  pointer-events: none;
-  input { display: none; }
-}
-
-.row {
-  @include transform-origin(left top);
-  @include transition();
-  &.row-open {
-    .row-controls {
-      display: block;
-    }
-  }
-}
-.row-controls {
-  -webkit-animation-duration: .3s;
-}
-
-.detail.swiped-out {
-  @include transform(translate3d(100%,0,0));
-}
 
 

@@ -31,7 +31,9 @@ class ApplicationController < ActionController::Base
     end
 
     def current_scope
-      if session[:scope_id].nil?
+      if params[:scope_type] && params[:scope_id]
+        params[:scope_type].classify.constantize.find(params[:scope_id])
+      elsif session[:scope_id].nil?
         current_user.default_logbook_scope
       elsif session[:scope_id] == 0
         National.new

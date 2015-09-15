@@ -5,13 +5,13 @@ feature 'using the phonebook' do
   end
 
   scenario 'to view projects do', js: true do
-    visit phonebook_root_path
+    visit oldbook_root_path
     tap_element "#projects-tab"
     should_see_projects_list
   end
 
   scenario 'to search for projects', js: true do
-    visit '/phonebook/projects'
+    visit '/oldbook/projects'
     name = find('.row-title', match: :first).text
     find(".titlebar .icon-search").click()
     fill_in 'q', with: name
@@ -21,7 +21,7 @@ feature 'using the phonebook' do
 
 
   scenario 'to view a particular project', js: true do
-    visit phonebook_root_path
+    visit oldbook_root_path
     tap_element('#projects-tab')
     tap_element('#phonebook-projects .table .row:first-child')
     name = first('.project-name').text
@@ -29,7 +29,7 @@ feature 'using the phonebook' do
   end
 
   scenario 'to create a new project', js:true do
-    visit phonebook_root_path
+    visit oldbook_root_path
     tap_element('#projects-tab')
     tap_element "#phonebook-projects .titlebar .new"
     fill_in 'name', with: 'Design a line launcher'
@@ -38,7 +38,7 @@ feature 'using the phonebook' do
   end
 
   scenario 'to edit a project', js: true do
-    visit phonebook_root_path
+    visit oldbook_root_path
     tap_element('#projects-tab')
     tap_element('#phonebook-projects .table .row:first-child')
     tap_element('#phonebook-projects .detail-show .titlebar .edit')

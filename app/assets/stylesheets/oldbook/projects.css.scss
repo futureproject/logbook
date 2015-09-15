@@ -1,0 +1,40 @@
+#projects-tab.current {
+  color: $projects-color;
+}
+
+#phonebook-projects {
+  .titlebar, .row-timestamp, .card h4 { color: $projects-color; }
+  .detail-content header h2 {
+    white-space: normal;
+  }
+  .row-timestamp {
+    text-transform: capitalize;
+    font-size: 10px;
+  }
+  .project-status.complete { color: $light-green; }
+  .project-status.stalled { color: $light-red; }
+  .recessed-button {
+    background: $projects-color;
+  }
+  .loading {
+    border-left:3px solid $projects-color;
+    border-right:3px solid $projects-color;
+    border-bottom:3px solid $projects-color;
+    border-top:3px solid lighten($projects-color, 25%);
+  }
+  .upload .progress{
+    border: 3px solid $projects-color;
+    .bar { background: $projects-color; }
+  }
+}
+
+.detail-modal.projects {
+  .fancy-search-form {
+    background: $projects-color;
+  }
+  .multi-select-options {
+    .row {
+      background: $projects-color;
+    }
+  }
+}

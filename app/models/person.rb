@@ -16,9 +16,10 @@ class Person < ActiveRecord::Base
   has_many :assets, as: :attachable
   has_many :report_submissions
   has_many :authored_notes, class_name: 'Note', foreign_key: 'author_id'
-  before_create :generate_auth_token
+  before_create :generate_auth_token_and_set_last_engaged
   before_save :set_site
-  ROLE_ENUM = %w(student teacher staff)
+  after_touch :set_last_engaged
+  ROLE_ENUM = %w(student teacher volunteer staff)
   GRADE_ENUM = [6, 7, 8, 9, 10, 11, 12]
   SEX_ENUM = %w(M F)
   DREAM_TEAM_ENUM = [["Yep", true],["Nope", false]]
@@ -50,6 +51,7 @@ class Person < ActiveRecord::Base
   scope :field_staff, -> {
     where("role=? OR role=?", "DD", "CHIEF").order(:site_id, :first_name)
   }
+  scope :ever_engaged, -> { where('last_engaged IS NOT NULL') }
 
   def name
     "#{first_name} #{last_name}"
@@ -60,7 +62,7 @@ class Person < ActiveRecord::Base
   end
 
   def dream_director
-    school.dream_director
+    school.try(:dream_director)
   end
 
   def logged_hours
@@ -77,6 +79,13 @@ class Person < ActiveRecord::Base
 
   def set_site
     self.site_id = self.school.try(:site).try(:id) if self.school
+    true
+  end
+
+  def set_last_engaged
+    date = engagements.order('date DESC').where("date <= ?", Date.today)
+      .limit(1).first.try(:date)
+    self.update(last_engaged: date) if date
     true
   end
 
@@ -146,8 +155,9 @@ class Person < ActiveRecord::Base
   end
 
   # make an auth_token to remember this user for later logins
-  def generate_auth_token
+  def generate_auth_token_and_set_last_engaged
     self.auth_token = SecureRandom.uuid if self.auth_token.blank?
+    self.last_engaged = Date.today
   end
 
   rails_admin do

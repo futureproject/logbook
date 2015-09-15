@@ -5,19 +5,19 @@ feature 'using the phonebook' do
   end
 
   scenario 'to view engagements do', js: true do
-    visit phonebook_root_path
+    visit oldbook_root_path
     should_see_engagements_list
   end
 
   scenario 'to view a particular engagement', js: true do
-    visit phonebook_root_path
+    visit oldbook_root_path
     tap_first_engagement
     name = first('.engagement-name').text
     should_see_engagement_named name
   end
 
   scenario 'to create a new engagement', js:true do
-    visit phonebook_root_path
+    visit oldbook_root_path
     tap_element "#phonebook-engagements .titlebar .new"
     first('#phonebook-engagements .detail-new .attendance').click
     take_attendance
@@ -27,7 +27,7 @@ feature 'using the phonebook' do
   end
 
   scenario 'editing', js: true do
-    visit phonebook_root_path
+    visit oldbook_root_path
     tap_first_engagement
     tap_element('#phonebook-engagements .detail-show .titlebar .edit')
     edit_view = find('#phonebook-engagements .detail-edit')

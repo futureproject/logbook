@@ -5,9 +5,12 @@ input, select, textarea {
   font-size: 1em;
   border: none;
   border-bottom: 1px solid $base-border-color;
-  padding: 5px;
+  padding: 5px 0;
   border-radius: 0;
   font-family: $base-font-family;
+  &[disabled] {
+    opacity: 0.25;
+  }
 }
 
 #{$all-text-inputs}, select {
@@ -29,6 +32,7 @@ select {
 
 textarea {
   border: 1px solid $base-border-color;
+  padding: 5px;
 }
 
 .actions-field {
@@ -43,9 +47,9 @@ textarea {
     font-weight: 700;
     line-height: 25px;
     text-transform: uppercase;
-    border-radius: 5px;
     font-family: $base-font-family;
     cursor: pointer;
+    @include appearance(none);
   }
 }
 .checkbox-field {

@@ -1,0 +1,9 @@
+<div class='engagement-kind row-title'><%= kind %></div>
+<div class='engagement-name row-subject'><%= name || school %></div>
+<div class='engagement-date row-timestamp'><%= Date.parse(date).toString('MMM dd') %></div>
+<div class='row-controls'>
+  <div class='row-controls-inner'>
+    <div class='duplicate'>Duplicate</div>
+    <div class='delete'>Delete</div>
+  </div>
+</div>

@@ -1,0 +1,53 @@
+<div class="titlebar">
+  <div class='l-menu'>
+    <div class='button cancel'>Cancel</div>
+  </div>
+  <div class='r-menu'>
+    <div class='button done'>Done</div>
+  </div>
+  New Engagement
+</div>
+<form class="panel">
+  <div class="field">
+    <h2>Engagement w/<%= person.first_name %> <%= person.last_name %></h2>
+  </div>
+  <div class="field kind-field">
+    <select id="kind" name="kind">
+      <option value="Coaching Session">Coaching Session</option>
+      <option value="Event">Event</option>
+      <option value="Course">Course</option>
+      <option value="Meeting">Meeting</option>
+    </select>
+    <label for="kind">Kind</label>
+  </div>
+  <div class="field date-field">
+    <input name='date' type='date'>
+    <label for="date">Date</label>
+  </div>
+  <div class="field duration-field">
+    <select id="engagement_duration" name="duration">
+      <option value="0.1">5 Minutes</option>
+      <option value="0.25">15 Minutes</option>
+      <option value="0.5">30 Minutes</option>
+      <option value="0.75">45 Minutes</option>
+      <option selected value="1">1 Hour</option>
+      <option value="1.5">1.5 Hours</option>
+      <option value="2">2 Hours</option>
+      <option value="3">3 Hours</option>
+      <option value="4">4 Hours</option>
+      <option value="5">5 Hours</option>
+      <option value="6">6 Hours</option>
+      <option value="7">7 Hours</option>
+      <option value="8">8 Hours</option>
+    </select>
+    <label for="duration">Duration</label>
+  </div>
+  <div class="field description-field">
+    <textarea name='description'></textarea>
+    <label for="description">Description</label>
+  </div>
+  <input type='hidden' name='school_id' />
+  <div class="field actions-field">
+    <input type="submit" value="Done" />
+  </div>
+</form>

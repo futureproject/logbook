@@ -4,50 +4,37 @@
 #= require backbone.dualstorage
 #= require backbone.syphon
 #= require backbone.paginator.min
+#= require jquery.animate-enhanced
 #= require date
-#= require s3_direct_upload
-#= require_self
+#= require titlecase
 #= require_tree ./helpers
 #= require_tree ./templates
 #= require_tree ./models
 #= require_tree ./views
 #= require_tree ./controllers
-#= require_tree ./routers
+#= require ./router
 
-window.ds ||= {}
+ds.models = {}
+ds.views = {}
+ds.controllers ={}
+ds.collections ={}
 
-window.Phonebook =
-  Models: {}
-  Views: {}
-  Controllers: {}
-  Collections: {}
-  Routers: {}
-  collections: {}
+ds.init = ->
+  ds.cssHelper.init()
+  document.body.classList.add("standalone") if navigator.standalone
+  ds.controllers.sessions = new ds.SessionsController
+  ds.controllers.notifications = new ds.NotificationsController
+  ds.user = new ds.UserCollection
+  ds.router = new ds.Router
+  ds.views.app = new ds.AppView
+  if ds.user.current()?
+    ds.run()
+  else
+    Backbone.trigger "sessions:do", "new"
 
-  initialize: (data) ->
-    if navigator.userAgent.match(/iphone|ipad|ipod/i) && ! navigator.standalone
-      ds.installer.run()
-    else
-      @run(data)
-
-  run: (data) ->
-    if data.current_user?
-      @user = new Phonebook.Models.User(data.current_user)
-
-      $.ajaxPrefilter (options, originalOptions, jqXHR) =>
-        #options.url += "?token=#{@user.get('auth_token')}"
-        jqXHR.withCredentials = true
-        console.log options.url
-
-      @schools = new Phonebook.Collections.SchoolsCollection(@user.get('schools'))
-
-      @controller = new Phonebook.Controllers.AppController
-        el: '#phonebook'
-
-      Backbone.trigger 'app:loaded'
-      Backbone.trigger("network:#{navigator.onLine}")
-      Backbone.history.start({ pushState: true })
-
-    else
-      location.href = '/sessions/new'
+ds.run = ->
+  ds.controllers.people = new ds.PeopleController
+  ds.controllers.engagements = new ds.EngagementsController
+  ds.collections.schools = new ds.SchoolsCollection
+  Backbone.history.start({ pushState: true })
 

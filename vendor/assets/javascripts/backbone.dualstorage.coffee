@@ -1,5 +1,5 @@
 ###
-Backbone dualStorage Adapter v1.3.1
+Backbone dualStorage Adapter v1.4.0
 
 A simple module to replace `Backbone.sync` with *localStorage*-based
 persistence. Models are given GUIDS, and saved into a JSON object. Simple
@@ -11,7 +11,7 @@ Backbone.DualStorage = {
 }
 
 Backbone.Model.prototype.hasTempId = ->
-  _.isString(@id) and @id.length is 36
+  _.isString(@id) and @id.length is 36 and @id.indexOf('t') == 0
 
 getStoreName = (collection, model) ->
   model ||= collection.model.prototype
@@ -20,12 +20,12 @@ getStoreName = (collection, model) ->
 
 # Make it easy for collections to sync dirty and destroyed records
 # Simply call collection.syncDirtyAndDestroyed()
-Backbone.Collection.prototype.syncDirty = ->
+Backbone.Collection.prototype.syncDirty = (options) ->
   store = localStorage.getItem("#{getStoreName(@)}_dirty")
   ids = (store and store.split(',')) or []
 
   for id in ids
-    @get(id)?.save()
+    @get(id)?.save(null, options)
 
 Backbone.Collection.prototype.dirtyModels = ->
   store = localStorage.getItem("#{getStoreName(@)}_dirty")
@@ -35,7 +35,7 @@ Backbone.Collection.prototype.dirtyModels = ->
 
   _.compact(models)
 
-Backbone.Collection.prototype.syncDestroyed = ->
+Backbone.Collection.prototype.syncDestroyed = (options) ->
   store = localStorage.getItem("#{getStoreName(@)}_destroyed")
   ids = (store and store.split(',')) or []
 
@@ -43,16 +43,16 @@ Backbone.Collection.prototype.syncDestroyed = ->
     model = new @model
     model.set model.idAttribute, id
     model.collection = @
-    model.destroy()
+    model.destroy(options)
 
 Backbone.Collection.prototype.destroyedModelIds = ->
   store = localStorage.getItem("#{getStoreName(@)}_destroyed")
 
   ids = (store and store.split(',')) or []
 
-Backbone.Collection.prototype.syncDirtyAndDestroyed = ->
-  @syncDirty()
-  @syncDestroyed()
+Backbone.Collection.prototype.syncDirtyAndDestroyed = (options) ->
+  @syncDirty(options)
+  @syncDestroyed(options)
 
 # Generate four random hex digits.
 S4 = ->
@@ -71,7 +71,7 @@ class window.Store
   # by default generates a pseudo-GUID by concatenating random hexadecimal.
   # you can overwrite this function to use another strategy
   generateId: ->
-    S4() + S4() + '-' + S4() + '-' + S4() + '-' + S4() + '-' + S4() + S4() + S4()
+    't' + S4().substring(1) + S4() + '-' + S4() + '-' + S4() + '-' + S4() + '-' + S4() + S4() + S4()
 
   # Save the current state of the **Store** to *localStorage*.
   save: ->
@@ -104,18 +104,18 @@ class window.Store
 
   # Add a model, giving it a unique GUID, if it doesn't already
   # have an id of it's own.
-  create: (model) ->
+  create: (model, options) ->
     if not _.isObject(model) then return model
     if not model.id
       model.set model.idAttribute, @generateId()
-    localStorage.setItem @name + @sep + model.id, JSON.stringify(model)
+    localStorage.setItem @name + @sep + model.id, JSON.stringify(if model.toJSON then model.toJSON(options) else model)
     @records.push model.id.toString()
     @save()
     model
 
   # Update a model by replacing its copy in `this.data`.
-  update: (model) ->
-    localStorage.setItem @name + @sep + model.id, JSON.stringify(model)
+  update: (model, options) ->
+    localStorage.setItem @name + @sep + model.id, JSON.stringify(if model.toJSON then model.toJSON(options) else model)
     if not _.include(@records, model.id.toString())
       @records.push model.id.toString()
     @save()
@@ -194,25 +194,30 @@ localsync = (method, model, options) ->
       if options.add and not options.merge and (preExisting = store.find(model))
         preExisting
       else
-        model = store.create(model)
+        model = store.create(model, options)
         store.dirty(model) if options.dirty
         model
     when 'update'
-      store.update(model)
+      store.update(model, options)
       if options.dirty
         store.dirty(model)
       else
         store.clean(model, 'dirty')
     when 'delete'
       store.destroy(model)
-      if options.dirty
+      if options.dirty && !model.hasTempId()
         store.destroyed(model)
       else
-        if model.id.toString().length == 36
+        if model.hasTempId()
           store.clean(model, 'dirty')
         else
           store.clean(model, 'destroyed')
-  response = response.attributes if response?.attributes
+
+  if response
+    if response.toJSON
+      response = response.toJSON(options)
+    if response.attributes
+      response = response.attributes
 
   unless options.ignoreCallbacks
     if response
@@ -235,11 +240,11 @@ modelUpdatedWithResponse = (model, response) ->
   modelClone.set model.parse response
   modelClone
 
-backboneSync = Backbone.sync
+backboneSync = Backbone.DualStorage.originalSync = Backbone.sync
 onlineSync = (method, model, options) ->
   options.success = callbackTranslator.forBackboneCaller(options.success)
   options.error   = callbackTranslator.forBackboneCaller(options.error)
-  backboneSync(method, model, options)
+  Backbone.DualStorage.originalSync(method, model, options)
 
 dualsync = (method, model, options) ->
   options.storeName = getStoreName(model.collection, model)
@@ -261,23 +266,32 @@ dualsync = (method, model, options) ->
   success = options.success
   error = options.error
 
-  relayErrorCallback = (response) ->
+  useOfflineStorage = ->
+    options.dirty = true
+    options.ignoreCallbacks = false
+    options.success = success
+    options.error = error
+    localsync(method, model, options)
+
+  hasOfflineStatusCode = (xhr) ->
     offlineStatusCodes = Backbone.DualStorage.offlineStatusCodes
-    offlineStatusCodes = offlineStatusCodes(response) if _.isFunction(offlineStatusCodes)
-    offline = response.status == 0 or response.status in offlineStatusCodes
-    if not offline or method == 'read' and not options.storeExists
-      error response
+    offlineStatusCodes = offlineStatusCodes(xhr) if _.isFunction(offlineStatusCodes)
+    xhr.status == 0 or xhr.status in offlineStatusCodes
+
+  relayErrorCallback = (xhr) ->
+    online = not hasOfflineStatusCode xhr
+    if online or method == 'read' and not options.storeExists
+      error xhr
     else
-      options.dirty = true
-      success localsync(method, model, options)
+      useOfflineStorage()
 
   switch method
     when 'read'
       if localsync('hasDirtyOrDestroyed', model, options)
-        options.dirty = true
-        success localsync(method, model, options)
+        useOfflineStorage()
       else
-        options.success = (resp, status, xhr) ->
+        options.success = (resp, _status, _xhr) ->
+          return useOfflineStorage() if hasOfflineStatusCode options.xhr
           resp = parseRemoteResponse(model, resp)
 
           if model instanceof Backbone.Collection
@@ -295,59 +309,64 @@ dualsync = (method, model, options) ->
             responseModel = modelUpdatedWithResponse(model, resp)
             localsync('update', responseModel, options)
 
-          success(resp, status, xhr)
+          success(resp, _status, _xhr)
 
-        options.error = (resp) ->
-          relayErrorCallback resp
+        options.error = (xhr) ->
+          relayErrorCallback xhr
 
-        onlineSync(method, model, options)
+        options.xhr = onlineSync(method, model, options)
 
     when 'create'
-      options.success = (resp, status, xhr) ->
+      options.success = (resp, _status, _xhr) ->
+        return useOfflineStorage() if hasOfflineStatusCode options.xhr
         updatedModel = modelUpdatedWithResponse model, resp
         localsync(method, updatedModel, options)
-        success(resp, status, xhr)
-      options.error = (resp) ->
-        relayErrorCallback resp
+        success(resp, _status, _xhr)
+      options.error = (xhr) ->
+        relayErrorCallback xhr
 
-      onlineSync(method, model, options)
+      options.xhr = onlineSync(method, model, options)
 
     when 'update'
       if model.hasTempId()
         temporaryId = model.id
 
-        options.success = (resp, status, xhr) ->
-          updatedModel = modelUpdatedWithResponse model, resp
+        options.success = (resp, _status, _xhr) ->
           model.set model.idAttribute, temporaryId, silent: true
+          return useOfflineStorage() if hasOfflineStatusCode options.xhr
+          updatedModel = modelUpdatedWithResponse model, resp
           localsync('delete', model, options)
           localsync('create', updatedModel, options)
-          success(resp, status, xhr)
-        options.error = (resp) ->
+          success(resp, _status, _xhr)
+        options.error = (xhr) ->
           model.set model.idAttribute, temporaryId, silent: true
-          relayErrorCallback resp
+          relayErrorCallback xhr
 
         model.set model.idAttribute, null, silent: true
-        onlineSync('create', model, options)
+        options.xhr = onlineSync('create', model, options)
       else
-        options.success = (resp, status, xhr) ->
+        options.success = (resp, _status, _xhr) ->
+          return useOfflineStorage() if hasOfflineStatusCode options.xhr
           updatedModel = modelUpdatedWithResponse model, resp
           localsync(method, updatedModel, options)
-          success(resp, status, xhr)
-        options.error = (resp) ->
-          relayErrorCallback resp
+          success(resp, _status, _xhr)
+        options.error = (xhr) ->
+          relayErrorCallback xhr
 
-        onlineSync(method, model, options)
+        options.xhr = onlineSync(method, model, options)
 
     when 'delete'
       if model.hasTempId()
+        options.ignoreCallbacks = false
         localsync(method, model, options)
       else
-        options.success = (resp, status, xhr) ->
+        options.success = (resp, _status, _xhr) ->
+          return useOfflineStorage() if hasOfflineStatusCode options.xhr
           localsync(method, model, options)
-          success(resp, status, xhr)
-        options.error = (resp) ->
-          relayErrorCallback resp
+          success(resp, _status, _xhr)
+        options.error = (xhr) ->
+          relayErrorCallback xhr
 
-        onlineSync(method, model, options)
+        options.xhr = onlineSync(method, model, options)
 
 Backbone.sync = dualsync

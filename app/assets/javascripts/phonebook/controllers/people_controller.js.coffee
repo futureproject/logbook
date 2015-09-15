@@ -1,76 +1,70 @@
-class Phonebook.Controllers.PeopleController extends Backbone.View
-  initialize: (args) ->
-    Phonebook.collections.people ||= new Phonebook.Collections.PeopleCollection
-    @collection = Phonebook.collections.people
-    @router = new Phonebook.Routers.PeopleRouter
+class ds.PeopleController extends Backbone.View
+  el: "#phonebook"
+  initialize: ->
     @views = {}
-    @listenToOnce Backbone, "people:bootstrap", -> ds.bootstrapper.bootstrap @collection
-    @listenTo Backbone, 'people:index', @index
-    @listenTo Backbone, 'people:show', @show
-    @listenTo Backbone, 'people:new', @new
-    @listenTo Backbone, 'people:edit', @edit
-    @listenTo Backbone, 'people:saved', @onSave
+    @collection = new ds.PeopleCollection
+    @listenTo Backbone, "people:do", @do
+    @listenTo Backbone, "people:move_up", @moveUp
+
+  do: (fn, args) ->
+    # hide all open views
+    _.each @views, (view) =>
+      view.hide() unless view == @views[fn]
+    # If the function specified in the 'fn' argument exists, call it.
+    @[fn]?(args)
 
   index: ->
-    _.each @views, (view) -> view.hide()
-    @views.index ||= new Phonebook.Views.People.IndexView
-      container: @$el
+    ds.router.navigate "phonebook/people"
+    @views.index = new ds.PeopleIndexView
       collection: @collection
-      namespace: 'people'
-      searchAttrs: ['first_name', 'last_name', 'createable']
-    @views.index.show()
-    Backbone.trigger 'people:bootstrap'
+    @views.index.renderTo @el
 
-  show: (id, animation) ->
-    @listenToOnce Backbone, 'model:loaded', (person) =>
-      @views.show?.remove()
-      @views.show = new Phonebook.Views.People.DetailView
-        model: person
-        container: @$el
-        namespace: 'people'
-      @views.show.show(animation)
-    @getModelById(id)
+  show: (id) ->
+    ds.router.navigate "phonebook/people/#{id}"
+    person = @getModelFromId(id)
+    @views.show = new ds.PeopleShowView
+      model: person
+    @views.show.renderTo @el
 
-  new: (animation) ->
-    @views.new?.remove()
-    @views.new = new Phonebook.Views.People.NewView
-      container: @$el
-    @views.new.show(animation)
+  edit: (id) ->
+    ds.router.navigate "phonebook/people/#{id}/edit"
+    person = @getModelFromId(id)
+    @views.edit = new ds.PeopleEditView
+      model: person
+    @views.edit.renderTo @el
 
-  edit: (id, animation) ->
-    @listenToOnce Backbone, 'model:loaded', (person) =>
-      @views.edit?.remove()
-      @views.edit = new Phonebook.Views.People.EditView
-        model: person
-        container: @$el
-      @views.edit.show(animation)
-    @getModelById(id)
+  add_engagement: (id) ->
+    ds.router.navigate "phonebook/people/#{id}/add/engagement"
+    person = @getModelFromId(id)
+    engagement = new ds.Engagement
+      attendee_ids: @getAttendeeIdsFromRole(id, ds.user.current())
+      school_id: person.get('school_id')
+    @views.add_engagement = new ds.PeopleAddEngagementView
+      model: engagement
+      person: person
+    @views.add_engagement.renderTo @el
 
-
-  # methods below are NOT called by router, like private methods in a rails controller
-  activate: ->
-    return if @active
-    Backbone.trigger "people:index"
-    @$el.addClass('active')
-    @active = true
-
-  deactivate: ->
-    @active = false
-    @$el.removeClass('active')
-    for k,v of @views
-      v.remove() unless v == @views.index
-
-  getModelById: (id) ->
-    if typeof(id) == "object"
-      Backbone.trigger 'model:loaded', id
+  getModelFromId: (id) ->
+    # if this is an actual id, not a cid
+    collection = @collection.fullCollection || @collection
+    if parseInt(id)
+      person = collection.get(id) || new ds.Person({ id: id })
+      person.fetch {success: -> collection.add person}
     else
-      model = new Phonebook.Models.Person
-        id: id
-      model.fetch
-        success: -> Backbone.trigger 'model:loaded', model
+      person = collection.get({cid: id}) || new ds.Person({ cid: id })
+    person
 
-  onSave: (model) ->
-    @collection.add model,
-      merge: true
-    @collection.trigger 'reset'
+  getAttendeeIdsFromRole: (person_id, user) ->
+    if user.get('role').match(/volunteer|student|APR/i)
+      [person_id, user.id]
+    else
+      [person_id]
 
+  moveUp: (ids) ->
+    collection = @collection.fullCollection || @collection
+    _.each ids, (id) ->
+      person = collection.get(id)
+      if person? && person.id != ds.user.current()?.id
+        collection.remove person
+        collection.add person,
+          at: 0

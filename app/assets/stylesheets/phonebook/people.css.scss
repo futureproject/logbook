@@ -1,26 +1,28 @@
-#people-tab.current {
-  color: $people-color;
-}
-#phonebook-people {
-  .titlebar, .row-timestamp, .card h4 { color: $people-color; }
-  .recessed-button {
-    background: $people-color;
+#person-projects {
+  border-top: 1px solid $base-border-color;
+  .toggle {
+    margin: -15px;
+    padding: 15px;
   }
-  .row-timestamp {
-    font-size: 10px;
+  #projects-list {
+    display: none;
+  }
+  .icon-keyboard_arrow_down {
+    display: inline-block;
+    @include transition;
+  }
+  .expanded {
+    #projects-list {
+      display: block;
+    }
+    .icon-keyboard_arrow_down {
+      @include transform(rotateX(-180deg));
+    }
   }
 }
-.person-name, .person-role, input#first_name, input#last_name {
-  text-transform: capitalize;
-}
-
-.person-contact {
-  a {
-    text-decoration: none;
-    color: $base-font-color;
-  }
-  .icon {
-    font-size: 2em;
-    margin-top: 15px;
+#person-engagements {
+  border-top: 1px solid $base-border-color;
+  .engagement {
+    @include transition(background .3s);
   }
 }

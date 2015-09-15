@@ -1,17 +1,49 @@
-<div class='titlebar'>
-  <h1>Editing Person</h1>
+<div class="titlebar">
   <div class='l-menu'>
-    <div class='button back'>Cancel</div>
+    <div class='button cancel'>Cancel</div>
   </div>
   <div class='r-menu'>
-    <div class='button done'>Save</div>
+    <div class='button done'>Done</div>
   </div>
+  Editing Person
 </div>
-<div class='person-detail detail-content scrollable'>
-  <div>
-    <div id='edit-person-form'></div>
-    <div class='field'>
-      <a class='block-button delete'>Delete Person</a>
-    </div>
+<form class="panel">
+  <div class="field first-name-field">
+    <input id="first_name" name="first_name" type="text" autocorrect="off" autocapitalize="off">
+    <label for="first_name">First Name</label>
   </div>
-</div>
+  <div class="field last-name-field">
+    <input id="last_name" name="last_name" type="text" autocorrect="off" autocapitalize="off">
+    <label for="last_name">Last Name</label>
+  </div>
+  <div class="field role-field">
+    <select id="role" name="role">
+      <option value="student">Student</option>
+      <option value="teacher">Teacher</option>
+      <option value="staff">Staff</option>
+      <option value="volunteer">Volunteer</option>
+    </select>
+    <label for="role">Role</label>
+  </div>
+  <div class="field grade-field">
+    <select id="grade" name="grade">
+      <option value=""></option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+      <option value="10">10</option>
+      <option value="11">11</option>
+      <option value="12">12</option>
+    </select>
+    <label for="grade">Grade</label>
+  </div>
+  <div class="field dream-team-field">
+    <label for="dream_team">Dream Team
+      <input id="dream_team" type='checkbox' name="dream_team" />
+    </label>
+  </div>
+  <div class="field actions-field">
+    <input type="submit" value="Done" />
+  </div>
+</form>

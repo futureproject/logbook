@@ -38,7 +38,7 @@ class ds.PeopleCollection extends Backbone.PageableCollection
     {name: 'projects_count', cell:'integer', label: 'Projects'}
     {name: 'engagements_count', cell:'integer', label: 'Engagements'}
     {name: 'notes_count', cell:'integer', label: 'Notes'}
-    {name: 'created_at', cell:'date', label: 'Date Added'}
+    {name: 'last_engaged', cell:'date', label: 'Last Engaged'}
     #{name: 'links', cell: ds.ActionCell}
   ]
   parseRecords: (response) ->

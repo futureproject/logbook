@@ -1,34 +1,37 @@
-class Phonebook.Models.Person extends Backbone.Model
-  className: 'Person'
+class ds.Person extends Backbone.Model
   namespace: 'people'
   urlRoot: ds.apiHelper.urlFor 'people'
   defaults: ->
-    first_name: null
-    last_name: null
     role: 'student'
-    school_id: Phonebook.user.get('school_id')
-    school_name: ''
     grade: null
-    dream_team: false
-    attending: null
-    legacy_notes: null
-    email: null
-    phone: null
+    school_id: ds.user.current()?.get('school_id')
+    projects: []
+    engagements: []
+    notes: []
 
-# Backbone.DualStorage saves selected state, so ignore it
-  parse: (response) -> _.omit response, ['selected']
+  toJSON: ->
+    _.omit _.clone(@attributes), ['engagements', 'projects', 'notes']
 
-  #toJSON: ->
-    #_.omit _.clone(@attributes), ['attending', 'selected']
+  tplAttrs: -> {person: _.clone(@attributes)}
 
-  tplAttrs: ->  _.clone @attributes
+  validate: (attrs, options) ->
+    if !attrs.first_name
+      "This person needs a first name."
+    else if !attrs.last_name
+      "This person needs a last name."
 
-class Phonebook.Collections.PeopleCollection extends Backbone.PageableCollection
-  model: Phonebook.Models.Person
+class ds.PeopleCollection extends Backbone.PageableCollection
+  model: ds.Person
   namespace: 'people'
   url: -> ds.apiHelper.urlFor @namespace
   mode: 'client'
-  state:
-    pageSize: 50
-  #comparator: 'first_name'
+  state: pageSize: 50
+  initialize: ->
+    @listenTo Backbone, "#{@namespace}:sync", =>
+      @trigger "sync:started"
+      localStorage.removeItem @url()
+      @fetch
+        reset: true,
+        remote: true
+        complete: => @trigger("sync:ended")
 
