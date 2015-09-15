@@ -5,6 +5,9 @@ class AddLastEngagedToPeople < ActiveRecord::Migration
     Person.find_each do |person|
       person.touch
     end
+    Person.where(role: nil).each do |person|
+      person.update role: "Student"
+    end
     Person.where(last_engaged: nil).find_each do |person|
       person.update last_engaged: person.created_at
     end

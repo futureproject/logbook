@@ -22,7 +22,7 @@ class ds.MenuView extends Backbone.View
     @$el.animate
       left: "#{-window.innerWidth}px"
       opacity: 0
-    , => @remove()
+    , 'fast', => @remove()
 
   animateIn: ->
     @$el.css
@@ -31,6 +31,7 @@ class ds.MenuView extends Backbone.View
     @$el.animate
       left: 0
       opacity: 1
+    , 'fast'
 
   logout: ->
     localStorage.clear()

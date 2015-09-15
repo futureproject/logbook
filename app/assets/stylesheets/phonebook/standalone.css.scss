@@ -1,0 +1,23 @@
+@media (orientation: portrait) {
+  body.standalone {
+    padding-top: 20px;
+    &:before {
+      content: '';
+      display: block;
+      position: fixed;
+      background: $retro-blue;
+      top: 0;
+      left: 0;
+      height: 20px;
+      z-index: 100;
+      width: 100%;
+    }
+    .titlebar {
+      top: 20px;
+    }
+    .screen, .absolute {
+      top: 20px;
+    }
+
+  }
+}
