@@ -22,7 +22,14 @@
 }
 #person-engagements {
   border-top: 1px solid $base-border-color;
+  .btn {
+    background: $engagements-color;
+  }
   .engagement {
     @include transition(background .3s);
   }
+}
+.add-engagement.screen {
+  .titlebar { color: $engagements-color }
+  .actions-field input { background: $engagements-color; }
 }

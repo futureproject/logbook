@@ -3,7 +3,7 @@ $base-font-color: rgba(0,0,0,.666);
 /*$retro-blue: lighten($retro-blue, 10%);*/
 $base-highlight-color: $base-border-color;
 $base-background-color: white;
-$engagements-color: saturate($engagements-color, 20%);
+/*$engagements-color: saturate($engagements-color, 20%);*/
 body {
   -webkit-tap-highlight-color: transparent;
   margin: 0;
@@ -38,6 +38,9 @@ textarea {
   line-height: 45px;
   margin: 15px auto;
   background-color: $base-border-color;
+  &.warning {
+    background-color: $retro-yellow;
+  }
   &:active {
     box-shadow: inset 0 0 5px $base-border-color;
     border-color: white;
@@ -85,7 +88,6 @@ textarea {
       top: 0;
       right: 0;
       padding: 15px;
-      color: white;
       text-align: right;
     }
   }
