@@ -1,7 +1,8 @@
-$base-border-color: rgba(0,0,0,.25);
+$base-border-color: rgba(0,0,0,.15);
 $base-font-color: rgba(0,0,0,.666);
-$retro-blue: lighten($retro-blue, 10%);
-$base-highlight-color: saturate($retro-blue, 40%);
+/*$retro-blue: lighten($retro-blue, 10%);*/
+$base-highlight-color: $base-border-color;
+$base-background-color: white;
 $engagements-color: saturate($engagements-color, 20%);
 body {
   -webkit-tap-highlight-color: transparent;
@@ -9,29 +10,21 @@ body {
   padding: 0;
   font-weight: 400;
   font-family: $base-font-family;
-  background-color: $retro-blue;
+  background-color: $base-background-color;
   color: $base-font-color;
 }
-.screen { background: $retro-blue; }
-a {
-  text-decoration: none;
-  color: $retro-white;
-}
+.screen { background: $base-background-color; }
 
 h1, h2, h3, h4, h5, h6, strong {
   font-weight: bold;
 }
 
-input, select, textarea {
-  color: white;
-}
-label { color: $base-font-color; }
 textarea {
   -webkit-appearance: none;
 }
 
 .actions-field input {
-  background: $base-border-color;
+  background: $retro-blue;
   &.warning {
     background: $retro-yellow;
   }
@@ -46,7 +39,7 @@ textarea {
   margin: 15px auto;
   background-color: $base-border-color;
   &:active {
-    background: saturate($retro-blue, 30%);
+    box-shadow: inset 0 0 5px $base-border-color;
     border-color: white;
   }
 }
@@ -56,10 +49,11 @@ textarea {
   line-height: 45px;
   text-align: center;
   border-bottom: 1px solid $base-border-color;
-  background: $retro-blue;
+  background: white;
+  color: $retro-blue;
   .button {
     font-weight: 400;
-    color: $retro-white;
+    color: $base-font-color;
     @include transition(background, .3s);
     &:active {
       background: $base-highlight-color;
@@ -74,13 +68,12 @@ textarea {
 .list-item {
   font-weight: 500;
   border-top: 1px solid $base-border-color;
-  color: $retro-white;
   @include transition(background .3s);
   &:active {
     background: $base-highlight-color;
   }
   &.createable {
-    background-color: rgba(255,255,255,.25);
+    background-color: $base-border-color;
   }
 }
 .borderless-list {
@@ -137,7 +130,6 @@ textarea {
   line-height: 20px;
   h1 { margin-bottom: 5px; }
   label {
-    color: $retro-white;
     &:after { content: ':'; }
   }
   .fact {
@@ -150,9 +142,9 @@ textarea {
   }
 }
 ::-webkit-input-placeholder {
- color: rgba(255,255,255,.5);
+ color: rgba(0,0,0,.5);
 }
-::-moz-placeholder {  /* Firefox 19+ */
+::-moz-placeholder {
  color: rgba(255,255,255,.5);
 }
 :-ms-input-placeholder {
@@ -170,14 +162,13 @@ textarea {
  }
 }
 .notification {
-  border-top: 1px solid $base-border-color;
-  background-color: $base-highlight-color;
+  background-color: $retro-green;
   text-align: center;
   color: white;
   font-weight: bold;
 }
 
 .menu {
-  background: $retro-blue;
+  background: $base-background-color;
   /*color: white;*/
 }

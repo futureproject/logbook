@@ -1,5 +1,9 @@
 class ds.PeopleIndexView extends Backbone.View
-  className: 'index people-index screen animation-fallin'
+  className:->
+    cls = 'index people-index screen'
+    cls += " animation-fallin" if ds.APP_LOADED
+    cls
+
   template: JST["phonebook/templates/people/index"]
   initialize: (options = {}) ->
     @[option] = options[option] for option of options
