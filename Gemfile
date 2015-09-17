@@ -53,18 +53,18 @@ gem "haml-rails"
 group :production do
   gem 'rails_12factor'
   gem "rack-timeout-puma"
-  gem 'newrelic_rpm'
 end
-
-#error monitoring
-gem 'airbrake'
 
 # rails_admin for CRMish stuff
 gem 'rails_admin'
 
+#error monitoring
+gem 'airbrake'
+
+# Groups records by date, which we use for preparing graph data
 gem 'groupdate'
 
-# Geocode locations!
+# Geocode locations
 gem 'geocoder'
 
 #caching on heroku
@@ -73,9 +73,6 @@ gem 'memcachier'
 
 # ejs javascript templates
 gem 'ejs'
-
-# fastclick
-gem 'fastclick-rails'
 
 # pagination
 gem 'kaminari'
@@ -89,8 +86,6 @@ gem 's3_direct_upload'
 # process things in the background
 gem 'delayed_job_active_record'
 
-#gem "google_drive"
-
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
   gem 'dotenv-rails'
@@ -101,17 +96,5 @@ group :test do
   gem 'pry'
   gem 'capybara'
   gem 'capybara-webkit'
-  #gem 'selenium-webdriver'
-  #gem 'chromedriver-helper'
   gem 'launchy'
 end
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-
-# Use debugger
-# gem 'debugger', group: [:development, :test]
-
