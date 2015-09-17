@@ -1,4 +1,4 @@
-class Api::Insecure::SessionsController < Api::Insecure::BaseController
+class Api::Public::SessionsController < Api::Public::BaseController
 
   def new
     @user = Person.with_accounts.find_by(email: params[:email])

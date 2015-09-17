@@ -94,7 +94,6 @@ GEM
     execjs (2.6.0)
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
-    fastclick-rails (1.0.1)
     font-awesome-rails (4.4.0.0)
       railties (>= 3.2, < 5.0)
     foreman (0.78.0)
@@ -315,7 +314,6 @@ DEPENDENCIES
   delayed_job_active_record
   dotenv-rails
   ejs
-  fastclick-rails
   foreman
   geocoder
   groupdate

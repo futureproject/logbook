@@ -1,4 +1,4 @@
-class Api::Insecure::BaseController < Api::BaseController
+class Api::Public::BaseController < Api::BaseController
   before_filter :set_default_response_format
   skip_before_filter :authorize!
 

@@ -20,6 +20,12 @@ class ds.Person extends Backbone.Model
     else if !attrs.last_name
       "This person needs a last name."
 
+  addEngagement: (engagement_attrs) ->
+    e = @get('engagements')
+    e.unshift(engagement_attrs)
+    @set 'engagements', e
+    console.log @get('engagements')
+
 class ds.PeopleCollection extends Backbone.PageableCollection
   model: ds.Person
   namespace: 'people'

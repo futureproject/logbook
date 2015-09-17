@@ -1,17 +1,14 @@
 ds.apiHelper =
   urls:
-    assets: -> "/api/v2/assets"
-    asset: (id) -> "/api/v2/assets/#{id}"
-    assets_s3_path: -> "/api/v2/assets/signed_s3_path"
-    engagements: -> "/api/insecure/engagements"
-    engagement: (id) -> "/api/insecure/engagements/#{id}"
-    people:  -> "/api/insecure/people"
-    person: (id) -> "/api/insecure/people/#{id}"
-    projects:  -> "/api/insecure/projects"
-    project: (id) -> "/api/insecure/projects/#{id}"
-    schools: -> "/api/insecure/schools"
-    sessions: -> "/api/insecure/sessions/new"
-    sites: -> "/api/insecure/sites"
+    engagements: -> "/api/public/engagements"
+    engagement: (id) -> "/api/public/engagements/#{id}"
+    people:  -> "/api/public/people"
+    person: (id) -> "/api/public/people/#{id}"
+    #projects:  -> "/api/public/projects"
+    #project: (id) -> "/api/public/projects/#{id}"
+    schools: -> "/api/public/schools"
+    sessions: -> "/api/public/sessions/new"
+    sites: -> "/api/public/sites"
 
   urlFor: (path, args) ->
     @urls[path]? args

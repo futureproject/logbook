@@ -9,6 +9,7 @@ class ds.People_EngagementsView extends Backbone.View
     'click .add': 'goToAdd'
 
   render: ->
+    console.log 'rendering engagements!'
     attrs = @model.tplAttrs()
     return @ unless attrs.person.engagements
     @$el.html @template(attrs)

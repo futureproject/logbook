@@ -24,7 +24,9 @@ class ds.Engagement extends Backbone.Model
 
   canBeDeleted: ->
     # only allow models created within the last hour to be deleted
-    timestamp = Date.parse(@get('created_at')).getTime()
+    created = @get('created_at')
+    return true if !created
+    timestamp = Date.parse(created).getTime()
     now = new Date().getTime()
     (now-timestamp)/1000 < 3600
 
