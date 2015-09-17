@@ -1,4 +1,8 @@
 class ds.Person extends Backbone.Model
+  initialize: ->
+    @collections =
+      engagements: new ds.EngagementsForPersonCollection @get('engagements'),
+        source: @
   namespace: 'people'
   urlRoot: ds.apiHelper.urlFor 'people'
   defaults: ->
@@ -12,19 +16,13 @@ class ds.Person extends Backbone.Model
   toJSON: ->
     _.omit _.clone(@attributes), ['engagements', 'projects', 'notes']
 
-  tplAttrs: -> {person: _.clone(@attributes)}
+  tplAttrs: -> {person: _.extend _.clone(@attributes), engagements_count: @collections.engagements.length}
 
   validate: (attrs, options) ->
     if !attrs.first_name
       "This person needs a first name."
     else if !attrs.last_name
       "This person needs a last name."
-
-  addEngagement: (engagement_attrs) ->
-    e = @get('engagements')
-    e.unshift(engagement_attrs)
-    @set 'engagements', e
-    console.log @get('engagements')
 
 class ds.PeopleCollection extends Backbone.PageableCollection
   model: ds.Person

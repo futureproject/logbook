@@ -1,6 +1,7 @@
 class ds.People_EngagementsView extends Backbone.View
   initialize: ->
-    @listenTo @model, 'change:engagements', @render
+    @collection = @model.collections.engagements
+    @listenTo @collection, "add change", _.debounce(@render)
     @views = []
 
   template: JST["phonebook/templates/people/_engagements"]
@@ -9,18 +10,16 @@ class ds.People_EngagementsView extends Backbone.View
     'click .add': 'goToAdd'
 
   render: ->
-    console.log 'rendering engagements!'
     attrs = @model.tplAttrs()
-    return @ unless attrs.person.engagements
     @$el.html @template(attrs)
     @postRender()
     @
 
   postRender: ->
     fragment = document.createDocumentFragment()
-    for e in @model.get('engagements')
+    for e in @collection.models
       view = new ds.EngagementView
-        model: new ds.Engagement(e)
+        model: e
       fragment.appendChild view.render().el
       @views.push view
     @$el.find('#engagements-list').html(fragment)

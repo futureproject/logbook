@@ -29,7 +29,7 @@ class ds.PeopleAddEngagementView extends Backbone.View
     event.preventDefault()
     data = Backbone.Syphon.serialize @
     if @model.save data
-      @person.addEngagement @model.toJSON()
+      @person.collections.engagements.add @model
       Backbone.trigger "engagements:persist", @model
       Backbone.trigger "people:do", "show", @person.id
       Backbone.trigger "notification", "Engagement Added!"

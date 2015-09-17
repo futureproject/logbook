@@ -39,3 +39,15 @@ class ds.EngagementsCollection extends Backbone.PageableCollection
     @reset
       remote: false
       success: => @syncDirtyAndDestroyed()
+
+class ds.EngagementsForPersonCollection extends Backbone.Collection
+  model: ds.Engagement
+  initialize: (models, args) ->
+    @[option] = args[option] for option of args
+    @listenTo @source, 'change:engagements', @staySynced
+
+  staySynced: (person) ->
+    @add person.get('engagements')
+
+  comparator: (engagement) ->
+    - Date.parse(engagement.get('date'))
