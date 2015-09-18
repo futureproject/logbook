@@ -1,6 +1,6 @@
 #= require jquery-2.1.1
-#= require underscore-1.8.3
-#= require backbone-1.2.1
+#= require underscore-min
+#= require backbone-min
 #= require backbone.paginator.min
 #= require backgrid.min
 #= require backgrid-paginator.min
