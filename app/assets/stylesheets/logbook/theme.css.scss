@@ -207,9 +207,28 @@ tbody {
 textarea {
   white-space: pre-wrap;
 }
-.text-editor {
+.ql-container {
   background: white;
+  font-family: $base-font-family !important;
+  line-height: 20px !important;
+  font-size: 15px !important;
+  position: absolute !important;
+  top: 83px !important;
+  left: 210px !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  height: auto !important;
+  padding: 15px !important;
 }
+.ql-editor > * {
+  margin-bottom: 20px !important;
+}
+.ql-toolbar {
+  padding: 5px 15px;
+  background: $base-background-color;
+  border-bottom: 1px solid $base-border-color;
+}
+
 pre {
   white-space: pre-wrap;
   font-family: $base-font-family;
@@ -247,3 +266,4 @@ pre {
   background: white;
   border: 1px solid $base-border-color;
 }
+

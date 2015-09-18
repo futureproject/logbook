@@ -4,7 +4,7 @@
   end
   json.data do
     json.array!(@report_submissions) do |report_submission|
-      #json.cache! ['v1', person] do
+      json.cache! ['v5', report_submission] do
         json.extract! report_submission, :id,
           :status,
           :name,
@@ -12,10 +12,10 @@
           :created_at,
           :updated_at,
           :date_submitted
-        json.excerpt truncate(report_submission.body)
+        json.excerpt truncate(strip_tags(report_submission.body))
         json.author report_submission.person.name
         json.city report_submission.person.try(:site).try(:name)
-      #end
+      end
     end
   end
 #end

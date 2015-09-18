@@ -4,16 +4,16 @@
 </div>
 <ul class="factbar">
   <li class="fact">
-    <label>Date Assigned</label>
-    <%= report_submission.created_at %>
+    <label>Date Submitted</label>
+    <%= report_submission.date_submitted %>
   </li>
   <li class="fact">
-    <label>Assignee</label>
+    <label>Author</label>
     <%= report_submission.person.name %>
   </li>
 </ul>
 <div class="section">
-  <pre class="report-submission-body">
+  <div class="report-submission-body">
     <%= report_submission.body %>
-  </pre>
+  </div>
 </div>

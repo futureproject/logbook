@@ -17,8 +17,13 @@ class ds.ReportSubmissionsEditView extends Backbone.View
     @
 
   postRender: ->
+    @editor = new Quill "#report-body",
+      modules:
+        "toolbar": { container: "#basic-toolbar" }
 
-  getBodyFromTextEditor: -> { body: @el.querySelector('textarea').value.trim() }
+  getBodyFromTextEditor: ->
+    body = @editor.getHTML()
+    { body: body }
 
   save: (event) ->
     event.preventDefault()

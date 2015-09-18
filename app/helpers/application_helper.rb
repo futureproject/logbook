@@ -1,4 +1,5 @@
 module ApplicationHelper
+  @@markdowner = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new, extensions = {})
 
   def nav_link_to(link_text, link_path, icon=nil)
     content_tag(:li, class: "nav-item #{link_text.parameterize}", id: "#{link_text.parameterize}-nav-item") do
@@ -30,5 +31,10 @@ module ApplicationHelper
   def page_classes
     @page_classes || ''
   end
+
+  def markdown(text)
+    @@markdowner.render(text)
+  end
+
 
 end

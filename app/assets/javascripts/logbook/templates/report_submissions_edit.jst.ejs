@@ -6,6 +6,13 @@
     <a title="Submit this report to HQ" class='submit' href="/logbook/reports">Submit</a>
   </nav>
 </div>
-<div class="text-editor">
-  <textarea name="body" id="report-body"><%= report_submission.body %></textarea>
+
+<div id="basic-toolbar" class="toolbar">
+  <button class="ql-bold">Bold</button>
+  <button class="ql-italic">Italic</button>
+  <button class="ql-bullet">List</button>
+</div>
+
+<div id="report-body">
+  <%= report_submission.body %>
 </div>
