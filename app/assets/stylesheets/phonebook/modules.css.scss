@@ -56,6 +56,22 @@
   }
 }
 
+.button.sync {
+  padding: 0;
+  .icon-sync {
+    display: block;
+    margin: 0 auto;
+    width: 45px;
+    height: 45px;
+    text-align: center;
+  }
+}
+.syncing {
+  .icon-sync {
+    @include animation(rotation 1s)
+  }
+}
+
 .list-item {
   line-height: 45px;
   height: 45px;

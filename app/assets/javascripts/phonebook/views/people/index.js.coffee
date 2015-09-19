@@ -16,6 +16,7 @@ class ds.PeopleIndexView extends Backbone.View
 
   events:
     'click .hamburger': 'showNav'
+    'click .sync': (e) -> Backbone.trigger "people:sync"
     'touchstart .titlebar': (e) ->
 
   render: ->
@@ -39,10 +40,9 @@ class ds.PeopleIndexView extends Backbone.View
     @listenTo @collection, "sync:ended", @despin
 
   spin: ->
-    @spinner = new ds.SpinnerView
-    @$el.find('.search').after @spinner.render().el
+    @$el.addClass('syncing')
 
   despin: ->
-    @spinner?.remove()
+    @$el.removeClass('syncing')
 
   showNav: (event) -> Backbone.trigger "app:nav"
