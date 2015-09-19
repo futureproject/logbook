@@ -24,12 +24,10 @@ class ds.Person extends Backbone.Model
     else if !attrs.last_name
       "This person needs a last name."
 
-class ds.PeopleCollection extends Backbone.PageableCollection
+class ds.PeopleCollection extends Backbone.Collection
   model: ds.Person
   namespace: 'people'
   url: -> ds.apiHelper.urlFor @namespace
-  mode: 'client'
-  state: pageSize: 50
   initialize: ->
     @listenTo Backbone, "#{@namespace}:sync", =>
       @trigger "sync:started"

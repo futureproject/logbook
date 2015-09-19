@@ -6,8 +6,7 @@ Backbone.Collection.prototype.bootstrap = ->
     success: =>
       @syncDirtyAndDestroyed()
       # get the newest record
-      c = @fullCollection || @
-      sorted = c.sortBy('id')
+      sorted = @sortBy('id')
       newest = _.last(sorted)?.get('created_at')
       now = new Date()
       if newest

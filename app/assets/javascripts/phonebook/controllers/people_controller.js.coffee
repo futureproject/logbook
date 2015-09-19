@@ -47,12 +47,11 @@ class ds.PeopleController extends Backbone.View
 
   getModelFromId: (id) ->
     # if this is an actual id, not a cid
-    collection = @collection.fullCollection || @collection
     if parseInt(id)
-      person = collection.get(id) || new ds.Person({ id: id })
-      person.fetch {success: -> collection.add person}
+      person = @collection.get(id) || new ds.Person({ id: id })
+      person.fetch {success: => @collection.add person}
     else
-      person = collection.get({cid: id}) || new ds.Person({ cid: id })
+      person = @collection.get({cid: id}) || new ds.Person({ cid: id })
     person
 
   getAttendeeIdsFromRole: (person_id, user) ->
@@ -69,3 +68,4 @@ class ds.PeopleController extends Backbone.View
         collection.remove person
         collection.add person,
           at: 0
+

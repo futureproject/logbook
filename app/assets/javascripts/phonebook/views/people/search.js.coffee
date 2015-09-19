@@ -31,13 +31,23 @@ class ds.PeopleSearchView extends Backbone.View
   search: (query) ->
     return unless query.length > 1
     q = query.toLowerCase()
-    results = @collection.fullCollection.clone().filter (person) ->
+    # find local results and return them
+    results = @collection.clone().filter (person) ->
       first = person.get('first_name')
       last = person.get('last_name')
       searchString = (first + " " + last).toLowerCase().trim()
       searchString.match(q)
-
-    Backbone.trigger "people:search:results", query, results
+    results_collection = new Backbone.Collection(results)
+    Backbone.trigger "people:search:results", query, results_collection
+    # now search for remote results and return those too
+    $.ajax
+      url: "#{@collection.url()}/search"
+      data: {q: q}
+      complete: (response) =>
+        server_results = response.responseJSON
+        if server_results.length > 0
+          results_collection.add server_results
+          Backbone.trigger "people:search:results", query, results_collection
 
   onfocus: (event) ->
     # show cancel button

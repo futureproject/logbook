@@ -25,7 +25,7 @@ class ds.PeopleIndexView extends Backbone.View
 
   postRender: ->
     Backbone.trigger 'scroll:reset', 0
-    @collection.bootstrap() if @collection.length < @collection.state.pageSize
+    @collection.bootstrap() if @collection.length < 2
     @views.list.renderTo "#people-list", { replace: true }
     @views.search.renderTo "#people-search", { replace: true }
 

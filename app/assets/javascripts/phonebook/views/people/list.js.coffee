@@ -13,7 +13,7 @@ class ds.PeopleListView extends Backbone.View
     collection ||= @collection
     console.log "rendered list with #{collection.length} people"
     fragment = document.createDocumentFragment()
-    for person in collection.models
+    for person in collection.first(50)
       item = document.createElement("div")
       item.className = "list-item person"
       item.setAttribute("data-id", person.get("id"))
@@ -34,7 +34,7 @@ class ds.PeopleListView extends Backbone.View
     Backbone.trigger "people:do", "show", id
 
   onSearch: (query, results) ->
-    @render({ models: results, length: results.length })
+    @render(results)
     # split up query by word
     q = query.split(" ")
     last_name= q.pop()

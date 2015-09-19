@@ -15,6 +15,8 @@ class ds.EngagementsController extends Backbone.View
     @[fn]?(args)
 
   saveEngagement: (model) ->
+    console.log "persisting!"
+    console.log model
     @collection.add model,
       at: 0
 

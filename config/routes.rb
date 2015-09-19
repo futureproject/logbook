@@ -40,7 +40,10 @@ Rails.application.routes.draw do
     end
     namespace :public do
       resources :people do
-        get 'sync', on: :collection
+        collection do
+          get "sync"
+          get "search"
+        end
       end
       resources :engagements
       #resources :projects

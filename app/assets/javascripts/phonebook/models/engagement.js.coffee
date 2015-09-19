@@ -30,15 +30,17 @@ class ds.Engagement extends Backbone.Model
     now = new Date().getTime()
     (now-timestamp)/1000 < 3600
 
-class ds.EngagementsCollection extends Backbone.PageableCollection
+class ds.EngagementsCollection extends Backbone.Collection
   model: ds.Engagement
   namespace: 'engagements'
   url: -> ds.apiHelper.urlFor @namespace
-  mode: 'client'
   initialize: ->
-    @reset
+    console.log 'initializing'
+    @fetch
       remote: false
-      success: => @syncDirtyAndDestroyed()
+      success: =>
+        @syncDirtyAndDestroyed()
+        @reset()
 
 class ds.EngagementsForPersonCollection extends Backbone.Collection
   model: ds.Engagement

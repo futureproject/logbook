@@ -3,7 +3,6 @@
 #= require backbone-min
 #= require backbone.dualstorage
 #= require backbone.syphon
-#= require backbone.paginator.min
 #= require jquery.animate-enhanced
 #= require date
 #= require titlecase

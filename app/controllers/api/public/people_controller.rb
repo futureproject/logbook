@@ -4,12 +4,19 @@ class Api::Public::PeopleController < Api::Public::BaseController
   # GET /api/public/people
   # GET /api/public/people.json
   def index
-    @people = current_scope.people.active.where.not(id: current_user.id).order(sort_params)
+    @people = current_scope.people.active.where
+      .not(id: current_user.id).order(sort_params)
+      .page(params[:page]).per(500)
   end
 
   def sync
     @count = current_scope.people.btw(people_times).count
     @count > 0 ? head(302) : head(304)
+  end
+
+  def search
+    @people = current_scope.people.active.q(params[:q]).limit(10)
+    render template: "api/public/people/index"
   end
 
   # GET /api/public/people/1

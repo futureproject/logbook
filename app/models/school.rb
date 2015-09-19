@@ -17,7 +17,7 @@ class School < ActiveRecord::Base
   end
 
   def dream_director
-    people.find_by(role: 'DD')
+    people.find_by(role: 'DD') || people.find_by(role: 'CHIEF')
   end
 
   def dream_team
