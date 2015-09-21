@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150921175036) do
+ActiveRecord::Schema.define(version: 20150921200656) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -127,10 +127,12 @@ ActiveRecord::Schema.define(version: 20150921175036) do
     t.date     "last_engaged"
     t.string   "osis"
     t.boolean  "active",                    default: true
+    t.date     "first_engaged"
   end
 
   add_index "people", ["active"], name: "index_people_on_active", using: :btree
   add_index "people", ["dream_team"], name: "index_people_on_dream_team", using: :btree
+  add_index "people", ["first_engaged"], name: "index_people_on_first_engaged", using: :btree
   add_index "people", ["first_name"], name: "index_people_on_first_name", using: :btree
   add_index "people", ["graduated_in"], name: "index_people_on_graduated_in", using: :btree
   add_index "people", ["last_engaged"], name: "index_people_on_last_engaged", using: :btree

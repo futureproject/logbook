@@ -86,6 +86,10 @@ class Person < ActiveRecord::Base
     date = engagements.order('date DESC').where("date <= ?", Date.today)
       .limit(1).first.try(:date)
     self.update(last_engaged: date)
+    if self.first_engaged.nil?
+      first = engagements.order('date').limit(1).first.try(:date)
+      self.update first_engaged: date
+    end
     true
   end
 

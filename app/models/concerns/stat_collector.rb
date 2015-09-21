@@ -215,7 +215,7 @@ class StatCollector
     grades = [9,10,11,12,nil]
     grades.each do |grade|
       sum = 0
-      people = scope.people.joins(:engagements).merge(scope.engagements.btw(dates)).where(people: { grade: grade }).uniq.group_by_week('people.created_at', range: dates, format: Proc.new{|d| d.to_datetime.to_i*1000}).count.to_a.map {|x,y| [x, sum += y] }
+      people = scope.people.joins(:engagements).merge(scope.engagements.btw(dates)).where(people: { grade: grade }).uniq.group_by_week('people.first_engaged', range: dates, format: Proc.new{|d| d.to_datetime.to_i*1000}).count.to_a.map {|x,y| [x, sum += y] }
       series.push({
         name: "Grade #{grade || '?'}",
         data: people
