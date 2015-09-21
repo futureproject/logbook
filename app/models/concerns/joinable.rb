@@ -14,6 +14,8 @@ module Joinable
       if params[:sort_by] && params[:sort_by].match(/_count/i)
         table_name = params[:sort_by].split('_').first
         with_association(table_name, stat_times)
+      elsif params[:sort_by] && params[:sort_by].match(/last_engaged/i)
+        where("last_engaged IS NOT NULL")
       elsif params[:q]
         q(params[:q])
       else

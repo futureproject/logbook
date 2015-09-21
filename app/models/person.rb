@@ -16,7 +16,7 @@ class Person < ActiveRecord::Base
   has_many :assets, as: :attachable
   has_many :report_submissions
   has_many :authored_notes, class_name: 'Note', foreign_key: 'author_id'
-  before_create :generate_auth_token_and_set_last_engaged
+  before_create :generate_auth_token
   before_save :set_site
   after_touch :set_last_engaged
   ROLE_ENUM = %w(student teacher volunteer staff)
@@ -85,7 +85,7 @@ class Person < ActiveRecord::Base
   def set_last_engaged
     date = engagements.order('date DESC').where("date <= ?", Date.today)
       .limit(1).first.try(:date)
-    self.update(last_engaged: date) if date
+    self.update(last_engaged: date)
     true
   end
 
@@ -154,10 +154,9 @@ class Person < ActiveRecord::Base
     end
   end
 
-  # make an auth_token to remember this user for later logins
-  def generate_auth_token_and_set_last_engaged
+  # make an auth_token to remember this person for later logins
+  def generate_auth_token
     self.auth_token = SecureRandom.uuid if self.auth_token.blank?
-    self.last_engaged = Date.today
   end
 
   rails_admin do
