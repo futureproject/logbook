@@ -2,6 +2,7 @@ class School < ActiveRecord::Base
   geocoded_by :address
   validates_presence_of :name, :address
   after_validation :geocode, :if => lambda{ |obj| obj.address_changed? }
+  after_validation :archive_people, :if => lambda{ |obj| obj.active_changed? }
   before_create :set_shortname
 
   belongs_to :site, touch: true
@@ -9,6 +10,8 @@ class School < ActiveRecord::Base
   has_many :projects
   has_many :engagements
   has_many :engagement_attendees, through: :engagements
+
+  include Activatable
 
   def set_shortname
     if self.shortname.blank?
@@ -58,6 +61,13 @@ class School < ActiveRecord::Base
       dd_name: self.dream_director.try(:name),
       city_name: self.site.name,
     }
+  end
+
+  def archive_people
+    return true if self.active
+    self.people.where("role = ? OR role = ? OR role = ?", "student", "staff", "teacher").each do |p|
+      p.update active: false
+    end
   end
 
 end

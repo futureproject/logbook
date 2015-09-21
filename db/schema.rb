@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150921155819) do
+ActiveRecord::Schema.define(version: 20150921175036) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -126,8 +126,10 @@ ActiveRecord::Schema.define(version: 20150921155819) do
     t.text     "bio"
     t.date     "last_engaged"
     t.string   "osis"
+    t.boolean  "active",                    default: true
   end
 
+  add_index "people", ["active"], name: "index_people_on_active", using: :btree
   add_index "people", ["dream_team"], name: "index_people_on_dream_team", using: :btree
   add_index "people", ["first_name"], name: "index_people_on_first_name", using: :btree
   add_index "people", ["graduated_in"], name: "index_people_on_graduated_in", using: :btree
@@ -215,7 +217,10 @@ ActiveRecord::Schema.define(version: 20150921155819) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "enrollment",                    default: 607
+    t.boolean  "active",                        default: true
   end
+
+  add_index "schools", ["active"], name: "index_schools_on_active", using: :btree
 
   create_table "sites", force: :cascade do |t|
     t.string   "name",       limit: 255

@@ -26,17 +26,17 @@ class Person < ActiveRecord::Base
   COLOR_ENUM = %w(#42C8EE #036B89 #7c878a #419AD3 #568099)
 
   include Joinable
+  include Activatable
 
   scope :q, -> (query) {
     return if query.blank?
     first = "%#{query.split(' ').first.downcase}%"
     last = "%#{query.split(' ').last.downcase}%"
     operator = first == last ? "or" : "and"
-    active.where("first_name like ? #{operator} last_name like ?", first, last)
+    where("first_name like ? #{operator} last_name like ?", first, last)
     .order("dream_team DESC, first_name ASC")
   }
   scope :logbook_default, -> { active }
-  scope :active, -> { where(graduated_in: nil) }
   scope :with_hours, -> (kind="%") {
     joins(:engagements).where('engagements.kind like ?', kind).select("people.*, SUM(engagements.duration) AS engagement_hours").group('people.id')
   }

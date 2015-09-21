@@ -64,6 +64,7 @@ RailsAdmin.config do |config|
       field :shortname
       field :address
       field :enrollment
+      field :active
       field :site
     end
   end
