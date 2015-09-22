@@ -92,7 +92,7 @@ class Api::Public::PeopleController < Api::Public::BaseController
       if params[:sort_by] && params[:order]
         "#{params[:sort_by]} #{params[:order]}, first_name ASC"
       else
-        "last_engaged DESC, updated_at DESC"
+        "last_engaged DESC NULLS LAST, updated_at DESC"
       end
     end
 

@@ -10,7 +10,10 @@ json.extract! @person, :id,
   :role,
   :last_engaged
 json.dd @person.dream_director.try(:name)
-json.engagements @engagements
+json.engagements @engagements do |engagement|
+  json.extract! engagement, :id, :kind, :name, :headcount,
+    :date, :duration, :school_id
+end
 json.projects @person.project_people.includes(:project).order('projects.name') do |pp|
   json.id pp.project.id
   json.name pp.project.name
