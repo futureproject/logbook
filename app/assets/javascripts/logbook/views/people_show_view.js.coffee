@@ -13,6 +13,7 @@ class ds.PeopleShowView extends Backbone.View
           {name: 'people_count', cell:'integer', label: 'Team Size'}
           {name: 'leading', cell:'boolean'}
         ]
+      contact_card: new ds.PeopleContactCardView { model: @model }
       stickies: new ds.StickiesView { model: @model }
       engagement_bubbles_graph: new ds.GraphView
         url: ds.apiHelper.urlFor("people_graphs", { id: @model.id, graph: "engagement_bubbles_graph" })
@@ -34,6 +35,7 @@ class ds.PeopleShowView extends Backbone.View
     @collections.projects.reset @model.get('projects')
     @collections.engagements.reset @model.get('engagements')
     @views.stickies.collection.reset @model.get('notes')
+    @views.contact_card.renderTo "#person-contact-card"
     @views.projects_table.renderTo "#projects-table" if @collections.projects.length > 0
     @views.stickies.renderTo "#stickies"
     @views.engagement_bubbles_graph.renderTo '#engagement_bubbles_graph'

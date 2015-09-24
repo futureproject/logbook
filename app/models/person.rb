@@ -78,7 +78,8 @@ class Person < ActiveRecord::Base
   end
 
   def set_site
-    self.site_id = self.school.try(:site).try(:id) if self.school
+    return if self.site || !self.school
+    self.site_id = self.school.try(:site).try(:id)
     true
   end
 

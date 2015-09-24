@@ -1,6 +1,6 @@
 <div class="titlebar">
   <a class="title" href="/logbook/people">People</a>
-  <div class="subtitle">&rsaquo; <%= person.first_name %> <%= person.last_name %></div>
+  <div class="subtitle">&rsaquo; Profile for <%= person.first_name %> <%= person.last_name %></div>
   <nav class='titlebar-actions'>
     <a href="/logbook/people/<%= person.id %>/edit">Edit</a>
   </nav>
@@ -22,15 +22,9 @@
     <label>School</label>
     <%= person.school_name %>
   </li>
-  <li class="fact">
-    <label>Email</label>
-    <%= person.email %>
-  </li>
-  <li class="fact">
-    <label>Phone</label>
-    <%= person.phone %>
-  </li>
 </ul>
+<div class="section" id="person-contact-card">
+</div>
 <div class="section">
   <h2 class="section-header">
     <%= person.projects.length %> Projects

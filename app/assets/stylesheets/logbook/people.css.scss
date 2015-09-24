@@ -35,4 +35,34 @@ body.people {
     @include span-columns(3);
   }
   .media-release-field { @include omega; }
+  .bio-field {
+    clear: both;
+    margin-top: 1em;
+  }
+}
+
+.person-contact-card {
+  @include clearfix;
+  position: relative;
+  padding-left: 135px;
+  min-height: 120px;
+  .person-avatar {
+    width: 120px;
+    height: 120px;
+    text-align: center;
+    border: 1px solid $base-border-color;
+    background: $base-border-color;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  textarea {
+    border: none;
+    padding: 0;
+    font-size: 13px;
+    &:focus {
+      outline: none;
+      color: $retro-blue;
+    }
+  }
 }

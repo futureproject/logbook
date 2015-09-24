@@ -1,0 +1,21 @@
+<div class="person-contact-card">
+  <img class="person-avatar" src="<%= person.avatar %>" alt="<%= person.first_name %>" />
+  <div class="person-info" >
+    <h2 class="section-header">
+      <%= person.first_name %> <%= person.last_name %>
+    </h2>
+    <ul class="person-details">
+      <li class="fact">
+        <label>E:</label>
+        <%= person.email || "N/A" %>
+      </li>
+      <li class="fact">
+        <label>P:</label>
+        <%= person.phone || "N/A" %>
+      </li>
+    </ul>
+    <div class="person-bio">
+      <textarea placeholder="Type a few sentences re: passions, skills, things you want to remember, etc" name='bio'><%= person.bio %></textarea>
+    </div>
+  </div>
+</div>

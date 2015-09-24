@@ -6,8 +6,6 @@ class Engagement < ActiveRecord::Base
   has_many :attendees, through: :engagement_attendees, source: :person
   has_many :assets, as: :attachable, dependent: :destroy
   has_many :notes, as: :notable, dependent: :destroy
-  #has_many :activities, as: :thing, dependent: :destroy
-  #after_create :log_activity
   before_create :autoname
   before_save :set_site
   before_save :set_headcount
