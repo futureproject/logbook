@@ -13,5 +13,7 @@ class ds.PeopleContactCardView extends Backbone.View
     @delegateEvents()
 
   saveBio: (event) ->
+    content = $(event.currentTarget).val()
+    content = null if content.length < 1
     @model.save
-      bio: $(event.currentTarget).val()
+      bio: content
