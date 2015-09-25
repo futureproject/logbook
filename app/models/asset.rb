@@ -6,7 +6,8 @@ class Asset < ActiveRecord::Base
   do_not_validate_attachment_file_type :data
   before_post_process :skip_non_images
   after_create :download_data_later
-  #
+  DEFAULT_URL = "//dream-os-production.s3.amazonaws.com/static-assets/user.jpg"
+
   def skip_non_images
     !!(data_content_type.match(/image/i))
   end

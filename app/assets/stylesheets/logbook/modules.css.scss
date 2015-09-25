@@ -377,3 +377,18 @@ input.save {
     margin-bottom: 20px;
   }
 }
+
+.attachable {
+  position: fixed;
+  top: 0;
+  left: 210px;
+  right: 0;
+  background: white;
+  padding: 15px;
+  border-bottom: 1px solid $base-border-color;
+  .meter {
+    height: 15px;
+    background: $retro-green;
+  }
+}
+

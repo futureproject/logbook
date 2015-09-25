@@ -1,5 +1,11 @@
 <div class="person-contact-card">
-  <img class="person-avatar" src="<%= person.avatar %>" alt="<%= person.first_name %>" />
+  <div class="person-avatar">
+    <img src="<%= person.avatar %>" alt="<%= person.first_name %> <%= person.last_name %>" />
+    <div class="upload-trigger">
+      <span class="icon-camera_alt"></span>
+      <input id="avatar-uploader" name='file' type='file' />
+    </div>
+  </div>
   <div class="person-info" >
     <h2 class="section-header">
       <%= person.first_name %> <%= person.last_name %>

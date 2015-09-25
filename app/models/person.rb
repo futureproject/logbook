@@ -151,11 +151,17 @@ class Person < ActiveRecord::Base
     end
   end
 
+  def profile_picture
+    assets.order("id DESC").limit(1).first.try(:data, :thumb)
+  end
+
   def avatar
-    if avatar_url.present?
+    if profile_picture
+      profile_picture
+    elsif avatar_url.present?
       avatar_url.gsub('sz=50','sz=100')
     else
-     "http://www.thefutureproject.org/assets/logo.png"
+     Asset::DEFAULT_URL
     end
   end
 

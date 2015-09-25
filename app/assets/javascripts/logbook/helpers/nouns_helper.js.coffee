@@ -11,7 +11,7 @@ ds.nounsHelper =
       when noun.match(/person/i) then "people"
       else noun + "s"
 
-  contantize: (noun) ->
+  constantize: (noun) ->
     noun ||= ""
     switch
       when noun.match(/people|person/i) then "Person"
