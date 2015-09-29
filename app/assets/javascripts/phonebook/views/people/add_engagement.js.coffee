@@ -23,11 +23,18 @@ class ds.PeopleAddEngagementView extends Backbone.View
     @
 
   postRender: ->
-    Backbone.Syphon.deserialize @, @model.toJSON()
+    attrs = @model.toJSON()
+    # render duration as minutes
+    attrs.duration = attrs.duration * 60
+    console.log attrs
+    Backbone.Syphon.deserialize @, attrs
 
   onsubmit: (event) ->
     event.preventDefault()
     data = Backbone.Syphon.serialize @
+    # convert minutes back to hours
+    duration = parseFloat(data.duration/60).toFixed(3)
+    data.duration = duration
     if @model.save data
       @person.collections.engagements.add @model
       Backbone.trigger "engagements:persist", @model

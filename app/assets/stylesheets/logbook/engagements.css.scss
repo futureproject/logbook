@@ -22,6 +22,20 @@
   .duration-field {
     @include omega;
   }
+  .duration-field {
+    input {
+      display: inline-block;
+      width: 8ch;
+    }
+    select {
+      display: inline-block;
+      width: auto;
+    }
+    label {
+      display: block;
+      margin-top: 5px;
+    }
+  }
   .kind-field, .school-field, .name-field {
     @include span-columns(6);
   }

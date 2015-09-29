@@ -10,6 +10,8 @@ class ds.EngagementsFormView extends Backbone.View
   events:
     'submit': 'onsubmit'
     'change #kind': 'setCssClassFromKind'
+    'change #duration-number': 'setDuration'
+    'change #duration-units': 'setDuration'
 
   setCssClassFromKind: (event) ->
     @$el.attr('class', $(event.currentTarget).val().toLowerCase())
@@ -27,6 +29,7 @@ class ds.EngagementsFormView extends Backbone.View
     Backbone.Syphon.deserialize @, @model.toJSON()
     @selectize "#attendee_ids",
       initialItems: @model.get 'attendees'
+    @setDurationProxy()
 
   onsubmit: (event) ->
     event.preventDefault()
@@ -45,6 +48,27 @@ class ds.EngagementsFormView extends Backbone.View
     ds.collections.schools.each (s) ->
       $f.append "<option value='#{s.get('id')}'>#{s.get('name')}</option>"
     @$el.find('#school_id').html $f
+
+  setDurationProxy: ->
+    valueField = @$el.find("#duration-number")
+    unitField = @$el.find("#duration-units")
+    duration = @model.get('duration')
+    if duration < 1
+      valueField.val(Math.round(duration*60))
+      unitField.val("minutes")
+    else
+      valueField.val(duration)
+      unitField.val("hours")
+
+  setDuration: (event) ->
+    valueField = @$el.find("#duration-number")
+    unitField = @$el.find("#duration-units")
+    durationField = @$el.find("#duration")
+    if unitField.val() == "minutes"
+      duration = parseFloat(valueField.val()/60).toFixed(3)
+    else
+      duration = valueField.val()
+    @$el.find("#duration").val(duration)
 
   reflectIdChange: ->
     @model.once 'change:id', =>

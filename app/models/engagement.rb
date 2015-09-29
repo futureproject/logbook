@@ -12,7 +12,7 @@ class Engagement < ActiveRecord::Base
   validates_presence_of :date
   KIND_ENUM = ['Coaching Session', 'Event', 'Course', 'Meeting']
   DURATION_ENUM = [
-    ['5 Minutes', 0.1],
+    ['5 Minutes', 0.083],
     ['15 Minutes', 0.25],
     ['30 Minutes', 0.5],
     ['45 Minutes', 0.75],

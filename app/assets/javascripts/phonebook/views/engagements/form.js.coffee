@@ -24,11 +24,17 @@ class ds.EngagementsFormView extends Backbone.View
 
   postRender: ->
     @setSchoolOptions()
-    Backbone.Syphon.deserialize @, @model.toJSON()
+    attrs = @model.toJSON()
+    # render duration as minutes
+    attrs.duration = attrs.duration * 60
+    Backbone.Syphon.deserialize @, attrs
 
   onsubmit: (event) ->
     event.preventDefault()
     data = Backbone.Syphon.serialize @
+    # convert minutes back to hours
+    duration = parseFloat(data.duration/60).toFixed(3)
+    data.duration = duration
     if @model.save data
       ds.collections.engagements.add @model, { merge: true }
       ds.router.navigate ds.urlsHelper.urlFor(@model), {trigger: true}

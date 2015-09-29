@@ -17,24 +17,15 @@
   <label for="name">Engagement Name</label>
 </div>
 <div class="field date-field">
-  <input name='date' type='text'>
+  <input name='date' type='date'>
   <label for="date">Date</label>
 </div>
 <div class="field duration-field">
-  <select id="engagement_duration" name="duration">
-    <option value="0.1">5 Minutes</option>
-    <option value="0.25">15 Minutes</option>
-    <option value="0.5">30 Minutes</option>
-    <option value="0.75">45 Minutes</option>
-    <option selected value="1">1 Hour</option>
-    <option value="1.5">1.5 Hours</option>
-    <option value="2">2 Hours</option>
-    <option value="3">3 Hours</option>
-    <option value="4">4 Hours</option>
-    <option value="5">5 Hours</option>
-    <option value="6">6 Hours</option>
-    <option value="7">7 Hours</option>
-    <option value="8">8 Hours</option>
+  <input type="hidden" id="duration" name="duration" />
+  <input type="number" id="duration-number" />
+  <select id="duration-units">
+    <option value="minutes">Minutes</option>
+    <option value="hours">Hours</option>
   </select>
   <label for="duration">Duration</label>
 </div>

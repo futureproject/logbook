@@ -4,7 +4,7 @@ class ds.Engagement extends Backbone.Model
   defaults: ->
     kind: 'Coaching Session'
     school_id: ds.user.current()?.get('school_id')
-    duration: 0.1
+    duration: 0.5
     date: new Date().toString('yyyy-MM-dd')
     notes: []
     attendees: []
