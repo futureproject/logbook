@@ -33,7 +33,7 @@ class ds.EngagementsCollection extends Backbone.PageableCollection
     {name: 'name', cell: ds.LogbookLinkCell }
     {name: 'kind', cell: 'string' }
     {name: 'headcount', cell:'integer'}
-    {name: 'duration', cell:'integer', label: "Duration (Hrs)"}
+    {name: 'duration', cell:'number', label: "Duration (Hrs)"}
     {name: 'notes_count', cell:'integer', label: "Notes"}
     {name: 'date', cell: 'date' }
   ]
