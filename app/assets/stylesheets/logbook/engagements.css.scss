@@ -48,4 +48,17 @@
     .alternate-label { display: block; }
     .primary-label { display: none; }
   }
+  .hints {
+    * {
+      color: $retro-light-gray;
+      font-size: 12px;
+      line-height: 15px;
+      margin-top: 5px;
+      display: none;
+    }
+  }
+  .coaching .hints .coaching { display: block; }
+  .event .hints .event { display: block; }
+  .course .hints .course { display: block; }
+  .meeting .hints .meeting { display: block; }
 }
