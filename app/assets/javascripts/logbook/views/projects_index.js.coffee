@@ -9,6 +9,8 @@ class ds.ProjectsIndexView extends Backbone.View
       pagination: new Backgrid.Extension.Paginator
         collection: ds.collections.projects
 
+    @listenTo ds.collections.projects, 'reset', @renderHeader
+
   template: JST['logbook/templates/projects_index']
 
   className: 'projects'
@@ -22,4 +24,9 @@ class ds.ProjectsIndexView extends Backbone.View
     @views.leaderboard.renderTo "#projects-leaderboard"
     @views.table.renderTo "#projects-table"
     @views.pagination.renderTo '#projects-pagination'
+    @renderHeader()
+
+  renderHeader: ->
+    length = ds.collections.projects.state.totalRecords || 0
+    @$el.find('#projects-table-label').html "Listing #{length} projects."
 

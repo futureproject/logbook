@@ -9,6 +9,8 @@ class ds.PeopleIndexView extends Backbone.View
       pagination: new Backgrid.Extension.Paginator
         collection: ds.collections.people
 
+    @listenTo ds.collections.people, 'reset', @renderHeader
+
   template: JST['logbook/templates/people_index']
 
   className: 'people'
@@ -22,4 +24,9 @@ class ds.PeopleIndexView extends Backbone.View
     @views.leaderboard.renderTo "#people-leaderboard"
     @views.table.renderTo "#people-table"
     @views.pagination.renderTo '#people-pagination'
+    @renderHeader()
+
+  renderHeader: ->
+    length = ds.collections.people.state.totalRecords || 0
+    @$el.find('#people-table-label').html "Listing #{length} people."
 

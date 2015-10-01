@@ -166,6 +166,7 @@ tbody {
   text-transform: capitalize;
   border: none;
   background: white;
+  border-bottom: 1px solid $base-border-color;
   label {
     background: $retro-yellow;
     padding: 0 5px;
