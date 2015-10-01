@@ -3,7 +3,8 @@
   @include transition(background .5s);
   color: white;
   a { color: white; }
-  box-shadow: inset -3px 3px 5px rgba(0,0,0,.1);
+  border-right: 1px solid rgba(0,0,0,.25);
+  /*box-shadow: inset -3px 3px 5px rgba(0,0,0,.1);*/
   -webkit-font-smoothing: antialiased;
   header {
     color: rgba(255,255,255,.5);

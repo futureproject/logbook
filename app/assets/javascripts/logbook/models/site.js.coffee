@@ -14,9 +14,9 @@ class ds.SitesCollection extends Backbone.Collection
     {name: 'name', cell:'string', label: 'City Name'}
     {name: 'schools_count', cell:'integer', label: 'Schools'}
     {name: 'enrollment', cell:'integer'}
-    {name: 'engaged_people_count', cell:'integer', label: "Engaged Ppl"}
     {name: 'engagements_count', cell:'integer', label: "Engagements"}
     {name: 'person_hours', cell:'integer', label: "Person Hrs"}
     {name: 'projects_count', cell:'integer', label: "Projects"}
     {name: 'people_with_projects_count', cell:'integer', label: "Ppl w/Projects"}
+    {name: 'engaged_people_count', cell:'integer', label: "Engaged Ppl w/Profiles"}
   ]
