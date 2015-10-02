@@ -370,6 +370,14 @@ input.save {
   margin: 5px 0;
 }
 
+.toolbar {
+  input {
+    width: auto;
+    border: none;
+    display: inline-block;
+    font-size: 12px;
+  }
+}
 .report-submission-body {
   max-width: 80ch;
   > * {

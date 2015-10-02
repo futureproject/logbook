@@ -3,6 +3,7 @@ class ds.ReportSubmission extends Backbone.Model
   urlRoot: ds.apiHelper.urlFor 'report_submissions'
   defaults:
     person: {}
+    assets: []
   tplAttrs: ->
     attrs = _.extend(@toJSON(), { class_name: 'ReportSubmission' })
     {report_submission: attrs }

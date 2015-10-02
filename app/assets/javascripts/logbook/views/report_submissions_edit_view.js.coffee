@@ -6,6 +6,7 @@ class ds.ReportSubmissionsEditView extends Backbone.View
   events:
     'click .save': 'save'
     'click .submit': 'submit'
+    'change #assets': 'uploadAttachments'
 
   template: JST['logbook/templates/report_submissions_edit']
 
@@ -37,3 +38,12 @@ class ds.ReportSubmissionsEditView extends Backbone.View
     @model.save (_.extend data, {status: "Submitted"}), { silent: true }
     true
 
+  uploadAttachments: (event) ->
+    @upload(file) for file in event.currentTarget.files
+
+  upload: (file) ->
+    new ds.AssetUploaderView
+      attachable: @model
+      file: file
+
+    #@listenToOnce @model, "upload:finished", @processUpload

@@ -17,6 +17,7 @@ ds.nounsHelper =
       when noun.match(/people|person/i) then "Person"
       when noun.match(/engagement/i) then "Engagement"
       when noun.match(/project/i) then "Project"
+      when noun.match(/report/i) then "ReportSubmission"
       else noun.toTitleCase()
 
   # translate a paperclip asset url into english

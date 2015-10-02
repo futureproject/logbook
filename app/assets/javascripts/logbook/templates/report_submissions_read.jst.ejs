@@ -12,6 +12,19 @@
     <%= report_submission.person.name %>
   </li>
 </ul>
+<% if (report_submission.assets.length > 0) { %>
+  <div class="section">
+    <h2 class="section-header">Attachments</h2>
+  <% for (i=0; i < report_submission.assets.length; i++) { %>
+    <div class="attachment">
+      <a href="<%= report_submission.assets[i].original %>" target="_blank">
+        <%= report_submission.assets[i].data_file_name %>
+        (<%= report_submission.assets[i].data_content_type %>)
+      </a>
+    </div>
+  <% } %>
+  </div>
+<% } %>
 <div class="section">
   <div class="report-submission-body">
     <%= report_submission.body %>
