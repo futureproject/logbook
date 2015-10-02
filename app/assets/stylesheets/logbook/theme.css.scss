@@ -215,7 +215,7 @@ textarea {
   line-height: 20px !important;
   font-size: 15px !important;
   position: absolute !important;
-  top: 93px !important;
+  top: 85px !important;
   left: 210px !important;
   right: 0 !important;
   bottom: 0 !important;
@@ -229,6 +229,7 @@ textarea {
   padding: 5px 15px;
   background: $base-background-color;
   border-bottom: 1px solid $base-border-color;
+  height: 35px;
 }
 
 pre {

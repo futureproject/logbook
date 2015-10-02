@@ -4,6 +4,7 @@ class ds.PeopleFormView extends Backbone.View
     @listenTo ds.collections.schools, 'reset', @postRender
 
   tagName: 'form'
+  className: 'form'
   events:
     'submit': 'onsubmit'
 

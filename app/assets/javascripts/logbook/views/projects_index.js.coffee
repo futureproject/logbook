@@ -28,5 +28,5 @@ class ds.ProjectsIndexView extends Backbone.View
 
   renderHeader: ->
     length = ds.collections.projects.state.totalRecords || 0
-    @$el.find('#projects-table-label').html "Listing #{length} projects."
+    @$el.find('#table-label').html "Listing #{length} projects."
 

@@ -111,6 +111,9 @@ GEM
       haml (>= 4.0.6, < 5.0)
       html2haml (>= 1.0.1)
       railties (>= 4.0.1)
+    has_scope (0.6.0)
+      actionpack (>= 3.2, < 5)
+      activesupport (>= 3.2, < 5)
     hashie (3.4.2)
     hike (1.2.3)
     html2haml (2.0.0)
@@ -318,6 +321,7 @@ DEPENDENCIES
   geocoder
   groupdate
   haml-rails
+  has_scope
   jbuilder (~> 2.0)
   jquery-rails
   kaminari

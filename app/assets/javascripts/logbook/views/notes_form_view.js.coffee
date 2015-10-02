@@ -5,6 +5,7 @@ class ds.NotesFormView extends Backbone.View
     @listenTo Backbone, 'upload:finished', @addAsset
 
   tagName: 'form'
+  className: 'form'
   events:
     'submit': 'onsubmit'
 

@@ -52,6 +52,17 @@ class Person < ActiveRecord::Base
     where("role=? OR role=?", "DD", "CHIEF").order(:site_id, :first_name)
   }
   scope :ever_engaged, -> { where('last_engaged IS NOT NULL') }
+  scope :by_role, -> (role) { where(role: role) }
+  scope :by_grade, -> (grade) { where(grade: grade) }
+  scope :by_dt, -> (dt=true) { where(dream_team: dt) }
+  scope :by_association_count, -> (table_name, table_count) {
+    with_association(table_name)
+    .having("count(#{table_name}.id)>=#{table_count}")
+  }
+  scope :by_engagement_dates, -> (t_start, t_end) {
+    range = !(t_start && t_end) ? StatCollector.default_range : t_start..t_end
+    joins(:engagements).merge(Engagement.btw(range)).uniq
+  }
 
   def name
     "#{first_name} #{last_name}"

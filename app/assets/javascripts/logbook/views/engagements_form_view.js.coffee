@@ -5,7 +5,7 @@ class ds.EngagementsFormView extends Backbone.View
     @listenTo ds.collections.schools, 'reset', @postRender
 
   tagName: 'form'
-  className: -> @model.get('kind').toLowerCase()
+  className: -> "form " + @model.get('kind').toLowerCase()
 
   events:
     'submit': 'onsubmit'
@@ -14,7 +14,7 @@ class ds.EngagementsFormView extends Backbone.View
     'change #duration-units': 'setDuration'
 
   setCssClassFromKind: (event) ->
-    @$el.attr('class', $(event.currentTarget).val().toLowerCase())
+    @$el.attr('class', "form #{$(event.currentTarget).val().toLowerCase()}")
 
   template: JST['logbook/templates/engagements_form']
 

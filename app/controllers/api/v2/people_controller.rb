@@ -1,10 +1,15 @@
 class Api::V2::PeopleController < Api::V2::BaseController
   before_action :set_person, only: [:show, :edit, :update, :destroy, :stats, :engagements_bubble_graph]
+  has_scope :by_role
+  has_scope :by_grade
+  has_scope :by_dt
+  has_scope :by_association_count, using: [:table_name, :table_count], type: :hash
+  has_scope :by_engagement_dates, using: [:start, :end], type: :hash
 
   # GET /api/v2/people
   # GET /api/v2/people.json
   def index
-    @people = current_scope.people.active
+    @people = apply_scopes(current_scope.people.active)
       .conditionally_joined(params, stat_times)
       .order(sort_params)
       .page(params[:page])

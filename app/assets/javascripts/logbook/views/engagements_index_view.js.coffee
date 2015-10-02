@@ -28,4 +28,4 @@ class ds.EngagementsIndexView extends Backbone.View
 
   renderHeader: ->
     length = ds.collections.engagements.state.totalRecords || 0
-    @$el.find('#engagements-table-label').html "Listing #{length} engagements."
+    @$el.find('#table-label').html "Listing #{length} engagements."
