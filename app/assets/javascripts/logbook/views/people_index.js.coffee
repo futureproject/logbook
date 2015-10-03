@@ -8,7 +8,7 @@ class ds.PeopleIndexView extends Backbone.View
         columns: ds.collections.people.backgrid_columns
       pagination: new Backgrid.Extension.Paginator
         collection: ds.collections.people
-      filters: new ds.TableFiltersView
+      filters: new ds.PeopleFiltersView
         collection: ds.collections.people
 
     @listenTo ds.collections.people, 'reset', @renderHeader

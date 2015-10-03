@@ -25,24 +25,6 @@ module Joinable
     scope :logbook_default, -> { btw(StatCollector.default_range) }
     scope :btw, -> (range) { where(created_at: range) }
     scope :q, -> (query) { where("name like ?", "%#{query.downcase}%") }
-
-    scope :filtered, -> (filter_string) {
-      return unless filter_string
-      association = filter_string[/(\w+_count)/]
-      if !!association
-        table=association.gsub("_count","")
-        puts table
-        puts association
-        filter_string = filter_string.gsub(association, "")
-        puts filter_string
-        joins(table)
-        .having("count(#{table}.id) > 10")
-        .where(filter_string)
-      #([^:]+:+[^:]+(\z|\s)) a pattern to match colon syntax
-      else
-        where(filter_string)
-      end
-    }
   end
 
 end

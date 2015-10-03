@@ -9,6 +9,7 @@ class ds.TableFiltersView extends Backbone.View
   template: _.template '
     <label>Filter String:</label>
     <input name="filter" type="text" class="unstyled filters" placeholder="dream_team and grade>10"/>
+    <button type="reset" value="reset">Reset Filters</button>
     <button type="submit" value="submit">Apply Filters</button>
   '
 

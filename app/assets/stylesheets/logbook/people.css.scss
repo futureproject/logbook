@@ -12,6 +12,33 @@ body.people {
     color: $people-color;
   }
 }
+.people-filters {
+  .field {
+    @include span-columns(2);
+  }
+  .name-field {
+    @include span-columns(3);
+  }
+  .role-field {
+    @include omega;
+  }
+  .actions-field {
+    @include span-columns(6);
+    @include omega;
+    clear: none;
+    input {
+      clear: none;
+      @include span-columns(3 of 6);
+    }
+    input[type=reset] {
+      background-color: $retro-yellow;
+    }
+    input[type=submit] {
+      background-color: $people-color;
+    }
+    @include clearfix;
+  }
+}
 #person-form {
   @include row;
   .first-name-field, .last-name-field, .role-field, .sex-field,

@@ -1,9 +1,13 @@
 class Api::V2::PeopleController < Api::V2::BaseController
   before_action :set_person, only: [:show, :edit, :update, :destroy, :stats, :engagements_bubble_graph]
+  has_scope :by_first_name
+  has_scope :by_last_name
   has_scope :by_role
   has_scope :by_grade
   has_scope :by_dt
-  has_scope :by_association_count, using: [:table_name, :table_count], type: :hash
+  has_scope :by_engagements_count
+  has_scope :by_projects_count
+  has_scope :by_notes_count
   has_scope :by_engagement_dates, using: [:start, :end], type: :hash
 
   # GET /api/v2/people

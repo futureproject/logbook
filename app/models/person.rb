@@ -52,17 +52,31 @@ class Person < ActiveRecord::Base
     where("role=? OR role=?", "DD", "CHIEF").order(:site_id, :first_name)
   }
   scope :ever_engaged, -> { where('last_engaged IS NOT NULL') }
+
+  # These scopes are all used on Logbook Index tables
+  scope :by_first_name, -> (q) { where("first_name like ?", "%#{q.downcase}%") }
+  scope :by_last_name, -> (q) { where("last_name like ?", "%#{q.downcase}%") }
   scope :by_role, -> (role) { where(role: role) }
   scope :by_grade, -> (grade) { where(grade: grade) }
   scope :by_dt, -> (dt=true) { where(dream_team: dt) }
-  scope :by_association_count, -> (table_name, table_count) {
-    with_association(table_name)
-    .having("count(#{table_name}.id)>=#{table_count}")
+  scope :by_engagements_count, -> (count) {
+    puts count
+    joins(:engagements).group("people.id")
+    .having("count(engagements.id)>=#{count}").uniq
+  }
+  scope :by_projects_count, -> (count) {
+    joins(:projects).group("people.id")
+    .having("count(projects.id)>=#{count}").uniq
+  }
+  scope :by_notes_count, -> (count) {
+    joins(:notes).group("people.id")
+    .having("count(notes.id)>=#{count}").uniq
   }
   scope :by_engagement_dates, -> (t_start, t_end) {
     range = !(t_start && t_end) ? StatCollector.default_range : t_start..t_end
     joins(:engagements).merge(Engagement.btw(range)).uniq
   }
+  # End Filter scopes
 
   def name
     "#{first_name} #{last_name}"
