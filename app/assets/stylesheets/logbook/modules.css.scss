@@ -100,7 +100,6 @@
 }
 
 .table {
-  position: relative;
   min-height: 3em;
   &:empty { display: none; }
   .boolean-cell {
@@ -129,8 +128,10 @@
 }
 
 .table-filters {
+  @include clearfix;
   form {
     /*display: none;*/
+    @include clearfix;
     padding-bottom: 15px;
   }
 }

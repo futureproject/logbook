@@ -6,8 +6,6 @@ class ds.StatsTableView extends Backgrid.Grid
 
   setDates: (dates) ->
     @data[date] = val for date, val of dates
-    @spinner = new ds.SpinnerView
-    @spinner.$el.insertBefore @$el
     @$el.css('opacity','.25')
     @getStats()
 
@@ -20,7 +18,6 @@ class ds.StatsTableView extends Backgrid.Grid
           data: @data
           url: stats_path
           complete: (response) =>
-            @spinner.remove()
             @$el.css('opacity','1')
             @collection.add response.responseJSON, { merge: true}
           error: (e) -> console.log e
