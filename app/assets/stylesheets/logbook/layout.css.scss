@@ -163,31 +163,3 @@
   }
 }
 
-#time-filter {
-  display: none;
-  position: absolute;
-  top: 0;
-  right: 0;
-  height: 50px;
-  line-height: 50px;
-  padding-right: 15px;
-  @include user-select(none);
-  > * {
-    display: inline-block;
-  }
-  #time-filter-trigger {
-    font-size: 20px;
-    position: relative;
-    top: 3px;
-  }
-  #time-filter-menu {
-    margin: 0;
-    width: auto;
-    direction: rtl;
-    @include appearance(none);
-  }
-}
-
-body.dashboard, body.index {
-  #time-filter { display: block; }
-}

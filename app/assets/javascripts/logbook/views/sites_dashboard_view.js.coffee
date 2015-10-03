@@ -15,11 +15,14 @@ class ds.SitesDashboardView extends Backbone.View
       projects_started_graph: new ds.GraphView
         url: ds.apiHelper.urlFor("site_graphs", { id: @model.id, graph: "project_counts_graph" })
       projects_completed_graph: new ds.GraphView
-        url: ds.apiHelper.urlFor("site_graphs", { id: @model.id, graph: "project_counts_graph" }) + "?status=complete"
+        url: ds.apiHelper.urlFor("site_graphs", { id: @model.id, graph: "project_counts_graph" })
+        data:
+          status: "complete"
       sites_table: new ds.StatsTableView
         collection: ds.collections.sites
         columns: ds.collections.sites.backgrid_columns
         row: ds.StatsRowView
+      time_filter: new ds.TimeFilterView
 
   template: JST['logbook/templates/sites_dashboard']
 
@@ -31,6 +34,7 @@ class ds.SitesDashboardView extends Backbone.View
     @
 
   postRender: ->
+    @views.time_filter.renderTo('#sites-time-filter')
     @$el.find('#schools-table').html @views.schools_table.render().el
     @$el.find('#sites-table').html @views.sites_table.render().el
     _.each [@views.schools_table, @views.sites_table], (table) ->

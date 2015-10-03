@@ -9,35 +9,24 @@ class ds.TimeFilterView extends Backbone.View
       'past_three_months': [@subtractDays(@now, 90), @now]
       'this_time_last_year': [@subtractDays(@beginning_of_school_year, 365), @subtractDays(@now, 365)]
       'dawn_of_time': [new Date(2014,7,24), @now]
-
     @dates = {}
-    # add date params to all AJAX GET requests
-    $.ajaxPrefilter (options, originalOptions, jqXHR) =>
-      return true unless options.type.match(/get/i)
-      options.data = @addDatesToParams(originalOptions.data)
-      true
 
-  el: "#time-filter-menu"
+  template: JST["logbook/templates/time_filter"]
+  className: 'time-filter'
+  render: ->
+    @$el.html @template()
+    @
+
   events:
     'change': 'onchange'
 
   onchange: (event) ->
-    range = @$el.val()
+    range = @$el.find('select').val()
     dates = @options[range]
     @dates =
       t_start: Date.parse(dates[0]).toString('yyyy-MM-dd')
       t_end: Date.parse(dates[1]).toString('yyyy-MM-dd')
-    Backbone.trigger 'dates:changed'
-
-  addDatesToParams: (data_params) ->
-    switch typeof(data_params)
-      when "string"
-        data_params = $.extend JSON.parse(data_params), @dates
-      when "object", "array"
-        data_params = $.extend data_params, @dates
-      else
-        data_params = @dates
-    $.param data_params
+    Backbone.trigger 'dates:changed', @dates
 
   subtractDays: (date, numDays) ->
     d = new Date()

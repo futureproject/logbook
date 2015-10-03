@@ -18,7 +18,10 @@ class ds.NationalDashboardView extends Backbone.View
       projects_started_graph: new ds.GraphView
         url: ds.apiHelper.urlFor("national_graphs", "project_counts_graph")
       projects_completed_graph: new ds.GraphView
-        url: ds.apiHelper.urlFor("national_graphs", "project_counts_graph") + "?status=complete"
+        url: ds.apiHelper.urlFor("national_graphs", "project_counts_graph")
+        data:
+          status: "complete"
+      time_filter: new ds.TimeFilterView
 
   template: JST['logbook/templates/national_dashboard']
 
@@ -30,6 +33,7 @@ class ds.NationalDashboardView extends Backbone.View
     @
 
   postRender: ->
+    @views.time_filter.renderTo('#national-time-filter')
     # activate tables
     @$el.find('#sites-table').html @views.sites_table.render().el
     @$el.find('#schools-table').html @views.schools_table.render().el

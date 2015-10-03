@@ -4,11 +4,18 @@ class ds.GraphView extends Backbone.View
   initialize: (args) ->
     return unless args?.url
     @url = args.url
-    @listenTo Backbone, 'dates:changed', @load
+    @data = args.data || {}
+    @listenTo Backbone, 'dates:changed', @setDates
+
+  setDates: (dates) ->
+    @data[date] = val for date, val of dates
+    @$el.html "<div class='lb-loading'></div>"
+    @load()
 
   load: ->
     $.ajax
       dataType: 'json'
+      data: @data
       url: @url
       success: (response) =>
         if response.data.length == 0

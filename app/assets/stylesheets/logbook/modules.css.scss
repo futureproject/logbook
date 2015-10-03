@@ -47,6 +47,30 @@
   }
 }
 
+.time-filter {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 50px;
+  line-height: 50px;
+  padding-right: 15px;
+  @include user-select(none);
+  .time-filter-trigger {
+    font-size: 20px;
+    position: relative;
+    top: 3px;
+    display: inline-block;
+  }
+  .time-filter-menu {
+    display: inline-block;
+    margin: 0;
+    width: auto;
+    direction: rtl;
+    @include appearance(none);
+  }
+}
+
+
 .factbar {
   white-space: nowrap;
   overflow: auto;
@@ -76,6 +100,7 @@
 }
 
 .table {
+  position: relative;
   min-height: 3em;
   &:empty { display: none; }
   .boolean-cell {
@@ -84,6 +109,12 @@
       width: auto;
       margin: 0 auto;
     }
+  }
+  .lb-loading {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin: 0 0 0 -7px;
   }
 }
 .section .table {

@@ -19,6 +19,7 @@ class ds.SchoolsDashboardView extends Backbone.View
         url: ds.apiHelper.urlFor("school_graphs", { id: @model.id, graph: "engagement_counts_graph" })
       weekly_rhythm_graph: new ds.GraphView
         url: ds.apiHelper.urlFor("school_graphs", { id: @model.id, graph: "weekly_rhythm_graph" })
+      time_filter: new ds.TimeFilterView
 
   template: JST['logbook/templates/schools_dashboard']
 
@@ -30,6 +31,7 @@ class ds.SchoolsDashboardView extends Backbone.View
     @
 
   postRender: ->
+    @views.time_filter.renderTo('#schools-time-filter')
     @$el.find('#schools-table').html @views.schools_table.render().el
     _.each [@views.schools_table], (table) ->
       ds.statsHelper.getStats(table.collection)
