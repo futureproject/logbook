@@ -192,7 +192,20 @@
   border-top: 1px solid $base-border-color;
   text-align: left;
   line-height: 1;
-  li { text-align: center; }
+  height: 45px;
+  li {
+    text-align: center;
+    a { line-height: 32px !important; }
+  }
+  .count {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    line-height: 45px;
+    font-weight: bold;
+    height: 45px;
+    padding: 0 15px;
+  }
 }
 
 .leaderboard {

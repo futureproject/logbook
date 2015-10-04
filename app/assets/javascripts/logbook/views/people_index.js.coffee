@@ -6,7 +6,7 @@ class ds.PeopleIndexView extends Backbone.View
       table: new ds.IndexTableView
         collection: ds.collections.people
         columns: ds.collections.people.backgrid_columns
-      pagination: new Backgrid.Extension.Paginator
+      pagination: new ds.BackgridPaginator
         collection: ds.collections.people
       filters: new ds.PeopleFiltersView
         collection: ds.collections.people

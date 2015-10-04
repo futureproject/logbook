@@ -55,3 +55,8 @@ Backgrid.HeaderCell.prototype.onClick = (e) ->
       cycleSort this, column
   return
 
+
+class ds.BackgridPaginator extends Backgrid.Extension.Paginator
+  render: ->
+    super
+    @$el.find('ul').append "<li class='count'>#{@collection.state.totalRecords} records</li>"
