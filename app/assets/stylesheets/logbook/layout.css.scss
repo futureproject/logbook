@@ -159,7 +159,7 @@
   cursor: pointer;
   @include transition(all .3s);
   &.open {
-    @include transform(rotate(-45deg));
+    @include transform(rotate(45deg));
   }
 }
 

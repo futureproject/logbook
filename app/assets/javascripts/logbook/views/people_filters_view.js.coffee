@@ -3,11 +3,11 @@ class ds.PeopleFiltersView extends Backbone.View
     @collection = args.collection
 
   events:
+    'click .trigger': 'toggle'
     'submit': 'applyFilters'
     'reset': 'resetFilters'
 
-  tagName: "form"
-  className: "people-filters"
+  className: "table-filters people-filters"
   template: JST["logbook/templates/people_filters"]
 
   render: ->
@@ -30,3 +30,17 @@ class ds.PeopleFiltersView extends Backbone.View
   hide: ->
     @resetFilters()
     super
+
+  toggle: (event) ->
+    event?.preventDefault()
+    if @$el.hasClass('open') then @close() else @open()
+
+  open: ->
+    @$el.find('form').slideDown(300)
+    @$el.find('.trigger-label').text("Reset Filters")
+    @$el.addClass('open')
+
+  close: ->
+    @$el.find('form').slideUp 300, =>
+      @$el.find('.trigger-label').text("Add Filters")
+      @$el.removeClass('open')

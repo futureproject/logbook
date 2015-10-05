@@ -16,23 +16,11 @@ body.people {
   .field {
     @include span-columns(2);
   }
-  .name-field {
-    @include span-columns(3);
-  }
-  .role-field {
-    @include omega;
-  }
   .actions-field {
-    @include span-columns(6);
+    @include span-columns(2);
     @include omega;
+    @include shift(4);
     clear: none;
-    input {
-      clear: none;
-      @include span-columns(3 of 6);
-    }
-    input[type=reset] {
-      background-color: $retro-yellow;
-    }
     input[type=submit] {
       background-color: $people-color;
     }

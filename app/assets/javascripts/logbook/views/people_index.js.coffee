@@ -16,8 +16,6 @@ class ds.PeopleIndexView extends Backbone.View
   template: JST['logbook/templates/people_index']
 
   className: 'people'
-  events:
-    'click .filter-trigger': 'toggleFilters'
 
   render: ->
     @$el.html @template()
@@ -28,14 +26,5 @@ class ds.PeopleIndexView extends Backbone.View
     @views.leaderboard.renderTo "#people-leaderboard"
     @views.table.renderTo "#people-table"
     @views.pagination.renderTo '#people-pagination'
-    @views.filters.renderTo "#table-filters"
-    @renderHeader()
-
-  renderHeader: ->
-    length = ds.collections.people.state.totalRecords || 0
-    @$el.find('#table-label').html "Listing #{length} people."
-
-  toggleFilters: (event) ->
-    event.preventDefault()
-    @views.filters.$el.slideToggle('fast')
+    @views.filters.renderTo "#people-filters"
 
