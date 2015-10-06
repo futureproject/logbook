@@ -3,37 +3,8 @@
   <span class="trigger-indicator icon-add_circle_outline"></span>
 </a>
 <form class="people-filters">
-  <div class="field name-field">
-    <input name="by_first_name" type="text">
-    <label for="by_last_name">First Name</label>
-  </div>
-  <div class="field name-field">
-    <input name="by_last_name" type="text">
-    <label for="by_last_name">Last Name</label>
-  </div>
-  <div class="field dt-field">
-    <select name="by_dt">
-      <option value=""></option>
-      <option value="true">Yep</option>
-      <option value="false">Nope</option>
-    </select>
-    <label for="by_dt">Dream Team</label>
-  </div>
-  <div class="field grade-field">
-    <select name="by_grade" >
-      <option value=""></option>
-      <option value="6">6</option>
-      <option value="7">7</option>
-      <option value="8">8</option>
-      <option value="9">9</option>
-      <option value="10">10</option>
-      <option value="11">11</option>
-      <option value="12">12</option>
-    </select>
-    <label for="by_grade">Grade</label>
-  </div>
   <div class="field role-field">
-    <select name="by_role">
+    <select class="styled" name="by_role">
       <option value=""></option>
       <option value="student">student</option>
       <option value="teacher">teacher</option>
@@ -45,21 +16,48 @@
       <option value="TFP">TFP</option>
       <option value="ADMIN">ADMIN</option>
     </select>
-    <label for="by_role">Role</label>
+    <label class="styled" for="by_role">Role</label>
   </div>
-  <div class="field engagements-field number-field">
-    <input type="number" minimum=0 name="by_engagements_count" />
-    <label for="by_engagements_count"># Engagements</label>
+  <div class="field dt-field">
+    <select class="styled" name="by_dt">
+      <option value=""></option>
+      <option value="true">Yep</option>
+      <option value="false">Nope</option>
+    </select>
+    <label for="by_dt">DT</label>
+  </div>
+  <div class="field grade-field">
+    <select class="styled" name="by_grade" >
+      <option value=""></option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+      <option value="10">10</option>
+      <option value="11">11</option>
+      <option value="12">12</option>
+    </select>
+    <label for="by_grade">Grade</label>
   </div>
   <div class="field number-field">
-    <input type="number" minimum=0 name="by_projects_count" />
-    <label for="by_projects_count"># Projects</label>
+    <input class="styled" type="number" minimum=0 name="by_projects_count" />
+    <label for="by_projects_count">Prjcts</label>
   </div>
-  <div class="field number-field notes-field">
-    <input type="number" minimum=0 name="by_notes_count" />
-    <label for="by_notes_count"># Notes</label>
+  <div class="field number-field">
+    <input class="styled" type="number" minimum=0 name="by_engagements_count" />
+    <label for="by_engagements_count">Engmnts</label>
   </div>
-  <div class="field actions-field">
-    <input type="submit" value="Apply Filters" />
+  <div class="field number-field">
+    <input class="styled" type="number" minimum=0 name="by_notes_count" />
+    <label for="by_notes_count">Notes</label>
   </div>
+  <div class="field date-field">
+    <input class="styled" type="date" name="by_engagement_dates[start]" />
+    <label for="by_engagement_dates[start]">Engaged Since</label>
+  </div>
+  <div class="field date-field">
+    <input class="styled" type="date" name="by_engagement_dates[end]" />
+    <label for="by_engagement_dates[end]">Engaged Before</label>
+  </div>
+  <button class="apply" type="submit">Apply Filters</button>
 </form>

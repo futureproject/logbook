@@ -1,4 +1,14 @@
 namespace :stats do
+  desc "Reset counter caches"
+  task reset_counters: :environment do
+    Person.find_each { |p| Person.reset_counters(p.id, :project_people) }
+    Person.find_each { |p| Person.reset_counters(p.id, :engagement_attendees) }
+    Person.find_each { |p| Person.reset_counters(p.id, :notes) }
+    Project.find_each { |p| Project.reset_counters(p.id, :notes) }
+    Project.find_each { |p| Project.reset_counters(p.id, :project_people) }
+    Engagement.find_each { |e| Engagement.reset_counters(e.id, :notes) }
+  end
+
   desc "Estimate how many people we've reached this year"
   task people_engaged: :environment do
     high_estimate = []

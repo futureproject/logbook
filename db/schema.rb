@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150921200656) do
+ActiveRecord::Schema.define(version: 20151005201701) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 20150921200656) do
     t.integer  "creator_id"
     t.integer  "site_id"
     t.integer  "headcount"
+    t.integer  "notes_count",             default: 0
   end
 
   add_index "engagements", ["date"], name: "index_engagements_on_date", using: :btree
@@ -108,15 +109,15 @@ ActiveRecord::Schema.define(version: 20150921200656) do
   create_table "people", force: :cascade do |t|
     t.citext   "first_name"
     t.citext   "last_name"
-    t.string   "role",          limit: 255, default: "student"
+    t.string   "role",                       limit: 255, default: "student"
     t.integer  "school_id"
     t.integer  "grade"
-    t.boolean  "dream_team",                default: false
+    t.boolean  "dream_team",                             default: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "email",         limit: 255
-    t.string   "phone",         limit: 255
-    t.string   "sex",           limit: 255
+    t.string   "email",                      limit: 255
+    t.string   "phone",                      limit: 255
+    t.string   "sex",                        limit: 255
     t.integer  "site_id"
     t.integer  "creator_id"
     t.integer  "graduated_in"
@@ -126,8 +127,11 @@ ActiveRecord::Schema.define(version: 20150921200656) do
     t.text     "bio"
     t.date     "last_engaged"
     t.string   "osis"
-    t.boolean  "active",                    default: true
+    t.boolean  "active",                                 default: true
     t.date     "first_engaged"
+    t.integer  "project_people_count",                   default: 0
+    t.integer  "engagement_attendees_count",             default: 0
+    t.integer  "notes_count",                            default: 0
   end
 
   add_index "people", ["active"], name: "index_people_on_active", using: :btree
@@ -174,7 +178,9 @@ ActiveRecord::Schema.define(version: 20150921200656) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "status",      limit: 255
+    t.string   "status",               limit: 255
+    t.integer  "notes_count",                      default: 0
+    t.integer  "project_people_count",             default: 0
   end
 
   add_index "projects", ["created_at"], name: "index_projects_on_created_at", using: :btree

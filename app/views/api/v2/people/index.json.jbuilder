@@ -16,10 +16,10 @@
           :grade,
           :school_id,
           :created_at,
-          :last_engaged
-        json.projects_count (person.respond_to?(:projects_count) ? person.projects_count : person.projects.count)
-        json.engagements_count (person.respond_to?(:engagements_count) ? person.engagements_count : person.engagements.count)
-        json.notes_count (person.respond_to?(:notes_count) ? person.notes_count : person.notes.count)
+          :last_engaged,
+          :project_people_count,
+          :engagement_attendees_count,
+          :notes_count
       #end
     end
   end

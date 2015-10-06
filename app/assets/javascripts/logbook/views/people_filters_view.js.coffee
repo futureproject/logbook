@@ -4,6 +4,7 @@ class ds.PeopleFiltersView extends Backbone.View
 
   events:
     'click .trigger': 'toggle'
+    'change': (event) -> console.log event
     'submit': 'applyFilters'
     'reset': 'resetFilters'
 
@@ -12,9 +13,21 @@ class ds.PeopleFiltersView extends Backbone.View
 
   render: ->
     @$el.html @template()
+    @postRender()
+    @
+
+  postRender: ->
+    @$form = @$el.find('form')
     # deserialize the filters based on collection queryParams
     # then, if there are any filters applied, show thyself
-    @
+    attrs = Backbone.Syphon.serialize @
+    data = {}
+    data[k] = @collection.queryParams[k] for k,v of attrs
+    Backbone.Syphon.deserialize @, data
+    i = 0
+    for k,v of data
+      i += 1 if v?
+    @open() if i > 0
 
   applyFilters: (event) ->
     event.preventDefault()
@@ -27,20 +40,17 @@ class ds.PeopleFiltersView extends Backbone.View
     @collection.queryParams[filter] = null for filter, val of data
     @collection.fetch({reset: true})
 
-  hide: ->
-    @resetFilters()
-    super
-
   toggle: (event) ->
     event?.preventDefault()
     if @$el.hasClass('open') then @close() else @open()
 
   open: ->
-    @$el.find('form').slideDown(300)
+    @$form.slideDown(300)
     @$el.find('.trigger-label').text("Reset Filters")
     @$el.addClass('open')
 
   close: ->
-    @$el.find('form').slideUp 300, =>
+    @$form.slideUp 300, =>
       @$el.find('.trigger-label').text("Add Filters")
       @$el.removeClass('open')
+      @$form.get(0).reset()

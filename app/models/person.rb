@@ -53,27 +53,33 @@ class Person < ActiveRecord::Base
   }
   scope :ever_engaged, -> { where('last_engaged IS NOT NULL') }
 
-  # These scopes are all used on Logbook Index tables
+  # These scopes are all used on Logbook Index table filters
   scope :by_first_name, -> (q) { where("first_name like ?", "%#{q.downcase}%") }
   scope :by_last_name, -> (q) { where("last_name like ?", "%#{q.downcase}%") }
   scope :by_role, -> (role) { where(role: role) }
   scope :by_grade, -> (grade) { where(grade: grade) }
   scope :by_dt, -> (dt=true) { where(dream_team: dt) }
   scope :by_engagements_count, -> (count) {
-    puts count
-    joins(:engagements).group("people.id")
-    .having("count(engagements.id)>=#{count}").uniq
+    joins(:engagements).group('people.id')
+    .select("people.*, COUNT(engagements.id) AS engagements_count")
+    .having("COUNT(engagements.id) >= #{count}")
+    #.merge(Engagement.btw(StatCollector.default_range))
   }
   scope :by_projects_count, -> (count) {
-    joins(:projects).group("people.id")
-    .having("count(projects.id)>=#{count}").uniq
+    joins(:projects).group('people.id')
+    .select("people.*, COUNT(projects.id) AS projects_count")
+    .having("count(projects.id) >= #{count}")
+    #.merge(Project.btw(StatCollector.default_range))
   }
   scope :by_notes_count, -> (count) {
-    joins(:notes).group("people.id")
-    .having("count(notes.id)>=#{count}").uniq
+    joins(:notes).group('people.id')
+    .having("count(notes.id) >= #{count}")
+    #.merge(Note.btw(StatCollector.default_range))
   }
-  scope :by_engagement_dates, -> (t_start, t_end) {
-    range = !(t_start && t_end) ? StatCollector.default_range : t_start..t_end
+  scope :by_engagement_dates, -> (t_start=StatCollector.default_range.first, t_end=StatCollector.default_range.last) {
+    t_start = t_start.blank? ? StatCollector.default_range.first : Date.parse(t_start)
+    t_end = t_end.blank? ? StatCollector.default_range.last : Date.parse(t_end)
+    range = t_start..t_end
     joins(:engagements).merge(Engagement.btw(range)).uniq
   }
   # End Filter scopes

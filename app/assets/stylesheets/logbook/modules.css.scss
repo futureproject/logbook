@@ -130,10 +130,36 @@
 .table-filters {
   @include clearfix;
   form {
-    display: none;
+    /*display: none;*/
     @include clearfix;
-    padding: 0 15px 15px;
+    padding: 0 15px 0;
     border-bottom: 1px solid $base-border-color;
+    position: relative;
+  }
+  .apply {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    @include appearance(none);
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    background: none;
+    font-family: $base-font-family;
+    padding: 0;
+  }
+  .field {
+    @include span-columns(1);
+  }
+  .date-field {
+    @include span-columns(2);
+  }
+  label {
+    display: block;
+  }
+  input, select {
+    margin-right: 10px;
   }
   .trigger {
     position: absolute;
@@ -142,12 +168,16 @@
     padding: 15px;
     display: inline-block;
     font-weight: bold;
+    @include transition();
   }
   .trigger-indicator {
     display: inline-block;
     @include transition();
   }
   &.open {
+    .trigger {
+      color: $retro-yellow;
+    }
     .trigger-indicator {
       @include transform(rotate(45deg));
     }

@@ -2,7 +2,7 @@ body.people {
   a { color: $people-color; }
 }
 .people-table {
-  th.grade, th.projects_count, th.engagements_count,
+  th.grade, th.project_people_count, th.engagement_attendees_count,
   th.notes_count, th.last_engaged { text-align: right; }
   th.dream_team { text-align: center; }
   td:first-child, td:nth-child(2) {
@@ -14,18 +14,9 @@ body.people {
 }
 .people-filters {
   .field {
-    @include span-columns(2);
+    display: inline-block;
   }
-  .actions-field {
-    @include span-columns(2);
-    @include omega;
-    @include shift(4);
-    clear: none;
-    input[type=submit] {
-      background-color: $people-color;
-    }
-    @include clearfix;
-  }
+  .apply { color: $people-color; }
 }
 #person-form {
   @include row;

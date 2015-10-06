@@ -35,8 +35,8 @@ class ds.PeopleCollection extends Backbone.PageableCollection
     {name: 'role', cell:'string'}
     {name: 'dream_team', cell:'boolean', label: 'DT'}
     {name: 'grade', cell:'integer'}
-    {name: 'projects_count', cell:'integer', label: 'Projects'}
-    {name: 'engagements_count', cell:'integer', label: 'Engagements'}
+    {name: 'project_people_count', cell:'integer', label: 'Projects'}
+    {name: 'engagement_attendees_count', cell:'integer', label: 'Engagements'}
     {name: 'notes_count', cell:'integer', label: 'Notes'}
     {name: 'last_engaged', cell:'date', label: 'Last Engaged'}
     #{name: 'links', cell: ds.ActionCell}
