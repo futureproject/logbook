@@ -26,6 +26,12 @@ class ds.EngagementsFormView extends Backbone.View
 
   postRender: ->
     @setSchoolOptions()
+    @$el.find('.date-field input').each (index) ->
+      picker = new Pikaday
+        field: this
+        firstDay: 1,
+        yearRange: 5
+        defaultDate: new Date()
     Backbone.Syphon.deserialize @, @model.toJSON()
     @selectize "#attendee_ids",
       initialItems: @model.get 'attendees'

@@ -130,7 +130,7 @@
 .table-filters {
   @include clearfix;
   form {
-    /*display: none;*/
+    display: none;
     @include clearfix;
     padding: 0 15px 0;
     border-bottom: 1px solid $base-border-color;

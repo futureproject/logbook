@@ -7,6 +7,7 @@
 #= require backbone.syphon
 #= require jquery.animate-enhanced
 #= require date
+#= require pikaday
 #= require selectize
 #= require titlecase
 #= require s3_cors_upload

@@ -1,17 +1,18 @@
 class ds.PeopleIndexView extends Backbone.View
   initialize: ->
+    @collection = ds.collections.people
     @views =
       leaderboard: new ds.LeaderboardView
         url: ds.apiHelper.urlFor "people_leaderboard"
       table: new ds.IndexTableView
-        collection: ds.collections.people
-        columns: ds.collections.people.backgrid_columns
+        collection: @collection
+        columns: @collection.backgrid_columns
       pagination: new ds.BackgridPaginator
-        collection: ds.collections.people
+        collection: @collection
       filters: new ds.PeopleFiltersView
-        collection: ds.collections.people
+        collection: @collection
 
-    @listenTo ds.collections.people, 'reset', @renderHeader
+    @listenTo Backbone, 'people:filter', @applyFilters
 
   template: JST['logbook/templates/people_index']
 
@@ -28,3 +29,10 @@ class ds.PeopleIndexView extends Backbone.View
     @views.pagination.renderTo '#people-pagination'
     @views.filters.renderTo "#people-filters"
 
+  applyFilters: (data) ->
+    @collection.queryParams[filter] = val for filter, val of data
+    @views.table.$el.css('opacity','.25')
+    @collection.fetch
+      reset: true
+      complete: =>
+        @views.table.$el.css('opacity','1')

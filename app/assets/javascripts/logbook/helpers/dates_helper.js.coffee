@@ -12,3 +12,14 @@ ds.datesHelper =
     else
       "#{num} Hrs"
 
+  supportsNativeInput: ->
+    i = document.createElement('input')
+    i.setAttribute('type', 'date')
+    i.type == 'date'
+
+  subtractDays: (date, numDays) ->
+    d = new Date()
+    d.setTime(date.getTime())
+    d.setDate(d.getDate() - numDays)
+    d
+
