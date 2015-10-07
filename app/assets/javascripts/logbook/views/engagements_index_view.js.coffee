@@ -1,15 +1,18 @@
 class ds.EngagementsIndexView extends Backbone.View
   initialize: ->
+    @collection = ds.collections.engagements
     @views =
       leaderboard: new ds.LeaderboardView
         url: ds.apiHelper.urlFor "engagements_leaderboard"
       table: new ds.IndexTableView
-        collection: ds.collections.engagements
-        columns: ds.collections.engagements.backgrid_columns
+        collection: @collection
+        columns: @collection.backgrid_columns
       pagination: new Backgrid.Extension.Paginator
-        collection: ds.collections.engagements
+        collection: @collection
+      filters: new ds.EngagementsFiltersView
+        collection: @collection
 
-    @listenTo ds.collections.engagements, 'reset', @renderHeader
+    @listenTo Backbone, 'filters:apply', @applyFilters
 
   template: JST['logbook/templates/engagements_index']
 
@@ -24,8 +27,13 @@ class ds.EngagementsIndexView extends Backbone.View
     @views.leaderboard.renderTo "#engagements-leaderboard"
     @views.table.renderTo "#engagements-table"
     @views.pagination.renderTo '#engagements-pagination'
-    @renderHeader()
+    @views.filters.renderTo "#engagements-filters"
 
-  renderHeader: ->
-    length = ds.collections.engagements.state.totalRecords || 0
-    @$el.find('#table-label').html "Listing #{length} engagements."
+  applyFilters: (namespace, data) ->
+    return unless namespace == "people"
+    @collection.queryParams[filter] = val for filter, val of data
+    @views.table.$el.css('opacity','.25')
+    @collection.fetch
+      reset: true
+      complete: =>
+        @views.table.$el.css('opacity','1')

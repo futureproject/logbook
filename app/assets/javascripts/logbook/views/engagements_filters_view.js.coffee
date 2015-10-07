@@ -1,4 +1,4 @@
-class ds.PeopleFiltersView extends Backbone.View
+class ds.EngagementsFiltersView extends Backbone.View
   initialize: (args) ->
     @collection = args.collection
 
@@ -8,7 +8,7 @@ class ds.PeopleFiltersView extends Backbone.View
     'reset': 'resetFilters'
 
   className: "table-filters people-filters"
-  template: JST["logbook/templates/people_filters"]
+  template: JST["logbook/templates/engagements_filters"]
 
   render: ->
     @$el.html @template()
@@ -32,12 +32,16 @@ class ds.PeopleFiltersView extends Backbone.View
       i += 1 if v?
     if i > 0
       @open()
-      Backbone.trigger 'filters:apply', @collection.namespace, data
+      @broadcastDates(data.by_engagement_dates)
 
   applyFilters: (event) ->
     event.preventDefault()
     data = Backbone.Syphon.serialize @
     Backbone.trigger 'filters:apply', @collection.namespace, data
+    @broadcastDates(data.by_engagement_dates)
+
+  broadcastDates: (dates) ->
+    Backbone.trigger 'dates:changed', { t_start: dates.start, t_end: dates.end }
 
   setDateFallback: ->
     @$el.find('.date-field input').each (index) ->
@@ -49,8 +53,9 @@ class ds.PeopleFiltersView extends Backbone.View
 
   resetFilters: ->
     data = Backbone.Syphon.serialize @
-    data[filter] = null for filter, val of data
-    Backbone.trigger 'filters:apply', @collection.namespace, data
+    @collection.queryParams[filter] = null for filter, val of data
+    @collection.fetch({reset: true})
+    Backbone.trigger 'dates:changed', { t_start: null, t_end: null }
 
   toggle: (event) ->
     event?.preventDefault()

@@ -3,7 +3,7 @@ class ds.LeaderboardView extends Backbone.View
   initialize: (args) ->
     throw "ds.LeaderboardView needs a URL argument" unless args?.url
     @url = args.url
-    @listenTo Backbone, 'dates:changed', @changeDates
+    @listenTo Backbone, 'filters:apply', @applyFilters
     @data = {}
 
   render: ->
@@ -26,6 +26,6 @@ class ds.LeaderboardView extends Backbone.View
     $elem.append "<li>No Results</li>" if list.length == 0
     @$el.append $elem
 
-  changeDates: (dates) ->
-    @data[k] = v for k,v of dates
+  applyFilters: (namespace, filters) ->
+    @data[k] = v for k,v of filters
     @render()

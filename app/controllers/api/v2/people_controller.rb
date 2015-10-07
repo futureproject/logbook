@@ -23,6 +23,13 @@ class Api::V2::PeopleController < Api::V2::BaseController
   def leaderboard
     @t = stat_times
     @scope = current_scope
+    @stats = StatCollector.people_leaderboard_data(
+      scope: current_scope,
+      dates: @t
+    )
+    @stats[:most_hours_coached] = apply_scopes(@stats[:most_hours_logged]).where(engagements: { kind: "Coaching Session" } )
+    @stats[:most_hours_logged] = apply_scopes @stats[:most_hours_logged]
+    @stats[:most_engagements] = apply_scopes @stats[:most_engagements]
   end
 
   # GET /api/v2/people/1

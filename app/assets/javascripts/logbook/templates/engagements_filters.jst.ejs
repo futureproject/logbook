@@ -1,0 +1,52 @@
+<a class="trigger" href="#">
+  <span class="trigger-label">Add Filters</span>
+  <span class="trigger-indicator icon-add_circle_outline"></span>
+</a>
+<form class="engagements-filters">
+  <div class="field kind-field">
+  <select id="by_kind" name="by_kind">
+    <option value=""></option>
+    <option value="Coaching Session">Coaching Session</option>
+    <option value="Event">Event</option>
+    <option value="Course">Course</option>
+    <option value="Meeting">Meeting</option>
+  </select>
+  <label for="by_kind">Kind</label>
+  </div>
+  <div class="field duration-field">
+    <select class="styled" name="by_duration">
+      <option value=""></option>
+      <option value="0.08">5 Minutes</option>
+      <option value="0.25">15 Minutes</option>
+      <option value="0.5">30 Minutes</option>
+      <option value="0.75">45 Minutes</option>
+      <option selected value="1">1 Hour</option>
+      <option value="1.5">1.5 Hours</option>
+      <option value="2">2 Hours</option>
+      <option value="3">3 Hours</option>
+      <option value="4">4 Hours</option>
+      <option value="5">5 Hours</option>
+      <option value="6">6 Hours</option>
+      <option value="7">7 Hours</option>
+      <option value="8">8 Hours</option>
+    </select>
+    <label for="by_duration">Duration</label>
+  </div>
+  <div class="field number-field">
+    <input class="styled" type="number" minimum=0 name="by_headcount" />
+    <label for="by_headcount">Headcount</label>
+  </div>
+  <div class="field number-field">
+    <input class="styled" type="number" minimum=0 name="by_notes_count" />
+    <label for="by_notes_count">Notes</label>
+  </div>
+  <div class="field date-field">
+    <input class="styled" type="text" name="by_engagement_dates[start]" />
+    <label for="by_engagement_dates[start]">Happened After</label>
+  </div>
+  <div class="field date-field">
+    <input class="styled" type="text" name="by_engagement_dates[end]" />
+    <label for="by_engagement_dates[end]">Happened Before</label>
+  </div>
+  <button class="apply" type="submit">Apply Filters</button>
+</form>

@@ -36,6 +36,18 @@ class Engagement < ActiveRecord::Base
   scope :with_attendees, -> (table) {
     joins(:attendees).select("engagements.*, COUNT(#{table}.id) AS #{table}_count").group("engagements.id")
   }
+  # These scopes are all used on Logbook Index table filters
+  scope :by_kind, -> (kind) { where(kind: kind) }
+  scope :by_duration, -> (duration) { where("duration >= ?", duration) }
+  scope :by_headcount, -> (count) { where("engagement_attendees_count >= ?", count) }
+  scope :by_notes_count, -> (count) { where("notes_count >= ?", count) }
+  scope :by_engagement_dates, -> (t_start=StatCollector.default_range.first, t_end=StatCollector.default_range.last) {
+    t_start = t_start.blank? ? StatCollector.default_range.first : Date.parse(t_start)
+    t_end = t_end.blank? ? StatCollector.default_range.last : Date.parse(t_end)
+    range = t_start..t_end
+    joins(:engagements).merge(Engagement.btw(range)).uniq
+  }
+  # End Filter scopes
 
   def autoname
     if self.name.blank?

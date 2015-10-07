@@ -59,9 +59,9 @@ class Person < ActiveRecord::Base
   scope :by_role, -> (role) { where(role: role) }
   scope :by_grade, -> (grade) { where(grade: grade) }
   scope :by_dt, -> (dt=true) { where(dream_team: dt) }
-  scope :by_engagements_count, -> (count) { where("engagement_attendees_count > ?", count) }
-  scope :by_projects_count, -> (count) { where("project_people_count > ?", count) }
-  scope :by_notes_count, -> (count) { where("notes_count > ?", count) }
+  scope :by_engagements_count, -> (count) { where("engagement_attendees_count >= ?", count) }
+  scope :by_projects_count, -> (count) { where("project_people_count >= ?", count) }
+  scope :by_notes_count, -> (count) { where("people.notes_count >= ?", count) }
   #scope :by_engagements_count, -> (count) {
     #joins(:engagements).group('people.id')
     #.select("people.*, COUNT(engagements.id) AS engagements_count")
