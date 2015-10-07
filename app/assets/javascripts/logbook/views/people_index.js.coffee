@@ -12,7 +12,7 @@ class ds.PeopleIndexView extends Backbone.View
       filters: new ds.PeopleFiltersView
         collection: @collection
 
-    @listenTo Backbone, 'people:filter', @applyFilters
+    @listenTo Backbone, 'filters:apply', @applyFilters
 
   template: JST['logbook/templates/people_index']
 
@@ -29,7 +29,8 @@ class ds.PeopleIndexView extends Backbone.View
     @views.pagination.renderTo '#people-pagination'
     @views.filters.renderTo "#people-filters"
 
-  applyFilters: (data) ->
+  applyFilters: (namespace, data) ->
+    return unless namespace == "people"
     @collection.queryParams[filter] = val for filter, val of data
     @views.table.$el.css('opacity','.25')
     @collection.fetch

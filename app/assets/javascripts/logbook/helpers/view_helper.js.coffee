@@ -3,6 +3,6 @@ Backbone.View.prototype.renderTo = (target) ->
   this.render()
 
 Backbone.View.prototype.hide = ->
-  _.each(@views, (view) -> view.remove() )
+  _.each(@views, (view) -> view.hide() )
   @remove()
 

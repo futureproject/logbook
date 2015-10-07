@@ -43,8 +43,13 @@ class ApplicationController < ActionController::Base
     end
 
     def stat_times
-      if params[:t_start] && params[:t_end]
-        Date.parse(params[:t_start])..Date.parse(params[:t_end])
+      puts "HELLO"
+      if params[:t_start].present? || params[:t_end].present?
+        puts "TYES"
+        t_start = params[:t_start].present? ? Date.parse(params[:t_start]) : StatCollector.default_range.first
+        t_end = params[:t_end].present? ? Date.parse(params[:t_end]) : StatCollector.default_range.last
+        puts t_start..t_end
+        t_start..t_end
       else
         StatCollector.default_range
       end

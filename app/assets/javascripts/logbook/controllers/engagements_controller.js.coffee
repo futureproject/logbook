@@ -6,7 +6,6 @@ class ds.EngagementsController extends ds.BaseController
     @listenTo Backbone, "engagements:show", @show
     @listenTo Backbone, "engagements:new", @new
     @listenTo Backbone, "engagements:edit", @edit
-    @listenTo Backbone, 'dates:changed', @onDateChange
 
   index: ->
     ds.collectionHelper.bootstrap ds.collections.engagements
@@ -42,5 +41,3 @@ class ds.EngagementsController extends ds.BaseController
       engagement = ds.collections.engagements.get({cid: id}) || new ds.Engagement({ cid: id })
     engagement
 
-  onDateChange: ->
-    ds.collections.engagements.fetch({ reset: true })

@@ -3,17 +3,20 @@ class ds.LeaderboardView extends Backbone.View
   initialize: (args) ->
     throw "ds.LeaderboardView needs a URL argument" unless args?.url
     @url = args.url
-    @listenTo Backbone, 'dates:changed', @render
-
-  events:
-    'click a': 'linkToProfile'
+    @listenTo Backbone, 'dates:changed', @changeDates
+    @data = {}
 
   render: ->
     @$el.html "<div class='lb-loading'></div>"
-    $.getJSON @url, (res) =>
-      @state = res.state
-      @$el.empty()
-      _.each res.data, (array, key) => @addList(array, key)
+    $.ajax
+      dataType: 'json'
+      data: @data
+      url: @url
+      complete: (response) =>
+        res = response.responseJSON
+        @state = res.state
+        @$el.empty()
+        _.each res.data, (array, key) => @addList(array, key)
 
   addList: (list, list_name) =>
     $elem = $("<ul />")
@@ -23,6 +26,6 @@ class ds.LeaderboardView extends Backbone.View
     $elem.append "<li>No Results</li>" if list.length == 0
     @$el.append $elem
 
-  linkToProfile: (event) ->
-    #etc
-
+  changeDates: (dates) ->
+    @data[k] = v for k,v of dates
+    @render()

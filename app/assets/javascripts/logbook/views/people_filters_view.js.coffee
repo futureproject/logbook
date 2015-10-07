@@ -20,14 +20,6 @@ class ds.PeopleFiltersView extends Backbone.View
     @restoreOldFilters()
     @setDateFallback()
 
-  setDateFallback: ->
-    @$el.find('.date-field input').each (index) ->
-      picker = new Pikaday
-        field: this
-        firstDay: 1,
-        yearRange: 5
-        defaultDate: if(index) == 0 then new Date(ds.CONSTANTS.beginning_of_school_year) else new Date()
-
   restoreOldFilters: ->
     # deserialize the filters based on collection queryParams
     # then, if there are any filters applied, show thyself
@@ -43,15 +35,25 @@ class ds.PeopleFiltersView extends Backbone.View
   applyFilters: (event) ->
     event.preventDefault()
     data = Backbone.Syphon.serialize @
-    Backbone.trigger 'people:filter', data
+    dates =
+      t_start: data.by_engagement_dates.start
+      t_end: data.by_engagement_dates.end
+    Backbone.trigger 'filters:apply', @collection.namespace, data
+    Backbone.trigger 'dates:changed', dates
+
+  setDateFallback: ->
+    @$el.find('.date-field input').each (index) ->
+      picker = new Pikaday
+        field: this
+        firstDay: 1,
+        yearRange: 5
+        defaultDate: if(index) == 0 then new Date(ds.CONSTANTS.beginning_of_school_year) else new Date()
 
   resetFilters: ->
     data = Backbone.Syphon.serialize @
     @collection.queryParams[filter] = null for filter, val of data
     @collection.fetch({reset: true})
-
-  setDateFields: (dates) ->
-    console.log dates
+    Backbone.trigger 'dates:changed', { t_start: null, t_end: null }
 
   toggle: (event) ->
     event?.preventDefault()

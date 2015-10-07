@@ -4,6 +4,7 @@ class ds.BaseController extends Backbone.View
     @namespace = @url.replace('/logbook','')
     @views = {}
     @actions()
+    @listenTo Backbone, "controller:activated", @cleanup
     @listenTo Backbone, "routed", @routeListener
     @routeListener()
 
@@ -16,12 +17,13 @@ class ds.BaseController extends Backbone.View
     ds.router.navigate @url, {trigger: true}
 
   activate: ->
-    _.each @views, (view) -> view.hide()
+    @cleanup(null)
+    Backbone.trigger 'controller:activated', @
 
   cleanup: (active_controller) ->
     return if active_controller == @
+    _.each @views, (view) -> view.hide()
     @$el.removeClass("active")
 
   routeListener: ->
     @$el.toggleClass('active', !!location.pathname.match(@namespace))
-

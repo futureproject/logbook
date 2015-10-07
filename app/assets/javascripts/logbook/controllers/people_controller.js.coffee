@@ -6,7 +6,6 @@ class ds.PeopleController extends ds.BaseController
     @listenTo Backbone, "people:show", @show
     @listenTo Backbone, "people:new", @new
     @listenTo Backbone, "people:edit", @edit
-    @listenTo Backbone, 'dates:changed', @onDateChange
 
   index: ->
     ds.collectionHelper.bootstrap ds.collections.people
@@ -42,5 +41,3 @@ class ds.PeopleController extends ds.BaseController
       person = ds.collections.people.get({cid: id}) || new ds.Person({ cid: id })
     person
 
-  onDateChange: ->
-    ds.collections.people.fetch({ reset: true })
