@@ -1,12 +1,16 @@
 class Api::V2::EngagementsController < Api::V2::BaseController
   wrap_parameters format: [:json], include: [:attendee_ids, :name, :date, :kind, :school_id, :description, :duration, :headcount]
   before_action :set_engagement, only: [:show, :edit, :update, :destroy, :upload, :attendees]
+  has_scope :by_kind
+  has_scope :by_duration
+  has_scope :by_headcount
+  has_scope :by_notes_count
+  has_scope :by_engagement_dates, using: [:start, :end], type: :hash
 
   # GET /api/v2/engagements
   # GET /api/v2/engagements.json
   def index
-    @engagements = current_scope.engagements
-      .conditionally_joined(params, stat_times)
+    @engagements = apply_scopes(current_scope.engagements)
       .order(sort_params)
       .page(params[:page])
     @total = @engagements.total_count
@@ -16,6 +20,13 @@ class Api::V2::EngagementsController < Api::V2::BaseController
   def leaderboard
     @t = stat_times
     @scope = current_scope
+    @stats = StatCollector.engagements_leaderboard_data(
+      scope: current_scope,
+      dates: @t
+    )
+    @stats[:longest] = apply_scopes(@stats[:longest])
+    @stats[:largest] = apply_scopes @stats[:largest]
+    @stats[:most_notes] = apply_scopes @stats[:most_notes]
   end
 
   # GET /api/v2/engagements/1

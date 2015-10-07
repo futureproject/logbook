@@ -1,6 +1,6 @@
 class StatCollector
 
-  # The school year starts on August 24th.
+  # The school year starts on August 15th.
   def self.beginning_of_school_year
     today = Date.today
     start_month = 8
@@ -271,9 +271,9 @@ class StatCollector
         .btw(dates).order('duration DESC').limit(5),
       largest: scope.engagements.where('headcount IS NOT NULL')
         .btw(dates).order('headcount DESC').limit(5),
-      most_media: scope.engagements.btw(dates).joins(:assets)
-        .select("engagements.*, COUNT(assets.id) AS assets_count")
-        .group('engagements.id').order('assets_count DESC').limit(5)
+      most_notes: scope.engagements.btw(dates).joins(:notes)
+        .select("engagements.*, COUNT(notes.id) AS notes_count")
+        .group('engagements.id').order('engagements.notes_count DESC').limit(5)
     }
   end
 end

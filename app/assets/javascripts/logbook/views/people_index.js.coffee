@@ -9,8 +9,10 @@ class ds.PeopleIndexView extends Backbone.View
         columns: @collection.backgrid_columns
       pagination: new ds.BackgridPaginator
         collection: @collection
-      filters: new ds.PeopleFiltersView
+      filters: new ds.TableFiltersView
         collection: @collection
+        className: "table-filters people-filters"
+        template: JST["logbook/templates/people_filters"]
 
     @listenTo Backbone, 'filters:apply', @applyFilters
 

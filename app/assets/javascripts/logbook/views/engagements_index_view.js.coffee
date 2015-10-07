@@ -7,10 +7,12 @@ class ds.EngagementsIndexView extends Backbone.View
       table: new ds.IndexTableView
         collection: @collection
         columns: @collection.backgrid_columns
-      pagination: new Backgrid.Extension.Paginator
+      pagination: new ds.BackgridPaginator
         collection: @collection
-      filters: new ds.EngagementsFiltersView
+      filters: new ds.TableFiltersView
         collection: @collection
+        className: "table-filters engagements-filters"
+        template: JST["logbook/templates/engagements_filters"]
 
     @listenTo Backbone, 'filters:apply', @applyFilters
 
@@ -30,7 +32,7 @@ class ds.EngagementsIndexView extends Backbone.View
     @views.filters.renderTo "#engagements-filters"
 
   applyFilters: (namespace, data) ->
-    return unless namespace == "people"
+    return unless namespace == "engagements"
     @collection.queryParams[filter] = val for filter, val of data
     @views.table.$el.css('opacity','.25')
     @collection.fetch

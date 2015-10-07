@@ -14,6 +14,9 @@
     width: 20%;
   }
 }
+.engagements-filters {
+  .apply { color: $engagements-color; }
+}
 #engagement-form {
   @include row;
   .duration-field, .date-field {
