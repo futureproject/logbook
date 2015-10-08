@@ -59,7 +59,7 @@ end
 gem 'rails_admin'
 
 #error monitoring
-gem 'airbrake'
+gem 'raygun4ruby'
 
 # Groups records by date, which we use for preparing graph data
 gem 'groupdate'
