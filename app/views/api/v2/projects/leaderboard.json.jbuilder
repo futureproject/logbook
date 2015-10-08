@@ -1,8 +1,4 @@
 #json.cache! ['projects/leaderboard/v1', @scope, @t.first, @t.last] do
-  @stats = StatCollector.projects_leaderboard_data(
-    scope: current_scope,
-    dates: @t
-  )
   json.data do
     json.most_leaders do
       json.array!(@stats[:most_leaders]) do |project|

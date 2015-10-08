@@ -1,0 +1,33 @@
+<a class="trigger" href="#">
+  <span class="trigger-label">Add Filters</span>
+  <span class="trigger-indicator icon-add_circle_outline"></span>
+</a>
+<form class="projects-filters">
+  <div class="field status-field">
+    <select class="styled" name="by_status">
+      <option value=""></option>
+    <option value="underway">Underway</option>
+    <option value="stalled">Stalled</option>
+    <option value="complete">Complete</option>
+    </select>
+  <label for="by_status">Status</label>
+  </div>
+  <div class="field number-field">
+    <input class="styled" type="number" minimum=0 name="by_team_size" />
+    <label for="by_team_size">Team Size</label>
+  </div>
+  <div class="field number-field">
+    <input class="styled" type="number" minimum=0 name="by_notes_count" />
+    <label for="by_notes_count">Notes</label>
+  </div>
+  <div class="field date-field">
+    <input class="styled" type="text" name="by_created_at" />
+    <label for="by_created_at">Created After</label>
+  </div>
+  <div class="field date-field">
+    <input class="styled" type="text" name="by_updated_at" />
+    <label for="by_updated_at">Updated After</label>
+  </div>
+  <button class="apply" type="submit">Apply Filters</button>
+</form>
+

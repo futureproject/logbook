@@ -11,5 +11,11 @@ class Project < ActiveRecord::Base
   STATUS_ENUM = %w(underway stalled complete)
 
   include Joinable
+  # These scopes are all used on Logbook Index table filters
+  scope :by_status, -> (status) { where(status: status) }
+  scope :by_team_size, -> (count) { where("projects.project_people_count>=?", count) }
+  scope :by_notes_count, -> (count) { where("projects.notes_count >= ?", count) }
+  scope :by_created_at, -> (date) { where("created_at>=?", date) }
+  scope :by_updated_at, -> (date) { where("created_at>=?", date) }
 
 end

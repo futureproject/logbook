@@ -1,12 +1,16 @@
 class Api::V2::ProjectsController < Api::V2::BaseController
   wrap_parameters format: [:json], include: [:leader_ids, :supporter_ids, :name, :status, :description, :school_id]
   before_action :set_project, only: [:show, :edit, :update, :destroy, :stats]
+  has_scope :by_status
+  has_scope :by_team_size
+  has_scope :by_notes_count
+  has_scope :by_created_at
+  has_scope :by_updated_at
 
   # GET /api/v2/projects
   # GET /api/v2/projects.json
   def index
-    @projects = current_scope.projects
-      .conditionally_joined(params, stat_times)
+    @projects = apply_scopes(current_scope.projects)
       .order(sort_params)
       .page(params[:page])
     @total = @projects.total_count
@@ -16,6 +20,13 @@ class Api::V2::ProjectsController < Api::V2::BaseController
   def leaderboard
     @t = stat_times
     @scope = current_scope
+    @stats = StatCollector.projects_leaderboard_data(
+      scope: current_scope,
+      dates: @t
+    )
+    @stats[:most_leaders] = apply_scopes(@stats[:most_leaders])
+    @stats[:most_supporters] = apply_scopes @stats[:most_supporters]
+    @stats[:most_notes] = apply_scopes @stats[:most_notes]
   end
 
   # GET /api/v2/projects/1

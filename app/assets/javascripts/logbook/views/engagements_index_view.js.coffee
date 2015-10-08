@@ -11,7 +11,6 @@ class ds.EngagementsIndexView extends Backbone.View
         collection: @collection
       filters: new ds.TableFiltersView
         collection: @collection
-        className: "table-filters engagements-filters"
         template: JST["logbook/templates/engagements_filters"]
 
     @listenTo Backbone, 'filters:apply', @applyFilters

@@ -1,8 +1,9 @@
 class ds.TableFiltersView extends Backbone.View
   initialize: (args) ->
     @collection = args.collection
-    @className = args.className
     @template = args.template
+
+  className: 'table-filters'
 
   events:
     'click .trigger': 'toggle'

@@ -248,17 +248,17 @@ class StatCollector
     scope = args[:scope] || National.new
     dates = args[:dates] ? args[:dates] : self.default_range
     {
-      most_leaders: scope.projects.btw(dates).joins(:project_people)
+      most_leaders: scope.projects.joins(:project_people)
         .where(project_people: { leading: true })
         .select("projects.*, COUNT(project_people.id) AS leaders_count")
         .group('projects.id').order('leaders_count DESC').limit(5),
-      most_supporters: scope.projects.btw(dates).joins(:project_people)
+      most_supporters: scope.projects.joins(:project_people)
         .where(project_people: { leading: false })
         .select("projects.*, COUNT(project_people.id) AS supporters_count")
         .group('projects.id').order('supporters_count DESC').limit(5),
-      most_notes: scope.projects.btw(dates).joins(:notes)
+      most_notes: scope.projects.joins(:notes)
         .select("projects.*, COUNT(notes.id) AS notes_count")
-        .group('projects.id').order('notes_count DESC').limit(5),
+        .group('projects.id').order('projects.notes_count DESC').limit(5),
     }
   end
 
