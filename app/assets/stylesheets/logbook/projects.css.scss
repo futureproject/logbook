@@ -5,6 +5,9 @@
   th.created_at { text-align: right; }
   th.updated_at { text-align: right; }
 }
+.projects-filters {
+  .apply { color: $projects-color; }
+}
 #project-form {
   @include row;
   .name-field, .status-field, .school-field {
