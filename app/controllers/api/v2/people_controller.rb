@@ -1,5 +1,6 @@
 class Api::V2::PeopleController < Api::V2::BaseController
   before_action :set_person, only: [:show, :edit, :update, :destroy, :stats, :engagements_bubble_graph]
+  has_scope :q
   has_scope :by_first_name
   has_scope :by_last_name
   has_scope :by_role

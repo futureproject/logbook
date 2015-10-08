@@ -374,6 +374,9 @@ input.save {
     }
   }
 }
+.selectize-input input {
+  display: inline-block;
+}
 .stickies {
   @include clearfix;
   padding: 0 15px;

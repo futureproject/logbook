@@ -1,6 +1,7 @@
 class Api::V2::ProjectsController < Api::V2::BaseController
   wrap_parameters format: [:json], include: [:leader_ids, :supporter_ids, :name, :status, :description, :school_id]
   before_action :set_project, only: [:show, :edit, :update, :destroy, :stats]
+  has_scope :q
   has_scope :by_status
   has_scope :by_team_size
   has_scope :by_notes_count
