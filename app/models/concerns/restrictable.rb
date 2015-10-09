@@ -4,9 +4,9 @@ module Restrictable
   included do
 
     # check whether a user can perform an action
-    def can(action, record)
+    def can(action, record, level=1)
       return false if !(action.present? && record.present?)
-      if self.role.match(/admin|chief|dd|lab/i)
+      if self.clearance_level >= level
         true
       else
         false

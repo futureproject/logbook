@@ -214,6 +214,7 @@ class Person < ActiveRecord::Base
           (Person::ROLE_ENUM + %w(DD CHIEF ADMIN LAB APR)).flatten
         end
       end
+      field :clearance_level
       field :school
       field :grade
       field :dream_team
