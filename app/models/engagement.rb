@@ -48,6 +48,7 @@ class Engagement < ActiveRecord::Base
     self.btw(range)
   }
   # End Filter scopes
+  scope :q, -> (query) { where("engagements.name like ?", "%#{query.downcase}%") }
 
   def autoname
     if self.name.blank?

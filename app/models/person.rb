@@ -19,7 +19,7 @@ class Person < ActiveRecord::Base
   before_create :generate_auth_token
   before_save :set_site
   after_touch :set_last_engaged
-  ROLE_ENUM = %W(student teacher staff apprentice volunteer DD CHIEF TFP ADMIN)
+  ROLE_ENUM = %W(studene teacher staff apprentice volunteer DD CHIEF TFP ADMIN)
   GRADE_ENUM = [6, 7, 8, 9, 10, 11, 12]
   SEX_ENUM = %w(M F)
   DREAM_TEAM_ENUM = [["Yep", true],["Nope", false]]
@@ -33,8 +33,8 @@ class Person < ActiveRecord::Base
     first = "%#{query.split(' ').first.downcase}%"
     last = "%#{query.split(' ').last.downcase}%"
     operator = first == last ? "or" : "and"
-    where("first_name like ? #{operator} last_name like ?", first, last)
-    .order("dream_team DESC, first_name ASC")
+    where("people.first_name like ? #{operator} people.last_name like ?", first, last)
+    .order("people.dream_team DESC, people.first_name ASC")
   }
   scope :logbook_default, -> { active }
   scope :with_hours, -> (kind="%") {
@@ -211,7 +211,7 @@ class Person < ActiveRecord::Base
       field :email
       field :role, :enum do
         enum do
-          (Person::ROLE_ENUM + %w(DD CHIEF ADMIN LAB APR)).flatten
+          Person::ROLE_ENUM
         end
       end
       field :clearance_level
