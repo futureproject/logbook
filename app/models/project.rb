@@ -18,5 +18,7 @@ class Project < ActiveRecord::Base
   scope :by_created_at, -> (date) { where("created_at>=?", date) }
   scope :by_updated_at, -> (date) { where("created_at>=?", date) }
   scope :q, -> (query) { where("projects.name like ?", "%#{query.downcase}%") }
+  include SimpleHashtag::Hashtaggable
+  hashtaggable_attribute :description
 
 end

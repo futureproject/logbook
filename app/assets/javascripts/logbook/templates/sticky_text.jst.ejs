@@ -11,7 +11,7 @@
       </li>
     <% } %>
   </ul>
-  <pre class="note-text"><%= note.content %></pre>
+  <pre class="note-text"><%= ds.hashtagsHelper.linkify(note.content) %></pre>
 </div>
 <div class="action delete icon-delete"></div>
 <div class="action edit icon-edit"></div>

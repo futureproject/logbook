@@ -89,6 +89,9 @@ gem 'delayed_job_active_record'
 # cleaner scope syntax
 gem "has_scope"
 
+# hashtags!
+gem 'simple_hashtag'
+
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
   gem 'dotenv-rails'

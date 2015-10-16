@@ -83,6 +83,8 @@ class Person < ActiveRecord::Base
     joins(:engagements).merge(Engagement.btw(range)).uniq
   }
   # End Filter scopes
+  include SimpleHashtag::Hashtaggable
+  hashtaggable_attribute :bio
 
   def name
     "#{first_name} #{last_name}"

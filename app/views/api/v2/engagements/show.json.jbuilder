@@ -1,4 +1,4 @@
-json.extract! @engagement, :id, :kind, :name, :headcount, :attendee_ids, :date, :description, :duration, :school_id
+json.extract! @engagement, :id, :kind, :name, :description, :headcount, :attendee_ids, :date, :duration, :school_id
 json.school_name @engagement.school.try(:name)
 json.assets @engagement.assets, :thumbnail, :id, :data, :external_url, :caption
 json.attendees @engagement.attendees.order(:first_name) do |person|

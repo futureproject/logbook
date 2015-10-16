@@ -50,6 +50,9 @@ class Engagement < ActiveRecord::Base
   # End Filter scopes
   scope :q, -> (query) { where("engagements.name like ?", "%#{query.downcase}%") }
 
+  include SimpleHashtag::Hashtaggable
+  hashtaggable_attribute :description
+
   def autoname
     if self.name.blank?
       attendees = Person.where(id: attendee_ids).order(:first_name).limit(3)

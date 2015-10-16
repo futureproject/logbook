@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get "hashtags/:hashtag",   to: "hashtags#show",      as: :hashtag
+  get "hashtags",            to: "hashtags#index",     as: :hashtags
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
@@ -29,6 +31,7 @@ Rails.application.routes.draw do
       resources :assets, only: [:create, :destroy]
       resources :search_results, only: [:index]
       resources :notes
+      resources :hashtags, only: [:index, :show]
       [:schools, :sites, :nationals].each do |endpoint|
         resources endpoint, only: [:index, :show] do
           collection do
@@ -79,6 +82,10 @@ Rails.application.routes.draw do
     get 'set_scope', to: 'application#set_scope'
     get 'clear_scope', to: 'application#clear_scope'
     get '/*whatever', to: 'application#dashboard'
+    resources :engagements, only: [:index, :show]
+    resources :projects, only: [:index, :show]
+    resources :notes, only: [:index, :show]
+    resources :people, only: [:index, :show]
   end
 
   get '/logbookapp' => 'oldbook/application#home', as: 'logbook_app'

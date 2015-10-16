@@ -5,4 +5,6 @@ class Note < ActiveRecord::Base
   has_many :assets, as: :attachable, dependent: :destroy
   accepts_nested_attributes_for :assets
   scope :btw, -> (range) { where(created_at: range) }
+  include SimpleHashtag::Hashtaggable
+  hashtaggable_attribute :content
 end

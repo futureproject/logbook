@@ -32,7 +32,7 @@
 
 <% if (engagement.description) { %>
 <div class="section">
-  <pre><%= engagement.description %></pre>
+  <pre><%= ds.hashtagsHelper.linkify(engagement.description) %></pre>
 </div>
 <% } %>
 
