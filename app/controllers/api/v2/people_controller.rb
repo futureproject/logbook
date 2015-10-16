@@ -97,7 +97,7 @@ class Api::V2::PeopleController < Api::V2::BaseController
         :email,
         :phone,
         :sex,
-        :bio,
+        :description,
         :media_release
       )
     end

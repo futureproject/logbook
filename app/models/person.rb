@@ -84,7 +84,7 @@ class Person < ActiveRecord::Base
   }
   # End Filter scopes
   include SimpleHashtag::Hashtaggable
-  hashtaggable_attribute :bio
+  hashtaggable_attribute :description
 
   def name
     "#{first_name} #{last_name}"

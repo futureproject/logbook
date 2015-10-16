@@ -10,7 +10,7 @@ json.extract! @person, :id,
   :role,
   :phone,
   :email,
-  :bio,
+  :description,
   :avatar
 json.projects @person.project_people.includes(:project).order('projects.name') do |pp|
   json.id pp.project.id

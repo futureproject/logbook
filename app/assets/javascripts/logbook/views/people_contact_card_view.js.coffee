@@ -17,7 +17,7 @@ class ds.PeopleContactCardView extends Backbone.View
     content = $(event.currentTarget).val()
     content = null if content.length < 1
     @model.save
-      bio: content
+      description: content
 
   uploadAvatar: (event) ->
     file = event.currentTarget.files[0]

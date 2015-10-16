@@ -1,4 +1,6 @@
-json.extract! note, :id, :content, :notable_type, :notable_id
+json.extract! note, :id, :notable_type, :notable_id
+json.description note.content
+json.name note.notable.try(:name)
 json.assets note.assets do |asset|
   json.id asset.id
   json.data_content_type asset.data_content_type
