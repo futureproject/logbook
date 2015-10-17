@@ -20,7 +20,7 @@ class Project < ActiveRecord::Base
   scope :q, -> (query) {
     name_matches = where("projects.name like ?", "%#{query.downcase}%")
     tag_matches = hashtagged(query)
-    where("id in (?)", (name_matches + tag_matches).map(&:id))
+    where("#{table_name}.id in (?)", (name_matches + tag_matches).map(&:id))
   }
   include Hashtaggable
   hashtaggable_attribute :description

@@ -92,9 +92,6 @@ gem "has_scope"
 # hashtags!
 gem 'simple_hashtag'
 
-# rails-5 style ActiveRecord or syntax
-gem 'where-or'
-
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
   gem 'dotenv-rails'
