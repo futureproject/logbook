@@ -7,6 +7,8 @@ ds.apiHelper =
     engagements_leaderboard:  -> "/api/v2/engagements/leaderboard"
     engagement: (id) -> "/api/v2/engagements/#{id}"
     engagement_attendees: (id) -> "/api/v2/engagements/#{id}/attendees"
+    hashtags: -> "/api/v2/hashtags"
+    hashtag: (tag_name) -> "/api/v2/hashtags/#{tag_name}"
     national_graphs: (graph) -> "/api/v2/nationals/usa/graphs/#{graph}"
     notes: -> "/api/v2/notes"
     people:  -> "/api/v2/people"

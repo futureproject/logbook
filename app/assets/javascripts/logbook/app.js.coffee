@@ -23,6 +23,7 @@ ds.run = (args) ->
   ds.controllers.engagements = new ds.EngagementsController
   ds.controllers.projects = new ds.ProjectsController
   ds.controllers.report_submissions = new ds.ReportSubmissionsController
+  ds.controllers.hashtags = new ds.HashtagsController
   ds.controllers.notes = new ds.NotesController
   ds.router = new ds.Router
   ds.scopeHelper.setScope(ds.CONSTANTS.scope)

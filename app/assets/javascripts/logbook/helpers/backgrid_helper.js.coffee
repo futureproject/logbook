@@ -1,8 +1,9 @@
 class ds.LogbookLinkFormatter extends Backgrid.CellFormatter
   fromRaw: (rawValue, model) ->
     desc = model.get("description")
+    url = model.get('url') || ds.urlsHelper.urlFor(model)
     if desc
-      "<a title='#{desc}' href='#{ds.urlsHelper.urlFor(model)}'>#{rawValue}</a>"
+      "<a title='#{desc}' href='#{url}'>#{rawValue}</a>"
     else
       "<a href='#{ds.urlsHelper.urlFor(model)}'>#{rawValue}</a>"
 

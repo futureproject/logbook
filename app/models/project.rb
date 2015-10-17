@@ -17,8 +17,12 @@ class Project < ActiveRecord::Base
   scope :by_notes_count, -> (count) { where("projects.notes_count >= ?", count) }
   scope :by_created_at, -> (date) { where("created_at>=?", date) }
   scope :by_updated_at, -> (date) { where("created_at>=?", date) }
-  scope :q, -> (query) { where("projects.name like ?", "%#{query.downcase}%") }
-  include SimpleHashtag::Hashtaggable
+  scope :q, -> (query) {
+    name_matches = where("projects.name like ?", "%#{query.downcase}%")
+    tag_matches = hashtagged(query)
+    where("id in (?)", (name_matches + tag_matches).map(&:id))
+  }
+  include Hashtaggable
   hashtaggable_attribute :description
 
 end

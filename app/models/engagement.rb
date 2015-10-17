@@ -48,9 +48,13 @@ class Engagement < ActiveRecord::Base
     self.btw(range)
   }
   # End Filter scopes
-  scope :q, -> (query) { where("engagements.name like ?", "%#{query.downcase}%") }
+  scope :q, -> (query) {
+    name_matches = where("engagements.name like ?", "%#{query.downcase}%")
+    tag_matches = hashtagged(query)
+    self.where("id in (?)", (name_matches + tag_matches).map(&:id))
+  }
 
-  include SimpleHashtag::Hashtaggable
+  include Hashtaggable
   hashtaggable_attribute :description
 
   def autoname

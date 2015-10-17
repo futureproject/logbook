@@ -33,8 +33,10 @@ class Person < ActiveRecord::Base
     first = "%#{query.split(' ').first.downcase}%"
     last = "%#{query.split(' ').last.downcase}%"
     operator = first == last ? "or" : "and"
-    where("people.first_name like ? #{operator} people.last_name like ?", first, last)
-    .order("people.dream_team DESC, people.first_name ASC")
+    name_matches = where("people.first_name like ? #{operator} people.last_name like ?", first, last)
+      .order("people.dream_team DESC, people.first_name ASC")
+    tag_matches = hashtagged(query)
+    where("id in (?)", (name_matches + tag_matches).map(&:id))
   }
   scope :logbook_default, -> { active }
   scope :with_hours, -> (kind="%") {
@@ -83,7 +85,7 @@ class Person < ActiveRecord::Base
     joins(:engagements).merge(Engagement.btw(range)).uniq
   }
   # End Filter scopes
-  include SimpleHashtag::Hashtaggable
+  include Hashtaggable
   hashtaggable_attribute :description
 
   def name
