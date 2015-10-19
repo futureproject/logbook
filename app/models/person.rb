@@ -137,6 +137,8 @@ class Person < ActiveRecord::Base
     duplicates = duplicates.where.not(id: primary.id).order(:id)
     puts "merging #{primary.name} with #{duplicates.count} other records..."
     duplicates.each do |p|
+      primary.grade ||= p.grade
+      primary.description ||= p.description
       p.engagement_attendees.each do |r|
         r.update_attributes person_id: primary.id
       end
