@@ -22,8 +22,6 @@ class ds.Project extends Backbone.Model
   validate: (attrs, options) ->
     if !attrs.name
       "This project needs a name."
-    else if !attrs.school_id
-      "This project needs a school."
 
 class ds.ProjectsCollection extends Backbone.PageableCollection
   model: ds.Project
