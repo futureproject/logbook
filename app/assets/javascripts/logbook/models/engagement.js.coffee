@@ -31,7 +31,7 @@ class ds.EngagementsCollection extends Backbone.PageableCollection
     @mode = args.mode || 'server'
   backgrid_columns: [
     {name: 'name', cell: ds.LogbookLinkCell }
-    {name: 'kind', cell: 'string' }
+    {name: 'kind', cell: ds.LogbookLinkCell }
     {name: 'headcount', cell:'integer'}
     {name: 'duration', cell:'number', label: "Duration (Hrs)"}
     {name: 'notes_count', cell:'integer', label: "Notes"}
