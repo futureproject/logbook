@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151016163033) do
+ActiveRecord::Schema.define(version: 20151116165100) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -123,7 +123,6 @@ ActiveRecord::Schema.define(version: 20151016163033) do
     t.integer  "graduated_in"
     t.string   "auth_token"
     t.string   "avatar_url"
-    t.boolean  "media_release"
     t.text     "description"
     t.date     "last_engaged"
     t.string   "osis"
@@ -133,6 +132,11 @@ ActiveRecord::Schema.define(version: 20151016163033) do
     t.integer  "engagement_attendees_count",             default: 0
     t.integer  "notes_count",                            default: 0
     t.integer  "clearance_level",                        default: 1
+    t.boolean  "future_fellow",                          default: false
+    t.boolean  "ob_media_release",                       default: false
+    t.boolean  "ob_parental_consent",                    default: false
+    t.boolean  "ob_disclaimer",                          default: false
+    t.date     "birthday"
   end
 
   add_index "people", ["active"], name: "index_people_on_active", using: :btree

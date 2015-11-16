@@ -7,11 +7,16 @@ json.extract! @person, :id,
   :school_name,
   :grade,
   :dream_team,
+  :future_fellow,
   :role,
   :phone,
   :email,
   :description,
-  :avatar
+  :avatar,
+  :ob_media_release,
+  :ob_parental_consent,
+  :ob_disclaimer,
+  :birthday
 json.projects @person.project_people.includes(:project).order('projects.name') do |pp|
   json.id pp.project.id
   json.name pp.project.name

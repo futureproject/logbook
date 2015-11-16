@@ -18,7 +18,7 @@ body.people {
 #person-form {
   @include row;
   .first-name-field, .last-name-field, .role-field, .sex-field,
-  .grade-field, .sex-field, .dream-team-field  {
+  .grade-field, .sex-field, .dream-team-field {
     @include span-columns(3);
   }
   .dream-team-field {
@@ -31,16 +31,22 @@ body.people {
   .role-field {
     clear: both;
   }
-  .email-field {
-    @include span-columns(6);
-  }
-  .phone-field, .media-release-field {
-    @include span-columns(3);
-  }
-  .media-release-field { @include omega; }
   .description-field {
     clear: both;
     margin-top: 1em;
+    textarea { border: 1px solid $base-border-color; }
+  }
+  .birthday-field, .email-field, .phone-field, {
+    @include span-columns(4);
+  }
+  .phone-field {
+    @include omega;
+  }
+  .ob-media-release-field, .ob-parental-consent-field, .ob-disclaimer-field, .future-fellow-field {
+    @include span-columns(3);
+  }
+  .future-fellow-field {
+    @include omega;
   }
 }
 

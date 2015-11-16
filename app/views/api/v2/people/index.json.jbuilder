@@ -11,6 +11,7 @@
           :school_id,
           :role,
           :dream_team,
+          :future_fellow,
           :email,
           :phone,
           :grade,
@@ -19,7 +20,11 @@
           :last_engaged,
           :project_people_count,
           :engagement_attendees_count,
-          :notes_count
+          :notes_count,
+          :ob_media_release,
+          :ob_parental_consent,
+          :ob_disclaimer,
+          :birthday
       #end
     end
   end

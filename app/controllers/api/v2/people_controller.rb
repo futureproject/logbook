@@ -94,11 +94,15 @@ class Api::V2::PeopleController < Api::V2::BaseController
         :school_id,
         :grade,
         :dream_team,
+        :future_fellow,
         :email,
         :phone,
         :sex,
         :description,
-        :media_release
+        :ob_media_release,
+        :ob_parental_consent,
+        :ob_disclaimer,
+        :birthday
       )
     end
 

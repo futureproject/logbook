@@ -16,11 +16,23 @@
   </li>
   <li class="fact">
     <label>Dream Team</label>
-    <%= person.dream_team %>
+    <%= person.dream_team ? "Yep" : "Nope" %>
   </li>
   <li class="fact">
-    <label>School</label>
-    <%= person.school_name %>
+    <label>Future Fellow</label>
+    <%= person.future_fellow ? "Yep" : "Nope" %>
+  </li>
+  <li class="fact">
+    <label>Media Release</label>
+    <%= person.ob_media_release ? "Yep" : "Nope" %>
+  </li>
+  <li class="fact">
+    <label>Consent</label>
+    <%= person.ob_parental_consent ? "Yep" : "Nope" %>
+  </li>
+  <li class="fact">
+    <label>Disclaimer</label>
+    <%= person.ob_disclaimer ? "Yep" : "Nope" %>
   </li>
 </ul>
 <div class="section" id="person-contact-card">

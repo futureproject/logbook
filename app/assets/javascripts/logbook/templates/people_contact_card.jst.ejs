@@ -8,9 +8,12 @@
   </div>
   <div class="person-info" >
     <h2 class="section-header">
-      <%= person.first_name %> <%= person.last_name %>
+      <%= person.first_name || "--" %> <%= person.last_name || "--" %>
     </h2>
     <ul class="person-details">
+      <li class="fact">
+        <%= person.school_name || "No School" %>
+      </li>
       <li class="fact">
         <label>E:</label>
         <%= person.email || "N/A" %>

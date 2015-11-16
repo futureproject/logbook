@@ -22,6 +22,7 @@ class ds.PeopleFormView extends Backbone.View
   onsubmit: (event) ->
     event.preventDefault()
     data = Backbone.Syphon.serialize @
+    data.birthday = Date.parse(data.birthday)
     if @model.save data
       @reflectIdChange() if @model.isNew()
       ds.collections.people.add @model, { merge: true }
