@@ -10,6 +10,7 @@ class School < ActiveRecord::Base
   has_many :projects
   has_many :engagements
   has_many :engagement_attendees, through: :engagements
+  has_many :report_submissions, through: :people
 
   include Activatable
 
@@ -30,7 +31,6 @@ class School < ActiveRecord::Base
   def schools
     site.try(:schools)
   end
-
 
   # estimate the number of distinct people engaged at this school
   def engaged_people_estimate

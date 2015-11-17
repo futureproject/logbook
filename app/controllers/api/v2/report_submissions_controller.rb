@@ -1,11 +1,16 @@
 class Api::V2::ReportSubmissionsController < Api::V2::BaseController
   before_action :set_report_submission, only: [:show, :edit, :update, :destroy]
+  has_scope :by_report_name
+  has_scope :by_person_role
+  has_scope :by_person_first_name
+  has_scope :by_person_last_name
+  has_scope :by_date_submitted, using: [:start, :end], type: :hash
 
   # GET /api/v2/report_submissions
   # GET /api/v2/report_submissions.json
   def index
     @t = stat_times
-    @report_submissions = current_user.report_submissions
+    @report_submissions = apply_scopes(current_user.report_submissions)
       .btw(@t)
       .order(sort_params)
       .page(params[:page]).per(200)
@@ -13,7 +18,9 @@ class Api::V2::ReportSubmissionsController < Api::V2::BaseController
 
   def submitted
     @t = stat_times
-    @report_submissions = ReportSubmission.to_be_read_for(current_user)
+    @report_submissions = apply_scopes(current_scope.report_submissions)
+      .where(status: "Submitted")
+      .order("date_submitted DESC, people.site_id ASC")
       .btw(@t)
       .page(params[:page])
     @total = @report_submissions.total_count

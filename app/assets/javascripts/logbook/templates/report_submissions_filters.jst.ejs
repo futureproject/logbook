@@ -1,0 +1,35 @@
+<a class="trigger" href="#">
+  <span class="trigger-label">Add Filters</span>
+  <span class="trigger-indicator icon-add_circle_outline"></span>
+</a>
+<form class="people-filters">
+  <div class="field q-field">
+    <input class="styled" type="text" name="by_report_name" />
+    <label for="by_report_name">Report Name</label>
+  </div>
+  <div class="field person-first-name-field">
+    <input class="styled" type="text" name="by_person_first_name" />
+    <label for="by_person_first_name">Author First Name</label>
+  </div>
+  <div class="field person-last-name-field">
+    <input class="styled" type="text" name="by_person_last_name" />
+    <label for="by_person_last_name">Author Last Name</label>
+  </div>
+  <div class="field role-field">
+    <select class="styled" name="by_person_role">
+      <option value=""></option>
+      <option value="DD">DD</option>
+      <option value="CHIEF">CHIEF</option>
+    </select>
+    <label class="styled" for="by_person_role">Author Role</label>
+  </div>
+  <div class="field date-field">
+    <input class="styled" type="text" name="by_date_submitted[start]" />
+    <label for="by_date_submitted[start]">Submitted After</label>
+  </div>
+  <div class="field date-field">
+    <input class="styled" type="text" name="by_date_submitted[end]" />
+    <label for="by_date_submitted[end]">Submitted Before</label>
+  </div>
+  <button class="apply" type="submit">Apply Filters</button>
+</form>

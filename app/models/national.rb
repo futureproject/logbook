@@ -88,6 +88,10 @@ class National
     { name: self.class.name, id: self.id, namespace: 'nationals', shortname: 'TFP' }
   end
 
+  def report_submissions
+    ReportSubmission.all.joins(:person)
+  end
+
   #def self.engagement_score
   #  WeeklyLogEntry.average(:quality)
   #end

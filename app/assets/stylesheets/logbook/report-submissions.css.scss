@@ -5,6 +5,11 @@ body.reports {
     font-weight: bold;
   }
   th.created_at { text-align: right; }
+  .table-filters {
+    .q-field, .person-first-name-field, .person-last-name-field {
+      @include span-columns(1.5);
+    }
+  }
 }
 
 #report-submissions-table {
@@ -14,3 +19,4 @@ body.reports {
     }
   }
 }
+

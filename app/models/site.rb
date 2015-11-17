@@ -10,6 +10,7 @@ class Site < ActiveRecord::Base
   has_many :projects, through: :schools
   has_many :engagements
   has_many :engagement_attendees, through: :engagements
+  has_many :report_submissions, through: :people
 
 
   def average association, column=nil

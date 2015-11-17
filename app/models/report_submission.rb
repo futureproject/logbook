@@ -11,16 +11,18 @@ class ReportSubmission < ActiveRecord::Base
   }
   before_save :set_submission_date, :if => lambda{ |obj| obj.status_changed? }
 
-  def self.to_be_read_for(user)
-    if user.site
-      self.where(status: "Submitted")
-        .joins(:person).where("people.site_id = ?", user.site_id)
-        .order("report_submissions.date_submitted DESC, people.site_id")
-    else
-      self.where(status: "Submitted").joins(:person)
-        .order("report_submissions.date_submitted DESC, people.site_id")
-    end
-  end
+  scope :by_report_name, -> (query) {
+    where("lower(report_submissions.name) like ?", "%#{query.downcase}%")
+  }
+  scope :by_person_first_name, -> (q) { includes(:person).references(:people).where("people.first_name like ?", "%#{q.downcase}%") }
+  scope :by_person_last_name, -> (q) { includes(:person).references(:people).where("people.last_name like ?", "%#{q.downcase}%") }
+  scope :by_person_role, -> (role) { includes(:person).references(:people).where("people.role = ?", role) }
+  scope :by_date_submitted, -> (t_start, t_end) {
+    t_start = t_start.blank? ? StatCollector.default_range.first : Date.parse(t_start)
+    t_end = t_end.blank? ? StatCollector.default_range.last : Date.parse(t_end)
+    range = t_start..t_end
+    where(date_submitted: range)
+  }
 
   def set_submission_date
     if self.status == "Submitted"
