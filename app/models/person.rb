@@ -148,6 +148,9 @@ class Person < ActiveRecord::Base
       p.notes.each do |r|
         r.update_attributes notable_id: primary.id
       end
+      p.report_submissions.each do |r|
+        r.update_attributes person_id: primary.id
+      end
       p.delete
     end
     puts "merged #{count} people into #{primary.name}, id #{primary.id}"
