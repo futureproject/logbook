@@ -7,7 +7,7 @@ namespace :spreadsheets do
       person_name = file_name.gsub('.csv','').split('_') rescue nil
       puts person_name
       return unless person_name
-      user = Person.find_by(
+      user = Person.where(role:"DD").find_by(
         first_name: person_name[0].titlecase,
         last_name: person_name[1].titlecase
       )

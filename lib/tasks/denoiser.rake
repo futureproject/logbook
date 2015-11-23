@@ -39,16 +39,7 @@ namespace :denoiser do
     #iterate over all schools
     original_total = Person.count
     School.all.each do |school|
-      puts "Deduping #{school.name}"
-      count = school.people.count
-      unique_names = school.people.group_by{|p| [p.first_name, p.last_name]}
-      unique_names.each do |name, people|
-        next if people.length < 2
-        puts "Deduping #{people.length} named #{name}"
-        ids = people.map(&:id)
-        Person.dedup ids
-      end
-      puts "deduped #{count - school.people.count} from #{school.name}"
+      school.dedup
     end
     new_total = Person.count
     puts "Deduped #{original_total - new_total} records altogether."

@@ -70,4 +70,17 @@ class School < ActiveRecord::Base
     end
   end
 
+  def dedup
+    puts "Deduping #{self.name}"
+    count = self.people.count
+    unique_names = self.people.group_by{|p| [p.first_name.downcase, p.last_name.downcase]}
+    unique_names.each do |name, people|
+      next if people.length < 2
+      puts "Deduping #{people.length} named #{name}"
+      ids = people.map(&:id)
+      Person.dedup ids
+    end
+    puts "deduped #{count - self.people.count} from #{self.name}"
+  end
+
 end

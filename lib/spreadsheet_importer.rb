@@ -19,6 +19,8 @@ class SpreadsheetImporter
         )
       end
     end
+    user.school.dedup
   end
+
 end
 
