@@ -2055,7 +2055,7 @@
 			// perform search
 			if (query !== self.lastQuery) {
 				self.lastQuery = query;
-				result = self.sifter.search(query, $.extend(options, {score: calculateScore}));
+				result = self.sifter.search(query.replace(/#/i,''), $.extend(options, {score: calculateScore}));
 				self.currentResults = result;
 			} else {
 				result = $.extend(true, {}, self.currentResults);

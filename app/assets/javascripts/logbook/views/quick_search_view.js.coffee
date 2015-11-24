@@ -17,11 +17,12 @@ class ds.QuickSearchView extends Backbone.View
       optgroupField: 'class'
       valueField: 'url'
       plugins: ['optgroup_columns']
+      closeAfterSelect: true
       onItemAdd: (value, item) =>
         @el.selectize.clear()
-        @el.selectize.close()
         @el.selectize.blur()
         ds.router.navigate value, { trigger: true }
+
       load: (query, callback) ->
         return callback() if (!query.length)
         $.ajax
