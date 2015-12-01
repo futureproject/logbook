@@ -10,7 +10,7 @@ namespace :reports do
       file.write "---\n"
       file.write "#{person.name}\n"
       file.write "#{r.name}\n"
-      file.write "---\n\n"
+      file.write "---\n"
       file.write r.body
       file.close
     end
