@@ -17,6 +17,13 @@ class ds.PeopleIndexView extends Backbone.View
 
   template: JST['logbook/templates/people_index']
 
+  events:
+    'change .view-style': (event) ->
+      val = $(event.currentTarget).val()
+      if val == "spreadsheet"
+        path = "/logbook/people/checklist"
+        ds.router.navigate path, { trigger: true }
+
   className: 'people'
 
   render: ->

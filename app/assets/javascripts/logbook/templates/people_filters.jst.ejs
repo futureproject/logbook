@@ -3,7 +3,7 @@
   <span class="trigger-indicator icon-add_circle_outline"></span>
 </a>
 <form class="people-filters">
-  <div class="field role-field">
+  <div class="field role-field string-field">
     <select class="styled" name="by_role">
       <option value=""></option>
       <option value="student">student</option>
@@ -26,6 +26,14 @@
       <option value="false">Nope</option>
     </select>
     <label for="by_dt">DT</label>
+  </div>
+  <div class="field ff-field">
+    <select class="styled" name="by_ff">
+      <option value=""></option>
+      <option value="true">Yep</option>
+      <option value="false">Nope</option>
+    </select>
+    <label for="by_dt">FF</label>
   </div>
   <div class="field grade-field">
     <select class="styled" name="by_grade" >
@@ -60,5 +68,4 @@
     <input class="styled" type="text" name="by_engagement_dates[end]" />
     <label for="by_engagement_dates[end]">Engaged Before</label>
   </div>
-  <button class="apply" type="submit">Apply Filters</button>
 </form>

@@ -43,6 +43,11 @@ feature 'Logbook people' do
     person_should_be_onboarded
   end
 
+  scenario 'appear on a checklist' do
+    visit '/logbook/people/checklist'
+    expect(page).to have_content "The List"
+  end
+
   scenario 'DESTROY'
   # create a new person, then destroy him
 

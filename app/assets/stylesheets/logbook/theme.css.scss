@@ -129,6 +129,12 @@ tbody {
     border-right: 1px solid $base-border-color;
   }
 }
+.checklist .backgrid {
+  table { table-layout: fixed; }
+  tbody td {
+    text-transform: none;
+  }
+}
 
 .index-row {
   cursor: pointer;

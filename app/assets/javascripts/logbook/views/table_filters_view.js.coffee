@@ -7,6 +7,7 @@ class ds.TableFiltersView extends Backbone.View
 
   events:
     'click .trigger': 'toggle'
+    'change': 'applyFilters'
     'submit': 'applyFilters'
     'reset': 'resetFilters'
 

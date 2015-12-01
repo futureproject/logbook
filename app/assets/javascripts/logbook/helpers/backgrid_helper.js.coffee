@@ -16,9 +16,28 @@ class ds.LogbookLinkCell extends Backgrid.StringCell
     this.delegateEvents()
     return this
 
-class ds.ActionCell extends Backgrid.Cell
+class ds.ViewCell extends Backgrid.Cell
   className: -> 'action-cell'
   template: (model) -> "<a href='#{ds.urlsHelper.urlFor(model)}'>View</a>"
+  render: ->
+    @$el.html(@template(@model))
+    @delegateEvents()
+    return this
+
+class ds.EditCell extends Backgrid.Cell
+  className: -> 'action-cell'
+  template: (model) ->
+    "<a href='#{ds.urlsHelper.urlFor(model)}/edit'>Edit</a>"
+  render: ->
+    @$el.html(@template(@model))
+    @delegateEvents()
+    return this
+
+class ds.ActionCell extends Backgrid.Cell
+  className: -> 'action-cell'
+  template: (model) ->
+    "<a href='#{ds.urlsHelper.urlFor(model)}'>View</a>
+    <a href='#{ds.urlsHelper.urlFor(model)}/edit'>Edit</a>"
   render: ->
     @$el.html(@template(@model))
     @delegateEvents()
