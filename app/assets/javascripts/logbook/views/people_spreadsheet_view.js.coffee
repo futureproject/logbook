@@ -1,4 +1,4 @@
-class ds.PeopleChecklistView extends Backbone.View
+class ds.PeopleSpreadsheetView extends Backbone.View
   initialize: ->
     @collection = ds.collections.people
     @views =
@@ -29,9 +29,9 @@ class ds.PeopleChecklistView extends Backbone.View
     @listenTo @collection, 'backgrid:edited', (person) ->
       person.save()
 
-  template: JST['logbook/templates/people_checklist']
+  template: JST['logbook/templates/people_spreadsheet']
 
-  className: 'people checklist'
+  className: 'people spreadsheet'
 
   events:
     'change .view-style': (event) ->

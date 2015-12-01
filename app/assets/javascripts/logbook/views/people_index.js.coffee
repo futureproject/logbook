@@ -21,7 +21,7 @@ class ds.PeopleIndexView extends Backbone.View
     'change .view-style': (event) ->
       val = $(event.currentTarget).val()
       if val == "spreadsheet"
-        path = "/logbook/people/checklist"
+        path = "/logbook/people/spreadsheet"
         ds.router.navigate path, { trigger: true }
 
   className: 'people'

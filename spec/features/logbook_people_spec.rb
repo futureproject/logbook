@@ -43,9 +43,10 @@ feature 'Logbook people' do
     person_should_be_onboarded
   end
 
-  scenario 'appear on a checklist' do
-    visit '/logbook/people/checklist'
-    expect(page).to have_content "The List"
+  scenario 'appear on a spreadsheet' do
+    visit '/logbook/people'
+    select "Spreadsheet", from: "view-style"
+    expect(page).to have_content "BIRTHDAY"
   end
 
   scenario 'DESTROY'

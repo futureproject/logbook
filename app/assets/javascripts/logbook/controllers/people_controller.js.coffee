@@ -3,7 +3,7 @@ class ds.PeopleController extends ds.BaseController
   targetEl: "#yield"
   actions: ->
     @listenTo Backbone, "people:index", @index
-    @listenTo Backbone, "people:checklist", @checklist
+    @listenTo Backbone, "people:spreadsheet", @spreadsheet
     @listenTo Backbone, "people:show", @show
     @listenTo Backbone, "people:new", @new
     @listenTo Backbone, "people:edit", @edit
@@ -14,10 +14,10 @@ class ds.PeopleController extends ds.BaseController
     @views.index = new ds.PeopleIndexView
     @views.index.renderTo @targetEl
 
-  checklist: ->
+  spreadsheet: ->
     ds.collectionHelper.bootstrap ds.collections.people
     @activate()
-    @views.checklist = new ds.PeopleChecklistView
+    @views.checklist = new ds.PeopleSpreadsheetView
     @views.checklist.renderTo @targetEl
 
   show: (id) ->
