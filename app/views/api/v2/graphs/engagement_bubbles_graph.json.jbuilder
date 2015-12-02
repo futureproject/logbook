@@ -3,7 +3,7 @@ json.cache! ["v2/engagement_bubbles_graph", @t.first, @t.last, @scope] do
     scope: @scope,
     dates: @t
   )
-  duration = stats.map{|set| set[:data].map{|e| e[:y]} }.flatten.reduce(:+) || 0
+  duration = (stats.map{|set| set[:data].map{|e| e[:y]} }.flatten.reduce(:+) || 0).round(2)
   count = stats.map{|set| set[:data].size}.flatten.reduce(:+) || 0
   json.data stats
   json.type "bubble"
