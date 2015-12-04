@@ -1,4 +1,10 @@
 class ds.PeopleContactCardView extends Backbone.View
+  tagName: 'form'
+  className: 'form'
+  initialize: ->
+    @listenTo @model, 'change', @render
+    @listenTo ds.collections.schools, 'reset', @postRender
+
   template: JST['logbook/templates/people_contact_card']
 
   events:
@@ -12,6 +18,8 @@ class ds.PeopleContactCardView extends Backbone.View
 
   postRender: ->
     @delegateEvents()
+    @setSchoolOptions()
+    Backbone.Syphon.deserialize @, @model.toJSON()
 
   saveBio: (event) ->
     content = $(event.currentTarget).val()
@@ -28,4 +36,12 @@ class ds.PeopleContactCardView extends Backbone.View
     @listenToOnce @model, "upload:finished", @processUpload
 
   processUpload: (url) -> @model.set 'avatar', url
+
+  setSchoolOptions: ->
+    fragment = document.createDocumentFragment()
+    $f = $(fragment)
+    $f.append "<option value></option>"
+    ds.collections.schools.each (s) ->
+      $f.append "<option value='#{s.get('id')}'>#{s.get('name')}</option>"
+    @$el.find('#school_id').html $f
 

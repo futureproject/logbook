@@ -5,6 +5,7 @@ class ds.PeopleShowView extends Backbone.View
       projects: new ds.ProjectsCollection { mode: 'client' }
       engagements: new ds.EngagementsCollection { mode: 'client' }
     @views =
+      contact_card: new ds.PeopleContactCardView { model: @model }
       projects_table: new Backgrid.Grid
         collection: @collections.projects
         columns: [
@@ -13,7 +14,6 @@ class ds.PeopleShowView extends Backbone.View
           {name: 'people_count', cell:'integer', label: 'Team Size'}
           {name: 'leading', cell:'boolean'}
         ]
-      contact_card: new ds.PeopleContactCardView { model: @model }
       stickies: new ds.StickiesView { model: @model }
       engagement_bubbles_graph: new ds.GraphView
         url: ds.apiHelper.urlFor("people_graphs", { id: @model.id, graph: "engagement_bubbles_graph" })

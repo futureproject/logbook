@@ -6,25 +6,81 @@
       <input id="avatar-uploader" name='file' type='file' />
     </div>
   </div>
-  <div class="person-info" >
-    <h2 class="section-header">
-      <%= person.first_name || "--" %> <%= person.last_name || "--" %>
-    </h2>
-    <ul class="person-details">
-      <li class="fact">
-        <%= person.school_name || "No School" %>
-      </li>
-      <li class="fact">
-        <label>E:</label>
-        <%= person.email || "N/A" %>
-      </li>
-      <li class="fact">
-        <label>P:</label>
-        <%= person.phone || "N/A" %>
-      </li>
-    </ul>
-    <div class="person-description">
-      <textarea placeholder="Type a few sentences re: passions, skills, things you want to remember, etc" name='description'><%= person.description %></textarea>
-    </div>
+  <div class="person-info">
+      <div class="field first-name-field">
+        <input id="first_name" name="first_name" required="required" type="text">
+        <label for="first_name">First Name</label>
+      </div>
+      <div class="field last-name-field">
+        <input id="last_name" name="last_name" required="required" type="text">
+        <label for="last_name">Last Name</label>
+      </div>
+      <div class="field role-field">
+        <select id="role" name="role">
+          <option value="student">student</option>
+          <option value="teacher">teacher</option>
+          <option value="staff">staff</option>
+          <option value="apprentice">apprentice</option>
+          <option value="volunteer">volunteer</option>
+          <option value="parent">parent</option>
+          <option value="alum">alum</option>
+          <option value="DD">DD</option>
+          <option value="CHIEF">CHIEF</option>
+          <option value="TFP">TFP</option>
+        </select>
+        <label for="role">Role</label>
+      </div>
+      <div class="field grade-field">
+        <select id="grade" name="grade">
+          <option value=""></option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+          <option value="11">11</option>
+          <option value="12">12</option>
+        </select>
+        <label for="grade">Grade</label>
+      </div>
+      <div class="field school-field">
+        <select id="school_id" name="school_id">
+        </select>
+        <label for="school_id">School</label>
+      </div>
+      <!-- onboarding fields -->
+      <div class="field checkbox-field dream-team-field">
+        <input id="dream_team" type='checkbox' name="dream_team" />
+        <label for="dream_team">Dream Team</label>
+      </div>
+      <div class="field checkbox-field future-fellow-field">
+        <input id="future_fellow" type='checkbox' name="future_fellow" />
+        <label for="future_fellow">Future Fellow</label>
+      </div>
+      <div class="field checkbox-field ob-media-release-field">
+        <input id="ob_media_release" type='checkbox' name="ob_media_release" />
+        <label for="ob_media_release">Media Release</label>
+      </div>
+      <div class="field checkbox-field ob-parental-consent-field">
+        <input id="ob_parental_consent" type='checkbox' name="ob_parental_consent" />
+        <label for="ob_parental_consent">Parental Consent</label>
+      </div>
+      <div class="field checkbox-field ob-disclaimer-field">
+        <input id="ob_disclaimer" type='checkbox' name="ob_disclaimer" />
+        <label for="ob_disclaimer">Disclaimer</label>
+      </div>
+      <!-- END onboarding fields -->
+      <div class="field date-field birthday-field">
+        <label for="birthday">Birthday</label>
+        <input id="birthday" name="birthday" type="text" placeholder="1989-12-13">
+      </div>
+      <div class="field email-field">
+        <input id="email" name="email" type="text">
+        <label for="email">Email</label>
+      </div>
+      <div class="field phone-field">
+        <input id="phone" name="phone" type="text">
+        <label for="phone">Phone</label>
+      </div>
   </div>
 </div>

@@ -125,3 +125,40 @@ body.people {
     }
   }
 }
+.person-info {
+  @include clearfix;
+  border-right: 1px solid $base-border-color;
+  border-bottom: 1px solid $base-border-color;
+  background: white;
+  box-shadow: -3px 3px 5px rgba(0,0,0,.1);
+  .field {
+    width: 20%;
+    float: left;
+    margin-top: 0;
+    position: relative;
+    border-top: 1px solid $base-border-color;
+    border-left: 1px solid $base-border-color;
+    padding-bottom: 0;
+    padding: 10px 5px 5px;
+    label {
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 2px 5px 0;
+      width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    input, select {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+  }
+  .checkbox-field {
+    line-height: 2;
+  }
+  .email-field, .phone-field {
+    width: 40%;
+  }
+}

@@ -5,38 +5,7 @@
     <a href="/logbook/people/<%= person.id %>/edit">Edit</a>
   </nav>
 </div>
-<ul class="factbar">
-  <li class="fact">
-    <label>Role</label>
-    <%= person.role %>
-  </li>
-  <li class="fact">
-    <label>Grade</label>
-    <%= person.grade %>
-  </li>
-  <li class="fact">
-    <label>Dream Team</label>
-    <%= person.dream_team ? "Yep" : "Nope" %>
-  </li>
-  <li class="fact">
-    <label>Future Fellow</label>
-    <%= person.future_fellow ? "Yep" : "Nope" %>
-  </li>
-  <li class="fact">
-    <label>Media Release</label>
-    <%= person.ob_media_release ? "Yep" : "Nope" %>
-  </li>
-  <li class="fact">
-    <label>Consent</label>
-    <%= person.ob_parental_consent ? "Yep" : "Nope" %>
-  </li>
-  <li class="fact">
-    <label>Disclaimer</label>
-    <%= person.ob_disclaimer ? "Yep" : "Nope" %>
-  </li>
-</ul>
-<div class="section" id="person-contact-card">
-</div>
+<div class="section" id="person-contact-card"></div>
 <div class="section">
   <h2 class="section-header">
     <%= person.projects.length %> Projects
