@@ -1,6 +1,6 @@
 class ds.PeopleContactCardView extends Backbone.View
   tagName: 'form'
-  className: 'form'
+  className: 'person-contact-card'
   initialize: ->
     @listenTo @model, 'change', @render
     @listenTo ds.collections.schools, 'reset', @postRender
@@ -10,6 +10,12 @@ class ds.PeopleContactCardView extends Backbone.View
   events:
     'blur textarea': 'saveBio'
     'change #avatar-uploader': 'uploadAvatar'
+    'change': (event) ->
+      data = Backbone.Syphon.serialize @
+      @model.save data
+    'click .toggle-more': (event) ->
+      event.preventDefault()
+      @$el.toggleClass('expanded')
 
   render: ->
     @$el.html @template(@model.tplAttrs())
@@ -28,14 +34,15 @@ class ds.PeopleContactCardView extends Backbone.View
       description: content
 
   uploadAvatar: (event) ->
+    event.stopPropagation()
     file = event.currentTarget.files[0]
     new ds.AssetUploaderView
       attachable: @model
       file: file
-
     @listenToOnce @model, "upload:finished", @processUpload
 
-  processUpload: (url) -> @model.set 'avatar', url
+  processUpload: (url) ->
+    @model.set 'avatar', url
 
   setSchoolOptions: ->
     fragment = document.createDocumentFragment()

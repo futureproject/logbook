@@ -1,9 +1,6 @@
 <div class="titlebar">
   <a class="title" href="/logbook/people">People</a>
-  <div class="subtitle">&rsaquo; Profile for <%= person.first_name %> <%= person.last_name %></div>
-  <nav class='titlebar-actions'>
-    <a href="/logbook/people/<%= person.id %>/edit">Edit</a>
-  </nav>
+  <div class="subtitle">&rsaquo; <%= person.first_name %> <%= person.last_name %></div>
 </div>
 <div class="section" id="person-contact-card"></div>
 <div class="section">
@@ -31,4 +28,9 @@
     <!-- <a class='section-header-action engagements-link' href="#" title="Add an engagement for <%= person.first_name %>"><span class='icon-add_circle_outline'></span></a> -->
   </h2>
   <div id="engagements-table" class="table"></div>
+</div>
+<div class="footerbar static">
+  <nav class='r'>
+    <a href="/logbook/people" class="destroy">Delete Person</a>
+  </nav>
 </div>

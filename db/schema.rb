@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151116165100) do
+ActiveRecord::Schema.define(version: 20151207162740) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -137,6 +137,13 @@ ActiveRecord::Schema.define(version: 20151116165100) do
     t.boolean  "ob_parental_consent",                    default: false
     t.boolean  "ob_disclaimer",                          default: false
     t.date     "birthday"
+    t.string   "instagram_handle"
+    t.string   "twitter_handle"
+    t.string   "facebook_handle"
+    t.string   "parent_first_name"
+    t.string   "parent_last_name"
+    t.string   "parent_phone"
+    t.string   "parent_email"
   end
 
   add_index "people", ["active"], name: "index_people_on_active", using: :btree

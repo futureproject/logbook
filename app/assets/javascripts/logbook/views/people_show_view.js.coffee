@@ -25,6 +25,10 @@ class ds.PeopleShowView extends Backbone.View
 
   className: 'person profile'
 
+  events:
+    'click .destroy': 'destroy'
+
+
   render: ->
     @$el.html @template(@model.tplAttrs())
     @postRender()
@@ -40,4 +44,12 @@ class ds.PeopleShowView extends Backbone.View
     @views.stickies.renderTo "#stickies"
     @views.engagement_bubbles_graph.renderTo '#engagement_bubbles_graph'
     @views.engagements_table.renderTo "#engagements-table" if @collections.engagements.length > 0
+
+  destroy: (event) ->
+    if (confirm('Are you sure you want to delete this person?'))
+      @model.destroy()
+      return true
+    else
+      event.preventDefault()
+      return false
 

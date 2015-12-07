@@ -16,7 +16,14 @@ json.extract! @person, :id,
   :ob_media_release,
   :ob_parental_consent,
   :ob_disclaimer,
-  :birthday
+  :birthday,
+  :facebook_handle,
+  :twitter_handle,
+  :instagram_handle,
+  :parent_first_name,
+  :parent_last_name,
+  :parent_phone,
+  :parent_email
 json.projects @person.project_people.includes(:project).order('projects.name') do |pp|
   json.id pp.project.id
   json.name pp.project.name

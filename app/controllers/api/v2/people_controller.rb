@@ -106,11 +106,18 @@ class Api::V2::PeopleController < Api::V2::BaseController
         :email,
         :phone,
         :sex,
+        :birthday,
         :description,
         :ob_media_release,
         :ob_parental_consent,
         :ob_disclaimer,
-        :birthday
+        :facebook_handle,
+        :twitter_handle,
+        :instagram_handle,
+        :parent_first_name,
+        :parent_last_name,
+        :parent_phone,
+        :parent_email
       )
     end
 
