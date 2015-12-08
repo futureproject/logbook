@@ -7,8 +7,8 @@ json.people @project.project_people.includes(:person).joins(:person).order('proj
   json.role pp.person.role
   json.dream_team pp.person.dream_team
   json.grade pp.person.grade
-  json.projects_count pp.person.projects.count
-  json.engagements_count pp.person.engagements.count
+  json.project_people_count pp.person.projects.count
+  json.engagement_attendees_count pp.person.engagements.count
   json.leading pp.leading
 end
 json.assets @project.assets, :thumbnail, :id, :data, :external_url, :caption

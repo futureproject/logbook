@@ -32,8 +32,8 @@ class ds.PeopleCollection extends Backbone.PageableCollection
   backgrid_columns: [
     {name: 'first_name', label: 'First', cell: ds.LogbookLinkCell }
     {name: 'last_name', cell: ds.LogbookLinkCell, label: 'Last'}
-    {name: 'role', cell:'string'}
-    {name: 'dream_team', cell:'boolean', label: 'DT'}
+    #{name: 'role', cell:'string'}
+    #{name: 'dream_team', cell:'boolean', label: 'DT'}
     {name: 'grade', cell:'integer'}
     {name: 'project_people_count', cell:'integer', label: 'Projects'}
     {name: 'engagement_attendees_count', cell:'integer', label: 'Engagements'}

@@ -36,7 +36,7 @@ class ds.PeopleSpreadsheetView extends Backbone.View
   events:
     'change .view-style': (event) ->
       val = $(event.currentTarget).val()
-      if val == "list"
+      if val == "stats"
         path = "/logbook/people"
         ds.router.navigate path, { trigger: true }
 

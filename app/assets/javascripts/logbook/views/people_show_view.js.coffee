@@ -11,7 +11,7 @@ class ds.PeopleShowView extends Backbone.View
         columns: [
           {name: 'name', cell: ds.LogbookLinkCell }
           {name: 'description', cell: 'string' }
-          {name: 'people_count', cell:'integer', label: 'Team Size'}
+          {name: 'project_people_count', cell:'integer', label: 'Team Size'}
           {name: 'leading', cell:'boolean'}
         ]
       stickies: new ds.StickiesView { model: @model }

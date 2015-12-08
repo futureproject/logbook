@@ -181,6 +181,7 @@
 }
 
 .backgrid {
+  table-layout: fixed;
   th {
     position: relative;
     @include user-select(none);
@@ -196,6 +197,8 @@
   }
   td a {
     display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .action-cell {
     white-space: nowrap;

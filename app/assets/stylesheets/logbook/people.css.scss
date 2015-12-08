@@ -4,20 +4,11 @@ body.people {
 .people-table {
   th.grade, th.project_people_count, th.engagement_attendees_count,
   th.notes_count, th.last_engaged { text-align: right; }
-  th.dream_team { text-align: center; }
-  td:first-child, td:nth-child(2) {
-    width: 20%;
-  }
-  td a, th a {
-    color: $people-color;
-  }
-}
-.spreadsheet .people-table {
-  .backgrid {
-    table-layout: fixed;
+  th.leading, th.dream_team {
+    text-align: center;
   }
   th.profile {
-    width: 7ch;
+    width: 8ch;
   }
   th.abbreviated {
     width: 5ch;
@@ -37,6 +28,7 @@ body.people {
     width: 18ch;
     text-align: right;
   }
+  th a, td a { color: $people-color; }
 }
 .people-filters {
   .apply { color: $people-color; }

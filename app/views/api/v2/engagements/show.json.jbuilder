@@ -8,8 +8,9 @@ json.attendees @engagement.attendees.order(:first_name) do |person|
   json.role person.role
   json.grade person.grade
   json.dream_team person.dream_team
-  json.project_count person.projects.count
-  json.engagements_count person.engagements.count
+  json.project_people_count person.projects.count
+  json.engagement_attendees_count person.engagements.count
+  json.notes_count person.notes.count
   json.last_engaged person.last_engaged
 end
 json.partial! 'api/v2/notes/notes', notes: @engagement.notes

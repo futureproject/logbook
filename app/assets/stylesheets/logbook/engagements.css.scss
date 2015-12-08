@@ -7,11 +7,13 @@
   th.headcount, th.date, th.duration, th.notes_count {
     text-align: right;
   }
-  td:first-child {
-    width: 30%;
+  th.name {
+    width: 40ch;
+  }
+  th.kind {
+    width: 20ch;
   }
   td:nth-child(2) {
-    width: 20%;
     a { color: $base-font-color; }
   }
 }

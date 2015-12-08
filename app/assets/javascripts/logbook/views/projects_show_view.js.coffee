@@ -12,8 +12,8 @@ class ds.ProjectsShowView extends Backbone.View
           {name: 'role', cell:'string'}
           {name: 'dream_team', cell:'boolean', label: 'Dream Team'}
           {name: 'grade', cell:'integer'}
-          {name: 'projects_count', cell:'integer', label: 'Projects'}
-          {name: 'engagements_count', cell:'integer', label: 'Engagements'}
+          {name: 'project_people_count', cell:'integer', label: 'Projects'}
+          {name: 'engagement_attendees_count', cell:'integer', label: 'Engagements'}
           {name: 'leading', cell:'boolean'}
         ]
       stickies: new ds.StickiesView { model: @model }

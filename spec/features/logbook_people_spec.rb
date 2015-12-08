@@ -43,7 +43,7 @@ feature 'Logbook people' do
 
   scenario 'appear on a spreadsheet' do
     visit '/logbook/people'
-    select "Spreadsheet", from: "view-style"
+    select "Editor", from: "view-style"
     expect(page).to have_content "BIRTHDAY"
   end
 

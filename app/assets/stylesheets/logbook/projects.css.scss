@@ -1,9 +1,17 @@
-#projects-table {
+#projects-table, .projects-table {
+  .backgrid {
+    table-layout: fixed;
+  }
   a { color: $projects-color; }
   th.leading { text-align: center; }
-  th.people_count, th.notes_count { text-align: right; }
-  th.created_at { text-align: right; }
-  th.updated_at { text-align: right; }
+  th.project_people_count, th.notes_count { text-align: right; }
+  th.created_at, th.updated_at {
+    text-align: right;
+    width: 18ch;
+  }
+  th.name, th.description {
+    width: 40ch;
+  }
 }
 .projects-filters {
   .apply { color: $projects-color; }
