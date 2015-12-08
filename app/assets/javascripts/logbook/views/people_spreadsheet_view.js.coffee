@@ -5,18 +5,18 @@ class ds.PeopleSpreadsheetView extends Backbone.View
       table: new ds.IndexTableView
         collection: @collection
         columns: [
+          {name: 'profile', cell: ds.ViewCell, label: "" }
           {name: 'first_name', label: 'First', cell: 'string', editable: true }
           {name: 'last_name', label: 'Last', cell: 'string', editable: true }
+          {name: 'dream_team', cell:'boolean', headerCell: ds.AbbreviatedHeaderCell, title: "Dream Team", label: "DT",  editable: true}
+          {name: 'future_fellow', cell:'boolean', headerCell: ds.AbbreviatedHeaderCell, title: "Future Fellow", label: "FF",  editable: true}
           {name: 'grade', cell:'integer', editable: true}
-          {name: 'phone', cell:'string', editable: true}
           {name: 'email', cell:'string', editable: true}
+          {name: 'phone', cell:'string', editable: true}
           {name: 'birthday', cell:'date', editable: true}
-          {name: 'dream_team', cell:'boolean', label: 'DT', editable: true}
-          {name: 'future_fellow', cell:'boolean', label: 'FF', editable: true}
-          {name: 'ob_media_release', cell:'boolean', label: 'Release', editable: true}
-          {name: 'ob_disclaimer', cell:'boolean', label: 'Disclaimer', editable: true}
-          {name: 'ob_parental_consent', cell:'boolean', label: 'Consent', editable: true}
-          {name: 'Profile', cell: ds.ActionCell }
+          {name: 'ob_media_release', cell:'boolean', headerCell: ds.AbbreviatedHeaderCell, title: "Media Release", label: "R",  editable: true}
+          {name: 'ob_disclaimer', cell:'boolean', headerCell: ds.AbbreviatedHeaderCell, title: "Disclaimer", label: "D",  editable: true}
+          {name: 'ob_parental_consent', cell:'boolean', headerCell: ds.AbbreviatedHeaderCell, title: "Parental Consent", label: "C",  editable: true}
         ]
       pagination: new ds.BackgridPaginator
         collection: @collection

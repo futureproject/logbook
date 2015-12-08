@@ -13,27 +13,29 @@ body.people {
   }
 }
 .spreadsheet .people-table {
-  font-size: .75em;
-  th, td {
+  .backgrid {
+    table-layout: fixed;
+  }
+  th.profile {
+    width: 7ch;
+  }
+  th.abbreviated {
+    width: 5ch;
     text-align: center;
-    width: 50px;
   }
-  td:nth-child(1), td:nth-child(2) {
-    width: 10%;
-    text-align: left;
+  th.grade {
+    width: 8ch;
+    text-align: right;
   }
-  td:nth-child(3) {
-    width: 2ch;
+  th.phone {
+    width: 18ch;
   }
-  td:nth-child(4) {
-    width: 10ch;
+  th.email {
+    width: 36ch;
   }
-  td:nth-child(5) {
-    width: 20ch;
-    text-align: left;
-  }
-  td:nth-child(6) {
-    width: 13ch;
+  th.birthday {
+    width: 18ch;
+    text-align: right;
   }
 }
 .people-filters {

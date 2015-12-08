@@ -16,6 +16,12 @@ class ds.LogbookLinkCell extends Backgrid.StringCell
     this.delegateEvents()
     return this
 
+class ds.AbbreviatedHeaderCell extends Backgrid.HeaderCell
+  render: ->
+    @$el.addClass("abbreviated")
+    @$el.html "<a title='#{@column.attributes.title}'>#{@column.attributes.label}</a>"
+    @
+
 class ds.ViewCell extends Backgrid.Cell
   className: -> 'action-cell'
   template: (model) -> "<a href='#{ds.urlsHelper.urlFor(model)}'>View</a>"
