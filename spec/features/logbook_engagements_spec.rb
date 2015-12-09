@@ -36,6 +36,15 @@ feature 'Logbook engagements' do
     #expect(page).to have_content 'Engagement was successfully duplicated'
   end
 
+  #scenario "tagging with SEL skills" do
+    #visit "/logbook/engagements"
+    #first("#engagements-table tbody a").click
+    #click_link "Edit"
+    #click_link "Grit"
+    #click_button "Save"
+    #should_see_tagged_engagement
+  #end
+
   scenario 'DESTROY'
   # create a new engagement, then destroy him
 
@@ -48,6 +57,10 @@ feature 'Logbook engagements' do
     uuid = SecureRandom.uuid
     first('.selectize-input input[type=text]').set("Jimmy Smith_#{uuid}")
     find('div[data-selectable].create').click
+  end
+
+  def should_see_engagement_tagged(tag)
+    expect(page).to have_content "#{name}"
   end
 
 end
