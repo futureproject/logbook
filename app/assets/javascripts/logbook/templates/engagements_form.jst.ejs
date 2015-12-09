@@ -36,16 +36,20 @@
   <label for="duration">Duration</label>
 </div>
 <div class="field description-field">
+  <label for="description">
+    Description
+    <a href="#grit">#grit</a>
+    <a href="#socialawareness">#socialawareness</a>
+  </label>
   <textarea name='description'></textarea>
-  <label for="description">Description</label>
 </div>
 <div class="field headcount-field">
-  <input id="headcount" name="headcount" type="number" min="0">
   <label for="headcount">How many people were there?</label>
+  <input id="headcount" name="headcount" type="number" min="0">
 </div>
 <div class="field selectize-field">
-  <select id="attendee_ids" name="attendee_ids" multiple></select>
   <label for="attendee_ids" class="primary-label">Who was there?</label>
   <label for="attendee_ids" class="alternate-label">Anyone in particular?</label>
+  <select id="attendee_ids" name="attendee_ids" multiple></select>
 </div>
 <input type="submit" value="Save" class='save people-link'>

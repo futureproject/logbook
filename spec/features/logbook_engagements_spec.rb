@@ -36,14 +36,14 @@ feature 'Logbook engagements' do
     #expect(page).to have_content 'Engagement was successfully duplicated'
   end
 
-  #scenario "tagging with SEL skills" do
-    #visit "/logbook/engagements"
-    #first("#engagements-table tbody a").click
-    #click_link "Edit"
-    #click_link "Grit"
-    #click_button "Save"
-    #should_see_tagged_engagement
-  #end
+  scenario "tagging with SEL skills" do
+    visit "/logbook/engagements"
+    first("#engagements-table tbody a").click
+    click_link "Edit"
+    click_link "Grit"
+    click_button "Save"
+    should_see_tagged_engagement
+  end
 
   scenario 'DESTROY'
   # create a new engagement, then destroy him

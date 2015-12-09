@@ -67,4 +67,15 @@
   .event .hints .event { display: block; }
   .course .hints .course { display: block; }
   .meeting .hints .meeting { display: block; }
+  .description-field {
+    padding-top: 30px;
+    clear: both;
+    textarea {
+      resize: none;
+      background: white;
+      border: 1px solid $base-border-color;
+      padding: 5px;
+      height: 6em;
+    }
+  }
 }

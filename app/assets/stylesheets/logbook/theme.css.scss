@@ -298,3 +298,12 @@ pre {
   background: $retro-green;
   border-radius: 0;
 }
+
+hr {
+  clear: both;
+  margin: 15px auto;
+  display: block;
+  border: none;
+  border-bottom: 1px dashed $base-border-color;
+}
+

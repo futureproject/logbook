@@ -285,6 +285,7 @@ input.save {
   right: 0;
   padding: 15px;
   line-height: 15px;
+  z-index: 100;
   nav { display: inline-block; }
   .l { float: left; }
   .r { float: right; }
