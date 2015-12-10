@@ -10,6 +10,7 @@ class ds.EngagementsFormView extends Backbone.View
   events:
     'submit': 'onsubmit'
     'change #kind': 'setCssClassFromKind'
+    'click .tag': 'addTagToDescription'
     'change #duration-number': 'setDuration'
     'change #duration-units': 'setDuration'
 
@@ -90,3 +91,24 @@ class ds.EngagementsFormView extends Backbone.View
       $frag.append "<option selected value='#{item.id}'>#{item.first_name} #{item.last_name}</option>"
     $field.append $frag
     @views[id] = new ds.SelectizeView({ el: $field })
+
+  addTagToDescription: (event) ->
+    event.preventDefault()
+    event.stopPropagation()
+    $link = $(event.currentTarget)
+    tag = event.currentTarget.hash
+    $textarea = @$el.find('textarea[name=description]')
+    currentDesc = $textarea.val()
+    # if the tag isn't part of the description yet, add it
+    if currentDesc.indexOf(tag) == -1
+      newDesc = "#{tag}\n#{currentDesc}"
+      $textarea.val(newDesc)
+      $link.addClass('tagged')
+    else
+      # otherwise, remove the tag
+      exp = new RegExp("#{tag}\n", "ig")
+      $textarea.val(currentDesc.replace(exp, ""))
+      $link.removeClass('tagged')
+
+
+

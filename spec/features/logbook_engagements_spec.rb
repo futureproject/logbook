@@ -40,9 +40,9 @@ feature 'Logbook engagements' do
     visit "/logbook/engagements"
     first("#engagements-table tbody a").click
     click_link "Edit"
-    click_link "Grit"
+    click_link "#SelfAwareness"
     click_button "Save"
-    should_see_tagged_engagement
+    should_see_engagement_tagged("#SelfAwareness")
   end
 
   scenario 'DESTROY'
@@ -60,7 +60,7 @@ feature 'Logbook engagements' do
   end
 
   def should_see_engagement_tagged(tag)
-    expect(page).to have_content "#{name}"
+    expect(page).to have_content tag
   end
 
 end

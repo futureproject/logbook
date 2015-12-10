@@ -218,7 +218,10 @@
 }
 .dashboard .backgrid th {
   text-align: right;
-  &.name { text-align: left; }
+  &.name {
+    text-align: left;
+    width: 40ch;
+  }
 }
 .backgrid-paginator {
   position: fixed;

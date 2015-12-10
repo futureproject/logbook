@@ -6,7 +6,7 @@ ds.datesHelper =
       "XXXX-XX-XX"
   printDuration: (num) ->
     if num <= 1
-      "#{(num*60)} Mins"
+      "#{Math.round((num*60))} Mins"
     else if num == 1
       "#{num} Hr"
     else
