@@ -13,6 +13,12 @@ body.reports {
 }
 
 #report-submissions-table {
+  th.name, th.excerpt {
+    width: 50ch;
+  }
+  th.date_submitted {
+    text-align: right;
+  }
   td:nth-child(3) {
     a {
       color: $base-font-color;
