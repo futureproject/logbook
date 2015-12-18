@@ -8,7 +8,7 @@ feature 'Logbook engagements' do
     visit "/logbook/engagements"
     find("#global-add-trigger").click
     fill_in 'name', with: 'Project Kickoff'
-    #take_attendance
+    take_attendance
     click_button 'Save'
     should_see_engagement_named("Project Kickoff")
   end
@@ -45,6 +45,14 @@ feature 'Logbook engagements' do
     should_see_engagement_tagged("#SelfAwareness")
   end
 
+  scenario "tagging with projects" do
+    visit "/logbook/engagements"
+    first("#engagements-table tbody a").click
+    click_link "Edit"
+    #click_button "Save"
+    #should_see_engagement_tagged("#SelfAwareness")
+  end
+
   scenario 'DESTROY'
   # create a new engagement, then destroy him
 
@@ -55,8 +63,12 @@ feature 'Logbook engagements' do
 
   def take_attendance
     uuid = SecureRandom.uuid
-    first('.selectize-input input[type=text]').set("Jimmy Smith_#{uuid}")
-    find('div[data-selectable].create').click
+    within '#engagement-form' do
+      field = first('.selectize-input input[type=text]')
+      field.set("James T Kirk#{uuid}")
+      find('div[data-selectable].create').click
+      sleep 0.5
+    end
   end
 
   def should_see_engagement_tagged(tag)

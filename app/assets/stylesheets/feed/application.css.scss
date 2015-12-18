@@ -1,0 +1,23 @@
+@import 'reset';
+@import 'variables';
+@import 'bourbon';
+@import 'neat';
+@import "assets";
+
+html, body {
+  font-size: 15px;
+  margin: 0;
+  padding: 0;
+  font-weight: 400;
+  font-family: avenir, $base-font-family;
+  color: $base-background-color;
+  background-color: white;
+  line-height: 1.2;
+}
+
+a {
+  color: $retro-slate;
+  font-weight: bold;
+  text-decoration: none;
+}
+

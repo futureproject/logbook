@@ -100,6 +100,12 @@ Rails.application.routes.draw do
     get 'manifest.appcache', to: 'application#manifest'
     get '*anywhere', to: 'application#home'
   end
+
+  namespace :feed do
+    root "assets#index"
+    resources :assets, only: [:index, :show]
+  end
+
   #
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

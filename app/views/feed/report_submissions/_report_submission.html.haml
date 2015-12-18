@@ -1,0 +1,5 @@
+%div[report_submission]
+  .asset-title= report_submission.name
+  .asset-description Weekly Report attachment
+  .asset-date= report_submission.date_submitted.strftime("%D")
+  .asset-author= report_submission.person.try(:name)

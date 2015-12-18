@@ -1,0 +1,6 @@
+%ul.assets
+  - @assets.each do |asset|
+    %li[asset]{class: "asset-#{asset.media_type}"}
+      .asset-info= render asset.attachable
+      .asset-media= render partial: asset.media_type, locals: { asset: asset }
+= paginate @assets

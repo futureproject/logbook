@@ -1,0 +1,5 @@
+%div[engagement]
+  .asset-title= engagement.name
+  .asset-description= engagement.description
+  .asset-date=engagement.date
+  .asset-author= engagement.creator.try(:name)

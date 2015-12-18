@@ -7,6 +7,8 @@ class Project < ActiveRecord::Base
   has_many :supporters, -> { where(project_people: {leading: false}) }, through: :project_people, source: :person
   has_many :assets, as: :attachable, dependent: :destroy
   has_many :notes, as: :notable, dependent: :destroy
+  has_many :project_engagement_links
+  has_many :engagements, through: :project_engagement_links
   COLOR_ENUM = %w(#419AD3 #568099 #064974 #FFAC43 #B66500 #FFEDD6)
   STATUS_ENUM = %w(underway stalled complete)
 
