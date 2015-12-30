@@ -1,16 +1,19 @@
-%ul.notes
-  - @notes.each do |note|
-    %li[note]{class: "note-#{note.kind}"}
-      .note-info
-        .note-avatar
-          = link_to image_tag(note.author.avatar), "/logbook/people/#{note.author.id}"
-        .note-date= note.created_at.strftime "%b %d"
-        .note-author
-          .note-author-name= link_to note.author.try(:name), "/logbook/people/#{note.author.id}"
-          .note-author-location= note.author.try(:school).try(:name) || "USA"
-      .note-assets= render note.assets
-      .note-content= raw markdown(note.content)
+.notes-container
+  %ul.notes
+    - @notes.each do |note|
+      %li[note]{class: "note-#{note.kind}"}
+        .note-info
+          .note-avatar
+            = link_to image_tag(note.author.avatar), "/logbook/people/#{note.author.id}"
+          .note-date= note.created_at.strftime "%b %d"
+          .note-author
+            .note-author-name= link_to note.author.try(:name), "/logbook/people/#{note.author.id}"
+            .note-author-location= note.author.try(:school).try(:name) || "USA"
+        .note-assets= render note.assets
+        .note-content= raw markdown(note.content)
 
-= paginate @notes
+  .next-page
+    = link_to_next_page @notes, "Load More"
+    .lb-loading
 
 .note-viewer

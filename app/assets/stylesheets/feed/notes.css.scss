@@ -4,7 +4,7 @@
   text-overflow: ellipsis;
 }
 
-.notes {
+.notes-container {
   background: white;
   max-width: 420px;
 }
@@ -27,6 +27,7 @@
   background: $retro-white;
   @include linear-gradient(white, $retro-white);
 }
+
 .note-avatar {
   width: 2em;
   height: 2em;
@@ -66,6 +67,20 @@
     height: 100%;
     margin: 0 auto;
   }
+  audio {
+    display: block;
+    width: 100%;
+    background: $retro-black;
+    height: 2rem;
+    position: relative;
+    z-index: 1;
+  }
+  video {
+    display: block;
+    width: 100%;
+    height: auto;
+    background: $retro-black;
+  }
 }
 .note.gallery {
   .note-assets {
@@ -83,6 +98,9 @@
         margin: 0;
         border-radius: 5px;
       }
+      &:nth-child(4n+1) {
+        clear: left;
+      }
     }
   }
 }
@@ -92,11 +110,46 @@
     padding: 1rem;
   }
   p {
-    font-size: 1.5em;
+    font-size: 1.333333rem;
+    text-align: center;
     font-weight: 700;
     color: $retro-gray;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    &:last-child:not(:first-child) {
+      padding-bottom: 2rem;
+    }
   }
 }
+.note-viewer {
+  position: fixed;
+  @include linear-gradient(15deg, $lightest-gray, $retro-white);
+  top: 50px;
+  left: 419px;
+  right: 0;
+  bottom: 0;
+  z-index: 10000;
+  border-left: 1px solid rgba(0,0,0,.1);
+  img {
+    max-width: calc(100% - 2em);
+    max-height: calc(100% - 2em);
+    height: auto;
+    width: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    box-shadow: 1px 3px 5px rgba(0,0,0,.1);
+    @include transform(translate3d(-50%,-50%,0));
+    @include animation(fadeIn 1s);
+  }
+  .lb-loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -1em 0 0 -1em;
+  }
+}
+
 .note-pdf {
   .note-assets {
     background: $light-gray;
@@ -110,27 +163,29 @@
     }
     p {
       font-size: .8em;
+      margin-bottom: 1rem;
     }
   }
 }
+
 .note-document {
   .note-assets {
     padding: 1rem;
   }
 }
 
-.note-viewer {
-  position: fixed;
-  top: 50px;
-  left: 419px;
-  right: 0;
-  bottom: 0;
-  z-index: 10000;
-  padding: 2em;
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
-  border-left: 1px solid rgba(0,0,0,.15);
-  h1 {
-    height: 1000000000px;
+.next-page {
+  padding: 1em;
+  border-top: 1px solid rgba(0,0,0,.1);
+  text-align: center;
+  max-width: 420px;
+  box-sizing: border-box;
+  .lb-loading {
+    display: none;
   }
 }
+.infinite-loading + .next-page {
+  a { display: none; }
+  .lb-loading { display: block; }
+}
+

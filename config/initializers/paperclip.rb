@@ -3,7 +3,8 @@ Paperclip::Attachment.default_options[:path] = '/:class/:attachment/:id_partitio
 Paperclip::Attachment.default_options[:styles] = {
   :thumb => ['280x280#'],
   :small => ['640x640>'],
-  :medium => ['1024x1024>']
+  :medium => ['1024x1024>'],
+  :large => ['2056x2056>']
 }
 Paperclip::Attachment.default_options[:source_file_options] = {
   :all => '-auto-orient'
