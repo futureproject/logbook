@@ -7,4 +7,16 @@ class Note < ActiveRecord::Base
   scope :btw, -> (range) { where(created_at: range) }
   include Hashtaggable
   hashtaggable_attribute :content
+
+  def kind
+    if assets.count > 0
+      css_class = assets.first.kind
+      css_class += " gallery" if assets.count > 1
+      css_class
+    else
+      "text"
+    end
+  end
+
+
 end

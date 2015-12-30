@@ -1,2 +1,2 @@
-%a{href: asset.data.url(:original), style: "background-image: url('#{asset.data(:small)}')"}
-
+%a.thumbnail{href: asset.data.url(:original)}
+  %img{src: asset.data(:medium), alt: asset.data_file_name }

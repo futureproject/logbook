@@ -102,8 +102,8 @@ Rails.application.routes.draw do
   end
 
   namespace :feed do
-    root "assets#index"
-    resources :assets, only: [:index, :show]
+    root "notes#index"
+    resources :notes, only: [:index, :show]
   end
 
   #

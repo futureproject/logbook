@@ -8,7 +8,7 @@ class Asset < ActiveRecord::Base
   after_create :download_data_later
   DEFAULT_URL = "//dream-os-production.s3.amazonaws.com/static-assets/avatar-r2.png"
 
-  def media_type
+  def kind
     if data_content_type.nil?
       "blank"
     elsif data_content_type.match(/image/i)

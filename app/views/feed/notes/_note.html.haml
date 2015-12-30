@@ -1,5 +1,6 @@
 %div[note]
+  .asset-author= note.author.try(:name)
+  .assset-avatar
   .asset-title= note.notable.try(:name)
   .asset-description= note.notable.try(:description)
   .asset-date= note.created_at.strftime("%D")
-  .asset-author= note.author.try(:name)

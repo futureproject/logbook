@@ -1,5 +1,4 @@
 %div[engagement]
-  .asset-title= engagement.name
-  .asset-description= engagement.description
-  .asset-date=engagement.date
+  .assset-avatar= image_tag engagement.creator.try(:avatar)
   .asset-author= engagement.creator.try(:name)
+  .asset-title= engagement.name

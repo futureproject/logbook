@@ -7,6 +7,9 @@
     = csrf_meta_tags
     %link{rel:"apple-touch-icon", href: asset_path('icon-arrow.png')}
   %body
+    #feed-header
+      %h1 Logbook
+      %h2 Notes
     = yield
     :javascript
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

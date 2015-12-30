@@ -1,0 +1,136 @@
+@mixin one_line {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.notes {
+  background: white;
+  max-width: 420px;
+}
+.note {
+  position: relative;
+  background: $base-border-color;
+  * { box-sizing: border-box; }
+  em {
+    font-weight: bold;
+    color: $retro-light-gray;
+  }
+}
+.note-info {
+  width: 100%;
+  @include clearfix;
+  padding: 1em;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 50px;
+  background: $retro-white;
+  @include linear-gradient(white, $retro-white);
+}
+.note-avatar {
+  width: 2em;
+  height: 2em;
+  overflow: hidden;
+  float: left;
+  margin-right: 1em;
+  img {
+    display: block;
+    height: 100%;
+    width: 100%;
+    border-radius: 100%;
+    border: 1px solid $base-border-color;
+  }
+}
+.note-author {
+  margin: 0 8ch 0 3rem;
+  font-size: 13px;
+  * {
+    display: block;
+    @include one_line;
+  }
+}
+.note-date {
+  text-align: right;
+  float: right;
+  width: 8ch;
+  font-size: 13px;
+  color: $light-gray;
+  font-weight: 500;
+  @include one_line;
+}
+
+.note-assets {
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+  }
+}
+.note.gallery {
+  .note-assets {
+    background: $retro-gray;
+    @include radial-gradient($retro-gray, $retro-black);
+    @include clearfix;
+    padding: 5px;
+    .thumbnail {
+      display: block;
+      width: 25%;
+      float: left;
+      overflow: hidden;
+      padding: 5px;
+      img {
+        margin: 0;
+        border-radius: 5px;
+      }
+    }
+  }
+}
+.note-content {
+  @include linear-gradient(15deg, $lightest-gray, $retro-white);
+  * {
+    padding: 1rem;
+  }
+  p {
+    font-size: 1.5em;
+    font-weight: 700;
+    color: $retro-gray;
+  }
+}
+.note-pdf {
+  .note-assets {
+    background: $light-gray;
+    @include radial-gradient($lightest-gray, $light-gray);
+    text-align: center;
+    padding: 1rem;
+    img {
+      width: 3em;
+      height: 3em;
+      margin: 1rem auto;
+    }
+    p {
+      font-size: .8em;
+    }
+  }
+}
+.note-document {
+  .note-assets {
+    padding: 1rem;
+  }
+}
+
+.note-viewer {
+  position: fixed;
+  top: 50px;
+  left: 419px;
+  right: 0;
+  bottom: 0;
+  z-index: 10000;
+  padding: 2em;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  border-left: 1px solid rgba(0,0,0,.15);
+  h1 {
+    height: 1000000000px;
+  }
+}
