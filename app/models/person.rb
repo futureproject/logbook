@@ -206,6 +206,16 @@ class Person < ActiveRecord::Base
     end
   end
 
+  def location_string
+    if school
+      school.name
+    elsif site
+      site.name
+    else
+      "National"
+    end
+  end
+
   # make an auth_token to remember this person for later logins
   def generate_auth_token
     self.auth_token = SecureRandom.uuid if self.auth_token.blank?
