@@ -6,9 +6,10 @@ class ds.Project extends Backbone.Model
     school_id: ds.current_user.get('school_id')
     people: []
     notes: []
+    engagements: []
 
   toJSON: ->
-    _.omit _.clone(@attributes), ['people', 'notes']
+    _.omit _.clone(@attributes), ['people', 'notes', 'engagements']
 
   tplAttrs: ->
     attrs = _.extend(_.clone(@attributes), { class_name: 'Project' })

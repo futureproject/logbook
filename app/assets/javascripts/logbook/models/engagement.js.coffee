@@ -8,9 +8,10 @@ class ds.Engagement extends Backbone.Model
     date: new Date().toString('yyyy-MM-dd')
     notes: []
     attendees: []
+    projects: []
 
   toJSON: ->
-    _.omit _.clone(@attributes), ['attendees', 'notes']
+    _.omit _.clone(@attributes), ['attendees', 'notes','projects']
 
   tplAttrs: ->
     attrs = _.extend(_.clone(@attributes), { class_name: 'Engagement' })
@@ -20,6 +21,7 @@ class ds.Engagement extends Backbone.Model
     # ensure this is a valid date
     @set 'date', Date.parse(@get('date')).toString('yyyy-MM-dd')
     @set('attendee_ids', ['']) if !@get('attendee_ids')?
+    @set('project_ids', ['']) if !@get('project_ids')?
     super
 
 class ds.EngagementsCollection extends Backbone.PageableCollection

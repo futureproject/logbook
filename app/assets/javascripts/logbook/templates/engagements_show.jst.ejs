@@ -44,6 +44,13 @@
   <div id="stickies" class="stickies"></div>
 </div>
 
+<div class="section">
+  <h2 class="section-header">
+    <%= engagement.projects.length %> Projects
+  </h2>
+  <div id="projects-table" class="projects-table table"></div>
+</div>
+
 <div class="footerbar">
   <nav class='r'>
     <a title="Create a new engagement, with the same attendees and info as this one" class="duplicate" href="/logbook/engagements/<%= engagement.id %>">

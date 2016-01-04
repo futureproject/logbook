@@ -3,6 +3,7 @@ class ds.ProjectsShowView extends Backbone.View
     @listenTo @model, 'change', @render
     @collections =
       people: new ds.PeopleCollection { mode: 'client' }
+      engagements: new ds.EngagementsCollection { mode: 'client' }
     @views =
       people_table: new ds.IndexTableView
         collection: @collections.people
@@ -17,6 +18,10 @@ class ds.ProjectsShowView extends Backbone.View
           {name: 'leading', cell:'boolean'}
         ]
       stickies: new ds.StickiesView { model: @model }
+      engagements_table: new Backgrid.Grid
+        collection: @collections.engagements
+        columns: @collections.engagements.backgrid_columns
+
 
   template: JST['logbook/templates/projects_show']
 
@@ -30,7 +35,9 @@ class ds.ProjectsShowView extends Backbone.View
   postRender: ->
     return if @model.isNew()
     @collections.people.reset @model.get('people')
+    @collections.engagements.reset @model.get('engagements')
     @views.people_table.renderTo "#people-table" if @collections.people.length > 0
     @views.stickies.collection.add @model.get('notes')
     @views.stickies.renderTo "#stickies"
+    @views.engagements_table.renderTo "#engagements-table" if @collections.engagements.length > 0
 

@@ -49,8 +49,13 @@ feature 'Logbook engagements' do
     visit "/logbook/engagements"
     first("#engagements-table tbody a").click
     click_link "Edit"
-    #click_button "Save"
-    #should_see_engagement_tagged("#SelfAwareness")
+    within '#engagement-form' do
+      field = first('.project-ids-field .selectize-input input[type=text]')
+      field.set("Better")
+      find('div[data-selectable]', match: :first).click
+    end
+    click_button "Save"
+    expect(page).to have_content "Design Better"
   end
 
   scenario 'DESTROY'
@@ -64,7 +69,7 @@ feature 'Logbook engagements' do
   def take_attendance
     uuid = SecureRandom.uuid
     within '#engagement-form' do
-      field = first('.selectize-input input[type=text]')
+      field = first('.attendance-field .selectize-input input[type=text]')
       field.set("James T Kirk#{uuid}")
       find('div[data-selectable].create').click
       sleep 0.5

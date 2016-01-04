@@ -36,6 +36,10 @@ class ds.EngagementsFormView extends Backbone.View
     Backbone.Syphon.deserialize @, @model.toJSON()
     @selectize "#attendee_ids",
       initialItems: @model.get 'attendees'
+    @selectize "#project_ids",
+      initialItems: @model.get 'projects'
+      searchspace: "projects"
+      searchfields: "name"
     @setDurationProxy()
 
   onsubmit: (event) ->
@@ -88,9 +92,13 @@ class ds.EngagementsFormView extends Backbone.View
     id = "#{$field.attr('id')}_#{_.size(@views)}"
     $frag = $(document.createDocumentFragment())
     _.each items, (item) ->
-      $frag.append "<option selected value='#{item.id}'>#{item.first_name} #{item.last_name}</option>"
+      if item.first_name
+        $frag.append "<option selected value='#{item.id}'>#{item.first_name} #{item.last_name}</option>"
+      else
+        $frag.append "<option selected value='#{item.id}'>#{item.name}</option>"
     $field.append $frag
-    @views[id] = new ds.SelectizeView({ el: $field })
+    args = _.extend options, { el: $field }
+    @views[id] = new ds.SelectizeView(args)
 
   addTagToDescription: (event) ->
     event.preventDefault()

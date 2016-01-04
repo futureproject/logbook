@@ -50,9 +50,13 @@
   <label for="headcount">How many people were there?</label>
   <input id="headcount" name="headcount" type="number" min="0">
 </div>
-<div class="field selectize-field">
+<div class="field attendance-field selectize-field">
   <label for="attendee_ids" class="primary-label">Who was there?</label>
   <label for="attendee_ids" class="alternate-label">Anyone in particular?</label>
   <select id="attendee_ids" name="attendee_ids" multiple></select>
+</div>
+<div class="field project-ids-field selectize-field">
+  <label for="project_ids">Any projects linked to this engagement?</label>
+  <select id="project_ids" name="project_ids" multiple></select>
 </div>
 <input type="submit" value="Save" class='save people-link'>

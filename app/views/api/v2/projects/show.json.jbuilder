@@ -11,5 +11,14 @@ json.people @project.project_people.includes(:person).joins(:person).order('proj
   json.engagement_attendees_count pp.person.engagements.count
   json.leading pp.leading
 end
+json.engagements @project.engagements.order(:name) do |e|
+  json.id e.id
+  json.name e.name
+  json.kind e.kind
+  json.headcount e.headcount
+  json.duration e.duration
+  json.notes_count e.notes.count
+  json.date e.date
+end
 json.assets @project.assets, :thumbnail, :id, :data, :external_url, :caption
 json.partial! 'api/v2/notes/notes', notes: @project.notes
