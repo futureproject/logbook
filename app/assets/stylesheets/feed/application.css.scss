@@ -23,24 +23,3 @@ a {
   text-decoration: none;
 }
 
-#feed-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 45px;
-  font-weight: 700;
-  padding: 1rem;
-  font-size: 1;
-  line-height: 1;
-  z-index: 1000;
-  text-align: center;
-  h1, h2 {
-    display: inline-block;
-  }
-  h2 { color: $retro-slate; }
-  border-bottom: 1px solid rgba(0,0,0,.1);
-  background: $retro-white;
-  /*@include linear-gradient(15deg, $retro-blue, darken($retro-blue, 10%));*/
-  /*color: $retro-white;*/
-}
