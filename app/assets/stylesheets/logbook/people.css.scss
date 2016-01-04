@@ -85,6 +85,9 @@ body.people {
       border-radius: 100%;
       @include transform(transform3d(0,0,0));
     }
+    label {
+      display: none;
+    }
     background: $people-color;
     position: absolute;
     top: 15px;
@@ -93,6 +96,18 @@ body.people {
     border-radius: 100%;
     &:hover {
       img { opacity: .5; }
+      label {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        margin-top: -.5rem;
+        line-height: 1;
+        height: 1rem;
+        display: block;
+        color: white;
+      }
     }
   }
   .upload-trigger {
