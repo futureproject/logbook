@@ -6,6 +6,7 @@ class Asset < ActiveRecord::Base
   do_not_validate_attachment_file_type :data
   before_post_process :skip_non_images
   after_create :download_data_later
+  after_create :make_a_note
   DEFAULT_URL = "//dream-os-production.s3.amazonaws.com/static-assets/avatar-r2.png"
 
   def kind
@@ -36,6 +37,23 @@ class Asset < ActiveRecord::Base
 
   def download_data_later
     self.delay.download_data
+  end
+
+  # clone this thing if it's attached directly to an engagement
+  # and attach the clone to a Note on said Engagement
+  def make_a_note
+    if attachable_type == "Engagement"
+      klone = self.dup
+      note = Note.new(
+        notable_type: self.attachable.class.name,
+        notable_id: self.attachable.id,
+        author_id: self.attachable.creator_id
+      )
+      note.save!
+      klone.attachable = note
+      klone.save!
+      klone
+    end
   end
 
   def thumbnail
