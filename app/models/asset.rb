@@ -42,12 +42,13 @@ class Asset < ActiveRecord::Base
   # clone this thing if it's attached directly to an engagement
   # and attach the clone to a Note on said Engagement
   def make_a_note
-    if attachable_type == "Engagement"
+    if attachable_type == "Engagement" && creator_id
       klone = self.dup
       note = Note.new(
         notable_type: self.attachable.class.name,
         notable_id: self.attachable.id,
-        author_id: self.attachable.creator_id
+        author_id: self.attachable.creator_id,
+        content: self.caption
       )
       note.save!
       klone.attachable = note
