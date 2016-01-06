@@ -2,7 +2,8 @@ window.tfp ||= {}
 
 $ ->
   # turn on infinite scroll on the notes list
-  $('.notes').each ->
+  $('.notes-list').each ->
+    console.log '!'
     scroller = new Waypoint.Infinite
       element: this
       items: '.note'

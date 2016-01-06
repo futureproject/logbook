@@ -2,7 +2,7 @@
   %h1 Logbook
   %h2 Notes
 .notes-container
-  %ul.notes
+  %ul.notes-list
     - @notes.each do |note|
       %li[note]{class: "note-#{note.kind}"}
         - if note.author
