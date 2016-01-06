@@ -33,7 +33,11 @@ module ApplicationHelper
   end
 
   def markdown(text)
-    @@markdowner.render(text)
+    if text
+      @@markdowner.render(text)
+    else
+      ""
+    end
   end
 
 

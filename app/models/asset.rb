@@ -42,7 +42,7 @@ class Asset < ActiveRecord::Base
   # clone this thing if it's attached directly to an engagement
   # and attach the clone to a Note on said Engagement
   def make_a_note
-    if attachable_type == "Engagement" && creator_id
+    if attachable_type == "Engagement" && attachable.creator_id
       klone = self.dup
       note = Note.new(
         notable_type: self.attachable.class.name,
@@ -52,10 +52,13 @@ class Asset < ActiveRecord::Base
       )
       note.save!
       klone.attachable = note
+      klone.data = URI.parse(external_url)
       klone.save!
+      puts "imported #{klone.data_file_name}"
       klone
     end
   end
+  handle_asynchronously :make_a_note
 
   def thumbnail
     generic = ActionController::Base.helpers.asset_path("document.png")
