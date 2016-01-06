@@ -1,6 +1,6 @@
 namespace :assets do
   desc "Gathers assets attached directly to engagements, makes them notes"
-  task clean: :environment do
+  task transform: :environment do
     Asset.where(attachable_type: "Engagement").each do |a|
       already_imported_notes = a.attachable.notes.joins(:assets).where(
         assets: { data_file_name: a.data_file_name }
