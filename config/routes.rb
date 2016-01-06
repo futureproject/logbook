@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get 'auth/logout', to: 'sessions#destroy', as: :log_out
   match 'auth/:provider/callback' => 'sessions#create', via: [:post, :get]
   get 'auth/failure' => 'sessions#failure'
-
+  resources :notes, only: [:index, :show]
   namespace :api do
     namespace :v2 do
       resources :users, only: [:index, :show, :update]
@@ -101,10 +101,6 @@ Rails.application.routes.draw do
     get '*anywhere', to: 'application#home'
   end
 
-  namespace :feed do
-    root "notes#index"
-    resources :notes, only: [:index, :show]
-  end
 
   #
   # Example of regular route:

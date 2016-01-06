@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
   skip_before_action :authorize!
   skip_before_action :verify_authenticity_token
   skip_before_action :init_js_data
-  layout 'eight_bit'
+  layout 'application'
 
   def new
   end

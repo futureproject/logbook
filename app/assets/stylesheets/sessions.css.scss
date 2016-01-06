@@ -1,0 +1,43 @@
+#new-session {
+  height: 132px;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 46%;
+  margin-top: -66px;
+  img {
+    display: block;
+    margin: 0 auto 10px;
+    width: 8em;
+    height: 8em;
+  }
+  form {
+    margin: 0 auto;
+    text-align: center;
+  }
+  input {
+    margin: 0 auto;
+    color: white;
+    background: none;
+    border-color: white;
+    cursor: pointer;
+    font-weight: bold;
+    &:focus {
+      outline: none;
+    }
+    &:active {
+      outline: none;
+      position: relative;
+      top: 1px;
+    }
+  }
+  input {
+    &[type=submit] {
+      color: $retro-gray;
+      -webkit-appearance: none;
+      border: none;
+      font-size: 1.5em;
+      font-family: 'avenir next', avenir, sans-serif;
+    }
+  }
+}

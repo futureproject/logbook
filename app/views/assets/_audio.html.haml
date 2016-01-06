@@ -1,0 +1,5 @@
+.video-container
+  %a{target: "_blank", href: asset.data(:original)}
+    Audio:
+    = asset.data_file_name.gsub!(/\d\s?/, "")
+
