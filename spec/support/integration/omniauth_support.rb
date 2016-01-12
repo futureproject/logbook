@@ -16,6 +16,23 @@ module OmniauthSupport
         :expires => true
     }
   })
+  OmniAuth.config.mock_auth[:gmail] = OmniAuth::AuthHash.new({
+    :provider => "google_oauth2",
+    :uid => "123456789",
+    :info => {
+        :name => "Vicky Vale",
+        :email => "vicky.vale@thenews.org",
+        :first_name => "Vicky",
+        :last_name => "Vale",
+        :image => "https://lh3.googleusercontent.com/url/photo.jpg"
+    },
+    :credentials => {
+        :token => "token",
+        :refresh_token => "another_token",
+        :expires_at => 1354920555,
+        :expires => true
+    }
+  })
   OmniAuth.config.mock_auth[:facebook] = OmniAuth::AuthHash.new({
     :provider => "facebook",
     :uid => "123456789",

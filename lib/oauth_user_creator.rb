@@ -8,6 +8,8 @@ class OauthUserCreator
   class GoogleOauth2
     def self.find_or_create_from_auth(auth_hash)
       email = auth_hash[:info][:email].downcase
+      # allow only TFP emails through!
+      return unless email.split("@").last == "thefutureproject.org"
       user = Person.where(email: email).first_or_create
       user.update(
         first_name: auth_hash[:info][:first_name],

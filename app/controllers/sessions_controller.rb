@@ -39,7 +39,7 @@ class SessionsController < ApplicationController
         sign_in u
         redirect_to session[:redirect] || root_url
       else
-        redirect_to new_session_path, notice: "Access denied."
+        redirect_to new_session_path, notice: "Those credentials are invalid."
       end
     end
 

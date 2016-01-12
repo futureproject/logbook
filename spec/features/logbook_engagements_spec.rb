@@ -1,5 +1,6 @@
 require 'spec_helper'
 feature 'Logbook engagements' do
+
   before do
     mock_sign_in
   end
@@ -51,7 +52,7 @@ feature 'Logbook engagements' do
     click_link "Edit"
     within '#engagement-form' do
       field = first('.project-ids-field .selectize-input input[type=text]')
-      field.set("Better")
+      field.set("Design")
       find('div[data-selectable]', match: :first).click
     end
     click_button "Save"
