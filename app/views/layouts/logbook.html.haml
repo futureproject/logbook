@@ -39,6 +39,10 @@
           = nav_link_to "Engagements", "/logbook/engagements", "logbook_engagements"
           = nav_link_to "Projects", "/logbook/projects", "logbook_projects"
           = nav_link_to "Reports", "/logbook/reports", "clipboard"
+          %li.nav-item.notes#notes-nav-item
+            %a{href: "/notes", target: "_blank"}
+              %span.link-icon.icon-open_in_new
+              %span.link-label Notes
 
       %section#search
         %header Search

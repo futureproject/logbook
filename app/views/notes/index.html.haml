@@ -1,6 +1,7 @@
 #feed-header
-  %h1 Logbook
-  %h2 Notes
+  %a{href: "/logbook"}
+    %h1 Logbook
+    %h2 Notes
 .notes-container
   %ul.notes-list
     - @notes.each do |note|
