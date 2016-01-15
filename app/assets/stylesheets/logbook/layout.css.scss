@@ -165,3 +165,31 @@
   }
 }
 
+@media (max-device-width: 1024px) {
+  html, body {
+    display: block;
+    position: relative;
+  }
+  html { height: 100%; }
+  body { min-height: 100%; }
+  #nav {
+    position: absolute;
+    bottom: auto;
+    height: 100%;
+    &:after { display: none !important; }
+  }
+  #user {
+    position: relative;
+    top: auto;
+    bottom: auto;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+}
+@media (max-device-width: 480px) {
+  body.new, .modal-container {
+    select, textarea, #{$all-text-inputs} {
+      font-size: 2em !important;
+    }
+  }
+}
+

@@ -1,3 +1,6 @@
+body {
+  -webkit-text-size-adjust: none;
+}
 #nav {
   background-color: $retro-slate;
   @include transition(background .5s);

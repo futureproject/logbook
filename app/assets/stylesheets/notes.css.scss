@@ -51,6 +51,7 @@
 .note {
   position: relative;
   background: $base-border-color;
+  overflow: hidden;
   * { box-sizing: border-box; }
   em {
     font-weight: bold;
