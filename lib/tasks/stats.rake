@@ -23,4 +23,20 @@ namespace :stats do
       .merge(Engagement.btw(StatCollector.default_range)).uniq.count
     puts "This year, TFP has engaged between #{low_estimate} and #{high_estimate} people."
   end
+
+  desc "Export New Haven stats"
+  task new_haven: :environment do
+    nh = Site.find_by name: "New Haven, CT"
+    path = "#{Rails.root.to_s}/tmp/nhv_stats_#{Time.now.to_i}.csv"
+    file = open(path, "w")
+    file.write "first_name,last_name,school,dates_engaged\n"
+    students = nh.people.where(role: "student").joins(:engagements).merge(nh.engagements.this_school_year).uniq
+    students.order(:last_name).each do |student|
+      file.write "#{student.first_name},"
+      file.write "#{student.last_name},"
+      file.write "\"#{student.school.try(:name)}\","
+      file.write "\"#{student.engagements.this_school_year.order(:date).select(:date).map{|e| e.date.strftime('%D')}.join(',')}\"\n"
+    end
+    file.close
+  end
 end

@@ -35,6 +35,7 @@ class Engagement < ActiveRecord::Base
   scope :btw, -> (range) { where(date: range) }
   scope :week_of, -> (date) { where(date: date.beginning_of_week..date.end_of_week) }
   scope :since, -> (date) { where('date >= ?', date) }
+  scope :this_school_year, -> { where(date: StatCollector.default_range) }
   scope :with_attendees, -> (table) {
     joins(:attendees).select("engagements.*, COUNT(#{table}.id) AS #{table}_count").group("engagements.id")
   }
