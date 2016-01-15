@@ -51,7 +51,6 @@
 .note {
   position: relative;
   background: $base-border-color;
-  overflow: hidden;
   * { box-sizing: border-box; }
   em {
     font-weight: bold;
@@ -107,6 +106,7 @@
 }
 
 .note-assets {
+  overflow: hidden;
   img {
     display: block;
     width: 100%;
