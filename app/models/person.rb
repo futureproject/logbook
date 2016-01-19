@@ -206,6 +206,14 @@ class Person < ActiveRecord::Base
     end
   end
 
+  # collect all notes on this person directly, their engagements, and their projects
+  def collected_notes
+    e = engagements.coaching_sessions.joins(:notes).uniq.pluck("notes.id")
+    p = projects.joins(:notes).uniq.pluck("notes.id")
+    n = notes.pluck(:id)
+    Note.where(id: (e+p+n).flatten.uniq).order("created_at DESC")
+  end
+
   def location_string
     if school
       school.name

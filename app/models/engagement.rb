@@ -56,6 +56,7 @@ class Engagement < ActiveRecord::Base
     tag_matches = hashtagged(query)
     where("#{table_name}.id in (?)", (name_matches + tag_matches).map(&:id))
   }
+  scope :coaching_sessions, -> { where(kind: "Coaching Session") }
 
   include Hashtaggable
   hashtaggable_attribute :description

@@ -27,4 +27,10 @@ class Project < ActiveRecord::Base
   include Hashtaggable
   hashtaggable_attribute :description
 
+  def collected_notes
+    e = engagements.joins(:notes).uniq.pluck("notes.id")
+    n = notes.pluck(:id)
+    Note.where(id: (e+n).flatten.uniq).order("created_at DESC")
+  end
+
 end

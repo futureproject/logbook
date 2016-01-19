@@ -21,4 +21,4 @@ json.engagements @project.engagements.order(:name) do |e|
   json.date e.date
 end
 json.assets @project.assets, :thumbnail, :id, :data, :external_url, :caption
-json.partial! 'api/v2/notes/notes', notes: @project.notes
+json.partial! 'api/v2/notes/notes', notes: @project.collected_notes
