@@ -3,6 +3,7 @@ ds.cssHelper =
     # add border to body when running as a home screen app
     if navigator.standalone
       document.querySelector('body').classList.add("standalone")
+
     # add half-pixel borders if supported
     if (window.devicePixelRatio && devicePixelRatio >= 2)
       testElem = document.createElement('div')
@@ -11,6 +12,7 @@ ds.cssHelper =
       if (testElem.offsetHeight == 1)
         document.querySelector('html').classList.add('hairlines')
       document.body.removeChild(testElem)
+
     # pick an animationEnd event for this browser
     el = document.createElement("div")
     animations = {

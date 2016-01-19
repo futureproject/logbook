@@ -2,13 +2,6 @@
 %html{manifest_path('/phonebook/manifest.appcache')}
   %head
     %title Phonebook
-    %style
-      :css
-        html, body {
-          background: #41a0c5;
-        }
-
-
     = stylesheet_link_tag    'phonebook/phonebook', media: 'all'
     = csrf_meta_tags
     %meta{name:"apple-mobile-web-app-capable", content:"yes"}
@@ -34,7 +27,7 @@
   %body#phonebook
     = javascript_include_tag 'phonebook/phonebook'
     :javascript
-      ds.init()
+      ds.init(#{JSON.dump current_user.as_json})
     :javascript
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

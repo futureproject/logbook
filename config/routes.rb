@@ -41,6 +41,19 @@ Rails.application.routes.draw do
       end
       get '/:scope_type/:scope_id/graphs/:action', controller: 'graphs'
     end
+    namespace :v3 do
+      resources :people do
+        collection do
+          get "sync"
+          get "search"
+        end
+      end
+      #resources :engagements
+      #resources :projects
+      #resources :schools, only: [:index]
+      #resources :sessions, only: [:new]
+      #resources :sites, only: [:index]
+    end
     namespace :public do
       resources :people do
         collection do
@@ -99,6 +112,15 @@ Rails.application.routes.draw do
     root 'application#home'
     get 'manifest.appcache', to: 'application#manifest'
     get '*anywhere', to: 'application#home'
+  end
+  namespace :webapp do
+    resources :people
+    resources :schools do
+      resources :people
+    end
+    resources :sites do
+      resources :people
+    end
   end
 
 

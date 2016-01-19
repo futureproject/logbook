@@ -1,22 +1,15 @@
 class ds.Person extends Backbone.Model
-  initialize: ->
-    @collections =
-      engagements: new ds.EngagementsForPersonCollection @get('engagements'),
-        source: @
   namespace: 'people'
   urlRoot: ds.apiHelper.urlFor 'people'
   defaults: ->
     role: 'student'
     grade: null
-    school_id: ds.user.current()?.get('school_id')
-    projects: []
-    engagements: []
-    notes: []
+    school_id: ds.CURRENT_USER.get('school_id')
 
   toJSON: ->
-    _.omit _.clone(@attributes), ['engagements', 'projects', 'notes']
+    _.clone(@attributes)
 
-  tplAttrs: -> {person: _.extend _.clone(@attributes), engagements_count: @collections.engagements.length}
+  tplAttrs: -> { person: @toJSON() }
 
   validate: (attrs, options) ->
     if !attrs.first_name

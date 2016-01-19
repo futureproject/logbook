@@ -266,7 +266,7 @@
 }
 
 @media (min-width: 768px) {
-  body {
+  body.notes {
     max-width: 280px;
   }
   .note-viewer {
@@ -283,7 +283,7 @@
 }
 
 @media (min-width: 960px) {
-  body { max-width: 360px; }
+  body.notes { max-width: 360px; }
   .note-viewer { left: 360px; }
   #feed-header { max-width: 360px; }
 }

@@ -78,3 +78,8 @@ $success-color: $light-green;
   padding: 8px 8px 6px;
   color: $retro-gray;
 }
+@mixin vertical-center {
+  position: relative;
+  top: 50%;
+  @include transform(translateY(-50%));
+}

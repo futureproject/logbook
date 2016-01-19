@@ -1,14 +1,14 @@
 ds.apiHelper =
   urls:
-    engagements: -> "/api/public/engagements"
-    engagement: (id) -> "/api/public/engagements/#{id}"
-    people:  -> "/api/public/people"
-    person: (id) -> "/api/public/people/#{id}"
-    #projects:  -> "/api/public/projects"
-    #project: (id) -> "/api/public/projects/#{id}"
-    schools: -> "/api/public/schools"
-    sessions: -> "/api/public/sessions/new"
-    sites: -> "/api/public/sites"
+    engagements: -> "/api/v3/engagements"
+    engagement: (id) -> "/api/v3/engagements/#{id}"
+    people:  -> "/api/v3/people"
+    person: (id) -> "/api/v3/people/#{id}"
+    #projects:  -> "/api/v3/projects"
+    #project: (id) -> "/api/v3/projects/#{id}"
+    schools: -> "/api/v3/schools"
+    sessions: -> "/api/v3/sessions/new"
+    sites: -> "/api/v3/sites"
 
   urlFor: (path, args) ->
     @urls[path]? args

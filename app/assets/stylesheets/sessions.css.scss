@@ -1,10 +1,7 @@
 #new-session {
-  height: 132px;
   width: 100%;
-  position: absolute;
   left: 0;
-  top: 46%;
-  margin-top: -66px;
+  @include vertical-center;
   text-align: center;
   p { margin-top: 1em; color: $retro-red; }
   img {

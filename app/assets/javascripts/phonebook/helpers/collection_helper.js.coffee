@@ -8,12 +8,10 @@ Backbone.Collection.prototype.bootstrap = ->
       # get the newest record
       sorted = @sortBy('id')
       newest = _.last(sorted)?.get('created_at')
-      now = new Date()
       if newest
         # store the range of dates we're looking for
         params =
-          t_start: Date.parse(newest).toJSON()
-          t_end: now.toJSON()
+          sync_time: Date.parse(newest).toJSON()
         # ajax to remote url, getting all records newer than newest
         $.ajax
           url: "#{@url()}/sync"

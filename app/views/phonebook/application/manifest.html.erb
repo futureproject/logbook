@@ -1,4 +1,5 @@
 CACHE MANIFEST
+#user_id: <%= current_user.id %>
 <%- if Rails.env.production? %>
 #v9
 
@@ -7,7 +8,7 @@ CACHE:
 <%= asset_path("phonebook/phonebook.js") %>
 
 <%- else %>
-#v<%= Time.now.to_i/2 %>
+#v<%= Time.now.to_i %>
 <%- end %>
 
 NETWORK:

@@ -1,0 +1,12 @@
+!!!
+%html
+  %head
+    %title= page_title
+    = stylesheet_link_tag    'webapp/application', media: 'all'
+    %meta{name:"viewport", content: "width=device-width, maximum-scale=1.0, minimum-scale=1.0, initial-scale=1.0"}
+    = csrf_meta_tags
+
+  %body{class: params[:controller].parameterize }
+    = yield
+    = javascript_include_tag 'webapp/application'
+    = render 'analytics'

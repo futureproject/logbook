@@ -1,9 +1,8 @@
-#= require jquery-2.1.1
+#= require jquery2
 #= require underscore-min
 #= require backbone-min
 #= require backbone.dualstorage
 #= require backbone.syphon
-#= require jquery.animate-enhanced
 #= require date
 #= require titlecase
 #= require_tree ./helpers
@@ -18,22 +17,17 @@ ds.views = {}
 ds.controllers ={}
 ds.collections ={}
 
-ds.init = ->
+ds.init = (user_info) ->
+  ds.CURRENT_USER = new ds.User(user_info)
   ds.cssHelper.init()
-  document.body.classList.add("standalone") if navigator.standalone
-  ds.controllers.sessions = new ds.SessionsController
-  ds.controllers.notifications = new ds.NotificationsController
-  ds.user = new ds.UserCollection
-  ds.router = new ds.Router
-  ds.views.app = new ds.AppView
-  if ds.user.current()?
-    ds.run()
-  else
-    Backbone.trigger "sessions:do", "new"
+  ds.run()
 
 ds.run = ->
   ds.controllers.people = new ds.PeopleController
-  ds.controllers.engagements = new ds.EngagementsController
-  ds.collections.schools = new ds.SchoolsCollection
+  #ds.controllers.notifications = new ds.NotificationsController
+  #ds.controllers.engagements = new ds.EngagementsController
+  #ds.collections.schools = new ds.SchoolsCollection
+  ds.views.app = new ds.AppView
+  ds.router = new ds.Router
   Backbone.history.start({ pushState: true })
 

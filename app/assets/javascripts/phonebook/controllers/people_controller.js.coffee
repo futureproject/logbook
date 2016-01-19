@@ -1,5 +1,4 @@
 class ds.PeopleController extends Backbone.View
-  el: "#phonebook"
   initialize: ->
     @views = {}
     @collection = new ds.PeopleCollection

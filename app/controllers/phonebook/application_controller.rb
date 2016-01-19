@@ -1,4 +1,4 @@
-class Phonebook::ApplicationController < ActionController::Base
+class Phonebook::ApplicationController < ApplicationController
 
   def home
     render layout: 'phonebook', text: ''
