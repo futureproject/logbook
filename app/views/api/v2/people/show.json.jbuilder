@@ -31,5 +31,5 @@ json.projects @person.project_people.includes(:project).order('projects.name') d
   json.project_people_count pp.project.project_people.count
   json.leading pp.leading
 end
-json.engagements @person.engagements.order('date DESC').limit(20)
+json.engagements @person.engagements.order('date DESC').limit(200)
 json.partial! 'api/v2/notes/notes', notes: @person.notes

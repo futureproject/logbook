@@ -7,7 +7,7 @@ json.cache! ["v2/engagement_bubbles_graph", @t.first, @t.last, @scope] do
   count = stats.map{|set| set[:data].size}.flatten.reduce(:+) || 0
   json.data stats
   json.type "bubble"
-  json.title "#{count} Engagements, #{duration} hours logged."
+  json.title "#{count} Engagements, #{duration} hours logged. (#{@t.first.strftime('%b')} - #{@t.last.strftime('%b')})"
   json.colors Engagement::COLOR_ENUM
   json.x_axis_type "datetime"
   json.header_format "{series.name}<br>"

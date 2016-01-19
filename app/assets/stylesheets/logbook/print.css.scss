@@ -2,7 +2,7 @@
   @page {
     margin: .25in;
   }
-  #header, #tabs, #global-add {
+  #nav, .footerbar, .toggle-more, .section-header-action, {
     display: none;
   }
   body {
@@ -13,51 +13,6 @@
     margin: 0;
   }
   #yield {
-    margin-top: -66px;
-  }
-  #yield > article {
-    page-break-before: always;
-  }
-  #yield > * {
-    margin-top: 0;
-    padding: 0;
-  }
-  .school-header {
-    margin-top: -66px;
-    margin-bottom: 66px;
-  }
-  .person-show {
-    .button-actions, .person-email, .person-phone {
-      display: none;
-    }
-    .highcharts-container {
-      box-shadow: none;
-      @include transform-origin(left top);
-      @include transform(scale(0.5));
-    }
-  }
-  .person-projects {
-    @include clearfix;
-    .project {
-      box-shadow: none;
-      padding: 0;
-    }
-    .project-updated-at { display: none; }
-  }
-  .school-labels {
-    display: none;
-  }
-  .graph {
-    margin: 0 auto;
-    overflow: hidden;
-  }
-  .bubble-graph {
-    height: 30em;
-  }
-  .print-row {
-    float: none;
-    width: 100%;
     margin-left: 0;
-    margin-right: 0;
   }
 }
