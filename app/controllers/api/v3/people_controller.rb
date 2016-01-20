@@ -12,14 +12,15 @@ class Api::V3::PeopleController < Api::V3::BaseController
   # Return 302 Found if there people have been created after
   # the provided date, otherwise return 304 NOT MODIFIED
   def sync
-    sync_time = DateTime.parse(params[:sync_time] || Time.now.to_s)
+    sync_time = (params[:sync_time] || Time.now.to_s).to_time + 1.second
     @count = location_scoped(Person).where("created_at > ?", sync_time).count
+    puts "FOUND #{@count} PEOPLE"
     @count > 0 ? head(302) : head(304)
   end
 
   def search
-    @people = current_scope.people.active.q(params[:q]).limit(10)
-    render template: "api/public/people/index"
+    @people = location_scoped(Person).active.q(params[:q]).limit(10)
+    render template: "api/v3/people/index"
   end
 
   # GET /api/public/people/1
@@ -99,13 +100,4 @@ class Api::V3::PeopleController < Api::V3::BaseController
       end
     end
 
-    def sync_times
-      if params[:t_start] && params[:t_end]
-        t_start = DateTime.parse(params[:t_start])+1.second
-        t_end = DateTime.parse(params[:t_end])
-        t_start..t_end
-      else
-        nil
-      end
-    end
 end
