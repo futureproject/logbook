@@ -83,3 +83,8 @@ $success-color: $light-green;
   top: 50%;
   @include transform(translateY(-50%));
 }
+@mixin horizontal-center {
+  position: relative;
+  left: 50%;
+  @include transform(translateX(-50%));
+}

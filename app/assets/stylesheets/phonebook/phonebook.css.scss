@@ -32,6 +32,11 @@ body {
   overflow-x: hidden;
   /*max-width: 710px;*/
   /*position: relative;*/
+  > .lb-loading {
+    @include vertical-center;
+    @include horizontal-center;
+    margin: 0;
+  }
 }
 
 html, body {

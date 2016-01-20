@@ -9,7 +9,7 @@ class ds.MenuView extends Backbone.View
 
   tplAttrs: ->
     {
-      user: ds.user.current().toJSON()
+      user: ds.CURRENT_USER.toJSON()
     }
   render: ->
     @$el.html(@template(@tplAttrs()))

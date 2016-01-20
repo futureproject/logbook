@@ -25,6 +25,7 @@
       window.ds = window.ds || {}
 
   %body#phonebook
+    .lb-loading
     = javascript_include_tag 'phonebook/phonebook'
     :javascript
       ds.init(#{JSON.dump current_user.as_json})
