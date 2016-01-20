@@ -16,6 +16,7 @@
     <input id="last_name" name="last_name" type="text" autocorrect="off" autocapitalize="off">
     <label for="last_name">Last Name</label>
   </div>
+  <% if (!person.role.match(/TFP|DD|CHIEF|ADMIN/i)) { %>
   <div class="field role-field">
     <select id="role" name="role">
     <option value="student">student</option>
@@ -24,13 +25,10 @@
     <option value="apprentice">apprentice</option>
     <option value="volunteer">volunteer</option>
     <option value="parent">parent</option>
-    <option value="alum">alum</option>
-    <option value="DD">DD</option>
-    <option value="CHIEF">CHIEF</option>
-    <option value="TFP">TFP</option>
     </select>
     <label for="role">Role</label>
   </div>
+  <% } %>
   <div class="field grade-field">
     <select id="grade" name="grade">
       <option value=""></option>

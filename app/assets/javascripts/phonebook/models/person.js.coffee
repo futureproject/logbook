@@ -21,12 +21,3 @@ class ds.PeopleCollection extends Backbone.Collection
   model: ds.Person
   namespace: 'people'
   url: -> ds.apiHelper.urlFor @namespace
-  initialize: ->
-    @listenTo Backbone, "#{@namespace}:sync", =>
-      @trigger "sync:started"
-      localStorage.removeItem @url()
-      @fetch
-        reset: true,
-        remote: true
-        complete: => @trigger("sync:ended")
-

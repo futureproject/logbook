@@ -47,6 +47,7 @@ class ds.PeopleSearchView extends Backbone.View
         server_results = response.responseJSON
         if server_results.length > 0
           results_collection.add server_results
+          console.log results_collection
           Backbone.trigger "people:search:results", query, results_collection
 
   onfocus: (event) ->

@@ -8,7 +8,9 @@ Backbone.View.prototype.renderTo = (target, args) ->
 
 Backbone.View.prototype.hide = ->
   endEvent = ds.ANIMATION_END_EVENT
+  hidingAnimation = @hidingAnimation || "animation-fallout"
   if endEvent?
+    # remove animation classes
     prefix = "animation"
     classes = @el.className.split(" ")
     classes = classes.filter (css_class) ->
@@ -17,7 +19,7 @@ Backbone.View.prototype.hide = ->
     @$el.one(endEvent, =>
       _.each(@views, (view) -> view.remove() )
       @remove()
-    ).addClass('animation-fallout')
+    ).addClass(hidingAnimation)
   else
     _.each(@views, (view) -> view.remove() )
     @remove()

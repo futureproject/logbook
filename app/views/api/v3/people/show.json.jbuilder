@@ -8,7 +8,8 @@ json.extract! @person, :id,
   :grade,
   :dream_team,
   :role,
-  :last_engaged
+  :last_engaged,
+  :avatar
 json.dd @person.dream_director.try(:name)
 json.engagements @engagements do |engagement|
   json.extract! engagement, :id, :kind, :name, :headcount, :created_at,

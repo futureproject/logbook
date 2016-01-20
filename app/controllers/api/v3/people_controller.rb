@@ -12,9 +12,10 @@ class Api::V3::PeopleController < Api::V3::BaseController
   # Return 302 Found if there people have been created after
   # the provided date, otherwise return 304 NOT MODIFIED
   def sync
+    # Database Times and JS times have different levels of precision,
+    # (msec vs sec), so add one second to sync_time
     sync_time = (params[:sync_time] || Time.now.to_s).to_time + 1.second
     @count = location_scoped(Person).where("created_at > ?", sync_time).count
-    puts "FOUND #{@count} PEOPLE"
     @count > 0 ? head(302) : head(304)
   end
 
@@ -23,15 +24,14 @@ class Api::V3::PeopleController < Api::V3::BaseController
     render template: "api/v3/people/index"
   end
 
-  # GET /api/public/people/1
-  # GET /api/public/people/1.json
+  # GET /api/v3/people/1
+  # GET /api/v3/people/1.json
   def show
     @person = Person.find(params[:id])
-    @engagements = @person.engagements.order('date DESC').limit(20)
   end
 
-  # POST /api/public/people
-  # POST /api/public/people.json
+  # POST /api/v3/people
+  # POST /api/v3/people.json
   def create
     if current_user
       @person = current_user.created_people.new(person_params_with_school)
@@ -39,25 +39,25 @@ class Api::V3::PeopleController < Api::V3::BaseController
       @person = Person.new(person_params_with_school)
     end
     if @person.save
-      render :show, status: :created, location: api_public_person_url(@person)
+      render :show, status: :created, location: api_v3_person_url(@person)
     else
       render json: @person.errors, status: :unprocessable_entity
     end
   end
 
-  # PATCH/PUT /api/public/people/1
-  # PATCH/PUT /api/public/people/1.json
+  # PATCH/PUT /api/v3/people/1
+  # PATCH/PUT /api/v3/people/1.json
   def update
     @person = Person.find(params[:id])
     if @person.update(person_params)
-      render :show, status: :ok, location: api_public_person_url(@person)
+      render :show, status: :ok, location: api_v3_person_url(@person)
     else
       render json: @person.errors, status: :unprocessable_entity
     end
   end
 
-  # DELETE /api/public/people/1
-  # DELETE /api/public/people/1.json
+  # DELETE /api/v3/people/1
+  # DELETE /api/v3/people/1.json
   def destroy
     current_user.created_people.find(params[:id]).destroy
     head :no_content

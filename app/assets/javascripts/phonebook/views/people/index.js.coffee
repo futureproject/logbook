@@ -1,7 +1,7 @@
 class ds.PeopleIndexView extends Backbone.View
   className:->
-    cls = 'index people-index screen'
-    cls += " animation-fallin" if ds.APP_LOADED
+    cls = 'index people-index screen animation-fallin'
+    #cls += " animation-fallin" if ds.APP_LOADED
     cls
 
   template: JST["phonebook/templates/people/index"]
@@ -25,10 +25,9 @@ class ds.PeopleIndexView extends Backbone.View
     @
 
   postRender: ->
-    Backbone.trigger 'scroll:reset', 0
-    @collection.bootstrap() if @collection.length < 2
     @views.list.renderTo "#people-list", { replace: true }
     @views.search.renderTo "#people-search", { replace: true }
+    @rendered = true
 
 
   listen: ->

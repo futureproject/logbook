@@ -1,11 +1,12 @@
 @import 'reset';
 @import '../logbook/icons';
 @import 'variables';
+@import 'ios';
 @import 'bourbon';
 @import 'neat';
 @import 'forms';
-@import 'modules';
 @import 'theme';
+@import 'modules';
 @import 'engagements';
 @import 'people';
 @import 'projects';
@@ -19,6 +20,11 @@
   -webkit-backface-visiblity: hidden;
 }
 
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
 body {
   margin: 0 auto;
   padding: 0;
@@ -29,18 +35,11 @@ body {
   -webkit-text-size-adjust: 100%;
   -webkit-user-select: none;
   -webkit-touch-callout: none;
-  overflow-x: hidden;
-  /*max-width: 710px;*/
-  /*position: relative;*/
   > .lb-loading {
     @include vertical-center;
     @include horizontal-center;
     margin: 0;
   }
-}
-
-html, body {
-  height: 100%;
 }
 
 textarea {

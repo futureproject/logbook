@@ -17,17 +17,16 @@ class ds.PeopleEditView extends Backbone.View
     @
 
   postRender: ->
-    Backbone.trigger 'scroll:reset', 0
     Backbone.Syphon.deserialize @, @model.toJSON()
 
   onsubmit: (event) ->
     event.preventDefault()
     data = Backbone.Syphon.serialize @
     if @model.save data
-      Backbone.trigger "people:do", "show", @model.id
+      Backbone.trigger "people:action", "show", @model.id
       Backbone.trigger "notification", "Person updated!"
     else
       alert @model.validationError
 
   cancel: ->
-    Backbone.trigger "people:do", "show", @model.id
+    Backbone.trigger "people:action", "show", @model.id

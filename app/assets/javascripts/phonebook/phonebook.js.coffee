@@ -3,6 +3,7 @@
 #= require backbone-min
 #= require backbone.dualstorage
 #= require backbone.syphon
+#= require jquery.animate-enhanced
 #= require date
 #= require titlecase
 #= require_tree ./helpers
@@ -23,11 +24,17 @@ ds.init = (user_info) ->
   ds.run()
 
 ds.run = ->
+  ds.views.app = new ds.AppView
+    el: "body"
+  # initialize the people database
+  ds.collections.people = new ds.PeopleCollection
+  # restore person data from localStorage or server
+  ds.collections.people.bootstrap()
+
   ds.controllers.people = new ds.PeopleController
-  #ds.controllers.notifications = new ds.NotificationsController
+  ds.controllers.notifications = new ds.NotificationsController
   #ds.controllers.engagements = new ds.EngagementsController
   #ds.collections.schools = new ds.SchoolsCollection
-  ds.views.app = new ds.AppView
   ds.router = new ds.Router
   Backbone.history.start({ pushState: true })
 

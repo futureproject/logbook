@@ -1,29 +1,9 @@
-<ul class="facts">
-  <li>
-    <h1><%= person.first_name %> <%= person.last_name %></h1>
-  </li>
-  <li class="fact">
-    <label>Role</label>
-    <%= person.role %>
-  </li>
-  <li class="fact">
-    <label>Grade</label>
-    <%= person.grade %>
-  </li>
-  <li class="fact">
-    <label>Dream Team</label>
-    <%= person.dream_team %>
-  </li>
-  <li class="fact">
-    <label>School</label>
-    <%= person.school_name %>
-  </li>
-  <li class="fact">
-    <label>DD</label>
-    <%= person.dd %>
-  </li>
-  <li class="fact">
-    <label>Last Engaged</label>
-    <%= person.last_engaged %>
-  </li>
-</ul>
+<header class="profile-header">
+    <div class="profile-avatar">
+      <img src="<%= person.avatar %>" alt="<%= person.first_name %>" />
+    </div>
+    <div class="profile-info">
+      <h1><%= person.first_name %> <%= person.last_name %></h1>
+      <p><%= person.role %>, <%=person.school_name %></p>
+    </div>
+</header>

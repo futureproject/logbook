@@ -1,9 +1,10 @@
 $base-border-color: rgba(0,0,0,.15);
-$base-font-color: rgba(0,0,0,.666);
-/*$retro-blue: lighten($retro-blue, 10%);*/
+$base-font-color: #040404;
+/*$ios-blue: lighten($ios-blue, 10%);*/
 $base-highlight-color: $base-border-color;
 $base-background-color: white;
-/*$engagements-color: saturate($engagements-color, 20%);*/
+$people-color: $ios-blue;
+$engagements-color: $ios-pink;
 body {
   -webkit-tap-highlight-color: transparent;
   margin: 0;
@@ -24,9 +25,9 @@ textarea {
 }
 
 .actions-field input {
-  background: $retro-blue;
+  background: $ios-blue;
   &.warning {
-    background: $retro-yellow;
+    background: $ios-yellow;
   }
 }
 
@@ -39,7 +40,7 @@ textarea {
   margin: 15px auto;
   background-color: $base-border-color;
   &.warning {
-    background-color: $retro-yellow;
+    background-color: $ios-yellow;
   }
   &:active {
     box-shadow: inset 0 0 5px $base-border-color;
@@ -53,10 +54,9 @@ textarea {
   text-align: center;
   border-bottom: 1px solid $base-border-color;
   background: white;
-  color: $retro-blue;
   .button {
     font-weight: 400;
-    color: $base-font-color;
+    color: $ios-blue;
     @include transition(background, .3s);
     &:active {
       background: $base-highlight-color;
@@ -76,14 +76,16 @@ textarea {
     background: $base-highlight-color;
   }
   &.createable {
-    background-color: $base-border-color;
+    background-color: $ios-green;
+    color: white;
+    padding-left: 1em;
   }
 }
 .borderless-list {
   li:hover {
     .delete {
       font-weight: bold;
-      color: $retro-red;
+      color: $ios-red;
       position: absolute;
       top: 0;
       right: 0;
@@ -95,10 +97,11 @@ textarea {
 
 .search {
   padding: 7px 10px;
+  background: $ios-medium-gray;
   input {
     border: none;
     border-radius: 5px;
-    background: $base-border-color;
+    background: white;
     padding: 5px;
     font-size: 12px;
     @include transition;
@@ -140,9 +143,12 @@ textarea {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    color: $retro-black;
+    color: $base-font-color;
   }
 }
+
+img { background-color: $ios-light-gray; }
+
 ::-webkit-input-placeholder {
  color: rgba(0,0,0,.5);
 }
@@ -164,7 +170,7 @@ textarea {
  }
 }
 .notification {
-  background-color: $retro-green;
+  background-color: $ios-green;
   text-align: center;
   color: white;
   font-weight: bold;
@@ -173,5 +179,9 @@ textarea {
 .menu {
   background: $base-background-color;
   /*color: white;*/
+}
+
+em {
+  font-weight: bold;
 }
 

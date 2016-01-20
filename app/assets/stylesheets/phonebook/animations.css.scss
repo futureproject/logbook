@@ -58,6 +58,14 @@
     @include transform(translate3d(0,0,0));
   }
 }
+@include keyframes(riseOut) {
+  from {
+    @include transform(translate3d(0,0,0));
+  }
+  to {
+    @include transform(translate3d(0,-100%,0));
+  }
+}
 @include keyframes(dropOut) {
   from {
     @include transform(translate3d(0,0,0));

@@ -4,13 +4,17 @@ class ds.AppView extends Backbone.View
     # log each AJAX request, for debugging
     $(document).on 'ajaxSend', (event, xhr, options) ->
       console.log "AJAX request to #{options.url}"
-    @listenTo Backbone, 'scroll:reset', @resetScrollPosition
     @listenTo Backbone, 'app:nav', @showNav
+    @render()
 
   resetScrollPosition: (pos) ->
+    console.log 'resetting scroll pos...'
     pos ||= 0
-    $('body').scrollTop(pos)
+    @$el.scrollTop(pos)
 
   showNav: ->
     @views.menu = new ds.MenuView
     $('body').append @views.menu.render().el
+
+  render: ->
+    @$el.empty()

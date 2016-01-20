@@ -1,15 +1,23 @@
 .panel {
   padding: 1em;
 }
+
 .screen {
   position: absolute;
   top: 0;
   left: 0;
+  height: 100%;
   width: 100%;
+  background: white;
+  z-index: 100;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
 }
+
 .form-description {
   margin-bottom: 30px;
 }
+
 .field {
   margin-bottom: 15px;
   input[type=checkbox] {
@@ -26,6 +34,8 @@
     clear: none;
   }
 }
+
+.actions-field { opacity: 0; }
 
 .titlebar {
   position: -webkit-sticky;
@@ -79,6 +89,18 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  position: relative;
+  padding-left: 60px;
+  img {
+    display: block;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 7px;
+    left: 1em;
+    border-radius: 100%;
+    border: 1px solid $base-border-color;
+  }
 }
 
 .borderless-list {
@@ -102,6 +124,7 @@
   position: relative;
   top: 0;
 }
+
 .index {
   &.hidden {
     display: none;
@@ -137,3 +160,27 @@
   }
 }
 
+.profile-header {
+  display: table;
+  width: 100%;
+  margin-bottom: 1em;
+  > * {
+    display: table-cell;
+    vertical-align: middle;
+  }
+  .profile-avatar {
+    width: 90px;
+  }
+  img {
+    width: 90px;
+    height: 90px;
+    border-radius: 100%;
+    border: 1px solid $base-border-color;
+  }
+  .profile-info {
+    line-height: 1.2;
+    padding-left: 1rem;
+    h1 { font-size: 1.3333334em; }
+    p { text-transform: capitalize; }
+  }
+}

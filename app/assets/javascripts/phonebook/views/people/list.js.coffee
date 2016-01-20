@@ -1,7 +1,6 @@
 class ds.PeopleListView extends Backbone.View
   className: 'list people-list'
   events:
-    'touchstart .list-item': 'ontouchstart'
     'click .person': 'itemClick'
     'click .createable': 'addPerson'
 
@@ -17,7 +16,9 @@ class ds.PeopleListView extends Backbone.View
       item = document.createElement("div")
       item.className = "list-item person"
       item.setAttribute("data-id", person.get("id"))
-      item.innerHTML = "#{person.get('first_name')} #{person.get('last_name')}"
+      h = "<img src='#{person.get('avatar')}' alt='#{person.get('first_name')}' />"
+      h += "#{person.get('first_name')} #{person.get('last_name')}"
+      item.innerHTML = h
       fragment.appendChild item
     @$el.html(fragment)
     @
@@ -31,7 +32,7 @@ class ds.PeopleListView extends Backbone.View
     el = event.currentTarget
     id = el.getAttribute('data-id')
     $(el).addClass('active').siblings().removeClass('active')
-    Backbone.trigger "people:do", "show", id
+    Backbone.trigger "people:action", "show", id
 
   onSearch: (query, results) ->
     @render(results)
@@ -60,7 +61,4 @@ class ds.PeopleListView extends Backbone.View
     @collection.create person,
       at: 0
       # set course for the Person Show page and engage at maximum warp
-    Backbone.trigger "people:do", "show", person.cid
-
-
-  ontouchstart: ->
+    Backbone.trigger "people:action", "show", person.cid

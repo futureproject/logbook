@@ -1,6 +1,6 @@
 class ds.Router extends Backbone.Router
   initialize: ->
-    @on 'route', (route) -> Backbone.trigger 'routed', route
+    @on 'route', (route) -> Backbone.trigger 'router:routed', route
 
   routes:
     "phonebook": "people_index"
@@ -14,10 +14,10 @@ class ds.Router extends Backbone.Router
     #"phonebook/engagements/new/:person_id": "engagements_new"
 
   #PEOPLE
-  people_index: -> Backbone.trigger "people:do", "index"
-  people_show: (id) -> Backbone.trigger "people:do", "show", id
-  people_edit: (id) -> Backbone.trigger "people:do", "edit", id
-  people_add_engagement: (id) -> Backbone.trigger "people:do", "add_engagement", id
+  people_index: -> Backbone.trigger "people:action", "index"
+  people_show: (id) -> Backbone.trigger "people:action", "show", id
+  people_edit: (id) -> Backbone.trigger "people:action", "edit", id
+  people_add_engagement: (id) -> Backbone.trigger "people:action", "add_engagement", id
 
   #ENGAGEMENTS
   engagements_new: (person_id) -> Backbone.trigger "engagements:do", "new", person_id

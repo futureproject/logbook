@@ -8,7 +8,6 @@ Backbone.Collection.prototype.bootstrap = ->
       # get the newest record
       sorted = @sortBy('id')
       newest = _.last(sorted)?.get('created_at')
-      console.log _.last(sorted).get("first_name")
       if newest
         # store the range of dates we're looking for
         params =
