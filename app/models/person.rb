@@ -17,6 +17,7 @@ class Person < ActiveRecord::Base
   has_many :report_submissions
   has_many :authored_notes, class_name: 'Note', foreign_key: 'author_id'
   before_create :generate_auth_token
+  before_create :generate_avatar
   before_save :set_site
   after_touch :set_last_engaged
   ROLE_ENUM = %W(student teacher staff apprentice volunteer parent alum DD CHIEF TFP)
@@ -192,19 +193,6 @@ class Person < ActiveRecord::Base
     end
   end
 
-  def profile_picture
-    assets.order("id DESC").limit(1).first.try(:data, :thumb)
-  end
-
-  def avatar
-    if profile_picture
-      profile_picture
-    elsif avatar_url.present?
-      avatar_url.gsub('sz=50','sz=100')
-    else
-     Asset::DEFAULT_URL
-    end
-  end
 
   # collect all notes on this person directly, their engagements, and their projects
   def collected_notes
@@ -227,6 +215,21 @@ class Person < ActiveRecord::Base
   # make an auth_token to remember this person for later logins
   def generate_auth_token
     self.auth_token = SecureRandom.uuid if self.auth_token.blank?
+  end
+
+  # make a default avatar
+  def generate_avatar
+    if assets.count > 0
+      self.avatar_url = assets.last.data(:thumb)
+    elsif avatar_url.blank?
+      img = Avatarly.generate_avatar(self.name, {
+        background_color: "#c9c9ce",
+        color: "#ffffff",
+        size: 280,
+        font: "#{Rails.root.to_s}/vendor/assets/stylesheets/avenir.ttf}"
+      })
+      self.avatar_url = "data:image/png;base64,#{Base64.encode64(img)}"
+    end
   end
 
   rails_admin do

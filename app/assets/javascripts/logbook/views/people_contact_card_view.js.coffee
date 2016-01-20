@@ -42,7 +42,7 @@ class ds.PeopleContactCardView extends Backbone.View
     @listenToOnce @model, "upload:finished", @processUpload
 
   processUpload: (url) ->
-    @model.set 'avatar', url
+    @model.set 'avatar_url', url
 
   setSchoolOptions: ->
     fragment = document.createDocumentFragment()

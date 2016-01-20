@@ -24,7 +24,8 @@
           :ob_media_release,
           :ob_parental_consent,
           :ob_disclaimer,
-          :birthday
+          :birthday,
+          :avatar_url
       #end
     end
   end

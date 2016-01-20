@@ -7,6 +7,7 @@ class Asset < ActiveRecord::Base
   before_post_process :skip_non_images
   after_create :download_data_later
   after_create :make_a_note
+  after_post_process :set_avatar_on_people
   DEFAULT_URL = "//dream-os-production.s3.amazonaws.com/static-assets/avatar-r2.png"
 
   def kind
@@ -73,6 +74,12 @@ class Asset < ActiveRecord::Base
 
   def original
     data_content_type.nil? ? external_url : data(:original)
+  end
+
+  def set_avatar_on_people
+    if attachable_type == "Person"
+      attachable.update avatar_url: data(:thumb)
+    end
   end
 
   def log_action

@@ -92,6 +92,9 @@ gem "has_scope"
 # hashtags!
 gem 'simple_hashtag'
 
+# avatars
+gem 'avatarly'
+
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
   gem 'dotenv-rails'
