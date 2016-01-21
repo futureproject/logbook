@@ -3,13 +3,14 @@ json.extract! @person, :id,
   :updated_at,
   :first_name,
   :last_name,
+  :initials,
   :school_id,
   :school_name,
   :grade,
   :dream_team,
   :role,
   :last_engaged,
-  :avatar
+  :avatar_url
 json.dd @person.dream_director.try(:name)
 json.engagements @engagements do |engagement|
   json.extract! engagement, :id, :kind, :name, :headcount, :created_at,

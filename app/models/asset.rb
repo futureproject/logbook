@@ -76,6 +76,7 @@ class Asset < ActiveRecord::Base
     data_content_type.nil? ? external_url : data(:original)
   end
 
+  # after processing, set person avatar_url
   def set_avatar_on_people
     if attachable_type == "Person"
       attachable.update avatar_url: data(:thumb)

@@ -1,0 +1,17 @@
+<header class="profile">
+    <div class="profile-avatar">
+      <% if (!!person.avatar_url) { %>
+        <img src="<%= person.avatar_url %>" />
+      <% } else { %>
+        <div class="initials"><%= person.initials %></div>
+      <% } %>
+      <input id="avatar-uploader" name='file' type='file' />
+    </div>
+    <div class="profile-info">
+      <h1><%= person.first_name %> <%= person.last_name %></h1>
+      <ul>
+        <li><%= person.role %></li>
+        <li><%= person.school_name %></li>
+      </ul>
+    </div>
+</header>

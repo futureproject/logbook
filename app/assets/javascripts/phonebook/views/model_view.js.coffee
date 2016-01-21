@@ -5,4 +5,6 @@ class ds.ModelView extends Backbone.View
 
   render: ->
     @$el.html(@template @model.tplAttrs())
+    @delegateEvents()
+    @
 

@@ -2,9 +2,9 @@ class ds.PeopleShowView extends Backbone.View
   className: 'screen animation-fallin people-show'
   initialize: ->
     @views =
-      facts: new ds.ModelView
+      profile: new ds.ProfileView
         model: @model
-        template: JST["phonebook/templates/people/_facts"]
+        template: JST["phonebook/templates/people/_profile"]
       #projects: new ds.People_ProjectsView
         #model: @model
       #engagements: new ds.People_EngagementsView
@@ -18,7 +18,7 @@ class ds.PeopleShowView extends Backbone.View
     @
 
   postRender: ->
-    @views.facts.renderTo "#person-facts"
+    @views.profile.renderTo "#person-profile"
     #@views.projects.renderTo "#person-projects"
     #@views.engagements.renderTo "#person-engagements"
 

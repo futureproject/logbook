@@ -8,6 +8,7 @@
         json.extract! person, :id,
           :first_name,
           :last_name,
+          :initials,
           :school_id,
           :role,
           :dream_team,

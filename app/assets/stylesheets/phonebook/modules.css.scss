@@ -91,15 +91,20 @@
   text-overflow: ellipsis;
   position: relative;
   padding-left: 60px;
-  img {
+  .initials, img {
     display: block;
     width: 30px;
     height: 30px;
     position: absolute;
     top: 7px;
-    left: 1em;
+    left: 1rem;
     border-radius: 100%;
-    border: 1px solid $base-border-color;
+    text-align: center;
+    background: $ios-medium-gray;
+    color: white;
+    font-size: .75em;
+    line-height: 32px;
+    text-transform: uppercase;
   }
 }
 
@@ -160,7 +165,7 @@
   }
 }
 
-.profile-header {
+.profile {
   display: table;
   width: 100%;
   margin-bottom: 1em;
@@ -170,8 +175,25 @@
   }
   .profile-avatar {
     width: 90px;
+    height: 90px;
+    position: relative;
+  }
+  .initials {
+    width: 100%;
+    height: 100%;
+    line-height: 90px;
+    font-size: 2em;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 100%;
+    border: 1px solid $base-border-color;
+    background: $ios-medium-gray;
+    color: white;
+    text-transform: uppercase;
   }
   img {
+    position: absolute;
+    top: 0;
     width: 90px;
     height: 90px;
     border-radius: 100%;
@@ -182,5 +204,43 @@
     padding-left: 1rem;
     h1 { font-size: 1.3333334em; }
     p { text-transform: capitalize; }
+    li {
+      display: inline;
+      text-transform: capitalize;
+    }
+    li:not(:last-child):after { content: ", "; }
+  }
+  input {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+  }
+}
+
+.attachable {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  padding: 15px;
+  border-bottom: 1px solid $base-border-color;
+  z-index: 1000;
+  text-align: center;
+  line-height: 1;
+  background: $ios-light-gray;
+  font-size: 10px;
+  line-height: 15px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  .meter {
+    min-width: 5px;
+    height: 15px;
+    background: $ios-green;
   }
 }

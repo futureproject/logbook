@@ -16,7 +16,10 @@ class ds.PeopleListView extends Backbone.View
       item = document.createElement("div")
       item.className = "list-item person"
       item.setAttribute("data-id", person.get("id"))
-      h = "<img src='#{person.get('avatar')}' alt='#{person.get('first_name')}' />"
+      if person.get('avatar_url')
+        h = "<img src='#{person.get('avatar_url')}' alt='#{person.get('first_name')}' />"
+      else
+        h = "<div class='initials'>#{ person.get('initials')}</div>"
       h += "#{person.get('first_name')} #{person.get('last_name')}"
       item.innerHTML = h
       fragment.appendChild item

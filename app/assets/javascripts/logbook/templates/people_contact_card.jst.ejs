@@ -1,5 +1,9 @@
 <div class="person-avatar">
-  <img src="<%= person.avatar_url %>" alt="<%= person.first_name %> <%= person.last_name %>" />
+  <% if (!!person.avatar_url) { %>
+    <img src="<%= person.avatar_url %>" />
+  <% } else { %>
+    <div class="initials"><%= person.initials %></div>
+  <% } %>
   <div class="upload-trigger">
     <label for="avatar-uploader">Replace Photo</label>
     <input id="avatar-uploader" name='file' type='file' />

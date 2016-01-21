@@ -4,6 +4,7 @@
 #= require backbone.dualstorage
 #= require backbone.syphon
 #= require jquery.animate-enhanced
+#= require s3_cors_upload
 #= require date
 #= require titlecase
 #= require_tree ./helpers
