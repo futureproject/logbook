@@ -11,6 +11,7 @@ class ds.PeopleController extends Backbone.View
       view.hide() unless view == @views[fn]
     # If the function specified in the 'fn' argument exists, call it.
     @[fn]?(args)
+    Backbone.trigger 'app:resetScroll'
 
   index: ->
     ds.router.navigate "phonebook/people"

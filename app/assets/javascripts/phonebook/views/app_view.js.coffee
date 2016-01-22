@@ -5,6 +5,7 @@ class ds.AppView extends Backbone.View
     $(document).on 'ajaxSend', (event, xhr, options) ->
       console.log "AJAX request to #{options.url}"
     @listenTo Backbone, 'app:nav', @showNav
+    @listenTo Backbone, 'app:resetScroll', @resetScrollPosition
     @render()
 
   resetScrollPosition: (pos) ->

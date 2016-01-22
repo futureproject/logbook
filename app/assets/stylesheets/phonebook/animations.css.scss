@@ -16,7 +16,7 @@
 }
 @include keyframes(enterStageLeft) {
   from {
-    @include transform(translate3d(-100%,0,0));
+    @include transform(translate3d(-50%,0,0));
   }
   to {
     @include transform(translate3d(0,0,0));
@@ -28,6 +28,22 @@
   }
   to {
     @include transform(translate3d(-100%,0,0));
+  }
+}
+@include keyframes(halfSlideOut) {
+  from {
+    @include transform(translate3d(0,0,0));
+  }
+  to {
+    @include transform(translate3d(-50%,0,0));
+  }
+}
+@include keyframes(halfSlideIn) {
+  from {
+    @include transform(translate3d(-50%,0,0));
+  }
+  to {
+    @include transform(translate3d(0,0,0));
   }
 }
 @include keyframes(fallin) {
@@ -112,6 +128,16 @@
   // eased
   @include transition-timing-function(cubic-bezier(0.23,1,0.32,1));
 }
+.animation-halfslide-out {
+  @include transform-origin(center top);
+  @include animation(halfSlideOut .4s);
+  @include animation-timing-function(cubic-bezier(0.23,1,0.32,1));
+}
+.animation-halfslide-in {
+  @include transform-origin(center top);
+  @include animation(halfSlideIn .4s);
+  @include animation-timing-function(cubic-bezier(0.23,1,0.32,1));
+}
 
 .animation-fallout {
   @include transform-origin(center top);
@@ -135,32 +161,32 @@
   @include animation(riseOut .4s);
   @include animation-timing-function(cubic-bezier(0.23,1,0.32,1));
 }
+.animation-fadein {
+  @include animation(fadeIn .6s);
+  @include animation-timing-function(cubic-bezier(0.23,1,0.32,1));
+}
+.animation-fadeout {
+  @include animation(fadeOut .6s);
+  @include animation-timing-function(cubic-bezier(0.23,1,0.32,1));
+}
 .animation-floatin {
   @include animation(floatIn .4s);
   @include animation-timing-function(cubic-bezier(0.23,1,0.32,1));
 }
-.enter-stage-right {
+.animation-enter-stage-right {
   @include animation(enterStageRight .6s);
   @include animation-timing-function(cubic-bezier(0.23,1,0.32,1));
 }
-.exit-stage-right {
+.animation-exit-stage-right {
   @include animation(exitStageRight .6s);
   @include animation-timing-function(cubic-bezier(0.23,1,0.32,1));
 }
-.enter-stage-left {
+.animation-enter-stage-left {
   @include animation(enterStageLeft .6s);
   @include animation-timing-function(cubic-bezier(0.23,1,0.32,1));
 }
-.exit-stage-left {
+.animation-exit-stage-left {
   @include animation(exitStageLeft .6s);
-  @include animation-timing-function(cubic-bezier(0.23,1,0.32,1));
-}
-.fade-in {
-  @include animation(fadeIn .6s);
-  @include animation-timing-function(cubic-bezier(0.23,1,0.32,1));
-}
-.fade-out {
-  @include animation(fadeOut .6s);
   @include animation-timing-function(cubic-bezier(0.23,1,0.32,1));
 }
 .fade-in-fast {
@@ -169,6 +195,4 @@
 .animation-collapse {
   @include animation(collapse .5s);
 }
-
-
 
