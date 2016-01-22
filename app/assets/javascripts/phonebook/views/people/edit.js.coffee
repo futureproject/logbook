@@ -1,4 +1,4 @@
-class ds.PeopleEditView extends Backbone.View
+class ds.PersonEditView extends Backbone.View
   className: 'screen animation-fadein'
   hidingAnimation: 'animation-fadeout'
   initialize: ->

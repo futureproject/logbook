@@ -119,6 +119,42 @@
   }
 }
 
+.dated-list {
+  li {
+    padding: 15px 15px 15px 60px;
+    position: relative;
+  }
+  .item-date {
+    position: absolute;
+    left: 0;
+    top: 15px;
+    height: 45px;
+    width: 45px;
+    background: $ios-light-gray;
+    overflow: hidden;
+    text-align: center;
+    .date-day {
+      font-size: 1.333333em;
+      line-height: 1.5;
+      font-weight: bold;
+    }
+    .date-month {
+      font-size: .66666667em;
+      text-transform: uppercase;
+      background: $ios-red;
+      line-height: 1;
+      padding-top: 3px;
+      padding-bottom: 2px;
+      color: $base-background-color;
+    }
+  }
+  .item-info {
+    * {
+      @include single-line;
+    }
+  }
+}
+
 .search {
   z-index: 1;
   top: 0;
@@ -165,7 +201,6 @@
 .profile {
   display: table;
   width: 100%;
-  margin-bottom: 1em;
   > * {
     display: table-cell;
     vertical-align: middle;
@@ -241,3 +276,4 @@
     background: $ios-green;
   }
 }
+

@@ -3,7 +3,8 @@ class ds.Engagement extends Backbone.Model
   urlRoot: ds.apiHelper.urlFor 'engagements'
   defaults: ->
     kind: 'Coaching Session'
-    school_id: ds.user.current()?.get('school_id')
+    school_id: ds.CURRENT_USER.get('school_id')
+    site_id: ds.CURRENT_USER.get('site_id')
     duration: 0.5
     date: new Date().toString('yyyy-MM-dd')
     notes: []
@@ -30,26 +31,26 @@ class ds.Engagement extends Backbone.Model
     now = new Date().getTime()
     (now-timestamp)/1000 < 3600
 
-class ds.EngagementsCollection extends Backbone.Collection
-  model: ds.Engagement
-  namespace: 'engagements'
-  url: -> ds.apiHelper.urlFor @namespace
-  initialize: ->
-    console.log 'initializing'
-    @fetch
-      remote: false
-      success: =>
-        @syncDirtyAndDestroyed()
-        @reset()
+#class ds.EngagementsCollection extends Backbone.Collection
+  #model: ds.Engagement
+  #namespace: 'engagements'
+  #url: -> ds.apiHelper.urlFor @namespace
+  #initialize: ->
+    #console.log 'initializing'
+    #@fetch
+      #remote: false
+      #success: =>
+        #@syncDirtyAndDestroyed()
+        #@reset()
 
-class ds.EngagementsForPersonCollection extends Backbone.Collection
-  model: ds.Engagement
-  initialize: (models, args) ->
-    @[option] = args[option] for option of args
-    @listenTo @source, 'change:engagements', @staySynced
+#class ds.EngagementsForPersonCollection extends Backbone.Collection
+  #model: ds.Engagement
+  #initialize: (models, args) ->
+    #@[option] = args[option] for option of args
+    #@listenTo @source, 'change:engagements', @staySynced
 
-  staySynced: (person) ->
-    @add person.get('engagements')
+  #staySynced: (person) ->
+    #@add person.get('engagements')
 
-  comparator: (engagement) ->
-    - Date.parse(engagement.get('date'))
+  #comparator: (engagement) ->
+    #- Date.parse(engagement.get('date'))

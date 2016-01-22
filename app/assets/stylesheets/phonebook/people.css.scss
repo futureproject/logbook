@@ -21,12 +21,11 @@
   }
 }
 #person-engagements {
-  border-top: 1px solid $base-border-color;
-  .btn {
-    background: $engagements-color;
+  .action-header {
+    color: $engagements-color;
   }
-  .engagement {
-    @include transition(background .3s);
+  .date-month {
+    background: $engagements-color;
   }
 }
 .add-engagement.screen {

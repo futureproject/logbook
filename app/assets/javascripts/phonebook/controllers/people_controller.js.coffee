@@ -22,14 +22,14 @@ class ds.PeopleController extends Backbone.View
   show: (id) ->
     ds.router.navigate "phonebook/people/#{id}"
     person = @getModelFromId(id)
-    @views.show = new ds.PeopleShowView
+    @views.show = new ds.PersonShowView
       model: person
     @views.show.renderTo ds.views.app.el
 
   edit: (id) ->
     ds.router.navigate "phonebook/people/#{id}/edit"
     person = @getModelFromId(id)
-    @views.edit = new ds.PeopleEditView
+    @views.edit = new ds.PersonEditView
       model: person
     @views.edit.renderTo ds.views.app.el
 
@@ -37,9 +37,9 @@ class ds.PeopleController extends Backbone.View
     ds.router.navigate "phonebook/people/#{id}/add/engagement"
     person = @getModelFromId(id)
     engagement = new ds.Engagement
-      attendee_ids: @getAttendeeIdsFromRole(id, ds.user.current())
+      attendee_ids: @getAttendeeIdsFromRole(id, ds.CURRENT_USER)
       school_id: person.get('school_id')
-    @views.add_engagement = new ds.PeopleAddEngagementView
+    @views.add_engagement = new ds.PersonAddEngagementView
       model: engagement
       person: person
     @views.add_engagement.renderTo ds.views.app.el
@@ -63,7 +63,7 @@ class ds.PeopleController extends Backbone.View
     collection = @collection.fullCollection || @collection
     _.each ids, (id) ->
       person = collection.get(id)
-      if person? && person.id != ds.user.current()?.id
+      if person? && person.id != ds.CURRENT_USER.id
         collection.remove person
         collection.add person,
           at: 0

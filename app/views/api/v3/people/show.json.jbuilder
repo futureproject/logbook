@@ -11,8 +11,7 @@ json.extract! @person, :id,
   :role,
   :last_engaged,
   :avatar_url
-json.dd @person.dream_director.try(:name)
-json.engagements @engagements do |engagement|
+json.engagements @person.engagements.order("date DESC").limit(10) do |engagement|
   json.extract! engagement, :id, :kind, :name, :headcount, :created_at,
     :date, :duration, :school_id
 end

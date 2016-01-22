@@ -7,7 +7,7 @@ class ds.Person extends Backbone.Model
     school_id: ds.CURRENT_USER.get('school_id')
 
   toJSON: ->
-    _.clone(@attributes)
+    _.omit _.clone(@attributes), ['engagements', 'projects', 'notes']
 
   tplAttrs: -> { person: @toJSON() }
 

@@ -89,3 +89,8 @@ $success-color: $light-green;
   left: 50%;
   @include transform(translateX(-50%));
 }
+@mixin single-line {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

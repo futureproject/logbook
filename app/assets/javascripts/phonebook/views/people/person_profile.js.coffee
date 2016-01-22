@@ -1,4 +1,4 @@
-class ds.ProfileView extends Backbone.View
+class ds.PersonProfileView extends Backbone.View
   initialize: (args) ->
     @template = args.template
     @listenTo @model, 'change', @render
