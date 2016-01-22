@@ -27,14 +27,17 @@ ds.init = (user_info) ->
 ds.run = ->
   ds.views.app = new ds.AppView
     el: "body"
-  # initialize the people database
+  # initialize ppl database and restore from localstorage, then server
   ds.collections.people = new ds.PeopleCollection
-  # restore person data from localStorage or server
   ds.collections.people.bootstrap()
+
+  # ditto engagements database
+  ds.collections.engagements = new ds.EngagementsCollection
+  #ds.collections.engagements.resetFromLocalStorage()
 
   ds.controllers.people = new ds.PeopleController
   ds.controllers.notifications = new ds.NotificationsController
-  #ds.controllers.engagements = new ds.EngagementsController
+  ds.controllers.engagements = new ds.EngagementsController
   #ds.collections.schools = new ds.SchoolsCollection
   ds.router = new ds.Router
   Backbone.history.start({ pushState: true })

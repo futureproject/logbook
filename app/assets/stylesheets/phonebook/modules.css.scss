@@ -121,13 +121,15 @@
 
 .dated-list {
   li {
-    padding: 15px 15px 15px 60px;
+    padding-left: 60px;
     position: relative;
+    margin: 15px auto;
+    height: 45px;
   }
   .item-date {
     position: absolute;
     left: 0;
-    top: 15px;
+    top: 0;
     height: 45px;
     width: 45px;
     background: $ios-light-gray;
@@ -209,6 +211,9 @@
     width: 90px;
     height: 90px;
     position: relative;
+    &:hover {
+      opacity: .5;
+    }
   }
   .initials {
     width: 100%;

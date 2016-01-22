@@ -23,6 +23,8 @@ h1, h2, h3, h4, h5, h6, strong {
 }
 
 textarea {
+  border: 1px solid $base-border-color !important;
+  resize: none;
   -webkit-appearance: none;
 }
 
@@ -193,5 +195,9 @@ em {
   border-bottom: 1px solid $base-border-color;
   border-top: 1px solid $base-border-color;
   line-height: 3rem;
+  cursor: pointer;
+  &:active {
+    background: $base-border-color;
+  }
 }
 

@@ -33,8 +33,6 @@ class ds.Note extends Backbone.Model
     else
       "text"
 
-
-
 class ds.NotesCollection extends Backbone.Collection
   model: ds.Note
   namespace: 'notes'

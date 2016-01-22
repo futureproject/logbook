@@ -31,26 +31,26 @@ class ds.Engagement extends Backbone.Model
     now = new Date().getTime()
     (now-timestamp)/1000 < 3600
 
-#class ds.EngagementsCollection extends Backbone.Collection
-  #model: ds.Engagement
-  #namespace: 'engagements'
-  #url: -> ds.apiHelper.urlFor @namespace
-  #initialize: ->
-    #console.log 'initializing'
-    #@fetch
-      #remote: false
-      #success: =>
-        #@syncDirtyAndDestroyed()
-        #@reset()
+class ds.EngagementsCollection extends Backbone.Collection
+  model: ds.Engagement
+  namespace: 'engagements'
+  url: -> ds.apiHelper.urlFor @namespace
+  # return engagements that match the supplied list of attendee_ids
+  getByAttendeeIds: (attendee_ids) ->
+    attendee_ids = [attendee_ids] if (typeof attendee_ids != "object")
+    results = _.map attendee_ids, (id) =>
+      @filter (engagement) =>
+        _.contains engagement.get('attendee_ids'), id
+    _.flatten results
 
-#class ds.EngagementsForPersonCollection extends Backbone.Collection
+#class ds.AssociatedEngagementsCollection extends Backbone.Collection
   #model: ds.Engagement
   #initialize: (models, args) ->
     #@[option] = args[option] for option of args
     #@listenTo @source, 'change:engagements', @staySynced
 
-  #staySynced: (person) ->
-    #@add person.get('engagements')
+  #staySynced: (source) ->
+    #@add source.get('engagements')
 
   #comparator: (engagement) ->
     #- Date.parse(engagement.get('date'))

@@ -35,6 +35,7 @@ class ds.PersonAddEngagementView extends Backbone.View
     duration = parseFloat(data.duration/60).toFixed(3)
     data.duration = duration
     if @model.save data
+      console.log @model
       Backbone.trigger "engagements:persist", @model
       Backbone.trigger "people:action", "show", @person.id
       Backbone.trigger "notification", "Engagement Added!"

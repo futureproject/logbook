@@ -29,6 +29,5 @@
   }
 }
 .add-engagement.screen {
-  .titlebar { color: $engagements-color }
-  .actions-field input { background: $engagements-color; }
+  h2 { color: $engagements-color }
 }
