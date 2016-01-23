@@ -31,10 +31,12 @@ ds.run = ->
   ds.collections.people = new ds.PeopleCollection
   ds.collections.people.bootstrap()
 
-  # ditto engagements database
+  # ditto engagements
+  # another just for storing this session's engagements
   ds.collections.engagements = new ds.EngagementsCollection
-  #ds.collections.engagements.resetFromLocalStorage()
+  #ds.collections.engagements.bootstrap()
 
+  ds.controllers.sessions_storage = new ds.SessionStorageController
   ds.controllers.people = new ds.PeopleController
   ds.controllers.notifications = new ds.NotificationsController
   ds.controllers.engagements = new ds.EngagementsController

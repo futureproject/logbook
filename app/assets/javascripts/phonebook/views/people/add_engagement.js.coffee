@@ -36,7 +36,7 @@ class ds.PersonAddEngagementView extends Backbone.View
     data.duration = duration
     if @model.save data
       console.log @model
-      Backbone.trigger "engagements:persist", @model
+      Backbone.trigger "session_storage:engagements:save", @model
       Backbone.trigger "people:action", "show", @person.id
       Backbone.trigger "notification", "Engagement Added!"
     else

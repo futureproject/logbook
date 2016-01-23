@@ -11,7 +11,7 @@ class ds.Engagement extends Backbone.Model
     attendees: []
 
   toJSON: ->
-    _.omit _.clone(@attributes), ['attendees', 'notes']
+    _.omit _.clone(@attributes), ['attendees', 'notes', 'deletable']
 
   tplAttrs: ->
     attrs = _.extend(_.clone(@attributes), { class_name: 'Engagement' })

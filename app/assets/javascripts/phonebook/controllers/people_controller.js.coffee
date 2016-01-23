@@ -3,7 +3,7 @@ class ds.PeopleController extends Backbone.View
     @views = {}
     @collection = ds.collections.people
     @listenTo Backbone, "people:action", @action
-    @listenTo Backbone, "people:move_up", @moveUp
+    @listenTo Backbone, "people:showing", @movePersonToTop
 
   action: (fn, args) ->
     # hide all open views
@@ -59,12 +59,9 @@ class ds.PeopleController extends Backbone.View
     else
       [person_id]
 
-  moveUp: (ids) ->
+  movePersonToTop: (person) ->
     collection = @collection.fullCollection || @collection
-    _.each ids, (id) ->
-      person = collection.get(id)
-      if person? && person.id != ds.CURRENT_USER.id
-        collection.remove person
-        collection.add person,
-          at: 0
+    collection.remove person
+    collection.add person,
+      at: 0
 

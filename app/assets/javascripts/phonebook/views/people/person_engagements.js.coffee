@@ -10,7 +10,7 @@ class ds.PersonEngagementsView extends Backbone.View
   render: ->
     @$el.html @template(@model.tplAttrs())
     frag = document.createDocumentFragment()
-    @listenToOnce Backbone, 'engagements:found', (localModels) =>
+    @listenToOnce Backbone, 'session_storage:engagements:found', (localModels) =>
       remote = @model.get('engagements') || []
       list = new ds.EngagementsCollection(localModels)
       list.add remote
@@ -21,8 +21,8 @@ class ds.PersonEngagementsView extends Backbone.View
         frag.appendChild view.render().el
       @$el.find('#engagements-list').html(frag)
       @
-    # ping the engagements collection for models created this session
-    Backbone.trigger "engagements:find", {
+    # ping the session engagements collection for models created this session
+    Backbone.trigger "session_storage:engagements:find", {
       query_type: "attendee_ids",
       query: @model.id
     }

@@ -155,6 +155,22 @@
       @include single-line;
     }
   }
+  .delete {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    background: $ios-red;
+    color: $base-background-color;
+    line-height: 45px;
+    padding: 0 15px;
+    cursor: pointer;
+  }
+  .deletable {
+    padding-right: 90px;
+    .delete { display: block; }
+  }
 }
 
 .search {
@@ -269,7 +285,7 @@
   z-index: 1000;
   text-align: center;
   line-height: 1;
-  background: $ios-light-gray;
+  background: $base-background-color;
   font-size: 10px;
   line-height: 15px;
   white-space: nowrap;

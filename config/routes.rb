@@ -48,6 +48,7 @@ Rails.application.routes.draw do
           get "search"
         end
       end
+      resources :engagements
       get '/assets/signed_s3_path' => 'assets#signed_s3_path'
       #resources :engagements
       #resources :projects

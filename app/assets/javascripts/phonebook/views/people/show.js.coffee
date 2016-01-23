@@ -1,6 +1,7 @@
 class ds.PersonShowView extends Backbone.View
   className: 'screen animation-fallin people-show'
   initialize: ->
+    Backbone.trigger "people:showing", @model
     @views =
       profile: new ds.PersonProfileView
         model: @model
