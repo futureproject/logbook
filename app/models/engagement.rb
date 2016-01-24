@@ -5,7 +5,8 @@ class Engagement < ActiveRecord::Base
   has_many :engagement_attendees, dependent: :destroy
   has_many :attendees, through: :engagement_attendees, source: :person
   has_many :assets, as: :attachable, dependent: :destroy
-  has_many :notes, as: :notable, dependent: :destroy
+  has_many :notes, as: :notable, dependent: :destroy, inverse_of: :notable
+  accepts_nested_attributes_for :notes
   has_many :project_engagement_links
   has_many :projects, through: :project_engagement_links
   before_create :autoname

@@ -6,6 +6,7 @@ class ds.PersonAddEngagementView extends Backbone.View
     @listen()
 
   events:
+    'change #photo': 'uploadPhoto'
     'touchstart .button': (e) ->
     'submit': 'onsubmit'
     'click .cancel': 'cancel'
@@ -35,7 +36,6 @@ class ds.PersonAddEngagementView extends Backbone.View
     duration = parseFloat(data.duration/60).toFixed(3)
     data.duration = duration
     if @model.save data
-      console.log @model
       Backbone.trigger "session_storage:engagements:save", @model
       Backbone.trigger "people:action", "show", @person.id
       Backbone.trigger "notification", "Engagement Added!"
@@ -44,4 +44,11 @@ class ds.PersonAddEngagementView extends Backbone.View
 
   cancel: ->
     Backbone.trigger "people:action", "show", @person.id
+
+  uploadPhoto: (event) ->
+    event.stopPropagation()
+    file = event.currentTarget.files[0]
+    u = new ds.UploaderView
+      model: @model
+      file: file
 

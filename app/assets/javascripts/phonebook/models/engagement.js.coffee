@@ -11,7 +11,7 @@ class ds.Engagement extends Backbone.Model
     attendees: []
 
   toJSON: ->
-    _.omit _.clone(@attributes), ['attendees', 'notes', 'deletable']
+    _.omit _.clone(@attributes), ['attendees', 'deletable']
 
   tplAttrs: ->
     attrs = _.extend(_.clone(@attributes), { class_name: 'Engagement' })
@@ -30,6 +30,16 @@ class ds.Engagement extends Backbone.Model
     timestamp = Date.parse(created).getTime()
     now = new Date().getTime()
     (now-timestamp)/1000 < 3600
+
+  initialize: ->
+    @on "upload:finished", (asset_url) =>
+      asset = { external_url: asset_url }
+      note = {
+        author_id: ds.CURRENT_USER.get('id')
+        assets_attributes: [asset]
+      }
+      @save { notes_attributes: [note]}
+      @unset 'notes_attributes'
 
 class ds.EngagementsCollection extends Backbone.Collection
   model: ds.Engagement

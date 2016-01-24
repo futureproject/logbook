@@ -1,5 +1,5 @@
 class Api::V3::EngagementsController < Api::V3::BaseController
-  wrap_parameters format: [:json], include: [:attendee_ids, :name, :date, :kind, :school_id, :description, :duration, :headcount]
+  wrap_parameters format: [:json], include: [:attendee_ids, :name, :date, :kind, :school_id, :description, :duration, :headcount, :notes_attributes]
 
   # GET /api/v3/engagements
   # GET /api/v3/engagements.json
@@ -34,6 +34,7 @@ class Api::V3::EngagementsController < Api::V3::BaseController
     if @engagement.save
       render :show, status: :created, location: api_v3_engagement_url(@engagement)
     else
+      puts "FUCKIGN ERRORE!"
       puts @engagement.errors.full_messages
       render json: @engagement.errors, status: :unprocessable_entity
     end
@@ -41,14 +42,14 @@ class Api::V3::EngagementsController < Api::V3::BaseController
 
   # PATCH/PUT /api/v3/engagements/1
   # PATCH/PUT /api/v3/engagements/1.json
-  #def update
-    #@engagement = current_user.created_engagements.find(params[:id])
-    #if @engagement.update(engagement_params)
-      #render :show, status: :ok, location: api_v3_engagement_url(@engagement)
-    #else
-      #render json: @engagement.errors, status: :unprocessable_entity
-    #end
-  #end
+  def update
+    @engagement = current_user.created_engagements.find(params[:id])
+    if @engagement.update(engagement_params)
+      render :show, status: :ok, location: api_v3_engagement_url(@engagement)
+    else
+      render json: @engagement.errors, status: :unprocessable_entity
+    end
+  end
 
   # DELETE /api/v3/engagements/1
   # DELETE /api/v3/engagements/1.json
@@ -73,7 +74,13 @@ class Api::V3::EngagementsController < Api::V3::BaseController
         :duration,
         :description,
         :headcount,
-        attendee_ids: []
+        attendee_ids: [],
+        notes_attributes: [
+          :author_id,
+          assets_attributes: [
+            :external_url
+          ]
+        ]
       )
     end
 

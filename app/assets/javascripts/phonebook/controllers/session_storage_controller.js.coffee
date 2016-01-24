@@ -29,3 +29,4 @@ class ds.SessionStorageController extends Backbone.View
     m = @collections.engagements.find model
     if m? && confirm("Are you sure you want to delete this engagement?")
       m.destroy()
+

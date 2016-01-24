@@ -30,7 +30,7 @@
     display: none;
   }
 }
-.select-field, .date-field, .number-field {
+.select-field, .date-field, .number-field, .file-field {
   label {
     position: absolute;
     left: 0;
@@ -40,10 +40,12 @@
   select, input {
     float: right;
     text-align: right;
-    direction: rtl;
     &:focus {
       color: $ios-blue;
     }
+  }
+  select, input[type=file] {
+    direction: rtl;
   }
 }
 .longform-field {

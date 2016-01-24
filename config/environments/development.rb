@@ -52,4 +52,6 @@ Rails.application.configure do
     #Bullet.bullet_logger = true
   end
 
+  config.active_record.raise_in_transactional_callbacks = true
+
 end
