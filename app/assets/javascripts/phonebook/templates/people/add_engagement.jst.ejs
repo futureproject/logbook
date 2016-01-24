@@ -8,10 +8,8 @@
   New Engagement
 </div>
 <form class="panel">
-  <div class="field">
-    <h2>Engagement w/<%= person.first_name %> <%= person.last_name %></h2>
-  </div>
-  <div class="field kind-field">
+  <header class="panel-header">Engagement w/<%= person.first_name %> <%= person.last_name %></header>
+  <div class="field select-field kind-field">
     <select id="kind" name="kind">
       <option value="Coaching Session">Coaching Session</option>
       <option value="Event">Event</option>
@@ -24,12 +22,12 @@
     <input name='date' type='date'>
     <label for="date">Date</label>
   </div>
-  <div class="field duration-field">
+  <div class="field number-field duration-field">
     <input type="number" name="duration" id="duration" />
-    <label for="duration">Duration (Minutes)</label>
+    <label for="duration">Duration (Mins)</label>
   </div>
-  <div class="field description-field">
-    <textarea name='description'></textarea>
+  <div class="field longform-field description-field">
+    <textarea name='description' placeholder='Description'></textarea>
     <label for="description">Description</label>
   </div>
   <input type='hidden' name='school_id' />

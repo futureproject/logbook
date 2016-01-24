@@ -15,14 +15,6 @@
   margin-bottom: 30px;
 }
 
-.field {
-  margin-bottom: 15px;
-  input[type=checkbox] {
-    display: inline-block;
-    width: auto;
-  }
-}
-
 .dual-action {
   @include clearfix;
   input {
@@ -31,8 +23,6 @@
     clear: none;
   }
 }
-
-.actions-field { opacity: 0; }
 
 .titlebar {
   position: -webkit-sticky;
@@ -179,6 +169,7 @@
   height: 45px;
   position: relative;
   top: 0;
+  input { width: 100%; }
 }
 
 .index {

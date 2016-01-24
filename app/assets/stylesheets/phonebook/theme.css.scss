@@ -22,12 +22,6 @@ h1, h2, h3, h4, h5, h6, strong {
   font-weight: bold;
 }
 
-textarea {
-  border: 1px solid $base-border-color !important;
-  resize: none;
-  -webkit-appearance: none;
-}
-
 .actions-field input {
   background: $ios-blue;
   &.warning {
@@ -199,5 +193,11 @@ em {
   &:active {
     background: $base-border-color;
   }
+}
+
+.panel-header {
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 15px;
 }
 

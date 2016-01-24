@@ -11,7 +11,9 @@
       <h1><%= person.first_name %> <%= person.last_name %></h1>
       <ul>
         <li><%= person.role %></li>
-        <li><%= person.school_name %></li>
+        <% if (!!person.school_name) { %>
+          <li><%= person.school_name %></li>
+        <% } %>
       </ul>
     </div>
 </header>
