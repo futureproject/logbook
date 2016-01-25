@@ -9,7 +9,7 @@
         - if note.author
           .note-info
             .note-avatar
-              = link_to image_tag(note.author.avatar), "/logbook/people/#{note.author.id}", target: "_blank"
+              = link_to image_tag(note.author.avatar_url), "/logbook/people/#{note.author.id}", target: "_blank"
             .note-date= note.created_at.strftime "%b %d"
             .note-author
               .note-author-name= link_to note.author.try(:name), "/logbook/people/#{note.author.id}", target: "_blank"
