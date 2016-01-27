@@ -28,42 +28,22 @@ class ds.PeopleSearchView extends Backbone.View
     @search @$input.val()
   , 200)
 
-  search: (query) ->
-    return unless query.length > 1
-    q = query.toLowerCase()
-    # find local results and return them
-    results = @collection.clone().filter (person) ->
-      first = person.get('first_name')
-      last = person.get('last_name')
-      searchString = (first + " " + last).toLowerCase().trim()
-      searchString.match(q)
-    results_collection = new Backbone.Collection(results)
-    Backbone.trigger "people:search:results", query, results_collection
-    # now search for remote results and return those too
-    $.ajax
-      url: "#{@collection.url()}/search"
-      data: {q: q}
-      complete: (response) =>
-        server_results = response.responseJSON
-        if server_results.length > 0
-          results_collection.add server_results
-          console.log results_collection
-          Backbone.trigger "people:search:results", query, results_collection
+  search: (query) -> @collection.search(query)
 
   onfocus: (event) ->
     # show cancel button
     @$el.addClass('focused')
-    Backbone.trigger 'people:search:in'
+    Backbone.trigger 'people:searchView:in'
 
   onblur: (event) ->
     # hide cancel button
     @$el.removeClass('focused')
-    Backbone.trigger 'people:search:out'
+    Backbone.trigger 'people:searchView:out'
     @$input.val('')
 
   cancel: (event) ->
     event.stopPropagation()
-    Backbone.trigger "people:search:cancelled"
+    Backbone.trigger "people:searchView:cancelled"
 
   reset: (event) ->
     event.stopPropagation()

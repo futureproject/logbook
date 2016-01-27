@@ -47,6 +47,10 @@
   select, input[type=file] {
     direction: rtl;
   }
+  input[type=date] {
+    display:block;
+    @include appearance(button);
+  }
 }
 .longform-field {
   label { display: none; }

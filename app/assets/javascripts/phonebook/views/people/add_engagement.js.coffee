@@ -9,6 +9,7 @@ class ds.PersonAddEngagementView extends Backbone.View
     'change #photo': 'uploadPhoto'
     'touchstart .button': (e) ->
     'submit': 'onsubmit'
+    'focus #duration': (event) -> $(event.currentTarget).val('')
     'click .cancel': 'cancel'
     'click .done': (e) -> @$el.find('form').submit()
 

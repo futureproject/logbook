@@ -1,4 +1,13 @@
-<div class="field kind-field">
+<div class="field select-field attendees-field">
+  <select multiple id="attendee_ids" name="attendee_ids">
+    <option value="Coaching Session">Jim</option>
+    <option value="Event">Leonard</option>
+    <option value="Course">Nyota</option>
+    <option value="Meeting">Scotty</option>
+  </select>
+  <label for="kind">Attendees</label>
+</div>
+<div class="field select-field kind-field">
   <select id="kind" name="kind">
     <option value="Coaching Session">Coaching Session</option>
     <option value="Event">Event</option>
@@ -7,37 +16,23 @@
   </select>
   <label for="kind">Kind</label>
 </div>
-<div class="field school-field">
-  <select id="school_id" name="school_id">
-  </select>
-  <label for="school_id">School</label>
-</div>
-<div class="field name-field">
-  <input id="name" name="name" type="text">
-  <label for="name">Engagement Name</label>
-</div>
 <div class="field date-field">
-  <input name='date' type='text'>
+  <input name='date' type='date'>
   <label for="date">Date</label>
 </div>
-<div class="field duration-field">
-  <input type="number" id="duration-number" />
-  <label for="duration">Duration (Minutes)</label>
+<div class="field number-field duration-field">
+  <input type="number" name="duration" id="duration" />
+  <label for="duration">Duration (Mins)</label>
 </div>
-<div class="field description-field">
-  <textarea name='description'></textarea>
+<div class="field notes-field file-field">
+  <input type="file" id="photo" />
+  <label for="duration">Note</label>
+</div>
+<div class="field longform-field description-field">
+  <textarea name='description' placeholder='Description'></textarea>
   <label for="description">Description</label>
 </div>
-<div class="field headcount-field">
-  <input id="headcount" name="headcount" type="number" min="0">
-  <label for="headcount">How many people were there?</label>
-</div>
-<div class="field selectize-field">
-  <select id="attendee_ids" name="attendee_ids" multiple></select>
-  <label for="attendee_ids" class="primary-label">Who was there?</label>
-  <label for="attendee_ids" class="alternate-label">Anyone in particular?</label>
-</div>
-<div class="field dual-action actions-field">
-  <input type="reset" value="Cancel" class="warning" />
-  <input type="submit" value="Log It" />
+<input type='hidden' name='school_id' />
+<div class="field actions-field">
+  <input type="submit" value="Done" />
 </div>

@@ -11,6 +11,7 @@ class ds.PeopleController extends Backbone.View
       view.hide() unless view == @views[fn]
     # If the function specified in the 'fn' argument exists, call it.
     @[fn]?(args)
+    # reset the scroll position of the body
     Backbone.trigger 'app:resetScroll'
 
   index: ->

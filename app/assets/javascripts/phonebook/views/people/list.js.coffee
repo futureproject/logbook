@@ -28,7 +28,7 @@ class ds.PeopleListView extends Backbone.View
 
   listen: ->
     @listenTo Backbone, "people:search:results", @onSearch
-    @listenTo Backbone, "people:search:cancelled", @render
+    @listenTo Backbone, "people:searchView:cancelled", @render
     @listenTo @collection, "reset", @render
 
   itemClick: (event) ->

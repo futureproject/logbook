@@ -1,18 +1,20 @@
-class ds.EngagementsFormView extends Backbone.View
-  initialize: ->
+class ds.EngagementFormView extends Backbone.View
+  initialize: (options = {}) ->
+    @[option] = options[option] for option of options
+    throw "EngagementsFormView needs a people_collection to take attendance" unless @people_collection
     @views = {}
     @listenTo @model, 'change', @render
-    @listenTo ds.collections.schools, 'reset', @postRender
 
   tagName: 'form'
   className: -> "panel " + @model.get('kind').toLowerCase()
 
   events:
     'submit': 'onsubmit'
-    'change #kind': 'setCssClassFromKind'
+    #'change #kind': 'setCssClassFromKind'
+    'change #photo': 'uploadPhoto'
 
-  setCssClassFromKind: (event) ->
-    @$el.attr('class', $(event.currentTarget).val().toLowerCase())
+  #setCssClassFromKind: (event) ->
+    #@$el.attr('class', $(event.currentTarget).val().toLowerCase())
 
   template: JST['phonebook/templates/engagements/form']
 
@@ -23,7 +25,6 @@ class ds.EngagementsFormView extends Backbone.View
     @
 
   postRender: ->
-    @setSchoolOptions()
     attrs = @model.toJSON()
     # render duration as minutes
     attrs.duration = attrs.duration * 60
@@ -36,16 +37,16 @@ class ds.EngagementsFormView extends Backbone.View
     duration = parseFloat(data.duration/60).toFixed(3)
     data.duration = duration
     if @model.save data
-      ds.collections.engagements.add @model, { merge: true }
-      ds.router.navigate ds.urlsHelper.urlFor(@model), {trigger: true}
+      #Backbone.trigger "session_storage:engagements:save", @model
+      Backbone.trigger "engagements:action", "show", @model.id
+      Backbone.trigger "notification", "Engagement Added!"
     else
       alert @model.validationError
 
-  setSchoolOptions: ->
-    fragment = document.createDocumentFragment()
-    $f = $(fragment)
-    $f.append "<option value></option>"
-    ds.collections.schools.each (s) ->
-      $f.append "<option value='#{s.get('id')}'>#{s.get('name')}</option>"
-    @$el.find('#school_id').html $f
+  uploadPhoto: (event) ->
+    event.stopPropagation()
+    file = event.currentTarget.files[0]
+    u = new ds.UploaderView
+      model: @model
+      file: file
 
