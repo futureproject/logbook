@@ -1,13 +1,5 @@
 <select multiple name="<%= field_name %>" id="<%= field_name %>">
-  <!-- This disabled option is necessary to stop iOS from bugging out,
-  see http://stackoverflow.com/questions/34660500/mobile-safari-multi-select-bug
-  -->
-  <option disabled></option>
-  <% for(var i=0; i < options.length; i++) { %>
-    <option value="<%= options[i].id %>">
-      <%= options[i].first_name %>
-      <%= options[i].last_name %>
-    </option>
-  <% } %>
 </select>
-<label for="<%= field_name %>"><span class="count"></span><%= field_label %></label>
+<input type="text" id="selector-query" placeholder="<%= field_label %>" autocomplete='off' autocorrect='off' autocapitalize='off' />
+<ul class="selector-options">
+</ul>

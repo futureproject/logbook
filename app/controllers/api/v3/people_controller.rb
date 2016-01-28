@@ -4,9 +4,8 @@ class Api::V3::PeopleController < Api::V3::BaseController
   # GET /api/v3/people
   # return all people who are not the current user
   def index
-    @people = location_scoped(Person).where
-      .not(id: current_user.id).order(sort_params)
-      .page(params[:page]).per(100)
+    @people = location_scoped(Person).order(sort_params)
+      .page(params[:page]).per(1000)
   end
 
   # Return 302 Found if there people have been created after

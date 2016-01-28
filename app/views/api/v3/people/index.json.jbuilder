@@ -1,4 +1,4 @@
-#json.cache! ['people/v4', @people.maximum(:updated_at)] do
+#json.cache! ['people/v4', @people.maximum(:updated_at), scope_params] do
   json.array!(@people) do |person|
     #json.cache! ['v4', person] do
       json.extract! person, :id,

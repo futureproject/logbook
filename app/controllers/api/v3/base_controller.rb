@@ -7,6 +7,10 @@ class Api::V3::BaseController < Api::BaseController
       request.format = :json
     end
 
+    def scope_params
+      params.slice(:school_id, :site_id)
+    end
+
     # find a table, optionally restricted to a school or site
     def location_scoped(klass)
       if params[:site_id]

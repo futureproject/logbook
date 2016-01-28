@@ -32,6 +32,7 @@ class ds.PeopleCollection extends Backbone.Collection
       searchString.match(q)
     results_collection = new Backbone.Collection(results)
     Backbone.trigger "people:search:results", query, results_collection
+    @trigger "search:results", query, results_collection
     # now search for remote results and return those too
     $.ajax
       url: "#{@url()}/search"
@@ -41,3 +42,4 @@ class ds.PeopleCollection extends Backbone.Collection
         if server_results.length > 0
           results_collection.add server_results
           Backbone.trigger "people:search:results", query, results_collection
+          @trigger "search:results", query, results_collection

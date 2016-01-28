@@ -8,28 +8,48 @@ class ds.PersonSelectorView extends Backbone.View
     @field_label ||= "People"
     @listen()
 
-  className: 'field person-selector-field'
+  className: 'field selector-field'
 
   template: JST["phonebook/templates/people/selector"]
 
   listen: ->
-    @listenTo @collection, 'reset', @render
+    @listenTo @collection, 'search:results', @showResults
 
   events:
-    'change select': 'setLabel'
-
-  setLabel: (event) ->
-    c = event.currentTarget.selectedOptions.length
-    @$el.find('.count').text("#{c} ")
+    'keyup input': 'throttledSearch'
+    'click li': (event) -> console.log event
 
   render: ->
-    @$el.html @template({
-      field_name: @field_name
-      field_label: @field_label
-      options: _.map @collection.sortBy('first_name'), (m) -> m.attributes
-    })
+    @$el.html @template @tplAttrs()
     @postRender()
     @
 
-  postRender: ->
+  tplAttrs: ->
+    field_name: @field_name
+    field_label: @field_label
 
+  postRender: ->
+    @$results = @$el.find('ul')
+    # render selected people
+
+  throttledSearch: _.debounce((e) ->
+    return if e.keyCode? && e.keyCode == 13 #don't listen to the enter key!
+    @search e.currentTarget.value
+  , 200)
+
+  search: (query) ->
+    if query.length > 0
+      @collection.search(query)
+    else
+      @clearResults()
+
+  showResults: (query, results) ->
+    frag = document.createDocumentFragment()
+    for person in results.first(4)
+      item = document.createElement('li')
+      item.innerHTML = "#{person.get('first_name')} #{person.get('last_name')}"
+      frag.appendChild item
+    @$results.html frag
+
+  clearResults: ->
+    @$results.empty()

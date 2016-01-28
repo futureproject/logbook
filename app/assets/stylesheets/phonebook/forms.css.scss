@@ -23,29 +23,25 @@
     display: inline-block;
     width: auto;
   }
-  select[multiple] {
-    padding: 0;
-    height: 15rem;
-    margin: 15px 0;
-  }
   label {
     position: absolute;
     left: 0;
     top: 0;
     color: $ios-gray;
   }
-  select:not([multiple]), input {
+  select, input {
     float: right;
-    text-align: right;
     &:focus {
       color: $ios-blue;
     }
   }
-  select:not([multiple]), input[type=file] {
+  select, input[type=file] {
     direction: rtl;
+    text-align: right;
   }
-  input[type=date] {
+  input[type=date], input[type=number] {
     display:block;
+    text-align: right;
     @include appearance(button);
   }
 }
@@ -53,9 +49,6 @@
   label {
     display: none;
   }
-}
-.person-selector-field {
-  padding-left: 90px;
 }
 .longform-field {
   label { display: none; }
@@ -80,14 +73,8 @@
   pointer-events: none;
 }
 
-.ios {
-  .field {
-    select[multiple] {
-      height: auto;
-      opacity: 0;
-      &:focus + label {
-        color: $ios-blue;
-      }
-    }
-  }
+
+.selector-field {
+  select { display: none; }
 }
+
