@@ -14,15 +14,39 @@
   input, select {
     width: 100%;
     @include appearance(none);
+    background-color: white;
     &:focus {
       outline: none;
     }
   }
-  select {
-  }
   input[type=checkbox] {
     display: inline-block;
     width: auto;
+  }
+  select[multiple] {
+    padding: 0;
+    height: 15rem;
+    margin: 15px 0;
+  }
+  label {
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: $ios-gray;
+  }
+  select:not([multiple]), input {
+    float: right;
+    text-align: right;
+    &:focus {
+      color: $ios-blue;
+    }
+  }
+  select:not([multiple]), input[type=file] {
+    direction: rtl;
+  }
+  input[type=date] {
+    display:block;
+    @include appearance(button);
   }
 }
 .text-field {
@@ -30,27 +54,8 @@
     display: none;
   }
 }
-.select-field, .date-field, .number-field, .file-field {
-  label {
-    position: absolute;
-    left: 0;
-    top: 0;
-    color: $ios-gray;
-  }
-  select, input {
-    float: right;
-    text-align: right;
-    &:focus {
-      color: $ios-blue;
-    }
-  }
-  select, input[type=file] {
-    direction: rtl;
-  }
-  input[type=date] {
-    display:block;
-    @include appearance(button);
-  }
+.person-selector-field {
+  padding-left: 90px;
 }
 .longform-field {
   label { display: none; }
@@ -73,4 +78,16 @@
 .actions-field {
   visibility: hidden;
   pointer-events: none;
+}
+
+.ios {
+  .field {
+    select[multiple] {
+      height: auto;
+      opacity: 0;
+      &:focus + label {
+        color: $ios-blue;
+      }
+    }
+  }
 }

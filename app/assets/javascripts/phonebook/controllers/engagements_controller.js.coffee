@@ -19,5 +19,4 @@ class ds.EngagementsController extends Backbone.View
       school_id: ds.CURRENT_USER.get('school_id')
     @views.new = new ds.EngagementNewView
       model: engagement
-      people_collection: ds.collections.people
     @views.new.renderTo ds.views.app.el

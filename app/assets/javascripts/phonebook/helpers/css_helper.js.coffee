@@ -2,7 +2,11 @@ ds.cssHelper =
   init: ->
     # add border to body when running as a home screen app
     if navigator.standalone
-      document.querySelector('body').classList.add("standalone")
+      document.body.classList.add("standalone")
+
+    # add ios class, for form styling
+    if (navigator.platform.match(/iphone|ipad|ipod/i))
+      document.body.classList.add('ios')
 
     # add half-pixel borders if supported
     if (window.devicePixelRatio && devicePixelRatio >= 2)

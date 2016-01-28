@@ -7,7 +7,7 @@ Backbone.Collection.prototype.resetFromLocalStorage = (callback) ->
 Backbone.Collection.prototype.bootstrap = ->
   # reset the colection from localStorage
   @resetFromLocalStorage =>
-    @syncDirtyAndDestroyed()
+    #@syncDirtyAndDestroyed()
     # get the newest record
     sorted = @sortBy('id')
     newest = _.last(sorted)?.get('created_at')

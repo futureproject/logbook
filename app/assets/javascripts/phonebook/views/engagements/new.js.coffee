@@ -4,11 +4,9 @@ class ds.EngagementNewView extends Backbone.View
   initialize: (options={}) ->
     @[option] = options[option] for option of options
     @model ||= new ds.Engagement
-    throw "EngagementsNewView Needs a people_collection to take attendance" unless @people_collection
     @views =
       form: new ds.EngagementFormView
         model: @model
-        people_collection: @people_collection
     @listen()
 
   template: JST['phonebook/templates/engagements/new']

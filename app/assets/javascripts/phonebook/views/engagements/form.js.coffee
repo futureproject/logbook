@@ -1,17 +1,22 @@
 class ds.EngagementFormView extends Backbone.View
   initialize: (options = {}) ->
     @[option] = options[option] for option of options
-    throw "EngagementsFormView needs a people_collection to take attendance" unless @people_collection
-    @views = {}
-    @listenTo @model, 'change', @render
+    @views =
+      person_selector: new ds.PersonSelectorView
+        field_name: "attendee_ids"
+        field_label: "Attendees"
 
   tagName: 'form'
-  className: -> "panel " + @model.get('kind').toLowerCase()
+  className: 'panel'
 
   events:
     'submit': 'onsubmit'
-    #'change #kind': 'setCssClassFromKind'
+    'change #kind': 'setCssClassFromKind'
     'change #photo': 'uploadPhoto'
+    'focus #duration': (event) -> $(event.currentTarget).val('')
+
+  listen: ->
+    @listenTo @model, 'change', @render
 
   #setCssClassFromKind: (event) ->
     #@$el.attr('class', $(event.currentTarget).val().toLowerCase())
@@ -20,7 +25,6 @@ class ds.EngagementFormView extends Backbone.View
 
   render: ->
     @$el.html @template(@model.tplAttrs())
-    @delegateEvents()
     @postRender()
     @
 
@@ -29,6 +33,8 @@ class ds.EngagementFormView extends Backbone.View
     # render duration as minutes
     attrs.duration = attrs.duration * 60
     Backbone.Syphon.deserialize @, attrs
+    @views.person_selector.renderTo "#person-selector", { replace: true }
+    @delegateEvents()
 
   onsubmit: (event) ->
     event.preventDefault()

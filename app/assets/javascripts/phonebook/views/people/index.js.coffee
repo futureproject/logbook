@@ -27,8 +27,6 @@ class ds.PeopleIndexView extends Backbone.View
   postRender: ->
     @views.list.renderTo "#people-list", { replace: true }
     @views.search.renderTo "#people-search", { replace: true }
-    @rendered = true
-
 
   listen: ->
     @listenTo Backbone, 'people:search:in', =>

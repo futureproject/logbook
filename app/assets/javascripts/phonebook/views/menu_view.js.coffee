@@ -3,6 +3,8 @@ class ds.MenuView extends Backbone.View
   template: JST["phonebook/templates/menu"]
   events:
     'click .close': 'hide'
+    'click .engagements': -> location.href = "/phonebook/engagements/new"
+    'click .people': -> location.href = "/phonebook/people"
     'scroll': 'block'
     'touchmove': 'block'
     'click .log-out': 'logout'

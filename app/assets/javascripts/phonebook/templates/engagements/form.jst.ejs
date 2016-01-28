@@ -1,12 +1,4 @@
-<div class="field select-field attendees-field">
-  <select multiple id="attendee_ids" name="attendee_ids">
-    <option value="Coaching Session">Jim</option>
-    <option value="Event">Leonard</option>
-    <option value="Course">Nyota</option>
-    <option value="Meeting">Scotty</option>
-  </select>
-  <label for="kind">Attendees</label>
-</div>
+<div id="person-selector"></div>
 <div class="field select-field kind-field">
   <select id="kind" name="kind">
     <option value="Coaching Session">Coaching Session</option>
@@ -21,7 +13,7 @@
   <label for="date">Date</label>
 </div>
 <div class="field number-field duration-field">
-  <input type="number" name="duration" id="duration" />
+  <input type="number" min="0" inputmode="numeric" pattern="[0-9]*" name="duration" id="duration" />
   <label for="duration">Duration (Mins)</label>
 </div>
 <div class="field notes-field file-field">

@@ -5,6 +5,10 @@ $base-highlight-color: $ios-blue;
 $base-background-color: white;
 $people-color: $ios-blue;
 $engagements-color: $ios-purple;
+html {
+  font-size: 15px;
+  line-height: 20px;
+}
 body {
   -webkit-tap-highlight-color: transparent;
   margin: 0;
