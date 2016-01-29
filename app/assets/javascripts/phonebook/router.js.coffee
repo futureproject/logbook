@@ -11,6 +11,7 @@ class ds.Router extends Backbone.Router
     "phonebook/people/:id/edit": "people_edit"
     "phonebook/people/:id/add/engagement": "people_add_engagement"
     "phonebook/engagements/new": "engagements_new"
+    "phonebook/engagements/:id": "engagements_show"
     #"phonebook/engagements/new/:person_id": "engagements_new"
 
   #PEOPLE
@@ -21,5 +22,6 @@ class ds.Router extends Backbone.Router
 
   #ENGAGEMENTS
   engagements_new: -> Backbone.trigger "engagements:action", "new"
+  engagements_show: (id) -> Backbone.trigger "engagements:action", "show", id
   engagements_edit: (id) -> Backbone.trigger "engagements:action", "edit", id
 

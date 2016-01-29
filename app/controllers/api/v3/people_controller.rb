@@ -5,7 +5,7 @@ class Api::V3::PeopleController < Api::V3::BaseController
   # return all people who are not the current user
   def index
     @people = location_scoped(Person).order(sort_params)
-      .page(params[:page]).per(1000)
+      .page(params[:page]).per(500)
   end
 
   # Return 302 Found if there people have been created after

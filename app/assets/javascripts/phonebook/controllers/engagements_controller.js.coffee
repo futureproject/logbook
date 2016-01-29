@@ -20,3 +20,19 @@ class ds.EngagementsController extends Backbone.View
     @views.new = new ds.EngagementNewView
       model: engagement
     @views.new.renderTo ds.views.app.el
+
+  show: (id) ->
+    ds.router.navigate "phonebook/engagements/#{id}"
+    engagement = @getModelFromId(id)
+    @views.show = new ds.EngagementShowView
+      model: engagement
+    @views.show.renderTo ds.views.app.el
+
+  getModelFromId: (id) ->
+    # if this is an actual id, not a cid
+    if parseInt(id)
+      model = @collection.get(id) || new ds.Engagement({ id: id })
+      model.fetch {success: => @collection.add model}
+    else
+      model = @collection.get({cid: id}) || new ds.Engagement({ cid: id })
+    model

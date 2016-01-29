@@ -43,7 +43,7 @@ class ds.EngagementFormView extends Backbone.View
     duration = parseFloat(data.duration/60).toFixed(3)
     data.duration = duration
     if @model.save data
-      #Backbone.trigger "session_storage:engagements:save", @model
+      Backbone.trigger "session_storage:engagements:save", @model
       Backbone.trigger "engagements:action", "show", @model.id
       Backbone.trigger "notification", "Engagement Added!"
     else
