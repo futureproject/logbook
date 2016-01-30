@@ -3,7 +3,8 @@ class ds.PeopleController extends Backbone.View
     @views = {}
     @collection = ds.collections.people
     @listenTo Backbone, "people:action", @action
-    @listenTo Backbone, "people:showing", @movePersonToTop
+    @listenTo Backbone, "people:sync", -> @collection.bootstrap()
+    @listenTo Backbone, "engagement:created", @moveAttendeesToTop
 
   action: (fn, args) ->
     # hide all open views
@@ -60,9 +61,17 @@ class ds.PeopleController extends Backbone.View
     else
       [person_id]
 
-  movePersonToTop: (person) ->
+  # after an engagement is created, move said engagement's attendees
+  # to the top of the people collection
+  moveAttendeesToTop: (engagement) ->
     collection = @collection.fullCollection || @collection
-    collection.remove person
-    collection.add person,
-      at: 0
+    people = collection.getMultiple engagement.get('attendee_ids')
+    console.log people
+    for person in people
+      collection.remove person
+      collection.add person,
+        at: 0
+    # persist this new order in localStorage!
+    window.localStorage.setItem(collection.url(), collection.pluck('id').join(','))
+
 

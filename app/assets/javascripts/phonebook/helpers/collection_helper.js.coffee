@@ -6,16 +6,17 @@ Backbone.Collection.prototype.resetFromLocalStorage = (callback) ->
 
 Backbone.Collection.prototype.bootstrap = ->
   # reset the colection from localStorage
+  @syncDirtyAndDestroyed()
   @resetFromLocalStorage =>
-    #@syncDirtyAndDestroyed()
+    @trigger "sync:started"
+    @syncDirtyAndDestroyed()
     # get the newest record
-    sorted = @sortBy('id')
-    newest = _.last(sorted)?.get('created_at')
+    newest = @first()
     if newest
       # store the range of dates we're looking for
       params =
-        sync_time: Date.parse(newest).toString()
-      #check for records created after 'newest'
+        sync_time: Date.parse(newest.get('last_engaged')).toString()
+      #check for records engaged after 'newest'
       console.log "checking for new records..."
       $.ajax
         url: "#{@url()}/sync"
@@ -27,6 +28,7 @@ Backbone.Collection.prototype.bootstrap = ->
             localStorage.removeItem(@url())
             @resetFromServer()
           else
+            @trigger("sync:ended")
             console.log "... none."
 
     else # if there is no newest record, reset from remote source
@@ -34,7 +36,6 @@ Backbone.Collection.prototype.bootstrap = ->
 
 Backbone.Collection.prototype.resetFromServer = ->
   console.log "resetting collection from server..."
-  @trigger "sync:started"
   @fetch
     remote: true,
     reset: true

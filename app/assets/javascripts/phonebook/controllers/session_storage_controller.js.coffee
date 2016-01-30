@@ -8,6 +8,7 @@ class ds.SessionStorageController extends Backbone.View
     @listenTo Backbone, "session_storage:engagements:find", @findEngagements
     @listenTo Backbone, "session_storage:engagements:save", @saveEngagement
     @listenTo Backbone, "session_storage:engagements:destroy", @destroyEngagement
+    @listenTo @collections.engagements, "add", (e) -> Backbone.trigger "engagement:created", e
 
   # search for engagements, either by custom query_type
   # or by supplied query param [ids]
