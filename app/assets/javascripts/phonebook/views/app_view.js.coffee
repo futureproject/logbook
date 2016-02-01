@@ -5,10 +5,14 @@ class ds.AppView extends Backbone.View
     $(document).on('ajaxSend', (event, xhr, options) ->
       console.log "AJAX request to #{options.url}"
     ).on('ajaxError', (event, xhr, options) ->
-      # force user to reauthenticate if they've been logged out!
+      # force user to reauthenticate if they've been logged out
       if xhr.status == 403
         Backbone.trigger "app:authenticate"
     )
+    # make requests default to JSON
+    $.ajaxSetup
+      dataType: 'json'
+
     @listenTo Backbone, 'app:nav', @showNav
     @listenTo Backbone, 'app:resetScroll', @resetScrollPosition
     @listenTo Backbone, 'app:authenticate', @showAuth
@@ -34,13 +38,18 @@ class ds.AppView extends Backbone.View
   "
   showAuth: ->
     @$el.html @auth_template()
-    @$el.one 'click', '.auth-trigger', (event) -> location.href="/phonebook/auth"
+    @$el.one 'click', '.auth-trigger', (event) ->
+      location.href="/phonebook/auth"
 
   logOut: ->
     @$el.html new ds.SpinnerView().render().el
     $.ajax
       url: "/auth/logout",
       complete: =>
-        location.href = "https://accounts.google.com/SignOutOptions"
-        #@showAuth()
+        if navigator.standalone
+          # prompt iOS Home Screen Web App™ users to sign out of their
+          # google accounts
+          location.href = "https://accounts.google.com/SignOutOptions"
+        else
+          @showAuth()
 
