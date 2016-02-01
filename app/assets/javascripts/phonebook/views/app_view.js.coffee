@@ -37,6 +37,10 @@ class ds.AppView extends Backbone.View
     @$el.one 'click', '.auth-trigger', (event) -> location.href="/phonebook/auth"
 
   logOut: ->
-    $.ajax "/auth/logout"
-    @showAuth()
+    @$el.html new ds.SpinnerView().render().el
+    $.ajax
+      url: "/auth/logout",
+      complete: =>
+        location.href = "https://accounts.google.com/SignOutOptions"
+        #@showAuth()
 
