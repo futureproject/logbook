@@ -17,7 +17,5 @@ class ds.MenuView extends Backbone.View
 
   block: (event) -> event.preventDefault()
 
-  logout: ->
-    localStorage.clear()
-    location.href = "/auth/logout"
+  logout: -> Backbone.trigger "app:logout"
 

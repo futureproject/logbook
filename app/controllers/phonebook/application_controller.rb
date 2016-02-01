@@ -1,5 +1,5 @@
 class Phonebook::ApplicationController < ApplicationController
-  skip_before_filter :authorize!, only: [:manifest]
+  skip_before_filter :authorize!, only: [:manifest, :home]
 
   def home
     render layout: 'phonebook', text: ''

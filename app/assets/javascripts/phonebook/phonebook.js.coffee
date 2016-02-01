@@ -20,13 +20,17 @@ ds.controllers ={}
 ds.collections ={}
 
 ds.init = (user_info) ->
-  ds.CURRENT_USER = new ds.User(user_info)
-  ds.cssHelper.init()
-  ds.run()
-
-ds.run = ->
+  console.log user_info
   ds.views.app = new ds.AppView
     el: "body"
+  if user_info
+    ds.CURRENT_USER = new ds.User(user_info)
+    ds.cssHelper.init()
+    ds.run()
+  else
+    Backbone.trigger "app:authenticate"
+
+ds.run = ->
   # initialize ppl database and restore from localstorage, then server
   ds.collections.people = new ds.PeopleCollection
   ds.collections.people.bootstrap()

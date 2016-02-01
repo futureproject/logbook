@@ -6,6 +6,7 @@ class SessionsController < ApplicationController
   layout 'application'
 
   def new
+    session[:redirect] = params[:redirect_to] if params[:redirect_to]
   end
 
   def failure
