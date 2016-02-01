@@ -33,7 +33,7 @@ module Authorization
           redirect_to main_app.new_session_path
         end
         format.json do
-          render status: 403
+          render status: 403, nothing: true
         end
       end
     end
