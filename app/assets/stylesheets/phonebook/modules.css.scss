@@ -291,3 +291,20 @@
   }
 }
 
+.auth-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  .auth-trigger {
+    font-size: 2em;
+    line-height: 1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    @include transform(translate(-50%, -50%));
+    cursor: pointer;
+    color: $ios-blue;
+  }
+}

@@ -108,6 +108,7 @@ Rails.application.routes.draw do
   namespace :phonebook do
     root 'application#home'
     get 'manifest.appcache', to: 'application#manifest'
+    get 'auth', to: "application#auth"
     get '*anywhere', to: 'application#home'
   end
   namespace :oldbook do

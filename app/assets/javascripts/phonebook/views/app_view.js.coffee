@@ -27,7 +27,16 @@ class ds.AppView extends Backbone.View
   render: ->
     @$el.empty()
 
-  showAuth: -> location.href = "/sessions/new?redirect_to=/mobile"
+  auth_template: _.template "
+    <div class='auth-container'>
+      <div class='auth-trigger'>Sign In</div>
+    </div>
+  "
+  showAuth: ->
+    @$el.html @auth_template()
+    @$el.one 'click', '.auth-trigger', (event) -> location.href="/phonebook/auth"
 
-  logOut: -> location.href = "/auth/logout"
+  logOut: ->
+    $.ajax "/auth/logout"
+    @showAuth()
 
