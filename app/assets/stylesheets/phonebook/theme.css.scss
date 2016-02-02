@@ -171,6 +171,8 @@ img { background-color: $ios-light-gray; }
  .lb-loading {
    border-top-width: 3px !important;
    border-bottom-width: 3px !important;
+   border-left-width: 3px !important;
+   border-right-width: 3px !important;
  }
 }
 .notification {
