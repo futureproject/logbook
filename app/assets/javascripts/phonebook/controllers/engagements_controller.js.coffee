@@ -3,6 +3,7 @@ class ds.EngagementsController extends Backbone.View
     @views = {}
     @collection = ds.collections.engagements
     @listenTo Backbone, "engagements:action", @action
+    @listenTo Backbone, "engagements:save", @saveEngagement
 
   action: (fn, args) ->
     # hide all open views
@@ -36,3 +37,6 @@ class ds.EngagementsController extends Backbone.View
     else
       model = @collection.get({cid: id}) || new ds.Engagement({ cid: id })
     model
+
+  # save an engagement to the collection
+  saveEngagement: (engagement) -> @collection.add engagement

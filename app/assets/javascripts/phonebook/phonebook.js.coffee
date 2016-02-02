@@ -36,15 +36,15 @@ ds.run = ->
   ds.collections.people.bootstrap()
 
   # ditto engagements
-  # another just for storing this session's engagements
-  ds.collections.engagements = new ds.EngagementsCollection
+  #ds.collections.engagements = new ds.EngagementsCollection
   #ds.collections.engagements.bootstrap()
 
-  ds.controllers.sessions_storage = new ds.SessionStorageController
+  # now a controller for storing just this session's data
+  ds.controllers.session_storage = new ds.SessionStorageController
+
   ds.controllers.people = new ds.PeopleController
   ds.controllers.notifications = new ds.NotificationsController
   ds.controllers.engagements = new ds.EngagementsController
-  #ds.collections.schools = new ds.SchoolsCollection
   ds.router = new ds.Router
   Backbone.history.start({ pushState: true })
 

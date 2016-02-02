@@ -42,13 +42,14 @@ Rails.application.routes.draw do
       get '/:scope_type/:scope_id/graphs/:action', controller: 'graphs'
     end
     namespace :v3 do
-      resources :people do
-        collection do
-          get "sync"
-          get "search"
+      [:people, :engagements].each do |r|
+        resources r do
+          collection do
+            get "sync"
+            get "search"
+          end
         end
       end
-      resources :engagements
       get '/assets/signed_s3_path' => 'assets#signed_s3_path'
       #resources :engagements
       #resources :projects

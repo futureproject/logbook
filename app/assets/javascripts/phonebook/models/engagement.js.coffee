@@ -45,6 +45,7 @@ class ds.EngagementsCollection extends Backbone.Collection
   model: ds.Engagement
   namespace: 'engagements'
   url: -> ds.apiHelper.urlFor @namespace
+  timestamp_attr: 'date'
   # return engagements that match the supplied list of attendee_ids
   getByAttendeeIds: (attendee_ids) ->
     attendee_ids = [attendee_ids] if (typeof attendee_ids != "object")

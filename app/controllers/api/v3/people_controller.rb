@@ -15,7 +15,6 @@ class Api::V3::PeopleController < Api::V3::BaseController
     # (msec vs sec), so add one second to sync_time
     sync_time = (params[:sync_time] || Time.now.to_s).to_time + 1.second
     @count = location_scoped(Person).where("created_at > ?", sync_time).count
-    puts "FOUND #{@count} people"
     @count > 0 ? head(302) : head(304)
   end
 

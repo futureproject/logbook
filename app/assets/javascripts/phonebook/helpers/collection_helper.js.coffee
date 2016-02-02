@@ -5,17 +5,20 @@ Backbone.Collection.prototype.resetFromLocalStorage = (callback) ->
     success: callback
 
 Backbone.Collection.prototype.bootstrap = ->
-  # reset the colection from localStorage
+  # sync dirty models
   @syncDirtyAndDestroyed()
+  # reset the colection from localStorage
   @resetFromLocalStorage =>
     @trigger "sync:started"
+    # sync dirty models AGAIN, in case there were no models before local reset
     @syncDirtyAndDestroyed()
     # get the newest record
     newest = @first()
     if newest
       # store the range of dates we're looking for
+      timestamp = @timestamp_attr || "created_at"
       params =
-        sync_time: Date.parse(newest.get('last_engaged')).toString()
+        sync_time: Date.parse(newest.get(timestamp)).toString()
       #check for records engaged after 'newest'
       console.log "checking for new records..."
       $.ajax

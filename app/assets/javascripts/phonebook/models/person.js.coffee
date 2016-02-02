@@ -20,6 +20,7 @@ class ds.Person extends Backbone.Model
 class ds.PeopleCollection extends Backbone.Collection
   model: ds.Person
   namespace: 'people'
+  timestamp_attr: 'last_engaged'
   url: -> ds.apiHelper.urlFor @namespace
   search: (query) ->
     return unless query.length > 1

@@ -2,6 +2,9 @@ class ds.SessionStorageController extends Backbone.View
   initialize: ->
     @collections =
       engagements: new ds.EngagementsCollection
+    _.each @collections, (collection) ->
+      collection.resetFromLocalStorage ->
+        collection.syncDirtyAndDestroyed()
     @listen()
 
   listen: ->
