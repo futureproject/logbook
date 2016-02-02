@@ -20,7 +20,6 @@ class ds.Person extends Backbone.Model
 class ds.PeopleCollection extends Backbone.Collection
   model: ds.Person
   namespace: 'people'
-  timestamp_attr: 'last_engaged'
   url: -> ds.apiHelper.urlFor @namespace
   search: (query) ->
     return unless query.length > 1
@@ -44,3 +43,35 @@ class ds.PeopleCollection extends Backbone.Collection
           results_collection.add server_results
           Backbone.trigger "people:search:results", query, results_collection
           @trigger "search:results", query, results_collection
+
+  bootstrap: ->
+    # sync dirty models
+    @syncDirtyAndDestroyed()
+    # reset the colection from localStorage
+    @resetFromLocalStorage =>
+      @trigger "sync:started"
+      # sync dirty models AGAIN, in case there were no models before local reset
+      @syncDirtyAndDestroyed()
+      # get the newest record
+      newest = @first()
+      if newest
+        # store the range of dates we're looking for
+        timestamp = newest.get('last_engaged') || new Date().toString()
+        params =
+          sync_time: Date.parse(timestamp).toString()
+        #check for records engaged after 'newest'
+        console.log "checking for new records..."
+        $.ajax
+          url: "#{@url()}/sync"
+          data: params
+          complete: (response) =>
+            # if there are new records, re-sync the whole set
+            if response.status == 302
+              console.log "... found."
+              @resetFromServer()
+            else
+              @trigger("sync:ended")
+              console.log "... none."
+
+      else # if there is no newest record, reset from remote source
+        @resetFromServer()
