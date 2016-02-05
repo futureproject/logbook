@@ -49,9 +49,9 @@ class ds.PersonSelectorView extends Backbone.View
   renderItem: (fragment, model) ->
     item = document.createElement('li')
     item.setAttribute("data-id", model.get("id"))
-    if model.get('first_name')
+    if model.has('first_name')
       item.innerHTML = "#{model.get('first_name')} #{model.get('last_name')}"
-    else if model.get("label")
+    else if model.has("label")
       item.innerHTML = model.get("label")
     else
       item.innerHTML = model.id
@@ -98,7 +98,7 @@ class ds.PersonSelectorView extends Backbone.View
   deselectOption: (event) ->
     id = event.currentTarget.getAttribute('data-id')
     m = @selection.get(id)
-    if m && confirm("Deselect #{m.get('label')}?")
+    if m && confirm("Deselect #{m.get('first_name') || m.get('label')}?")
       @selection.remove(m)
 
   updateOptions: (results) ->

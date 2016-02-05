@@ -7,6 +7,7 @@ class ds.EngagementNewView extends Backbone.View
     @views =
       form: new ds.EngagementFormView
         model: @model
+        success_fn: @success_fn
     @listen()
 
   template: JST['phonebook/templates/engagements/new']
@@ -29,5 +30,8 @@ class ds.EngagementNewView extends Backbone.View
     @views.form.renderTo "#engagement-form"
 
   cancel: ->
-    Backbone.trigger "people:action", "show", @person.id
+    if @cancel_fn
+      @cancel_fn()
+    else
+      Backbone.trigger "engagements:action", "index"
 

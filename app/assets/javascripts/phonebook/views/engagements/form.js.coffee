@@ -34,6 +34,8 @@ class ds.EngagementFormView extends Backbone.View
     attrs.duration = attrs.duration * 60
     Backbone.Syphon.deserialize @, attrs
     @views.person_selector.renderTo "#person-selector", { replace: true }
+    attendees = @views.person_selector.collection.getMultiple @model.get('attendee_ids')
+    @views.person_selector.selection.add attendees
     @delegateEvents()
 
   onsubmit: (event) ->
@@ -44,9 +46,11 @@ class ds.EngagementFormView extends Backbone.View
     data.duration = duration
     if @model.save data
       Backbone.trigger "session_storage:engagements:save", @model
-      #Backbone.trigger "engagements:save", @model
-      Backbone.trigger "engagements:action", "show", @model.id
       Backbone.trigger "notification", "Engagement Added!"
+      if @success_fn
+        @success_fn()
+      else
+        Backbone.trigger "engagements:action", "show", @model.id
     else
       alert @model.validationError
 

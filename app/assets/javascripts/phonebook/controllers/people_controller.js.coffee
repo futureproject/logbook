@@ -41,9 +41,10 @@ class ds.PeopleController extends Backbone.View
     engagement = new ds.Engagement
       attendee_ids: @getAttendeeIdsFromRole(id, ds.CURRENT_USER)
       school_id: person.get('school_id')
-    @views.add_engagement = new ds.PersonAddEngagementView
+    @views.add_engagement = new ds.EngagementNewView
       model: engagement
-      person: person
+      success_fn: -> Backbone.trigger "people:action", "show", person.id
+      cancel_fn: -> Backbone.trigger "people:action", "show", person.id
     @views.add_engagement.renderTo ds.views.app.el
 
   getModelFromId: (id) ->
