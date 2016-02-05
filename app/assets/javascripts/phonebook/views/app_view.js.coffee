@@ -43,6 +43,7 @@ class ds.AppView extends Backbone.View
 
   logOut: ->
     @$el.html new ds.SpinnerView().render().el
+    localStorage.clear()
     $.ajax
       url: "/auth/logout",
       complete: =>

@@ -1,5 +1,5 @@
 class ds.EngagementNewView extends Backbone.View
-  className: 'screen animation-fallin new-engagement'
+  className: 'screen animation-fallin engagements new-engagement'
   template: JST["phonebook/templates/engagements/new"]
   initialize: (options={}) ->
     @[option] = options[option] for option of options
@@ -11,8 +11,6 @@ class ds.EngagementNewView extends Backbone.View
     @listen()
 
   template: JST['phonebook/templates/engagements/new']
-
-  className: 'engagement new'
 
   events:
     'touchstart .button': (e) ->

@@ -191,20 +191,12 @@
   left: 0;
   right: 0;
   padding: 15px;
-  z-index: 100;
-}
-
-.menu {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
-  z-index: 101;
-  .panel {
-    padding-top: 35px;
+  z-index: 1000;
+  p {
+    line-height: 1.4;
+  }
+  p:not(:last-child) {
+    margin: 1em;
   }
 }
 
@@ -306,5 +298,22 @@
     @include transform(translate(-50%, -50%));
     cursor: pointer;
     color: $ios-blue;
+  }
+}
+
+.menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  z-index: 101;
+}
+
+.nav-options {
+  li {
+    padding: 1em;
   }
 }

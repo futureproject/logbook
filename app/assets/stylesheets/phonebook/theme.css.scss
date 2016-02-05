@@ -4,7 +4,8 @@ $base-font-color: #040404;
 $base-highlight-color: $ios-blue;
 $base-background-color: white;
 $people-color: $ios-blue;
-$engagements-color: $ios-purple;
+$engagements-color: $ios-red;
+$projects-color: $ios-purple;
 html {
   font-size: 15px;
   line-height: 20px;
@@ -184,7 +185,14 @@ img { background-color: $ios-light-gray; }
 
 .menu {
   background: $base-background-color;
+  li {
+    border-bottom: 1px solid $base-border-color;
+  }
   /*color: white;*/
+  .people { color: $people-color; }
+  .engagements { color: $engagements-color; }
+  .projects { color: $projects-color; }
+  .log-out { color: $ios-red; }
 }
 
 em {

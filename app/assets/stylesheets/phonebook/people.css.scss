@@ -31,3 +31,8 @@
 .add-engagement.screen {
   .panel-header { color: $engagements-color }
 }
+.people {
+  .titlebar {
+    .button { color: $people-color; }
+  }
+}

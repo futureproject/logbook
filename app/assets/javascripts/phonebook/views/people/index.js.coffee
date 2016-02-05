@@ -1,6 +1,6 @@
 class ds.PeopleIndexView extends Backbone.View
   className:->
-    cls = 'index people-index screen animation-fallin'
+    cls = 'index people people-index screen animation-fallin'
     #cls += " animation-fallin" if ds.APP_LOADED
     cls
 

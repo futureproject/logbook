@@ -47,4 +47,7 @@ ds.run = ->
   ds.controllers.engagements = new ds.EngagementsController
   ds.router = new ds.Router
   Backbone.history.start({ pushState: true })
+  if ds.collections.people.length == 0
+    msg = "<p>Welcome, #{ds.CURRENT_USER.get('first_name')}. Your people are downloading.</p><p>If you don't see who you're looking for, use the search field to find or add someone.</p>"
+    Backbone.trigger "notification", msg, 10000
 
