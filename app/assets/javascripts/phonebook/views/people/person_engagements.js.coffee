@@ -3,22 +3,22 @@ class ds.PersonEngagementsView extends Backbone.View
   initialize: ->
     @views = []
     @collection = new ds.EngagementsCollection
+    @collection.comparator = (model) ->
+      - Date.parse(model.get("date"))
     @listenTo @model, 'change:engagements', @refreshEngagements
     @listenTo @collection, 'reset', @render
     @refreshEngagements()
-    #Backbone.trigger "session_storage:engagements:find", {
-      #query_type: "attendee_ids",
-      #query: @model.id
-    #}
 
   events:
     'click .action-header': 'addEngagement'
 
   refreshEngagements: (arg) ->
-    #serverEngagements = @model.get('engagements')
+    serverEngagements = @model.get('engagements')
+    # is it OK to reference another controller explicitly?
+    # maybe refactor to make this evented?
     localEngagements = ds.controllers.session_storage.collections.engagements.getByAttendeeIds @model.id
-    #total = _.uniq localEngagements.concat(serverEngagements)
-    @collection.reset localEngagements
+    total = _.uniq localEngagements.concat(serverEngagements)
+    @collection.reset total
 
   render: ->
     @$el.html @template(@model.tplAttrs())
