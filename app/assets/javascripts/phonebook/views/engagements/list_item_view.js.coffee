@@ -14,5 +14,6 @@ class ds.EngagementListItemView extends Backbone.View
   events:
     'click .delete': 'delete'
 
-  delete: -> Backbone.trigger 'session_storage:engagements:destroy', @model
+  delete: ->
+    Backbone.trigger 'session_storage:engagements:destroy', @model
 

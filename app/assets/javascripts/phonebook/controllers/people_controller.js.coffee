@@ -3,7 +3,7 @@ class ds.PeopleController extends Backbone.View
     @views = {}
     @collection = ds.collections.people
     @listenTo Backbone, "people:action", @action
-    @listenTo Backbone, "people:sync", -> @collection.bootstrap()
+    @listenTo Backbone, "people:sync", -> @collection.resetFromServer()
     @listenTo Backbone, "engagement:created", @moveAttendeesToTop
 
   action: (fn, args) ->
@@ -19,7 +19,7 @@ class ds.PeopleController extends Backbone.View
     ds.router.navigate "phonebook/people"
     @views.index = new ds.PeopleIndexView
       collection: @collection
-    @views.index.renderTo ds.views.app.el, {replace: true }
+    @views.index.renderTo ds.views.app.el
 
   show: (id) ->
     ds.router.navigate "phonebook/people/#{id}"
@@ -67,7 +67,6 @@ class ds.PeopleController extends Backbone.View
   moveAttendeesToTop: (engagement) ->
     collection = @collection.fullCollection || @collection
     people = collection.getMultiple engagement.get('attendee_ids')
-    console.log people
     for person in people
       collection.remove person
       collection.add person,

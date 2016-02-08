@@ -20,7 +20,6 @@ class ds.AppView extends Backbone.View
     @render()
 
   resetScrollPosition: (pos) ->
-    console.log 'resetting scroll pos...'
     pos ||= 0
     @$el.scrollTop(pos)
 

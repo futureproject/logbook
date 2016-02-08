@@ -48,6 +48,7 @@ class ds.PeopleCollection extends Backbone.Collection
     # sync dirty models
     @syncDirtyAndDestroyed()
     # reset the colection from localStorage
+    return if @length > 0
     @resetFromLocalStorage =>
       @trigger "sync:started"
       # sync dirty models AGAIN, in case there were no models before local reset
@@ -60,18 +61,15 @@ class ds.PeopleCollection extends Backbone.Collection
         params =
           sync_time: Date.parse(timestamp).toString()
         #check for records engaged after 'newest'
-        console.log "checking for new records..."
         $.ajax
           url: "#{@url()}/sync"
           data: params
           complete: (response) =>
             # if there are new records, re-sync the whole set
             if response.status == 302
-              console.log "... found."
               @resetFromServer()
             else
               @trigger("sync:ended")
-              console.log "... none."
 
       else # if there is no newest record, reset from remote source
         @resetFromServer()

@@ -1,6 +1,8 @@
 class ds.EngagementFormView extends Backbone.View
   initialize: (options = {}) ->
     @[option] = options[option] for option of options
+    @success_fn ||= =>
+      Backbone.trigger "engagements:action", "show", @model.id
     @views =
       person_selector: new ds.PersonSelectorView
         field_name: "attendee_ids"
@@ -44,13 +46,13 @@ class ds.EngagementFormView extends Backbone.View
     # convert minutes back to hours
     duration = parseFloat(data.duration/60).toFixed(3)
     data.duration = duration
+    # convert attendee_ids to integers, not strings
+    data.attendee_ids = _.map(data.attendee_ids, (x) -> parseInt(x))
+    console.log data.attendee_ids
     if @model.save data
       Backbone.trigger "session_storage:engagements:save", @model
       Backbone.trigger "notification", "Engagement Added!"
-      if @success_fn
-        @success_fn()
-      else
-        Backbone.trigger "engagements:action", "show", @model.id
+      @success_fn()
     else
       alert @model.validationError
 

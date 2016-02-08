@@ -17,6 +17,7 @@ Backbone.Collection.prototype.bootstrap = ->
 
 Backbone.Collection.prototype.resetFromServer = ->
   console.log "resetting collection from server..."
+  @syncDirtyAndDestroyed()
   localStorage.removeItem(@url())
   @fetch
     remote: true,

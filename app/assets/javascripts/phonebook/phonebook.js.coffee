@@ -20,7 +20,6 @@ ds.controllers ={}
 ds.collections ={}
 
 ds.init = (user_info) ->
-  console.log user_info
   ds.views.app = new ds.AppView
     el: "body"
   if user_info
