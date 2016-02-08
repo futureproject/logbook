@@ -14,6 +14,9 @@
         <% if (!!person.school_name) { %>
           <li><%= person.school_name %></li>
         <% } %>
+        <% if (!!person.grade) { %>
+          <li>Grade <%= person.grade %></li>
+        <% } %>
       </ul>
     </div>
 </header>

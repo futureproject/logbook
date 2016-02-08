@@ -203,6 +203,7 @@
 .profile {
   display: table;
   width: 100%;
+  table-layout: fixed;
   > * {
     display: table-cell;
     vertical-align: middle;
@@ -235,17 +236,6 @@
     height: 90px;
     border-radius: 100%;
     border: 1px solid $base-border-color;
-  }
-  .profile-info {
-    line-height: 1.2;
-    padding-left: 1rem;
-    h1 { font-size: 1.3333334em; }
-    p { text-transform: capitalize; }
-    li {
-      display: inline;
-      text-transform: capitalize;
-    }
-    li:not(:last-child):after { content: ", "; }
   }
   input {
     opacity: 0;
