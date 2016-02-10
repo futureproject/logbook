@@ -1,7 +1,7 @@
 require 'spec_helper'
 feature 'Checking the notes feed' do
   scenario "as a signed-in user" do
-    mock_sign_in
+    login_with_oauth
     visit notes_path
     should_see_notes
   end

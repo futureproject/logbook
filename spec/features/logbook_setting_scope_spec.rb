@@ -1,7 +1,7 @@
 require 'spec_helper'
 feature 'Logbook setting scope' do
   before do
-    mock_sign_in
+    login_with_oauth
   end
 
   scenario 'to a site', js:true do

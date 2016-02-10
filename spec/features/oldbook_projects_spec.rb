@@ -1,7 +1,7 @@
 require 'spec_helper'
 feature 'using Oldbook' do
   before do
-    mock_sign_in
+    login_with_oauth
   end
 
   scenario 'to view projects do', js: true do

@@ -1,7 +1,7 @@
 require "spec_helper"
 feature "Managing reports" do
   before do
-    mock_sign_in
+    login_with_oauth
   end
 
   scenario 'from rails_admin' do

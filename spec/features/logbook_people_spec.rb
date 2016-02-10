@@ -1,7 +1,7 @@
 require 'spec_helper'
 feature 'Logbook people' do
   before do
-    mock_sign_in
+    login_with_oauth
   end
 
   scenario 'CREATE' do
