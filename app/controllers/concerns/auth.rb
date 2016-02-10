@@ -1,4 +1,4 @@
-module Authorization
+module Auth
   extend ActiveSupport::Concern
 
   included do
