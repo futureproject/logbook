@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160120212242) do
+ActiveRecord::Schema.define(version: 20160210225117) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,19 +80,22 @@ ActiveRecord::Schema.define(version: 20160120212242) do
   add_index "engagements", ["site_id"], name: "index_engagements_on_site_id", using: :btree
 
   create_table "identities", force: :cascade do |t|
-    t.integer  "user_id"
-    t.string   "provider",         limit: 255
-    t.string   "uid",              limit: 255
-    t.string   "token",            limit: 255
-    t.string   "token_expires_at", limit: 255
-    t.string   "url",              limit: 255
+    t.string   "provider",        limit: 255
+    t.string   "uid",             limit: 255
+    t.string   "token",           limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "person_id"
-    t.string   "email",            limit: 255
-    t.string   "password_digest",  limit: 255
+    t.string   "email",           limit: 255
+    t.string   "password_digest", limit: 255
+    t.string   "nickname"
+    t.string   "image"
+    t.string   "phone"
+    t.string   "location"
   end
 
+  add_index "identities", ["person_id"], name: "index_identities_on_person_id", using: :btree
+  add_index "identities", ["provider"], name: "index_identities_on_provider", using: :btree
   add_index "identities", ["token"], name: "index_identities_on_token", using: :btree
 
   create_table "notes", force: :cascade do |t|
@@ -122,7 +125,7 @@ ActiveRecord::Schema.define(version: 20160120212242) do
     t.integer  "creator_id"
     t.integer  "graduated_in"
     t.string   "auth_token"
-    t.text     "avatar_url"
+    t.string   "avatar_url"
     t.text     "description"
     t.date     "last_engaged"
     t.string   "osis"

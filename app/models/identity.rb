@@ -1,5 +1,4 @@
 class Identity < ActiveRecord::Base
-  belongs_to :user
   belongs_to :person
   accepts_nested_attributes_for :person
   validates_uniqueness_of :uid, scope: :provider
@@ -7,14 +6,7 @@ class Identity < ActiveRecord::Base
   before_create :generate_token
   attr_accessor :first_name, :last_name
 
-  def self.find_or_create_from_facebook(auth_hash)
-    i = self.where(provider: auth_hash[:provider], uid: auth_hash[:uid]).first_or_create
-  end
-
-  def owner
-    user || person
-  end
-
+  # make an auth_token to remember this identity for later logins
   def generate_token
     self.token = SecureRandom.uuid if token.blank?
   end

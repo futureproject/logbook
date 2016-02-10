@@ -4,6 +4,7 @@ class Person < ActiveRecord::Base
   belongs_to :school, touch: true
   belongs_to :site, touch: true
   belongs_to :creator, class_name: "Person", foreign_key: "creator_id"
+  has_many :identities
   has_many :created_people, class_name: "Person", foreign_key: "creator_id"
   has_many :project_people, dependent: :destroy
   has_many :projects, through: :project_people
@@ -16,7 +17,6 @@ class Person < ActiveRecord::Base
   has_many :assets, as: :attachable
   has_many :report_submissions
   has_many :authored_notes, class_name: 'Note', foreign_key: 'author_id', inverse_of: :author
-  before_create :generate_auth_token
   before_save :set_site
   after_touch :set_last_engaged
   ROLE_ENUM = %W(student teacher staff apprentice volunteer parent alum DD CHIEF TFP)
@@ -49,7 +49,6 @@ class Person < ActiveRecord::Base
     .where('people.id NOT IN (SELECT (person_id) FROM project_people WHERE project_people.leading IS true)')
     .uniq
   }
-  scope :with_accounts, -> { where('auth_token IS NOT NULL') }
   scope :field_staff, -> {
     where("role=? OR role=?", "DD", "CHIEF").order(:site_id, :first_name)
   }
@@ -65,20 +64,6 @@ class Person < ActiveRecord::Base
   scope :by_engagements_count, -> (count) { where("engagement_attendees_count >= ?", count) }
   scope :by_projects_count, -> (count) { where("project_people_count >= ?", count) }
   scope :by_notes_count, -> (count) { where("people.notes_count >= ?", count) }
-  #scope :by_engagements_count, -> (count) {
-    #joins(:engagements).group('people.id')
-    #.select("people.*, COUNT(engagements.id) AS engagements_count")
-    #.having("COUNT(engagements.id) >= #{count}")
-  #}
-  #scope :by_projects_count, -> (count) {
-    #joins(:projects).group('people.id')
-    #.select("people.*, COUNT(projects.id) AS projects_count")
-    #.having("count(projects.id) >= #{count}")
-  #}
-  #scope :by_notes_count, -> (count) {
-    #joins(:notes).group('people.id')
-    #.having("count(notes.id) >= #{count}")
-  #}
   scope :by_engagement_dates, -> (t_start=StatCollector.default_range.first, t_end=StatCollector.default_range.last) {
     t_start = t_start.blank? ? StatCollector.default_range.first : Date.parse(t_start)
     t_end = t_end.blank? ? StatCollector.default_range.last : Date.parse(t_end)
@@ -192,7 +177,6 @@ class Person < ActiveRecord::Base
     end
   end
 
-
   # collect all notes on this person directly, their engagements, and their projects
   def collected_notes
     e = engagements.coaching_sessions.joins(:notes).uniq.pluck("notes.id")
@@ -209,11 +193,6 @@ class Person < ActiveRecord::Base
     else
       "National"
     end
-  end
-
-  # make an auth_token to remember this person for later logins
-  def generate_auth_token
-    self.auth_token = SecureRandom.uuid if self.auth_token.blank?
   end
 
   rails_admin do

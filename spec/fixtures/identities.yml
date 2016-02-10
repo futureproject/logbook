@@ -1,10 +1,11 @@
 bruce_identity:
-  user: bruce
+  person: bruce
   provider: google_oauth2
   uid: 123456789
   token: 'batman'
 
 dick_identity:
+  person: dick
   provider: facebook
   uid: 123456789
   token: 'robin'
