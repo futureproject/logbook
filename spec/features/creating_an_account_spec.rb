@@ -6,6 +6,15 @@ feature "Creating an account" do
     reset_omniauth
   end
 
+  scenario "as an employee"
+  # user logs in with google apps oauth
+  # system looks for a Person with that exact email
+  # system looks for people with LOW ACCESS level and similar names, OR
+  # IF current_identity.email matches @thefutureproject.org, all people
+  # user chooses whether s/he is one of those people, or creates a new person
+  # user confirms school and city
+  # boom. user is registered.
+
   scenario "as a non-employee" do
     override_omniauth
     visit root_path
