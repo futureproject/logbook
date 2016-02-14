@@ -39,4 +39,32 @@ namespace :stats do
     end
     file.close
   end
+
+  desc "Export stats for the research dept to analyze"
+  task research_dept: :environment do
+    path = "#{Rails.root.to_s}/tmp/SchoolData_#{Time.now.to_i}.csv"
+    file = open(path, "w")
+    file.write "school,city,first_engagement,last_engagement,enrollment,projects,people_with_projects,completed_projects,people_with_engagements,program_hours,program_coaching_hours,program_event_hours,program_course_hours,program_engagement_hours,engagements_count,coaching_sessions_count,events_count,courses_count,meetings_count\n"
+    School.all.each do |school|
+      file.write "\"#{school.name}\","
+      file.write "\"#{school.site.try(:name)}\","
+      file.write "#{school.engagements.order('date asc').limit(1).first.date},"
+      file.write "#{school.engagements.order('date desc').limit(1).first.date},"
+      file.write "#{school.enrollment},"
+      file.write "#{school.projects.count},"
+      file.write "#{school.people.joins(:projects).uniq.count},"
+      file.write "#{school.projects.where(status: "complete").count},"
+      file.write "#{school.people.joins(:engagements).uniq.count},"
+      file.write "#{school.engagements.sum(:duration).round(1)},"
+      Engagement::KIND_ENUM.each do |kind|
+        file.write "#{school.engagements.where(kind: kind).sum(:duration).round(1)},"
+      end
+      file.write "#{school.engagements.count},"
+      # now break down engagements by kind
+      Engagement::KIND_ENUM.each do |kind|
+        file.write "#{school.engagements.where(kind: kind).count},"
+      end
+      file.write "\n"
+    end
+  end
 end
