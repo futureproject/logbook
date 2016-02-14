@@ -8,8 +8,7 @@
 Rails.application.config.middleware.use OmniAuth::Builder do
   def google_options
     {
-      access_type: 'offline',
-      hd: 'thefutureproject.org'
+      access_type: 'offline'
     }
   end
 

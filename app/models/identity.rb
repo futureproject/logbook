@@ -4,7 +4,6 @@ class Identity < ActiveRecord::Base
   validates_uniqueness_of :uid, scope: :provider
   #has_secure_password validations: false
   before_create :generate_token
-  attr_accessor :first_name, :last_name
 
   # make an auth_token to remember this identity for later logins
   def generate_token

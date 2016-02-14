@@ -6,9 +6,14 @@ feature "Creating an account" do
     reset_omniauth
   end
 
-  scenario "as an employee"
+  scenario "as an employee with no city" do
   # user logs in with google apps oauth
+    override_omniauth("vicky.vale@thefutureproject.org")
+    visit root_path
+    click_button "Sign in with Google"
+    # select National from city form
   # system looks for a Person with that exact email
+  end
   # system looks for people with LOW ACCESS level and similar names, OR
   # IF current_identity.email matches @thefutureproject.org, all people
   # user chooses whether s/he is one of those people, or creates a new person

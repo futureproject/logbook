@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   root 'application#home'
 
   resources :sessions, only: [:new, :create]
+  resources :registrations, only: [:new, :create]
   get 'auth/logout', to: 'sessions#destroy', as: :log_out
   match 'auth/:provider/callback' => 'sessions#create', via: [:post, :get]
   get 'auth/failure' => 'sessions#failure'

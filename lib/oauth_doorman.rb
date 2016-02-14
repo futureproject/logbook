@@ -3,6 +3,7 @@ class OauthDoorman
   # take an Oauth hash, then find
   # or create an Identity for it
   def self.check_id(auth_hash)
+    puts auth_hash
     i = Identity.where(
         provider: auth_hash[:provider],
         uid: auth_hash[:uid]
