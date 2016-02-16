@@ -1,4 +1,3 @@
-require Rails.root.join('lib', 'rails_admin_dedup.rb')
 module RailsAdmin
   module Config
     module Actions

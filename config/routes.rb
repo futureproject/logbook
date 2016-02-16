@@ -7,11 +7,17 @@ Rails.application.routes.draw do
   root 'application#home'
 
   resources :sessions, only: [:new, :create]
-  resources :registrations, only: [:new, :create]
   get 'auth/logout', to: 'sessions#destroy', as: :log_out
   match 'auth/:provider/callback' => 'sessions#create', via: [:post, :get]
   get 'auth/failure' => 'sessions#failure'
+  get "identities/register", to: "identities#register", as: :register
+  get "identities/confirm_location", to: "identities#confirm_location", as: :confirm_location
+  namespace :my do
+    match "/profile", to: "application#update", via: [:post, :patch, :put], as: :profile
+    get ":action", controller: "application"
+  end
   resources :notes, only: [:index, :show]
+
   namespace :api do
     namespace :v2 do
       resources :users, only: [:index, :show, :update]

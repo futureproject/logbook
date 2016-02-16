@@ -3,7 +3,8 @@
   left: 0;
   @include vertical-center;
   text-align: center;
-  p { margin-top: 1em; color: $retro-red; }
+  p { margin-top: 1em; color: $retro-light-gray; }
+  .warning { color: $retro-red; }
   img {
     display: block;
     margin: 0 auto 10px;

@@ -7,7 +7,7 @@ module Logbook::ApplicationHelper
   end
 
   def page_title
-    params[:controller].split('/').last.capitalize
+    "#{params[:controller].split('/').last.capitalize} | Logbook"
   end
 
   def scope_params

@@ -16,7 +16,7 @@ module ApplicationHelper
   end
 
   def page_title
-    "Dream Suite"
+    "Logbook"
   end
 
   def manifest_path(path_to_manifest)

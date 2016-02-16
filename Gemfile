@@ -92,6 +92,10 @@ gem "has_scope"
 # hashtags!
 gem 'simple_hashtag'
 
+# loose name matching
+gem "fuzzy_match"
+gem "amatch"
+
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
   gem 'dotenv-rails'

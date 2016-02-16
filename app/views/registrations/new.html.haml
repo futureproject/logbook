@@ -1,4 +1,10 @@
 .new-registration
   %h1= "Welcome, #{@identity.first_name}."
-  %p Please select your city.
-
+  %p Please confirm your city and school.
+  %p Also, is any one of these people you?
+  - @candidates.each do |person|
+    %p= person.try(:name)
+    %p= person.try(:email)
+    %p= person.try(:school).try(:name)
+    %p= person.try(:site).try(:name)
+    %p= image_tag person.avatar_url

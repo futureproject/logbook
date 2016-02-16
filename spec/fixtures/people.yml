@@ -17,9 +17,11 @@ tim:
   last_name: Drake
   school: gotham_city_high
   dream_team: true
+  email: tim.drake@waynetech.com
 
 alfred:
   first_name: Alfred
   last_name: Pennyworth
   school: gotham_city_high
   dream_team: true
+  email: alfred.pennyworth@thefutureproject.org

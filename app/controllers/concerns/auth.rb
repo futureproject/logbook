@@ -30,7 +30,7 @@ module Auth
       respond_to do |format|
         format.html do
           store_location
-          redirect_to main_app.new_registration_path
+          redirect_to main_app.register_path
         end
         format.json do
           render status: 403, nothing: true
@@ -58,7 +58,6 @@ module Auth
 
   # store this id's token in permanent cookies
   def sign_in identity
-    puts identity.token
     cookies.permanent[:auth_token] = identity.token
   end
 

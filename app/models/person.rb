@@ -70,6 +70,8 @@ class Person < ActiveRecord::Base
     range = t_start..t_end
     joins(:engagements).merge(Engagement.btw(range)).uniq
   }
+  scope :registered, -> { where(registered: true) }
+  scope :unregistered, -> { where(registered: false) }
   # End Filter scopes
   include Hashtaggable
   hashtaggable_attribute :description
@@ -174,6 +176,13 @@ class Person < ActiveRecord::Base
       site.schools.order(:name)
     else
       School.order(:name)
+    end
+  end
+
+  # give a person Level 2 Clearance if they have a futureproject.org email
+  def set_clearance_by_email(address=self.email)
+    if address.end_with?("@thefutureproject.org") && clearance_level < 3
+      self.update clearance_level: 2, registered: true
     end
   end
 

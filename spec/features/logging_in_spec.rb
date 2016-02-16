@@ -3,7 +3,7 @@ feature 'Loogging in with Oauth' do
 
   scenario 'via Google Apps' do
     visit '/'
-    click_button "Log In"
+    click_button "Google"
     should_be_logged_in
   end
 

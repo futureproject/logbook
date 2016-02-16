@@ -6,35 +6,31 @@ feature "Creating an account" do
     reset_omniauth
   end
 
-  scenario "as an employee with no city" do
-  # user logs in with google apps oauth
-    override_omniauth("vicky.vale@thefutureproject.org")
+  scenario "as an employee with an exact email match", js: false do
+    override_omniauth("alfred.pennyworth@thefutureproject.org")
     visit root_path
-    click_button "Sign in with Google"
-    # select National from city form
-  # system looks for a Person with that exact email
-  end
-  # system looks for people with LOW ACCESS level and similar names, OR
-  # IF current_identity.email matches @thefutureproject.org, all people
-  # user chooses whether s/he is one of those people, or creates a new person
-  # user confirms school and city
-  # boom. user is registered.
-
-  scenario "as a non-employee" do
-    override_omniauth
-    visit root_path
-    click_button "Log In"
-    expect(page).to have_content "Log Out"
+    click_button "Google"
+    select_city
+    select_school
+    click_button "Confirm Location"
+    expect(page).to have_content "Alfred Pennyworth"
+    expect(page).to have_content "Gotham City"
   end
 
-  def override_omniauth(test_email="someone@somewhere.com")
+  scenario "as a non-employee who is in the system", js: false do
+    override_omniauth("tim@waynetech.com", "Tim", "Drake")
+    visit root_path
+    click_button "Google"
+  end
+
+  def override_omniauth(test_email="someone@somewhere.com", first_name="John", last_name="Doe")
     OmniAuth.config.add_mock(:google_oauth2, {
       uid: SecureRandom.uuid,
       info: {
-          :name => "Someone Somewhere",
+          :name => "#{first_name} #{last_name}",
           :email => test_email,
-          :first_name => "Someone",
-          :last_name => "Somewhere",
+          :first_name => first_name,
+          :last_name => last_name,
           :image => "https://lh3.googleusercontent.com/url/photo.jpg"
       },
     })
@@ -42,6 +38,14 @@ feature "Creating an account" do
 
   def reset_omniauth
     OmniAuth.config.mock_auth[:google_oauth2] = nil
+  end
+
+  def select_city(city="Gotham City")
+    select city, from: "person[site_id]"
+  end
+
+  def select_school(city="Gotham City High")
+    select city, from: "person[school_id]"
   end
 
 end
