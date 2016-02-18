@@ -47,7 +47,7 @@ module Auth
     else
       respond_to do |format|
         format.html do
-          redirect_to main_app.new_session_path, notice: "You don't have access to this page"
+          redirect_to main_app.new_session_path
         end
         format.json do
           render status: 403, nothing: true

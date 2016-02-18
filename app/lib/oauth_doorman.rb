@@ -34,14 +34,17 @@ class OauthDoorman
 
   # return unregistered people who might match this identity by name
   def self.suggest_matches_for_identity(identity)
-    if identity.email.end_with?("@thefutureproject.org")
-      person_bank = Person.unregistered
-    else
-      # leave @thefutureproject.org email addresses out of options
-      # if @identity doesn't have a TFP email address
-      person_bank = Person.unregistered.where.not("email like ?", "%thefutureproject.org%")
+    query = "#{identity.first_name} #{identity.last_name}"
+    matches = FuzzyMatch.new(Person.unregistered, read: :name).find(
+      query,
+      find_best: true
+    )
+    if !identity.email.end_with?("@thefutureproject.org")
+      #leave @thefutureproject.org email addresses out of options
+      #if @identity doesn't have a TFP email address
+      matches.delete_if {|m| m.email.try(:end_with?,"@thefutureproject.org") }
     end
-    FuzzyMatch.new(person_bank, read: :name).find_best("#{identity.first_name} #{identity.last_name}")
+    matches
   end
 
 end

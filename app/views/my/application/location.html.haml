@@ -1,13 +1,16 @@
-%h1= "Welcome, #{@person.first_name}."
-%p Please confirm your city and school.
+%h1= "Almost there, #{@person.first_name}."
+%p Please confirm your city, school, and role.
 
 = form_for current_user, { url: my_profile_path }  do |f|
-  .field
+  %fieldset
     = f.label :site_id, "City"
     = f.select :site_id, Site.order(:name).collect{|p| [p.name, p.id] }, include_blank: "National"
-  .field
+  %fieldset
     = f.label :school_id, "School"
     = f.select :school_id, School.order(:name).collect{|p| [p.name, p.id] }, include_blank: "No School"
-  .field
+  %fieldset
+    = f.label :role
+    = f.select :role, Person::ROLE_ENUM
+  %fieldset
     = f.submit "Confirm Location"
 

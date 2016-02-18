@@ -5,6 +5,7 @@ class Identity < ActiveRecord::Base
   #has_secure_password validations: false
   before_create :generate_token
   after_destroy :deregister_person
+  after_update :create_person, if: -> (i) { i.person_id.nil? }
 
   # make an auth_token to remember this identity for later logins
   def generate_token
@@ -24,6 +25,14 @@ class Identity < ActiveRecord::Base
     if person.identities.length < 1
       person.update registered: false
     end
+  end
+
+  # create a person for this identity
+  def create_person
+    person_attrs = attributes.symbolize_keys.slice(:first_name, :last_name, :email, :phone)
+    person_attrs[:avatar_url] = self.image
+    self.person = Person.create(person_attrs)
+    self.save
   end
 
   # case-insensitive uid search, useful for finding by email

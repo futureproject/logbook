@@ -2,7 +2,7 @@ class My::ApplicationController < ApplicationController
   skip_before_action :authorize!
   before_action :set_person
 
-  def profile
+  def landing
   end
 
   def location
@@ -11,11 +11,11 @@ class My::ApplicationController < ApplicationController
   def update
     if @person.update person_params
       respond_to do |format|
-        format.html { redirect_to my_profile_path, notice: "Welcome, #{current_user.first_name}." }
+        format.html { redirect_to my_landing_path, notice: "Welcome, #{current_user.first_name}." }
       end
     else
       respond_to do |format|
-        format.html { redirect_to request.referrer, notice: @person.errors.full_messages.join("\n") }
+        format.html { redirect_to request.referrer, notice: @person.errors }
       end
     end
   end

@@ -11,9 +11,11 @@ Rails.application.routes.draw do
   match 'auth/:provider/callback' => 'sessions#create', via: [:post, :get]
   get 'auth/failure' => 'sessions#failure'
   get "identities/register", to: "identities#register", as: :register
-  get "identities/confirm_location", to: "identities#confirm_location", as: :confirm_location
+  resources :identities, only: [:update]
   namespace :my do
     match "/profile", to: "application#update", via: [:post, :patch, :put], as: :profile
+    get "/location", to: "application#location", as: :location
+    get "/landing", to: "application#landing", as: :landing
     get ":action", controller: "application"
   end
   resources :notes, only: [:index, :show]

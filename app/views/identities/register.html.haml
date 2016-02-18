@@ -1,25 +1,19 @@
-.new-registration
+#new-registration
   %h1= "Welcome, #{@identity.first_name}."
-  %p You may already be in the system. Please select the best match:
+  %p Let's just make sure you're not already in the system.
+  %p Are any of these people you?
   =form_for @identity do |f|
-    %ul.candidates
+    %ul
+      %li
+        %label
+          = f.radio_button :person_id, nil
+          %h3 Nope.
       - @candidates.each do |c|
         %li
           %label
             =f.radio_button :person_id, c.id
-            .candidate-avatar= image_tag c.avatar_url
-            .candidate-name=c.name
-            .candidate-school=c.school.name
-      %li.last
-        %label
-          - if @candidates.any?
-            %h4 Other
-          =f.radio_button :person_id, nil
-          =f.hidden_field :token, value: SecureRandom.uuid
-          =@person.name
-          .fields
-            =f.fields_for :person_attributes do |g|
-              = g.select :school_id, (School.all - @schools).map{|s| [s.name, s.id] }
-              = g.hidden_field :first_name, value: @person.first_name
-              = g.hidden_field :last_name, value: @person.last_name
+            = image_tag c.avatar_url
+            %h3= c.name
+            %p= c.school.try(:name)
 
+    = f.submit "Complete Registration"

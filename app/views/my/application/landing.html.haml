@@ -1,0 +1,4 @@
+#landing
+  %h1= @person.name
+  .city= @person.site.try(:name) || "National"
+  .school= @person.school.try(:name) || "No School"

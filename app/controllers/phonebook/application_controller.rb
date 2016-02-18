@@ -1,6 +1,7 @@
 class Phonebook::ApplicationController < ApplicationController
   skip_before_filter :authorize!
-  before_filter :authenticate!
+  skip_before_filter :authenticate!
+  skip_before_filter :check_registration!
 
   def home
     render layout: 'phonebook', text: ''
