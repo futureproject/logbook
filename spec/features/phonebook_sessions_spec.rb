@@ -11,7 +11,7 @@ feature "Using the phonebook" do
     sign_in_with "Google"
     select_city
     select_school
-    click_button "Confirm Location"
+    click_button "Confirmed"
     should_be_signed_in
   end
 
@@ -23,7 +23,7 @@ feature "Using the phonebook" do
     click_button "Complete Registration"
     select_city
     select_school
-    click_button "Confirm Location"
+    click_button "Confirmed"
     should_be_signed_in
   end
 

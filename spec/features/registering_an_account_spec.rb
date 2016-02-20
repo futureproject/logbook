@@ -12,7 +12,7 @@ feature "Registering an account" do
     sign_in_with "Google"
     select_city
     select_school
-    click_button "Confirm Location"
+    click_button "Confirmed"
     should_see_landing_page
   end
 
@@ -24,7 +24,7 @@ feature "Registering an account" do
     click_button "Complete Registration"
     select_city
     select_school
-    click_button "Confirm Location"
+    click_button "Confirmed"
     should_see_landing_page
   end
 
@@ -36,7 +36,7 @@ feature "Registering an account" do
     click_button "Complete Registration"
     select_city
     select_school
-    click_button "Confirm Location"
+    click_button "Confirmed"
     should_see_landing_page
   end
 
@@ -46,7 +46,7 @@ feature "Registering an account" do
     sign_in_with "Google"
     select_city
     select_school
-    click_button "Confirm Location"
+    click_button "Confirmed"
     should_see_landing_page
   end
 
@@ -58,7 +58,7 @@ feature "Registering an account" do
     click_button "Complete Registration"
     select_city
     select_school
-    click_button "Confirm Location"
+    click_button "Confirmed"
     should_see_landing_page
   end
 
