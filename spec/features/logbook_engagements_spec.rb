@@ -22,7 +22,7 @@ feature 'Logbook engagements' do
 
   scenario 'UPDATE' do
     visit "/logbook/engagements"
-    click_link "Combat Training"
+    click_link Engagement.first.name
     click_link 'Edit', match: :first
     fill_in 'description', with: "We trained."
     click_button 'Save'
@@ -31,9 +31,9 @@ feature 'Logbook engagements' do
 
   scenario 'DUPLICATE' do
     visit "/logbook/engagements"
-    click_link "Combat Training"
+    click_link Engagement.first.name
     click_link 'Duplicate'
-    expect(page).to have_content "Combat Training (Remix)"
+    expect(page).to have_content "#{Engagement.first.name} (Remix)"
     #expect(page).to have_content 'Engagement was successfully duplicated'
   end
 
@@ -50,13 +50,14 @@ feature 'Logbook engagements' do
     visit "/logbook/engagements"
     click_link Engagement.first.name
     click_link "Edit"
-    within '#engagement-form' do
-      field = first('.project-ids-field .selectize-input input[type=text]')
-      field.set("Design")
-      find('div[data-selectable]', match: :first).click
+    within '.project-ids-field' do
+      field = first('.selectize-input input[type=text]')
+      q = Project.first.name.partition(" ").first
+      field.set q
+      find('div', text: q, match: :first).click
     end
     click_button "Save"
-    expect(page).to have_content "Design Better"
+    expect(page).to have_content Project.first.name
   end
 
   scenario 'DESTROY'
@@ -69,11 +70,11 @@ feature 'Logbook engagements' do
 
   def take_attendance
     uuid = SecureRandom.uuid
-    within '#engagement-form' do
-      field = first('.attendance-field .selectize-input input[type=text]')
-      field.set("James T Kirk#{uuid}")
-      find('div[data-selectable].create').click
-      sleep 0.5
+    within '.attendance-field' do
+      field = first('.selectize-input input[type=text]')
+      q = "James T Kirk#{uuid}"
+      field.set(q)
+      find('div', text: q, match: :first).click
     end
   end
 
