@@ -14,15 +14,19 @@ class Identity < ActiveRecord::Base
 
   # assign and id to a person and complete person's registration
   def assign_to_person(person)
-    self.update person_id: person.id
-    person.set_clearance_by_email self.email
-    true
+    if person
+      self.update person_id: person.id
+      person.set_clearance_by_email self.email
+      true
+    else
+      self.create_person
+    end
   end
 
   # mark this person as unregistered if they have
   # no other identities
   def deregister_person
-    if person.identities.length < 1
+    if person && person.identities.length < 1
       person.update registered: false
     end
   end
@@ -31,8 +35,8 @@ class Identity < ActiveRecord::Base
   def create_person
     person_attrs = attributes.symbolize_keys.slice(:first_name, :last_name, :email, :phone)
     person_attrs[:avatar_url] = self.image
-    self.person = Person.create(person_attrs)
-    self.save
+    person = Person.create(person_attrs)
+    self.assign_to_person(person)
   end
 
   # case-insensitive uid search, useful for finding by email

@@ -1,0 +1,61 @@
+html, body {
+  font-size: 15px;
+  margin: 0;
+  padding: 0;
+  font-weight: 400;
+  font-family: avenir, $base-font-family;
+  background-color: $retro-white;
+  color: $base-font-color;
+  line-height: 1.33333333333333;
+  height: 100%;
+}
+
+a {
+  color: $retro-blue;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+body { text-align: center; }
+
+h1, h2 {
+  margin: 1em auto;
+  font-weight: 700;
+}
+
+h3, h4, h5, h6 {
+  font-weight: 700;
+}
+
+form {
+  max-width: 480px;
+  margin: 2em auto;
+}
+
+p, fieldset {
+  margin: 1em auto;
+}
+
+section {
+  padding: 1em;
+}
+
+input, select {
+  display: block;
+  width: 100%;
+}
+
+input[type=submit] {
+  margin: 2em auto;
+}
+
+label {
+  font-weight: bold;
+  display: block;
+  text-align: left;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}

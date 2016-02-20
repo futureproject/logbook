@@ -39,7 +39,7 @@ class ds.PeopleController extends Backbone.View
     ds.router.navigate "phonebook/people/#{id}/add/engagement"
     person = @getModelFromId(id)
     engagement = new ds.Engagement
-      attendee_ids: @getAttendeeIdsFromRole(id, ds.CURRENT_USER)
+      attendee_ids: @getAttendeeIdsFromRole(id, ds.IDENTITY)
       school_id: person.get('school_id')
     @views.add_engagement = new ds.EngagementNewView
       model: engagement
@@ -56,9 +56,9 @@ class ds.PeopleController extends Backbone.View
       person = @collection.get({cid: id}) || new ds.Person({ cid: id })
     person
 
-  getAttendeeIdsFromRole: (person_id, user) ->
-    if user.get('role').match(/volunteer|student|APR/i)
-      [person_id, user.id]
+  getAttendeeIdsFromRole: (person_id, identity) ->
+    if identity.get('person').role.match(/volunteer|student|APR/i)
+      [person_id, identity.get('person').id]
     else
       [person_id]
 

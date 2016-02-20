@@ -1,5 +1,6 @@
 class My::ApplicationController < ApplicationController
   skip_before_action :authorize!
+  skip_before_action :authenticate!
   before_action :set_person
 
   def landing
@@ -11,7 +12,7 @@ class My::ApplicationController < ApplicationController
   def update
     if @person.update person_params
       respond_to do |format|
-        format.html { redirect_to my_landing_path, notice: "Welcome, #{current_user.first_name}." }
+        format.html { redirect_to (session[:redirect] || main_app.root_path) }
       end
     else
       respond_to do |format|

@@ -4,25 +4,8 @@
 @import 'neat';
 @import "loading";
 @import "logbook/animations";
+@import "shared/animations";
+@import "shared/theme";
 @import "sessions";
-@import "registrations";
 @import "notes";
-
-html, body {
-  font-size: 15px;
-  margin: 0;
-  padding: 0;
-  font-weight: 400;
-  font-family: avenir, $base-font-family;
-  background-color: $retro-white;
-  color: $base-font-color;
-  line-height: 1.2;
-  height: 100%;
-}
-
-a {
-  color: $retro-blue;
-  font-weight: bold;
-  text-decoration: none;
-}
 

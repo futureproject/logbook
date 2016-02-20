@@ -5,13 +5,16 @@
 @import 'bourbon';
 @import 'neat';
 @import 'forms';
+@import '../shared/theme';
 @import 'theme';
 @import 'modules';
 @import 'engagements';
 @import 'people';
 @import 'projects';
+@import '../shared/animations';
 @import 'animations';
 @import 'loading';
+@import 'sessions';
 //@import 'standalone';
 
 * {

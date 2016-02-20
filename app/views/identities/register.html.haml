@@ -1,19 +1,22 @@
-#new-registration
+%section#registration
   %h1= "Welcome, #{@identity.first_name}."
   %p Let's just make sure you're not already in the system.
   %p Are any of these people you?
   =form_for @identity do |f|
     %ul
-      %li
-        %label
-          = f.radio_button :person_id, nil
-          %h3 Nope.
       - @candidates.each do |c|
         %li
           %label
             =f.radio_button :person_id, c.id
             = image_tag c.avatar_url
-            %h3= c.name
-            %p= c.school.try(:name)
+            %p
+              .person-name= c.name
+              .person-role= c.role
+              .school-name= c.school.try(:name)
+      %li
+        %label
+          = f.radio_button :person_id, nil
+          = image_tag current_identity.image
+          %h3 Nope.
 
     = f.submit "Complete Registration"

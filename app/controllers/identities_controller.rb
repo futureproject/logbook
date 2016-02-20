@@ -6,6 +6,7 @@ class IdentitiesController < ApplicationController
 
   # match current_identity to a person
   def register
+    session[:redirect] = params[:redirect_to] if params[:redirect_to]
     if OauthDoorman.confirms_id_matches_existing_email(@identity)
       redirect_to my_location_path
     else
@@ -17,12 +18,11 @@ class IdentitiesController < ApplicationController
     end
   end
 
+  # process registration for this identity
   def update
-    if @identity.update(sanitized_identity_params)
-      redirect_to my_location_path
-    else
-      redirect_to :register, notice: @identity.errors
-    end
+    person = Person.find_by(id: identity_params[:person_id])
+    @identity.assign_to_person(person)
+    redirect_to my_location_path
   end
 
   def confirm_location

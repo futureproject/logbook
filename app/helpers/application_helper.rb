@@ -40,5 +40,23 @@ module ApplicationHelper
     end
   end
 
+  def identity_js_data
+    current_identity.as_json(
+      only: [:id, :first_name, :last_name, :person_id],
+      include: {
+        person: {
+          only: [
+            :id,
+            :first_name,
+            :last_name,
+            :email,
+            :role,
+            :school_id,
+            :site_id
+          ]
+        }
+      }
+    )
+  end
 
 end

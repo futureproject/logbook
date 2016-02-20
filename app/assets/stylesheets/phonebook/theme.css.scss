@@ -6,10 +6,12 @@ $base-background-color: white;
 $people-color: $ios-blue;
 $engagements-color: $ios-red;
 $projects-color: $ios-purple;
+
 html {
   font-size: 15px;
   line-height: 20px;
 }
+
 body {
   -webkit-tap-highlight-color: transparent;
   margin: 0;
@@ -18,13 +20,11 @@ body {
   font-family: $base-font-family;
   background-color: $base-background-color;
   color: $base-font-color;
-}
-.screen {
-  background-color: $base-background-color;
+  text-align: left;
 }
 
-h1, h2, h3, h4, h5, h6, strong {
-  font-weight: bold;
+.screen {
+  background-color: $base-background-color;
 }
 
 .actions-field input {
@@ -206,6 +206,7 @@ em {
   border-top: 1px solid $base-border-color;
   line-height: 3rem;
   cursor: pointer;
+  margin: 0;
   &:active {
     background: $base-border-color;
   }

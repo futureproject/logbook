@@ -17,7 +17,7 @@ class ds.EngagementsController extends Backbone.View
   new: ->
     ds.router.navigate "phonebook/engagements/new"
     engagement = new ds.Engagement
-      school_id: ds.CURRENT_USER.get('school_id')
+      school_id: ds.IDENTITY.get('person').school_id
     @views.new = new ds.EngagementNewView
       model: engagement
     @views.new.renderTo ds.views.app.el

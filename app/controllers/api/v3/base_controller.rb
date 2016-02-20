@@ -1,5 +1,6 @@
 class Api::V3::BaseController < Api::BaseController
   before_filter :set_default_response_format
+  skip_before_filter :authorize!
 
   private
     # return JSON by default

@@ -4,7 +4,7 @@ class ds.Person extends Backbone.Model
   defaults: ->
     role: 'student'
     grade: null
-    school_id: ds.CURRENT_USER.get('school_id')
+    school_id: ds.IDENTITY.get('person').school_id
 
   toJSON: ->
     _.omit _.clone(@attributes), ['engagements', 'projects', 'notes']

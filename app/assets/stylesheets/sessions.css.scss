@@ -10,6 +10,7 @@
     margin: 0 auto 10px;
     width: 8em;
     height: 8em;
+    background: none;
   }
   form {
     margin: 0 auto;
@@ -39,5 +40,38 @@
       font-size: 1.5em;
       font-family: 'avenir next', avenir, sans-serif;
     }
+  }
+}
+#registration {
+  ul {
+    @include clearfix;
+  }
+  li {
+    @include span-columns(4);
+    @include omega(3n);
+    label {
+      font-weight: normal;
+      text-align: center;
+    }
+    .person-role, .school-name {
+      color: $retro-light-gray;
+      text-transform: capitalize;
+      font-size: .8em;
+    }
+  }
+  img {
+    width: 4em;
+    height: 4em;
+    border-radius: 100%;
+    background: $base-border-color;
+    margin: 0 auto;
+    border: 3px solid transparent;
+  }
+  input[type=radio] {
+    display: none;
+  }
+  input:checked + img {
+    border: 3px solid $retro-yellow;
+    @include animation(pulse 1s ease infinite alternate-reverse);
   }
 }

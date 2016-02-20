@@ -5,12 +5,16 @@ class ApplicationController < ActionController::Base
   include Auth
   before_action :authenticate!
   before_action :check_registration!
-  before_action :authorize!
+  before_action :authorize!, except: [:home]
   helper_method :current_scope
   helper_method :beginning_of_school_year
 
   def home
-    redirect_to logbook_root_url
+    if current_user && current_user.clearance_level > 1
+      redirect_to logbook_root_path
+    else
+      redirect_to phonebook_root_path
+    end
   end
 
   def set_scope

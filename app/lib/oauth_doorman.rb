@@ -21,8 +21,8 @@ class OauthDoorman
   # find a person that matches this Identity's email
   # and if s/he exists, complete registration automatically
   def self.confirms_id_matches_existing_email(identity)
-    person = Person.unregistered.find_by(email: identity.email)
-    # if there's an exact email match from unregistered people,
+    person = Person.find_by(email: identity.email)
+    # if there's an exact email match from people,
     # assign @identity to that person, and redirect to
     # school/site confirmation
     if person
@@ -32,10 +32,10 @@ class OauthDoorman
     end
   end
 
-  # return unregistered people who might match this identity by name
+  # return people who might match this identity by name
   def self.suggest_matches_for_identity(identity)
     query = "#{identity.first_name} #{identity.last_name}"
-    matches = FuzzyMatch.new(Person.unregistered, read: :name).find(
+    matches = FuzzyMatch.new(Person.all, read: :name).find(
       query,
       find_best: true
     )

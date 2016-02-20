@@ -24,6 +24,24 @@ module OmniauthSupport
         :last_name => "Grayson"
     },
   })
+
+  def override_omniauth(test_email="someone@somewhere.com", first_name="John", last_name="Doe")
+    OmniAuth.config.add_mock(:google_oauth2, {
+      uid: SecureRandom.uuid,
+      info: {
+          :name => "#{first_name} #{last_name}",
+          :email => test_email,
+          :first_name => first_name,
+          :last_name => last_name,
+          :image => "https://lh3.googleusercontent.com/url/photo.jpg"
+      },
+    })
+  end
+
+  def reset_omniauth
+    OmniAuth.config.mock_auth[:google_oauth2] = nil
+  end
+
 end
 
 RSpec.configure do |config|

@@ -2,9 +2,10 @@ bruce:
   first_name: Bruce
   last_name: Wayne
   email: bruce.wayne@thefutureproject.org
-  auth_token: batman
   role: 'DD'
   school: gotham_city_high
+  registered: true
+  clearance_level: 2
 
 dick:
   first_name: Dick

@@ -1,0 +1,8 @@
+@include keyframes(pulse) {
+  from {
+    @include transform(scale(1.1));
+  }
+  to {
+    @include transform(scale(1));
+  }
+}

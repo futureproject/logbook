@@ -2,5 +2,3 @@
   = image_tag 'logo.png', alt: 'The Future Project'
   %p Sign in with
   = button_to 'Google', '/auth/google_oauth2'
-  - if flash[:notice]
-    %p.warning= flash[:notice]

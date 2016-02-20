@@ -65,6 +65,7 @@ Rails.application.routes.draw do
       #resources :schools, only: [:index]
       #resources :sessions, only: [:new]
       #resources :sites, only: [:index]
+      resources :me, only: [:index]
     end
     namespace :public do
       resources :people do
@@ -114,12 +115,12 @@ Rails.application.routes.draw do
   end
 
   get '/logbookapp' => 'oldbook/application#home', as: 'logbook_app'
-  get '/mobile' => 'phonebook/application#home'
+  get '/mobile' => 'phonebook/application#app'
   namespace :phonebook do
-    root 'application#home'
+    root 'application#app'
     get 'manifest.appcache', to: 'application#manifest'
     get 'auth', to: "application#auth"
-    get '*anywhere', to: 'application#home'
+    get '*anywhere', to: 'application#app'
   end
   namespace :oldbook do
     root 'application#home'

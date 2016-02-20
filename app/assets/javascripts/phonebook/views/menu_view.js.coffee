@@ -9,7 +9,7 @@ class ds.MenuView extends Backbone.View
     'touchmove': 'block'
     'click .log-out': 'logout'
 
-  tplAttrs: -> { user: ds.CURRENT_USER.toJSON() }
+  tplAttrs: -> { user: ds.IDENTITY.toJSON() }
 
   render: ->
     @$el.html(@template(@tplAttrs()))

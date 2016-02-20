@@ -3,6 +3,7 @@ module Auth
 
   included do
     self.send :helper_method, :current_user
+    self.send :helper_method, :current_identity
   end
 
   #allow anyone with a registered identity through
