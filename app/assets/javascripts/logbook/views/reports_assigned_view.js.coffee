@@ -18,7 +18,7 @@ class ds.ReportsAssignedView extends Backbone.View
 
   postRender: ->
     @views.table.renderTo "#report-submissions-table"
-    @renderSubmissionsLink() if ds.current_user.get('clearance_level') >= 2
+    @renderSubmissionsLink() if ds.current_user.get('clearance_level') >= 3
 
   renderSubmissionsLink: ->
     @$el.find('#reports-submitted-link-container').html "
