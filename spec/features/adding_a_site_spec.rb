@@ -11,12 +11,12 @@ feature 'Adding a site' do
   end
 
   def fill_form
-    fill_in 'site[name]', with: 'Gotham City'
+    fill_in 'site[name]', with: 'Metropolis'
     click_button 'Save'
   end
 
   def should_see_geocoded_school
-    expect(page).to have_content 'Gotham City'
+    expect(page).to have_content 'Metropolis'
     expect(page).to have_content "Latitude"
   end
 

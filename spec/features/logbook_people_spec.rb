@@ -24,7 +24,7 @@ feature 'Logbook people' do
 
   scenario 'UPDATE' do
     visit "/logbook/people"
-    first("#people-table tbody a").click
+    click_link Person.last.first_name
     fill_in 'first_name', with: 'Richard'
     fill_in 'last_name', with: 'Grayson'
     should_see_person_named "Richard"
@@ -32,7 +32,7 @@ feature 'Logbook people' do
 
   scenario 'can get onboarded' do
     visit "/logbook/people"
-    first("#people-table tbody a").click
+    click_link Person.last.first_name
     first('.toggle-more').click
     check 'ob_media_release'
     check 'ob_parental_consent'

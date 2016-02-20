@@ -16,8 +16,8 @@ feature 'Logbook engagements' do
 
   scenario 'READ' do
     visit "/logbook/engagements"
-    click_link "Ethics Class"
-    should_see_engagement_named "Ethics Class"
+    click_link Engagement.first.name
+    should_see_engagement_named Engagement.first.name
   end
 
   scenario 'UPDATE' do
@@ -39,7 +39,7 @@ feature 'Logbook engagements' do
 
   scenario "tagging with SEL skills" do
     visit "/logbook/engagements"
-    first("#engagements-table tbody a").click
+    click_link Engagement.first.name
     click_link "Edit"
     click_link "#SelfAwareness"
     click_button "Save"
@@ -48,7 +48,7 @@ feature 'Logbook engagements' do
 
   scenario "tagging with projects" do
     visit "/logbook/engagements"
-    first("#engagements-table tbody a").click
+    click_link Engagement.first.name
     click_link "Edit"
     within '#engagement-form' do
       field = first('.project-ids-field .selectize-input input[type=text]')

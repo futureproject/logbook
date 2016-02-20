@@ -90,7 +90,7 @@ gem 'delayed_job_active_record'
 gem "has_scope"
 
 # hashtags!
-gem 'simple_hashtag'
+gem 'simple_hashtag', git: "https://github.com/futureproject/simple_hashtag.git"
 
 # loose name matching
 gem "fuzzy_match"

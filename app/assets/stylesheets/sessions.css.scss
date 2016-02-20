@@ -49,6 +49,7 @@
   li {
     @include span-columns(4);
     @include omega(3n);
+    position: relative;
     label {
       font-weight: normal;
       text-align: center;
@@ -68,7 +69,8 @@
     border: 3px solid transparent;
   }
   input[type=radio] {
-    display: none;
+    position: absolute;
+    opacity: 0;
   }
   input:checked + img {
     border: 3px solid $retro-yellow;

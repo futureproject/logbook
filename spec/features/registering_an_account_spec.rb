@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature "Creating an account" do
+feature "Registering an account" do
 
   after(:each) do
     reset_omniauth

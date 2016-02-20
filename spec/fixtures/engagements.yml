@@ -13,3 +13,11 @@ combat_training:
   kind: 'Coaching Session'
   duration: 2.0
   creator: bruce
+
+party:
+  date: <%= Date.yesterday %>
+  school: gotham_city_high
+  name: "Start of School Celebration"
+  kind: 'Event'
+  duration: 2.0
+  creator: bruce
