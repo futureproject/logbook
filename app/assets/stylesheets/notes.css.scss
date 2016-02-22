@@ -40,8 +40,6 @@
   h2 { color: $retro-slate; }
   border-bottom: 1px solid rgba(0,0,0,.1);
   background: $retro-white;
-  /*@include linear-gradient(15deg, $retro-blue, darken($retro-blue, 10%));*/
-  /*color: $retro-white;*/
 }
 
 .notes-container {
@@ -52,6 +50,7 @@
 .note {
   position: relative;
   background: $base-border-color;
+  text-align: left;
   * { box-sizing: border-box; }
   em {
     font-weight: bold;
