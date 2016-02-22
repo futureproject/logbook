@@ -181,7 +181,10 @@ class Person < ActiveRecord::Base
 
   # give a person Level 2 Clearance if they have a futureproject.org email
   def set_clearance_by_email(address=self.email)
-    if address.end_with?("@thefutureproject.org") && clearance_level < 3
+    return unless address.end_with?("@thefutureproject.org")
+    if clearance_level > 2
+      self.update registered: true
+    else
       self.update clearance_level: 2, registered: true
     end
   end

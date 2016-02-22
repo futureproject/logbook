@@ -48,7 +48,6 @@ class ds.EngagementFormView extends Backbone.View
     data.duration = duration
     # convert attendee_ids to integers, not strings
     data.attendee_ids = _.map(data.attendee_ids, (x) -> parseInt(x))
-    console.log data.attendee_ids
     if @model.save data
       Backbone.trigger "session_storage:engagements:save", @model
       Backbone.trigger "notification", "Engagement Added!"

@@ -17,7 +17,7 @@ class ds.PersonEngagementsView extends Backbone.View
     # is it OK to reference another controller explicitly?
     # maybe refactor to make this evented?
     localEngagements = ds.controllers.session_storage.collections.engagements.getByAttendeeIds @model.id
-    total = _.uniq localEngagements.concat(serverEngagements)
+    total = _.uniq(localEngagements.concat(serverEngagements))
     @collection.reset total
 
   render: ->

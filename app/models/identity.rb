@@ -35,6 +35,7 @@ class Identity < ActiveRecord::Base
   def create_person
     person_attrs = attributes.symbolize_keys.slice(:first_name, :last_name, :email, :phone)
     person_attrs[:avatar_url] = self.image
+    person_attrs[:registered] = true
     person = Person.create(person_attrs)
     self.assign_to_person(person)
   end

@@ -46,6 +46,9 @@
   .date-month {
     background: $engagements-color;
   }
+  .item-info {
+    text-transform: capitalize;
+  }
 }
 .add-engagement.screen {
   .panel-header { color: $engagements-color }
