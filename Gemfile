@@ -100,6 +100,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
   gem 'dotenv-rails'
   gem 'bullet'
+  gem 'faker'
 end
 
 group :test do

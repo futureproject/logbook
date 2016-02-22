@@ -1,7 +1,7 @@
 class School < ActiveRecord::Base
-  geocoded_by :address
+  #geocoded_by :address
   validates_presence_of :name, :address
-  after_validation :geocode, :if => lambda{ |obj| obj.address_changed? }
+  #after_validation :geocode, :if => lambda{ |obj| obj.address_changed? }
   after_validation :archive_people, :if => lambda{ |obj| obj.active_changed? }
   before_create :set_shortname
 
