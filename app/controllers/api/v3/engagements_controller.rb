@@ -22,7 +22,7 @@ class Api::V3::EngagementsController < Api::V3::BaseController
   # GET /api/v3/engagements/1
   # GET /api/v3/engagements/1.json
   def show
-    @engagement = Engagement.find(params[:id])
+    @engagement = current_user.created_engagements.find(params[:id])
   end
 
   # GET /api/v3/engagements/new
