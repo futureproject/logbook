@@ -12,9 +12,8 @@
           :created_at,
           :updated_at,
           :date_submitted
-        json.excerpt truncate(strip_tags(report_submission.body))
         json.author report_submission.person.name
-        json.city report_submission.person.try(:site).try(:name)
+        json.city report_submission.person.try(:site).try(:shortname)
       end
     end
   end

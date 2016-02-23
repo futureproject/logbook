@@ -15,7 +15,6 @@ class ds.ReportSubmissionsCollection extends Backbone.Collection
   backgrid_columns: [
     { name: 'status', cell: 'string' }
     { name: 'name', cell: ds.LogbookLinkCell, label: 'Report Name' }
-    { name: 'excerpt', cell: ds.LogbookLinkCell, label: 'Questions', sortable: false }
     { name: 'created_at', cell: 'date', label: 'Date Assigned' }
   ]
 
@@ -25,10 +24,11 @@ class ds.ReportsSubmittedCollection extends Backbone.PageableCollection
   url: -> ds.apiHelper.urlFor "reports_submitted"
   backgrid_columns: [
     { name: 'name', cell: ds.LogbookLinkCell, label: 'Report Name' }
-    { name: 'excerpt', cell: ds.LogbookLinkCell, label: 'Questions', sortable: false }
     { name: 'author', cell: 'string', sortable: false }
     { name: 'city', cell: 'string', sortable: false }
-    { name: 'date_submitted', cell: 'date', label: 'Date Submitted' }
+    { name: 'status', cell: 'string' }
+    { name: 'date_submitted', cell: 'date', label: 'Submitted' }
+    { name: 'created_at', cell: 'date', label: 'Assigned' }
   ]
   parseRecords: (response) ->
     response.data

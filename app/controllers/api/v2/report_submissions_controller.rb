@@ -19,8 +19,7 @@ class Api::V2::ReportSubmissionsController < Api::V2::BaseController
   def submitted
     @t = stat_times
     @report_submissions = apply_scopes(current_scope.report_submissions)
-      .where(status: "Submitted")
-      .order("date_submitted DESC, people.site_id ASC")
+      .order("created_at DESC, people.site_id ASC")
       .btw(@t)
       .page(params[:page])
     @total = @report_submissions.total_count

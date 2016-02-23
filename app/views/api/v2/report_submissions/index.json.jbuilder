@@ -6,6 +6,5 @@ json.array!(@report_submissions) do |report_submission|
       :person_id,
       :created_at,
       :updated_at
-    json.excerpt truncate(strip_tags(report_submission.body))
   end
 end
