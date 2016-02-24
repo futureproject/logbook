@@ -6,12 +6,14 @@ class ds.PeopleLapsedView extends Backbone.View
       table: new ds.IndexTableView
         collection: @collection
         columns:[
-          {name: 'first_name', label: 'First', cell: ds.LogbookLinkCell }
-          {name: 'last_name', cell: ds.LogbookLinkCell, label: 'Last'}
-          {name: 'grade', cell:'integer'}
-          {name: 'role', cell:'string'}
-          {name: 'dream_team', cell:'boolean', label: 'DT'}
-          {name: 'last_engaged', cell:'date', label: 'Last Engaged'}
+          {name: 'first_name', label: 'First', cell: ds.LogbookLinkCell, sortable: false }
+          {name: 'last_name', cell: ds.LogbookLinkCell, label: 'Last', sortable: false}
+          {name: 'dream_team', cell:'boolean', label: 'DT', sortable: false }
+          {name: 'future_fellow', cell:'boolean', label: 'FF', sortable: false }
+          {name: 'grade', cell:'integer', sortable: false}
+          {name: 'project_people_count', cell:'integer', label: 'Projects', sortable: false }
+          {name: 'engagement_attendees_count', cell:'integer', label: 'Engagements', sortable: false }
+          {name: 'last_engaged', cell:'date', label: 'Last Engaged', sortable: false}
         ]
 
   render: ->
@@ -28,7 +30,7 @@ class ds.PeopleLapsedView extends Backbone.View
     $.ajax
       url: ds.apiHelper.urlFor("people_lapsed")
       success: (response) =>
-        @collection.reset(response)
+        @collection.reset(response.data)
         @toggleVisibility()
 
   toggleVisibility: ->

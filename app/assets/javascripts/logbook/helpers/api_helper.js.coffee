@@ -14,7 +14,7 @@ ds.apiHelper =
     people:  -> "/api/v2/people"
     people_leaderboard:  -> "/api/v2/people/leaderboard"
     people_graphs: (args) -> "/api/v2/people/#{args.id}/graphs/#{args.graph}"
-    people_lapsed: -> "/api/v3/people/lapsed"
+    people_lapsed: -> "/api/v2/people/lapsed"
     person: (id) -> "/api/v2/people/#{id}"
     projects:  -> "/api/v2/projects"
     projects_leaderboard:  -> "/api/v2/projects/leaderboard"

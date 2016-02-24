@@ -25,6 +25,7 @@ Rails.application.routes.draw do
       resources :users, only: [:index, :show, :update]
       resources :people do
         get 'leaderboard', on: :collection
+        get 'lapsed', on: :collection
       end
       resources :projects do
         get 'leaderboard', on: :collection

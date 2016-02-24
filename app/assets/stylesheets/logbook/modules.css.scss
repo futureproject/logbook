@@ -222,6 +222,9 @@
     text-align: left;
     width: 40ch;
   }
+  &.dream_team, &.future_fellow {
+    text-align: center;
+  }
 }
 .backgrid-paginator {
   position: fixed;

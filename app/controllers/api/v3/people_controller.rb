@@ -21,7 +21,7 @@ class Api::V3::PeopleController < Api::V3::BaseController
   def lapsed
     @people = location_scoped(Person).active
       .where(last_engaged: 6.months.ago..3.weeks.ago)
-      .order(:dream_team, "last_engaged DESC").limit(10)
+      .order("dream_team DESC", "last_engaged DESC").limit(10)
     render template: "api/v3/people/index"
   end
 
