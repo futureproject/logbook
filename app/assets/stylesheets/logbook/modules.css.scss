@@ -218,7 +218,7 @@
 }
 .dashboard .backgrid th {
   text-align: right;
-  &.name {
+  &.name, &.first_name, &.last_name {
     text-align: left;
     width: 40ch;
   }

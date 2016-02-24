@@ -50,21 +50,23 @@ Rails.application.routes.draw do
       end
       get '/:scope_type/:scope_id/graphs/:action', controller: 'graphs'
     end
+
     namespace :v3 do
-      [:people, :engagements].each do |r|
-        resources r do
-          collection do
-            get "sync"
-            get "search"
-          end
+      resources :people do
+        collection do
+          get "sync"
+          get "search"
+          get "lapsed"
         end
       end
-      get '/assets/signed_s3_path' => 'assets#signed_s3_path'
+      resources :engagements
       namespace :me do
         root to: "base#profile"
       end
+      get '/assets/signed_s3_path' => 'assets#signed_s3_path'
     end
-  end
+
+  end# end api namespace
 
   namespace :logbook do
     root 'application#dashboard'

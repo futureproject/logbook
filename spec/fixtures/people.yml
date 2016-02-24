@@ -19,6 +19,7 @@ tim:
   school: gotham_city_high
   dream_team: true
   email: tim.drake@waynetech.com
+  last_engaged: <%= 6.months.ago %>
 
 alfred:
   first_name: Alfred

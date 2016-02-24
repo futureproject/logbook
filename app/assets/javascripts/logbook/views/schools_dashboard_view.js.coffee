@@ -1,6 +1,7 @@
 class ds.SchoolsDashboardView extends Backbone.View
   initialize: ->
     @views =
+      people_lapsed: new ds.PeopleLapsedView
       schools_table: new ds.StatsTableView
         collection: ds.collections.schools
         columns: ds.collections.schools.backgrid_columns
@@ -32,6 +33,7 @@ class ds.SchoolsDashboardView extends Backbone.View
 
   postRender: ->
     @views.time_filter.renderTo('#schools-time-filter')
+    @views.people_lapsed.renderTo("#lapsed-people")
     @$el.find('#schools-table').html @views.schools_table.render().el
     _.each [@views.schools_table], (table) ->
       ds.statsHelper.getStats(table.collection)

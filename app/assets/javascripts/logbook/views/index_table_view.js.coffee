@@ -1,6 +1,8 @@
 class ds.IndexTableView extends Backgrid.Grid
-  initialize: ->
+  initialize: (args) ->
+    @columns ||= @collection.backgrid_columns
     super
+
     @listenTo @collection, 'backgrid:sort', (model) ->
       cid = model.cid
       filtered = model.collection.filter((model) ->

@@ -7,17 +7,6 @@ class Api::V3::EngagementsController < Api::V3::BaseController
     @engagements = location_scoped(Engagement)
       .order(sort_params).page(params[:page]).per(500)
   end
-  #
-  # Return 302 Found if there are engagements dated after
-  # the provided date, otherwise return 304 NOT MODIFIED
-  def sync
-    # Database Times and JS times have different levels of precision,
-    # (msec vs sec), so add one second to sync_time
-    sync_time = (params[:sync_time] || Time.now.to_s).to_time + 1.second
-    @count = location_scoped(Engagement).where("date > ?", sync_time).count
-    @count > 0 ? head(302) : head(304)
-  end
-
 
   # GET /api/v3/engagements/1
   # GET /api/v3/engagements/1.json

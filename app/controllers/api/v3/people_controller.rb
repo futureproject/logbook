@@ -18,6 +18,13 @@ class Api::V3::PeopleController < Api::V3::BaseController
     @count > 0 ? head(302) : head(304)
   end
 
+  def lapsed
+    @people = location_scoped(Person).active
+      .where(last_engaged: 6.months.ago..3.weeks.ago)
+      .order(:dream_team, "last_engaged DESC").limit(10)
+    render template: "api/v3/people/index"
+  end
+
   def search
     @people = location_scoped(Person).active.q(params[:q]).limit(10)
     render template: "api/v3/people/index"
