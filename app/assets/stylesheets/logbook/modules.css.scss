@@ -220,6 +220,8 @@
   text-align: right;
   &.name, &.first_name, &.last_name {
     text-align: left;
+  }
+  &.name {
     width: 40ch;
   }
   &.dream_team, &.future_fellow {
