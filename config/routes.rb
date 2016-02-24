@@ -60,46 +60,9 @@ Rails.application.routes.draw do
         end
       end
       get '/assets/signed_s3_path' => 'assets#signed_s3_path'
-      #resources :engagements
-      #resources :projects
-      #resources :schools, only: [:index]
-      #resources :sessions, only: [:new]
-      #resources :sites, only: [:index]
-      resources :me, only: [:index]
-    end
-    namespace :public do
-      resources :people do
-        collection do
-          get "sync"
-          get "search"
-        end
+      namespace :me do
+        root to: "base#profile"
       end
-      resources :engagements
-      #resources :projects
-      resources :schools, only: [:index]
-      resources :sessions, only: [:new]
-      resources :sites, only: [:index]
-    end
-    namespace :v1 do
-      resources :users do
-        get 'stats', on: :member
-      end
-      resources :people do
-        member do
-          get 'stats'
-        end
-      end
-      resources :projects do
-        get 'stats', on: :member
-      end
-      resources :engagements do
-        get 'upload', on: :member
-        get 'attendees', on: :member
-      end
-      resources :engagement_attendees
-      resources :assets, only: [:create, :destroy]
-      resources :search_results, only: [:index]
-      resources :sites
     end
   end
 
@@ -114,18 +77,12 @@ Rails.application.routes.draw do
     resources :people, only: [:index, :show]
   end
 
-  get '/logbookapp' => 'oldbook/application#home', as: 'logbook_app'
   get '/mobile' => 'phonebook/application#app'
   namespace :phonebook do
     root 'application#app'
     get 'manifest.appcache', to: 'application#manifest'
     get 'auth', to: "application#auth"
     get '*anywhere', to: 'application#app'
-  end
-  namespace :oldbook do
-    root 'application#home'
-    get 'manifest.appcache', to: 'application#manifest'
-    get '*anywhere', to: 'application#home'
   end
   namespace :webapp do
     resources :people
