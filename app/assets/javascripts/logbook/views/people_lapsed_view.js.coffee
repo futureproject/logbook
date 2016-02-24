@@ -9,6 +9,8 @@ class ds.PeopleLapsedView extends Backbone.View
           {name: 'first_name', label: 'First', cell: ds.LogbookLinkCell }
           {name: 'last_name', cell: ds.LogbookLinkCell, label: 'Last'}
           {name: 'grade', cell:'integer'}
+          {name: 'role', cell:'string'}
+          {name: 'dream_team', cell:'boolean', label: 'DT'}
           {name: 'last_engaged', cell:'date', label: 'Last Engaged'}
         ]
 
