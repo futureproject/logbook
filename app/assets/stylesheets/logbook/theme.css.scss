@@ -21,7 +21,7 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    width: 210px;
+    width: 180px;
     bottom: 0;
     @include linear-gradient(190deg, transparent, rgba(0,0,0,.5));
     z-index: 0;
@@ -225,7 +225,7 @@ textarea {
   font-size: 15px !important;
   position: absolute !important;
   top: 85px !important;
-  left: 210px !important;
+  left: 180px !important;
   right: 0 !important;
   bottom: 0 !important;
   height: auto !important;
