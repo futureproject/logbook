@@ -65,6 +65,21 @@ namespace :stats do
         file.write "#{school.engagements.where(kind: kind).count},"
       end
       file.write "\n"
+      file.close
     end
   end
+
+  desc "Export all columns on students to a CSV file hosted on AWS"
+  task students: :environment do
+    path = "#{Rails.root.to_s}/tmp/SchoolData_#{Time.now.to_i}.csv"
+    file = CSV.open(path, "wb") do |csv|
+      csv << Person.new.attributes.keys
+      Person.where(role: "student").order(:school_id).find_each do |person|
+        csv << person.attributes.values
+      end
+    end
+    asset = Asset.create(data: open(path))
+    puts asset.data(:original)
+  end
+
 end

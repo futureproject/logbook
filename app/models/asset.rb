@@ -1,6 +1,6 @@
 class Asset < ActiveRecord::Base
   belongs_to :attachable, polymorphic: true, touch: true
-  validates_presence_of :external_url
+  #validates_presence_of :external_url
   default_scope -> { order(id: :desc) }
   has_attached_file :data
   do_not_validate_attachment_file_type :data
