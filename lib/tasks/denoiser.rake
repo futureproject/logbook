@@ -53,6 +53,7 @@ namespace :denoiser do
   end
 
   task dedup_staff: [:destructive, :environment] do
+    FuzzyMatch.engine = :pure_ruby
     bank = FuzzyMatch.new(Person.all, read: :name)
     Person.where("role=? OR role=?", "DD", "CHIEF").each do |person|
       matches = bank.find_best(person.name)
