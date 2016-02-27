@@ -31,7 +31,6 @@ class Api::V3::EngagementsController < Api::V3::BaseController
     if @engagement.save
       render :show, status: :created, location: api_v3_engagement_url(@engagement)
     else
-      puts "FUCKIGN ERRORE!"
       puts @engagement.errors.full_messages
       render json: @engagement.errors, status: :unprocessable_entity
     end

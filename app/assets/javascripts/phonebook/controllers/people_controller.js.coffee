@@ -56,7 +56,6 @@ class ds.PeopleController extends Backbone.View
       person = @collection.get({cid: id}) || new ds.Person({ cid: id })
     person
 
-
   # after an engagement is created, move said engagement's attendees
   # to the top of the people collection
   moveAttendeesToTop: (engagement) ->
