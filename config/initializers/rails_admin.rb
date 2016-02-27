@@ -3,6 +3,20 @@ module RailsAdmin
     module Actions
       class Dedup < RailsAdmin::Config::Actions::Base
         RailsAdmin::Config::Actions.register self
+
+        register_instance_option :bulkable do
+          true
+        end
+
+        register_instance_option :controller do
+          Proc.new do
+            @objects = list_entries(@model_config, :destroy)
+            @objects.first.class.dedup @objects.pluck(:id)
+            flash[:success] = "Records deduped!"
+
+            redirect_to back_or_index
+          end
+        end
       end
     end
     module Fields::Types
