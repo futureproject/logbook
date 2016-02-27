@@ -16,7 +16,6 @@ module RailsAdmin
     module ActiveRecord
       module CitextStatement
         private
-
           def build_statement_for_type
             if @type == :citext
               return build_statement_for_string_or_text
