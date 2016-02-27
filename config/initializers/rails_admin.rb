@@ -11,6 +11,27 @@ module RailsAdmin
       end
     end
   end
+
+  module Adapters
+    module ActiveRecord
+      module CitextStatement
+        private
+
+          def build_statement_for_type
+            if @type == :citext
+              return build_statement_for_string_or_text
+            else
+              super
+            end
+          end
+      end
+
+      class StatementBuilder < RailsAdmin::AbstractModel::StatementBuilder
+        prepend CitextStatement
+      end
+
+    end
+  end
 end
 RailsAdmin.config do |config|
 

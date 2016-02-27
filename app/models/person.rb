@@ -119,7 +119,7 @@ class Person < ActiveRecord::Base
 
   def self.dedup ids
     duplicates = self.where(id: ids).order(:id)
-    primary = duplicates.select{|p| p.auth_token.present? || p.dream_team }.first || duplicates.first
+    primary = duplicates.select{|p| p.identities.any? || p.dream_team }.first || duplicates.first
     primary.notes ||= ""
     count = duplicates.count
     duplicates = duplicates.where.not(id: primary.id).order(:id)
