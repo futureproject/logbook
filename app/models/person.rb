@@ -129,6 +129,7 @@ class Person < ActiveRecord::Base
       primary.description ||= p.description
       primary.email ||= p.email
       primary.phone ||= p.phone
+      primary.avatar_url ||= p.avatar_url
       p.engagement_attendees.each do |r|
         r.update_attributes person_id: primary.id
       end
@@ -142,10 +143,7 @@ class Person < ActiveRecord::Base
         r.update_attributes person_id: primary.id
       end
       p.assets.each do |r|
-        r.update_attributes person_id: primary.id
-      end
-      p.assets.each do |r|
-        r.update_attributes person_id: primary.id
+        r.update_attributes attachable_id: primary.id
       end
       p.authored_notes.each do |r|
         r.update_attributes author_id: primary.id

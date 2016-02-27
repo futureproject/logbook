@@ -5,8 +5,9 @@ namespace :denoiser do
     input = STDIN.gets.chomp
     raise Nope unless input.downcase == "y"
   end
+
   desc "Cleans out people with no engagements or projects"
-  task yearly: :environment do
+  task yearly: [:destructive, :environment] do
 
     puts "Archiving students who have graduated..."
     Person.where(grade: 12).find_each do |person|
