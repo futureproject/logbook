@@ -38,10 +38,10 @@ namespace :denoiser do
   end
 
   task dedup_schools: [:destructive, :environment] do
-    #puts "removing whitespace from names..."
-    #Person.find_each do |person|
-      #person.update first_name: person.first_name.strip, last_name: person.last_name.strip
-    #end
+    puts "removing whitespace from names..."
+    Person.find_each do |person|
+      person.update first_name: person.first_name.strip, last_name: person.last_name.strip
+    end
 
     #iterate over all schools
     original_total = Person.count
