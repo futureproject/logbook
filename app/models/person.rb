@@ -127,6 +127,8 @@ class Person < ActiveRecord::Base
     duplicates.each do |p|
       primary.grade ||= p.grade
       primary.description ||= p.description
+      primary.email ||= p.email
+      primary.phone ||= p.phone
       p.engagement_attendees.each do |r|
         r.update_attributes person_id: primary.id
       end
@@ -139,7 +141,25 @@ class Person < ActiveRecord::Base
       p.report_submissions.each do |r|
         r.update_attributes person_id: primary.id
       end
-      p.delete
+      p.assets.each do |r|
+        r.update_attributes person_id: primary.id
+      end
+      p.assets.each do |r|
+        r.update_attributes person_id: primary.id
+      end
+      p.authored_notes.each do |r|
+        r.update_attributes author_id: primary.id
+      end
+      p.identities.each do |r|
+        r.update_attributes person_id: primary.id
+      end
+      p.created_people.each do |r|
+        r.update_attributes creator_id: primary.id
+      end
+      p.created_engagements.each do |r|
+        r.update_attributes creator_id: primary.id
+      end
+      p.destroy
     end
     puts "merged #{count} people into #{primary.name}, id #{primary.id}"
     primary.save
