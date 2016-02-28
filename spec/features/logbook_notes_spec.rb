@@ -10,9 +10,8 @@ feature "Logbook notes" do
   end
 
   def should_see_notes
-    within "#yield" do
-      binding.pry
-      expect(page).to have_selector("#notes-gallery")
+    within "#notes-gallery" do
+      expect(page).to have_selector("figure")
     end
   end
 

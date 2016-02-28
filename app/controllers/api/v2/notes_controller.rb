@@ -2,7 +2,9 @@ class Api::V2::NotesController < Api::V2::BaseController
   wrap_parameters format: [:json], include: [:notable_type, :notable_id, :content, :assets_attributes]
 
   def index
-    @notes = Note.order("created_at DESC").joins(:assets).page(params[:page])
+    @notes = Note.order("notes.created_at DESC").joins(:assets).includes(:assets)
+    .where("assets.data_content_type LIKE ?", "%image%")
+    .page(params[:page]).per(100)
     @total = @notes.total_count
   end
 
