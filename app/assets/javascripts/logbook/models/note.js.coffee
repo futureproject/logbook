@@ -33,9 +33,13 @@ class ds.Note extends Backbone.Model
     else
       "text"
 
-class ds.NotesCollection extends Backbone.Collection
+class ds.NotesCollection extends Backbone.PageableCollection
   model: ds.Note
   namespace: 'notes'
   url: -> ds.apiHelper.urlFor @namespace
   comparator: (model) ->
     - Date.parse(model.get('created_at'))
+  parseRecords: (response) ->
+    response.data
+  parseState: (response) ->
+    { totalRecords: response.state.total_entries }

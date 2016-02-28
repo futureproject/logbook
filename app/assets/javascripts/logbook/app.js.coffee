@@ -11,6 +11,7 @@ ds.run = (args) ->
   ds.collections.people = new ds.PeopleCollection
   ds.collections.projects = new ds.ProjectsCollection
   ds.collections.engagements = new ds.EngagementsCollection
+  ds.collections.notes = new ds.EngagementsCollection
   ds.collections.report_submissions = new ds.ReportSubmissionsCollection
   ds.views.app_view = new ds.AppView
   ds.views.scope_toggle = new ds.ScopeToggleView

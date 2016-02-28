@@ -22,6 +22,7 @@ class ds.Router extends Backbone.Router
     "logbook/reports/submitted": "reports_submitted"
     "logbook/reports/:id": "reports_view"
     "logbook/hashtags/:hashtag": "hashtags_view"
+    "logbook/notes": "notes_index"
     # ASSOCIATIONS
     "logbook/:notable_type/:notable_id/notes/add": "notes_new"
 
@@ -56,5 +57,6 @@ class ds.Router extends Backbone.Router
   hashtags_view: (tag) -> Backbone.trigger "hashtags:view", tag
 
   #NOTES
+  notes_index: -> Backbone.trigger "notes:index"
   notes_new: (type, obj_id) -> Backbone.trigger "notes:new", type, obj_id
 

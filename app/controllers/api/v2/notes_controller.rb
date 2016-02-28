@@ -1,5 +1,11 @@
 class Api::V2::NotesController < Api::V2::BaseController
   wrap_parameters format: [:json], include: [:notable_type, :notable_id, :content, :assets_attributes]
+
+  def index
+    @notes = Note.order("created_at DESC").joins(:assets).page(params[:page])
+    @total = @notes.total_count
+  end
+
   def create
     @note = current_user.authored_notes.new(note_params)
     if @note.save
