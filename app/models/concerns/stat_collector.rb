@@ -229,14 +229,17 @@ class StatCollector
     scope = args[:scope] || National.new
     {
       most_hours_coached: scope.people.active
+        .where("people.role=?","Student")
         .joins(:engagements).where(engagements: { kind: 'Coaching Session' })
         .select("people.*, SUM(engagements.duration) AS engagement_hours")
         .group('people.id').order('engagement_hours DESC').limit(5),
       most_hours_logged: scope.people.active
+        .where("people.role=?","Student")
         .joins(:engagements)
         .select("people.*, SUM(engagements.duration) AS engagement_hours")
         .group('people.id').order('engagement_hours DESC').limit(5),
       most_engagements: scope.people.active
+        .where("people.role=?","Student")
         .joins(:engagements)
         .select("people.*, COUNT(engagements.id) AS engagements_count")
         .group('people.id').order('engagements_count DESC').limit(5)
