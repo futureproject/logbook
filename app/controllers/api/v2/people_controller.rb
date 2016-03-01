@@ -43,7 +43,7 @@ class Api::V2::PeopleController < Api::V2::BaseController
 
   def lapsed
     @people = current_scope.people.active
-      .where(role: "student")
+      .where(role: "Student")
       .where(last_engaged: 6.months.ago..3.weeks.ago)
       .order("dream_team DESC", "last_engaged DESC").limit(10)
     render template: "api/v2/people/index"

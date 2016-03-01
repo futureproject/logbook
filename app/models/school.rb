@@ -67,7 +67,7 @@ class School < ActiveRecord::Base
 
   def archive_people
     return true if self.active
-    self.people.where("role = ? OR role = ? OR role = ?", "student", "staff", "teacher").each do |p|
+    self.people.where("role = ? OR role = ? OR role = ?", "Student", "Staff", "Teacher").each do |p|
       p.update active: false
     end
   end

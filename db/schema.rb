@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160220150203) do
+ActiveRecord::Schema.define(version: 20160301191400) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -114,7 +114,7 @@ ActiveRecord::Schema.define(version: 20160220150203) do
   create_table "people", force: :cascade do |t|
     t.citext   "first_name"
     t.citext   "last_name"
-    t.string   "role",                       limit: 255, default: "student"
+    t.string   "role",                       limit: 255, default: "Student"
     t.integer  "school_id"
     t.integer  "grade"
     t.boolean  "dream_team",                             default: false

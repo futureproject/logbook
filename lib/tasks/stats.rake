@@ -30,7 +30,7 @@ namespace :stats do
     path = "#{Rails.root.to_s}/tmp/nhv_stats_#{Time.now.to_i}.csv"
     file = open(path, "w")
     file.write "first_name,last_name,school,dates_engaged\n"
-    students = nh.people.where(role: "student").joins(:engagements).merge(nh.engagements.this_school_year).uniq
+    students = nh.people.where(role: "Student").joins(:engagements).merge(nh.engagements.this_school_year).uniq
     students.order(:last_name).each do |student|
       file.write "#{student.first_name},"
       file.write "#{student.last_name},"
@@ -74,7 +74,7 @@ namespace :stats do
     path = "#{Rails.root.to_s}/tmp/SchoolData_#{Time.now.to_i}.csv"
     file = CSV.open(path, "wb") do |csv|
       csv << Person.new.attributes.keys
-      Person.where(role: "student").order(:school_id).find_each do |person|
+      Person.where(role: "Student").order(:school_id).find_each do |person|
         csv << person.attributes.values
       end
     end

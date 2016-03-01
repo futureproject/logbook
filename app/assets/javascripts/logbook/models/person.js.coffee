@@ -2,7 +2,7 @@ class ds.Person extends Backbone.Model
   namespace: 'people'
   urlRoot: ds.apiHelper.urlFor 'people'
   defaults: ->
-    role: 'student'
+    role: 'Student'
     grade: 9
     school_id: ds.current_user.get('school_id')
     projects: []

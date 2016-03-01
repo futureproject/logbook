@@ -40,7 +40,7 @@ class StatCollector
     scope = args[:scope] || National.new
     total = scope.enrollment
     dates = args[:dates] ? args[:dates] : self.default_range
-    engaged = scope.people.where(role: "student").joins(:engagements).merge(scope.engagements.btw(dates)).uniq.count
+    engaged = scope.people.where(role: "Student").joins(:engagements).merge(scope.engagements.btw(dates)).uniq.count
     data = [{name: 'Engaged', y: engaged}, {name: 'Nope', y: (total - engaged)}]
     [{ data: data }]
   end

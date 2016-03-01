@@ -19,7 +19,7 @@ class Person < ActiveRecord::Base
   has_many :authored_notes, class_name: 'Note', foreign_key: 'author_id', inverse_of: :author
   before_save :set_site
   after_touch :set_last_engaged
-  ROLE_ENUM = %W(student teacher staff apprentice volunteer parent alum DD CHIEF TFP)
+  ROLE_ENUM = ["Student", "Teacher", "Staff", "Future Corps Leader", "Volunteer", "Parent", "Alum", "DD", "CHIEF", "TFP"]
   GRADE_ENUM = [6, 7, 8, 9, 10, 11, 12]
   SEX_ENUM = %w(M F)
   DREAM_TEAM_ENUM = [["Yep", true],["Nope", false]]

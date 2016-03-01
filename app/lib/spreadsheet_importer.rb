@@ -10,7 +10,7 @@ class SpreadsheetImporter
       sex = row["sex"].downcase rescue nil
       grade = row["grade"].to_i rescue nil
       osis = row["osis"]
-      role = row["role"] || "student"
+      role = row["role"] || "Student"
 
       person = Person.where(first_name: first, last_name: last).first_or_create do |p|
         p.update_attributes(
