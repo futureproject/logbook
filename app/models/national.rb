@@ -56,6 +56,14 @@ class National
     Site.all
   end
 
+  def notes
+    Note.all
+  end
+
+  def assets
+    Asset.all
+  end
+
   def identities
     Identity.where('person_id IS NOT NULL')
   end

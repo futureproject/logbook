@@ -11,6 +11,8 @@ class School < ActiveRecord::Base
   has_many :engagements
   has_many :engagement_attendees, through: :engagements
   has_many :report_submissions, through: :people
+  has_many :notes, through: :people, class_name: "Note", foreign_key: "author_id", source: :authored_notes
+  has_many :assets, through: :notes
 
   include Activatable
 

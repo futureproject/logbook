@@ -38,7 +38,7 @@ Rails.application.routes.draw do
         get 'submitted', on: :collection
       end
       get '/assets/signed_s3_path' => 'assets#signed_s3_path'
-      resources :assets, only: [:create, :destroy]
+      resources :assets
       resources :search_results, only: [:index]
       resources :notes
       resources :hashtags, only: [:index, :show]

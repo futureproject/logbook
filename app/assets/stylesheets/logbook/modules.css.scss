@@ -508,3 +508,40 @@ input.save {
   }
 }
 
+
+#assets-gallery {
+  text-align: center;
+  .polaroid {
+    overflow: hidden;
+    border: 1em solid white;
+    background: white;
+    display: inline-block;
+    width: 160px;
+    margin: 1em;
+    box-shadow: -3px 3px 5px rgba(0,0,0,.1);
+  }
+  figure {
+    position: relative;
+    height: 9em;
+    img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      height: auto;
+      @include transform(translate(-50%, -50%));
+    }
+  }
+  figcaption {
+    font-size: .667em;
+    text-align: left;
+    line-height: 1;
+    margin-top: 1em;
+    * { margin: 0; }
+  }
+  h3 { font-weight: bold; }
+}
+.assets-pagination {
+  text-align: center;
+  a { cursor: pointer }
+}

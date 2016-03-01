@@ -17,6 +17,7 @@
 #= require quill.min
 #= require_tree ./helpers
 #= require_tree ./models
+#= require ./controllers/base_controller
 #= require_tree ./controllers
 #= require_tree ./templates
 #= require_tree ./views

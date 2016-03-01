@@ -11,8 +11,8 @@ ds.run = (args) ->
   ds.collections.people = new ds.PeopleCollection
   ds.collections.projects = new ds.ProjectsCollection
   ds.collections.engagements = new ds.EngagementsCollection
-  ds.collections.notes = new ds.EngagementsCollection
   ds.collections.report_submissions = new ds.ReportSubmissionsCollection
+  ds.collections.assets = new ds.AssetsCollection
   ds.views.app_view = new ds.AppView
   ds.views.scope_toggle = new ds.ScopeToggleView
   ds.views.scope_menu = new ds.ScopeMenuView
@@ -26,6 +26,7 @@ ds.run = (args) ->
   ds.controllers.report_submissions = new ds.ReportSubmissionsController
   ds.controllers.hashtags = new ds.HashtagsController
   ds.controllers.notes = new ds.NotesController
+  ds.controllers.assets = new ds.AssetsController
   ds.router = new ds.Router
   ds.scopeHelper.setScope(ds.CONSTANTS.scope)
   Backbone.history.start({ pushState: true })

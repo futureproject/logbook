@@ -1,5 +1,13 @@
 class Api::V2::AssetsController < Api::V2::BaseController
 
+  def index
+    @assets = current_scope.assets.order("created_at DESC")
+    .where("data_content_type LIKE ?", "%image%")
+    .includes(attachable: [:author, :notable])
+    .page(params[:page]).per(100)
+    @total = @assets.total_count
+  end
+
   def create
     @asset = Asset.new(asset_params)
     @asset.caption = params[:filename] if (params[:filename] && @asset.caption.blank?)
