@@ -1,5 +1,5 @@
 %div[note]
-  .asset-author= note.author.try(:name)
+  .asset-author= note.creator.try(:name)
   .assset-avatar
   .asset-title= note.notable.try(:name)
   .asset-description= note.notable.try(:description)

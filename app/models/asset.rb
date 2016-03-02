@@ -48,7 +48,7 @@ class Asset < ActiveRecord::Base
       note = Note.new(
         notable_type: self.attachable.class.name,
         notable_id: self.attachable.id,
-        author_id: self.attachable.creator_id,
+        creator_id: self.attachable.creator_id,
         content: self.caption
       )
       note.save!

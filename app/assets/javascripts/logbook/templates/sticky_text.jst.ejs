@@ -1,5 +1,5 @@
 <div class="note-date"><%= Date.parse(note.created_at).toString('yyyy-MM-dd') %></div>
-<div class="note-user"><%= note.author %></div>
+<div class="note-user"><%= note.creator %></div>
 <div class="note-content">
   <label>Attachments: <%= note.assets.length %></label>
   <ul class="note-attachments">

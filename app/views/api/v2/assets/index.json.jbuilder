@@ -7,7 +7,7 @@ json.data do
     json.thumbnail asset.thumbnail
     json.original asset.original
     json.meta do
-      json.author asset.attachable.try(:author).try(:name)
+      json.creator asset.attachable.try(:creator).try(:name)
       json.subject asset.attachable.try(:notable).try(:name)
     end
   end

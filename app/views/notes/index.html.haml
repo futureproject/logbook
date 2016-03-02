@@ -6,14 +6,14 @@
   %ul.notes-list
     - @notes.each do |note|
       %li[note]{class: "note-#{note.kind}"}
-        - if note.author
+        - if note.creator
           .note-info
             .note-avatar
-              = link_to image_tag(note.author.avatar_url), "/logbook/people/#{note.author.id}", target: "_blank"
+              = link_to image_tag(note.creator.avatar_url), "/logbook/people/#{note.creator.id}", target: "_blank"
             .note-date= note.created_at.strftime "%b %d"
             .note-author
-              .note-author-name= link_to note.author.try(:name), "/logbook/people/#{note.author.id}", target: "_blank"
-              .note-author-location= note.author.location_string
+              .note-author-name= link_to note.creator.try(:name), "/logbook/people/#{note.creator.id}", target: "_blank"
+              .note-author-location= note.creator.location_string
         .note-assets= render note.assets
         .note-content
           .note-subject= link_to note.notable.try(:name), url_for([:logbook, note.notable]), target: "_blank"

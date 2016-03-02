@@ -9,7 +9,7 @@ class Api::V2::NotesController < Api::V2::BaseController
   end
 
   def create
-    @note = current_user.authored_notes.new(note_params)
+    @note = current_user.created_notes.new(note_params)
     if @note.save
       render json: @note
     else

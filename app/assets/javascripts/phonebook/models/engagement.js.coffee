@@ -28,7 +28,7 @@ class ds.Engagement extends Backbone.Model
     @on "upload:finished", (asset_url) =>
       asset = { external_url: asset_url }
       note = {
-        author_id: ds.IDENTITY.get('person').id
+        creator_id: ds.IDENTITY.get('person').id
         assets_attributes: [asset]
       }
       @save { notes_attributes: [note]}

@@ -3,7 +3,7 @@ class Api::V2::AssetsController < Api::V2::BaseController
   def index
     @assets = current_scope.assets.order("created_at DESC")
     .where("data_content_type LIKE ?", "%image%")
-    .includes(attachable: [:author, :notable])
+    .includes(attachable: [:creator, :notable])
     .page(params[:page]).per(100)
     @total = @assets.total_count
   end

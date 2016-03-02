@@ -16,7 +16,7 @@ class Person < ActiveRecord::Base
   has_many :notes, as: :notable, dependent: :destroy
   has_many :assets, as: :attachable
   has_many :report_submissions
-  has_many :authored_notes, class_name: 'Note', foreign_key: 'author_id', inverse_of: :author
+  has_many :created_notes, class_name: 'Note', foreign_key: 'creator_id', inverse_of: :creator
   before_save :set_site
   after_touch :set_last_engaged
   ROLE_ENUM = ["Student", "Teacher", "Staff", "Future Corps Leader", "Volunteer", "Parent", "Alum", "DD", "CHIEF", "TFP"]
@@ -145,8 +145,8 @@ class Person < ActiveRecord::Base
       p.assets.each do |r|
         r.update_attributes attachable_id: primary.id
       end
-      p.authored_notes.each do |r|
-        r.update_attributes author_id: primary.id
+      p.created_notes.each do |r|
+        r.update_attributes creator_id: primary.id
       end
       p.identities.each do |r|
         r.update_attributes person_id: primary.id

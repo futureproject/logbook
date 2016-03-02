@@ -4,7 +4,7 @@ class ds.Note extends Backbone.Model
   defaults: ->
     notable_id: null
     notable_type: null
-    author: ds.current_user.get('first_name')
+    creator: ds.current_user.get('first_name')
     assets: []
 
   tplAttrs: ->

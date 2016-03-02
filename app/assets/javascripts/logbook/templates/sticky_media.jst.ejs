@@ -1,5 +1,5 @@
 <div class="note-date"><%= Date.parse(note.created_at).toString('yyyy-MM-dd') %></div>
-<div class="note-user"><%= note.author %></div>
-<a title="<%= note.author %>: <%= note.text %>" href="<%= note.poster.original %>" class="thumbnail" style="background-image: url(<%= note.poster.thumbnail %>);">
+<div class="note-user"><%= note.creator %></div>
+<a title="<%= note.creator %>: <%= note.text %>" href="<%= note.poster.original %>" class="thumbnail" style="background-image: url(<%= note.poster.thumbnail %>);">
 </a>
 <div class="action delete icon-delete"></div>

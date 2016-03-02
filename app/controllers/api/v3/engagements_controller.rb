@@ -72,7 +72,7 @@ class Api::V3::EngagementsController < Api::V3::BaseController
         :headcount,
         attendee_ids: [],
         notes_attributes: [
-          :author_id,
+          :creator_id,
           assets_attributes: [
             :external_url
           ]
