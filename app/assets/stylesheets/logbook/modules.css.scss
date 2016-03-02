@@ -535,9 +535,14 @@ input.save {
   figcaption {
     font-size: .667em;
     text-align: left;
-    line-height: 1;
+    line-height: 1.2;
     margin-top: 1em;
-    * { margin: 0; }
+    * {
+      margin: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
   }
   h3 { font-weight: bold; }
 }

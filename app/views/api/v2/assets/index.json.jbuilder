@@ -8,7 +8,7 @@ json.data do
     json.original asset.original
     json.meta do
       json.creator asset.attachable.try(:creator).try(:name)
-      json.subject asset.attachable.try(:notable).try(:name)
+      json.subject asset.attachable.try(:name)
     end
   end
 end

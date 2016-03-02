@@ -7,6 +7,7 @@ class Note < ActiveRecord::Base
   scope :btw, -> (range) { where(created_at: range) }
   include Hashtaggable
   hashtaggable_attribute :content
+  before_create :autoname
 
   def kind
     if assets.count > 0
@@ -18,5 +19,8 @@ class Note < ActiveRecord::Base
     end
   end
 
+  def autoname
+    self.name = "Re: #{notable.try(:name)}"
+  end
 
 end
