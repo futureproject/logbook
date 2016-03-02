@@ -1,5 +1,6 @@
 class ds.NotesController extends Backbone.View
   initialize: ->
+    @views = {}
     @listenTo Backbone, "notes:new", @new
 
   new: (notable_type, notable_id) ->

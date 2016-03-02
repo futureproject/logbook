@@ -49,6 +49,17 @@ feature 'Logbook people' do
 
   scenario 'DESTROY'
   # create a new person, then destroy him
+  #
+
+  scenario "adding a note" do
+    visit "/logbook/people/#{Person.first.id}"
+    click_link "Add Note"
+    within "#note-form" do
+      fill_in "content", with: "This person is kind of a jerk."
+      click_button "Save Note"
+    end
+    expect(page).to have_content "This person is kind of a jerk"
+  end
 
   def should_see_person_named(name)
     expect(page).to have_content "People › #{name}"
