@@ -19,7 +19,7 @@ class Api::V2::ReportSubmissionsController < Api::V2::BaseController
   def submitted
     @t = stat_times
     @report_submissions = apply_scopes(current_scope.report_submissions)
-      .order("created_at DESC, people.site_id ASC")
+      .order("report_submissions.created_at DESC, people.site_id ASC")
       .btw(@t)
       .page(params[:page])
     @total = @report_submissions.total_count
@@ -83,7 +83,7 @@ class Api::V2::ReportSubmissionsController < Api::V2::BaseController
       if params[:sort_by] && params[:order]
         "#{params[:sort_by]} #{params[:order]}"
       else
-        "created_at DESC, status DESC"
+        "report_submissions.created_at DESC, report_submissions.status DESC"
       end
     end
 end

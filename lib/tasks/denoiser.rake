@@ -69,4 +69,17 @@ namespace :denoiser do
     end
   end
 
+  task dedup_reports: [:destructive, :environment] do
+    start_count = ReportSubmission.count
+    Person.where("role=? OR role=?", "DD", "CHIEF").each do |person|
+      unique_reports = person.report_submissions.group_by{|r| r.name }
+      unique_reports.each do |name, reports|
+        valid = (reports.size > 1 && reports.select{|sub| sub.status == "Submitted"}.any?)
+        next unless valid
+        noise = reports.select{|r| r.status != "Submitted" }
+        noise.each {|n| n.destroy }
+      end
+    end
+    puts "Deleted #{start_count - ReportSubmission.count} reports"
+  end
 end
