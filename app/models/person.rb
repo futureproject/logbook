@@ -27,6 +27,7 @@ class Person < ActiveRecord::Base
 
   include Joinable
   include Activatable
+  include Crunchable
 
   scope :q, -> (query) {
     return if query.blank?
@@ -100,6 +101,10 @@ class Person < ActiveRecord::Base
     school.try(:name)
   end
 
+  def site_name
+    site.try(:name)
+  end
+
   def set_site
     return if self.site || !self.school
     self.site_id = self.school.try(:site).try(:id)
@@ -115,6 +120,10 @@ class Person < ActiveRecord::Base
       self.update first_engaged: date
     end
     true
+  end
+
+  def first_project_started
+    projects.order("created_at ASC").first.try(:created_at)
   end
 
   def self.dedup ids

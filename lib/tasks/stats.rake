@@ -40,7 +40,7 @@ namespace :stats do
     file.close
   end
 
-  desc "Export stats for the research dept to analyze"
+  desc "Export school stats for the research dept to analyze"
   task research_dept: :environment do
     path = "#{Rails.root.to_s}/tmp/SchoolData_#{Time.now.to_i}.csv"
     file = open(path, "w")
@@ -82,4 +82,20 @@ namespace :stats do
     puts asset.data(:original)
   end
 
+  desc "Export student stats for the research dept to analyze"
+
+  task students_bis: :environment do
+    path = "#{Rails.root.to_s}/tmp/SchoolData_#{Time.now.to_i}.csv"
+    file = CSV.open(path, "wb") do |csv|
+      attrs = %w(id site_name school_name grade sex dream_team program_hours program_coaching_hours program_event_hours program_course_hours program_meeting_hours engagements_count coaching_sessions_count events_count courses_count meetings_count first_engaged first_project_started)
+      csv << attrs
+      Person.where(role: "Student").ever_engaged.order(:school_id).find_each do |person|
+        data = attrs.map{|val| person.send(val) }
+        csv << data
+      end
+    end
+    asset = Asset.create(data: open(path))
+    puts asset.data(:original)
+  end
 end
+
