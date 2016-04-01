@@ -96,6 +96,8 @@ namespace :stats do
     end
     asset = Asset.create(data: open(path))
     puts asset.data(:original)
+    # TODO, upload file to GDRIVE
+    #scp -i key_file.pem your_username@remotehost.edu:/remote/dir/foobar.txt /local/dir
   end
 end
 
