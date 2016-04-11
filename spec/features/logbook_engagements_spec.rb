@@ -69,10 +69,9 @@ feature 'Logbook engagements' do
   end
 
   def take_attendance
-    uuid = SecureRandom.uuid
     within '.attendance-field' do
       field = first('.selectize-input input[type=text]')
-      q = "James T Kirk#{uuid}"
+      q = "Alfred"
       field.set(q)
       find('div', text: q, match: :first).click
     end

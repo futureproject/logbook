@@ -18,35 +18,6 @@ class ds.SelectizeView extends Backbone.View
     @$el.selectize
       valueField: 'id'
       searchField: @settings.searchfields
-      createFilter: (input) ->
-        nameArray = input.split(' ')
-        first_name = nameArray.shift()
-        last_name = nameArray.join(' ')
-        if (first_name?.length > 0 && last_name?.length > 0) then true else false
-
-      create: (input, callback) =>
-        name = input.split(' ')
-        item =
-          id: "person_#{Math.floor(Math.random()*10e3)}"
-          last_name: name.pop()
-          first_name: name.join(' ')
-          name: input
-          school_id: $('select[name*=school_id]').val()
-        data = {}
-        data["#{ds.nounsHelper.singularize(@settings.searchspace)}"] = item
-        $.ajax ds.apiHelper.urlFor(@settings.searchspace),
-          type: "POST"
-          data: data
-          complete: (response) =>
-            attrs = response.responseJSON
-            @el.selectize.updateOption item.id,
-              id: attrs.id
-              first_name: attrs.first_name
-              last_name: attrs.last_name
-              name: item.name
-            @el.selectize.refreshItems()
-        item
-
       load: (query, callback) =>
         return callback() if (!query.length)
         $.ajax
