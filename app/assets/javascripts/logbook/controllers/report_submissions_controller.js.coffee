@@ -23,7 +23,6 @@ class ds.ReportSubmissionsController extends ds.BaseController
   view: (id) ->
     report = @setReportSubmissionFromId(id)
     pid = report.get("person_id")
-    console.log pid
     if pid == ds.current_user.id || !pid?
       @views.view = new ds.ReportSubmissionsEditView
         model: report

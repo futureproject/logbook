@@ -28,15 +28,29 @@ class ds.ReportSubmissionsEditView extends Backbone.View
 
   save: (event) ->
     event.preventDefault()
+    event.stopPropagation()
     data = @getBodyFromTextEditor()
-    @model.save data, {silent: true}
-    true
+    @model.save data,
+      silent: true
+      success: ->
+        ds.router.navigate "/logbook/reports", { trigger: true }
+      error: (error) ->
+        msg = "The report failed to save. Please try again."
+        msg += " #{error}"
+        alert msg
 
   submit: (event) ->
     event.preventDefault()
+    event.stopPropagation()
     data = @getBodyFromTextEditor()
-    @model.save (_.extend data, {status: "Submitted"}), { silent: true }
-    true
+    @model.save (_.extend data, {status: "Submitted"}),
+      silent: true
+      success: ->
+        ds.router.navigate "/logbook/reports", { trigger: true }
+      error: (error) ->
+        msg = "The report failed to save. Please try again."
+        msg += " #{error}"
+        alert msg
 
   uploadAttachments: (event) ->
     @upload(file) for file in event.currentTarget.files
