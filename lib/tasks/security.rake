@@ -17,7 +17,7 @@ namespace :security do
     puts "Signed out #{Identity.count} users"
   end
 
-  task change_names_to_protect_innocent: [:destructive, :environment] do
+  task anonymize: [:destructive, :environment] do
     Person.find_each do |person|
       new_name = Faker::Name
       person.update_column :first_name, new_name.first_name
