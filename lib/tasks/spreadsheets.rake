@@ -17,13 +17,6 @@ namespace :spreadsheets do
       puts "Imported #{person_name[0]}!"
     end
 
-    peeps = Person.order(:school_id, :first_name)
-    peeps.each_with_index do |p,i|
-      prev = i > 0 ? peeps[i-1] : peeps[i]
-      if p.first_name == prev.first_name || p.last_name == prev.last_name
-        puts "#{p.name} (id #{p.id}) similar to #{prev.name} (id #{prev.id})"
-      end
-    end
   end
 
 end

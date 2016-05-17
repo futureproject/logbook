@@ -139,6 +139,7 @@ class Person < ActiveRecord::Base
       primary.email ||= p.email
       primary.phone ||= p.phone
       primary.avatar_url ||= p.avatar_url
+      primary.osis ||= p.osis
       p.engagement_attendees.each do |r|
         r.update_attributes person_id: primary.id
       end

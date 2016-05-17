@@ -6,7 +6,6 @@ namespace :denoiser do
     raise Nope unless input.downcase == "y"
   end
 
-  desc "Cleans out people with no engagements or projects"
   task yearly: [:destructive, :environment] do
 
     puts "Archiving students who have graduated..."
@@ -22,6 +21,7 @@ namespace :denoiser do
     puts "... done."
   end
 
+  desc "Cleans out people with no engagements or projects"
   task denoise: [:destructive, :environment] do
     # delete students with zero projects & engagements (noisy)
     noise = Person.includes(:project_people).includes(:engagement_attendees)

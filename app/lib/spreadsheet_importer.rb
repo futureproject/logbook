@@ -12,12 +12,10 @@ class SpreadsheetImporter
       osis = row["osis"]
       role = row["role"] || "Student"
 
-      person = Person.where(first_name: first, last_name: last).first_or_create do |p|
-        p.update_attributes(
-          first_name: first, last_name: last, email: email, phone: phone, sex: sex,
-          grade: grade, school_id: user.school_id, osis: osis
-        )
-      end
+      person = Person.create!(
+        first_name: first, last_name: last, email: email, phone: phone, sex: sex,
+        grade: grade, school_id: user.school_id, osis: osis
+      )
     end
     user.school.dedup
   end

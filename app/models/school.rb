@@ -85,14 +85,14 @@ class School < ActiveRecord::Base
     puts "deduped #{count - self.people.count} from #{self.name}"
   end
 
-  #def dedup
-    #bank = FuzzyMatch.new(self.people, read: :name)
-    #puts "Deduping #{self.name}..."
-    #self.people.each do |person|
-      #matches = bank.find_best(person.name)
-      #next unless (Person.exists?(person.id) && matches.size > 1)
-      #Person.dedup matches.map(&:id)
-    #end
-  #end
+  def dedup_with_fuzzymatch
+    bank = FuzzyMatch.new(self.people, read: :name)
+    puts "Deduping #{self.name}..."
+    self.people.each do |person|
+      matches = bank.find_best(person.name)
+      next unless (Person.exists?(person.id) && matches.size > 1)
+      Person.dedup matches.map(&:id)
+    end
+  end
 
 end
